@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<LoginMarkImageModel>
+  <UseParaPositionMarker>false</UseParaPositionMarker>
+  <BaseCorrection>
+    <X>0</X>
+    <Y>0</Y>
+  </BaseCorrection>
+  <TiltCorrection>
+    <X>0.5</X>
+    <Y>0</Y>
+  </TiltCorrection>
+</LoginMarkImageModel>

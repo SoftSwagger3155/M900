@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<FuncPara>
+  <RunModelSelect>检查</RunModelSelect>
+  <ProgramExecution>连续</ProgramExecution>
+  <WorkHolding>自动</WorkHolding>
+  <ChekResultMark>true</ChekResultMark>
+  <ChekFinishMark>true</ChekFinishMark>
+  <InterleafControl>false</InterleafControl>
+  <ProvideOrOut>连续</ProvideOrOut>
+  <ElectrCkeckErrorOverlook>true</ElectrCkeckErrorOverlook>
+  <DataCodeCheckErrorOverlook>true</DataCodeCheckErrorOverlook>
+  <ImageErrorOverlook>true</ImageErrorOverlook>
+  <ImageErrorNowPointsCheck>true</ImageErrorNowPointsCheck>
+  <VelPrecent>100</VelPrecent>
+  <AccPrecent>100</AccPrecent>
+</FuncPara>

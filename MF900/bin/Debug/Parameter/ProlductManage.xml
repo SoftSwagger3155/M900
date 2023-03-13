@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ProductManage>
+  <NowProgramName>InitalProduct</NowProgramName>
+  <ProgramList>
+    <string>InitalProduct</string>
+    <string>Test1</string>
+    <string>Test2</string>
+    <string>Test3</string>
+  </ProgramList>
+</ProductManage>

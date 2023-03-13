@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<PreLocationModel>
+  <IsRegionPreLocation>true</IsRegionPreLocation>
+  <PreLocationList>
+    <string>1</string>
+    <string>2</string>
+    <string>3</string>
+    <string>4</string>
+    <string>5</string>
+  </PreLocationList>
+</PreLocationModel>

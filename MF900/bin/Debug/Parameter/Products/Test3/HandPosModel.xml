@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<HandPosModel>
+  <SelectEffect>无效</SelectEffect>
+  <CoveyHandDown>true</CoveyHandDown>
+  <WorkPoeceAdsorb>true</WorkPoeceAdsorb>
+  <CoveyHandUp>true</CoveyHandUp>
+  <AdsorbWait>true</AdsorbWait>
+  <CoveyHandShake>true</CoveyHandShake>
+</HandPosModel>

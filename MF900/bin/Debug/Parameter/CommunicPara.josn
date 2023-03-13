@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<CommumicModel>
+  <SerialPortModel>
+    <Port>COM1</Port>
+    <BaudRrate>9600</BaudRrate>
+    <CheckBit>EVEN</CheckBit>
+    <DataBit>8</DataBit>
+    <StopBit>1</StopBit>
+  </SerialPortModel>
+  <MotionIP>
+    <Ip>192.168.0.1</Ip>
+    <Port>8000</Port>
+  </MotionIP>
+  <ServerIP>
+    <Ip>127.0.0.1</Ip>
+    <Port>8000</Port>
+  </ServerIP>
+</CommumicModel>

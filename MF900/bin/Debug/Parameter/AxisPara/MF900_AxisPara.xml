@@ -1,0 +1,56 @@
+﻿{
+  "上模X轴": {
+    "AxisNum": 7,
+    "homeIo": 290,
+    "Fwd": 289,
+    "Rev": 288
+  },
+  "上模Y轴": {
+    "AxisNum": 5,
+    "homeIo": 226,
+    "Fwd": 225,
+    "Rev": 224
+  },
+  "上模Z轴": {
+    "AxisNum": 3,
+    "homeIo": 162,
+    "Fwd": 161,
+    "Rev": 160
+  },
+  "上模R轴": {
+    "AxisNum": 0,
+    "homeIo": 66,
+    "Fwd": 65,
+    "Rev": 64
+  },
+  "下模X轴": {
+    "AxisNum": 8,
+    "homeIo": 322,
+    "Fwd": 321,
+    "Rev": 320
+  },
+  "下模Y轴": {
+    "AxisNum": 6,
+    "homeIo": 258,
+    "Fwd": 257,
+    "Rev": 256
+  },
+  "下模Z轴": {
+    "AxisNum": 4,
+    "homeIo": 194,
+    "Fwd": 193,
+    "Rev": 192
+  },
+  "下模R轴": {
+    "AxisNum": 1,
+    "homeIo": 98,
+    "Fwd": 97,
+    "Rev": 96
+  },
+  "托板升降轴": {
+    "AxisNum": 2,
+    "homeIo": 130,
+    "Fwd": 129,
+    "Rev": 128
+  }
+}

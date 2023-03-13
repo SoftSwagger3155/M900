@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<RunOptionsModel>
+  <UseEVJigRises>true</UseEVJigRises>
+  <UseAidBoard>true</UseAidBoard>
+  <CorrectionGetImage>true</CorrectionGetImage>
+  <ElectricCheckNotGetImage>true</ElectricCheckNotGetImage>
+  <ExceptAutoNgReCheck>false</ExceptAutoNgReCheck>
+  <GetAllImageCheckElectric>false</GetAllImageCheckElectric>
+  <WorkpieceContactTiming>false</WorkpieceContactTiming>
+  <ElectricCheckOnDownJigAsMounting>false</ElectricCheckOnDownJigAsMounting>
+  <DebugAutoRunLevel>false</DebugAutoRunLevel>
+  <UseInitialElectricCheckerMarker>false</UseInitialElectricCheckerMarker>
+  <EachColumnCorrection>false</EachColumnCorrection>
+  <CommenstationAutoNgReCheck>false</CommenstationAutoNgReCheck>
+  <RegistOfUpperJig>false</RegistOfUpperJig>
+  <AdjustZLevelAutoByConduct>false</AdjustZLevelAutoByConduct>
+</RunOptionsModel>

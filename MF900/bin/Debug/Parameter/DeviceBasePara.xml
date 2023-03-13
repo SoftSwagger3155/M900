@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<DeviceBaseParaModel>
+  <BasePointXY>
+    <X>110</X>
+    <Y>60</Y>
+  </BasePointXY>
+  <UpAvoidPoints>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>0</Z>
+    <R>0</R>
+  </UpAvoidPoints>
+  <DownAvoidPoints>
+    <X>0</X>
+    <Y>0</Y>
+    <Z>0</Z>
+    <R>0</R>
+  </DownAvoidPoints>
+  <PlatformHeight>0</PlatformHeight>
+</DeviceBaseParaModel>

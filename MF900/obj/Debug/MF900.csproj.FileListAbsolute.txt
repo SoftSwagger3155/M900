@@ -1,0 +1,140 @@
+D:\900\MF900\MF900\bin\Debug\MF900.exe.config
+D:\900\MF900\MF900\bin\Debug\MF900.exe
+D:\900\MF900\MF900\bin\Debug\MF900.pdb
+D:\900\MF900\MF900\bin\Debug\SunnyUI.Common.dll
+D:\900\MF900\MF900\obj\Debug\MF900.csproj.AssemblyReference.cache
+D:\900\MF900\MF900\obj\Debug\MF900.FormMain.resources
+D:\900\MF900\MF900\obj\Debug\MF900.Properties.Resources.resources
+D:\900\MF900\MF900\obj\Debug\MF900.csproj.GenerateResource.cache
+D:\900\MF900\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
+D:\900\MF900\MF900\obj\Debug\MF900.csproj.CopyComplete
+D:\900\MF900\MF900\obj\Debug\MF900.exe
+D:\900\MF900\MF900\obj\Debug\MF900.pdb
+D:\900\MF900\MF900\obj\Debug\MF900.FormButtonMain.resources
+D:\900\MF900\MF900\bin\Debug\Newtonsoft.Json.dll
+D:\900\MF900\MF900\bin\Debug\System.Data.SQLite.dll
+D:\900\MF900\MF900\bin\Debug\System.Data.SQLite.xml
+D:\900\MF900\MF900\obj\Debug\MF900.FormFunc.resources
+D:\900\MF900\MF900\obj\Debug\MF900.FormRunUI.resources
+D:\900\MF900\MF900\obj\Debug\MF900.FormDebug.resources
+D:\900\MF900\MF900\obj\Debug\MF900.FormProgramSet.resources
+D:\900\MF900 -Yhh\MF900\bin\Debug\packages.config
+D:\900\MF900 -Yhh\MF900\bin\Debug\MF900.exe.config
+D:\900\MF900 -Yhh\MF900\bin\Debug\MF900.exe
+D:\900\MF900 -Yhh\MF900\bin\Debug\MF900.pdb
+D:\900\MF900 -Yhh\MF900\bin\Debug\DevComponents.DotNetBar2.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\Halcon.Functions.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\halcondotnet.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\HVision.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\log4net.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\MotionCard.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\Newtonsoft.Json.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\SunnyUI.Common.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\SunnyUI.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\Basler.Pylon.dll
+D:\900\MF900 -Yhh\MF900\bin\Debug\HVision.pdb
+D:\900\MF900 -Yhh\MF900\bin\Debug\MotionCard.pdb
+D:\900\MF900 -Yhh\MF900\bin\Debug\DevComponents.DotNetBar2.xml
+D:\900\MF900 -Yhh\MF900\bin\Debug\Halcon.Functions.pdb
+D:\900\MF900 -Yhh\MF900\bin\Debug\log4net.xml
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.AssemblyReference.cache
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.exe.config
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.CameraHWControls.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormJigOpations.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormRunOption.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormCoveyHandleSet.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormCheckLevelZ2.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormDataCodeDebug.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormLoginMarkImage.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormWorkPieceDebug.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormAdjustLevelZ.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormAdjustOffsetZ1.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormMaintaining.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormButtonMain.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormBoardMessage.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormCheckMarking.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormDebug.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormDebugTableTop.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormFunc.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipChange.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipData.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipImageLogin.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipOffset.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormMachineState.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormMain.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormPanel.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormParameterSet.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormProductData.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormProgramSet.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormRunUI.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormSetProcess.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormWorkPieceList.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.Properties.Resources.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.ResultCountDgv.resources
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.GenerateResource.cache
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.CopyComplete
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.exe
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.pdb
+D:\900\MF900 -Yhh\MF900\obj\Debug\MF900.FormAxisDebug.resources
+D:\900\MF900 -Yhh\MF900\bin\Debug\Log\Log4Net.config
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.AssemblyReference.cache
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.SuggestedBindingRedirects.cache
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormAxisDebug.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.CameraHWControls.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormJigOpations.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormRunOption.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormCoveyHandleSet.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormCheckLevelZ2.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormDataCodeDebug.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormLoginMarkImage.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormWorkPieceDebug.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormAdjustLevelZ.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormAdjustOffsetZ1.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormMaintaining.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormButtonMain.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormBoardMessage.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormCheckMarking.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormDebug.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormDebugTableTop.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormFunc.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipChange.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipData.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipImageLogin.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormJipOffset.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormMachineState.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormMain.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormPanel.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormParameterSet.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormProductData.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormProgramSet.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormRunUI.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormSetProcess.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.FormWorkPieceList.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.Properties.Resources.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.ResultCountDgv.resources
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.GenerateResource.cache
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.exe
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.pdb
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Log\Log4net.config
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\packages.config
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\MF900.exe.config
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\MF900.exe
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\MF900.pdb
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Halcon.Functions.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\HVision.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\log4net.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\MotionCard.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Newtonsoft.Json.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\SunnyUI.Common.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\SunnyUI.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Basler.Pylon.dll
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\HVision.pdb
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\MotionCard.pdb
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\DevComponents.DotNetBar2.xml
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Halcon.Functions.pdb
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\log4net.xml
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Basler.Pylon.xml
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.exe.config
+D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.CopyComplete
