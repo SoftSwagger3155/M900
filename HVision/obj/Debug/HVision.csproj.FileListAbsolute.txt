@@ -27,3 +27,18 @@ D:\SoftWare_Development_YAMAHA\MF900 -Yhh\HVision\obj\Debug\HVision.csproj.CoreC
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\HVision\obj\Debug\HVision.csproj.CopyComplete
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\HVision\obj\Debug\HVision.dll
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\HVision\obj\Debug\HVision.pdb
+D:\M900开发平台\M900\HVision\bin\Debug\HVision.dll
+D:\M900开发平台\M900\HVision\bin\Debug\HVision.pdb
+D:\M900开发平台\M900\HVision\bin\Debug\Basler.Pylon.dll
+D:\M900开发平台\M900\HVision\bin\Debug\CSkin.dll
+D:\M900开发平台\M900\HVision\bin\Debug\halcondotnet.dll
+D:\M900开发平台\M900\HVision\bin\Debug\SunnyUI.Common.dll
+D:\M900开发平台\M900\HVision\bin\Debug\SunnyUI.dll
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.Properties.Resources.resources
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.UserHWControls.resources
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.csproj.GenerateResource.cache
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.csproj.CopyComplete
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.dll
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.pdb
+D:\M900开发平台\M900\HVision\obj\Debug\HVision.csproj.AssemblyReference.cache

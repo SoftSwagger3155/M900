@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MF900
 {
-    class MotionCommons
+    public static class MotionCommons
     {
         public static MotionBase motion;
         public static void SetMotion(MotionBase motion)

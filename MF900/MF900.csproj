@@ -112,7 +112,7 @@
     </Compile>
     <Compile Include="ChildProductModel\BoardMessageModel.cs" />
     <Compile Include="ChildProductModel\HandPosModel.cs" />
-    <Compile Include="HlCommonsFunction.cs" />
+    <Compile Include="VisionView\HlCommonsFunction.cs" />
     <Compile Include="Model\DeviceBaseParaModel.cs" />
     <Compile Include="GenDgvTable.cs" />
     <Compile Include="MainForm\FormMaintaining.cs">

@@ -10,8 +10,6 @@ namespace MF900
 {
     public class GenDgvTable
     {
-        //TEST- Stanley
-
         /// <summary>
         /// 生成表格
         /// </summary>
@@ -20,7 +18,6 @@ namespace MF900
         /// <param name="colums"></param>
         public static void GenDataGridTable(DataGridView dataGridView, int rows, int colums)
         {
-            int a = 1;
             dataGridView.Columns.Clear();
 
             //添加列
@@ -43,6 +40,7 @@ namespace MF900
             dataGridView.Size = new Size(dataGridView.Size.Width, dataGridView.RowCount * dataGridView.Rows[0].Height);
             SetDgvStyle(dataGridView);
         }
+
         /// <summary>
         /// 设置样式
         /// </summary>
@@ -64,6 +62,7 @@ namespace MF900
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
+
         /// <summary>
         /// 设置标识
         /// </summary>
@@ -119,6 +118,11 @@ namespace MF900
             }
         }
 
+        /// <summary>
+        /// 设置Table颜色
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="color"></param>
         public static void SetDataGriaTableColor(DataGridView dataGridView,Color color)
         {
             for (int i = 0; i < dataGridView.ColumnCount; i++)

@@ -17,11 +17,6 @@ namespace MotionCard
 
         public bool InitedOK;
 
-        //脉冲当量
-        public int unit0 = 200;
-        public int unit1 = 200;
-        public int unit2 = 200;
-        public int unit3 = 200;
         public Zmotion()
         {
             PciCardsCount= zmcaux.ZAux_GetMaxPciCards();
@@ -1442,6 +1437,7 @@ namespace MotionCard
             }
             return OperationResult.CreateSuccessResult();
         }
+      
         /// <summary>
         /// 根据零位回零
         /// </summary>
