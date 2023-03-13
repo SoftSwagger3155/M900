@@ -10,6 +10,9 @@ namespace MF900
 {
     public class GenDgvTable
     {
+        //test 
+
+
         /// <summary>
         /// 生成表格
         /// </summary>
