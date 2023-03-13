@@ -20,7 +20,7 @@ namespace MF900
         /// <param name="colums"></param>
         public static void GenDataGridTable(DataGridView dataGridView, int rows, int colums)
         {
-            int a = 0;
+            int a = 1;
             dataGridView.Columns.Clear();
 
             //添加列
