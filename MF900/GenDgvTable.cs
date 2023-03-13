@@ -10,9 +10,6 @@ namespace MF900
 {
     public class GenDgvTable
     {
-        //test 
-
-
         /// <summary>
         /// 生成表格
         /// </summary>
@@ -21,6 +18,7 @@ namespace MF900
         /// <param name="colums"></param>
         public static void GenDataGridTable(DataGridView dataGridView, int rows, int colums)
         {
+            int a = 0;
             dataGridView.Columns.Clear();
 
             //添加列
