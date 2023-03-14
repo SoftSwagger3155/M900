@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.FSM.Base.Interface;
 using SolveWare_Service_Core.Info.Base.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
 {
     public interface IMainManager : IMachineStatus
     {
-        IView MainWint { get; set; }
+        IView MainWint { get; set; }        
+        IFSM FSM { get; set; }
         bool HasIdenticalWindow();
         string LoadingStatus { get; set; }
         void Initialize();

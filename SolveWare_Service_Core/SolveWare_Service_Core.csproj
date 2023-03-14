@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Attributes\ResourceBase.cs" />
     <Compile Include="Base\Abstract\ElementBase.cs" />
+    <Compile Include="Base\Abstract\JobFundamentalBase.cs" />
     <Compile Include="Base\Abstract\RESTFulBase.cs" />
     <Compile Include="Base\Interface\IElement.cs" />
     <Compile Include="Base\Interface\IRESTFul.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Definition\Enum_Match_DataModule_Kind.cs" />
     <Compile Include="Definition\Enum_Match_DataView_Kind.cs" />
     <Compile Include="Definition\Enum_Tool_Resource_Kind.cs" />
+    <Compile Include="FSM\Base\Interface\IFSM.cs" />
+    <Compile Include="FSM\Base\Interface\IStation.cs" />
     <Compile Include="General\ConstantProperty.cs" />
     <Compile Include="General\ErrorCodes.cs" />
     <Compile Include="General\IdentityGenerator.cs" />
@@ -84,10 +87,11 @@
     <Compile Include="Manager\Base\Interface\IMainManager.cs" />
     <Compile Include="Manager\Base\Interface\IResourceProvider.cs" />
     <Compile Include="Manager\Base\Interface\IToolResourceProvider.cs" />
+    <Compile Include="Manager\Business\Resource_Data_Manager.cs" />
+    <Compile Include="Manager\Business\Resource_Tool_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SolveWare.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FSM\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
