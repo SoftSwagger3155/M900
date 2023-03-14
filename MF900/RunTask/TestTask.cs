@@ -13,9 +13,6 @@ namespace MF900
 {
     public class TestTask : BaseTask
     {
-        //private static Dictionary<string, AxisPoints> avoidPoint = new Dictionary<string, AxisPoints>();
-        //private static Dictionary<string, AxisPoints> UpTestPoint = new Dictionary<string, AxisPoints>();
-        //private static Dictionary<string, AxisPoints> DownTestPoint = new Dictionary<string, AxisPoints>();
         public bool reviceT0 = false;
         public bool reviceT1 = false;
         public float upX = 0, upY = 0, upR = 0;
@@ -25,19 +22,8 @@ namespace MF900
             : base(motion, axisNum)
         {
             base.axisSpeed = axisSpeed;
-            UpdatePoints();
         }
         
-        public static void UpdatePoints()
-        {
-            //string point = File.ReadAllText(ParaFliePath.SystemParaPath + "AvoidPoints.xml");
-            //avoidPoint = JsonConvert.DeserializeObject<Dictionary<string, AxisPoints>>(point);
-            //point = File.ReadAllText(ParaFliePath.SystemParaPath + "UpTestPoints.xml");
-            //UpTestPoint = JsonConvert.DeserializeObject<Dictionary<string, AxisPoints>>(point);
-            //point = File.ReadAllText(ParaFliePath.SystemParaPath + "DownTestPoints.xml");
-            //DownTestPoint = JsonConvert.DeserializeObject<Dictionary<string, AxisPoints>>(point);
-        }
-
         public static int stepX; //每区内跳步数量X
         public static int stepY; //每区内跳步数量Y
         public static void UpdataSetpXY()
@@ -46,10 +32,11 @@ namespace MF900
             stepY = ProgramParamMange.ProductDataPara.ProductXY.Y / ProgramParamMange.DownJipDataPara.JipStepXY.Y;
 
         }
+
         /// <summary>
         /// 测试流程循环
         /// </summary>
-        private void TestPorTest()
+        private void TestProcess()
         {
             string stepStr = string.Empty;
             float baseVisX = 0;
@@ -119,6 +106,7 @@ namespace MF900
                 }
             }
         }
+
         public override void TaskMethod()
         {
             step = "气缸夹紧拉伸";
@@ -178,161 +166,6 @@ namespace MF900
         public void PreLocationPro()
         {
 
-        }
-        /// <summary>
-        /// 测试流程
-        /// </summary>
-        private void TestProcess()
-        {
-            
-            float offPos = 0;
-            string testProcess = "上下模XYU轴移动到测试位";
-            //try
-            //{
-            //    for (int i = 0; i < pro.Count; i++)
-            //    {
-            //        testProcess = "上下模XYU轴移动到测试位";
-            //        while (!cts.IsCancellationRequested)
-            //        {
-            //            PauseTaskMethod();
-            //            if (cts.IsCancellationRequested) break;
-            //            switch (testProcess)
-            //            {
-            //                case "上下模XYU轴移动到测试位":
-            //                    motionCard.MoveAbs(axisNum["上模X轴"].AxisNum, UpTestPoint[(i + 1).ToString()].X, axisSpeed["上模X轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["上模Y轴"].AxisNum, UpTestPoint[(i + 1).ToString()].Y, axisSpeed["上模Y轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["下模X轴"].AxisNum, DownTestPoint[(i + 1).ToString()].X, axisSpeed["下模X轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["下模Y轴"].AxisNum, DownTestPoint[(i + 1).ToString()].Y, axisSpeed["下模Y轴"], vecPercent, 0.2f);
-            //                    if (!motionCard.WaitInPlace(axisNum["上模X轴"].AxisNum, UpTestPoint[(i + 1).ToString()].X))
-            //                        StopTask("上模X轴移动到测试位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["上模Y轴"].AxisNum, UpTestPoint[(i + 1).ToString()].Y))
-            //                        StopTask("上模Y轴移动到测试位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["下模X轴"].AxisNum, DownTestPoint[(i + 1).ToString()].X))
-            //                        StopTask("下模X轴移动到测试位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["下模Y轴"].AxisNum, DownTestPoint[(i + 1).ToString()].Y))
-            //                        StopTask("下模Y轴移动到测试位异常" + offPos.ToString());
-            //                    testProcess = "上模拍照1";
-            //                    break;
-            //                case "上模拍照1":
-            //                    reviceT0 = false;
-            //                    visionResult = true;
-            //                    FormMain.SerialProtSendMes("T0\r\n");
-            //                    testProcess = "接受上模补偿值";
-            //                    break;
-            //                case "等待上模拍照1完成":
-            //                    while (!cts.IsCancellationRequested)
-            //                    {
-            //                        if (reviceT0) break;
-            //                        else Thread.Sleep(20);
-            //                    }
-            //                    testProcess = visionResult ? "上模拍照2" : "上模拍照1";
-            //                    break;
-            //                case "上模拍照2":
-            //                    reviceT0 = false;
-            //                    visionResult = true;
-            //                    FormMain.SerialProtSendMes("T1\r\n");
-            //                    testProcess = "接受上模补偿值";
-            //                    break;
-            //                case "接受上模补偿值":
-            //                    while (!cts.IsCancellationRequested)
-            //                    {
-            //                        if (reviceT0) break;
-            //                        else Thread.Sleep(20);
-            //                    }
-            //                    testProcess = visionResult ? "上模移动补偿位置" : "上模拍照2";
-            //                    break;
-            //                case "上模移动补偿位置":
-            //                    motionCard.MoveAbs(axisNum["上模X轴"].AxisNum, UpTestPoint[(i + 1).ToString()].X + upX, axisSpeed["上模X轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["上模Y轴"].AxisNum, UpTestPoint[(i + 1).ToString()].Y + upY, axisSpeed["上模Y轴"], vecPercent, 0.2f);
-            //                    if (!motionCard.WaitInPlace(axisNum["上模X轴"].AxisNum, UpTestPoint[(i + 1).ToString()].X + upX))
-            //                        StopTask("上模X轴移动到测试位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["上模Y轴"].AxisNum, UpTestPoint[(i + 1).ToString()].Y + upY))
-            //                        StopTask("上模Y轴移动到测试位异常" + offPos.ToString());
-            //                    testProcess = "下模拍照1";
-            //                    break;
-            //                case "下模拍照1":
-            //                    reviceT1 = false;
-            //                    visionResult = true;
-            //                    FormMain.SerialProtSendMes("T2\r\n");
-            //                    testProcess = "等待下模拍照1完成";
-            //                    break;
-            //                case "等待下模拍照1完成":
-            //                    while (!cts.IsCancellationRequested)
-            //                    {
-            //                        if (reviceT1) break;
-            //                        else Thread.Sleep(20);
-            //                    }
-            //                    testProcess = visionResult ? "下模拍照2" : "下模拍照1";
-            //                    break;
-            //                case "下模拍照2":
-            //                    reviceT0 = false;
-            //                    visionResult = true;
-            //                    FormMain.SerialProtSendMes("T3\r\n");
-            //                    testProcess = "接受下模补偿值";
-            //                    break;
-            //                case "接受下模补偿值":
-            //                    while (!cts.IsCancellationRequested)
-            //                    {
-            //                        if (reviceT0) break;
-            //                        else Thread.Sleep(20);
-            //                    }
-            //                    testProcess = visionResult ? "上模移动补偿位置" : "上模拍照2";
-            //                    break;
-            //                case "下模移动补偿位置":
-            //                    motionCard.MoveAbs(axisNum["下模X轴"].AxisNum, DownTestPoint[(i + 1).ToString()].X + downX, axisSpeed["下模X轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["下模Y轴"].AxisNum, DownTestPoint[(i + 1).ToString()].Y + downY, axisSpeed["下模Y轴"], vecPercent, 0.2f);
-            //                    if (!motionCard.WaitInPlace(axisNum["下模X轴"].AxisNum, DownTestPoint[(i + 1).ToString()].X + downX))
-            //                        StopTask("下模X轴移动到测试位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["下模Y轴"].AxisNum, DownTestPoint[(i + 1).ToString()].Y + downY))
-            //                        StopTask("下模Y轴移动到测试位异常" + offPos.ToString());
-            //                    testProcess = "上下模Z轴移动测试位";
-            //                    break;
-            //                case "上下模Z轴移动测试位":
-            //                    motionCard.MoveAbs(axisNum["上模Z轴"].AxisNum, UpTestPoint[(i + 1).ToString()].Z, axisSpeed["上模Z轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["下模Z轴"].AxisNum, DownTestPoint[(i + 1).ToString()].Z, axisSpeed["下模Z轴"], vecPercent, 0.2f);
-            //                    if (!motionCard.WaitInPlace(axisNum["上模Z轴"].AxisNum, UpTestPoint[(i + 1).ToString()].Z))
-            //                        StopTask("上模Z轴移动到测试位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["下模Z轴"].AxisNum, DownTestPoint[(i + 1).ToString()].Z))
-            //                        StopTask("下模Z移动到测试位异常" + offPos.ToString());
-            //                    //MessageBox.Show("上下模Z轴移动测试位完成");
-            //                    testProcess = "发送测试";
-            //                    break;
-            //                case "发送测试":
-
-            //                    Thread.Sleep(2000);
-            //                    testProcess = "等待测试完成";
-            //                    break;
-            //                case "等待测试完成":
-
-            //                    Thread.Sleep(600);
-            //                    testProcess = "数据处理";
-            //                    break;
-            //                case "数据处理":
-
-            //                    Thread.Sleep(500);
-            //                    testProcess = "上下模Z轴移动到避让位";
-            //                    break;
-            //                case "上下模Z轴移动到避让位":
-            //                    motionCard.MoveAbs(axisNum["上模Z轴"].AxisNum, 0, axisSpeed["上模Z轴"], vecPercent, 0.2f);
-            //                    motionCard.MoveAbs(axisNum["下模Z轴"].AxisNum, 0, axisSpeed["下模Z轴"], vecPercent, 0.2f);
-            //                    if (!motionCard.WaitInPlace(axisNum["上模Z轴"].AxisNum, 0))
-            //                        StopTask("上模Z轴移动到避让位异常" + offPos.ToString());
-            //                    if (!motionCard.WaitInPlace(axisNum["下模Z轴"].AxisNum, 0))
-            //                        StopTask("下模Z轴移动到避让位异常" + offPos.ToString());
-            //                    //MessageBox.Show("上下模Z轴移动到避让位完成");
-            //                    testProcess = "单步测试完成";
-            //                    break;
-            //            }
-            //            if (testProcess == "单步测试完成")
-            //                break;
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    StopTask(ex.Message);
-            //    SetMachineStateEvent(MachineState.报警);
-            //}
         }
 
         /// <summary>

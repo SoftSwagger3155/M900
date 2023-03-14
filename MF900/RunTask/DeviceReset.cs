@@ -14,7 +14,8 @@ namespace MF900
         public DeviceReset(MotionBase motion, Dictionary<string, AxisPara> axisNum)
             : base(motion, axisNum)
         {
-
+            this.motionCard = motion;
+            this.axisNum = axisNum;
         }
 
         public override void TaskMethod()

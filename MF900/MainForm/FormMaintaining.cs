@@ -35,9 +35,6 @@ namespace MF900
             deviceReset = new DeviceReset(MotionCommons.motion, ProgramParamMange.AxisPara);
             Task.Run(new Action(() => RefreshIo()));
             Task.Run(new Action(() => ReadAxisPointsTask()));
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.FileName = @"C:\Users\13180\Desktop\111\1.bmp";
-            //userHWControls1.ShowSourceImage(new HImage(ofd.FileName));
         }
         private void GenFormDgvTable()
         {

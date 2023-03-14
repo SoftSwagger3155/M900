@@ -138,6 +138,7 @@ D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\log4net.xml
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\bin\Debug\Basler.Pylon.xml
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.exe.config
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MF900\obj\Debug\MF900.csproj.CopyComplete
+<<<<<<< HEAD
 E:\M900软件平台\M900\MF900\bin\Debug\Log\Log4net.config
 E:\M900软件平台\M900\MF900\bin\Debug\packages.config
 E:\M900软件平台\M900\MF900\bin\Debug\MF900.exe.config
@@ -197,3 +198,63 @@ E:\M900软件平台\M900\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
 E:\M900软件平台\M900\MF900\obj\Debug\MF900.csproj.CopyComplete
 E:\M900软件平台\M900\MF900\obj\Debug\MF900.exe
 E:\M900软件平台\M900\MF900\obj\Debug\MF900.pdb
+=======
+D:\M900开发平台\M900\MF900\bin\Debug\Log\Log4net.config
+D:\M900开发平台\M900\MF900\bin\Debug\packages.config
+D:\M900开发平台\M900\MF900\bin\Debug\MF900.exe.config
+D:\M900开发平台\M900\MF900\bin\Debug\MF900.exe
+D:\M900开发平台\M900\MF900\bin\Debug\MF900.pdb
+D:\M900开发平台\M900\MF900\bin\Debug\Halcon.Functions.dll
+D:\M900开发平台\M900\MF900\bin\Debug\HVision.dll
+D:\M900开发平台\M900\MF900\bin\Debug\log4net.dll
+D:\M900开发平台\M900\MF900\bin\Debug\MotionCard.dll
+D:\M900开发平台\M900\MF900\bin\Debug\Newtonsoft.Json.dll
+D:\M900开发平台\M900\MF900\bin\Debug\SunnyUI.Common.dll
+D:\M900开发平台\M900\MF900\bin\Debug\SunnyUI.dll
+D:\M900开发平台\M900\MF900\bin\Debug\Basler.Pylon.dll
+D:\M900开发平台\M900\MF900\bin\Debug\HVision.pdb
+D:\M900开发平台\M900\MF900\bin\Debug\MotionCard.pdb
+D:\M900开发平台\M900\MF900\bin\Debug\Halcon.Functions.pdb
+D:\M900开发平台\M900\MF900\bin\Debug\log4net.xml
+D:\M900开发平台\M900\MF900\bin\Debug\Basler.Pylon.xml
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.csproj.AssemblyReference.cache
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.exe.config
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormAxisDebug.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.CameraHWControls.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormJigOpations.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormRunOption.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormCoveyHandleSet.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormCheckLevelZ2.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormDataCodeDebug.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormLoginMarkImage.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormWorkPieceDebug.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormAdjustLevelZ.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormAdjustOffsetZ1.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormMaintaining.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormButtonMain.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormBoardMessage.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormCheckMarking.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormDebug.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormDebugTableTop.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormFunc.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormJipChange.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormJipData.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormJipImageLogin.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormJipOffset.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormMachineState.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormMain.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormPanel.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormParameterSet.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormProductData.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormProgramSet.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormRunUI.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormSetProcess.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.FormWorkPieceList.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.Properties.Resources.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.ResultCountDgv.resources
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.csproj.GenerateResource.cache
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.csproj.CopyComplete
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.exe
+D:\M900开发平台\M900\MF900\obj\Debug\MF900.pdb
+>>>>>>> bf981028f918f579f99dbcb07d54aa02e7d84af4

@@ -36,3 +36,23 @@ D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MotionCard\obj\Debug\MotionCard.csproj
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MotionCard\obj\Debug\MotionCard.csproj.CopyComplete
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MotionCard\obj\Debug\MotionCard.dll
 D:\SoftWare_Development_YAMAHA\MF900 -Yhh\MotionCard\obj\Debug\MotionCard.pdb
+D:\M900开发平台\M900\MotionCard\bin\Debug\MotionCard.dll
+D:\M900开发平台\M900\MotionCard\bin\Debug\MotionCard.pdb
+D:\M900开发平台\M900\MotionCard\bin\Debug\SunnyUI.Common.dll
+D:\M900开发平台\M900\MotionCard\bin\Debug\SunnyUI.dll
+D:\M900开发平台\M900\MotionCard\bin\Debug\XKTControl.dll
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.AxisControls.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.AxisMoving.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.AxisPoint.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.AxisPointsControl.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.InSignalLed.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.MoreAxisPoint.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.OutSignalButton.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.OutSwitch.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.Properties.Resources.resources
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.csproj.GenerateResource.cache
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.csproj.CopyComplete
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.dll
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.pdb
+D:\M900开发平台\M900\MotionCard\obj\Debug\MotionCard.csproj.AssemblyReference.cache
