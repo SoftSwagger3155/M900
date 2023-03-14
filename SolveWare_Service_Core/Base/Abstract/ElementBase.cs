@@ -42,7 +42,9 @@ namespace SolveWare_Service_Core.Base.Abstract
 
         public string Name { get; set; }
         public string Content { get; set; }
-        public long Id { get; private set; }
+
+        protected long id =0;
+        public long Id { get => id; private set => id =value; }
 
         public ElementBase()
         {

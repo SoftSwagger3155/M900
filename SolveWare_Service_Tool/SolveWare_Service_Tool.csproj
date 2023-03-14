@@ -9,15 +9,16 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SolveWare_Service_Tool</RootNamespace>
     <AssemblyName>SolveWare_Service_Tool</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\M900_Dlls\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,6 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Basler.Pylon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\M900_Dlls\Basler.Pylon.dll</HintPath>
+    </Reference>
+    <Reference Include="halcondotnet">
+      <HintPath>..\M900_Dlls\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="PylonC.NET, Version=4.1.0.0, Culture=neutral, PublicKeyToken=a77e8471c5919d5a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Basler\pylon 5\Development\Assemblies\PylonC.Net\PylonC.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,12 +56,21 @@
     <Compile Include="Camera\Attributes\Resource_Tool_Camera_Indicator.cs" />
     <Compile Include="Camera\Base\Abstract\CameraBase.cs" />
     <Compile Include="Camera\Base\Interface\ICamera.cs" />
+    <Compile Include="Camera\Business\Camera_Basler.cs" />
+    <Compile Include="Camera\Business\Factory_Camera.cs" />
+    <Compile Include="Camera\Data\ConfigData_Camera.cs" />
+    <Compile Include="Camera\Definition\Enum_Master_Driver_Camera.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Dlls\Dll_Zmcaux.cs" />
+    <Compile Include="IO\Base\Abstract\IOBase.cs" />
+    <Compile Include="IO\Base\Interface\IIOBase.cs" />
+    <Compile Include="IO\Data\ConfigData_IO.cs" />
+    <Compile Include="IO\Definition\Enum_IO_Status.cs" />
+    <Compile Include="IO\Definition\Enum_IO_Type.cs" />
+    <Compile Include="IO\Definition\Enum_Master_Driver_IO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dlls\" />
-    <Folder Include="IO\" />
     <Folder Include="Lighting\" />
     <Folder Include="Motor\" />
   </ItemGroup>
