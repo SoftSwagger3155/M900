@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolveWare_Service_Utility
+namespace SolveWare_Service_Core.Manager.Base.Interface
 {
-    public class Class1
+    public interface IDataResourceProvider : IResourceProvider
     {
     }
 }

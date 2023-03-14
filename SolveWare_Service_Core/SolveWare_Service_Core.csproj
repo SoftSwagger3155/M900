@@ -44,6 +44,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\Utilities.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\ResourceBase.cs" />
@@ -52,16 +53,41 @@
     <Compile Include="Base\Interface\IElement.cs" />
     <Compile Include="Base\Interface\IRESTFul.cs" />
     <Compile Include="Base\Interface\IView.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Communication\Base\Abstract\InstrumentChassisBase.cs" />
+    <Compile Include="Communication\Base\Interface\IInstrumentChassis.cs" />
+    <Compile Include="Communication\Business\EthernetChassis.cs" />
+    <Compile Include="Communication\Business\Modbus.cs" />
+    <Compile Include="Communication\Business\SerialPortChassis.cs" />
+    <Compile Include="Definition\Enum_Communication_Kind.cs" />
+    <Compile Include="Definition\Enum_FSM_Station_Status.cs" />
+    <Compile Include="Definition\Enum_Job_Status.cs" />
+    <Compile Include="Definition\Enum_Machine_Status.cs" />
+    <Compile Include="Definition\Enum_Match_DataModule_Kind.cs" />
+    <Compile Include="Definition\Enum_Match_DataView_Kind.cs" />
+    <Compile Include="Definition\Enum_Tool_Resource_Kind.cs" />
+    <Compile Include="General\ConstantProperty.cs" />
+    <Compile Include="General\ErrorCodes.cs" />
     <Compile Include="General\IdentityGenerator.cs" />
+    <Compile Include="General\InfoReport.cs" />
+    <Compile Include="General\MathCalculateHelper.cs" />
+    <Compile Include="General\SystemPath.cs" />
     <Compile Include="General\XMLHelper.cs" />
+    <Compile Include="Info\Base\Interface\IInfoHandler.cs" />
+    <Compile Include="Info\Business\ErrorEventManager.cs" />
+    <Compile Include="Info\Business\InfoHandler.cs" />
+    <Compile Include="Info\Business\LogWriter.cs" />
+    <Compile Include="Manager\Base\Interface\IDataResourceProvider.cs" />
+    <Compile Include="Manager\Base\Interface\IFactory.cs" />
+    <Compile Include="Manager\Base\Interface\IMachineStatus.cs" />
+    <Compile Include="Manager\Base\Interface\IMachineUI.cs" />
+    <Compile Include="Manager\Base\Interface\IMainManager.cs" />
+    <Compile Include="Manager\Base\Interface\IResourceProvider.cs" />
+    <Compile Include="Manager\Base\Interface\IToolResourceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Command\" />
-    <Folder Include="Definition\" />
     <Folder Include="FSM\" />
-    <Folder Include="Info\" />
-    <Folder Include="Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
