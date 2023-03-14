@@ -4,3 +4,7 @@ E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool
 E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.csproj.CoreCompileInputs.cache
 E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.dll
 E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.pdb
+E:\M900软件平台\M900\SolveWare_Service_Tool\bin\Debug\SolveWare_Service_Core.dll
+E:\M900软件平台\M900\SolveWare_Service_Tool\bin\Debug\Utilities.dll
+E:\M900软件平台\M900\SolveWare_Service_Tool\bin\Debug\SolveWare_Service_Core.pdb
+E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.csproj.CopyComplete

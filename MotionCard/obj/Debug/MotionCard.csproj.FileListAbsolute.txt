@@ -75,3 +75,5 @@ E:\M900软件平台\M900\MotionCard\obj\Debug\MotionCard.csproj.CoreCompileInput
 E:\M900软件平台\M900\MotionCard\obj\Debug\MotionCard.csproj.CopyComplete
 E:\M900软件平台\M900\MotionCard\obj\Debug\MotionCard.dll
 E:\M900软件平台\M900\MotionCard\obj\Debug\MotionCard.pdb
+E:\M900软件平台\M900\M900_Dlls\MotionCard.dll
+E:\M900软件平台\M900\M900_Dlls\MotionCard.pdb

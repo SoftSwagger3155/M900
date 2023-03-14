@@ -18,10 +18,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\M900_Dlls\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Basler.Pylon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=x86">
+    <Reference Include="Basler.Pylon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\视觉\Camera\CameraTest\bin\Debug\Basler.Pylon.dll</HintPath>
+      <HintPath>C:\Program Files\Basler\pylon 5\Development\Assemblies\Basler.Pylon\x64\Basler.Pylon.dll</HintPath>
     </Reference>
     <Reference Include="CSkin">
       <HintPath>..\MF900\bin\Debug\CSkin.dll</HintPath>

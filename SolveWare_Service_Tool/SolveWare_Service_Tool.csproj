@@ -41,15 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera\Attributes\Resource_Tool_Camera_Indicator.cs" />
+    <Compile Include="Camera\Base\Abstract\CameraBase.cs" />
+    <Compile Include="Camera\Base\Interface\ICamera.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Camera\" />
     <Folder Include="Dlls\" />
     <Folder Include="IO\" />
     <Folder Include="Lighting\" />
     <Folder Include="Motor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
+      <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
+      <Name>SolveWare_Service_Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,4 @@
-﻿using Halcon.Functions;
-using HalconDotNet;
+﻿using HalconDotNet;
 using HVision;
 using MotionCard;
 using Sunny.UI;
