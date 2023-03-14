@@ -1,0 +1,6 @@
+E:\M900软件平台\M900\SolveWare_Service_Tool\bin\Debug\SolveWare_Service_Tool.dll
+E:\M900软件平台\M900\SolveWare_Service_Tool\bin\Debug\SolveWare_Service_Tool.pdb
+E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.csproj.AssemblyReference.cache
+E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.csproj.CoreCompileInputs.cache
+E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.dll
+E:\M900软件平台\M900\SolveWare_Service_Tool\obj\Debug\SolveWare_Service_Tool.pdb
