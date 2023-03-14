@@ -171,12 +171,13 @@ namespace MF900
             this.uiTableLayoutPanel3.Controls.Add(this.uiTabControl1, 0, 0);
             this.uiTableLayoutPanel3.Controls.Add(this.uiTableLayoutPanel5, 0, 1);
             this.uiTableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel3.Location = new System.Drawing.Point(755, 3);
+            this.uiTableLayoutPanel3.Location = new System.Drawing.Point(1007, 4);
+            this.uiTableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel3.Name = "uiTableLayoutPanel3";
             this.uiTableLayoutPanel3.RowCount = 2;
             this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.uiTableLayoutPanel3.Size = new System.Drawing.Size(214, 654);
+            this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.uiTableLayoutPanel3.Size = new System.Drawing.Size(285, 817);
             this.uiTableLayoutPanel3.TabIndex = 7;
             this.uiTableLayoutPanel3.TagString = null;
             // 
@@ -191,12 +192,13 @@ namespace MF900
             this.uiTabControl1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTabControl1.Frame = null;
             this.uiTabControl1.ItemSize = new System.Drawing.Size(65, 40);
-            this.uiTabControl1.Location = new System.Drawing.Point(3, 3);
+            this.uiTabControl1.Location = new System.Drawing.Point(4, 4);
             this.uiTabControl1.MainPage = "";
+            this.uiTabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTabControl1.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             this.uiTabControl1.Name = "uiTabControl1";
             this.uiTabControl1.SelectedIndex = 0;
-            this.uiTabControl1.Size = new System.Drawing.Size(208, 576);
+            this.uiTabControl1.Size = new System.Drawing.Size(277, 719);
             this.uiTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControl1.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiTabControl1.TabIndex = 5;
@@ -209,8 +211,9 @@ namespace MF900
             // 
             this.tabPage2.Controls.Add(this.listView1);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(208, 536);
+            this.tabPage2.Size = new System.Drawing.Size(277, 679);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "运行日志";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -224,8 +227,9 @@ namespace MF900
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(208, 536);
+            this.listView1.Size = new System.Drawing.Size(277, 679);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -240,8 +244,9 @@ namespace MF900
             // 
             this.tabPage1.Controls.Add(this.uiTableLayoutPanel4);
             this.tabPage1.Location = new System.Drawing.Point(0, 40);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(208, 536);
+            this.tabPage1.Size = new System.Drawing.Size(277, 680);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "生产统计";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -255,12 +260,13 @@ namespace MF900
             this.uiTableLayoutPanel4.Controls.Add(this.uiPanel5, 0, 0);
             this.uiTableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel4.Name = "uiTableLayoutPanel4";
             this.uiTableLayoutPanel4.RowCount = 3;
-            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
+            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 208F));
             this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.uiTableLayoutPanel4.Size = new System.Drawing.Size(208, 536);
+            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.uiTableLayoutPanel4.Size = new System.Drawing.Size(277, 680);
             this.uiTableLayoutPanel4.TabIndex = 0;
             this.uiTableLayoutPanel4.TagString = null;
             // 
@@ -273,12 +279,13 @@ namespace MF900
             this.uiTabControl2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiTabControl2.Frame = null;
             this.uiTabControl2.ItemSize = new System.Drawing.Size(80, 20);
-            this.uiTabControl2.Location = new System.Drawing.Point(3, 169);
+            this.uiTabControl2.Location = new System.Drawing.Point(4, 212);
             this.uiTabControl2.MainPage = "";
+            this.uiTabControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTabControl2.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
             this.uiTabControl2.Name = "uiTabControl2";
             this.uiTabControl2.SelectedIndex = 0;
-            this.uiTabControl2.Size = new System.Drawing.Size(202, 324);
+            this.uiTabControl2.Size = new System.Drawing.Size(269, 414);
             this.uiTabControl2.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.uiTabControl2.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiTabControl2.TabIndex = 10;
@@ -291,8 +298,9 @@ namespace MF900
             // 
             this.tabPage5.Controls.Add(this.uiPanel1);
             this.tabPage5.Location = new System.Drawing.Point(0, 20);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(202, 304);
+            this.tabPage5.Size = new System.Drawing.Size(269, 394);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "累计总数";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -304,10 +312,10 @@ namespace MF900
             this.uiPanel1.FillColor = System.Drawing.Color.White;
             this.uiPanel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiPanel1.Location = new System.Drawing.Point(0, 0);
-            this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(202, 304);
+            this.uiPanel1.Size = new System.Drawing.Size(269, 394);
             this.uiPanel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel1.StyleCustomMode = true;
             this.uiPanel1.TabIndex = 0;
@@ -351,7 +359,7 @@ namespace MF900
         "ERROR/SKIP"};
             this.resultCountDgv2.SHORTADDCloor = System.Drawing.Color.YellowGreen;
             this.resultCountDgv2.SHORTCloor = System.Drawing.Color.Yellow;
-            this.resultCountDgv2.Size = new System.Drawing.Size(202, 304);
+            this.resultCountDgv2.Size = new System.Drawing.Size(269, 394);
             this.resultCountDgv2.SKIPCloor = System.Drawing.Color.Gainsboro;
             this.resultCountDgv2.TabIndex = 0;
             this.resultCountDgv2.WNG4Cloor = System.Drawing.Color.Blue;
@@ -360,8 +368,9 @@ namespace MF900
             // 
             this.tabPage6.Controls.Add(this.resultCountDgv1);
             this.tabPage6.Location = new System.Drawing.Point(0, 20);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(194, 0);
+            this.tabPage6.Size = new System.Drawing.Size(259, 0);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "单片总数";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -376,10 +385,11 @@ namespace MF900
             this.resultCountDgv1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resultCountDgv1.GoodCloor = System.Drawing.Color.Green;
             this.resultCountDgv1.Location = new System.Drawing.Point(0, 0);
+            this.resultCountDgv1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.resultCountDgv1.Name = "resultCountDgv1";
             this.resultCountDgv1.NGCloor = System.Drawing.Color.Gray;
             this.resultCountDgv1.OPENCloor = System.Drawing.Color.Red;
-            this.resultCountDgv1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.resultCountDgv1.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.resultCountDgv1.PrepareColor = new System.Drawing.Color[] {
         System.Drawing.Color.Green,
         System.Drawing.Color.Gray,
@@ -402,7 +412,7 @@ namespace MF900
         "ERROR/SKIP"};
             this.resultCountDgv1.SHORTADDCloor = System.Drawing.Color.YellowGreen;
             this.resultCountDgv1.SHORTCloor = System.Drawing.Color.Yellow;
-            this.resultCountDgv1.Size = new System.Drawing.Size(194, 0);
+            this.resultCountDgv1.Size = new System.Drawing.Size(259, 0);
             this.resultCountDgv1.SKIPCloor = System.Drawing.Color.Gainsboro;
             this.resultCountDgv1.TabIndex = 0;
             this.resultCountDgv1.WNG4Cloor = System.Drawing.Color.Blue;
@@ -417,12 +427,13 @@ namespace MF900
             this.uiTableLayoutPanel6.Controls.Add(this.uiLabel3, 0, 0);
             this.uiTableLayoutPanel6.Controls.Add(this.uiLabel4, 1, 0);
             this.uiTableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel6.Location = new System.Drawing.Point(3, 499);
+            this.uiTableLayoutPanel6.Location = new System.Drawing.Point(4, 634);
+            this.uiTableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel6.Name = "uiTableLayoutPanel6";
-            this.uiTableLayoutPanel6.Padding = new System.Windows.Forms.Padding(2);
+            this.uiTableLayoutPanel6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.uiTableLayoutPanel6.RowCount = 1;
             this.uiTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel6.Size = new System.Drawing.Size(202, 34);
+            this.uiTableLayoutPanel6.Size = new System.Drawing.Size(269, 42);
             this.uiTableLayoutPanel6.TabIndex = 0;
             this.uiTableLayoutPanel6.TagString = null;
             // 
@@ -430,10 +441,10 @@ namespace MF900
             // 
             this.uiLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel5.Location = new System.Drawing.Point(173, 5);
-            this.uiLabel5.Margin = new System.Windows.Forms.Padding(3);
+            this.uiLabel5.Location = new System.Drawing.Point(230, 6);
+            this.uiLabel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiLabel5.Name = "uiLabel5";
-            this.uiLabel5.Size = new System.Drawing.Size(24, 24);
+            this.uiLabel5.Size = new System.Drawing.Size(32, 30);
             this.uiLabel5.TabIndex = 2;
             this.uiLabel5.Text = "秒";
             this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -443,10 +454,10 @@ namespace MF900
             // 
             this.uiLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel3.Location = new System.Drawing.Point(5, 5);
-            this.uiLabel3.Margin = new System.Windows.Forms.Padding(3);
+            this.uiLabel3.Location = new System.Drawing.Point(7, 6);
+            this.uiLabel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(63, 24);
+            this.uiLabel3.Size = new System.Drawing.Size(84, 30);
             this.uiLabel3.TabIndex = 0;
             this.uiLabel3.Text = "周期:";
             this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -456,10 +467,10 @@ namespace MF900
             // 
             this.uiLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel4.Location = new System.Drawing.Point(74, 5);
-            this.uiLabel4.Margin = new System.Windows.Forms.Padding(3);
+            this.uiLabel4.Location = new System.Drawing.Point(99, 6);
+            this.uiLabel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiLabel4.Name = "uiLabel4";
-            this.uiLabel4.Size = new System.Drawing.Size(93, 24);
+            this.uiLabel4.Size = new System.Drawing.Size(123, 30);
             this.uiLabel4.TabIndex = 1;
             this.uiLabel4.Text = "0";
             this.uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -478,12 +489,12 @@ namespace MF900
             this.uiPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel5.FillColor = System.Drawing.Color.White;
             this.uiPanel5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel5.Location = new System.Drawing.Point(4, 5);
-            this.uiPanel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel5.Location = new System.Drawing.Point(5, 6);
+            this.uiPanel5.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiPanel5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel5.Name = "uiPanel5";
             this.uiPanel5.Padding = new System.Windows.Forms.Padding(1);
-            this.uiPanel5.Size = new System.Drawing.Size(200, 156);
+            this.uiPanel5.Size = new System.Drawing.Size(267, 196);
             this.uiPanel5.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel5.StyleCustomMode = true;
             this.uiPanel5.TabIndex = 0;
@@ -608,8 +619,9 @@ namespace MF900
             this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.uiTableLayoutPanel8);
             this.tabPage3.Location = new System.Drawing.Point(0, 40);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(208, 536);
+            this.tabPage3.Size = new System.Drawing.Size(277, 680);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "探针";
             // 
@@ -622,12 +634,13 @@ namespace MF900
             this.uiTableLayoutPanel8.Controls.Add(this.panel4, 0, 2);
             this.uiTableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel8.Name = "uiTableLayoutPanel8";
             this.uiTableLayoutPanel8.RowCount = 3;
-            this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
+            this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.uiTableLayoutPanel8.Size = new System.Drawing.Size(208, 536);
+            this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            this.uiTableLayoutPanel8.Size = new System.Drawing.Size(277, 680);
             this.uiTableLayoutPanel8.TabIndex = 0;
             this.uiTableLayoutPanel8.TagString = null;
             // 
@@ -635,9 +648,10 @@ namespace MF900
             // 
             this.panel2.Controls.Add(this.uiGroupBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(202, 234);
+            this.panel2.Size = new System.Drawing.Size(269, 292);
             this.panel2.TabIndex = 0;
             // 
             // uiGroupBox1
@@ -647,11 +661,11 @@ namespace MF900
             this.uiGroupBox1.FillColor = System.Drawing.Color.White;
             this.uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiGroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Padding = new System.Windows.Forms.Padding(3, 32, 3, 3);
-            this.uiGroupBox1.Size = new System.Drawing.Size(202, 234);
+            this.uiGroupBox1.Padding = new System.Windows.Forms.Padding(4, 40, 4, 4);
+            this.uiGroupBox1.Size = new System.Drawing.Size(269, 292);
             this.uiGroupBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiGroupBox1.StyleCustomMode = true;
             this.uiGroupBox1.TabIndex = 0;
@@ -666,14 +680,14 @@ namespace MF900
             this.listBox_TestResult.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox_TestResult.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.listBox_TestResult.ItemSelectForeColor = System.Drawing.Color.White;
-            this.listBox_TestResult.Location = new System.Drawing.Point(3, 32);
+            this.listBox_TestResult.Location = new System.Drawing.Point(4, 40);
             this.listBox_TestResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox_TestResult.MinimumSize = new System.Drawing.Size(1, 1);
             this.listBox_TestResult.Name = "listBox_TestResult";
             this.listBox_TestResult.Padding = new System.Windows.Forms.Padding(2);
             this.listBox_TestResult.RectColor = System.Drawing.Color.White;
             this.listBox_TestResult.ShowText = false;
-            this.listBox_TestResult.Size = new System.Drawing.Size(196, 199);
+            this.listBox_TestResult.Size = new System.Drawing.Size(261, 248);
             this.listBox_TestResult.Style = Sunny.UI.UIStyle.Custom;
             this.listBox_TestResult.StyleCustomMode = true;
             this.listBox_TestResult.TabIndex = 0;
@@ -684,9 +698,10 @@ namespace MF900
             // 
             this.panel3.Controls.Add(this.uiGroupBox2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 243);
+            this.panel3.Location = new System.Drawing.Point(4, 304);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(202, 192);
+            this.panel3.Size = new System.Drawing.Size(269, 250);
             this.panel3.TabIndex = 1;
             // 
             // uiGroupBox2
@@ -696,11 +711,11 @@ namespace MF900
             this.uiGroupBox2.FillColor = System.Drawing.Color.White;
             this.uiGroupBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiGroupBox2.Location = new System.Drawing.Point(0, 0);
-            this.uiGroupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiGroupBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Padding = new System.Windows.Forms.Padding(3, 32, 3, 3);
-            this.uiGroupBox2.Size = new System.Drawing.Size(202, 192);
+            this.uiGroupBox2.Padding = new System.Windows.Forms.Padding(4, 40, 4, 4);
+            this.uiGroupBox2.Size = new System.Drawing.Size(269, 250);
             this.uiGroupBox2.Style = Sunny.UI.UIStyle.Custom;
             this.uiGroupBox2.StyleCustomMode = true;
             this.uiGroupBox2.TabIndex = 0;
@@ -715,14 +730,14 @@ namespace MF900
             this.listBox_NGPin.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox_NGPin.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.listBox_NGPin.ItemSelectForeColor = System.Drawing.Color.White;
-            this.listBox_NGPin.Location = new System.Drawing.Point(3, 32);
+            this.listBox_NGPin.Location = new System.Drawing.Point(4, 40);
             this.listBox_NGPin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox_NGPin.MinimumSize = new System.Drawing.Size(1, 1);
             this.listBox_NGPin.Name = "listBox_NGPin";
             this.listBox_NGPin.Padding = new System.Windows.Forms.Padding(2);
             this.listBox_NGPin.RectColor = System.Drawing.Color.White;
             this.listBox_NGPin.ShowText = false;
-            this.listBox_NGPin.Size = new System.Drawing.Size(196, 157);
+            this.listBox_NGPin.Size = new System.Drawing.Size(261, 206);
             this.listBox_NGPin.Style = Sunny.UI.UIStyle.Custom;
             this.listBox_NGPin.StyleCustomMode = true;
             this.listBox_NGPin.TabIndex = 1;
@@ -736,44 +751,49 @@ namespace MF900
             this.panel4.Controls.Add(this.label19);
             this.panel4.Controls.Add(this.label18);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 441);
+            this.panel4.Location = new System.Drawing.Point(4, 562);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(202, 92);
+            this.panel4.Size = new System.Drawing.Size(269, 114);
             this.panel4.TabIndex = 1;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(115, 58);
+            this.label21.Location = new System.Drawing.Point(153, 72);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(19, 21);
+            this.label21.Size = new System.Drawing.Size(24, 27);
             this.label21.TabIndex = 0;
             this.label21.Text = "0";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(22, 58);
+            this.label20.Location = new System.Drawing.Point(29, 72);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 21);
+            this.label20.Size = new System.Drawing.Size(96, 27);
             this.label20.TabIndex = 0;
             this.label20.Text = "Z2负荷：";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(115, 13);
+            this.label19.Location = new System.Drawing.Point(153, 16);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(19, 21);
+            this.label19.Size = new System.Drawing.Size(24, 27);
             this.label19.TabIndex = 0;
             this.label19.Text = "0";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 13);
+            this.label18.Location = new System.Drawing.Point(29, 16);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(77, 21);
+            this.label18.Size = new System.Drawing.Size(96, 27);
             this.label18.TabIndex = 0;
             this.label18.Text = "Z1负荷：";
             // 
@@ -781,8 +801,9 @@ namespace MF900
             // 
             this.tabPage4.BackColor = System.Drawing.Color.White;
             this.tabPage4.Location = new System.Drawing.Point(0, 40);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(208, 536);
+            this.tabPage4.Size = new System.Drawing.Size(277, 680);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "状况";
             // 
@@ -796,11 +817,12 @@ namespace MF900
             this.uiTableLayoutPanel5.Controls.Add(this.checkBox2, 2, 0);
             this.uiTableLayoutPanel5.Controls.Add(this.uiTableLayoutPanel7, 0, 0);
             this.uiTableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel5.Location = new System.Drawing.Point(3, 585);
+            this.uiTableLayoutPanel5.Location = new System.Drawing.Point(4, 731);
+            this.uiTableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel5.Name = "uiTableLayoutPanel5";
             this.uiTableLayoutPanel5.RowCount = 1;
             this.uiTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel5.Size = new System.Drawing.Size(208, 66);
+            this.uiTableLayoutPanel5.Size = new System.Drawing.Size(277, 82);
             this.uiTableLayoutPanel5.TabIndex = 6;
             this.uiTableLayoutPanel5.TagString = null;
             // 
@@ -809,9 +831,10 @@ namespace MF900
             this.checkBox1.AutoSize = true;
             this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox1.Location = new System.Drawing.Point(72, 3);
+            this.checkBox1.Location = new System.Drawing.Point(96, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(63, 60);
+            this.checkBox1.Size = new System.Drawing.Size(84, 74);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "单片检查不标示";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -821,9 +844,10 @@ namespace MF900
             this.checkBox2.AutoSize = true;
             this.checkBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox2.Location = new System.Drawing.Point(141, 3);
+            this.checkBox2.Location = new System.Drawing.Point(188, 4);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(64, 60);
+            this.checkBox2.Size = new System.Drawing.Size(85, 74);
             this.checkBox2.TabIndex = 0;
             this.checkBox2.Text = "自动NG重检";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -834,12 +858,13 @@ namespace MF900
             this.uiTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTableLayoutPanel7.Controls.Add(this.checkBox3, 0, 0);
             this.uiTableLayoutPanel7.Controls.Add(this.checkBox4, 0, 1);
-            this.uiTableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.uiTableLayoutPanel7.Location = new System.Drawing.Point(4, 4);
+            this.uiTableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel7.Name = "uiTableLayoutPanel7";
             this.uiTableLayoutPanel7.RowCount = 2;
             this.uiTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiTableLayoutPanel7.Size = new System.Drawing.Size(60, 60);
+            this.uiTableLayoutPanel7.Size = new System.Drawing.Size(80, 74);
             this.uiTableLayoutPanel7.TabIndex = 1;
             this.uiTableLayoutPanel7.TagString = null;
             // 
@@ -848,9 +873,10 @@ namespace MF900
             this.checkBox3.AutoSize = true;
             this.checkBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBox3.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox3.Location = new System.Drawing.Point(3, 3);
+            this.checkBox3.Location = new System.Drawing.Point(4, 4);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(54, 24);
+            this.checkBox3.Size = new System.Drawing.Size(72, 29);
             this.checkBox3.TabIndex = 0;
             this.checkBox3.Text = "NG复测";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -860,9 +886,10 @@ namespace MF900
             this.checkBox4.AutoSize = true;
             this.checkBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBox4.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.checkBox4.Location = new System.Drawing.Point(3, 33);
+            this.checkBox4.Location = new System.Drawing.Point(4, 41);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(54, 24);
+            this.checkBox4.Size = new System.Drawing.Size(72, 29);
             this.checkBox4.TabIndex = 0;
             this.checkBox4.Text = "未经检查";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -874,12 +901,13 @@ namespace MF900
             this.uiTableLayoutPanel2.Controls.Add(this.uiPanel4, 0, 1);
             this.uiTableLayoutPanel2.Controls.Add(this.groupBox1, 0, 0);
             this.uiTableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.uiTableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
+            this.uiTableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel2.Name = "uiTableLayoutPanel2";
             this.uiTableLayoutPanel2.RowCount = 2;
             this.uiTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.uiTableLayoutPanel2.Size = new System.Drawing.Size(746, 654);
+            this.uiTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.uiTableLayoutPanel2.Size = new System.Drawing.Size(995, 817);
             this.uiTableLayoutPanel2.TabIndex = 6;
             this.uiTableLayoutPanel2.TagString = null;
             // 
@@ -888,12 +916,12 @@ namespace MF900
             this.uiPanel4.Controls.Add(this.tableLayoutPanel2);
             this.uiPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel4.Location = new System.Drawing.Point(4, 589);
-            this.uiPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiPanel4.Location = new System.Drawing.Point(5, 735);
+            this.uiPanel4.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiPanel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel4.Name = "uiPanel4";
-            this.uiPanel4.Padding = new System.Windows.Forms.Padding(2);
-            this.uiPanel4.Size = new System.Drawing.Size(738, 60);
+            this.uiPanel4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uiPanel4.Size = new System.Drawing.Size(985, 76);
             this.uiPanel4.TabIndex = 2;
             this.uiPanel4.Text = null;
             this.uiPanel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -911,12 +939,12 @@ namespace MF900
             this.tableLayoutPanel2.Controls.Add(this.uiButton10, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(734, 56);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(979, 72);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // uiButton8
@@ -927,7 +955,7 @@ namespace MF900
             this.uiButton8.Location = new System.Drawing.Point(5, 5);
             this.uiButton8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton8.Name = "uiButton8";
-            this.uiButton8.Size = new System.Drawing.Size(64, 46);
+            this.uiButton8.Size = new System.Drawing.Size(64, 62);
             this.uiButton8.TabIndex = 2;
             this.uiButton8.Text = "前 页";
             this.uiButton8.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -938,10 +966,10 @@ namespace MF900
             this.btn_DataSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_DataSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_DataSave.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_DataSave.Location = new System.Drawing.Point(665, 5);
+            this.btn_DataSave.Location = new System.Drawing.Point(910, 5);
             this.btn_DataSave.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_DataSave.Name = "btn_DataSave";
-            this.btn_DataSave.Size = new System.Drawing.Size(64, 46);
+            this.btn_DataSave.Size = new System.Drawing.Size(64, 62);
             this.btn_DataSave.TabIndex = 1;
             this.btn_DataSave.Text = "保 存";
             this.btn_DataSave.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -957,7 +985,7 @@ namespace MF900
             this.uiButton10.Location = new System.Drawing.Point(75, 5);
             this.uiButton10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton10.Name = "uiButton10";
-            this.uiButton10.Size = new System.Drawing.Size(64, 46);
+            this.uiButton10.Size = new System.Drawing.Size(64, 62);
             this.uiButton10.TabIndex = 2;
             this.uiButton10.Text = "后 页";
             this.uiButton10.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -970,7 +998,7 @@ namespace MF900
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(145, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(514, 46);
+            this.panel1.Size = new System.Drawing.Size(759, 62);
             this.panel1.TabIndex = 3;
             // 
             // uiTextBox3
@@ -994,7 +1022,7 @@ namespace MF900
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(17, 8);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(78, 21);
+            this.label17.Size = new System.Drawing.Size(97, 27);
             this.label17.TabIndex = 0;
             this.label17.Text = "详细结果:";
             // 
@@ -1004,9 +1032,11 @@ namespace MF900
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(740, 578);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(987, 721);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "本次检查结果:";
@@ -1045,7 +1075,7 @@ namespace MF900
             this.dgv_TestData.EnableHeadersVisualStyles = false;
             this.dgv_TestData.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgv_TestData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.dgv_TestData.Location = new System.Drawing.Point(3, 19);
+            this.dgv_TestData.Location = new System.Drawing.Point(4, 24);
             this.dgv_TestData.Margin = new System.Windows.Forms.Padding(1);
             this.dgv_TestData.Name = "dgv_TestData";
             this.dgv_TestData.ReadOnly = true;
@@ -1058,6 +1088,7 @@ namespace MF900
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv_TestData.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_TestData.RowHeadersVisible = false;
+            this.dgv_TestData.RowHeadersWidth = 51;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dgv_TestData.RowsDefaultCellStyle = dataGridViewCellStyle5;
@@ -1065,7 +1096,7 @@ namespace MF900
             this.dgv_TestData.ScrollBarRectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.dgv_TestData.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_TestData.SelectedIndex = -1;
-            this.dgv_TestData.Size = new System.Drawing.Size(734, 556);
+            this.dgv_TestData.Size = new System.Drawing.Size(979, 693);
             this.dgv_TestData.StripeOddColor = System.Drawing.Color.White;
             this.dgv_TestData.Style = Sunny.UI.UIStyle.Custom;
             this.dgv_TestData.StyleCustomMode = true;
@@ -1078,25 +1109,27 @@ namespace MF900
             this.uiTableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.uiTableLayoutPanel1.ColumnCount = 2;
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 293F));
             this.uiTableLayoutPanel1.Controls.Add(this.uiTableLayoutPanel2, 0, 0);
             this.uiTableLayoutPanel1.Controls.Add(this.uiTableLayoutPanel3, 1, 0);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 1;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(972, 660);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(1296, 825);
             this.uiTableLayoutPanel1.TabIndex = 6;
             this.uiTableLayoutPanel1.TagString = null;
             // 
             // FormRunUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 660);
+            this.ClientSize = new System.Drawing.Size(1296, 825);
             this.Controls.Add(this.uiTableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormRunUI";
             this.Text = "FormRunUI";
             this.Shown += new System.EventHandler(this.FormRunUI_Shown);
