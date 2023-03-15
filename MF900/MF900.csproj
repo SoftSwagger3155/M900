@@ -96,6 +96,9 @@
   <ItemGroup>
     <Compile Include="Helper\GetDiskSpace.cs" />
     <Compile Include="GetFomControls.cs" />
+    <Compile Include="Index\Base\Interface\IIndex.cs" />
+    <Compile Include="Index\Data\Data_M900_Index.cs" />
+    <Compile Include="Index\Data\Data_M900_Index_Recover.cs" />
     <Compile Include="Model\CommumicModel.cs" />
     <Compile Include="FormAxisDebug.cs">
       <SubType>Form</SubType>
@@ -104,6 +107,9 @@
       <DependentUpon>FormAxisDebug.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TCPModel.cs" />
+    <Compile Include="Offset\Data\Data_Offset_Top_Btm_Camera_Center.cs" />
+    <Compile Include="Offset\Data\Data_Offset_Camera_To_Tool.cs" />
+    <Compile Include="Offset\Definition\Enum_Camera_To_Tool_Kind.cs" />
     <Compile Include="YControl\CameraHWControls.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -465,12 +471,19 @@
       <Project>{4427100b-4e3a-43bd-bf0c-8126aba581fd}</Project>
       <Name>MotionCard</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
+      <Project>{6bca7aa8-c9f6-43eb-b6d6-0cd85461f4b0}</Project>
+      <Name>SolveWare_Service_Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\direction1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\direction2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Offset\Base\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

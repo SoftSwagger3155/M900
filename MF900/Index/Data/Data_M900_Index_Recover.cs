@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolveWare_Service_Tool
+namespace MF900.Index.Data
 {
-    public class Class1
+    public class Data_M900_Index_Recover
     {
     }
 }

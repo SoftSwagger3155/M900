@@ -60,7 +60,6 @@
     <Compile Include="Camera\Business\Factory_Camera.cs" />
     <Compile Include="Camera\Data\ConfigData_Camera.cs" />
     <Compile Include="Camera\Definition\Enum_Master_Driver_Camera.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Dlls\Dll_Zmcaux.cs" />
     <Compile Include="IO\Base\Abstract\IOBase.cs" />
     <Compile Include="IO\Base\Interface\IIOBase.cs" />
@@ -76,7 +75,10 @@
     <Folder Include="Lighting\Base\Interface\" />
     <Folder Include="Lighting\Business\" />
     <Folder Include="Lighting\Data\" />
-    <Folder Include="Motor\" />
+    <Folder Include="Motor\Attributes\" />
+    <Folder Include="Motor\Base\" />
+    <Folder Include="Motor\Business\" />
+    <Folder Include="Motor\Definition\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
