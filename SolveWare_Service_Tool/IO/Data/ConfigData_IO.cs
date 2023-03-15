@@ -11,29 +11,14 @@ namespace SolveWare_Service_Tool.IO.Data
 {
     public class ConfigData_IO : ElementBase
     {
-        string name;
         IO_Type ioType = IO_Type.Input;
         Master_Driver_IO ioMasterDriver = Master_Driver_IO.ZMCAUX;
 
         public ConfigData_IO()
         {
-            if (Id == 0) Id = IdentityGenerator.IG.GetIdentity();
+            if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
         }
-        public long Id
-        {
-            get;
-            set;
-        }
-        public string Name
-        {
-            get => name;
-            set => UpdateProper(ref name, value);
-        }
-        public string Description
-        {
-            get;
-            set;
-        }
+
         public int CardNo { get; set; }
         public int Bit { get; set; }
         public int Logic { get; set; }

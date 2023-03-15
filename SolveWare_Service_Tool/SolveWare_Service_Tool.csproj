@@ -64,6 +64,8 @@
     <Compile Include="Dlls\Dll_Zmcaux.cs" />
     <Compile Include="IO\Base\Abstract\IOBase.cs" />
     <Compile Include="IO\Base\Interface\IIOBase.cs" />
+    <Compile Include="IO\Business\Factory_IO.cs" />
+    <Compile Include="IO\Business\IO_Zmcaux.cs" />
     <Compile Include="IO\Data\ConfigData_IO.cs" />
     <Compile Include="IO\Definition\Enum_IO_Status.cs" />
     <Compile Include="IO\Definition\Enum_IO_Type.cs" />
@@ -71,7 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Lighting\" />
+    <Folder Include="Lighting\Base\Interface\" />
+    <Folder Include="Lighting\Business\" />
+    <Folder Include="Lighting\Data\" />
     <Folder Include="Motor\" />
   </ItemGroup>
   <ItemGroup>
