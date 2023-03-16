@@ -121,6 +121,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
         }
 
         protected IMasterDriver masterDriver;
+        public IMasterDriver MasterDriver { get => masterDriver; }
         public void AssignMasterDriver(IMasterDriver master)
         {
             this.masterDriver = master;

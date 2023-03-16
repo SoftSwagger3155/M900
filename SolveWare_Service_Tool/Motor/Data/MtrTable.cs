@@ -18,10 +18,10 @@ namespace SolveWare_Service_Tool.Motor.Data
     public class MtrTable : ElementBase
     {
         //马达名称
-        [Category("Axis Table")]
-        [DisplayName("Name  马达名称")]
-        [Description("Axis Name")]
-        public string Name { get; set; }
+        //[Category("Axis Table")]
+        //[DisplayName("Name  马达名称")]
+        //[Description("Axis Name")]
+        //public string Name { get; set; }
 
         [Category("Axis Table")]
         [DisplayName("CardNo  控制卡号")]
@@ -34,17 +34,32 @@ namespace SolveWare_Service_Tool.Motor.Data
         public short AxisNo { get; set; }
 
         [Category("Axis Table")]
+        [DisplayName("Home IO 零点讯号参数")]
+        [Description("Param Home IO")]
+        public int Param_Home_IO { get; set; }
+
+        [Category("Axis Table")]
+        [DisplayName("Fwd Limit 正限位讯号参数")]
+        [Description("Param Fwd Limit")]
+        public int Param_Fwd_Limit { get; set; }
+
+        [Category("Axis Table")]
+        [DisplayName("Rev Limit 负限位讯号参数")]
+        [Description("Param Rev Limit")]
+        public int Param_Rev_Limit { get; set; }
+
+        [Category("Axis Table")]
         [DisplayName("Servo On Logic 马达使能")]
         [Description("Servo On Logic")]
         public short ServoOn_Logic { get; set; }
 
         [Category("Axis Table")]
-        [DisplayName("Unit Per Revolution")]
+        [DisplayName("Unit Per Revolution (mm : 圈数)")]
         [Description("revolution")]
         public double UnitPerRevolution { get; set; }
 
         [Category("Axis Table")]
-        [DisplayName("Pulse Per Revolution")]
+        [DisplayName("Pulse Per Revolution (脉冲 : 圈数)")]
         [Description("Pulse")]
         public double PulsePerRevolution { get; set; }
 
@@ -54,7 +69,7 @@ namespace SolveWare_Service_Tool.Motor.Data
         public double PulseFactor { get; set; }
 
         [Category("Axis Table")]
-        [DisplayName("Is Formula Axis")]
+        [DisplayName("Is Formula Axis (公式轴)")]
         [Description("Is Formula Axis")]
         public bool IsFormulaAxis { get; set; }
 

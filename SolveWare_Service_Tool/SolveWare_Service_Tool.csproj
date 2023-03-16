@@ -76,6 +76,7 @@
     <Compile Include="Motor\Attributes\Resource_Tool_Indicator_Motor.cs" />
     <Compile Include="Motor\Base\Abstract\AxisBase.cs" />
     <Compile Include="Motor\Base\Interface\ISafeKeeper.cs" />
+    <Compile Include="Motor\Business\Motor_Zmcaux.cs" />
     <Compile Include="Motor\Data\ConfigData_Motor.cs" />
     <Compile Include="Motor\Data\MtrConfig.cs" />
     <Compile Include="Motor\Data\MtrMisc.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Motor\Definition\Enum_Custom_Home_Type.cs" />
     <Compile Include="Motor\Definition\Enum_Direction_State.cs" />
     <Compile Include="Motor\Definition\Enum_IO_Status_DMC3600.cs" />
+    <Compile Include="Motor\Definition\Enum_IO_Status_Zmcaux.cs" />
     <Compile Include="Motor\Definition\Enum_Limit_Config.cs" />
     <Compile Include="Motor\Definition\Enum_Master_Driver_Motor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,7 +95,7 @@
     <Folder Include="Lighting\Base\Interface\" />
     <Folder Include="Lighting\Business\" />
     <Folder Include="Lighting\Data\" />
-    <Folder Include="Motor\Business\" />
+    <Folder Include="MasterDriver\Base\Interface\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">

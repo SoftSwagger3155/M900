@@ -23,7 +23,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             this.mtrConfig = config.MtrConfig;
             this.mtrMisc = config.MtrMisc;
             this.mtrSafe = config.MtrSafe;
-            this.autoMtrSpeed = config.MtrSpeed;
+            this.mtrSpeed = config.MtrSpeed;
             this.simulation = config.Simulation;
             this.Name = mtrTable.Name;
             if (this.Id == 0) Id = IdentityGenerator.IG.GetIdentity();
@@ -40,14 +40,13 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected string name;
         protected MtrTable mtrTable = null;
         protected MtrConfig mtrConfig;
-        protected MtrSpeed homeSpeed;
-        protected MtrSpeed autoMtrSpeed;
+        protected MtrSpeed mtrSpeed;
         protected MtrMisc mtrMisc;
         protected MtrSafe mtrSafe;
         protected CancellationTokenSource readStatusSource;
         protected bool simulation;
         protected bool hasHome;
-        private AutoResetEvent cancelDoneFlag = new AutoResetEvent(false);
+        protected AutoResetEvent cancelDoneFlag = new AutoResetEvent(false);
 
         protected bool isServoOn;
         protected bool isInPosition;
@@ -95,11 +94,6 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         }
         public ISafeKeeper SafeKeeper { get; private set; }
 
-        public string Name
-        {
-            get => name;
-            set { name = value; OnPropertyChanged(nameof(Name)); OnPropertyChanged(nameof(Description)); UpdateDynamicStatus(); }
-        }
         public MtrTable MtrTable
         {
             get => mtrTable;
@@ -125,15 +119,10 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             get => mtrSafe;
             set => UpdateProper(ref mtrSafe, value);
         }
-        public MtrSpeed HomeSpeed
+        public MtrSpeed MtrSpeed
         {
-            get => homeSpeed;
-            set => UpdateProper(ref homeSpeed, value);
-        }
-        public MtrSpeed AutoMtrSpeed
-        {
-            get => autoMtrSpeed;
-            set => UpdateProper(ref autoMtrSpeed, value);
+            get => mtrSpeed;
+            set => UpdateProper(ref mtrSpeed, value);
         }
         public bool Simulation
         {
@@ -148,11 +137,8 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             }
             protected set
             {
-                if (value != isServoOn)
-                {
-                    isServoOn = value;
-                }
-                OnPropertyChanged(nameof(IsServoOn));
+                isServoOn = value;
+                UpdateProper(ref isServoOn, value);
             }
         }
         public bool IsInPosition
@@ -219,52 +205,20 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             set;
         }
 
-        private string dynamicStatus;
-        public string DynamicStatus
+        private string dynamicContent;
+        public string DynamicContent
         {
-            get => dynamicStatus;
-            set => UpdateProper(ref dynamicStatus, value);
+            get => dynamicContent;
+            set => UpdateProper(ref dynamicContent, value);
         }
         private void UpdateDynamicStatus()
         {
             string unit = MtrTable.IsMM ? "mm" : "Deg";
-            DynamicStatus = $"{Name} {CurrentPhysicalPos.ToString("F4")} {unit}";
-            OnPropertyChanged(nameof(DynamicStatus));
+            DynamicContent = $"{Name} {CurrentPhysicalPos.ToString("F4")} {unit}";
+            OnPropertyChanged(nameof(DynamicContent));
         }
         //公用部份
-        public void StartStatusReading()
-        {
-            if (readStatusSource != null) return;
-            readStatusSource = new CancellationTokenSource();
-            Task task = new Task(() =>
-            {
-                while (!readStatusSource.IsCancellationRequested)
-                {
-                    IsOrg = Get_Origin_Signal();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    IsAlarm = Get_Alarm_Signal();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    IsPosLimit = Get_PEL_Signal();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    IsNegLimit = Get_NEL_Signal();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    IsInPosition = Get_InPos_Signal();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    CurrentPulse = Get_CurPulse();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    CurrentPhysicalPos = Get_CurUnitPos();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    AnalogInputValue = Get_AnalogInputValue();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                    IsServoOn = Get_ServoStatus();
-                    Thread.Sleep(mtrTable.StatusReadTiming);
-                }
-
-                cancelDoneFlag.Set();
-
-            }, readStatusSource.Token, TaskCreationOptions.LongRunning);
-            task.Start();
-        }
+        public abstract void StartStatusReading();
         public void StopStatusReading()
         {
             if (readStatusSource == null) return;
@@ -337,6 +291,8 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract bool HomeMove();
         public abstract bool MoveToSafeObservedPos(double pos);
         public abstract bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false, float slowFactor = 1f);
+        public abstract bool WaitStop();
+        public abstract bool WaitHomeDone();
 
         public abstract void Jog(bool isPositive);
         public abstract int Get_IO_sts();
@@ -345,11 +301,11 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public void ConverToMMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
         {
             double unitPerSec = MtrTable.PulsePerRevolution / MtrTable.UnitPerRevolution;
-            double acc_Unit = autoMtrSpeed.Acceleration * unitPerSec;
-            double dec_Unit = autoMtrSpeed.Deceleration * unitPerSec;
+            double acc_Unit = mtrSpeed.Acceleration * unitPerSec;
+            double dec_Unit = mtrSpeed.Deceleration * unitPerSec;
 
-            startVel = (float)(unitPerSec * autoMtrSpeed.Start_Velocity);
-            maxVel = (float)(unitPerSec * autoMtrSpeed.Max_Velocity);
+            startVel = (float)(unitPerSec * mtrSpeed.Start_Velocity);
+            maxVel = (float)(unitPerSec * mtrSpeed.Max_Velocity);
 
             double factor = maxVel == startVel ? 1 : maxVel - startVel;
             acc = factor / acc_Unit;
@@ -443,6 +399,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             TimeSpan ts = DateTime.Now - st;
             return ts.TotalMilliseconds > mtrTable.HomeTimeOut;
         }
+
 
         public abstract bool DoAvoidDangerousPosAction();
 

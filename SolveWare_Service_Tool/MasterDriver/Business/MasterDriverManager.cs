@@ -15,6 +15,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
     public class MasterDriverManager : IMasterDriver
     {
         ConfigData_MasterDriver config = null;
+        public IOMotionCardInfo CardInfo { get; private set; }
         public void Setup(IElement configData)
         {
             config = configData as ConfigData_MasterDriver;
@@ -31,8 +32,18 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                     switch(config.Master_Driver_Motor)
                     {
                         case Master_Driver_Kind.Zmcaux:
+                            this.CardInfo = new IOMotionCardInfo();
                             int cardNo = Dll_Zmcaux.ZAux_GetMaxPciCards();
+                            IntPtr Handle;
                             isOk = cardNo > 0;
+                            if (isOk)
+                            {
+                                for (int i = 0; i < cardNo; i++)
+                                {
+                                    Dll_Zmcaux.ZAux_OpenPci(Convert.ToUInt32(i), out Handle);
+                                    CardInfo.Dic_CardHandler.Add(i, Handle);
+                                }
+                            }
                             break;
                     }  
                 }
@@ -46,6 +57,15 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
             }
 
             return isOk;
+        }
+    }
+   
+    public class IOMotionCardInfo
+    {
+          public Dictionary<int, IntPtr> Dic_CardHandler { get; set; }
+        public IOMotionCardInfo()
+        {
+            Dic_CardHandler = new Dictionary<int, IntPtr>();
         }
     }
 }
