@@ -107,6 +107,8 @@
       <DependentUpon>FormAxisDebug.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TCPModel.cs" />
+    <Compile Include="Offset\Base\Abstract\OffsetDataBase.cs" />
+    <Compile Include="Offset\Business\Manager_Offset.cs" />
     <Compile Include="Offset\Data\Data_Offset_Top_Btm_Camera_Center.cs" />
     <Compile Include="Offset\Data\Data_Offset_Camera_To_Tool.cs" />
     <Compile Include="Offset\Definition\Enum_Camera_To_Tool_Kind.cs" />
@@ -482,8 +484,6 @@
   <ItemGroup>
     <None Include="Resources\direction2.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Offset\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

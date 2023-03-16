@@ -110,5 +110,33 @@ namespace SolveWare_Service_Core.Manager.Business
                 SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 失败{Environment.NewLine}{ex.Message}", true);
             }
         }
+
+        public void DoubleCheck(params string[] names)
+        {
+            int totalCount = names.Length;
+            List<TData> correctDatas = new List<TData>();
+            var databases = this.DataBase.ToList();
+
+            foreach (string name in names)
+            {
+                int index = databases.FindIndex(x => x.Name == name);
+               //没找到
+                if(index < 0)
+                {
+                    TData data = (TData)Activator.CreateInstance(typeof(TData));
+                    (data as IElement).Name = name;
+                    correctDatas.Add(data);
+                }
+                else
+                {
+                    correctDatas.Add((TData)databases[index]);
+                }
+            }
+
+
+            this.DataBase.Clear();
+            correctDatas.ForEach(x => this.DataBase.Add(x as IElement));
+
+        }
     }
 }

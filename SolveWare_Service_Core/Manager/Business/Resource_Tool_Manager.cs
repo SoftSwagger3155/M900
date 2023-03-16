@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SolveWare_Service_Core.Manager.Business
 {
@@ -157,6 +158,34 @@ namespace SolveWare_Service_Core.Manager.Business
             }
 
             return isOk;
+        }
+
+        public void DoubleCheck(params string[] names)
+        {
+            int totalCount = names.Length;
+            List<IElement> correntTools = new List<IElement>();
+            var tools = this.WareHouse.ToList();
+
+            foreach (string name in names)
+            {
+                int index = tools.FindIndex(x => x.Name == name);
+                //没找到
+                if (index < 0)
+                {
+                    TConfigData config = (TConfigData)Activator.CreateInstance(typeof(TConfigData));
+                    config.Name = name;
+                    IElement tool = Factory.BuildTool(config);
+
+                    correntTools.Add(tool);
+                }
+                else
+                {
+                    correntTools.Add((IElement)correntTools[index]);
+                }
+            }
+
+            this.WareHouse.Clear();
+            correntTools.ForEach(x => this.WareHouse.Add(x as IElement));
         }
     }
 }

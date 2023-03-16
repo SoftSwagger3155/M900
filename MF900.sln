@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolveWare_Service_Tool", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolveWare_Service_Utility", "SolveWare_Service_Utility\SolveWare_Service_Utility.csproj", "{A329E8D8-E7A4-4070-ACBB-86601F296534}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MF900_SolveWare", "MF900_SolveWare\MF900_SolveWare.csproj", "{446725E6-F56C-4778-928B-9E901A095CDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A329E8D8-E7A4-4070-ACBB-86601F296534}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A329E8D8-E7A4-4070-ACBB-86601F296534}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A329E8D8-E7A4-4070-ACBB-86601F296534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446725E6-F56C-4778-928B-9E901A095CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446725E6-F56C-4778-928B-9E901A095CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446725E6-F56C-4778-928B-9E901A095CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446725E6-F56C-4778-928B-9E901A095CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
