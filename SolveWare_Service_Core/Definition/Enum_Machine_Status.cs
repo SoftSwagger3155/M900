@@ -15,6 +15,7 @@ namespace SolveWare_Service_Core.Definition
         SingleCycle,
         Busy,
         Error,
+        Error_System_Loading,
         Stop,
         Reset
     }

@@ -21,8 +21,10 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IInfoHandler Infohandler { get; set; }
         IList<IDataResourceProvider> Resource_Data_Center { get; set; }
         IList<IToolResourceProvider> Resource_Tool_Center { get; set; }
-        IResourceProvider Get_Single_Data_Resource_Item(Type classType);
-        IResourceProvider Get_Single_Tool_Resource_Item();
+        IResourceProvider Get_Single_Data_Resource(Type classType);
+        IElement Get_Single_Element_Form_Data_Resource(Type classType, string name);
+        IResourceProvider Get_Single_Tool_Resource(Type classType);
+        IElement Get_Single_Element_Form_Tool_Resource(Type classType, string name);
         void CloseAll();
     }
 }

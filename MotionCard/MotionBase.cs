@@ -99,7 +99,6 @@ namespace MotionCard
         /// </summary>
         public int AxisEnadle;
     }
-
     /// <summary>
     /// 轴运行速度
     /// </summary>

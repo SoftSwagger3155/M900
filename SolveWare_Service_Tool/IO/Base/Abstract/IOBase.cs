@@ -15,13 +15,13 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
 {
     public abstract class IOBase : ElementBase, IIOBase
     {
-        protected IElement configData;
+        protected ConfigData_IO configData;
         IO_Status status = IO_Status.On;
         IO_Type ioType = IO_Type.Input;
         #region ctor
         public IOBase(IElement data)
         {
-            this.configData = data;
+            this.configData = data as ConfigData_IO;
             this.Simulation = (data as ConfigData_IO).Simulation;
             if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
         }
@@ -31,16 +31,6 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
         }
         #endregion
 
-        public string Name
-        {
-            get;
-            set;
-        }
-        public long Id
-        {
-            get;
-            set;
-        }
         public string Description
         {
             get;
@@ -63,24 +53,13 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
         public IO_Type IOType
         {
             get => ioType;
-            set
-            {
-                ioType = value;
-                OnPropertyChanged(nameof(IOType));
-            }
+            set => UpdateProper(ref ioType, value);
         }
 
         public bool Simulation
         {
             get;
             set;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string info)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
         }
 
         public bool IsOff()

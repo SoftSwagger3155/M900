@@ -21,7 +21,8 @@ namespace SolveWare_Service_Tool.IO.Data
 
         public int CardNo { get; set; }
         public int Bit { get; set; }
-        public int Logic { get; set; }
+        public int Logic_Op { get; set; }
+        public int Logic_Read { get; set; }
         public bool Simulation { get; set; }
         public bool IsForSelect { get; set; }
         public string DynamicStatus
