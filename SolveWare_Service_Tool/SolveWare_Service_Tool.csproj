@@ -89,6 +89,7 @@
     <Compile Include="Motor\Definition\Enum_IO_Status_Zmcaux.cs" />
     <Compile Include="Motor\Definition\Enum_Limit_Config.cs" />
     <Compile Include="Motor\Definition\Enum_Master_Driver_Motor.cs" />
+    <Compile Include="Motor\Definition\Enum_Motor_Wait_Kind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

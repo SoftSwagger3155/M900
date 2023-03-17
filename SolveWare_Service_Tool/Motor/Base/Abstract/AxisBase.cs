@@ -1,11 +1,14 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
+using SolveWare_Service_Tool.Dlls;
 using SolveWare_Service_Tool.Motor.Base.Interface;
 using SolveWare_Service_Tool.Motor.Data;
+using SolveWare_Service_Tool.Motor.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,13 +58,13 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected bool isPosLimit;
         protected bool isNegLimit;
         protected bool isProhibitActivated = false;
-        protected volatile bool isMoving;
+        protected bool isMoving;
         protected bool isStopReq = false;
         protected double currentPulse;
         protected double currentPhysicalPos = -999.999;
         protected double analogInputValue;
         protected string interlockWaringMsg;
-
+        protected  int axis_Read_Status = 0;
         //Safe Keeper
         protected bool isDangerousToMove;
         protected bool isInZone;
@@ -211,6 +214,10 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             get => dynamicContent;
             set => UpdateProper(ref dynamicContent, value);
         }
+        public bool IsMoving
+        {
+            get => isMoving;
+        }
         private void UpdateDynamicStatus()
         {
             string unit = MtrTable.IsMM ? "mm" : "Deg";
@@ -285,27 +292,47 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract double Get_CurUnitPos();
         public abstract double Get_AnalogInputValue();
         public abstract bool Get_ServoStatus();
-        public abstract bool MoveTo(double pos, bool BypassDangerCheck = false, float slowFactor = 1);
-        public abstract bool ManualMoveTo(double pos, float slowFactor = 1);
+        public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
+        public abstract bool ManualMoveTo(double pos);
         public abstract void Stop();
         public abstract bool HomeMove();
         public abstract bool MoveToSafeObservedPos(double pos);
-        public abstract bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false, float slowFactor = 1f);
-        public abstract bool WaitStop();
-        public abstract bool WaitHomeDone();
+        public abstract bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false);
+        public abstract Motor_Wait_Kind WaitStop();
+        public abstract Motor_Wait_Kind WaitHomeDone();
 
         public abstract void Jog(bool isPositive);
         public abstract int Get_IO_sts();
         public abstract void Set_Servo(bool on);
 
-        public void ConverToMMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
+        public void Conver_To_Home_MMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
         {
-            double unitPerSec = MtrTable.PulsePerRevolution / MtrTable.UnitPerRevolution;
-            double acc_Unit = mtrSpeed.Acceleration * unitPerSec;
-            double dec_Unit = mtrSpeed.Deceleration * unitPerSec;
+            double speedRatio = 100 / mtrSpeed.SpeedRate_Home;
+      
 
-            startVel = (float)(unitPerSec * mtrSpeed.Start_Velocity);
-            maxVel = (float)(unitPerSec * mtrSpeed.Max_Velocity);
+            double unitPerSec = mtrTable.PulsePerRevolution / mtrTable.UnitPerRevolution;
+            double acc_Unit = mtrSpeed.Home_Acceleration * unitPerSec * speedRatio;
+            double dec_Unit = mtrSpeed.Home_Deceleration * unitPerSec * speedRatio;
+
+            startVel = (float)(unitPerSec * mtrSpeed.Home_Min_Velocity);
+            maxVel = (float)(unitPerSec * mtrSpeed.Home_Max_Velocity * speedRatio);
+
+            double factor = maxVel == startVel ? 1 : maxVel - startVel;
+            acc = factor / acc_Unit;
+            dec = factor / dec_Unit;
+        }
+
+        public void Conver_To_Jog_MMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
+        {
+            double speedRatio = 100 / mtrSpeed.SpeedRate_Jog;
+
+
+            double unitPerSec = mtrTable.PulsePerRevolution / mtrTable.UnitPerRevolution;
+            double acc_Unit = mtrSpeed.Jog_Acceleration * unitPerSec * speedRatio;
+            double dec_Unit = mtrSpeed.Jog_Deceleration * unitPerSec * speedRatio;
+
+            startVel = (float)(unitPerSec * mtrSpeed.Jog_Min_Velocity);
+            maxVel = (float)(unitPerSec * mtrSpeed.Jog_Max_Velocity * speedRatio);
 
             double factor = maxVel == startVel ? 1 : maxVel - startVel;
             acc = factor / acc_Unit;
@@ -407,5 +434,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         {
 
         }
+
+      
     }
 }
