@@ -1,4 +1,6 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Definition;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Motor.Data
 {
+    [IndicatorResourceAttribute(ConstantProperty.Motor)]
     public class ConfigData_Motor : ElementBase
     {
 

@@ -3,9 +3,12 @@ using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.FSM.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Info.Base.Interface;
+using SolveWare_Service_Core.Info.Business;
 using SolveWare_Service_Core.Manager.Base.Interface;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,9 +17,13 @@ using System.Xml.Linq;
 
 namespace SolveWare_Service_Core.Manager.Base.Abstract
 {
+    public delegate void AddToolResourceDelegation();
     public abstract class MainManagerBase : IMainManager
     {
-
+        public MainManagerBase()
+        {
+            this.Infohandler = InfoHandler.Instance;
+        }
         public MainManagerBase(IInfoHandler infoHandler)
         {
             this.Infohandler = infoHandler;
@@ -26,7 +33,12 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             this.Infohandler = infoHandler;
             this.FSM = fsm;
         }
-
+        
+        public event AddToolResourceDelegation On_Tool_IO_Resource_Loading_Handler;
+        public event AddToolResourceDelegation On_Tool_Motor_Resource_Loading_Handler;
+        public event AddToolResourceDelegation On_Tool_Camera_Resource_Loading_Handler;
+        public event AddToolResourceDelegation On_Data_ModuleMatcher_Resource_Loading_Handler;
+        public event AddToolResourceDelegation On_Data_Inspection_Resource_Loading_Handler;
         public IView MainWint { get; set; }
         public IFSM FSM { get; set; }
         public string LoadingStatus { get; set; }
@@ -47,7 +59,12 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             }
         }
 
-        public abstract void CloseAll();
+        public virtual void CloseAll()
+        {
+            if (this.masterDriver != null)
+                masterDriver.Close();
+
+        }
 
         public void DoButtonClickTask(Func<int> action)
         {
@@ -68,18 +85,18 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public IResourceProvider Get_Single_Data_Resource(Type classType)
         {
-            IResourceProvider provider = Resource_Data_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
+            IResourceProvider provider = null; //Resource_Data_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
             return provider;
         }
 
         public IResourceProvider Get_Single_Tool_Resource(Type classType)
         {
-            IResourceProvider provider = Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
+            IResourceProvider provider = null;//Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
             return provider;
         }
         public IElement Get_Single_Element_Form_Data_Resource(Type classType, string name)
         {
-            IResourceProvider provider = Resource_Data_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
+            IResourceProvider provider = null;//Resource_Data_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
             IElement data = provider.Get_Single_Item(name);
 
             return data;
@@ -87,7 +104,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public IElement Get_Single_Element_Form_Tool_Resource(Type classType, string name)
         {
-            IResourceProvider provider = Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
+            IResourceProvider provider = null;//Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == classType);
             IElement data = provider.Get_Single_Item(name);
 
             return data;
@@ -97,6 +114,14 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public void Initialize()
         {
+            ErrorCodes.InitErrorMap();
+            string fullPath = "";//ConfigurationManager.AppSettings["FilePathRoot"];
+            fullPath = Debugger.IsAttached ? Directory.GetCurrentDirectory() : fullPath;
+            SystemPath.RootInfoDirection = $@"{fullPath}";
+            SystemPath.RootLogDirectory = $@"{fullPath} Logs";
+            SystemPath.RootDataDirectory = $@"{fullPath} Data";
+            SystemPath.CreateDefaultDirectory(true);
+
             LoadingStatus = "Info Handler 加载...";
             if(this.Infohandler == null)
             {
@@ -105,15 +130,19 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 return;
             }
 
-            if (masterDriver.Init() == false)
-            {
-                SetStatus(Machine_Status.Error_System_Loading);
-                LoadingStatus = "Error.... 驱动 加载失败";
-                return;
-            }
+            //if (masterDriver.Init() == false)
+            //{
+            //    SetStatus(Machine_Status.Error_System_Loading);
+            //    LoadingStatus = "Error.... 驱动 加载失败";
+            //    return;
+            //}
 
-
+            InitToolResource();
+            InitDataResource();
+            InitVisionResource();
         }
+
+        public abstract void Setup();
 
         public void SetStatus(Machine_Status status)
         {
@@ -127,8 +156,70 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             this.masterDriver = master;
         }
 
-        public abstract bool InitDataResource();
-        public abstract bool InitToolResource();
-        public abstract bool InitVisionResource();
+        public  void InitDataResource()
+        {
+            if (On_Data_ModuleMatcher_Resource_Loading_Handler != null) On_Data_ModuleMatcher_Resource_Loading_Handler();
+        }
+        public  void InitToolResource()
+        {
+            if (On_Tool_IO_Resource_Loading_Handler != null) On_Tool_IO_Resource_Loading_Handler();
+            if (On_Tool_Motor_Resource_Loading_Handler != null) On_Tool_Motor_Resource_Loading_Handler();
+            if (On_Tool_Camera_Resource_Loading_Handler != null) On_Tool_Camera_Resource_Loading_Handler();
+        }
+        public void InitVisionResource()
+        {
+            if (On_Data_Inspection_Resource_Loading_Handler != null) On_Data_Inspection_Resource_Loading_Handler();
+
+        }
+
+        public IResourceProvider Get_Single_Tool_Resource(Tool_Resource_Kind kind)
+        {
+            IResourceProvider provider = null;
+            switch (kind)
+            {
+                case Tool_Resource_Kind.Motor:
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Motor);
+                    break;
+                case Tool_Resource_Kind.IO:
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.IO);
+                    break;
+                case Tool_Resource_Kind.Camera:
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Camera);
+                    break;
+                case Tool_Resource_Kind.Lighting:
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Lighting);
+                    break;
+                case Tool_Resource_Kind.BarCode_Gun:
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.BarCodeGun);
+                    break;
+                case Tool_Resource_Kind.Printer:
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Printer);
+                    break;
+            }
+
+            return provider;
+        }
+
+        public IElement Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind kind, string name)
+        {
+            IResourceProvider provider = Get_Single_Tool_Resource(kind);
+            IElement element = provider.Get_Single_Item(name);
+
+            return element;
+        }
+
+        public IResourceProvider Get_Single_Data_Resource(string resourceKey)
+        {
+            IResourceProvider provider = Resource_Data_Center.ToList().FirstOrDefault(x => x.ResourceKey == resourceKey);
+            return provider;
+        }
+
+        public IElement Get_Single_Element_Form_Data_Resource(string resourceKey, string name)
+        {
+            IResourceProvider provider = Get_Single_Data_Resource(resourceKey);
+            IElement element = provider.Get_Single_Item(name);
+
+            return element;
+        }
     }
 }

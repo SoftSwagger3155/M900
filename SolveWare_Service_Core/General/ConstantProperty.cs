@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace SolveWare_Service_Core.General
         public const string Validation = "确认内容";
         public const string ExitChores = "结束任务";
         public const string IO = "IO-输入输出";
+        public const string Camera = "相机";
+        public const string Lighting = "光源";
+        public const string Printer = "打印机";
+        public const string BarCodeGun = "扫码枪";
         public const string Motion = "Motion-运动";
         public const string Home = "Home-复位";
         public const string Vision = "Vision-视觉";

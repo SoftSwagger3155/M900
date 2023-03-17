@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SolveWare_Service_Core.Base.Abstract
 {
@@ -44,6 +45,7 @@ namespace SolveWare_Service_Core.Base.Abstract
         public string Content { get; set; }
 
         protected long id =0;
+        [XmlIgnore]
         public long Id { get => id; private set => id =value; }
 
         public ElementBase()

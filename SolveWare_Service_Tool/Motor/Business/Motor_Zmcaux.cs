@@ -26,7 +26,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
         public override bool DoAvoidDangerousPosAction()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override bool Get_Alarm_Signal()
@@ -37,7 +37,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
         public override double Get_AnalogInputValue()
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public override double Get_CurPulse()
@@ -190,7 +190,6 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             return isHomeSuccessful;
         }
-
         public override bool Init()
         {
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
@@ -198,7 +197,6 @@ namespace SolveWare_Service_Tool.Motor.Business
             Dll_Zmcaux.ZAux_Direct_SetUnits(Handler, mtrTable.AxisNo, (float)mtrTable.PulsePerRevolution);
             return true;
         }
-
         public override void Jog(bool isPositive)
         {
             if (isMoving) return;

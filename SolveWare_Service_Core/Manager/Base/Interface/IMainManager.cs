@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.FSM.Base.Interface;
 using SolveWare_Service_Core.Info.Base.Interface;
 using System;
@@ -13,18 +14,22 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
     {
         IView MainWint { get; set; }        
         IFSM FSM { get; set; }
+ 
+        IMasterDriver MasterDriver { get; }
+        void AssignMasterDriver(IMasterDriver master);
         bool HasIdenticalWindow();
         string LoadingStatus { get; set; }
         void Initialize();
+        void Setup();
         void DoButtonClickTask(Func<int> action);
         IMachineUI MachineUI { get; set; }
         IInfoHandler Infohandler { get; set; }
         IList<IDataResourceProvider> Resource_Data_Center { get; set; }
         IList<IToolResourceProvider> Resource_Tool_Center { get; set; }
-        IResourceProvider Get_Single_Data_Resource(Type classType);
-        IElement Get_Single_Element_Form_Data_Resource(Type classType, string name);
-        IResourceProvider Get_Single_Tool_Resource(Type classType);
-        IElement Get_Single_Element_Form_Tool_Resource(Type classType, string name);
+        IResourceProvider Get_Single_Data_Resource(string resourceKey);
+        IElement Get_Single_Element_Form_Data_Resource(string resourceKey, string name);
+        IResourceProvider Get_Single_Tool_Resource(Tool_Resource_Kind kind);
+        IElement Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind kind, string name);
         void CloseAll();
     }
 }

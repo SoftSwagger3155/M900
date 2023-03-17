@@ -9,8 +9,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
 {
     public interface IResourceProvider
     {
-        Type ResourceKey { get; }
-        void AssignResourceKey(Type key);
+        string ResourceKey { get; }
         string Name { get; set; }
         bool Initialize();
         void Save();

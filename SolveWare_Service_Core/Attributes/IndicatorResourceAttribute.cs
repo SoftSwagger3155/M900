@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace SolveWare_Service_Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-    public class ResourceBase : Attribute
+    public class IndicatorResourceAttribute : Attribute
     {
         public string Name { get; set; }
-        public ResourceBase(string name)
+        public IndicatorResourceAttribute(string name)
         {
             Name = name;
         }

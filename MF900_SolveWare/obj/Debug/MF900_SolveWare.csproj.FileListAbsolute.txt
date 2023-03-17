@@ -8,3 +8,7 @@ E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.Genera
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CoreCompileInputs.cache
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.pdb
+E:\M900软件平台\M900\M900_Dlls\MF900_SolveWare.exe.config
+E:\M900软件平台\M900\M900_Dlls\MF900_SolveWare.exe
+E:\M900软件平台\M900\M900_Dlls\MF900_SolveWare.pdb
+E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete

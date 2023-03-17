@@ -73,9 +73,9 @@
     <Compile Include="MasterDriver\Data\ConfigData_MasterDriver.cs" />
     <Compile Include="MasterDriver\Definition\Enum_Master_Driver_Kind.cs" />
     <Compile Include="MasterDriver\Definition\Enum_Master_Driver_Share_Kind.cs" />
-    <Compile Include="Motor\Attributes\Resource_Tool_Indicator_Motor.cs" />
     <Compile Include="Motor\Base\Abstract\AxisBase.cs" />
     <Compile Include="Motor\Base\Interface\ISafeKeeper.cs" />
+    <Compile Include="Motor\Business\Factory_Motor.cs" />
     <Compile Include="Motor\Business\Motor_Zmcaux.cs" />
     <Compile Include="Motor\Data\ConfigData_Motor.cs" />
     <Compile Include="Motor\Data\MtrConfig.cs" />

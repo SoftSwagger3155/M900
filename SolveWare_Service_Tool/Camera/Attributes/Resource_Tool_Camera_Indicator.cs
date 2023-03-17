@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Camera.Attributes
 {
-    public class Resource_Tool_Camera_Indicator : ResourceBase
+    public class Resource_Tool_Camera_Indicator : IndicatorResourceAttribute
     {
         public Resource_Tool_Camera_Indicator(string name) : base(name)
         {

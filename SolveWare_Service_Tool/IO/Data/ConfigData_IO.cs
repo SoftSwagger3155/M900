@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.IO.Definition;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.IO.Data
 {
+    [IndicatorResourceAttribute(ConstantProperty.IO)]
     public class ConfigData_IO : ElementBase
     {
         IO_Type ioType = IO_Type.Input;

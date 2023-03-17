@@ -47,7 +47,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\ResourceBase.cs" />
+    <Compile Include="Attributes\IndicatorResourceAttribute.cs" />
     <Compile Include="Base\Abstract\ElementBase.cs" />
     <Compile Include="Base\Abstract\JobFundamentalBase.cs" />
     <Compile Include="Base\Abstract\RESTFulBase.cs" />

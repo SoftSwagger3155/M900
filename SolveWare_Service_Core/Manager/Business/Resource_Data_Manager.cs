@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Manager.Base.Interface;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,26 +15,24 @@ namespace SolveWare_Service_Core.Manager.Business
 {
     public class Resource_Data_Manager<TData> : RESTFulBase, IDataResourceProvider
     {
-        public Type ResourceKey { get; private set; }
+        public string ResourceKey { get; private set; }
         public string Name { get; set; }
 
         public Resource_Data_Manager()
         {
             Name = $"Resource_Data_{typeof(TData).Name}";
             this.FilePath = Path.Combine(SystemPath.GetSystemPath, $"{this.Name}.xml");
-        }
-        public Resource_Data_Manager(Type resourceKey)
-        {
-            Name = $"Resource_Data_{typeof(TData).Name}";
-            ResourceKey = resourceKey;
-            this.FilePath = Path.Combine(SystemPath.GetSystemPath, $"{this.Name}.xml");
-        }
 
-        public void AssignResourceKey(Type key)
-        {
-            this.ResourceKey = key;
+            var customeKeys = typeof(TData).GetCustomAttributes();
+            foreach (var item in customeKeys)
+            {
+                if (item is IndicatorResourceAttribute)
+                {
+                    this.ResourceKey = (item as IndicatorResourceAttribute).Name;
+                }
+            }
         }
-
+       
         public IList<IElement> Get_All_Items()
         {
             return DataBase;

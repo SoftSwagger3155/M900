@@ -9,5 +9,6 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
     public interface IMasterDriver
     {
         bool Init();
+        void Close();
     }
 }

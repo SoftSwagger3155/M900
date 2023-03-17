@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfConfigData_IO xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ConfigData_IO>
+    <Name>塔灯-绿</Name>
+    <CardNo>0</CardNo>
+    <Bit>0</Bit>
+    <Logic_Op>0</Logic_Op>
+    <Logic_Read>0</Logic_Read>
+    <Simulation>false</Simulation>
+    <IsForSelect>false</IsForSelect>
+    <IOType>Input</IOType>
+    <IOMasterDriver>ZMCAUX</IOMasterDriver>
+  </ConfigData_IO>
+  <ConfigData_IO>
+    <Name>塔灯-黄</Name>
+    <CardNo>0</CardNo>
+    <Bit>0</Bit>
+    <Logic_Op>0</Logic_Op>
+    <Logic_Read>0</Logic_Read>
+    <Simulation>false</Simulation>
+    <IsForSelect>false</IsForSelect>
+    <IOType>Input</IOType>
+    <IOMasterDriver>ZMCAUX</IOMasterDriver>
+  </ConfigData_IO>
+  <ConfigData_IO>
+    <Name>塔灯-红</Name>
+    <CardNo>0</CardNo>
+    <Bit>0</Bit>
+    <Logic_Op>0</Logic_Op>
+    <Logic_Read>0</Logic_Read>
+    <Simulation>false</Simulation>
+    <IsForSelect>false</IsForSelect>
+    <IOType>Input</IOType>
+    <IOMasterDriver>ZMCAUX</IOMasterDriver>
+  </ConfigData_IO>
+</ArrayOfConfigData_IO>

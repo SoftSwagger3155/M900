@@ -36,5 +36,10 @@ namespace SolveWare_Service_Core
                 return core;
             }
         }
+
+        public void SetMMgr(IMainManager mmgr)
+        {
+            this.mmgr = mmgr;
+        }
     }
 }

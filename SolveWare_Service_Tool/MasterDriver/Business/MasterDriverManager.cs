@@ -14,6 +14,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
 {
     public class MasterDriverManager : IMasterDriver
     {
+            
         ConfigData_MasterDriver config = null;
         public IOMotionCardInfo CardInfo { get; private set; }
         public void Setup(IElement configData)
@@ -57,6 +58,19 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
             }
 
             return isOk;
+        }
+
+        public void Close()
+        {
+            switch (config.Master_Driver_Motor)
+            {
+                case Master_Driver_Kind.Zmcaux:
+                    for (int i = 0; i < CardInfo.Dic_CardHandler.Count; i++)
+                    {
+                        Dll_Zmcaux.ZAux_Close(CardInfo.Dic_CardHandler[i]);
+                    }
+                break;
+            }
         }
     }
    

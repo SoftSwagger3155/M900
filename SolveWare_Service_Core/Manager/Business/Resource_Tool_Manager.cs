@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Manager.Base.Interface;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -16,7 +18,7 @@ namespace SolveWare_Service_Core.Manager.Business
     {
         public IFactory Factory { get; private set; }
         public IList<IElement> WareHouse { get; private set; }
-        public Type ResourceKey { get; private set; }
+        public string ResourceKey { get; private set; }
         public string Name { get; set; }
         public IList<IElement> Configurations
         {
@@ -28,19 +30,15 @@ namespace SolveWare_Service_Core.Manager.Business
             this.Factory = factory;
             Name = $"Resource_Tool_{typeof(TConfigData).Name}";
             this.FilePath = Path.Combine(SystemPath.GetSystemPath, $"{this.Name}.xml");
-        }
 
-        public Resource_Tool_Manager(IFactory factory, Type resourceKey)
-        {
-            this.Factory = factory;
-            this.ResourceKey = resourceKey;
-            Name = $"Resource_Tool_{typeof(TConfigData).Name}";
-            this.FilePath = Path.Combine(SystemPath.GetSystemPath, $"{this.Name}.xml");
-        }
-
-        public void AssignResourceKey(Type resourceKey)
-        {
-            this.ResourceKey = resourceKey;
+            var customeKeys = typeof(TConfigData).GetCustomAttributes();
+            foreach (var item in customeKeys)
+            {
+                if(item is IndicatorResourceAttribute)
+                {
+                    this.ResourceKey = (item as IndicatorResourceAttribute).Name;
+                }
+            }
         }
 
         public IList<IElement> Get_All_Items()
@@ -89,8 +87,8 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             bool isOk = false;
             if (string.IsNullOrEmpty(FilePath)) throw new Exception($"无档案路径");
-            this.DataBase.Clear();
-
+            this.DataBase = new List<IElement>();
+            List<TConfigData> tempConfigDatas = new List<TConfigData>();
             try
             {
                 if (!SystemPath.IsFileExisted(FilePath))
@@ -98,10 +96,11 @@ namespace SolveWare_Service_Core.Manager.Business
                     for (int i = 1; i <= 1; i++)
                     {
                         var configData = Activator.CreateInstance(typeof(TConfigData));
+                        tempConfigDatas.Add((TConfigData)configData);
                         this.AddSingleData(configData as IElement);
                     }
 
-                    XMLHelper.Save<List<TConfigData>>((this.DataBase.ToList() as List<TConfigData>), FilePath);
+                    XMLHelper.Save(tempConfigDatas, FilePath);
                 }
                 else
                 {
@@ -127,7 +126,10 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             try
             {
-                XMLHelper.Save<List<TConfigData>>((this.DataBase.ToList() as List<TConfigData>), FilePath);
+                List<TConfigData> tempList = new List<TConfigData>();
+                this.DataBase.ToList().ForEach(x => tempList.Add((TConfigData)x));
+                
+                XMLHelper.Save(tempList, FilePath);
                 SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 成功");
             }
             catch (Exception ex)
@@ -140,13 +142,14 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             bool isOk = false;
             if (Factory == null) throw new Exception("无生产工厂");
-
+            this.WareHouse = new List<IElement>();
             try
             {
                 foreach (var item in this.DataBase)
                 {
                     IElement tool = Factory.BuildTool(item);
                     if (tool == null) throw new Exception($"{this.Name} 创造资源物件失败");
+                    tool.Name = item.Name;
                     this.WareHouse.Add(tool);
                 }
 
@@ -164,6 +167,7 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             int totalCount = names.Length;
             List<IElement> correntTools = new List<IElement>();
+            List<IElement> corretDatas = new List<IElement>();
             var tools = this.WareHouse.ToList();
 
             foreach (string name in names)
@@ -175,17 +179,23 @@ namespace SolveWare_Service_Core.Manager.Business
                     TConfigData config = (TConfigData)Activator.CreateInstance(typeof(TConfigData));
                     config.Name = name;
                     IElement tool = Factory.BuildTool(config);
-
+                    tool.Name = name;
                     correntTools.Add(tool);
+                    corretDatas.Add(config);
                 }
                 else
                 {
-                    correntTools.Add((IElement)correntTools[index]);
+                    correntTools.Add((IElement)WareHouse[index]);
+                    IElement data = this.DataBase.ToList().FirstOrDefault(x => x.Name == name);
+                    corretDatas.Add(data);
                 }
             }
 
             this.WareHouse.Clear();
+            this.DataBase.Clear();
             correntTools.ForEach(x => this.WareHouse.Add(x as IElement));
+            corretDatas.ForEach(x => this.DataBase.Add(x as IElement));
+            Save();
         }
     }
 }
