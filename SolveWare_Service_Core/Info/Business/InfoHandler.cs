@@ -166,7 +166,7 @@ namespace SolveWare_Service_Core.Info.Business
                 string info = $"时间 [{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}]{Environment.NewLine}讯息 [{msg}]";
 
                 this.TotalMessage.Add(info);
-                this.uiForDisplayInfo.Items.Add(info);
+                //this.uiForDisplayInfo.Items.Add(info);
 
                 if (ErrorEventMngr.HasToWriteEventLogFile)
                     ErrorEventMngr?.ProcessEvent(msg);
@@ -181,7 +181,7 @@ namespace SolveWare_Service_Core.Info.Business
                 }
 
                 CleanMessages();
-                this.uiForDisplayInfo.SelectedItem = this.uiForDisplayInfo.Items[this.uiForDisplayInfo.Items.Count - 1];
+                //this.uiForDisplayInfo.SelectedItem = this.uiForDisplayInfo.Items[this.uiForDisplayInfo.Items.Count - 1];
                 if (isWindowShow)
                     MessageBox.Show(info, "通知讯息", MessageBoxButtons.OK);
 
@@ -203,7 +203,7 @@ namespace SolveWare_Service_Core.Info.Business
         }
         private void CleanMessages()
         {
-            if (this.uiForDisplayInfo.Items.Count > 2000) this.uiForDisplayInfo.Items.RemoveAt(0);
+            //if (this.uiForDisplayInfo.Items.Count > 2000) this.uiForDisplayInfo.Items.RemoveAt(0);
         }
 
         public void PopUpHandyControlMessage(string msg)

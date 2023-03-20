@@ -23,6 +23,13 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
         public MainManagerBase()
         {
             this.Infohandler = InfoHandler.Instance;
+            ErrorCodes.InitErrorMap();
+            string fullPath = "";//ConfigurationManager.AppSettings["FilePathRoot"];
+            fullPath = Debugger.IsAttached ? Directory.GetCurrentDirectory() : fullPath;
+            SystemPath.RootInfoDirection = $@"{fullPath}";
+            SystemPath.RootLogDirectory = $@"{fullPath} Logs";
+            SystemPath.RootDataDirectory = $@"{fullPath} Data";
+            SystemPath.CreateDefaultDirectory(true);
         }
         public MainManagerBase(IInfoHandler infoHandler)
         {
@@ -114,13 +121,6 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public void Initialize()
         {
-            ErrorCodes.InitErrorMap();
-            string fullPath = "";//ConfigurationManager.AppSettings["FilePathRoot"];
-            fullPath = Debugger.IsAttached ? Directory.GetCurrentDirectory() : fullPath;
-            SystemPath.RootInfoDirection = $@"{fullPath}";
-            SystemPath.RootLogDirectory = $@"{fullPath} Logs";
-            SystemPath.RootDataDirectory = $@"{fullPath} Data";
-            SystemPath.CreateDefaultDirectory(true);
 
             LoadingStatus = "Info Handler 加载...";
             if(this.Infohandler == null)
@@ -130,12 +130,12 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 return;
             }
 
-            //if (masterDriver.Init() == false)
-            //{
-            //    SetStatus(Machine_Status.Error_System_Loading);
-            //    LoadingStatus = "Error.... 驱动 加载失败";
-            //    return;
-            //}
+            if (masterDriver.Init() == false)
+            {
+                SetStatus(Machine_Status.Error_System_Loading);
+                LoadingStatus = "Error.... 驱动 加载失败";
+                return;
+            }
 
             InitToolResource();
             InitDataResource();

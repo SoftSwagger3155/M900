@@ -122,7 +122,7 @@ namespace SolveWare_Service_Core.Manager.Business
             return isOk;
         }
 
-        public void Save()
+        public void Save(bool isWindowShowMsg = true)
         {
             try
             {
@@ -130,11 +130,13 @@ namespace SolveWare_Service_Core.Manager.Business
                 this.DataBase.ToList().ForEach(x => tempList.Add((TConfigData)x));
                 
                 XMLHelper.Save(tempList, FilePath);
-                SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 成功");
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg);
+                //SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 成功");
             }
             catch (Exception ex)
             {
-                SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 失败{Environment.NewLine}{ex.Message}");
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg);
+                //SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 失败{Environment.NewLine}{ex.Message}");
             }
         }
 
@@ -195,7 +197,7 @@ namespace SolveWare_Service_Core.Manager.Business
             this.DataBase.Clear();
             correntTools.ForEach(x => this.WareHouse.Add(x as IElement));
             corretDatas.ForEach(x => this.DataBase.Add(x as IElement));
-            Save();
+            Save(false);
         }
     }
 }

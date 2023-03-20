@@ -76,7 +76,7 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             bool isOk = false;
             if (string.IsNullOrEmpty(FilePath)) throw new Exception($"无档案路径");
-            this.DataBase.Clear();
+            this.DataBase = new List<IElement>();
 
             try
             {
@@ -98,12 +98,16 @@ namespace SolveWare_Service_Core.Manager.Business
             return isOk;
         }
 
-        public void Save()
+        public void Save(bool isWindowShowMsg = true)
         {
             try
             {
-                XMLHelper.Save<List<TData>>((this.DataBase.ToList() as List<TData>), FilePath);
-                SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: true);
+                List<TData> tempList = new List<TData>();
+                this.DataBase.ToList().ForEach(x => tempList.Add((TData)x));
+                XMLHelper.Save(tempList, FilePath);
+
+                //XMLHelper.Save<List<TData>>((this.DataBase.ToList() as List<TData>), FilePath);
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg);
             }
             catch (Exception ex)
             {
@@ -136,7 +140,7 @@ namespace SolveWare_Service_Core.Manager.Business
 
             this.DataBase.Clear();
             correctDatas.ForEach(x => this.DataBase.Add(x as IElement));
-
+            Save(false);
         }
     }
 }

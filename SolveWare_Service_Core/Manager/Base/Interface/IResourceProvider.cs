@@ -12,7 +12,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         string ResourceKey { get; }
         string Name { get; set; }
         bool Initialize();
-        void Save();
+        void Save(bool isWindowShowMsg = true);
         bool Load();
         IElement Get_Single_Item(string name);
         IList<IElement> Get_All_Items();
