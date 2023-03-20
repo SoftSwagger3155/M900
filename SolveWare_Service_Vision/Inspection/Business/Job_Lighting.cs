@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Business
 {
-    internal class Inspect_PatternMatch
+    internal class Job_Lighting
     {
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HalconDotNet;
+using SolveWare_Service_Vision.ROIs.Attributes;
 using SolveWare_Service_Vision.ROIs.Base.Abstract;
 using SolveWare_Service_Vision.ROIs.Base.Interface;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.ROIs.Business
 {
+    [ROIKindAttribute]
     public class ROI_Line : ROIBase, IROI
     {
 

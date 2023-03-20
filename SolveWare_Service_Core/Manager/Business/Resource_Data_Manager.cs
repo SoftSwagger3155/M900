@@ -65,7 +65,7 @@ namespace SolveWare_Service_Core.Manager.Business
             }
             catch (Exception ex)
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage($"初始化 {Name} 失败\r\n{ex.Message}", true, true);
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"初始化 {Name} 失败\r\n{ex.Message}");
             }
 
 
@@ -92,7 +92,7 @@ namespace SolveWare_Service_Core.Manager.Business
             }
             catch (Exception ex)
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage($"{this.GetType().Name} 资料下载失败\r\n{ex.Message}", true, true);
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"{this.GetType().Name} 资料下载失败\r\n{ex.Message}");
             }
 
             return isOk;

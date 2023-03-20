@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolveWare_Service_Vision.JobSheet
+namespace SolveWare_Service_Vision.Inspection.Base.Abstract
 {
-    public class JobSheet_Brightness: ElementBase, IJobSheetData
+    public class JobSheetDataBase : ElementBase, IJobSheetData
     {
-
+        public string InspectKitData_Name { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using SolveWare_Service_Tool.IO.Business;
 using SolveWare_Service_Tool.IO.Data;
 using SolveWare_Service_Tool.Motor.Business;
 using SolveWare_Service_Tool.Motor.Data;
+using SolveWare_Service_Vision.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,19 @@ namespace MF900_SolveWare.Business
 
             this.On_Tool_Camera_Resource_Loading_Handler -= MainManager_On_Tool_Camera_Resource_Loading_Handler;
             this.On_Tool_Camera_Resource_Loading_Handler += MainManager_On_Tool_Camera_Resource_Loading_Handler;
+
+            this.On_Data_Inspection_Resource_Loading_Handler -= MainManager_On_Data_Inspection_Resource_Loading_Handler;
+            this.On_Data_Inspection_Resource_Loading_Handler += MainManager_On_Data_Inspection_Resource_Loading_Handler;
+        }
+
+        private void MainManager_On_Data_Inspection_Resource_Loading_Handler()
+        {
+            IResourceProvider provider = new Resource_Data_Manager<Data_InspectionKit>();
+            provider.Initialize();
+            provider.DoubleCheck(ResourceKey.Top_Prober_InspectKit,
+                                               ResourceKey.Top_Camera_Git_Hole_InspectKit,
+                                               ResourceKey.Btm_Prober_InspectKit,
+                                               ResourceKey.Btm_Camera_Git_Hole_InspectKit);
         }
 
         private void MainManager_On_Tool_Camera_Resource_Loading_Handler()

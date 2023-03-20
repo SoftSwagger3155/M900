@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Business
 {
-    internal class Inspect_Blob
+    internal class Job_PatternMatch
     {
     }
 }

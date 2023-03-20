@@ -135,7 +135,7 @@ namespace SolveWare_Service_Core.Manager.Business
             }
             catch (Exception ex)
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg);
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg, true);
                 //SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 失败{Environment.NewLine}{ex.Message}");
             }
         }
@@ -159,7 +159,7 @@ namespace SolveWare_Service_Core.Manager.Business
             }
             catch (Exception ex)
             {
-                SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"{this.Name} 生产物件失败 {Environment.NewLine} {ex.Message}");
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"{this.Name} 生产物件失败 {Environment.NewLine} {ex.Message}", isWindowShow:true, isError:true);
             }
 
             return isOk;

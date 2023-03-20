@@ -89,6 +89,10 @@
       <Project>{A50E0066-FC5A-46CA-95FA-EB178D6F864D}</Project>
       <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolveWare_Service_Vision\SolveWare_Service_Vision.csproj">
+      <Project>{D6664D67-8766-4D73-B8FE-94CEE959171B}</Project>
+      <Name>SolveWare_Service_Vision</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base\" />

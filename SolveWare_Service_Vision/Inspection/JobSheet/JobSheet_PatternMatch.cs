@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Vision.Inspection.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using SolveWare_Service_Vision.Inspection.Business;
 using System;
@@ -9,10 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolveWare_Service_Vision.Data
+namespace SolveWare_Service_Vision.Inspection.JobSheet
 {
-    [PairAttribute(typeof(Inspect_PatternMatch))]
-    public class JobSheet_PatternMatch : ElementBase, IJobSheetData
+    [PairAttribute(typeof(Job_PatternMatch))]
+    public class JobSheet_PatternMatch : JobSheetDataBase
     {
         public JobSheet_PatternMatch(): base()
         {
@@ -48,5 +49,7 @@ namespace SolveWare_Service_Vision.Data
         [Category("Pattern Match 参数")]
         [DisplayName("重迭最大个数-Max OverLap")]
         public double MaxOverLap { get; set; }
+
+        
     }
 }

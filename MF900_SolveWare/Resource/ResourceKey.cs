@@ -28,5 +28,12 @@ namespace MF900_SolveWare.Resource
         //Camera
         public const string Top_Camera = "上相机";
         public const string Btm_Camera = "下相机";
+
+
+        //InspectionKitData
+        public const string Top_Prober_InspectKit = "上相机治具视觉";
+        public const string Top_Camera_Git_Hole_InspectKit = "上相机圆孔视觉";
+        public const string Btm_Prober_InspectKit = "下相机治具视觉";
+        public const string Btm_Camera_Git_Hole_InspectKit = "下相机圆孔视觉";
     }
 }

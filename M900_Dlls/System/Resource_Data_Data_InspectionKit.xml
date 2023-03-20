@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfData_InspectionKit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Data_InspectionKit>
+    <Name>上相机治具视觉</Name>
+    <JobSheet_Brightness_Datas />
+    <JobSheet_Lighting_Datas />
+    <JobSheet_SearchArea_Data>
+      <Camera_Name>0</Camera_Name>
+    </JobSheet_SearchArea_Data>
+    <JobSheet_PatternMatch_Data>
+      <AngleStart>0</AngleStart>
+      <AngleExtent>0</AngleExtent>
+      <MinScore>0</MinScore>
+      <NumMatches>0</NumMatches>
+      <NumLevels>0</NumLevels>
+      <SubPixel>0</SubPixel>
+      <MaxOverLap>0</MaxOverLap>
+    </JobSheet_PatternMatch_Data>
+    <JobSheet_Blob_Data>
+      <Threshold>0</Threshold>
+      <VerticalMeasureLength>0</VerticalMeasureLength>
+      <HorizontalMeasureLength>0</HorizontalMeasureLength>
+      <MeasureSigma>0</MeasureSigma>
+    </JobSheet_Blob_Data>
+  </Data_InspectionKit>
+  <Data_InspectionKit>
+    <Name>上相机圆孔视觉</Name>
+    <JobSheet_Brightness_Datas />
+    <JobSheet_Lighting_Datas />
+    <JobSheet_SearchArea_Data>
+      <Camera_Name>0</Camera_Name>
+    </JobSheet_SearchArea_Data>
+    <JobSheet_PatternMatch_Data>
+      <AngleStart>0</AngleStart>
+      <AngleExtent>0</AngleExtent>
+      <MinScore>0</MinScore>
+      <NumMatches>0</NumMatches>
+      <NumLevels>0</NumLevels>
+      <SubPixel>0</SubPixel>
+      <MaxOverLap>0</MaxOverLap>
+    </JobSheet_PatternMatch_Data>
+    <JobSheet_Blob_Data>
+      <Threshold>0</Threshold>
+      <VerticalMeasureLength>0</VerticalMeasureLength>
+      <HorizontalMeasureLength>0</HorizontalMeasureLength>
+      <MeasureSigma>0</MeasureSigma>
+    </JobSheet_Blob_Data>
+  </Data_InspectionKit>
+  <Data_InspectionKit>
+    <Name>下相机治具视觉</Name>
+    <JobSheet_Brightness_Datas />
+    <JobSheet_Lighting_Datas />
+    <JobSheet_SearchArea_Data>
+      <Camera_Name>0</Camera_Name>
+    </JobSheet_SearchArea_Data>
+    <JobSheet_PatternMatch_Data>
+      <AngleStart>0</AngleStart>
+      <AngleExtent>0</AngleExtent>
+      <MinScore>0</MinScore>
+      <NumMatches>0</NumMatches>
+      <NumLevels>0</NumLevels>
+      <SubPixel>0</SubPixel>
+      <MaxOverLap>0</MaxOverLap>
+    </JobSheet_PatternMatch_Data>
+    <JobSheet_Blob_Data>
+      <Threshold>0</Threshold>
+      <VerticalMeasureLength>0</VerticalMeasureLength>
+      <HorizontalMeasureLength>0</HorizontalMeasureLength>
+      <MeasureSigma>0</MeasureSigma>
+    </JobSheet_Blob_Data>
+  </Data_InspectionKit>
+  <Data_InspectionKit>
+    <Name>下相机圆孔视觉</Name>
+    <JobSheet_Brightness_Datas />
+    <JobSheet_Lighting_Datas />
+    <JobSheet_SearchArea_Data>
+      <Camera_Name>0</Camera_Name>
+    </JobSheet_SearchArea_Data>
+    <JobSheet_PatternMatch_Data>
+      <AngleStart>0</AngleStart>
+      <AngleExtent>0</AngleExtent>
+      <MinScore>0</MinScore>
+      <NumMatches>0</NumMatches>
+      <NumLevels>0</NumLevels>
+      <SubPixel>0</SubPixel>
+      <MaxOverLap>0</MaxOverLap>
+    </JobSheet_PatternMatch_Data>
+    <JobSheet_Blob_Data>
+      <Threshold>0</Threshold>
+      <VerticalMeasureLength>0</VerticalMeasureLength>
+      <HorizontalMeasureLength>0</HorizontalMeasureLength>
+      <MeasureSigma>0</MeasureSigma>
+    </JobSheet_Blob_Data>
+  </Data_InspectionKit>
+</ArrayOfData_InspectionKit>

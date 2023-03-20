@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Vision.Inspection.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using SolveWare_Service_Vision.Inspection.Business;
 using System;
@@ -9,10 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolveWare_Service_Vision.Data
+namespace SolveWare_Service_Vision.Inspection.JobSheet
 {
-    [PairAttribute(typeof(Inspect_Blob))]
-    public class JobSheet_Blob : ElementBase, IJobSheetData
+    [PairAttribute(typeof(Job_Blob))]
+    public class JobSheet_Blob : JobSheetDataBase
     {
         [Category("Blob 参数")]
         [DisplayName("Threshold 阈值")]

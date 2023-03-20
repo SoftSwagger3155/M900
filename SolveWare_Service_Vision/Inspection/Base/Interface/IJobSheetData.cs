@@ -9,5 +9,6 @@ namespace SolveWare_Service_Vision.Inspection.Base.Interface
 {
     public interface IJobSheetData: IElement
     {
+        string InspectKitData_Name { get; set; }
     }
 }

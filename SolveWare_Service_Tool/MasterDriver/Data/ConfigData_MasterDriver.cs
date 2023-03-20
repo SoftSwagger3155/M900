@@ -3,6 +3,7 @@ using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Tool.MasterDriver.Definition;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Data
 {
     [ResourceBaseAttribute("Init_Master_Driver")]
     public class ConfigData_MasterDriver : ElementBase
-    {
+    {      
         public bool Is_Simulation_Motor { get; set; }
         public bool Is_Simulation_IO { get; set; }
 
