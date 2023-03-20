@@ -9,15 +9,16 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SolveWare_Service_Utility</RootNamespace>
     <AssemblyName>SolveWare_Service_Utility</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\M900_Dlls\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -54,6 +55,10 @@
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
       <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
       <Name>SolveWare_Service_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SolveWare_Service_Tool\SolveWare_Service_Tool.csproj">
+      <Project>{A50E0066-FC5A-46CA-95FA-EB178D6F864D}</Project>
+      <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

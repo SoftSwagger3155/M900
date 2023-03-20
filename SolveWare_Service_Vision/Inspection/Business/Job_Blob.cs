@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Vision.Inspection.JobSheet;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Business
 {
-    public class Job_Blob : IDataModulePair
+    public class Job_Blob : JobFundamentalBase, IDataModulePair
     {
         JobSheet_Blob jobParam = null;
 
 
-        public int Do_Job()
+        public override int Do_Job()
         {
             return 0;
         }

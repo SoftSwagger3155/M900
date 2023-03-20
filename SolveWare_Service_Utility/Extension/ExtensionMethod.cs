@@ -1,4 +1,9 @@
-﻿using SolveWare_Service_Core.Attributes;
+﻿using SolveWare_Service_Core;
+using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Tool.Camera.Base.Interface;
+using SolveWare_Service_Tool.IO.Base.Interface;
+using SolveWare_Service_Tool.Motor.Base.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +49,21 @@ namespace SolveWare_Service_Utility.Extension
             objs[index] = temp;
             selectedIndex = index + 1;
         }
-
+        public static ICamera GetCamera(this string name)
+        {
+            ICamera camera = (ICamera)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
+            return camera;
+        }
+        public static AxisBase GetAxisBase(this string name)
+        {
+            AxisBase mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Motor, name);
+            return mtr;
+        }
+        public static IIOBase GetIOBase(this string name)
+        {
+            IIOBase io = (IIOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.IO, name);
+            return io;
+        }
         public static string GetResourceKey<TData>(this TData data)
         {
             string key = "";

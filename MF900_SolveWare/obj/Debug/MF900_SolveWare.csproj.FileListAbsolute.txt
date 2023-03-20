@@ -12,3 +12,14 @@ E:\M900软件平台\M900\M900_Dlls\MF900_SolveWare.exe.config
 E:\M900软件平台\M900\M900_Dlls\MF900_SolveWare.exe
 E:\M900软件平台\M900\M900_Dlls\MF900_SolveWare.pdb
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete
+D:\MF900\M900\M900_Dlls\MF900_SolveWare.exe.config
+D:\MF900\M900\M900_Dlls\MF900_SolveWare.exe
+D:\MF900\M900\M900_Dlls\MF900_SolveWare.pdb
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.AssemblyReference.cache
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.SuggestedBindingRedirects.cache
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Properties.Resources.resources
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.GenerateResource.cache
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CoreCompileInputs.cache
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe
+D:\MF900\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.pdb

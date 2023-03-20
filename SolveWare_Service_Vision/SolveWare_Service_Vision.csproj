@@ -52,6 +52,7 @@
     <Compile Include="Definitions\Enum_Threshold_Search_Direction.cs" />
     <Compile Include="Helper\HelperMethod.cs" />
     <Compile Include="Inspection\Base\Abstract\JobSheetDataBase.cs" />
+    <Compile Include="Inspection\Base\Abstract\JobSheetModuleBase.cs" />
     <Compile Include="Inspection\Base\Attributes\JobSheetModuleBase.cs" />
     <Compile Include="Inspection\Base\Interface\IInspectionKit.cs" />
     <Compile Include="Inspection\Base\Interface\IJobSheetData.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Inspection\JobSheet\JobSheet_Lighting.cs" />
     <Compile Include="Inspection\JobSheet\JobSheet_PatternMatch.cs" />
     <Compile Include="Inspection\JobSheet\JobSheet_SearchArea.cs" />
+    <Compile Include="MMperPixel\Base\Interface\IMMperPixelJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ROIs\Attributes\ROIKindAttribute.cs" />
     <Compile Include="ROIs\Base\Abstract\GraphicsContext.cs" />
@@ -88,6 +90,8 @@
       <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="MMperPixel\Base\Abstract\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Core.Base.Interface
 {
-    public interface IDataModulePair
+    public interface IDataModulePair: IJobFundamental
     {
         void Setup(IElement data);
-        int Do_Job();
     }
 }
