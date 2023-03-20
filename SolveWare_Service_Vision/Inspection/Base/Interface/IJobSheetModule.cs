@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolveWare_Service_Vision
+namespace SolveWare_Service_Vision.Inspection.Base.Interface
 {
-    public class Class1
+    public interface JobSheetModule
     {
+        int Do_Job();
     }
 }

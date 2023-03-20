@@ -14,6 +14,6 @@ namespace SolveWare_Service_Tool.Camera.Data
         public string Camera_Name { get; set; }
         public bool IsSimulation { get; set; }
         public string Resource { get; set; }
-        public Master_Driver_Camera MasterDriver { get; set; }
+        public Master_Driver_Camera MasterDriver { get; set; } = Master_Driver_Camera.Basler;
     }
 }

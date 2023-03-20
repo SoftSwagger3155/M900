@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Tool.MasterDriver.Definition;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.MasterDriver.Data
 {
-    public class ConfigData_MasterDriver: ElementBase
+    [ResourceBaseAttribute("Init_Master_Driver")]
+    public class ConfigData_MasterDriver : ElementBase
     {
         public bool Is_Simulation_Motor { get; set; }
         public bool Is_Simulation_IO { get; set; }
@@ -18,6 +20,9 @@ namespace SolveWare_Service_Tool.MasterDriver.Data
 
         private Master_Driver_Kind master_Driver_IO = Master_Driver_Kind.Zmcaux;
         public Master_Driver_Kind Master_Driver_IO { get => master_Driver_IO; set => master_Driver_IO = value; }
-    }
 
+        public bool Is_Basler_Camera { get; set; }
+        public bool Is_HIK_Camera { get; set; }
+
+    }
 }

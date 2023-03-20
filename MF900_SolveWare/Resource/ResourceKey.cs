@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,9 @@ namespace MF900_SolveWare.Resource
         public const string Motor_Btm_Y = "下马达Y";
         public const string Motor_Btm_Z = "下马达Z";
         public const string Motor_Btm_T = "下治具T";
+
+        //Camera
+        public const string Top_Camera = "上相机";
+        public const string Btm_Camera = "下相机";
     }
 }

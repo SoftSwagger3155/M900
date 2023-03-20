@@ -38,6 +38,8 @@ namespace SolveWare_Service_Tool.Camera.Business
         }
         public override void AssingCamera(object obj_Camera)
         {
+            if (obj_Camera == null) return;
+
             this.camera_Basler = obj_Camera as Basler.Pylon.Camera;
             string sn = this.camera_Basler.CameraInfo[CameraInfoKey.SerialNumber];
             string modelName = this.camera_Basler.CameraInfo[CameraInfoKey.ModelName];

@@ -34,9 +34,9 @@ namespace SolveWare_Service_Core.Manager.Business
             var customeKeys = typeof(TConfigData).GetCustomAttributes();
             foreach (var item in customeKeys)
             {
-                if(item is IndicatorResourceAttribute)
+                if(item is ResourceBaseAttribute)
                 {
-                    this.ResourceKey = (item as IndicatorResourceAttribute).Name;
+                    this.ResourceKey = (item as ResourceBaseAttribute).ResourceKey;
                 }
             }
         }

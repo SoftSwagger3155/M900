@@ -1,25 +1,44 @@
-﻿using SolveWare_Service_Core;
+﻿using Basler.Pylon;
+using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Manager.Base.Interface;
+using SolveWare_Service_Core.Manager.Business;
 using SolveWare_Service_Tool.Dlls;
 using SolveWare_Service_Tool.MasterDriver.Data;
 using SolveWare_Service_Tool.MasterDriver.Definition;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SolveWare_Service_Tool.MasterDriver.Business
 {
     public class MasterDriverManager : IMasterDriver
     {
-            
+        IResourceProvider provider = null;
         ConfigData_MasterDriver config = null;
+        static string FileName = "开机驱动档案";
         public IOMotionCardInfo CardInfo { get; private set; }
+        public bool IsSimulation { get; set; } = true;
+
+        public IList<ICameraInfo> Basler_Camera_Infos { get; private set; }
+
         public void Setup(IElement configData)
         {
             config = configData as ConfigData_MasterDriver;
+        }
+
+        public MasterDriverManager()
+        {
+            provider = new Resource_Data_Manager<ConfigData_MasterDriver>();
+            provider.Initialize();
+            provider.DoubleCheck(FileName);
+            
+           config = (ConfigData_MasterDriver)provider.Get_Single_Item(FileName);
         }
 
         public bool Init()
@@ -27,6 +46,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
             bool isOk = false;
             try
             {
+                if (IsSimulation) return true;
                 //同样的卡
                 if(config.Master_Driver_Motor == config.Master_Driver_IO)
                 {
@@ -46,9 +66,14 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                                 }
                             }
                             break;
-                    }  
+                    }
+                }
+                else // TODO: Master Driver Init() => 如果不是正运动的话
+                {
+
                 }
 
+           
 
                 isOk = true;
             }

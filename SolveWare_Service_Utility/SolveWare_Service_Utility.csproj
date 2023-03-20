@@ -42,7 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extension\ExtensionMethod.cs" />
+    <Compile Include="Heler\Converters\String_Converter_DropDown_Camera_Name.cs" />
+    <Compile Include="Heler\Converters\String_Converter_DropDown_IO_Name.cs" />
+    <Compile Include="Heler\Converters\String_Converter_DropDown_Motor_Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Index\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
+      <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
+      <Name>SolveWare_Service_Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

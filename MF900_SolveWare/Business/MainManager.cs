@@ -4,6 +4,8 @@ using SolveWare_Service_Core.Info.Base.Interface;
 using SolveWare_Service_Core.Manager.Base.Abstract;
 using SolveWare_Service_Core.Manager.Base.Interface;
 using SolveWare_Service_Core.Manager.Business;
+using SolveWare_Service_Tool.Camera.Business;
+using SolveWare_Service_Tool.Camera.Data;
 using SolveWare_Service_Tool.IO.Business;
 using SolveWare_Service_Tool.IO.Data;
 using SolveWare_Service_Tool.Motor.Business;
@@ -34,6 +36,17 @@ namespace MF900_SolveWare.Business
 
             this.On_Tool_Motor_Resource_Loading_Handler -= MainManager_On_Tool_Motor_Resource_Loading_Handler;
             this.On_Tool_Motor_Resource_Loading_Handler += MainManager_On_Tool_Motor_Resource_Loading_Handler;
+
+            this.On_Tool_Camera_Resource_Loading_Handler -= MainManager_On_Tool_Camera_Resource_Loading_Handler;
+            this.On_Tool_Camera_Resource_Loading_Handler += MainManager_On_Tool_Camera_Resource_Loading_Handler;
+        }
+
+        private void MainManager_On_Tool_Camera_Resource_Loading_Handler()
+        {
+            IResourceProvider provider = new Resource_Tool_Manager<ConfigData_Camera>(new Factory_Camera());
+            provider.Initialize();
+            provider.DoubleCheck(ResourceKey.Top_Camera,
+                                               ResourceKey.Btm_Camera);
         }
 
         private void MainManager_On_Tool_Motor_Resource_Loading_Handler()
