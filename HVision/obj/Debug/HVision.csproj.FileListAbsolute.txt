@@ -8,3 +8,13 @@ E:\M900软件平台\M900\HVision\obj\Debug\HVision.csproj.CoreCompileInputs.cach
 E:\M900软件平台\M900\HVision\obj\Debug\HVision.csproj.CopyComplete
 E:\M900软件平台\M900\HVision\obj\Debug\HVision.dll
 E:\M900软件平台\M900\HVision\obj\Debug\HVision.pdb
+D:\MF900\M900\M900_Dlls\HVision.dll
+D:\MF900\M900\M900_Dlls\HVision.pdb
+D:\MF900\M900\HVision\obj\Debug\HVision.csproj.AssemblyReference.cache
+D:\MF900\M900\HVision\obj\Debug\HVision.Properties.Resources.resources
+D:\MF900\M900\HVision\obj\Debug\HVision.UserHWControls.resources
+D:\MF900\M900\HVision\obj\Debug\HVision.csproj.GenerateResource.cache
+D:\MF900\M900\HVision\obj\Debug\HVision.csproj.CoreCompileInputs.cache
+D:\MF900\M900\HVision\obj\Debug\HVision.csproj.CopyComplete
+D:\MF900\M900\HVision\obj\Debug\HVision.dll
+D:\MF900\M900\HVision\obj\Debug\HVision.pdb

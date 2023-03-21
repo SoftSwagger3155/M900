@@ -5,3 +5,10 @@ E:\M900软件平台\M900\M900_Dlls\SolveWare_Service_Core.pdb
 E:\M900软件平台\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
 E:\M900软件平台\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
 E:\M900软件平台\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb
+D:\MF900\M900\M900_Dlls\SolveWare_Service_Core.dll
+D:\MF900\M900\M900_Dlls\SolveWare_Service_Core.pdb
+D:\MF900\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.AssemblyReference.cache
+D:\MF900\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CoreCompileInputs.cache
+D:\MF900\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
+D:\MF900\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
+D:\MF900\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb

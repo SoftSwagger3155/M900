@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Definition;
+﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Core.Base.Abstract
 {
-    public abstract class JobFundamentalBase : ElementBase
+    public abstract class JobFundamentalBase : ElementBase, IJobFundamental
     {
         protected int priority;
         protected int errorCode = 0;
@@ -48,5 +49,7 @@ namespace SolveWare_Service_Core.Base.Abstract
             this.Status = ErrorCode == 0 ? JobStatus.Done : JobStatus.Fail;
             SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, this.GetType().Name, st, errorCode);
         }
+
+        public virtual int Do_Job() { return 0; }
     }
 }

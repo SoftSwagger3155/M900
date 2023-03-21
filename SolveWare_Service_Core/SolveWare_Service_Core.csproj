@@ -55,6 +55,7 @@
     <Compile Include="Base\Abstract\RESTFulBase.cs" />
     <Compile Include="Base\Interface\IDataModulePair.cs" />
     <Compile Include="Base\Interface\IElement.cs" />
+    <Compile Include="Base\Interface\IJobFundamental.cs" />
     <Compile Include="Base\Interface\IRESTFul.cs" />
     <Compile Include="Base\Interface\IView.cs" />
     <Compile Include="Command\RelayCommand.cs" />
