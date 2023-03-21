@@ -27,11 +27,11 @@ namespace SolveWare_Service_Tool.Camera.Business
         /// if >= Sfnc2_0_0,说明是ＵＳＢ３的相机
         /// </summary>
         static Version Sfnc2_0_0 = new Version(2, 0, 0);
-        public ConfigData_Camera ConfigData { get; set; }
+        //public ConfigData_Camera ConfigData { get; set; }
 
-        public Camera_Basler(IElement configData)
+        public Camera_Basler(IElement configData): base(configData)
         {
-            this.ConfigData = configData as ConfigData_Camera;
+            //this.ConfigData = configData as ConfigData_Camera;
             stopwatch = new Stopwatch();
 
             if (Id == 0) id = IdentityGenerator.IG.GetIdentity();

@@ -357,6 +357,7 @@ namespace SolveWare_Service_Tool.Motor.Business
         }
         public override void StartStatusReading()
         {
+            if(this.Simulation) { return; }
             if (readStatusSource != null) return;
             readStatusSource = new CancellationTokenSource();
       

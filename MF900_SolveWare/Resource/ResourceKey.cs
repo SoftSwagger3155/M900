@@ -30,10 +30,18 @@ namespace MF900_SolveWare.Resource
         public const string Btm_Camera = "下相机";
 
 
-        //InspectionKitData
-        public const string Top_Prober_InspectKit = "上相机治具视觉";
+        //视觉Data
+        public const string Top_Camera_Btm_Prober_Mark_Point_InspectKit = "上相机 下治具 Mark点 视觉";
         public const string Top_Camera_Git_Hole_InspectKit = "上相机圆孔视觉";
-        public const string Btm_Prober_InspectKit = "下相机治具视觉";
+        public const string Top_Camera_Mark_Point_InspectKit = "上相机Pcb Mark点 视觉";
+        public const string Btm_Camera_Top_Prober_Mark_Point_InspectKit = "下相机 上治具 Mark点 视觉";
         public const string Btm_Camera_Git_Hole_InspectKit = "下相机圆孔视觉";
+        public const string Btm_Camera_Mark_Point_InspectKit = "下相机Pcb Mark点 视觉";
+
+
+        //OffsetData
+        public const string Top_Camera_Top_Prober_OffsetData = "上相机-上治具 Offset Data";
+        public const string Btm_Camera_Btm_Prober_OffsetData = "下相机-下治具 Offset Data";
+        public const string Btm_Camera_Btm_Pin_OffsetData = "下相机-下顶针 Offset Data";
     }
 }

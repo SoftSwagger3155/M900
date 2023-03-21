@@ -1,6 +1,8 @@
 ﻿using HalconDotNet;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Tool.Camera.Base.Interface;
+using SolveWare_Service_Tool.Camera.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,12 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
 {
     public abstract class CameraBase : ElementBase, ICamera
     {
+        public CameraBase(IElement configData)
+        {
+            this.configData = configData as ConfigData_Camera;
+            this.MMperPixelData = this.configData?.MMperPixelData;
+        }
+
         public string Id_Camera { get; set; }
         protected HImage image = new HImage();
         public HImage Image
@@ -23,6 +31,14 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         public int Gain { get; set; }
         public double FrameRate { get; set; }
         public long GrabTime { get; set; }
+        public Data_MMperPixel MMperPixelData { get; set; }
+
+        protected ConfigData_Camera configData;
+        public ConfigData_Camera ConfigData
+        {
+            get=> configData;
+            set => configData = value;
+        }
 
         public abstract void GetExposureTime();
 

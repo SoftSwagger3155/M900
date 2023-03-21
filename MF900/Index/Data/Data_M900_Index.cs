@@ -2,6 +2,7 @@
 using SolveWare_Service_Core.Base.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,5 +24,6 @@ namespace MF900.Index.Data
         public POINT Left_Top_Pos { get; set; }
         public POINT Right_Btm_Pos { get; set; }
         public POINT Right_Top_Pos { get; set; }
+        public POINT First_Unit_Pos { get; set; }
     }
 }

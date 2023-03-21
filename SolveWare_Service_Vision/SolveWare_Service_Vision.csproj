@@ -67,6 +67,7 @@
     <Compile Include="Inspection\JobSheet\JobSheet_Lighting.cs" />
     <Compile Include="Inspection\JobSheet\JobSheet_PatternMatch.cs" />
     <Compile Include="Inspection\JobSheet\JobSheet_SearchArea.cs" />
+    <Compile Include="MMperPixel\Base\Abstract\MMperPixelJobBase.cs" />
     <Compile Include="MMperPixel\Base\Interface\IMMperPixelJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ROIs\Attributes\ROIKindAttribute.cs" />
@@ -90,8 +91,6 @@
       <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MMperPixel\Base\Abstract\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

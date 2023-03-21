@@ -1,0 +1,8 @@
+E:\M900软件平台\M900\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.exe.config
+E:\M900软件平台\M900\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.exe
+E:\M900软件平台\M900\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.pdb
+E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.AssemblyReference.cache
+E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.SuggestedBindingRedirects.cache
+E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CoreCompileInputs.cache
+E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.exe
+E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.pdb

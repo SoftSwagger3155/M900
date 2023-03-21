@@ -22,6 +22,10 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
+    <FirstPoint>
+      <X>0</X>
+      <Y>0</Y>
+    </FirstPoint>
   </Data_InspectionKit>
   <Data_InspectionKit>
     <Name>上相机圆孔视觉</Name>
@@ -45,6 +49,10 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
+    <FirstPoint>
+      <X>0</X>
+      <Y>0</Y>
+    </FirstPoint>
   </Data_InspectionKit>
   <Data_InspectionKit>
     <Name>下相机治具视觉</Name>
@@ -68,6 +76,10 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
+    <FirstPoint>
+      <X>0</X>
+      <Y>0</Y>
+    </FirstPoint>
   </Data_InspectionKit>
   <Data_InspectionKit>
     <Name>下相机圆孔视觉</Name>
@@ -91,5 +103,9 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
+    <FirstPoint>
+      <X>0</X>
+      <Y>0</Y>
+    </FirstPoint>
   </Data_InspectionKit>
 </ArrayOfData_InspectionKit>

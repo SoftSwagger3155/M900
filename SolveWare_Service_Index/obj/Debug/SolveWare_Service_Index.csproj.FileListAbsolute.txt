@@ -1,0 +1,10 @@
+E:\M900软件平台\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Index.dll
+E:\M900软件平台\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Index.pdb
+E:\M900软件平台\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Core.dll
+E:\M900软件平台\M900\SolveWare_Service_Index\bin\Debug\Utilities.dll
+E:\M900软件平台\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Core.pdb
+E:\M900软件平台\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.AssemblyReference.cache
+E:\M900软件平台\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.CoreCompileInputs.cache
+E:\M900软件平台\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.CopyComplete
+E:\M900软件平台\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.dll
+E:\M900软件平台\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.pdb

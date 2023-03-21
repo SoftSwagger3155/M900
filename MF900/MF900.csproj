@@ -99,6 +99,8 @@
     <Compile Include="Index\Base\Interface\IIndex.cs" />
     <Compile Include="Index\Data\Data_M900_Index.cs" />
     <Compile Include="Index\Data\Data_M900_Index_Recover.cs" />
+    <Compile Include="Index\Data\Data_M900_ProductLayout.cs" />
+    <Compile Include="Index\Data\Data_M900_SinglePCB_Index.cs" />
     <Compile Include="Model\CommumicModel.cs" />
     <Compile Include="FormAxisDebug.cs">
       <SubType>Form</SubType>
@@ -109,6 +111,7 @@
     <Compile Include="Model\TCPModel.cs" />
     <Compile Include="Offset\Base\Abstract\OffsetDataBase.cs" />
     <Compile Include="Offset\Business\Manager_Offset.cs" />
+    <Compile Include="Offset\Data\Data_M900_OffsetDataBase.cs" />
     <Compile Include="Offset\Data\Data_Offset_Top_Btm_Camera_Center.cs" />
     <Compile Include="Offset\Data\Data_Offset_Camera_To_Tool.cs" />
     <Compile Include="Offset\Definition\Enum_Camera_To_Tool_Kind.cs" />

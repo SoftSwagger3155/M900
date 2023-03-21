@@ -18,5 +18,7 @@ namespace SolveWare_Service_Tool.IO.Base.Interface
         void On();
         void Off();
         void UpdateStatus();
+        void StartStatusReading();
+        void StopStatusReading();
     }
 }

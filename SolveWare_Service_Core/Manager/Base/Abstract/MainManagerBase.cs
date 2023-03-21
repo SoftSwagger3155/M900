@@ -17,7 +17,7 @@ using System.Xml.Linq;
 
 namespace SolveWare_Service_Core.Manager.Base.Abstract
 {
-    public delegate void AddToolResourceDelegation();
+    public delegate void AddResourceDelegation();
     public abstract class MainManagerBase : IMainManager
     {
         public MainManagerBase()
@@ -41,11 +41,9 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             this.FSM = fsm;
         }
         
-        public event AddToolResourceDelegation On_Tool_IO_Resource_Loading_Handler;
-        public event AddToolResourceDelegation On_Tool_Motor_Resource_Loading_Handler;
-        public event AddToolResourceDelegation On_Tool_Camera_Resource_Loading_Handler;
-        public event AddToolResourceDelegation On_Data_ModuleMatcher_Resource_Loading_Handler;
-        public event AddToolResourceDelegation On_Data_Inspection_Resource_Loading_Handler;
+        public event AddResourceDelegation On_Tool_Resource_Loading_Handler;
+        public event AddResourceDelegation On_Data_Resource_Loading_Handler;
+        public event AddResourceDelegation On_Machine_Resource_Loading_Handler;
         public IView MainWint { get; set; }
         public IFSM FSM { get; set; }
         public string LoadingStatus { get; set; }
@@ -139,7 +137,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
             InitToolResource();
             InitDataResource();
-            InitVisionResource();
+            InitMachineResource();
         }
 
         public abstract void Setup();
@@ -158,17 +156,15 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public  void InitDataResource()
         {
-            if (On_Data_ModuleMatcher_Resource_Loading_Handler != null) On_Data_ModuleMatcher_Resource_Loading_Handler();
+            if (On_Data_Resource_Loading_Handler != null) On_Data_Resource_Loading_Handler();
         }
         public  void InitToolResource()
         {
-            if (On_Tool_IO_Resource_Loading_Handler != null) On_Tool_IO_Resource_Loading_Handler();
-            if (On_Tool_Motor_Resource_Loading_Handler != null) On_Tool_Motor_Resource_Loading_Handler();
-            if (On_Tool_Camera_Resource_Loading_Handler != null) On_Tool_Camera_Resource_Loading_Handler();
+            if (On_Tool_Resource_Loading_Handler != null) On_Tool_Resource_Loading_Handler();
         }
-        public void InitVisionResource()
+        public void InitMachineResource()
         {
-            if (On_Data_Inspection_Resource_Loading_Handler != null) On_Data_Inspection_Resource_Loading_Handler();
+            if (On_Machine_Resource_Loading_Handler != null) On_Machine_Resource_Loading_Handler();
 
         }
 
