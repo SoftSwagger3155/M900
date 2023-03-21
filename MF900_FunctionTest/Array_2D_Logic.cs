@@ -37,15 +37,6 @@ namespace MF900_FunctionTest
 
         public void MoveToTestPos(int num)
         {
-            ////先算是否有超过X数量
-            //int x = (int)this.Y / num;
-            //x -= 1;
-
-            ////再算Y的位置
-            //int y = (int)this.X % num;
-            //y -= 1;
-            ////计算X Pitch
-            ///
             bool found = false;
             int arrX = 0, arrY = 0;
             for (int i = 0; i < formation.GetLength(0); i++)
