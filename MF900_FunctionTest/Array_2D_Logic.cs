@@ -13,7 +13,7 @@ namespace MF900_FunctionTest
         int X = 0;
         int Y = 0;
 
-        int tool_X = 2;
+        int tool_X = 3;
         int tool_Y = 2;
         double pitch = 2.0;
         public Array_2D_Logic(int x, int y)
@@ -68,10 +68,28 @@ namespace MF900_FunctionTest
             Console.WriteLine($"Array[{arrX},{arrY}]");
 
             int xFactor = (int)arrY / tool_X;
-            double pitchX = pitch * xFactor;
+            double pitchX = 0;
+            double pitchY = 0;
 
+
+            if ((arrY +1) % this.X == 0)
+            {
+                pitchX = pitch * xFactor - pitch / 2;
+            }
+            else
+            {
+                 pitchX = pitch * xFactor;
+            }
             int yFactor = (int)arrX / tool_Y;
-            double pitchY = pitch * yFactor;
+         
+            if ((arrX + 1) % this.Y == 0)
+            {
+                pitchY = pitch * yFactor - pitch / 2;
+            }
+            else
+            {
+                pitchY = pitch * yFactor;
+            }
 
             Console.WriteLine($"Pitch [X:{pitchX}, Y:{pitchY}]");
 
