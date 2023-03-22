@@ -18,3 +18,4 @@ D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb
+D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.AssemblyReference.cache

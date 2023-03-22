@@ -59,7 +59,7 @@ namespace MF900
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.cameraHWControls1 = new MF900.CameraHWControls();
+            //this.cameraHWControls1 = new MF900.CameraHWControls();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -335,7 +335,6 @@ namespace MF900
             this.uiTableLayoutPanel1.ColumnCount = 1;
             this.uiTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiTableLayoutPanel1.Controls.Add(this.panel2, 0, 1);
-            this.uiTableLayoutPanel1.Controls.Add(this.cameraHWControls1, 0, 0);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTableLayoutPanel1.Location = new System.Drawing.Point(895, 3);
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
@@ -437,15 +436,7 @@ namespace MF900
             this.label20.Size = new System.Drawing.Size(203, 14);
             this.label20.TabIndex = 0;
             this.label20.Text = "10，按【按画像登录画面】键：";
-            // 
-            // cameraHWControls1
-            // 
-            this.cameraHWControls1.BackColor = System.Drawing.Color.White;
-            this.cameraHWControls1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cameraHWControls1.Location = new System.Drawing.Point(3, 3);
-            this.cameraHWControls1.Name = "cameraHWControls1";
-            this.cameraHWControls1.Size = new System.Drawing.Size(389, 417);
-            this.cameraHWControls1.TabIndex = 1;
+            
             // 
             // label11
             // 
@@ -521,7 +512,7 @@ namespace MF900
         private Sunny.UI.UIButton uiButton5;
         private Sunny.UI.UIButton uiButton6;
         private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel1;
-        private CameraHWControls cameraHWControls1;
+        //private CameraHWControls cameraHWControls1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label20;
