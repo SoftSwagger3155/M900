@@ -1,5 +1,6 @@
 ﻿using HalconDotNet;
 using SolveWare_Service_Vision.ROIs.Base.Interface;
+using SolveWare_Service_Vision.ROIs.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -405,6 +406,29 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
         /***********************************************************/
         public void dummyI(int v)
         {
+        }
+
+        ROIBase cross = null;
+        public void GenerateCrossLine(double imgX, double imgY)
+        {
+            cross = new ROI_CrossLine();
+            cross.createROI(imgX, imgY);
+            ROIList.Add(cross);
+            roiMode = null;
+            activeROIidx = ROIList.Count - 1;
+            viewController.repaint();
+
+            NotifyRCObserver(ROIController.EVENT_CREATED_ROI);
+        }
+
+        public void ClearCrossLine()
+        {
+            if (cross == null) return;
+            ROIList.Remove(cross);
+            activeROIidx = -1;
+            viewController.repaint();
+            NotifyRCObserver(ROIController.EVENT_DELETED_ACTROI);
+            cross = null;
         }
 
     }

@@ -108,7 +108,28 @@ namespace SolveWare_Service_Tool.Camera.Business
 
         public override int StartLive(int delayTime_ms = 100)
         {
-            throw new NotImplementedException();
+            int errorCode = ErrorCodes.NoError;
+            try
+            {
+                if (camera_Basler.StreamGrabber.IsGrabbing)
+                {
+                    errorCode = ErrorCodes.VisionFailed;
+                }
+                else
+                {
+                    camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
+                    camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
+                }
+            }
+            catch (Exception e)
+            {
+                errorCode = ErrorCodes.VisionFailed;
+            }
+
+            if(errorCode != ErrorCodes.NoError)
+                SolveWare.Core.MMgr.Infohandler.LogMessage("Error: 相机实时拍摄功能", true, true);
+
+            return errorCode;
         }
 
         public override int StopLive(int delayTime__ms = 100)
@@ -144,6 +165,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                         // 转换为Halcon图像显示
                         HOperatorSet.GenImage1(out ho_Image, "byte", (HTuple)grabResult.Width, (HTuple)grabResult.Height, (HTuple)latestFrameAddress);
                         this.image = ho_Image as HImage;
+                        if (this.WindowHost != null) HOperatorSet.DispImage(image, WindowHost);
                     }
                 }
             }

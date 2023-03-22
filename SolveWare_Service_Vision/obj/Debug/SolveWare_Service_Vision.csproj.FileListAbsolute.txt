@@ -14,3 +14,7 @@ D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj
 D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
 D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
 D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+E:\M900软件平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.View.Forms.Form_ImageHost.resources
+E:\M900软件平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.View.Forms.Form_InspectionKit.resources
+E:\M900软件平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.GenerateResource.cache
+E:\M900软件平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.Properties.Resources.resources

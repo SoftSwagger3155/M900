@@ -40,6 +40,12 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
             set => configData = value;
         }
 
+        public HWindow WindowHost { get; private set; }
+        public void SetWindowHost(HWindow win)
+        {
+            this.WindowHost = win;
+        }
+
         public abstract void GetExposureTime();
 
         public abstract void GetFrameRate();

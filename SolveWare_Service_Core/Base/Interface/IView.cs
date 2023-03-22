@@ -8,6 +8,6 @@ namespace SolveWare_Service_Core.Base.Interface
 {
     public interface IView
     {
-        void Setup<TData>(TData data);
+        void Setup<TObj>(TObj obj);
     }
 }

@@ -1,0 +1,11 @@
+E:\M900软件平台\M900\M900_Dlls\SolveWare_ViewTest.exe.config
+E:\M900软件平台\M900\M900_Dlls\SolveWare_ViewTest.exe
+E:\M900软件平台\M900\M900_Dlls\SolveWare_ViewTest.pdb
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.AssemblyReference.cache
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.SuggestedBindingRedirects.cache
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Properties.Resources.resources
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.GenerateResource.cache
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.CoreCompileInputs.cache
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.CopyComplete
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.exe
+E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.pdb
