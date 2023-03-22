@@ -14,7 +14,7 @@ namespace MF900_FunctionTest
             int Y = (int)3 % 5;
             Console.WriteLine($"Array[{X},{Y}]");
 
-            Array_2D_Logic logic = new Array_2D_Logic(5, 5);
+            Array_2D_Logic logic = new Array_2D_Logic(12, 10);
             Console.ReadKey();
         }
     }

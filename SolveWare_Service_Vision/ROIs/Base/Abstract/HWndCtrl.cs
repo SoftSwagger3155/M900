@@ -826,6 +826,7 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
                         }
 
                         Image = image;
+                        //SetFitPart(Image);
                         var area = image.GetDomain().AreaCenter(out double _, out _);
                         image.GetImagePointer1(out _, out var newImageWidth, out int newImageHeight);
 
@@ -847,6 +848,38 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
             //	HObjList.RemoveAt(1);
         }
 
+        public void SetFitPart(HImage img)
+        {
+            double win_Width = 448;//viewPort.ImagePart.Width;
+            double win_Height = 442;//viewPort.ImagePart.Height;
+            HTuple img_Width = new HTuple();
+            HTuple img_Height = new HTuple();
+
+            HOperatorSet.GetImageSize(img, out img_Width, out img_Height);
+
+
+            double scale_Width =  win_Width / img_Width;
+            double scale_Height = win_Height / img_Height;
+            double row1, row2, col1, col2;
+
+            if(scale_Width >= scale_Height)
+            {
+                row1 = -(1.0) * ((win_Height * scale_Width) - img_Height) / 2;
+                col1 = 0;
+                row2 = row1 + win_Height * scale_Width;
+                col2 = col1 + win_Width * scale_Width;
+            }
+            else
+            {
+                row1 = 0;
+                col1 = -(1.0) * ((win_Width * scale_Height) - img_Width)/ 2;
+                row2 = row1 + win_Height * scale_Height;
+                col2 = col1 + win_Width * scale_Height;
+            }
+
+            setImagePart((int)row1, (int)col1, (int)row2, (int)col2);
+        }
+
         private void SetNewPart(int newImageWidth, int newImageHeight)
         {
             if (newImageHeight == imageHeight && newImageWidth == imageWidth) return;
@@ -863,7 +896,7 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
                 {
                     //宽度顶格
                     dispWidth = imageWidth;
-                    dispHeight = (int)(1.0 * imageWidth / WindowAspectRatio);
+                    dispHeight = (int)(1.0 * imageHeight / WindowAspectRatio);
 
                 }
                 else if (ImageAspectRatio < WindowAspectRatio)

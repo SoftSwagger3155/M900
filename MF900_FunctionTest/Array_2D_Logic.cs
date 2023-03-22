@@ -15,13 +15,14 @@ namespace MF900_FunctionTest
 
         int tool_X = 3;
         int tool_Y = 2;
-        double pitch = 2.0;
+        double pitch = 1.0;
         public Array_2D_Logic(int x, int y)
         {
             this.X = x;
             this.Y = y;
+
             CreateFormation(x, y);
-            MoveToTestPos(5);
+            MoveToTestPos(10);
         }
 
         public void Show_Array_Location_Msg(int num)
@@ -65,11 +66,14 @@ namespace MF900_FunctionTest
 
             if ((arrY +1) % this.X == 0)
             {
-                pitchX = pitch * xFactor - pitch / 2;
+                int remainding = num % tool_X;
+                double newPtichFactor = tool_X - remainding;
+
+                pitchX = pitch * xFactor* tool_X - pitch * remainding;
             }
             else
             {
-                 pitchX = pitch * xFactor;
+                 pitchX = pitch * xFactor* tool_X;
             }
             int yFactor = (int)arrX / tool_Y;
          
@@ -82,20 +86,18 @@ namespace MF900_FunctionTest
                 pitchY = pitch * yFactor;
             }
 
-            Console.WriteLine($"Pitch [X:{pitchX}, Y:{pitchY}]");
-
-            //计算Y Pitch
+            Console.WriteLine($"Pitch [X: {this.pitch} * {xFactor} = {pitchX}, Y:{pitch} * {yFactor} = {pitchY}]");
         }
 
         public void CreateFormation(int x, int y)
         {
-            formation = new int[x, y];
+            formation = new int[y, x];
 
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i < y; i++)
             {
-                for (int j = 0; j < y; j++)
+                for (int j = 0; j < x; j++)
                 {
-                    formation[i, j] = (x * i) + (j + 1);
+                    formation[i, j] = (this.X * i) + (j + 1);
                 }
             }
         }

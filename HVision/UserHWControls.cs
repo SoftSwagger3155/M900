@@ -96,7 +96,6 @@ namespace HVision
                 HOperatorSet.SetColor(HWindows, "blue");
                 HOperatorSet.DispObj(line1, HWindows);
                 HOperatorSet.DispObj(line2, HWindows);
-
             }
         }
         public void WriteString(string str)

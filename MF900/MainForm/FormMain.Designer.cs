@@ -29,16 +29,15 @@ namespace MF900
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btn_RunReady = new Sunny.UI.UIButton();
             this.uiTableLayoutPanel4 = new Sunny.UI.UITableLayoutPanel();
             this.panelMainShow = new System.Windows.Forms.Panel();
             this.panelButtonShow = new System.Windows.Forms.Panel();
             this.uiTableLayoutPanel2 = new Sunny.UI.UITableLayoutPanel();
             this.uiTableLayoutPanel3 = new Sunny.UI.UITableLayoutPanel();
-            this.xktPanelHead1 = new XKTControl.xktPanelHead(this.components);
+            this.xktPanelHead1 = new XKTControl.xktPanelHead();
             this.lbl_MachineState = new Sunny.UI.UILabel();
-            this.xktPanelHead2 = new XKTControl.xktPanelHead(this.components);
+            this.xktPanelHead2 = new XKTControl.xktPanelHead();
             this.lbl_CurrentPro = new Sunny.UI.UILabel();
             this.skinPanel2 = new CCWin.SkinControl.SkinPanel();
             this.uiGroupBox5 = new Sunny.UI.UIGroupBox();
@@ -133,7 +132,11 @@ namespace MF900
             this.uiTableLayoutPanel4.Name = "uiTableLayoutPanel4";
             this.uiTableLayoutPanel4.RowCount = 1;
             this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+<<<<<<< HEAD
             this.uiTableLayoutPanel4.Size = new System.Drawing.Size(1112, 597);
+=======
+            this.uiTableLayoutPanel4.Size = new System.Drawing.Size(1112, 628);
+>>>>>>> c957bd257e70f2501404b0dfbdb422a220beb744
             this.uiTableLayoutPanel4.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel4.TabIndex = 1;
             this.uiTableLayoutPanel4.TagString = null;
@@ -143,7 +146,11 @@ namespace MF900
             this.panelMainShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMainShow.Location = new System.Drawing.Point(203, 3);
             this.panelMainShow.Name = "panelMainShow";
+<<<<<<< HEAD
             this.panelMainShow.Size = new System.Drawing.Size(906, 591);
+=======
+            this.panelMainShow.Size = new System.Drawing.Size(906, 622);
+>>>>>>> c957bd257e70f2501404b0dfbdb422a220beb744
             this.panelMainShow.TabIndex = 7;
             // 
             // panelButtonShow
@@ -151,7 +158,11 @@ namespace MF900
             this.panelButtonShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelButtonShow.Location = new System.Drawing.Point(3, 3);
             this.panelButtonShow.Name = "panelButtonShow";
+<<<<<<< HEAD
             this.panelButtonShow.Size = new System.Drawing.Size(194, 591);
+=======
+            this.panelButtonShow.Size = new System.Drawing.Size(194, 622);
+>>>>>>> c957bd257e70f2501404b0dfbdb422a220beb744
             this.panelButtonShow.TabIndex = 8;
             // 
             // uiTableLayoutPanel2
@@ -426,7 +437,7 @@ namespace MF900
             this.listBox_VelSelect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_VelSelect.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listBox_VelSelect.FormattingEnabled = true;
-            this.listBox_VelSelect.ItemHeight = 19;
+            this.listBox_VelSelect.ItemHeight = 24;
             this.listBox_VelSelect.Items.AddRange(new object[] {
             "0.1%",
             "5%",
@@ -863,9 +874,9 @@ namespace MF900
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssl_TestCommuinState});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 788);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 784);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1118, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1118, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -873,7 +884,7 @@ namespace MF900
             // 
             this.tssl_TestCommuinState.BackColor = System.Drawing.Color.Red;
             this.tssl_TestCommuinState.Name = "tssl_TestCommuinState";
-            this.tssl_TestCommuinState.Size = new System.Drawing.Size(92, 17);
+            this.tssl_TestCommuinState.Size = new System.Drawing.Size(114, 20);
             this.tssl_TestCommuinState.Text = "测试软件未连接";
             // 
             // tableLayoutPanel3
@@ -888,7 +899,11 @@ namespace MF900
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+<<<<<<< HEAD
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1118, 753);
+=======
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1118, 784);
+>>>>>>> c957bd257e70f2501404b0dfbdb422a220beb744
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // FormMain

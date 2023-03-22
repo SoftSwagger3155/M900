@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SolveWare_Service_Vision.ROIs.Business
 {
     [ROIKindAttribute]
-    public class RIO_Rectangle : ROIBase, IROI
+    public class ROI_Rectangle : ROIBase, IROI
     {
 
         private double row1, col1;   // upper left
@@ -20,7 +20,7 @@ namespace SolveWare_Service_Vision.ROIs.Business
 
 
         /// <summary>Constructor</summary>
-        public RIO_Rectangle()
+        public ROI_Rectangle()
         {
             RoiType = GetType().ToString();
             NumHandles = 5; // 4 corner points + midpoint
@@ -81,9 +81,11 @@ namespace SolveWare_Service_Vision.ROIs.Business
         public override void draw(HalconDotNet.HWindow window)
         {
             //window.DispText("Search Area", "window", row1 - 10,; col1 - 10, "white", new HTuple(), new HTuple());
-            Disp_Text(window, (int)row1 - 25, (int)col1 + 6, "cyan", "搜索范围");
-            window.DispRectangle1(row1, col1, row2, col2);
+            window.SetColor("yellow");
+            Disp_Text(window, (int)row1 - 25, (int)col1 + 6, "yellow", "搜索范围");
 
+            window.SetColor("cyan");
+            window.DispRectangle1(row1, col1, row2, col2);
             window.DispRectangle2(row1, col1, 0, 5, 5);
             window.DispRectangle2(row1, col2, 0, 5, 5);
             window.DispRectangle2(row2, col2, 0, 5, 5);

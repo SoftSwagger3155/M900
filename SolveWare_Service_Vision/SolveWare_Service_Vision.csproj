@@ -70,6 +70,11 @@
     <Compile Include="MMperPixel\Base\Abstract\MMperPixelJobBase.cs" />
     <Compile Include="MMperPixel\Base\Interface\IMMperPixelJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ROIs\Attributes\ROIKindAttribute.cs" />
     <Compile Include="ROIs\Base\Abstract\GraphicsContext.cs" />
     <Compile Include="ROIs\Base\Abstract\HObjectEntry.cs" />
@@ -77,9 +82,22 @@
     <Compile Include="ROIs\Base\Abstract\ROIBase.cs" />
     <Compile Include="ROIs\Base\Abstract\ROIController.cs" />
     <Compile Include="ROIs\Base\Interface\IROI.cs" />
-    <Compile Include="ROIs\Business\RIO_Rectangle.cs" />
+    <Compile Include="ROIs\Business\ROI_CrossLine.cs" />
+    <Compile Include="ROIs\Business\ROI_Rectangle.cs" />
     <Compile Include="ROIs\Business\ROI_Circle.cs" />
     <Compile Include="ROIs\Business\ROI_Line.cs" />
+    <Compile Include="View\Forms\Form_ImageHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\Form_ImageHost.Designer.cs">
+      <DependentUpon>Form_ImageHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\Form_InspectionKit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\Form_InspectionKit.Designer.cs">
+      <DependentUpon>Form_InspectionKit.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
@@ -91,6 +109,29 @@
       <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="View\Resources\Auto.png" />
+    <Content Include="View\Resources\Circle.png" />
+    <Content Include="View\Resources\Clear.png" />
+    <Content Include="View\Resources\ColorChanne.png" />
+    <Content Include="View\Resources\Cross.png" />
+    <Content Include="View\Resources\Lines.png" />
+    <Content Include="View\Resources\OpenFile.png" />
+    <Content Include="View\Resources\Rectangle.png" />
+    <Content Include="View\Resources\Save.png" />
+    <Content Include="View\Resources\VisionLocation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\Form_ImageHost.resx">
+      <DependentUpon>Form_ImageHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\Form_InspectionKit.resx">
+      <DependentUpon>Form_InspectionKit.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
