@@ -26,7 +26,7 @@ namespace MF900_SolveWare
             SolveWare.Core.MMgr.Initialize();
 
 
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

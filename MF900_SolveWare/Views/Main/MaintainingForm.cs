@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SolveWare_Service_Core.Base.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,17 @@ using System.Windows.Forms;
 
 namespace MF900_SolveWare
 {
-    public partial class Form1 : Form
+    public partial class MaintainingForm : Form,IView
     {
-        public Form1()
+        public MaintainingForm()
         {
             InitializeComponent();
+            
+        }
+
+        public void Setup<TData>(TData data)
+        {
+            throw new NotImplementedException();
         }
     }
 }

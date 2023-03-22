@@ -34,6 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Basler.Pylon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=AMD64" />
+    <Reference Include="halcondotnet, Version=12.0.0.0, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\M900_Dlls\halcondotnet.dll</HintPath>
+    </Reference>
     <Reference Include="SunnyUI, Version=3.3.1.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\SunnyUI.dll</HintPath>
@@ -59,21 +64,255 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeControls\AxisJop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DeControls\AxisJop.Designer.cs">
+      <DependentUpon>AxisJop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Business\MainManager.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Views\Child\FormJipOffset.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\Child\FormJipOffset.designer.cs">
+      <DependentUpon>FormJipOffset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormLoginMarkImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormLoginMarkImage.designer.cs">
+      <DependentUpon>FormLoginMarkImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormPanel.designer.cs">
+      <DependentUpon>FormPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormRunOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormRunOption.designer.cs">
+      <DependentUpon>FormRunOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormWorkPieceDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormWorkPieceDebug.designer.cs">
+      <DependentUpon>FormWorkPieceDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormAdjustLevelZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormAdjustLevelZ.designer.cs">
+      <DependentUpon>FormAdjustLevelZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormBoardMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormBoardMessage.designer.cs">
+      <DependentUpon>FormBoardMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormCheckLevelZ2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormCheckLevelZ2.designer.cs">
+      <DependentUpon>FormCheckLevelZ2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormCheckMarking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormCheckMarking.designer.cs">
+      <DependentUpon>FormCheckMarking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormDataCodeDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormDataCodeDebug.designer.cs">
+      <DependentUpon>FormDataCodeDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormDebugTableTop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormDebugTableTop.designer.cs">
+      <DependentUpon>FormDebugTableTop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormJigOpations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormJigOpations.designer.cs">
+      <DependentUpon>FormJigOpations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormJipChange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormJipChange.designer.cs">
+      <DependentUpon>FormJipChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormJipData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormJipData.designer.cs">
+      <DependentUpon>FormJipData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormJipImageLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormJipImageLogin.designer.cs">
+      <DependentUpon>FormJipImageLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\FormProductData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\FormProductData.designer.cs">
+      <DependentUpon>FormProductData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MaintainingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\MaintainingForm.Designer.cs">
+      <DependentUpon>MaintainingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\SystemLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\SystemLogForm.Designer.cs">
+      <DependentUpon>SystemLogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MachineStateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\MachineStateForm.Designer.cs">
+      <DependentUpon>MachineStateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\ParameterSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\ParameterSetForm.Designer.cs">
+      <DependentUpon>ParameterSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MachineSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\MachineSetForm.Designer.cs">
+      <DependentUpon>MachineSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\DebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\DebugForm.Designer.cs">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Index\Data\MF900_IndexData.cs" />
     <Compile Include="MMperPixel\Business\Job_MMperPixel_BtmCamera.cs" />
     <Compile Include="MMperPixel\Business\Job_MMperPixel_TopCamera.cs" />
     <Compile Include="Offset\Data\Data_Top_Camera_Top_Prober_Offset.cs" />
     <Compile Include="Offset\Data\MF900_OffsetDataBase.cs" />
+    <Compile Include="DeControls\OutButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DeControls\OutButton.Designer.cs">
+      <DependentUpon>OutButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Views\Main\ProgramSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\ProgramSetForm.Designer.cs">
+      <DependentUpon>ProgramSetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource\ResourceKey.cs" />
+    <Compile Include="Views\Main\RunForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\RunForm.Designer.cs">
+      <DependentUpon>RunForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DeControls\AxisJop.resx">
+      <DependentUpon>AxisJop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormJipOffset.resx">
+      <DependentUpon>FormJipOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormLoginMarkImage.resx">
+      <DependentUpon>FormLoginMarkImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormPanel.resx">
+      <DependentUpon>FormPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormRunOption.resx">
+      <DependentUpon>FormRunOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormWorkPieceDebug.resx">
+      <DependentUpon>FormWorkPieceDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormAdjustLevelZ.resx">
+      <DependentUpon>FormAdjustLevelZ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormBoardMessage.resx">
+      <DependentUpon>FormBoardMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormCheckLevelZ2.resx">
+      <DependentUpon>FormCheckLevelZ2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormCheckMarking.resx">
+      <DependentUpon>FormCheckMarking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormDataCodeDebug.resx">
+      <DependentUpon>FormDataCodeDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormDebugTableTop.resx">
+      <DependentUpon>FormDebugTableTop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormJigOpations.resx">
+      <DependentUpon>FormJigOpations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormJipChange.resx">
+      <DependentUpon>FormJipChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormJipData.resx">
+      <DependentUpon>FormJipData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormJipImageLogin.resx">
+      <DependentUpon>FormJipImageLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\FormProductData.resx">
+      <DependentUpon>FormProductData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\MaintainingForm.resx">
+      <DependentUpon>MaintainingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\SystemLogForm.resx">
+      <DependentUpon>SystemLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\MachineStateForm.resx">
+      <DependentUpon>MachineStateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\ParameterSetForm.resx">
+      <DependentUpon>ParameterSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\MachineSetForm.resx">
+      <DependentUpon>MachineSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\DebugForm.resx">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeControls\OutButton.resx">
+      <DependentUpon>OutButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\ProgramSetForm.resx">
+      <DependentUpon>ProgramSetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -84,6 +323,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\Main\RunForm.resx">
+      <DependentUpon>RunForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,6 +340,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HVision\HVision.csproj">
+      <Project>{C2AA7957-5893-4E49-B874-437FD448622F}</Project>
+      <Name>HVision</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
       <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
       <Name>SolveWare_Service_Core</Name>
@@ -120,8 +366,6 @@
     <Folder Include="Data\" />
     <Folder Include="FSM\" />
     <Folder Include="Index\Business\" />
-    <Folder Include="View\Child\" />
-    <Folder Include="View\Main\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

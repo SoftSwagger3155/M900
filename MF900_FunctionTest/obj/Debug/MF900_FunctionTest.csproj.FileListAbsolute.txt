@@ -6,3 +6,10 @@ E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.
 E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CoreCompileInputs.cache
 E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.exe
 E:\M900软件平台\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.pdb
+D:\M900开发平台\M901\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.exe.config
+D:\M900开发平台\M901\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.exe
+D:\M900开发平台\M901\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.pdb
+D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.exe
+D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.pdb
+D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.AssemblyReference.cache

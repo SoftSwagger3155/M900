@@ -138,7 +138,7 @@ namespace SolveWare_Service_Vision.ROIs.Business
                 if (hv_MetrologyHandle != null)
                 {
                     HOperatorSet.ClearMetrologyModel(hv_MetrologyHandle);
-                    hv_MetrologyHandle.Dispose();
+                    //hv_MetrologyHandle.Dispose();
                 }
 
                 HOperatorSet.SetLineWidth(window, 2);

@@ -133,7 +133,7 @@ namespace MF900
             this.uiTableLayoutPanel4.Name = "uiTableLayoutPanel4";
             this.uiTableLayoutPanel4.RowCount = 1;
             this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel4.Size = new System.Drawing.Size(1112, 632);
+            this.uiTableLayoutPanel4.Size = new System.Drawing.Size(1112, 597);
             this.uiTableLayoutPanel4.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel4.TabIndex = 1;
             this.uiTableLayoutPanel4.TagString = null;
@@ -143,7 +143,7 @@ namespace MF900
             this.panelMainShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMainShow.Location = new System.Drawing.Point(203, 3);
             this.panelMainShow.Name = "panelMainShow";
-            this.panelMainShow.Size = new System.Drawing.Size(906, 626);
+            this.panelMainShow.Size = new System.Drawing.Size(906, 591);
             this.panelMainShow.TabIndex = 7;
             // 
             // panelButtonShow
@@ -151,7 +151,7 @@ namespace MF900
             this.panelButtonShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelButtonShow.Location = new System.Drawing.Point(3, 3);
             this.panelButtonShow.Name = "panelButtonShow";
-            this.panelButtonShow.Size = new System.Drawing.Size(194, 626);
+            this.panelButtonShow.Size = new System.Drawing.Size(194, 591);
             this.panelButtonShow.TabIndex = 8;
             // 
             // uiTableLayoutPanel2
@@ -883,12 +883,12 @@ namespace MF900
             this.tableLayoutPanel3.Controls.Add(this.uiTableLayoutPanel2, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.uiTableLayoutPanel4, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 35);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1118, 788);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1118, 753);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // FormMain
@@ -898,12 +898,13 @@ namespace MF900
             this.ClientSize = new System.Drawing.Size(1118, 810);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.statusStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Style = Sunny.UI.UIStyle.Custom;
             this.Text = "MF900";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1118, 810);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
             this.uiTableLayoutPanel4.ResumeLayout(false);

@@ -14,3 +14,10 @@ D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj
 D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
 D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
 D:\MF900\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.AssemblyReference.cache
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+D:\M900开发平台\M901\M900_Dlls\SolveWare_Service_Vision.dll
+D:\M900开发平台\M901\M900_Dlls\SolveWare_Service_Vision.pdb
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete

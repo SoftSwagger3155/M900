@@ -5,3 +5,10 @@ E:\M900软件平台\M900\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Of
 E:\M900软件平台\M900\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.csproj.CopyComplete
 E:\M900软件平台\M900\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.dll
 E:\M900软件平台\M900\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.pdb
+D:\M900开发平台\M901\M900_Dlls\SolveWare_Service_Offset.dll
+D:\M900开发平台\M901\M900_Dlls\SolveWare_Service_Offset.pdb
+D:\M900开发平台\M901\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.csproj.AssemblyReference.cache
+D:\M900开发平台\M901\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M901\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.csproj.CopyComplete
+D:\M900开发平台\M901\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.dll
+D:\M900开发平台\M901\SolveWare_Service_Offset\obj\Debug\SolveWare_Service_Offset.pdb
