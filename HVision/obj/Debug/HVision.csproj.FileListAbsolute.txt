@@ -27,4 +27,3 @@ D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.CoreCompileInputs.cach
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.CopyComplete
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.dll
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.pdb
-D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.AssemblyReference.cache

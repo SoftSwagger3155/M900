@@ -82,14 +82,14 @@ namespace HVision
             // 
             this.tssl_GrayValue.Image = global::HVision.Properties.Resources.ColorChanne;
             this.tssl_GrayValue.Name = "tssl_GrayValue";
-            this.tssl_GrayValue.Size = new System.Drawing.Size(51, 17);
+            this.tssl_GrayValue.Size = new System.Drawing.Size(45, 18);
             this.tssl_GrayValue.Text = "0,0";
             // 
             // tssl_Location
             // 
             this.tssl_Location.Image = global::HVision.Properties.Resources.VisionLocation;
             this.tssl_Location.Name = "tssl_Location";
-            this.tssl_Location.Size = new System.Drawing.Size(51, 17);
+            this.tssl_Location.Size = new System.Drawing.Size(45, 18);
             this.tssl_Location.Text = "0,0";
             // 
             // toolStrip1
@@ -116,7 +116,7 @@ namespace HVision
             this.tsb_OpenImage.Image = global::HVision.Properties.Resources.OpenFile;
             this.tsb_OpenImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_OpenImage.Name = "tsb_OpenImage";
-            this.tsb_OpenImage.Size = new System.Drawing.Size(29, 20);
+            this.tsb_OpenImage.Size = new System.Drawing.Size(24, 20);
             this.tsb_OpenImage.Text = "打开图片";
             this.tsb_OpenImage.Click += new System.EventHandler(this.tsb_OpenImage_Click);
             // 
@@ -126,7 +126,7 @@ namespace HVision
             this.tsb_Savemage.Image = global::HVision.Properties.Resources.Save;
             this.tsb_Savemage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_Savemage.Name = "tsb_Savemage";
-            this.tsb_Savemage.Size = new System.Drawing.Size(29, 20);
+            this.tsb_Savemage.Size = new System.Drawing.Size(24, 20);
             this.tsb_Savemage.Text = "保存图片";
             this.tsb_Savemage.Click += new System.EventHandler(this.tsb_Savemage_Click);
             // 
@@ -136,7 +136,7 @@ namespace HVision
             this.tsb_AutoImage.Image = global::HVision.Properties.Resources.Auto;
             this.tsb_AutoImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_AutoImage.Name = "tsb_AutoImage";
-            this.tsb_AutoImage.Size = new System.Drawing.Size(29, 20);
+            this.tsb_AutoImage.Size = new System.Drawing.Size(24, 20);
             this.tsb_AutoImage.Text = "图片自适应";
             this.tsb_AutoImage.Click += new System.EventHandler(this.tsb_AutoImage_Click);
             // 
@@ -146,7 +146,7 @@ namespace HVision
             this.tsb_IsShowCrros.Image = global::HVision.Properties.Resources.Cross;
             this.tsb_IsShowCrros.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_IsShowCrros.Name = "tsb_IsShowCrros";
-            this.tsb_IsShowCrros.Size = new System.Drawing.Size(29, 20);
+            this.tsb_IsShowCrros.Size = new System.Drawing.Size(24, 20);
             this.tsb_IsShowCrros.Text = "十字架";
             this.tsb_IsShowCrros.Click += new System.EventHandler(this.tsb_IsShowCrros_Click);
             // 
@@ -156,7 +156,7 @@ namespace HVision
             this.tsb_DrawCircle.Image = global::HVision.Properties.Resources.Circle;
             this.tsb_DrawCircle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawCircle.Name = "tsb_DrawCircle";
-            this.tsb_DrawCircle.Size = new System.Drawing.Size(29, 20);
+            this.tsb_DrawCircle.Size = new System.Drawing.Size(24, 20);
             this.tsb_DrawCircle.Text = "圆";
             this.tsb_DrawCircle.Click += new System.EventHandler(this.tsb_DrawCircle_Click);
             // 
@@ -166,7 +166,7 @@ namespace HVision
             this.tsb_DrawRectangle.Image = global::HVision.Properties.Resources.Rectangle;
             this.tsb_DrawRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawRectangle.Name = "tsb_DrawRectangle";
-            this.tsb_DrawRectangle.Size = new System.Drawing.Size(29, 20);
+            this.tsb_DrawRectangle.Size = new System.Drawing.Size(24, 20);
             this.tsb_DrawRectangle.Text = "矩形";
             this.tsb_DrawRectangle.Click += new System.EventHandler(this.tsb_DrawRectangle_Click);
             // 
@@ -176,7 +176,7 @@ namespace HVision
             this.tsb_DrawLines.Image = global::HVision.Properties.Resources.Lines;
             this.tsb_DrawLines.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawLines.Name = "tsb_DrawLines";
-            this.tsb_DrawLines.Size = new System.Drawing.Size(29, 20);
+            this.tsb_DrawLines.Size = new System.Drawing.Size(24, 20);
             this.tsb_DrawLines.Text = "直线";
             this.tsb_DrawLines.Click += new System.EventHandler(this.tsb_DrawLines_Click);
             // 
@@ -186,7 +186,7 @@ namespace HVision
             this.tsb_ClearHwindow.Image = global::HVision.Properties.Resources.Clear;
             this.tsb_ClearHwindow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_ClearHwindow.Name = "tsb_ClearHwindow";
-            this.tsb_ClearHwindow.Size = new System.Drawing.Size(29, 20);
+            this.tsb_ClearHwindow.Size = new System.Drawing.Size(24, 20);
             this.tsb_ClearHwindow.Text = "清除ROI";
             this.tsb_ClearHwindow.Click += new System.EventHandler(this.tsb_ClearHwindow_Click);
             // 
@@ -194,13 +194,12 @@ namespace HVision
             // 
             this.hWindowControl1.BackColor = System.Drawing.Color.Black;
             this.hWindowControl1.BorderColor = System.Drawing.Color.Black;
-            this.hWindowControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hWindowControl1.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
             this.hWindowControl1.Location = new System.Drawing.Point(4, 3);
             this.hWindowControl1.Name = "hWindowControl1";
-            this.hWindowControl1.Size = new System.Drawing.Size(312, 301);
+            this.hWindowControl1.Size = new System.Drawing.Size(250, 193);
             this.hWindowControl1.TabIndex = 2;
-            this.hWindowControl1.WindowSize = new System.Drawing.Size(312, 301);
+            this.hWindowControl1.WindowSize = new System.Drawing.Size(250, 193);
             this.hWindowControl1.HMouseMove += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseMove);
             this.hWindowControl1.HMouseDown += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseDown);
             this.hWindowControl1.HMouseUp += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseUp);

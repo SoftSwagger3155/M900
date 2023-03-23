@@ -110,4 +110,3 @@ D:\M900开发平台\M901\MotionCard\obj\Debug\MotionCard.csproj.CoreCompileInput
 D:\M900开发平台\M901\MotionCard\obj\Debug\MotionCard.csproj.CopyComplete
 D:\M900开发平台\M901\MotionCard\obj\Debug\MotionCard.dll
 D:\M900开发平台\M901\MotionCard\obj\Debug\MotionCard.pdb
-D:\M900开发平台\M901\MotionCard\obj\Debug\MotionCard.csproj.AssemblyReference.cache

@@ -45,27 +45,12 @@ namespace SolveWare_Service_Vision.View.Forms
 
         private void tsb_AutoImage_Click(object sender, EventArgs e)
         {
-            if (camera == null)
-            {
-                SolveWare.Core.MMgr.Infohandler.LogMessage("无相机物件", true, true);
-                return;
-            }
-            camera.StartLive(50);
+
         }
 
         private void tsb_OpenImage_Click(object sender, EventArgs e)
         {
             this.mmgr.Open_File_To_Get_Image();
-        }
-
-        private void tsb_DrawCircle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsb_DrawRectangle_Click(object sender, EventArgs e)
-        {
-            
         }
 
         bool isShowCross = false;
@@ -85,13 +70,18 @@ namespace SolveWare_Service_Vision.View.Forms
 
         private void hWindowControl1_HMouseMove(object sender, HMouseEventArgs e)
         {
-            this.tssl_Location.Text = mmgr.Location;
-            this.tssl_GrayValue.Text = mmgr.PointGrey;
+            //this.tssl_Location.Text = mmgr.Location;
+            //this.tssl_GrayValue.Text = mmgr.PointGrey;
         }
 
         private void tsb_AutoImage_Click_1(object sender, EventArgs e)
         {
             mmgr.Fit_Image();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
 
         ////变量
