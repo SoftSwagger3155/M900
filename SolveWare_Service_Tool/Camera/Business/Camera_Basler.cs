@@ -70,7 +70,7 @@ namespace SolveWare_Service_Tool.Camera.Business
         public override void GetFrameRate()
         {
             if (camera_Basler == null) return;
-            this.FrameRate = camera_Basler.Parameters[PLCamera.AcquisitionFrameRateAbs].GetValue();
+            this.FrameRate = (int)camera_Basler.Parameters[PLCamera.AcquisitionFrameRateAbs].GetValue();
         }
 
         public override int GrabImageOnce()
@@ -106,20 +106,44 @@ namespace SolveWare_Service_Tool.Camera.Business
             throw new NotImplementedException();
         }
 
+        //
+        CancellationTokenSource simulateSource;
+        AutoResetEvent StopFlag = new AutoResetEvent(false);
         public override int StartLive(int delayTime_ms = 100)
         {
             int errorCode = ErrorCodes.NoError;
             try
             {
-                if (camera_Basler.StreamGrabber.IsGrabbing)
+                do
                 {
-                    errorCode = ErrorCodes.VisionFailed;
-                }
-                else
-                {
-                    camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
-                    camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
-                }
+                    if (this.configData.IsSimulation)
+                    {
+                        simulateSource = new CancellationTokenSource();
+                        Task task = new Task(() =>
+                        {
+                            while (!simulateSource.IsCancellationRequested)
+                            {
+                                this.FrameRate = new Random().Next(50, 101);
+                                this.GrabTime = new Random().Next(50, 101);
+                                HOperatorSet.SetTposition(this.WindowHost, 10, 10);
+                                HOperatorSet.SetColor(this.WindowHost, "green");
+                                HOperatorSet.WriteString(this.WindowHost, this.CameraGrabCapabilityInfo);
+                            }
+                            StopFlag.Set();
+
+                        }, simulateSource.Token, TaskCreationOptions.LongRunning);
+
+                        task.Start();
+                        break;
+                    }
+
+                    if (!camera_Basler.StreamGrabber.IsGrabbing)
+                    {
+                        camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
+                        camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
+                    }
+
+                } while (false);
             }
             catch (Exception e)
             {
@@ -134,7 +158,35 @@ namespace SolveWare_Service_Tool.Camera.Business
 
         public override int StopLive(int delayTime__ms = 100)
         {
-            throw new NotImplementedException();
+            int errorCode = ErrorCodes.NoError;
+            try
+            {
+                do
+                {
+                    if (this.configData.IsSimulation)
+                    {
+                        simulateSource.Cancel();
+                        StopFlag.WaitOne(5000);
+                        break;
+                    }
+
+                    if (camera_Basler.StreamGrabber.IsGrabbing)
+                    {
+                        camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
+                        camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
+                    }
+
+                } while (false);
+            }
+            catch (Exception e)
+            {
+                errorCode = ErrorCodes.VisionFailed;
+            }
+
+            if (errorCode != ErrorCodes.NoError)
+                SolveWare.Core.MMgr.Infohandler.LogMessage("Error: 相机实时拍摄功能", true, true);
+
+            return errorCode;
         }
 
         private void BaingEvent()

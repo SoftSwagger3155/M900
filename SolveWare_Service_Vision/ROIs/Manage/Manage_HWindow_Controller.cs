@@ -26,7 +26,9 @@ namespace SolveWare_Service_Vision.ROIs.Manage
         HTuple imageHeight = new HTuple();
         HImage image;
         List<HObject> DisplayObjs;
+        List<HObjectEntry> HObjList;
         List<ROIBase> ROIList;
+        GraphicsContext mGC;
         CameraBase camera;
         double midRow = 0;
         double midCol = 0;
@@ -37,6 +39,27 @@ namespace SolveWare_Service_Vision.ROIs.Manage
         public string Location { get; set; }
         public string PointGrey { get; set; }
         
+        //ctor
+        public Manage_HWindow_Controller(HWindowControl imageHost, ICamera camera)
+        {
+            this.image_Host = imageHost;
+            DisplayObjs =new List<HObject>();
+            ROIList = new List<ROIBase>();
+            event_Mode = Mouse_Event_Mode.None;
+            this.camera = camera as CameraBase;
+
+            // graphical stack 
+            HObjList = new List<HObjectEntry>();
+            mGC = new GraphicsContext();
+
+            this.image_Host.HMouseWheel -= Image_Host_HMouseWheel;
+            this.image_Host.HMouseWheel += Image_Host_HMouseWheel;
+
+            this.image_Host.HMouseMove -= Image_Host_HMouseMove;
+            this.image_Host.HMouseMove += Image_Host_HMouseMove;
+        }
+
+
 
        private void Adapt_Window()
         {
@@ -70,23 +93,8 @@ namespace SolveWare_Service_Vision.ROIs.Manage
 
         }
 
-
-        //ctor
-        public Manage_HWindow_Controller(HWindowControl imageHost, ICamera camera)
-        {
-            this.image_Host = imageHost;
-            DisplayObjs =new List<HObject>();
-            ROIList = new List<ROIBase>();
-            event_Mode = Mouse_Event_Mode.None;
-            this.camera = camera as CameraBase;
-
-            this.image_Host.HMouseWheel -= Image_Host_HMouseWheel;
-            this.image_Host.HMouseWheel += Image_Host_HMouseWheel;
-
-            this.image_Host.HMouseMove -= Image_Host_HMouseMove;
-            this.image_Host.HMouseMove += Image_Host_HMouseMove;
-        }
-
+        //MouseDown
+        //MouseMove
         private void Image_Host_HMouseMove(object sender, HMouseEventArgs e)
         {
             HTuple Row, Column, Button, Width, Height;
@@ -104,6 +112,7 @@ namespace SolveWare_Service_Vision.ROIs.Manage
            
         }
 
+        //MouseWheel
         private void Image_Host_HMouseWheel(object sender, HMouseEventArgs e)
         {
             HTuple zoom, row, col, button;
@@ -137,43 +146,12 @@ namespace SolveWare_Service_Vision.ROIs.Manage
 
         }
 
+
         //Set Event Mode 
         public void SetEventMode(Mouse_Event_Mode mode)
         {
             this.event_Mode = mode;
         }
-
-        //ZoomFit
-        //private void ZoomToFit(out HTuple row1, out HTuple column1, out HTuple row2, out HTuple column2)
-        //{
-        //    //double ratioWidth = (1.0) * m_imageWidth[0].I / image_Host.Width;
-        //    //double ratioHeight = (1.0) * m_imageHeight[0].I / image_Host.Height;
-
-        //    double ratioWidth = (1.0) * m_imageWidth[0].I / 1080;
-        //    double ratioHeight = (1.0) * m_imageHeight[0].I / 1920;
-
-        //    row1 = 0;
-        //    column1 = 0;
-        //    row2 = 0;
-        //    column2 = 0;
-        //    if (ratioWidth >= ratioHeight)
-        //    {
-        //        double overSize = ((this.image_Host.Height * ratioWidth) - m_imageHeight) / 2;
-        //        row1 = -overSize;
-        //        column1 = 0;
-        //        row2 = m_imageHeight + overSize;
-        //        column2 = m_imageWidth - 1;
-        //    }
-        //    else
-        //    {
-        //        double overSize = ((this.image_Host.Width * ratioHeight) - m_imageWidth) / 2;
-        //        row1 = 0;
-        //        column1 = -overSize;
-        //        row2 = m_imageHeight - 1;
-        //        column2 = m_imageWidth + overSize;
-        //    }
-        //}
-
 
         //AddROI
 
@@ -192,51 +170,16 @@ namespace SolveWare_Service_Vision.ROIs.Manage
                 this.image = new HImage(dialog.FileName);
                 Adapt_Window();
                 this.image_Host.HalconWindow.DispImage(image);
-                //HOperatorSet.GetImageSize(image, out m_imageWidth, out m_imageHeight);//获取图像大小
-                //DisplayObjs.Add(Image);
-                //ResetShowImage(true);
             }
         }
 
+        //Fit Image
         public void Fit_Image()
         {
             this.image_Host.HalconWindow.ClearWindow();
             Adapt_Window();
             this.image_Host.HalconWindow.DispImage(image);
         }
-
-        private void ResetShowImage(bool isZoom)
-        {
-            //try
-            //{
-            //    if (this.image != null)
-            //    {
-            //        //HOperatorSet.ClearWindow(HWindows);//清空窗体
-            //        HTuple row1, column1, row2, column2;
-            //        if (isZoom)
-            //        {
-            //            ZoomToFit(out row1, out column1, out row2, out column2);
-            //        }
-            //        else
-            //        {
-            //            this.image_Host.HalconWindow.GetPart(out row1, out column1, out row2, out column2);//得到当前的窗口坐标
-            //        }
-            //        //HSystem.SetSystem("flush_graphic", "true");
-            //        this.image_Host.HalconWindow.SetPart(row1, column1, row2, column2);//设置显示在窗体的图像大小
-            //        this.image_Host.HalconWindow.DispObj(image);//显示图像
-
-            //        //double imgPartWidth = this.image_Host.ImagePart.Height;
-            //        //double imgPartHeight = this.image_Host.ImagePart.Width;
-
-
-            //        //GenerateCrossLine(imgPartHeight, imgPartWidth);
-            //        //GenCrrosLine();
-            //    }
-            //}
-            //catch (HOperatorException he)
-            //{ }
-        }
-
 
         //Grab One
         public void GrabOne()
@@ -252,13 +195,7 @@ namespace SolveWare_Service_Vision.ROIs.Manage
                 errorCode = ErrorCodes.VisionFailed;   
             }
         }
-
-
-        //MouseDown
-
-        //MouseMove
-
-        //MouseUp
+        
 
         //GenerateCrossLine
         ROIBase cross = null;
@@ -272,22 +209,25 @@ namespace SolveWare_Service_Vision.ROIs.Manage
            
             
             ROIList.Add(cross);
-            //Repaint();
-
-            //NotifyRCObserver(ROIController.EVENT_CREATED_ROI);
         }
 
+        //Clear Cross Line
         public void ClearCrossLine()
         {
             if (cross == null) return;
             this.event_Mode = Mouse_Event_Mode.Zoom;
             ROIList.Remove(cross);
             Repaint();
-            //activeROIidx = -1;
-            //viewController.repaint();
-            //NotifyRCObserver(ROIController.EVENT_DELETED_ACTROI);
             cross = null;
         }
+
+        //Write Text
+        public void WriteText(string msg)
+        {
+
+            this.image_Host.HalconWindow.WriteString(msg);
+        }
+
 
         //Repain
         public void Repaint()
@@ -328,7 +268,6 @@ namespace SolveWare_Service_Vision.ROIs.Manage
 
                 for (int i = 0; i < ROIList.Count; i++)
                 {
-                    //window.SetLineStyle(((ROIBase)ROIList[i]).flagLineStyle);
                     ((ROIBase)ROIList[i]).draw(window);
                 }
 
