@@ -48,8 +48,8 @@ namespace SolveWare_Service_Vision.ROIs.Business
         /// <summary>Creates a new ROI instance at the mouse position.</summary>
         public override void createROI(double midX, double midY)
         {
-            midR = midY;
-            midC = midX;
+            midR = midX;
+            midC = midY;
 
             row1 = midR;
             col1 = -3000;//midC - 50;
@@ -86,6 +86,7 @@ namespace SolveWare_Service_Vision.ROIs.Business
         {
             //.SetLineStyle(new HTuple(10, 30));
             window.SetLineWidth(1);
+            window.SetColor("green");
             window.DispLine(row1, col1, row2, col2);
             window.DispLine(row3, col3, row4, col4);
             window.SetLineStyle(new HTuple());

@@ -24,11 +24,12 @@ namespace SolveWare_ViewTest
 
             IView testView = new Form_ImageHost();
             testView.Setup(new Camera_Basler(new ConfigData_Camera()));
+            Application.Run(testView as Form);
 
-            UserHWControls userForm = new UserHWControls();
-            Form form =new Form();
-            form.Controls.Add(userForm);
-            Application.Run(form);
+            //UserHWControls userForm = new UserHWControls();
+            //Form form = new Form();
+            //form.Controls.Add(userForm);
+            //Application.Run(form);
         }
     }
 }

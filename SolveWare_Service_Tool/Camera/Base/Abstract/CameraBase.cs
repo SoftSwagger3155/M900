@@ -29,7 +29,7 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         public byte[] image_Buffer { get; }
         public int ExposureTime { get; set; }
         public int Gain { get; set; }
-        public double FrameRate { get; set; }
+        public int FrameRate { get; set; }
         public long GrabTime { get; set; }
         public Data_MMperPixel MMperPixelData { get; set; }
 
@@ -39,6 +39,12 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
             get=> configData;
             set => configData = value;
         }
+
+        public string CameraGrabCapabilityInfo
+        {
+            get => $"PPS {FrameRate} Grab {GrabTime} ms";
+        }
+        
 
         public HWindow WindowHost { get; private set; }
         public void SetWindowHost(HWindow win)
