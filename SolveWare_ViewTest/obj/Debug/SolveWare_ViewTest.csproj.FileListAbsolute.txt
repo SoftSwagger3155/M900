@@ -13,11 +13,15 @@ D:\M900开发平台\M901\M900_Dlls\SolveWare_ViewTest.exe.config
 D:\M900开发平台\M901\M900_Dlls\SolveWare_ViewTest.exe
 D:\M900开发平台\M901\M900_Dlls\SolveWare_ViewTest.pdb
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.AssemblyReference.cache
+D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Form1.resources
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Properties.Resources.resources
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.GenerateResource.cache
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.CoreCompileInputs.cache
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.CopyComplete
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.exe
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.pdb
+<<<<<<< HEAD
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Form1.resources
 E:\M900软件平台\M900\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Form1.resources
+=======
+>>>>>>> 5d6962b2a594a41ce8a07c11075bf633d1882774

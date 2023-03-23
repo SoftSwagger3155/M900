@@ -61,12 +61,7 @@ namespace SolveWare_Service_Vision.View.Forms
 
         private void tsb_AutoImage_Click(object sender, EventArgs e)
         {
-            if (camera == null)
-            {
-                SolveWare.Core.MMgr.Infohandler.LogMessage("无相机物件", true, true);
-                return;
-            }
-            camera.StartLive(50);
+
         }
 
         private void tsb_OpenImage_Click(object sender, EventArgs e)
@@ -74,6 +69,9 @@ namespace SolveWare_Service_Vision.View.Forms
             this.mmgr.Open_File_To_Get_Image();
         }
 
+<<<<<<< HEAD
+        bool isShowCross = false;
+=======
         private void tsb_DrawCircle_Click(object sender, EventArgs e)
         {
             mmgr.AddROI(new ROI_Circle());
@@ -84,6 +82,7 @@ namespace SolveWare_Service_Vision.View.Forms
             mmgr.AddROI(new ROI_Rectangle());
         }
 
+>>>>>>> f13614b6d60c63a69de90ab4ffdfbf48a575aeac
         private void tsb_IsShowCrros_Click(object sender, EventArgs e)
         {
             if (mmgr.IsShowCross)
@@ -94,8 +93,8 @@ namespace SolveWare_Service_Vision.View.Forms
 
         private void hWindowControl1_HMouseMove(object sender, HMouseEventArgs e)
         {
-            this.tssl_Location.Text = mmgr.Location;
-            this.tssl_GrayValue.Text = mmgr.PointGrey;
+            //this.tssl_Location.Text = mmgr.Location;
+            //this.tssl_GrayValue.Text = mmgr.PointGrey;
         }
 
         private void tsb_AutoImage_Click_1(object sender, EventArgs e)
@@ -103,6 +102,13 @@ namespace SolveWare_Service_Vision.View.Forms
             mmgr.Fit_Image();
         }
 
+<<<<<<< HEAD
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+=======
         private void tsb_Play_Click(object sender, EventArgs e)
         {
             this.mmgr.StartLive();
@@ -130,6 +136,7 @@ namespace SolveWare_Service_Vision.View.Forms
 
 
 
+>>>>>>> f13614b6d60c63a69de90ab4ffdfbf48a575aeac
         ////变量
         //CameraBase camera;
         //HWndCtrl _viewCtrl;
