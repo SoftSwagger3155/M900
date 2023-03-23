@@ -86,6 +86,8 @@
     <Compile Include="ROIs\Business\ROI_Rectangle.cs" />
     <Compile Include="ROIs\Business\ROI_Circle.cs" />
     <Compile Include="ROIs\Business\ROI_Line.cs" />
+    <Compile Include="ROIs\Defintions\Enum_Mouse_Event_Mode.cs" />
+    <Compile Include="ROIs\Manage\Manage_HWindow_Controller.cs" />
     <Compile Include="View\Forms\Form_ImageHost.cs">
       <SubType>Form</SubType>
     </Compile>
