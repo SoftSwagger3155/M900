@@ -36,6 +36,22 @@ namespace SolveWare_Service_Vision.View.Forms
         {
             this.camera = obj as CameraBase;
             mmgr = new Manage_HWindow_Controller(this.hWindowControl1, camera);
+            this.camera.SetWindowHost(this.hWindowControl1.HalconWindow);
+            Label lab = new Label();
+
+            this.camera.PropertyChanged -= Camera_PropertyChanged;
+            this.camera.PropertyChanged += Camera_PropertyChanged;
+        }
+
+        private void Camera_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(camera.CameraGrabCapabilityInfo))
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.tssl_CameraCapabilityInfo.Text = camera.CameraGrabCapabilityInfo;
+                }) );
+            }
         }
 
         private void ViewPort_HMouseMove(object sender, HMouseEventArgs e)
@@ -60,27 +76,20 @@ namespace SolveWare_Service_Vision.View.Forms
 
         private void tsb_DrawCircle_Click(object sender, EventArgs e)
         {
-
+            mmgr.AddROI(new ROI_Circle());
         }
 
         private void tsb_DrawRectangle_Click(object sender, EventArgs e)
         {
-            
+            mmgr.AddROI(new ROI_Rectangle());
         }
 
-        bool isShowCross = false;
         private void tsb_IsShowCrros_Click(object sender, EventArgs e)
         {
-            //if (!isShowCross)
-            //{
-            //    mmgr.GenerateCrossLine(this.hWindowControl1.ImagePart.Height, this.hWindowControl1.ImagePart.Width);
-            //    isShowCross = true;
-            //}
-            //else
-            //{
-            //    isShowCross = false;
-            //    mmgr.ClearCrossLine();
-            //}
+            if (mmgr.IsShowCross)
+                mmgr.ClearCrossLine();
+            else
+                mmgr.GenerateCrossLine();
         }
 
         private void hWindowControl1_HMouseMove(object sender, HMouseEventArgs e)
@@ -93,6 +102,33 @@ namespace SolveWare_Service_Vision.View.Forms
         {
             mmgr.Fit_Image();
         }
+
+        private void tsb_Play_Click(object sender, EventArgs e)
+        {
+            this.mmgr.StartLive();
+        }
+
+        private void tsb_Stop_Click(object sender, EventArgs e)
+        {
+            this.mmgr.StopLive();
+        }
+
+        private void tsb_GrabOneImage_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tsb_DrawLines_Click(object sender, EventArgs e)
+        {
+            this.mmgr.AddROI(new ROI_Line());
+        }
+
+        private void tsb_ClearHwindow_Click(object sender, EventArgs e)
+        {
+            this.mmgr.ClearROIs();
+        }
+
+
 
         ////变量
         //CameraBase camera;

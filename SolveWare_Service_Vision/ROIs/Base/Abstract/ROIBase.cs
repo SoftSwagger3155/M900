@@ -13,6 +13,7 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
         public string RoiType { get; set; }
 
         public string RoiName { get; set; }
+        public bool IsAuxiliaryROI { get; set; }
         // class members of inheriting ROI classes
         protected int NumHandles;
         protected int activeHandleIdx;

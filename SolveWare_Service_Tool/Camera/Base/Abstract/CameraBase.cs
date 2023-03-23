@@ -42,7 +42,7 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
 
         public string CameraGrabCapabilityInfo
         {
-            get => $"PPS {FrameRate} Grab {GrabTime} ms";
+            get => $"{GrabTime} ms";
         }
         
 

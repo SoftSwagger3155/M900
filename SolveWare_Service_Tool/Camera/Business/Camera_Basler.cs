@@ -29,7 +29,7 @@ namespace SolveWare_Service_Tool.Camera.Business
         static Version Sfnc2_0_0 = new Version(2, 0, 0);
         //public ConfigData_Camera ConfigData { get; set; }
 
-        public Camera_Basler(IElement configData): base(configData)
+        public Camera_Basler(IElement configData) : base(configData)
         {
             //this.ConfigData = configData as ConfigData_Camera;
             stopwatch = new Stopwatch();
@@ -125,9 +125,12 @@ namespace SolveWare_Service_Tool.Camera.Business
                             {
                                 this.FrameRate = new Random().Next(50, 101);
                                 this.GrabTime = new Random().Next(50, 101);
-                                HOperatorSet.SetTposition(this.WindowHost, 10, 10);
-                                HOperatorSet.SetColor(this.WindowHost, "green");
-                                HOperatorSet.WriteString(this.WindowHost, this.CameraGrabCapabilityInfo);
+                                OnPropertyChanged(nameof(CameraGrabCapabilityInfo));
+                                //HOperatorSet.SetTposition(this.WindowHost, 10, 10);
+                                //HOperatorSet.SetColor(this.WindowHost, "green");
+                                //HOperatorSet.WriteString(this.WindowHost, this.CameraGrabCapabilityInfo);
+
+                                Thread.Sleep(delayTime_ms);
                             }
                             StopFlag.Set();
 
@@ -137,6 +140,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                         break;
                     }
 
+                    if (camera_Basler == null) break;
                     if (!camera_Basler.StreamGrabber.IsGrabbing)
                     {
                         camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
@@ -150,7 +154,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                 errorCode = ErrorCodes.VisionFailed;
             }
 
-            if(errorCode != ErrorCodes.NoError)
+            if (errorCode != ErrorCodes.NoError)
                 SolveWare.Core.MMgr.Infohandler.LogMessage("Error: 相机实时拍摄功能", true, true);
 
             return errorCode;
@@ -167,9 +171,11 @@ namespace SolveWare_Service_Tool.Camera.Business
                     {
                         simulateSource.Cancel();
                         StopFlag.WaitOne(5000);
+                        simulateSource = null;
                         break;
                     }
 
+                    if (camera_Basler == null) break;
                     if (camera_Basler.StreamGrabber.IsGrabbing)
                     {
                         camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
