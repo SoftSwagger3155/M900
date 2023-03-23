@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="halcondotnet">
+    <Reference Include="halcondotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\halcondotnet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -114,14 +115,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\Resources\Auto.png" />
+    <Content Include="View\Resources\camera.png" />
     <Content Include="View\Resources\Circle.png" />
     <Content Include="View\Resources\Clear.png" />
     <Content Include="View\Resources\ColorChanne.png" />
     <Content Include="View\Resources\Cross.png" />
     <Content Include="View\Resources\Lines.png" />
+    <Content Include="View\Resources\moviePlay.png" />
     <Content Include="View\Resources\OpenFile.png" />
+    <Content Include="View\Resources\play-green.png" />
     <Content Include="View\Resources\Rectangle.png" />
     <Content Include="View\Resources\Save.png" />
+    <Content Include="View\Resources\stop-red.png" />
     <Content Include="View\Resources\VisionLocation.png" />
   </ItemGroup>
   <ItemGroup>

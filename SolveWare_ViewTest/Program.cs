@@ -1,5 +1,7 @@
 ﻿using HVision;
+using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Tool.Camera.Business;
 using SolveWare_Service_Tool.Camera.Data;
 using SolveWare_Service_Vision.View.Forms;
@@ -23,7 +25,9 @@ namespace SolveWare_ViewTest
             Application.SetCompatibleTextRenderingDefault(false);
 
             IView testView = new Form_ImageHost();
-            testView.Setup(new Camera_Basler(new ConfigData_Camera()));
+            ConfigData_Camera data = new ConfigData_Camera { IsSimulation = true };
+            ICamera camera = new Camera_Basler(data);
+            testView.Setup(camera);
             Application.Run(testView as Form);
 
             //UserHWControls userForm = new UserHWControls();

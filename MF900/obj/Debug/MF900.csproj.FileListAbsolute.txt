@@ -133,3 +133,4 @@ D:\M900开发平台\M901\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
 D:\M900开发平台\M901\MF900\obj\Debug\MF900.csproj.CopyComplete
 D:\M900开发平台\M901\MF900\obj\Debug\MF900.exe
 D:\M900开发平台\M901\MF900\obj\Debug\MF900.pdb
+E:\M900软件平台\M900\MF900\obj\Debug\MF900.exe.config
