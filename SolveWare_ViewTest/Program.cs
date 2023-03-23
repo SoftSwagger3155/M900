@@ -24,11 +24,11 @@ namespace SolveWare_ViewTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IView testView = new Form_ImageHost();
-            ConfigData_Camera data = new ConfigData_Camera { IsSimulation = true };
-            ICamera camera = new Camera_Basler(data);
-            testView.Setup(camera);
-            Application.Run(testView as Form);
+            //IView testView = new Form_ImageHost();
+            //ConfigData_Camera data = new ConfigData_Camera { IsSimulation = true };
+            //ICamera camera = new Camera_Basler(data);
+            //testView.Setup(camera);
+            //Application.Run(testView as Form);
 
             //UserHWControls userForm = new UserHWControls();
             //Form form = new Form();
