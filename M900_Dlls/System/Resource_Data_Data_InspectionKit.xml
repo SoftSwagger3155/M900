@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfData_InspectionKit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Data_InspectionKit>
-    <Name>上相机治具视觉</Name>
+    <Name>上相机 下治具 Mark点 视觉</Name>
     <JobSheet_Brightness_Datas />
     <JobSheet_Lighting_Datas />
     <JobSheet_SearchArea_Data>
@@ -22,10 +22,6 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
-    <FirstPoint>
-      <X>0</X>
-      <Y>0</Y>
-    </FirstPoint>
   </Data_InspectionKit>
   <Data_InspectionKit>
     <Name>上相机圆孔视觉</Name>
@@ -49,13 +45,9 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
-    <FirstPoint>
-      <X>0</X>
-      <Y>0</Y>
-    </FirstPoint>
   </Data_InspectionKit>
   <Data_InspectionKit>
-    <Name>下相机治具视觉</Name>
+    <Name>下相机 上治具 Mark点 视觉</Name>
     <JobSheet_Brightness_Datas />
     <JobSheet_Lighting_Datas />
     <JobSheet_SearchArea_Data>
@@ -76,10 +68,6 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
-    <FirstPoint>
-      <X>0</X>
-      <Y>0</Y>
-    </FirstPoint>
   </Data_InspectionKit>
   <Data_InspectionKit>
     <Name>下相机圆孔视觉</Name>
@@ -103,9 +91,5 @@
       <HorizontalMeasureLength>0</HorizontalMeasureLength>
       <MeasureSigma>0</MeasureSigma>
     </JobSheet_Blob_Data>
-    <FirstPoint>
-      <X>0</X>
-      <Y>0</Y>
-    </FirstPoint>
   </Data_InspectionKit>
 </ArrayOfData_InspectionKit>

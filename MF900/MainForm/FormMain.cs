@@ -19,7 +19,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace MF900
 {
-    public partial class FormMain : Form  //CCSkinMain
+    public partial class FormMain : UIForm  //CCSkinMain
     {
         private Form formCurrent;
         private FormButtonMain formButton;
@@ -40,8 +40,8 @@ namespace MF900
         public FormMain()
         {
             InitializeComponent();
-            ProgramParamMange.ReadAxisPara();
-            ProgramParamMange.ReadBasePara();
+            //ProgramParamMange.ReadAxisPara();
+            //ProgramParamMange.ReadBasePara();
             OpenMotionCar(); //连接控制器
             NewForm();
             OpenForm(formButton, panelButtonShow);

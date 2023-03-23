@@ -41,9 +41,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\CSkin.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2">
-      <HintPath>..\..\Mason901_Hanbing_0926\Mason901\Run\DevComponents.DotNetBar2.dll</HintPath>
-    </Reference>
     <Reference Include="Halcon.Functions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\视觉\IntegratedSoftware-master\Halcon\Functions\obj\Debug\Halcon.Functions.dll</HintPath>

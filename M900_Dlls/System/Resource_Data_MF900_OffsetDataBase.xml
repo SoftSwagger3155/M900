@@ -7,11 +7,4 @@
     <ManualOffsetX>0</ManualOffsetX>
     <ManualOffsetY>0</ManualOffsetY>
   </MF900_OffsetDataBase>
-  <MF900_OffsetDataBase xsi:type="Data_Top_Camera_Top_Prober_Offset">
-    <Name>上相机-上治具 Offset Data</Name>
-    <OffsetX>0</OffsetX>
-    <OffsetY>0</OffsetY>
-    <ManualOffsetX>0</ManualOffsetX>
-    <ManualOffsetY>0</ManualOffsetY>
-  </MF900_OffsetDataBase>
 </ArrayOfMF900_OffsetDataBase>
