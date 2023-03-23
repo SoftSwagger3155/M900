@@ -1,4 +1,5 @@
-﻿using Sunny.UI;
+﻿using SolveWare_Service_Core.Base.Interface;
+using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,13 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MF900
+namespace MF900_SolveWare
 {
-    public partial class FormCheckLevelZ2 : Form
+    public partial class FormCheckLevelZ2 : Form, IView
     {
         public FormCheckLevelZ2()
         {
             InitializeComponent();
+        }
+
+        public void Setup<TObj>(TObj obj)
+        {
+            throw new NotImplementedException();
         }
 
         //左前限位

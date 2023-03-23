@@ -211,20 +211,6 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             try
             {
-                /*
-                 Atype类型 描述
-                0 虚拟轴。
-                1 脉冲方向方式的步进或伺服 。
-                2 模拟信号控制方式的伺服 。
-                3 正交编码器 。
-                4 步进+编码器 。
-                6 脉冲方向方式的编码器，可用于手轮输入。
-                7 脉冲方向方式步进或伺服+EZ信号输入。
-                8 ZCAN扩展脉冲方向方式步进或伺服 。
-                9 ZCAN扩展正交编码器。
-                10 ZCAN扩展脉冲方向方式的编码器。
-                 */
-
                 do
                 {
                     Conver_To_Jog_MMPerSec(ref minVel, ref maxVel, ref acc, ref dec);

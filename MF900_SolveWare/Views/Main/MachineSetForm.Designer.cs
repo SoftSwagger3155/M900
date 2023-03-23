@@ -549,6 +549,7 @@ namespace MF900_SolveWare
             this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.uiTableLayoutPanel3.Size = new System.Drawing.Size(417, 396);
+            this.uiTableLayoutPanel3.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel3.TabIndex = 0;
             this.uiTableLayoutPanel3.TagString = null;
             // 
@@ -573,6 +574,7 @@ namespace MF900_SolveWare
             this.uiRadioButton3.Name = "uiRadioButton3";
             this.uiRadioButton3.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton3.Size = new System.Drawing.Size(80, 24);
+            this.uiRadioButton3.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton3.TabIndex = 1;
             this.uiRadioButton3.Text = "测量";
             this.uiRadioButton3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -584,6 +586,7 @@ namespace MF900_SolveWare
             this.uiLabel1.Location = new System.Drawing.Point(14, 13);
             this.uiLabel1.Name = "uiLabel1";
             this.uiLabel1.Size = new System.Drawing.Size(90, 21);
+            this.uiLabel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel1.TabIndex = 0;
             this.uiLabel1.Text = "运行模式：";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -598,6 +601,7 @@ namespace MF900_SolveWare
             this.uiRadioButton1.Name = "uiRadioButton1";
             this.uiRadioButton1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton1.Size = new System.Drawing.Size(80, 24);
+            this.uiRadioButton1.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton1.TabIndex = 1;
             this.uiRadioButton1.Text = "检查";
             this.uiRadioButton1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -611,6 +615,7 @@ namespace MF900_SolveWare
             this.uiRadioButton2.Name = "uiRadioButton2";
             this.uiRadioButton2.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton2.Size = new System.Drawing.Size(80, 24);
+            this.uiRadioButton2.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton2.TabIndex = 1;
             this.uiRadioButton2.Text = "测试";
             this.uiRadioButton2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -635,6 +640,7 @@ namespace MF900_SolveWare
             this.uiRadioButton5.Name = "uiRadioButton5";
             this.uiRadioButton5.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton5.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton5.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton5.TabIndex = 1;
             this.uiRadioButton5.Text = "步骤";
             this.uiRadioButton5.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -646,6 +652,7 @@ namespace MF900_SolveWare
             this.uiLabel2.Location = new System.Drawing.Point(14, 13);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(90, 21);
+            this.uiLabel2.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel2.TabIndex = 0;
             this.uiLabel2.Text = "程序执行：";
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -660,6 +667,7 @@ namespace MF900_SolveWare
             this.uiRadioButton4.Name = "uiRadioButton4";
             this.uiRadioButton4.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton4.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton4.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton4.TabIndex = 1;
             this.uiRadioButton4.Text = "连续";
             this.uiRadioButton4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -684,6 +692,7 @@ namespace MF900_SolveWare
             this.uiRadioButton7.Name = "uiRadioButton7";
             this.uiRadioButton7.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton7.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton7.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton7.TabIndex = 1;
             this.uiRadioButton7.Text = "手动";
             this.uiRadioButton7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -695,6 +704,7 @@ namespace MF900_SolveWare
             this.uiLabel3.Location = new System.Drawing.Point(14, 13);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(90, 21);
+            this.uiLabel3.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel3.TabIndex = 0;
             this.uiLabel3.Text = "工件夹持：";
             this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -709,6 +719,7 @@ namespace MF900_SolveWare
             this.uiRadioButton6.Name = "uiRadioButton6";
             this.uiRadioButton6.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton6.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton6.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton6.TabIndex = 1;
             this.uiRadioButton6.Text = "自动";
             this.uiRadioButton6.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -733,6 +744,7 @@ namespace MF900_SolveWare
             this.uiRadioButton9.Name = "uiRadioButton9";
             this.uiRadioButton9.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton9.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton9.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton9.TabIndex = 1;
             this.uiRadioButton9.Text = "OFF";
             this.uiRadioButton9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -744,6 +756,7 @@ namespace MF900_SolveWare
             this.uiLabel4.Location = new System.Drawing.Point(14, 12);
             this.uiLabel4.Name = "uiLabel4";
             this.uiLabel4.Size = new System.Drawing.Size(122, 21);
+            this.uiLabel4.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel4.TabIndex = 0;
             this.uiLabel4.Text = "检查结果打标：";
             this.uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -758,6 +771,7 @@ namespace MF900_SolveWare
             this.uiRadioButton8.Name = "uiRadioButton8";
             this.uiRadioButton8.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton8.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton8.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton8.TabIndex = 1;
             this.uiRadioButton8.Text = "ON";
             this.uiRadioButton8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -780,6 +794,7 @@ namespace MF900_SolveWare
             this.uiLabel5.Location = new System.Drawing.Point(14, 12);
             this.uiLabel5.Name = "uiLabel5";
             this.uiLabel5.Size = new System.Drawing.Size(122, 21);
+            this.uiLabel5.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel5.TabIndex = 0;
             this.uiLabel5.Text = "检查完成打标：";
             this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -794,6 +809,7 @@ namespace MF900_SolveWare
             this.uiRadioButton11.Name = "uiRadioButton11";
             this.uiRadioButton11.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton11.Size = new System.Drawing.Size(80, 21);
+            this.uiRadioButton11.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton11.TabIndex = 1;
             this.uiRadioButton11.Text = "OFF";
             this.uiRadioButton11.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -807,6 +823,7 @@ namespace MF900_SolveWare
             this.uiRadioButton10.Name = "uiRadioButton10";
             this.uiRadioButton10.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton10.Size = new System.Drawing.Size(80, 21);
+            this.uiRadioButton10.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton10.TabIndex = 1;
             this.uiRadioButton10.Text = "ON";
             this.uiRadioButton10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -829,6 +846,7 @@ namespace MF900_SolveWare
             this.uiLabel7.Location = new System.Drawing.Point(14, 12);
             this.uiLabel7.Name = "uiLabel7";
             this.uiLabel7.Size = new System.Drawing.Size(152, 21);
+            this.uiLabel7.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel7.TabIndex = 0;
             this.uiLabel7.Text = "Interleaf Control：";
             this.uiLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -843,6 +861,7 @@ namespace MF900_SolveWare
             this.uiRadioButton16.Name = "uiRadioButton16";
             this.uiRadioButton16.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton16.Size = new System.Drawing.Size(80, 21);
+            this.uiRadioButton16.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton16.TabIndex = 1;
             this.uiRadioButton16.Text = "OFF";
             this.uiRadioButton16.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -856,6 +875,7 @@ namespace MF900_SolveWare
             this.uiRadioButton15.Name = "uiRadioButton15";
             this.uiRadioButton15.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton15.Size = new System.Drawing.Size(80, 21);
+            this.uiRadioButton15.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton15.TabIndex = 1;
             this.uiRadioButton15.Text = "ON";
             this.uiRadioButton15.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -881,6 +901,7 @@ namespace MF900_SolveWare
             this.uiRadioButton14.Name = "uiRadioButton14";
             this.uiRadioButton14.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton14.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton14.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton14.TabIndex = 1;
             this.uiRadioButton14.Text = "手动";
             this.uiRadioButton14.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -892,6 +913,7 @@ namespace MF900_SolveWare
             this.uiLabel6.Location = new System.Drawing.Point(14, 13);
             this.uiLabel6.Name = "uiLabel6";
             this.uiLabel6.Size = new System.Drawing.Size(97, 21);
+            this.uiLabel6.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel6.TabIndex = 0;
             this.uiLabel6.Text = "供给/排出：";
             this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -906,6 +928,7 @@ namespace MF900_SolveWare
             this.uiRadioButton13.Name = "uiRadioButton13";
             this.uiRadioButton13.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton13.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton13.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton13.TabIndex = 1;
             this.uiRadioButton13.Text = "一周";
             this.uiRadioButton13.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -919,6 +942,7 @@ namespace MF900_SolveWare
             this.uiRadioButton12.Name = "uiRadioButton12";
             this.uiRadioButton12.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
             this.uiRadioButton12.Size = new System.Drawing.Size(80, 25);
+            this.uiRadioButton12.Style = Sunny.UI.UIStyle.Custom;
             this.uiRadioButton12.TabIndex = 1;
             this.uiRadioButton12.Text = "连续";
             this.uiRadioButton12.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -936,7 +960,7 @@ namespace MF900_SolveWare
             this.tabPage2.Controls.Add(this.uiGroupBox2);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(200, 60);
+            this.tabPage2.Size = new System.Drawing.Size(423, 431);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "选项";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -948,13 +972,16 @@ namespace MF900_SolveWare
             this.uiGroupBox2.Controls.Add(this.uiCheckBox2);
             this.uiGroupBox2.Controls.Add(this.uiCheckBox1);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGroupBox2.FillColor = System.Drawing.Color.White;
             this.uiGroupBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiGroupBox2.Location = new System.Drawing.Point(0, 0);
             this.uiGroupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiGroupBox2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiGroupBox2.Name = "uiGroupBox2";
             this.uiGroupBox2.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.uiGroupBox2.Size = new System.Drawing.Size(200, 60);
+            this.uiGroupBox2.Size = new System.Drawing.Size(423, 431);
+            this.uiGroupBox2.Style = Sunny.UI.UIStyle.Custom;
+            this.uiGroupBox2.StyleCustomMode = true;
             this.uiGroupBox2.TabIndex = 2;
             this.uiGroupBox2.Text = "执行选项";
             this.uiGroupBox2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MF900
+namespace MF900_SolveWare
 {
     public partial class FormDataCodeDebug : Form, IView
     {

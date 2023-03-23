@@ -251,6 +251,7 @@ namespace MF900_SolveWare
             this.btn_StartSetPro.Text = "开 始";
             this.btn_StartSetPro.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_StartSetPro.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_StartSetPro.Click += new System.EventHandler(this.btn_StartSetPro_Click);
             // 
             // tableLayoutPanel2
             // 

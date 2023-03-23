@@ -71,6 +71,19 @@
       <DependentUpon>AxisJop.cs</DependentUpon>
     </Compile>
     <Compile Include="Business\MainManager.cs" />
+    <Compile Include="FormCommunic\FormSwitch.cs" />
+    <Compile Include="Views\ProductPanelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProductPanelForm.Designer.cs">
+      <DependentUpon>ProductPanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgramPanelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProgramPanelForm.Designer.cs">
+      <DependentUpon>ProgramPanelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Child\FormJipOffset.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +251,12 @@
     <EmbeddedResource Include="DeControls\AxisJop.resx">
       <DependentUpon>AxisJop.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductPanelForm.resx">
+      <DependentUpon>ProductPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProgramPanelForm.resx">
+      <DependentUpon>ProgramPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\FormJipOffset.resx">
       <DependentUpon>FormJipOffset.cs</DependentUpon>
     </EmbeddedResource>
@@ -366,6 +385,24 @@
     <Folder Include="Data\" />
     <Folder Include="FSM\" />
     <Folder Include="Index\Business\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LeftRotate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightRotate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
