@@ -109,3 +109,4 @@ E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.OutButton.res
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.ProgramSetForm.resources
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.RunForm.resources
 >>>>>>> 77d2fbee7331ab8c7e826df86aebf150ef0e2513
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe.config
