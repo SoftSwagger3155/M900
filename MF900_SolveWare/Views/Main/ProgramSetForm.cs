@@ -13,14 +13,22 @@ namespace MF900_SolveWare
 {
     public partial class ProgramSetForm : Form, IView
     {
+       
         public ProgramSetForm()
         {
             InitializeComponent();
         }
 
+        public event Action<bool> SwitchProcessForm;
+
         public void Setup<TData>(TData data)
         {
             throw new NotImplementedException();
+        }
+
+        private void btn_StartSetPro_Click(object sender, EventArgs e)
+        {
+            SwitchProcessForm(false);
         }
     }
 }

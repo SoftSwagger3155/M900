@@ -1,5 +1,5 @@
 ﻿
-namespace MF900
+namespace MF900_SolveWare
 {
     partial class FormJipData
     {

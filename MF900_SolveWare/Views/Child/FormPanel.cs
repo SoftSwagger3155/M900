@@ -10,64 +10,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MF900
+namespace MF900_SolveWare
 {
     public delegate void ParaUpdateEventHandler();
     public partial class FormPanel : Form, IView
     {
-        private Form formCurrent;
-        private FormProductData formProductData;
-        public event Action<string> FormButtonChange;
         public event Action<string> FormMainChange;
         public event ParaUpdateEventHandler ParaUpdateEvent;
+        public Dictionary<string, Form> dicProcessForm =null;
         public FormPanel()
         {
             InitializeComponent();
+            dicProcessForm = new Dictionary<string, Form>()
+            {
+                {"FormProductData",new FormProductData() },
+                {"FormBoardMessage",new FormBoardMessage() },
+                {"FormDebugTableTop",new FormDebugTableTop() },
+                {"FormCheckMarking",new FormCheckMarking() },
+                {"FormRunOption",new FormRunOption() },
+                {"FormJigOpations",new FormJigOpations() },
+                {"FormJipChange",new FormJipChange() },
+                {"FormJipData",new FormJipData() },
+                {"FormJipImageLogin",new FormJipImageLogin() },
+                {"FormJipOffset",new FormJipOffset() },
+                {"FormWorkPieceDebug",new FormWorkPieceDebug() },
+                {"FormLoginMarkImage",new FormLoginMarkImage() },
+                {"FormDataCodeDebug",new FormDataCodeDebug() },
+                {"FormCheckLevelZ2",new FormCheckLevelZ2() },
+                {"FormAdjustLevelZ",new FormAdjustLevelZ() },
+            };
+            Showsubform(new FormProductData().Name);
         }
-        /// <summary>
-        /// 界面切换
-        /// </summary>
-        /// <param name="name"></param>
+
         public void Showsubform(string name)
         {
-            //foreach (Form f in new Form[] {formProgramSet,  new FormProductData(), new FormBoardMessage(),new FormDebugTableTop(),
-            //new FormCheckMarking(),new FormRunOption(),new FormJigOpations(),new FormJipChange(),new FormJipData(),
-            //new FormJipImageLogin(),new FormJipOffset(),new FormCoveyHandleSet(),new FormWorkPieceDebug(),new FormLoginMarkImage(),
-            //new FormDataCodeDebug(),new FormCheckLevelZ2(),new FormAdjustOffsetZ1(),new FormAdjustLevelZ()})
-            //{
-            //    if (f.Name as string == name)
-            //    {
-            //        formCurrent = f;
-            //        OpenForm(f, panel1);
-            //    }
-            //}
-        }
-        public void OpenForm(Form childForm, Panel panel)
-        {
-            try
+            foreach (KeyValuePair<string, Form> f in dicProcessForm)
             {
-                //判断容器中是否有其他的窗体
-                foreach (Control item in panel.Controls)
+                if (f.Value.Name == name)
                 {
-                    if (item is Form)
-                    {
-                        ((Form)item).Visible = false;
-                    }
+                    FormSwitch.SwitchForm(f.Value, panel1);
                 }
-                if (childForm != null)
-                {
-                    //嵌入新窗体
-                    childForm.TopLevel = false; //将子窗体设置成非顶级控件
-                    childForm.Parent = panel;
-                    childForm.Dock = DockStyle.Fill;   //随着容S器大小自动调整窗体大小
-                    childForm.Show();
-                    childForm.BringToFront();
-                    this.Refresh();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("窗体切换错误:" + ex.Message);
             }
         }
 
@@ -77,7 +59,6 @@ namespace MF900
                 return;
 
             FormMainChange("FormProgramSet");
-            FormButtonChange("FormButtonMain");
             ParaUpdateEvent.Invoke();
 
         }

@@ -422,26 +422,26 @@ namespace MF900
         /// <param name="strValue1"></param>
         public virtual void CreateText(string filePath, string file, string strValue1)
         {
+            FileAccess fileAccess = FileAccess.Write;
+            FileShare fileShare = FileShare.Write;
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
             }
-
-            if (!File.Exists(filePath + "\\" + file))
+            
+            FileMode fileMode = FileMode.Create;
+            if (File.Exists(filePath + "\\" + file))
             {
-                FileStream fs1 = new FileStream(filePath + "\\" + file, FileMode.Create, FileAccess.Write, FileShare.Write);//创建写入文件 
-                StreamWriter sw = new StreamWriter(fs1, Encoding.Default);
-                sw.WriteLine(DateTime.Now.ToString("G")+ strValue1);//开始写入值
-                sw.Close();
-                fs1.Close();
+                fileMode = FileMode.Append;
             }
-            else
+            using (FileStream fs = new FileStream(filePath + "\\" + file, fileMode, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
-                FileStream fs = new FileStream(filePath + "\\" + file, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
-                StreamWriter sr = new StreamWriter(fs, Encoding.Default);
-                //sw = new StreamWriter(filePath + "\\" + file, true, Encoding.Default);//true可连续写值
-                sr.WriteLine(DateTime.Now.ToString("G") + strValue1);//开始写入值
-                sr.Close();
+                using (StreamWriter sr = new StreamWriter(fs, Encoding.Default))
+                {
+                    sr.WriteLine(DateTime.Now.ToString("G") + strValue1);
+                    sr.Close();
+                    fs.Close();
+                }
             }
         }
 

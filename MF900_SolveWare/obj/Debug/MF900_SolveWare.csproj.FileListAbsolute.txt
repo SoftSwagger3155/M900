@@ -44,6 +44,26 @@ D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.ParameterSetF
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.MachineStateForm.resources
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.MaintainingForm.resources
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.SystemLogForm.resources
+<<<<<<< HEAD
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormJipOffset.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormLoginMarkImage.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormPanel.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormRunOption.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormAdjustLevelZ.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormBoardMessage.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormCheckLevelZ2.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormCheckMarking.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormDataCodeDebug.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormDebugTableTop.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormJigOpations.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormJipChange.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormJipData.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormJipImageLogin.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormProductData.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.FormWorkPieceDebug.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.ProductPanelForm.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.ProgramPanelForm.resources
+=======
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900.FormJipOffset.resources
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900.FormLoginMarkImage.resources
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900.FormPanel.resources
@@ -88,3 +108,5 @@ E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.MainForm.reso
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.OutButton.resources
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.ProgramSetForm.resources
 E:\M900软件平台\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.RunForm.resources
+>>>>>>> 77d2fbee7331ab8c7e826df86aebf150ef0e2513
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe.config
