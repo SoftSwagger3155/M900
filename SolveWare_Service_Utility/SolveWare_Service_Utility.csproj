@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,15 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\Index\Data\Base\Data_IndexBase.cs" />
+    <Compile Include="Business\Index\Data\MF900_Data_Index.cs" />
+    <Compile Include="Business\Index\Job\Base\Job_IndexBase.cs" />
+    <Compile Include="Business\Index\Job\MF900_Job_Index.cs" />
+    <Compile Include="Business\IO\Data\Base\Data_IOBase.cs" />
+    <Compile Include="Business\IO\Data\MF900_Data_IO.cs" />
+    <Compile Include="Business\IO\Job\Base\Job_IOBase.cs" />
+    <Compile Include="Business\IO\Job\MF900_Job_IO.cs" />
+    <Compile Include="Business\Motion\Data\Base\Data_MotionBase.cs" />
+    <Compile Include="Business\Motion\Job\Base\Job_MotionBase.cs" />
+    <Compile Include="Business\Offset\Data\Base\Data_OffsetBase.cs" />
+    <Compile Include="Business\Offset\Job\Base\Job_OffsetBase.cs" />
     <Compile Include="Extension\ExtensionMethod.cs" />
     <Compile Include="Heler\Converters\String_Converter_DropDown_Camera_Name.cs" />
     <Compile Include="Heler\Converters\String_Converter_DropDown_IO_Name.cs" />
     <Compile Include="Heler\Converters\String_Converter_DropDown_Motor_Name.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Index\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
       <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>

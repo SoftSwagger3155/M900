@@ -51,9 +51,9 @@ namespace MF900_SolveWare.Business
         {
             IResourceProvider provider = null;
             //Offset Data
-            provider = new Resource_Data_Manager<MF900_OffsetDataBase>();
-            provider.Initialize();
-            provider.DoubleCheck(ResourceKey.Top_Camera_Top_Prober_OffsetData);
+            //provider = new Resource_Data_Manager<MF900_OffsetDataBase>();
+            //provider.Initialize();
+            //provider.DoubleCheck(ResourceKey.Top_Camera_Top_Prober_OffsetData);
 
             //视物Data
             provider = new Resource_Data_Manager<Data_InspectionKit>();

@@ -19,6 +19,11 @@ namespace SolveWare_Service_Vision.Inspection.Business
             return 0;
         }
 
+        public void Save(bool isShowWindow = false)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Setup(IElement data)
         {
             throw new NotImplementedException();

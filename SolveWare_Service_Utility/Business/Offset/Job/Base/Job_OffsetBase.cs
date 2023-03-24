@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MF900_SolveWare.Offset.Data
+namespace SolveWare_Service_Utility.Business.Offset.Job.Base
 {
-    public class Data_Top_Camera_Top_Prober_Offset: MF900_OffsetDataBase
+    internal class Job_OffsetBase
     {
     }
 }

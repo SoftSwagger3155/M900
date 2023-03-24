@@ -17,6 +17,11 @@ namespace SolveWare_Service_Vision.Inspection.Business
             return ErrorCode;
         }
 
+        public void Save(bool isShowWindow = false)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Setup(IElement data)
         {
             this.jobParam = data as JobSheet_Lighting;

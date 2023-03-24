@@ -1,5 +1,4 @@
-﻿using SolveWare_Service_Offset.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MF900_SolveWare.Index.Data
 {
-    public class MF900_IndexData : Data_Offset_Base
+    public class MF900_IndexData 
     {
         [Category("MF900 索引参数")]
         [DisplayName("PCB X 数量")]

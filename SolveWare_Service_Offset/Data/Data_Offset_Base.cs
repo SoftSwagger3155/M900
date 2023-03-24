@@ -12,6 +12,8 @@ namespace SolveWare_Service_Offset.Data
     {
         public double OffsetX { get; set; }
         public double OffsetY { get; set; }
+        public bool IsReverseX { get; set; }
+        public bool IsReverseY { get; set; }
         public double ManualOffsetX { get; set; }
         public double ManualOffsetY { get; set; }
     }

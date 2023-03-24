@@ -225,7 +225,7 @@
     <Compile Include="Index\Data\MF900_IndexData.cs" />
     <Compile Include="MMperPixel\Business\Job_MMperPixel_BtmCamera.cs" />
     <Compile Include="MMperPixel\Business\Job_MMperPixel_TopCamera.cs" />
-    <Compile Include="Offset\Data\Data_Top_Camera_Top_Prober_Offset.cs" />
+    <Compile Include="Offset\Data\Data_Camera_To_Prober_Offset.cs" />
     <Compile Include="Offset\Data\MF900_OffsetDataBase.cs" />
     <Compile Include="DeControls\OutButton.cs">
       <SubType>UserControl</SubType>
@@ -366,10 +366,6 @@
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
       <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
       <Name>SolveWare_Service_Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolveWare_Service_Offset\SolveWare_Service_Offset.csproj">
-      <Project>{EBF0C4CE-03F7-4183-8516-0B8E380F998A}</Project>
-      <Name>SolveWare_Service_Offset</Name>
     </ProjectReference>
     <ProjectReference Include="..\SolveWare_Service_Tool\SolveWare_Service_Tool.csproj">
       <Project>{A50E0066-FC5A-46CA-95FA-EB178D6F864D}</Project>

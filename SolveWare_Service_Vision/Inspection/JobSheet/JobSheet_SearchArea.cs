@@ -18,5 +18,10 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         public double Camera_Name { get; set; }
 
         public Data_ROI ROI_Data { get; set; }
+
+        public double Row_Y1 { get; set; }
+        public double Column_X1 { get; set; }
+        public double Row_Y2 { get; set; }
+        public double Column_X2 { get; set; }
     }
 }
