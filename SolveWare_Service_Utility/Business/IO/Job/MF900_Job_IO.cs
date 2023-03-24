@@ -16,7 +16,6 @@ namespace SolveWare_Service_Utility.Business.IO.Job
     [PairAttribute(typeof(MF900_Data_IO))]
     public class MF900_Job_IO : JobFundamentalBase, IDataModulePair
     {
-
         MF900_Data_IO iO_Data = null;
 
         public void Setup(IElement data)
