@@ -4,6 +4,7 @@ using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Tool.Camera.Business;
 using SolveWare_Service_Tool.Camera.Data;
+using SolveWare_Service_Vision;
 using SolveWare_Service_Vision.View.Forms;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,14 @@ namespace SolveWare_ViewTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //IView testView = new Form_ImageHost();
-            //ConfigData_Camera data = new ConfigData_Camera { IsSimulation = true };
-            //ICamera camera = new Camera_Basler(data);
-            //testView.Setup(camera);
-            //Application.Run(testView as Form);
+
+            IView testView = new SolveWare_Service_Vision.UserHWControls();
+            ConfigData_Camera data = new ConfigData_Camera { IsSimulation = true };
+            ICamera camera = new Camera_Basler(data);
+            testView.Setup(camera);
+            Form form = new Form();
+            form.Controls.Add(testView as Control);
+            Application.Run(form);
 
             //UserHWControls userForm = new UserHWControls();
             //Form form = new Form();

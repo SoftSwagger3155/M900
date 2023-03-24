@@ -29,6 +29,7 @@ namespace SolveWare_Service_Vision
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHWControls));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_GrayValue = new System.Windows.Forms.ToolStripStatusLabel();
@@ -43,6 +44,9 @@ namespace SolveWare_Service_Vision
             this.tsb_DrawLines = new System.Windows.Forms.ToolStripButton();
             this.tsb_ClearHwindow = new System.Windows.Forms.ToolStripButton();
             this.hWindowControl1 = new HalconDotNet.HWindowControl();
+            this.tssl_CameraCapabilityInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsb_Play = new System.Windows.Forms.ToolStripButton();
+            this.tsb_Stop = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -63,7 +67,7 @@ namespace SolveWare_Service_Vision
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 353);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(364, 401);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // statusStrip1
@@ -71,25 +75,26 @@ namespace SolveWare_Service_Vision
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssl_GrayValue,
-            this.tssl_Location});
-            this.statusStrip1.Location = new System.Drawing.Point(1, 330);
+            this.tssl_Location,
+            this.tssl_CameraCapabilityInfo});
+            this.statusStrip1.Location = new System.Drawing.Point(1, 378);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(318, 23);
+            this.statusStrip1.Size = new System.Drawing.Size(362, 23);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // tssl_GrayValue
             // 
-            //this.tssl_GrayValue.Image = global::SolveWare_Service_Vision.Properties.Resources.ColorChanne;
+            this.tssl_GrayValue.Image = ((System.Drawing.Image)(resources.GetObject("tssl_GrayValue.Image")));
             this.tssl_GrayValue.Name = "tssl_GrayValue";
-            this.tssl_GrayValue.Size = new System.Drawing.Size(45, 18);
+            this.tssl_GrayValue.Size = new System.Drawing.Size(51, 17);
             this.tssl_GrayValue.Text = "0,0";
             // 
             // tssl_Location
             // 
-            //this.tssl_Location.Image = Properties.Resources.VisionLocation;
+            this.tssl_Location.Image = ((System.Drawing.Image)(resources.GetObject("tssl_Location.Image")));
             this.tssl_Location.Name = "tssl_Location";
-            this.tssl_Location.Size = new System.Drawing.Size(45, 18);
+            this.tssl_Location.Size = new System.Drawing.Size(51, 17);
             this.tssl_Location.Text = "0,0";
             // 
             // toolStrip1
@@ -103,85 +108,94 @@ namespace SolveWare_Service_Vision
             this.tsb_DrawCircle,
             this.tsb_DrawRectangle,
             this.tsb_DrawLines,
-            this.tsb_ClearHwindow});
-            this.toolStrip1.Location = new System.Drawing.Point(1, 307);
+            this.tsb_ClearHwindow,
+            this.tsb_Play,
+            this.tsb_Stop});
+            this.toolStrip1.Location = new System.Drawing.Point(1, 355);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(318, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(362, 23);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // tsb_OpenImage
             // 
             this.tsb_OpenImage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            //this.tsb_OpenImage.Image = global::HVision.Properties.Resources.OpenFile;
+            this.tsb_OpenImage.Image = ((System.Drawing.Image)(resources.GetObject("tsb_OpenImage.Image")));
             this.tsb_OpenImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_OpenImage.Name = "tsb_OpenImage";
-            this.tsb_OpenImage.Size = new System.Drawing.Size(24, 20);
+            this.tsb_OpenImage.Size = new System.Drawing.Size(29, 20);
             this.tsb_OpenImage.Text = "打开图片";
-            //this.tsb_OpenImage.Click += new System.EventHandler(this.tsb_OpenImage_Click);
+            this.tsb_OpenImage.Click += new System.EventHandler(this.tsb_OpenImage_Click);
             // 
             // tsb_Savemage
             // 
             this.tsb_Savemage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            //this.tsb_Savemage.Image = global::HVision.Properties.Resources.Save;
+            this.tsb_Savemage.Image = ((System.Drawing.Image)(resources.GetObject("tsb_Savemage.Image")));
             this.tsb_Savemage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_Savemage.Name = "tsb_Savemage";
-            this.tsb_Savemage.Size = new System.Drawing.Size(24, 20);
+            this.tsb_Savemage.Size = new System.Drawing.Size(29, 20);
             this.tsb_Savemage.Text = "保存图片";
-            //this.tsb_Savemage.Click += new System.EventHandler(this.tsb_Savemage_Click);
+            this.tsb_Savemage.Click += new System.EventHandler(this.tsb_Savemage_Click);
             // 
             // tsb_AutoImage
             // 
             this.tsb_AutoImage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            //this.tsb_AutoImage.Image = global::HVision.Properties.Resources.Auto;
+            this.tsb_AutoImage.Image = ((System.Drawing.Image)(resources.GetObject("tsb_AutoImage.Image")));
             this.tsb_AutoImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_AutoImage.Name = "tsb_AutoImage";
-            this.tsb_AutoImage.Size = new System.Drawing.Size(24, 20);
+            this.tsb_AutoImage.Size = new System.Drawing.Size(29, 20);
             this.tsb_AutoImage.Text = "图片自适应";
-            //this.tsb_AutoImage.Click += new System.EventHandler(this.tsb_AutoImage_Click);
+            this.tsb_AutoImage.Click += new System.EventHandler(this.tsb_AutoImage_Click);
             // 
             // tsb_IsShowCrros
             // 
             this.tsb_IsShowCrros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            //this.tsb_IsShowCrros.Image = global::HVision.Properties.Resources.Cross;
+            this.tsb_IsShowCrros.Image = ((System.Drawing.Image)(resources.GetObject("tsb_IsShowCrros.Image")));
             this.tsb_IsShowCrros.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_IsShowCrros.Name = "tsb_IsShowCrros";
-            this.tsb_IsShowCrros.Size = new System.Drawing.Size(24, 20);
+            this.tsb_IsShowCrros.Size = new System.Drawing.Size(29, 20);
             this.tsb_IsShowCrros.Text = "十字架";
-            //this.tsb_IsShowCrros.Click += new System.EventHandler(this.tsb_IsShowCrros_Click);
+            this.tsb_IsShowCrros.Click += new System.EventHandler(this.tsb_IsShowCrros_Click);
             // 
             // tsb_DrawCircle
             // 
             this.tsb_DrawCircle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            //this.tsb_DrawCircle.Image = global::HVision.Properties.Resources.Circle;
+            this.tsb_DrawCircle.Image = ((System.Drawing.Image)(resources.GetObject("tsb_DrawCircle.Image")));
             this.tsb_DrawCircle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawCircle.Name = "tsb_DrawCircle";
-            this.tsb_DrawCircle.Size = new System.Drawing.Size(24, 20);
+            this.tsb_DrawCircle.Size = new System.Drawing.Size(29, 20);
             this.tsb_DrawCircle.Text = "圆";
+            this.tsb_DrawCircle.Click += new System.EventHandler(this.tsb_DrawCircle_Click);
             // 
             // tsb_DrawRectangle
             // 
             this.tsb_DrawRectangle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_DrawRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tsb_DrawRectangle.Image")));
             this.tsb_DrawRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawRectangle.Name = "tsb_DrawRectangle";
-            this.tsb_DrawRectangle.Size = new System.Drawing.Size(24, 20);
+            this.tsb_DrawRectangle.Size = new System.Drawing.Size(29, 20);
             this.tsb_DrawRectangle.Text = "矩形";
+            this.tsb_DrawRectangle.Click += new System.EventHandler(this.tsb_DrawRectangle_Click);
             // 
             // tsb_DrawLines
             // 
             this.tsb_DrawLines.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_DrawLines.Image = ((System.Drawing.Image)(resources.GetObject("tsb_DrawLines.Image")));
             this.tsb_DrawLines.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawLines.Name = "tsb_DrawLines";
-            this.tsb_DrawLines.Size = new System.Drawing.Size(24, 20);
+            this.tsb_DrawLines.Size = new System.Drawing.Size(29, 20);
             this.tsb_DrawLines.Text = "直线";
+            this.tsb_DrawLines.Click += new System.EventHandler(this.tsb_DrawLines_Click);
             // 
             // tsb_ClearHwindow
             // 
             this.tsb_ClearHwindow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_ClearHwindow.Image = ((System.Drawing.Image)(resources.GetObject("tsb_ClearHwindow.Image")));
             this.tsb_ClearHwindow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_ClearHwindow.Name = "tsb_ClearHwindow";
-            this.tsb_ClearHwindow.Size = new System.Drawing.Size(24, 20);
+            this.tsb_ClearHwindow.Size = new System.Drawing.Size(29, 20);
             this.tsb_ClearHwindow.Text = "清除ROI";
+            this.tsb_ClearHwindow.Click += new System.EventHandler(this.tsb_ClearHwindow_Click);
             // 
             // hWindowControl1
             // 
@@ -191,13 +205,34 @@ namespace SolveWare_Service_Vision
             this.hWindowControl1.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
             this.hWindowControl1.Location = new System.Drawing.Point(4, 3);
             this.hWindowControl1.Name = "hWindowControl1";
-            this.hWindowControl1.Size = new System.Drawing.Size(312, 301);
+            this.hWindowControl1.Size = new System.Drawing.Size(356, 349);
             this.hWindowControl1.TabIndex = 2;
-            this.hWindowControl1.WindowSize = new System.Drawing.Size(312, 301);
-            //this.hWindowControl1.HMouseMove += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseMove);
-            //this.hWindowControl1.HMouseDown += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseDown);
-            //this.hWindowControl1.HMouseUp += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseUp);
-            //this.hWindowControl1.HMouseWheel += new HalconDotNet.HMouseEventHandler(this.hWindowControl1_HMouseWheel);
+            this.hWindowControl1.WindowSize = new System.Drawing.Size(356, 349);
+            // 
+            // tssl_CameraCapabilityInfo
+            // 
+            this.tssl_CameraCapabilityInfo.Image = ((System.Drawing.Image)(resources.GetObject("tssl_CameraCapabilityInfo.Image")));
+            this.tssl_CameraCapabilityInfo.Name = "tssl_CameraCapabilityInfo";
+            this.tssl_CameraCapabilityInfo.Size = new System.Drawing.Size(68, 17);
+            this.tssl_CameraCapabilityInfo.Text = "00ms";
+            // 
+            // tsb_Play
+            // 
+            this.tsb_Play.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_Play.Image = ((System.Drawing.Image)(resources.GetObject("tsb_Play.Image")));
+            this.tsb_Play.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_Play.Name = "tsb_Play";
+            this.tsb_Play.Size = new System.Drawing.Size(29, 20);
+            this.tsb_Play.Click += new System.EventHandler(this.tsb_Play_Click);
+            // 
+            // tsb_Stop
+            // 
+            this.tsb_Stop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_Stop.Image = ((System.Drawing.Image)(resources.GetObject("tsb_Stop.Image")));
+            this.tsb_Stop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_Stop.Name = "tsb_Stop";
+            this.tsb_Stop.Size = new System.Drawing.Size(29, 20);
+            this.tsb_Stop.Click += new System.EventHandler(this.tsb_Stop_Click);
             // 
             // UserHWControls
             // 
@@ -205,7 +240,7 @@ namespace SolveWare_Service_Vision
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UserHWControls";
-            this.Size = new System.Drawing.Size(320, 353);
+            this.Size = new System.Drawing.Size(364, 401);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -232,5 +267,8 @@ namespace SolveWare_Service_Vision
         private System.Windows.Forms.ToolStripButton tsb_ClearHwindow;
         private System.Windows.Forms.ToolStripButton tsb_DrawRectangle;
         private System.Windows.Forms.ToolStripButton tsb_DrawLines;
+        private System.Windows.Forms.ToolStripStatusLabel tssl_CameraCapabilityInfo;
+        private System.Windows.Forms.ToolStripButton tsb_Play;
+        private System.Windows.Forms.ToolStripButton tsb_Stop;
     }
 }

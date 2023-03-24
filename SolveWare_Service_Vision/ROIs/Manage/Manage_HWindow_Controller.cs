@@ -207,6 +207,8 @@ namespace SolveWare_Service_Vision.ROIs.Manage
                 {
                     this.Location = $"R: {(int)e.X} C: {(int)e.Y}";
                     this.PointGrey = $"0";
+                    OnPropertyChanged(nameof(Location));
+                    OnPropertyChanged(nameof(pointGray));
                     return;
                 }
 
@@ -228,10 +230,9 @@ namespace SolveWare_Service_Vision.ROIs.Manage
 
                     this.Location = $"R: {posX} C: {posY}";
                     this.PointGrey = $"{pointGray}";
+                    OnPropertyChanged(nameof(Location));
+                    OnPropertyChanged(nameof(pointGray));   
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -341,17 +342,17 @@ namespace SolveWare_Service_Vision.ROIs.Manage
         /// <summary>
         /// 开启 实时摄影
         /// </summary>
-        public void StartLive()
+        public void StartLive(int delay_ms)
         {
-            this.camera.StartLive(100);
+            this.camera.StartLive(delay_ms);
         }
 
         /// <summary>
         /// 停止 实时摄影
         /// </summary>
-        public void StopLive()
+        public void StopLive(int delay_ms)
         {
-            this.camera.StopLive(100);
+            this.camera.StopLive(delay_ms);
         }
 
         /// <summary>

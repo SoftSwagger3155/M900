@@ -30,3 +30,4 @@ D:\M900开发平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vi
 D:\M900开发平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
 D:\M900开发平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
 D:\M900开发平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+E:\M900软件平台\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.UserHWControls.resources
