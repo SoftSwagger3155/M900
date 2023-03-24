@@ -4,85 +4,350 @@
         "PylonNET"
     </assembly>
     <members>
-        <member name="M:Basler.Pylon.Configuration.RaiseUnsupportedFeatureException(System.String)">
-            <summary>Raise an exception stating that a feature is not supported.</summary>
-            <param name="msg">The exception msg.</param>
+        <member name="T:Basler.Pylon.PCameraDetail.NamespaceDoc">
+            <summary>
+                <para>This will be removed.</para>
+            </summary>
+        </member>
+        <member name="T:Basler.Pylon.NamespaceDoc">
+            <summary>
+                <para>Provides classes and interfaces to find cameras, to parametrize cameras, and to acquire images.</para>
+            </summary>
         </member>
         <member name="T:Basler.Pylon.zzzReserved">
             <exclude />
         </member>
-        <member name="T:Basler.Pylon.PylonNETException">
-            <summary>Baseclass for exceptions thrown by the Pylon library.</summary>
-            <inheritdoc />
+        <member name="M:Basler.Pylon.CStreamGrabberImpl.get_Parameters">
+            <summary> Usage: Parameters[PLStreamGrabber.ParameterName] </summary>
         </member>
-        <member name="M:Basler.Pylon.IImageExtensions.Display(Basler.Pylon.IImage,System.Int32)">
-            <summary>Uses the ImageWindow method <see cref="M:Basler.Pylon.ImageWindow.DisplayImage(System.Int32,Basler.Pylon.IImage)" /> to display the image.</summary>
-            <param name="image">The image to display. The image must be valid. Otherwise, the image window opens, but no image is shown.</param>
-            <param name="windowIndex">The window index used to display the image. Valid window indexes range from 0 to 31.</param>
-        </member>
-        <member name="M:Basler.Pylon.ImageWindow.Close(System.Int32)">
-            <summary>Closes and destroys a window opened by using DisplayImage.</summary>
-            <param name="windowIndex">The index of the window to be closed. Valid window indexes range from 0 to 31.</param>
+        <member name="M:Basler.Pylon.PixelDataConverter.IsSupportedOutputFormat(Basler.Pylon.PixelType)">
+            <summary> Indicates if the given pixel format is a supported output format. </summary>
+            <param name="destinationPixelType"> The pixel format of the destination image.</param>
+            <returns> Returns true if the given pixel format is supported. </returns>
             <remarks>
                 <para>
-                    <b>Thread safety:</b>This method is thread-safe.</para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
                 <para>
-                    <b>Error safety:</b> Does not throw exceptions.</para>
+                    <b>Error safety:</b> Does not throw C++ exceptions. </para>
             </remarks>
         </member>
-        <member name="M:Basler.Pylon.ImageWindow.DisplayImage``1(System.Int32,``0[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary>Displays the contents of an image buffer on the screen.</summary> // $4D$
-<param name="windowIndex"> The index of the image window. Valid window indexes range from 0 to 31.</param><param name="buffer">    The typed array containing the image data.</param><param name="pixelType">The pixel type of the image data in the buffer.</param><param name="width">The number of pixels in a row of the image data in the buffer.</param><param name="height">The number of rows in the image data in the buffer.</param><param name="paddingX">The number of extra data bytes at the end of each row.</param><param name="orientation">The vertical orientation of the image in the image buffer.</param><remarks><para>
-This method displays the contents of a buffer in a window.
-</para><para>
-If the window hasn't been created before, it will be created with default positions.
-When the method returns, you may free the image buffer.
-</para><para>
-If you pass an empty or invalid buffer (e.g. buffer is empty or invalid), the window will be cleared.
-To close the window call <see cref="M:Basler.Pylon.ImageWindow.Close(System.Int32)" />.
-</para><list type="bullet"><item>The window specified by windowIndex will be created and shown on the screen.</item><item>If the image passed is valid, it is shown in the window specified by windowIndex.</item><item>If the image passed is invalid, the window specified by windowIndex will be cleared.</item></list><para><b>Thread safety:</b>This method is thread-safe.</para><para><b>Error safety:</b> Can throw an exception if the windowIndex, width, height, or paddingX passed are invalid or if the window could not be created.</para></remarks></member>
-        <member name="M:Basler.Pylon.ImageWindow.DisplayImage(System.Int32,System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary>Displays the contents of a raw image buffer on the screen.</summary> // $4D$
-<param name="windowIndex"> The index of the image window. Valid window indexes range from 0 to 31.</param><param name="pBuffer"> Pointer to the buffer containing the image data.</param><param name="bufferSize"> Size of the buffer in bytes.</param><param name="pixelType">The pixel type of the image data in the buffer.</param><param name="width">The number of pixels in a row of the image data in the buffer.</param><param name="height">The number of rows in the image data in the buffer.</param><param name="paddingX">The number of extra data bytes at the end of each row.</param><param name="orientation">The vertical orientation of the image in the image buffer.</param><remarks><para>
-This method displays the contents of a raw buffer in a window.
-</para><para>
-If the window hasn't been created before, it will be created with default positions.
-When the method returns, you may free the image buffer.
-</para><para>
-If you pass an empty or invalid buffer (e.g. pBuffer or bufferSize are invalid), the window will be cleared.
-To close the window call <see cref="M:Basler.Pylon.ImageWindow.Close(System.Int32)" />.
-</para><list type="bullet"><item>The window specified by windowIndex will be created and shown on the screen.</item><item>If the image passed is valid, it is shown in the window specified by windowIndex.</item><item>If the image passed is invalid, the window specified by windowIndex will be cleared.</item></list><para><b>Thread safety:</b>This method is thread-safe.</para><para><b>Error safety:</b> Can throw an exception if the windowIndex, width, height, or paddingX passed are invalid or if the window could not be created.</para></remarks></member>
-        <member name="M:Basler.Pylon.ImageWindow.DisplayImage(System.Int32,Basler.Pylon.IImage)">
-            <summary>Displays an image on screen.</summary>
-            <param name="windowIndex"> The index of the image window. Valid window indexes range from 0 to 31.</param>
-            <param name="image"> The image to display in the window.</param>
+        <member name="M:Basler.Pylon.PixelDataConverter.IsSupportedInputFormat(Basler.Pylon.PixelType)">
+            <summary> Indicates if the given pixel format is a supported input format. </summary>
+            <param name="sourcePixelType"> The pixel format of the source image.</param>
+            <returns> Returns true if the given pixel format is supported. </returns>
             <remarks>
                 <para>
-This method displays the image or the grab result in a window.
-Using this method is the easiest way to display an image on screen.
-</para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
                 <para>
-You can pass any IImage based object. If the window hasn't been created before, it will be created with default positions and the image will be shown.
-When the method returns, you may dispose the image.
-</para>
-                <para>
-If you pass an empty or invalid image (e.g. IImage.IsValid() returns false), the window will be cleared.
-To close the window call Close()
-</para>
-                <list type="bullet">
-                    <item>The window specified by windowIndex will be created and shown on the screen.</item>
-                    <item>If the image passed is valid, it is shown in the window specified by windowIndex.</item>
-                    <item>If the image passed is invalid, the window specified by windowIndex will be cleared.</item>
-                </list>
-                <para>
-                    <b>Thread safety:</b>This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Can throw an exception if the windowIndex passed is invalid, or if the window could not be created.</para>
+                    <b>Error safety:</b> Does not throw C++ exceptions. </para>
             </remarks>
         </member>
-        <member name="T:Basler.Pylon.ImageWindow">
-            <summary> Displays an IImage or IGrabResult on screen.</summary> // $4D$
-</member>
+        <member name="M:Basler.Pylon.PixelDataConverter.Convert``2(``0[],``1[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary> Creates a new image by converting an image to a different format. </summary>
+            <param name="destinationBuffer"> The array providing the buffer of the destination image.</param>
+            <param name="sourceBuffer"> The array providing the buffer of the source image.</param>
+            <param name="sourcePixelType">   The pixel type of the source image.</param>
+            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
+            <param name="sourceHeight">      The number of rows in the source image.</param>
+            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
+            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
+            <typeparam name="T">The array item value type of the destination buffer array.</typeparam>
+            <typeparam name="U">The array item value type of the source buffer array.</typeparam>
+            <remarks>
+                <para>
+The image is converted to the destination image according to the current converter settings.
+The padding area of a row in the destination image is set to zero.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The source buffer parameters must point to a valid image.</item>
+                        <item> The format of the source image must be supported by the converter.</item>
+                        <item> The destination image buffer must be large enough to hold the destination image.</item>
+                        <item> The source image buffer and the destination image buffer must not be identical.</item>
+                        <item> The sourceWidth value must be &gt;= 0.</item>
+                        <item> The sourceHeight value must be &gt;= 0.</item>
+                        <item> The sourcePaddingX value must be &gt;= 0.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.Convert``1(System.IntPtr,System.Int64,``0[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary> Creates a new image by converting an image to a different format. </summary>
+            <param name="pDestinationBuffer"> The pointer to the buffer of the destination image.</param>
+            <param name="destinationBufferSizeBytes"> The size of the buffer of the destination image.</param>
+            <param name="sourceBuffer"> The array providing the buffer of the source image.</param>
+            <param name="sourcePixelType">   The pixel type of the source image.</param>
+            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
+            <param name="sourceHeight">      The number of rows in the source image.</param>
+            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
+            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
+            <typeparam name="T">The array item value type of the source buffer array.</typeparam>
+            <remarks>
+                <para>
+The image is converted to the destination image according to the current converter settings.
+The padding area of a row in the destination image is set to zero.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The source buffer parameters must point to a valid image.</item>
+                        <item> The format of the source image must be supported by the converter.</item>
+                        <item> The destination image buffer must be large enough to hold the destination image.</item>
+                        <item> The source image buffer and the destination image buffer must not be identical.</item>
+                        <item> The sourceWidth value must be &gt;= 0.</item>
+                        <item> The sourceHeight value must be &gt;= 0.</item>
+                        <item> The sourcePaddingX value must be &gt;= 0.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.Convert``1(``0[],System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary> Creates a new image by converting an image to a different format. </summary>
+            <param name="destinationBuffer"> The array providing the buffer of the destination image.</param>
+            <param name="pSourceBuffer"> The pointer to the buffer of the source image.</param>
+            <param name="sourceBufferSizeBytes">  The size of the buffer of the source image.</param>
+            <param name="sourcePixelType">   The pixel type of the source image.</param>
+            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
+            <param name="sourceHeight">      The number of rows in the source image.</param>
+            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
+            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
+            <typeparam name="T">The array item value type of the destination buffer array.</typeparam>
+            <remarks>
+                <para>
+The image is converted to the destination image according to the current converter settings.
+The padding area of a row in the destination image is set to zero.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The source buffer parameters must point to a valid image.</item>
+                        <item> The format of the source image must be supported by the converter.</item>
+                        <item> The destination image buffer must be large enough to hold the destination image.</item>
+                        <item> The source image buffer and the destination image buffer must not be identical.</item>
+                        <item> The sourceWidth value must be &gt;= 0.</item>
+                        <item> The sourceHeight value must be &gt;= 0.</item>
+                        <item> The sourcePaddingX value must be &gt;= 0.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.Convert(System.IntPtr,System.Int64,System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary> Creates a new image by converting an image to a different format. </summary>
+            <param name="pDestinationBuffer"> The pointer to the buffer of the destination image.</param>
+            <param name="destinationBufferSizeBytes"> The size of the buffer of the destination image.</param>
+            <param name="pSourceBuffer"> The pointer to the buffer of the source image.</param>
+            <param name="sourceBufferSizeBytes">  The size of the buffer of the source image.</param>
+            <param name="sourcePixelType">   The pixel type of the source image.</param>
+            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
+            <param name="sourceHeight">      The number of rows in the source image.</param>
+            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
+            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
+            <remarks>
+                <para>
+The image is converted to the destination image according to the current converter settings.
+The padding area of a row in the destination image is set to zero.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The source buffer parameters must point to a valid image.</item>
+                        <item> The format of the source image must be supported by the converter.</item>
+                        <item> The destination image buffer must be large enough to hold the destination image.</item>
+                        <item> The source image buffer and the destination image buffer must not be identical.</item>
+                        <item> The sourceWidth value must be &gt;= 0.</item>
+                        <item> The sourceHeight value must be &gt;= 0.</item>
+                        <item> The sourcePaddingX value must be &gt;= 0.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.Convert``1(``0[],Basler.Pylon.IImage)">
+            <summary> Creates a new image by converting an image to a different format. </summary>
+            <param name="destinationBuffer">The array providing the buffer of the destination image.</param>
+            <param name="sourceImage">The source image.</param>
+            <typeparam name="T">The array item value type of the destination buffer array.</typeparam>
+            <remarks>
+                <para>
+The image is converted to the destination image according to the current converter settings.
+The padding area of a row in the destination image is set to zero.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item>The format of the source image must be supported by the converter.</item>
+                        <item>The destination image buffer must be large enough to hold the destination image.</item>
+                        <item>The source image buffer and the destination image buffer must not be identical.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.Convert(System.IntPtr,System.Int64,Basler.Pylon.IImage)">
+            <summary> Creates a new image by converting an image to a different format. </summary>
+            <param name="pDestinationBuffer">The pointer to the buffer of the destination image.</param>
+            <param name="destinationBufferSizeBytes">The size of the buffer of the destination image.</param>
+            <param name="sourceImage">The source image.</param>
+            <remarks>
+                <para>
+The image is converted to the destination image according to the current converter settings.
+The padding area of a row in the destination image is set to zero.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item>The format of the source image must be supported by the converter.</item>
+                        <item>The destination image buffer must be large enough to hold the destination image.</item>
+                        <item>The source image buffer and the destination image buffer must not be identical.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.GetBufferSizeForConversion(Basler.Pylon.PixelType,System.Int32,System.Int32)">
+            <summary> Computes the size of the destination image buffer in byte. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.</summary>
+            <param name="sourcePixelType">
+The pixel type of the source image.
+</param>
+            <param name="sourceWidth">
+The number of pixels in a row in the source image.
+</param>
+            <param name="sourceHeight">
+The number of rows in the source image.
+</param>
+            <returns>
+The size of the destination image when converting the source image using current converter settings. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.
+</returns>
+            <remarks>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The <c>sourceWidth</c> value must be &gt;= 0. </item>
+                        <item> The <c>sourceHeight</c> value must be &gt;= 0. </item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the destination image size for the input cannot be computed. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.GetBufferSizeForConversion(Basler.Pylon.IImage)">
+            <summary>
+Computes the size of the destination image buffer in byte. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.
+</summary>
+            <param name="sourceImage">
+The source image.
+</param>
+            <returns>
+The size of the destination image when converting the given source image using current converter settings. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.
+</returns>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if the destination image size for the input cannot be computed. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.set_OutputPixelFormat(Basler.Pylon.PixelType)">
+            <summary> Sets the output pixel format.</summary>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This property is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if OutputPixelFormat is set to an unsupported or invalid PixelFormat. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.PixelDataConverter.get_OutputPixelFormat">
+            <summary> Gets the output pixel format.</summary>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Does not throw exceptions. </para>
+            </remarks>
+        </member>
+        <member name="P:Basler.Pylon.PixelDataConverter.OutputPixelFormat">
+            <summary>Sets or gets the output pixel format.</summary>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This property is not thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if OutputPixelFormat is set to an unsupported or invalid PixelFormat. The converter object is still valid after an error. </para>
+            </remarks>
+        </member>
+        <member name="P:Basler.Pylon.PixelDataConverter.Parameters">
+            <summary>The parameter collection of the camera object.</summary>
+            <returns>Returns the parameter collection of the camera object.</returns>
+            <remarks>
+You can access parameters by passing a key from a parameter list to the index operator, e.g.
+key from a parameter list, e.g.
+<code language="cpp">
+camera.Parameters[PLFormatConverter.OutputPaddingX].GetValue();
+</code><para><b>Thread safety:</b> This method is thread-safe.</para><para><b>Error safety:</b> Does not throw exceptions. </para></remarks>
+        </member>
+        <member name="T:Basler.Pylon.PixelDataConverter">
+            <summary> Creates new images by converting a source image to another format. </summary>
+            <remarks>
+                <para>Supported input image formats defined by the pixel type:
+
+<list type="bullet"><item> Mono1packed</item><item> Mono2packed</item><item> Mono4packed</item><item> Mono8</item><item> Mono10</item><item> Mono10packed</item><item> Mono10p</item><item> Mono12</item><item> Mono12packed</item><item> Mono12p</item><item> Mono16</item></list><list type="bullet"><item> BayerGR8</item><item> BayerRG8</item><item> BayerGB8</item><item> BayerBG8</item><item> BayerGR10</item><item> BayerRG10</item><item> BayerGB10</item><item> BayerBG10</item><item> BayerGR12</item><item> BayerRG12</item><item> BayerGB12</item><item> BayerBG12</item><item> BayerGR12Packed</item><item> BayerRG12Packed</item><item> BayerGB12Packed</item><item> BayerBG12Packed</item><item> BayerGR12p</item><item> BayerRG12p</item><item> BayerGB12p</item><item> BayerBG12p</item><item> BayerGR16</item><item> BayerRG16</item><item> BayerGB16</item><item> BayerBG16</item></list><list type="bullet"><item> RGB8packed</item><item> BGR8packed</item><item> RGBA8packed</item><item> BGRA8packed</item><item> GB10packed</item><item> BGR10packed</item><item> RGB12packed</item><item> BGR12packed</item><item> RGB12V1packed</item><item> RGB16packed</item><item> RGB8planar</item><item> RGB16planar</item></list><list type="bullet"><item> YUV422packed</item><item> YUV422_YUYV_Packed</item></list>
+
+
+Supported output image formats defined by the pixel type:
+<list type="bullet"><item> BGRA8packed - This pixel type can be used in Windows bitmaps.</item><item> BGR8packed - This pixel type can be used in Windows bitmaps.</item><item> RGB8packed</item><item> RGB16packed</item><item> RGB8planar</item><item> RGB16planar</item><item> Mono8</item><item> Mono16</item></list>
+
+All input image formats can be converted to all output image formats.</para>
+                <para>RGB, BGR and Bayer image formats are converted to monochrome formats by using the following formula:
+
+<code language="cpp">
+mono = (0.25 * red) + (0.625 * green) + (0.125 * blue);
+</code>
+
+YUV formats are converted to 16 bit bit depth in an intermediate conversion step. This is why the output
+is always aligned at the most significant bit when converting to 16 bit color output formats like RGB16packed.
+</para>
+                <para> Limitations:
+The last column of an YUV input image with odd width cannot be converted.
+The last column and the last row of a Bayer input image cannot be converted.
+
+The default treatment of rows and columns that cannot be converted due to their location on edges
+can be controlled using the @PixelDataConverter/InconvertibleEdgeHandling parameter.
+For more information, see the Convert() method description.
+</para>
+                <para>
+                    <b>Thread safety:</b> The PixelDataConverter class is not thread-safe.</para>
+            </remarks>
+        </member>
         <member name="M:Basler.Pylon.PLPixelDataConverter.MonoConversionMethodEnum.ToString">
             <summary>The full name of MonoConversionMethod</summary>
             <returns>Returns the full name of MonoConversionMethod</returns>
@@ -24427,349 +24692,277 @@ Note: Make sure to also select a suitable raw pixel data output format.</para>
         <member name="T:Basler.Pylon.PLEventGrabber">
             <summary>List of all parameter names available for IEEE 1394, GigE, and USB low level event grabbers.</summary>
         </member>
-        <member name="M:Basler.Pylon.CStreamGrabberImpl.get_Parameters">
-            <summary> Usage: Parameters[PLStreamGrabber.ParameterName] </summary>
+        <member name="T:Basler.Pylon.PylonNETException">
+            <summary>Baseclass for exceptions thrown by the Pylon library.</summary>
+            <inheritdoc />
         </member>
-        <member name="T:Basler.Pylon.GenICamFileSet">
-            <exclude />
-        </member>
-        <member name="T:Basler.Pylon.PCameraDetail.NamespaceDoc">
+        <member name="T:Basler.Pylon.ParameterCollectionEnumerator">
             <summary>
-                <para>This will be removed.</para>
-            </summary>
-        </member>
-        <member name="T:Basler.Pylon.NamespaceDoc">
-            <summary>
-                <para>Provides classes and interfaces to find cameras, to parametrize cameras, and to acquire images.</para>
-            </summary>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.IsSupportedOutputFormat(Basler.Pylon.PixelType)">
-            <summary> Indicates if the given pixel format is a supported output format. </summary>
-            <param name="destinationPixelType"> The pixel format of the destination image.</param>
-            <returns> Returns true if the given pixel format is supported. </returns>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw C++ exceptions. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.IsSupportedInputFormat(Basler.Pylon.PixelType)">
-            <summary> Indicates if the given pixel format is a supported input format. </summary>
-            <param name="sourcePixelType"> The pixel format of the source image.</param>
-            <returns> Returns true if the given pixel format is supported. </returns>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw C++ exceptions. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.Convert``2(``0[],``1[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary> Creates a new image by converting an image to a different format. </summary>
-            <param name="destinationBuffer"> The array providing the buffer of the destination image.</param>
-            <param name="sourceBuffer"> The array providing the buffer of the source image.</param>
-            <param name="sourcePixelType">   The pixel type of the source image.</param>
-            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
-            <param name="sourceHeight">      The number of rows in the source image.</param>
-            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
-            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
-            <typeparam name="T">The array item value type of the destination buffer array.</typeparam>
-            <typeparam name="U">The array item value type of the source buffer array.</typeparam>
-            <remarks>
-                <para>
-The image is converted to the destination image according to the current converter settings.
-The padding area of a row in the destination image is set to zero.
-</para>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The source buffer parameters must point to a valid image.</item>
-                        <item> The format of the source image must be supported by the converter.</item>
-                        <item> The destination image buffer must be large enough to hold the destination image.</item>
-                        <item> The source image buffer and the destination image buffer must not be identical.</item>
-                        <item> The sourceWidth value must be &gt;= 0.</item>
-                        <item> The sourceHeight value must be &gt;= 0.</item>
-                        <item> The sourcePaddingX value must be &gt;= 0.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.Convert``1(System.IntPtr,System.Int64,``0[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary> Creates a new image by converting an image to a different format. </summary>
-            <param name="pDestinationBuffer"> The pointer to the buffer of the destination image.</param>
-            <param name="destinationBufferSizeBytes"> The size of the buffer of the destination image.</param>
-            <param name="sourceBuffer"> The array providing the buffer of the source image.</param>
-            <param name="sourcePixelType">   The pixel type of the source image.</param>
-            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
-            <param name="sourceHeight">      The number of rows in the source image.</param>
-            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
-            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
-            <typeparam name="T">The array item value type of the source buffer array.</typeparam>
-            <remarks>
-                <para>
-The image is converted to the destination image according to the current converter settings.
-The padding area of a row in the destination image is set to zero.
-</para>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The source buffer parameters must point to a valid image.</item>
-                        <item> The format of the source image must be supported by the converter.</item>
-                        <item> The destination image buffer must be large enough to hold the destination image.</item>
-                        <item> The source image buffer and the destination image buffer must not be identical.</item>
-                        <item> The sourceWidth value must be &gt;= 0.</item>
-                        <item> The sourceHeight value must be &gt;= 0.</item>
-                        <item> The sourcePaddingX value must be &gt;= 0.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.Convert``1(``0[],System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary> Creates a new image by converting an image to a different format. </summary>
-            <param name="destinationBuffer"> The array providing the buffer of the destination image.</param>
-            <param name="pSourceBuffer"> The pointer to the buffer of the source image.</param>
-            <param name="sourceBufferSizeBytes">  The size of the buffer of the source image.</param>
-            <param name="sourcePixelType">   The pixel type of the source image.</param>
-            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
-            <param name="sourceHeight">      The number of rows in the source image.</param>
-            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
-            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
-            <typeparam name="T">The array item value type of the destination buffer array.</typeparam>
-            <remarks>
-                <para>
-The image is converted to the destination image according to the current converter settings.
-The padding area of a row in the destination image is set to zero.
-</para>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The source buffer parameters must point to a valid image.</item>
-                        <item> The format of the source image must be supported by the converter.</item>
-                        <item> The destination image buffer must be large enough to hold the destination image.</item>
-                        <item> The source image buffer and the destination image buffer must not be identical.</item>
-                        <item> The sourceWidth value must be &gt;= 0.</item>
-                        <item> The sourceHeight value must be &gt;= 0.</item>
-                        <item> The sourcePaddingX value must be &gt;= 0.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.Convert(System.IntPtr,System.Int64,System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary> Creates a new image by converting an image to a different format. </summary>
-            <param name="pDestinationBuffer"> The pointer to the buffer of the destination image.</param>
-            <param name="destinationBufferSizeBytes"> The size of the buffer of the destination image.</param>
-            <param name="pSourceBuffer"> The pointer to the buffer of the source image.</param>
-            <param name="sourceBufferSizeBytes">  The size of the buffer of the source image.</param>
-            <param name="sourcePixelType">   The pixel type of the source image.</param>
-            <param name="sourceWidth">       The number of pixels in a row in the source image.</param>
-            <param name="sourceHeight">      The number of rows in the source image.</param>
-            <param name="sourcePaddingX">    The number of extra data bytes at the end of each row. The default value is usually 0.</param>
-            <param name="sourceOrientation"> The vertical orientation of the source image in the image buffer. The default value is usually ImageOrientation.TopDown.</param>
-            <remarks>
-                <para>
-The image is converted to the destination image according to the current converter settings.
-The padding area of a row in the destination image is set to zero.
-</para>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The source buffer parameters must point to a valid image.</item>
-                        <item> The format of the source image must be supported by the converter.</item>
-                        <item> The destination image buffer must be large enough to hold the destination image.</item>
-                        <item> The source image buffer and the destination image buffer must not be identical.</item>
-                        <item> The sourceWidth value must be &gt;= 0.</item>
-                        <item> The sourceHeight value must be &gt;= 0.</item>
-                        <item> The sourcePaddingX value must be &gt;= 0.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.Convert``1(``0[],Basler.Pylon.IImage)">
-            <summary> Creates a new image by converting an image to a different format. </summary>
-            <param name="destinationBuffer">The array providing the buffer of the destination image.</param>
-            <param name="sourceImage">The source image.</param>
-            <typeparam name="T">The array item value type of the destination buffer array.</typeparam>
-            <remarks>
-                <para>
-The image is converted to the destination image according to the current converter settings.
-The padding area of a row in the destination image is set to zero.
-</para>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item>The format of the source image must be supported by the converter.</item>
-                        <item>The destination image buffer must be large enough to hold the destination image.</item>
-                        <item>The source image buffer and the destination image buffer must not be identical.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.Convert(System.IntPtr,System.Int64,Basler.Pylon.IImage)">
-            <summary> Creates a new image by converting an image to a different format. </summary>
-            <param name="pDestinationBuffer">The pointer to the buffer of the destination image.</param>
-            <param name="destinationBufferSizeBytes">The size of the buffer of the destination image.</param>
-            <param name="sourceImage">The source image.</param>
-            <remarks>
-                <para>
-The image is converted to the destination image according to the current converter settings.
-The padding area of a row in the destination image is set to zero.
-</para>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item>The format of the source image must be supported by the converter.</item>
-                        <item>The destination image buffer must be large enough to hold the destination image.</item>
-                        <item>The source image buffer and the destination image buffer must not be identical.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the passed parameters are not valid. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.GetBufferSizeForConversion(Basler.Pylon.PixelType,System.Int32,System.Int32)">
-            <summary> Computes the size of the destination image buffer in byte. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.</summary>
-            <param name="sourcePixelType">
-The pixel type of the source image.
-</param>
-            <param name="sourceWidth">
-The number of pixels in a row in the source image.
-</param>
-            <param name="sourceHeight">
-The number of rows in the source image.
-</param>
-            <returns>
-The size of the destination image when converting the source image using current converter settings. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.
-</returns>
-            <remarks>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The <c>sourceWidth</c> value must be &gt;= 0. </item>
-                        <item> The <c>sourceHeight</c> value must be &gt;= 0. </item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the destination image size for the input cannot be computed. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.GetBufferSizeForConversion(Basler.Pylon.IImage)">
-            <summary>
-Computes the size of the destination image buffer in byte. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.
+IEnumerator implementation for ParameterCollection
 </summary>
-            <param name="sourceImage">
-The source image.
+        </member>
+        <member name="M:Basler.Pylon.Configuration.RaiseUnsupportedFeatureException(System.String)">
+            <summary>Raise an exception stating that a feature is not supported.</summary>
+            <param name="msg">The exception msg.</param>
+        </member>
+        <member name="M:Basler.Pylon.IImageExtensions.Display(Basler.Pylon.IImage,System.Int32)">
+            <summary>Uses the ImageWindow method <see cref="M:Basler.Pylon.ImageWindow.DisplayImage(System.Int32,Basler.Pylon.IImage)" /> to display the image.</summary>
+            <param name="image">The image to display. The image must be valid. Otherwise, the image window opens, but no image is shown.</param>
+            <param name="windowIndex">The window index used to display the image. Valid window indexes range from 0 to 31.</param>
+        </member>
+        <member name="M:Basler.Pylon.Library.ContainsTransportLayer(System.String)">
+            <summary>
+Indicates if the library contains the transport layer identified by the device type.
+</summary>
+            <param name="deviceType">
+The requested device type, e.g. BaslerUsb.
 </param>
             <returns>
-The size of the destination image when converting the given source image using current converter settings. Use <see cref="M:System.Convert.ToInt32(System.Int64)" /> to convert to 32 bit if necessary.
+Returns true if the library contains the transport layer identified by the device type.
 </returns>
             <remarks>
                 <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if the destination image size for the input cannot be computed. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.set_OutputPixelFormat(Basler.Pylon.PixelType)">
-            <summary> Sets the output pixel format.</summary>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This property is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if OutputPixelFormat is set to an unsupported or invalid PixelFormat. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.PixelDataConverter.get_OutputPixelFormat">
-            <summary> Gets the output pixel format.</summary>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw exceptions. </para>
-            </remarks>
-        </member>
-        <member name="P:Basler.Pylon.PixelDataConverter.OutputPixelFormat">
-            <summary>Sets or gets the output pixel format.</summary>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This property is not thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if OutputPixelFormat is set to an unsupported or invalid PixelFormat. The converter object is still valid after an error. </para>
-            </remarks>
-        </member>
-        <member name="P:Basler.Pylon.PixelDataConverter.Parameters">
-            <summary>The parameter collection of the camera object.</summary>
-            <returns>Returns the parameter collection of the camera object.</returns>
-            <remarks>
-You can access parameters by passing a key from a parameter list to the index operator, e.g.
-key from a parameter list, e.g.
-<code language="cpp">
-camera.Parameters[PLFormatConverter.OutputPaddingX].GetValue();
-</code><para><b>Thread safety:</b> This method is thread-safe.</para><para><b>Error safety:</b> Does not throw exceptions. </para></remarks>
-        </member>
-        <member name="T:Basler.Pylon.PixelDataConverter">
-            <summary> Creates new images by converting a source image to another format. </summary>
-            <remarks>
-                <para>Supported input image formats defined by the pixel type:
-
-<list type="bullet"><item> Mono1packed</item><item> Mono2packed</item><item> Mono4packed</item><item> Mono8</item><item> Mono10</item><item> Mono10packed</item><item> Mono10p</item><item> Mono12</item><item> Mono12packed</item><item> Mono12p</item><item> Mono16</item></list><list type="bullet"><item> BayerGR8</item><item> BayerRG8</item><item> BayerGB8</item><item> BayerBG8</item><item> BayerGR10</item><item> BayerRG10</item><item> BayerGB10</item><item> BayerBG10</item><item> BayerGR12</item><item> BayerRG12</item><item> BayerGB12</item><item> BayerBG12</item><item> BayerGR12Packed</item><item> BayerRG12Packed</item><item> BayerGB12Packed</item><item> BayerBG12Packed</item><item> BayerGR12p</item><item> BayerRG12p</item><item> BayerGB12p</item><item> BayerBG12p</item><item> BayerGR16</item><item> BayerRG16</item><item> BayerGB16</item><item> BayerBG16</item></list><list type="bullet"><item> RGB8packed</item><item> BGR8packed</item><item> RGBA8packed</item><item> BGRA8packed</item><item> GB10packed</item><item> BGR10packed</item><item> RGB12packed</item><item> BGR12packed</item><item> RGB12V1packed</item><item> RGB16packed</item><item> RGB8planar</item><item> RGB16planar</item></list><list type="bullet"><item> YUV422packed</item><item> YUV422_YUYV_Packed</item></list>
-
-
-Supported output image formats defined by the pixel type:
-<list type="bullet"><item> BGRA8packed - This pixel type can be used in Windows bitmaps.</item><item> BGR8packed - This pixel type can be used in Windows bitmaps.</item><item> RGB8packed</item><item> RGB16packed</item><item> RGB8planar</item><item> RGB16planar</item><item> Mono8</item><item> Mono16</item></list>
-
-All input image formats can be converted to all output image formats.</para>
-                <para>RGB, BGR and Bayer image formats are converted to monochrome formats by using the following formula:
-
-<code language="cpp">
-mono = (0.25 * red) + (0.625 * green) + (0.125 * blue);
-</code>
-
-YUV formats are converted to 16 bit bit depth in an intermediate conversion step. This is why the output
-is always aligned at the most significant bit when converting to 16 bit color output formats like RGB16packed.
-</para>
-                <para> Limitations:
-The last column of an YUV input image with odd width cannot be converted.
-The last column and the last row of a Bayer input image cannot be converted.
-
-The default treatment of rows and columns that cannot be converted due to their location on edges
-can be controlled using the @PixelDataConverter/InconvertibleEdgeHandling parameter.
-For more information, see the Convert() method description.
+The static class <see cref="T:Basler.Pylon.DeviceType" /> provides a list of possible device types.
 </para>
                 <para>
-                    <b>Thread safety:</b> The PixelDataConverter class is not thread-safe.</para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Does not throw exceptions.</para>
             </remarks>
+        </member>
+        <member name="M:Basler.Pylon.Library.EnumerateTransportLayers">
+            <summary> Searches for information about available transport layers. </summary>
+            <returns> Returns a list transport layer info objects, one per transport layer. </returns>
+            <remarks>
+The term 'transport layer' is used as an abstraction for a physical interface
+such as IEEE 1394, GigE or USB 3.0. For each of these interfaces,
+there are drivers providing access to camera devices.
+<para><b>Thread safety:</b> This method is thread-safe.</para><para><b>Error safety:</b> Does not throw exceptions.</para></remarks>
+        </member>
+        <member name="P:Basler.Pylon.Library.VersionInfo">
+            <summary> The current version of the library. </summary>
+            <returns> Returns the current version of the Pylon library. </returns>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This property is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Does not throw exceptions.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.Library.Dispose">
+            <summary> Releases a reference to the library. </summary>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Does not throw exceptions.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.Library.#ctor">
+            <summary>
+A Library object can be created to make sure that internal resources used
+by the Pylon library are not freed.
+This is only needed when AllowAutoRelease is set to true or if multiple
+assemblies use the pylonNET library.
+</summary>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Does not throw exceptions.</para>
+            </remarks>
+        </member>
+        <member name="T:Basler.Pylon.Library">
+            <summary>
+Library provides some basic information on the PylonNET library,
+such as its version and the available transport layers.
+</summary>
+            <remarks>
+                <para>
+The library is initialized implicitly by using an object of the library, e.g.
+by creating a <c>Camera</c> object, or by calling one of its static methods,
+e.g. <c>CameraFinder.Enumerate()</c>.
+The internal resources of the library are freed when the application domain is
+unloaded.
+</para>
+            </remarks>
+        </member>
+        <member name="P:Basler.Pylon.DeviceType.GenTLConsumer">
+            <summary>The Basler Camera Emu device type.</summary>
+        </member>
+        <member name="P:Basler.Pylon.DeviceType.CameraLink">
+            <summary>The Basler Camera Link device type.</summary>
+        </member>
+        <member name="P:Basler.Pylon.DeviceType.IEEE1394">
+            <summary>The Basler IEEE 1394 device type.</summary>
+        </member>
+        <member name="P:Basler.Pylon.DeviceType.GigE">
+            <summary>The Basler GigE device type.</summary>
+        </member>
+        <member name="P:Basler.Pylon.DeviceType.Usb">
+            <summary>The Basler USB device type.</summary>
+        </member>
+        <member name="T:Basler.Pylon.DeviceType">
+            <summary>Lists common device types.</summary>
+        </member>
+        <member name="T:Basler.Pylon.ITransportLayerInfo">
+            <summary> Provides access to the properties of a transport layer. </summary>
+            <remarks>
+The static class <see cref="T:Basler.Pylon.TransportLayerInfoKey" /> can be used to get a list of available camera
+info keys.
+</remarks>
+        </member>
+        <member name="P:Basler.Pylon.TransportLayerInfoKey.DeviceType">
+            <summary>
+The device class device, e.g. Basler1394.
+</summary>
+        </member>
+        <member name="P:Basler.Pylon.TransportLayerInfoKey.VendorName">
+            <summary>
+The vendor name of the device.
+</summary>
+        </member>
+        <member name="P:Basler.Pylon.TransportLayerInfoKey.FriendlyName">
+            <summary>
+The human readable name of the device.
+</summary>
+        </member>
+        <member name="P:Basler.Pylon.TransportLayerInfoKey.FullName">
+            <summary>
+The full name identifying the device.
+</summary>
+        </member>
+        <member name="T:Basler.Pylon.TransportLayerInfoKey">
+            <summary>
+Provides standard transport layer info key names.
+</summary>
+        </member>
+        <member name="M:Basler.Pylon.ImagePersistence.Load(System.String,System.Byte[]@,Basler.Pylon.PixelType@,System.Int32@,System.Int32@,System.Int32@,Basler.Pylon.ImageOrientation@)">
+            <summary> Loads an image from disk. </summary>  // $4D$
+
+<param name="filename">     Name and path of the image.</param><param name="buffer">       The byte array conating the image data on success.</param><param name="pixelType">    The pixel type of the image.</param><param name="width">        The number of image pixels in a row.</param><param name="height">       The number of rows of the image.</param><param name="paddingX">     The number of extra data bytes at the end of each row.</param><param name="orientation">  The vertical orientation of the image in the image buffer.</param><remarks><para>
+On success the buffer array will contain the raw image data of the image loaded.
+</para><para>
+Due to automatic conversion during save, saving an image and then loading it again may result in different memory layout if the image data.
+</para><para><b>Thread safety:</b> This method is thread-safe.</para><para><b>Error safety:</b> Throws an exception if loading the image fails. </para></remarks></member>
+        <member name="M:Basler.Pylon.ImagePersistence.Save(Basler.Pylon.ImageFileFormat,System.String,Basler.Pylon.IImage)">
+            <summary> Saves the image to disk. If required, converts the image to a new format and then saves it.</summary>
+            <param name="imageFileFormat"> The file format to save the image in.</param>
+            <param name="filename">       Name and path of the image.</param>
+            <param name="image"> The image to save.</param>
+            <remarks>
+                <para>
+If required, the image is automatically converted to a new image and then saved.
+An image with a bit depth higher than 8 bit is stored with 16 bit bit depth
+if supported by the image file format. In this case, the pixel data is MSB aligned.
+
+If more control over the conversion is required, the <see cref="T:Basler.Pylon.PixelDataConverter" /> class
+can be used to convert the input image before saving it.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The pixel type of the image to save must be a supported input format of the <see cref="T:Basler.Pylon.PixelDataConverter" />.</item>
+                        <item> The image must be valid.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if saving the image fails. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.ImagePersistence.Save``1(Basler.Pylon.ImageFileFormat,System.String,``0[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary> Saves the image to disk. If required, converts the image to a new format and then saves it.</summary>
+            <param name="imageFileFormat"> The file format to save the image in.</param>
+            <param name="filename">       Name and path of the image.</param>
+            <param name="buffer">    The array providing the buffer of the image.</param>
+            <param name="pixelType">  The pixel type of the image to save.</param>
+            <param name="width">     The number of pixels in a row of the image to save.</param>
+            <param name="height">     The number of rows of the image to save.</param>
+            <param name="paddingX">   The number of extra data bytes at the end of each row.</param>
+            <param name="orientation"> The vertical orientation of the image in the image buffer.</param>
+            <typeparam name="T"> The array item value type of the destination buffer array.</typeparam>
+            <remarks>
+                <para>
+If required, the image is automatically converted to a new image and then saved.
+An image with a bit depth higher than 8 bit is stored with 16 bit bit depth
+if supported by the image file format. In this case, the pixel data is MSB aligned.
+
+If more control over the conversion is required, the <see cref="T:Basler.Pylon.PixelDataConverter" /> class
+can be used to convert the input image before saving it.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The pixel type of the image to save must be a supported input format of the <see cref="T:Basler.Pylon.PixelDataConverter" />.</item>
+                        <item> The width value must be &gt;= 0.</item>
+                        <item> The height value must be &gt;= 0.</item>
+                        <item> The paddingX value must be &gt;= 0.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if saving the image fails. </para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.ImagePersistence.Save(Basler.Pylon.ImageFileFormat,System.String,System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary> Saves the image to disk. If required, converts the image to a new format and then saves it.</summary>
+            <param name="imageFileFormat"> The file format to save the image in.</param>
+            <param name="filename">     Name and path of the image.</param>
+            <param name="pBuffer">      The pointer to the buffer of the image.</param>
+            <param name="bufferSize">   The size of the buffer in bytes.</param>
+            <param name="pixelType">    The pixel type of the image to save.</param>
+            <param name="width">        The number of pixels in a row of the image to save.</param>
+            <param name="height">       The number of rows of the image to save.</param>
+            <param name="paddingX">     The number of extra data bytes at the end of each row.</param>
+            <param name="orientation">  The vertical orientation of the image in the image buffer.</param>
+            <remarks>
+                <para>
+If required, the image is automatically converted to a new image and then saved.
+An image with a bit depth higher than 8 bit is stored with 16 bit bit depth
+if supported by the image file format. In this case, the pixel data is MSB aligned.
+
+If more control over the conversion is required, the <see cref="T:Basler.Pylon.PixelDataConverter" /> class
+can be used to convert the input image before saving it.
+</para>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item> The bufferSize value must be &gt;= 0.</item>
+                        <item> The pixel type of the image to save must be a supported input format of the <see cref="T:Basler.Pylon.PixelDataConverter" />.</item>
+                        <item> The width value must be &gt;= 0.</item>
+                        <item> The height value must be &gt;= 0.</item>
+                        <item> The paddingX value must be &gt;= 0.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws an exception if saving the image fails. </para>
+            </remarks>
+        </member>
+        <member name="T:Basler.Pylon.ImagePersistence">
+            <summary> Contains static methods that support saving of images.</summary>
+        </member>
+        <member name="T:Basler.Pylon.ImageFileFormat">
+            <summary> List of available file formats for ImagePersistence.</summary>
+        </member>
+        <member name="F:Basler.Pylon.ImageFileFormat.Png">
+            <summary>Portable Network Graphics (PNG) format. Lossless data compression.</summary>
+        </member>
+        <member name="F:Basler.Pylon.ImageFileFormat.Jpeg">
+            <summary>Joint Photographic Experts Group (JPEG) format. Lossy data compression.</summary>
+        </member>
+        <member name="F:Basler.Pylon.ImageFileFormat.Tiff">
+            <summary>Tagged Image File Format (TIFF), no compression. Supports mono images with more than 8 bit bit depth.</summary>
+        </member>
+        <member name="F:Basler.Pylon.ImageFileFormat.Bmp">
+            <summary>Windows Bitmap (BMP) format, no compression.</summary>
         </member>
         <member name="M:Basler.Pylon.Camera.get_Parameters">
             <summary> Usage: Parameters[PLCamera.ParameterName] </summary>
@@ -36824,133 +37017,113 @@ The full name identifying the device.
 Provides standard camera info key names.
 </summary>
         </member>
-        <member name="M:Basler.Pylon.ImagePersistence.Load(System.String,System.Byte[]@,Basler.Pylon.PixelType@,System.Int32@,System.Int32@,System.Int32@,Basler.Pylon.ImageOrientation@)">
-            <summary> Loads an image from disk. </summary>  // $4D$
-
-<param name="filename">     Name and path of the image.</param><param name="buffer">       The byte array conating the image data on success.</param><param name="pixelType">    The pixel type of the image.</param><param name="width">        The number of image pixels in a row.</param><param name="height">       The number of rows of the image.</param><param name="paddingX">     The number of extra data bytes at the end of each row.</param><param name="orientation">  The vertical orientation of the image in the image buffer.</param><remarks><para>
-On success the buffer array will contain the raw image data of the image loaded.
+        <member name="M:Basler.Pylon.IInfo.GetValueOrDefault(System.String,System.String)">
+            <summary>Gets the property value if the given property key exists. Otherwise, returns the default value.</summary>
+            <returns>Returns the property value if the given property key exists. Otherwise, returns the default value.</returns>
+            <param name="key">The key of the property to look up. The lookup is case sensitive.</param>
+            <param name="defaultValue">The default value returned if the property key is not found.</param>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws a System.ArgumentNullException if the <paramref name="key" /> passed is null.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.IInfo.ContainsKey(System.String)">
+            <summary>
+Indicates if the item has a specific property.
+</summary>
+            <param name="key">The key of the property to look up. The lookup is case sensitive.</param>
+            <returns>Returns true if the property exists.</returns>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws a System.ArgumentNullException if the <paramref name="key" /> passed is null.</para>
+            </remarks>
+        </member>
+        <member name="P:Basler.Pylon.IInfo.Item(System.String)">
+            <summary>
+Retrieves the value of the specified property.
+</summary>
+            <param name="key">The key of the property to look up. The lookup is case sensitive.</param>
+            <returns>Returns the value of the property.</returns>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Throws a System.ArgumentNullException if the <paramref name="key" /> passed is null.
+Throws a System.NotSupportedException if the <paramref name="key" /> passed does not exist in the info object.</para>
+            </remarks>
+        </member>
+        <member name="T:Basler.Pylon.IInfo">
+            <summary>
+Provides access to the properties of an info object.
+</summary>
+        </member>
+        <member name="M:Basler.Pylon.ImageWindow.Close(System.Int32)">
+            <summary>Closes and destroys a window opened by using DisplayImage.</summary>
+            <param name="windowIndex">The index of the window to be closed. Valid window indexes range from 0 to 31.</param>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b>This method is thread-safe.</para>
+                <para>
+                    <b>Error safety:</b> Does not throw exceptions.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.ImageWindow.DisplayImage``1(System.Int32,``0[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary>Displays the contents of an image buffer on the screen.</summary> // $4D$
+<param name="windowIndex"> The index of the image window. Valid window indexes range from 0 to 31.</param><param name="buffer">    The typed array containing the image data.</param><param name="pixelType">The pixel type of the image data in the buffer.</param><param name="width">The number of pixels in a row of the image data in the buffer.</param><param name="height">The number of rows in the image data in the buffer.</param><param name="paddingX">The number of extra data bytes at the end of each row.</param><param name="orientation">The vertical orientation of the image in the image buffer.</param><remarks><para>
+This method displays the contents of a buffer in a window.
 </para><para>
-Due to automatic conversion during save, saving an image and then loading it again may result in different memory layout if the image data.
-</para><para><b>Thread safety:</b> This method is thread-safe.</para><para><b>Error safety:</b> Throws an exception if loading the image fails. </para></remarks></member>
-        <member name="M:Basler.Pylon.ImagePersistence.Save(Basler.Pylon.ImageFileFormat,System.String,Basler.Pylon.IImage)">
-            <summary> Saves the image to disk. If required, converts the image to a new format and then saves it.</summary>
-            <param name="imageFileFormat"> The file format to save the image in.</param>
-            <param name="filename">       Name and path of the image.</param>
-            <param name="image"> The image to save.</param>
+If the window hasn't been created before, it will be created with default positions.
+When the method returns, you may free the image buffer.
+</para><para>
+If you pass an empty or invalid buffer (e.g. buffer is empty or invalid), the window will be cleared.
+To close the window call <see cref="M:Basler.Pylon.ImageWindow.Close(System.Int32)" />.
+</para><list type="bullet"><item>The window specified by windowIndex will be created and shown on the screen.</item><item>If the image passed is valid, it is shown in the window specified by windowIndex.</item><item>If the image passed is invalid, the window specified by windowIndex will be cleared.</item></list><para><b>Thread safety:</b>This method is thread-safe.</para><para><b>Error safety:</b> Can throw an exception if the windowIndex, width, height, or paddingX passed are invalid or if the window could not be created.</para></remarks></member>
+        <member name="M:Basler.Pylon.ImageWindow.DisplayImage(System.Int32,System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
+            <summary>Displays the contents of a raw image buffer on the screen.</summary> // $4D$
+<param name="windowIndex"> The index of the image window. Valid window indexes range from 0 to 31.</param><param name="pBuffer"> Pointer to the buffer containing the image data.</param><param name="bufferSize"> Size of the buffer in bytes.</param><param name="pixelType">The pixel type of the image data in the buffer.</param><param name="width">The number of pixels in a row of the image data in the buffer.</param><param name="height">The number of rows in the image data in the buffer.</param><param name="paddingX">The number of extra data bytes at the end of each row.</param><param name="orientation">The vertical orientation of the image in the image buffer.</param><remarks><para>
+This method displays the contents of a raw buffer in a window.
+</para><para>
+If the window hasn't been created before, it will be created with default positions.
+When the method returns, you may free the image buffer.
+</para><para>
+If you pass an empty or invalid buffer (e.g. pBuffer or bufferSize are invalid), the window will be cleared.
+To close the window call <see cref="M:Basler.Pylon.ImageWindow.Close(System.Int32)" />.
+</para><list type="bullet"><item>The window specified by windowIndex will be created and shown on the screen.</item><item>If the image passed is valid, it is shown in the window specified by windowIndex.</item><item>If the image passed is invalid, the window specified by windowIndex will be cleared.</item></list><para><b>Thread safety:</b>This method is thread-safe.</para><para><b>Error safety:</b> Can throw an exception if the windowIndex, width, height, or paddingX passed are invalid or if the window could not be created.</para></remarks></member>
+        <member name="M:Basler.Pylon.ImageWindow.DisplayImage(System.Int32,Basler.Pylon.IImage)">
+            <summary>Displays an image on screen.</summary>
+            <param name="windowIndex"> The index of the image window. Valid window indexes range from 0 to 31.</param>
+            <param name="image"> The image to display in the window.</param>
             <remarks>
                 <para>
-If required, the image is automatically converted to a new image and then saved.
-An image with a bit depth higher than 8 bit is stored with 16 bit bit depth
-if supported by the image file format. In this case, the pixel data is MSB aligned.
-
-If more control over the conversion is required, the <see cref="T:Basler.Pylon.PixelDataConverter" /> class
-can be used to convert the input image before saving it.
+This method displays the image or the grab result in a window.
+Using this method is the easiest way to display an image on screen.
 </para>
                 <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The pixel type of the image to save must be a supported input format of the <see cref="T:Basler.Pylon.PixelDataConverter" />.</item>
-                        <item> The image must be valid.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if saving the image fails. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.ImagePersistence.Save``1(Basler.Pylon.ImageFileFormat,System.String,``0[],Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary> Saves the image to disk. If required, converts the image to a new format and then saves it.</summary>
-            <param name="imageFileFormat"> The file format to save the image in.</param>
-            <param name="filename">       Name and path of the image.</param>
-            <param name="buffer">    The array providing the buffer of the image.</param>
-            <param name="pixelType">  The pixel type of the image to save.</param>
-            <param name="width">     The number of pixels in a row of the image to save.</param>
-            <param name="height">     The number of rows of the image to save.</param>
-            <param name="paddingX">   The number of extra data bytes at the end of each row.</param>
-            <param name="orientation"> The vertical orientation of the image in the image buffer.</param>
-            <typeparam name="T"> The array item value type of the destination buffer array.</typeparam>
-            <remarks>
-                <para>
-If required, the image is automatically converted to a new image and then saved.
-An image with a bit depth higher than 8 bit is stored with 16 bit bit depth
-if supported by the image file format. In this case, the pixel data is MSB aligned.
-
-If more control over the conversion is required, the <see cref="T:Basler.Pylon.PixelDataConverter" /> class
-can be used to convert the input image before saving it.
+You can pass any IImage based object. If the window hasn't been created before, it will be created with default positions and the image will be shown.
+When the method returns, you may dispose the image.
 </para>
                 <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The pixel type of the image to save must be a supported input format of the <see cref="T:Basler.Pylon.PixelDataConverter" />.</item>
-                        <item> The width value must be &gt;= 0.</item>
-                        <item> The height value must be &gt;= 0.</item>
-                        <item> The paddingX value must be &gt;= 0.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if saving the image fails. </para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.ImagePersistence.Save(Basler.Pylon.ImageFileFormat,System.String,System.IntPtr,System.Int64,Basler.Pylon.PixelType,System.Int32,System.Int32,System.Int32,Basler.Pylon.ImageOrientation)">
-            <summary> Saves the image to disk. If required, converts the image to a new format and then saves it.</summary>
-            <param name="imageFileFormat"> The file format to save the image in.</param>
-            <param name="filename">     Name and path of the image.</param>
-            <param name="pBuffer">      The pointer to the buffer of the image.</param>
-            <param name="bufferSize">   The size of the buffer in bytes.</param>
-            <param name="pixelType">    The pixel type of the image to save.</param>
-            <param name="width">        The number of pixels in a row of the image to save.</param>
-            <param name="height">       The number of rows of the image to save.</param>
-            <param name="paddingX">     The number of extra data bytes at the end of each row.</param>
-            <param name="orientation">  The vertical orientation of the image in the image buffer.</param>
-            <remarks>
-                <para>
-If required, the image is automatically converted to a new image and then saved.
-An image with a bit depth higher than 8 bit is stored with 16 bit bit depth
-if supported by the image file format. In this case, the pixel data is MSB aligned.
-
-If more control over the conversion is required, the <see cref="T:Basler.Pylon.PixelDataConverter" /> class
-can be used to convert the input image before saving it.
+If you pass an empty or invalid image (e.g. IImage.IsValid() returns false), the window will be cleared.
+To close the window call Close()
 </para>
+                <list type="bullet">
+                    <item>The window specified by windowIndex will be created and shown on the screen.</item>
+                    <item>If the image passed is valid, it is shown in the window specified by windowIndex.</item>
+                    <item>If the image passed is invalid, the window specified by windowIndex will be cleared.</item>
+                </list>
                 <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item> The bufferSize value must be &gt;= 0.</item>
-                        <item> The pixel type of the image to save must be a supported input format of the <see cref="T:Basler.Pylon.PixelDataConverter" />.</item>
-                        <item> The width value must be &gt;= 0.</item>
-                        <item> The height value must be &gt;= 0.</item>
-                        <item> The paddingX value must be &gt;= 0.</item>
-                    </list>
-                </para>
+                    <b>Thread safety:</b>This method is thread-safe.</para>
                 <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws an exception if saving the image fails. </para>
+                    <b>Error safety:</b> Can throw an exception if the windowIndex passed is invalid, or if the window could not be created.</para>
             </remarks>
         </member>
-        <member name="T:Basler.Pylon.ImagePersistence">
-            <summary> Contains static methods that support saving of images.</summary>
-        </member>
-        <member name="T:Basler.Pylon.ImageFileFormat">
-            <summary> List of available file formats for ImagePersistence.</summary>
-        </member>
-        <member name="F:Basler.Pylon.ImageFileFormat.Png">
-            <summary>Portable Network Graphics (PNG) format. Lossless data compression.</summary>
-        </member>
-        <member name="F:Basler.Pylon.ImageFileFormat.Jpeg">
-            <summary>Joint Photographic Experts Group (JPEG) format. Lossy data compression.</summary>
-        </member>
-        <member name="F:Basler.Pylon.ImageFileFormat.Tiff">
-            <summary>Tagged Image File Format (TIFF), no compression. Supports mono images with more than 8 bit bit depth.</summary>
-        </member>
-        <member name="F:Basler.Pylon.ImageFileFormat.Bmp">
-            <summary>Windows Bitmap (BMP) format, no compression.</summary>
-        </member>
+        <member name="T:Basler.Pylon.ImageWindow">
+            <summary> Displays an IImage or IGrabResult on screen.</summary> // $4D$
+</member>
         <member name="M:Basler.Pylon.IImageExtensions.ComputeStride(Basler.Pylon.IImage)">
             <summary>Computes the stride of the image in bytes. Returns null if the stride cannot be computed.</summary>
             <param name="image">The interface of the image.</param>
@@ -37298,181 +37471,8 @@ For detailed information about pixel formats, see the <see href="http://www.emva
         <member name="F:Basler.Pylon.ImageOrientation.TopDown">
             <summary>The pixel data buffer starts with the first row of the image. This is the default image orientation for images retrieved from a camera.</summary>
         </member>
-        <member name="M:Basler.Pylon.Library.ContainsTransportLayer(System.String)">
-            <summary>
-Indicates if the library contains the transport layer identified by the device type.
-</summary>
-            <param name="deviceType">
-The requested device type, e.g. BaslerUsb.
-</param>
-            <returns>
-Returns true if the library contains the transport layer identified by the device type.
-</returns>
-            <remarks>
-                <para>
-The static class <see cref="T:Basler.Pylon.DeviceType" /> provides a list of possible device types.
-</para>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw exceptions.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.Library.EnumerateTransportLayers">
-            <summary> Searches for information about available transport layers. </summary>
-            <returns> Returns a list transport layer info objects, one per transport layer. </returns>
-            <remarks>
-The term 'transport layer' is used as an abstraction for a physical interface
-such as IEEE 1394, GigE or USB 3.0. For each of these interfaces,
-there are drivers providing access to camera devices.
-<para><b>Thread safety:</b> This method is thread-safe.</para><para><b>Error safety:</b> Does not throw exceptions.</para></remarks>
-        </member>
-        <member name="P:Basler.Pylon.Library.VersionInfo">
-            <summary> The current version of the library. </summary>
-            <returns> Returns the current version of the Pylon library. </returns>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This property is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw exceptions.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.Library.Dispose">
-            <summary> Releases a reference to the library. </summary>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw exceptions.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.Library.#ctor">
-            <summary>
-A Library object can be created to make sure that internal resources used
-by the Pylon library are not freed.
-This is only needed when AllowAutoRelease is set to true or if multiple
-assemblies use the pylonNET library.
-</summary>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Does not throw exceptions.</para>
-            </remarks>
-        </member>
-        <member name="T:Basler.Pylon.Library">
-            <summary>
-Library provides some basic information on the PylonNET library,
-such as its version and the available transport layers.
-</summary>
-            <remarks>
-                <para>
-The library is initialized implicitly by using an object of the library, e.g.
-by creating a <c>Camera</c> object, or by calling one of its static methods,
-e.g. <c>CameraFinder.Enumerate()</c>.
-The internal resources of the library are freed when the application domain is
-unloaded.
-</para>
-            </remarks>
-        </member>
-        <member name="P:Basler.Pylon.DeviceType.GenTLConsumer">
-            <summary>The Basler Camera Emu device type.</summary>
-        </member>
-        <member name="P:Basler.Pylon.DeviceType.CameraLink">
-            <summary>The Basler Camera Link device type.</summary>
-        </member>
-        <member name="P:Basler.Pylon.DeviceType.IEEE1394">
-            <summary>The Basler IEEE 1394 device type.</summary>
-        </member>
-        <member name="P:Basler.Pylon.DeviceType.GigE">
-            <summary>The Basler GigE device type.</summary>
-        </member>
-        <member name="P:Basler.Pylon.DeviceType.Usb">
-            <summary>The Basler USB device type.</summary>
-        </member>
-        <member name="T:Basler.Pylon.DeviceType">
-            <summary>Lists common device types.</summary>
-        </member>
-        <member name="T:Basler.Pylon.ITransportLayerInfo">
-            <summary> Provides access to the properties of a transport layer. </summary>
-            <remarks>
-The static class <see cref="T:Basler.Pylon.TransportLayerInfoKey" /> can be used to get a list of available camera
-info keys.
-</remarks>
-        </member>
-        <member name="P:Basler.Pylon.TransportLayerInfoKey.DeviceType">
-            <summary>
-The device class device, e.g. Basler1394.
-</summary>
-        </member>
-        <member name="P:Basler.Pylon.TransportLayerInfoKey.VendorName">
-            <summary>
-The vendor name of the device.
-</summary>
-        </member>
-        <member name="P:Basler.Pylon.TransportLayerInfoKey.FriendlyName">
-            <summary>
-The human readable name of the device.
-</summary>
-        </member>
-        <member name="P:Basler.Pylon.TransportLayerInfoKey.FullName">
-            <summary>
-The full name identifying the device.
-</summary>
-        </member>
-        <member name="T:Basler.Pylon.TransportLayerInfoKey">
-            <summary>
-Provides standard transport layer info key names.
-</summary>
-        </member>
-        <member name="M:Basler.Pylon.IInfo.GetValueOrDefault(System.String,System.String)">
-            <summary>Gets the property value if the given property key exists. Otherwise, returns the default value.</summary>
-            <returns>Returns the property value if the given property key exists. Otherwise, returns the default value.</returns>
-            <param name="key">The key of the property to look up. The lookup is case sensitive.</param>
-            <param name="defaultValue">The default value returned if the property key is not found.</param>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws a System.ArgumentNullException if the <paramref name="key" /> passed is null.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.IInfo.ContainsKey(System.String)">
-            <summary>
-Indicates if the item has a specific property.
-</summary>
-            <param name="key">The key of the property to look up. The lookup is case sensitive.</param>
-            <returns>Returns true if the property exists.</returns>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws a System.ArgumentNullException if the <paramref name="key" /> passed is null.</para>
-            </remarks>
-        </member>
-        <member name="P:Basler.Pylon.IInfo.Item(System.String)">
-            <summary>
-Retrieves the value of the specified property.
-</summary>
-            <param name="key">The key of the property to look up. The lookup is case sensitive.</param>
-            <returns>Returns the value of the property.</returns>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is thread-safe.</para>
-                <para>
-                    <b>Error safety:</b> Throws a System.ArgumentNullException if the <paramref name="key" /> passed is null.
-Throws a System.NotSupportedException if the <paramref name="key" /> passed does not exist in the info object.</para>
-            </remarks>
-        </member>
-        <member name="T:Basler.Pylon.IInfo">
-            <summary>
-Provides access to the properties of an info object.
-</summary>
-        </member>
-        <member name="T:Basler.Pylon.ParameterCollectionEnumerator">
-            <summary>
-IEnumerator implementation for ParameterCollection
-</summary>
+        <member name="T:Basler.Pylon.GenICamFileSet">
+            <exclude />
         </member>
         <member name="M:Basler.Pylon.IRawParameter.WriteRaw``1(System.Int64,``0[],System.Int32,System.Int32)">
             <summary>Writes raw data from the array passed to the specified address.</summary> // $4D$
@@ -37916,6 +37916,86 @@ A parameter collection is enumerable. The enumerator lists all user parameters.
         </member>
         <member name="T:Basler.Pylon.IBooleanParameter">
             <summary>Interface class for boolean parameters.</summary>
+        </member>
+        <member name="M:Basler.Pylon.IStringParameterExtensions.GetValueOrDefault(Basler.Pylon.IStringParameter,System.String)">
+            <summary>Gets the parameter value if the parameter is readable. Otherwise, returns the default value.</summary>
+            <returns>Returns the parameter value if the parameter is readable. Otherwise, returns the default value.</returns>
+            <param name="parameter">The interface of the parameter.</param>
+            <param name="defaultValue">The default value returned if the parameter is not readable.</param>
+            <remarks>
+                <para>
+                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
+                <para>
+                    <b>Error safety:</b> Can throw exceptions if reading the value fails.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.IStringParameterExtensions.TrySetValue(Basler.Pylon.IStringParameter,System.String)">
+            <summary>Sets the provided value if the parameter is writable.</summary>
+            <returns>Returns false if the parameter is not writable.</returns>
+            <param name="parameter">The interface of the parameter.</param>
+            <param name="value">The string value to set.</param>
+            <remarks>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item>The length of the string must be less than GetMaxLength().</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
+                <para>
+                    <b>Error safety:</b> Can throw exceptions if the preconditions are not met or if writing the value fails.</para>
+            </remarks>
+        </member>
+        <member name="T:Basler.Pylon.IStringParameterExtensions">
+            <tocexclude />
+            <summary>Extension class for the string parameter interface.</summary>
+        </member>
+        <member name="M:Basler.Pylon.IStringParameter.GetMaxLength">
+            <summary>Gets the maximum length of the string parameter.</summary>
+            <returns>Returns the maximum number of characters the string parameter supports.</returns>
+            <remarks>
+                <para>
+                    <b>Preconditions:</b> The parameter must be readable.</para>
+                <para>
+                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
+                <para>
+                    <b>Error safety:</b> Can throw exceptions if the parameter is not readable or if reading the value fails.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.IStringParameter.GetValue">
+            <summary>Gets the current parameter value.</summary>
+            <returns>Returns the current parameter value.</returns>
+            <remarks>
+                <para>
+                    <b>Preconditions:</b> The parameter must be readable.</para>
+                <para>
+                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
+                <para>
+                    <b>Error safety:</b> Can throw exceptions if the parameter is not readable or if reading the value fails.</para>
+            </remarks>
+        </member>
+        <member name="M:Basler.Pylon.IStringParameter.SetValue(System.String)">
+            <summary>Sets the provided value.</summary>
+            <param name="value">The string to set.</param>
+            <remarks>
+                <para>
+                    <b>Preconditions:</b>
+                    <br />
+                    <list type="bullet">
+                        <item>The length of the string must be less than GetMaxLength().</item>
+                        <item>The parameter must be writable.</item>
+                    </list>
+                </para>
+                <para>
+                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
+                <para>
+                    <b>Error safety:</b> Can throw exceptions if writing the value fails or if the parameter is not writable.</para>
+            </remarks>
+        </member>
+        <member name="T:Basler.Pylon.IStringParameter">
+            <summary>Interface class for string parameters.</summary>
         </member>
         <member name="M:Basler.Pylon.IIntegerParameterExtensions.TrySetToMinimum(Basler.Pylon.IIntegerParameter)">
             <summary>Sets the parameter value to the minimum possible value if the parameter is readable and writable.</summary>
@@ -38621,86 +38701,6 @@ The value must be in the valid range and the increment must be correct.</summary
         </member>
         <member name="T:Basler.Pylon.ICommandParameter">
             <summary>Interface class for command parameters.</summary>
-        </member>
-        <member name="M:Basler.Pylon.IStringParameterExtensions.GetValueOrDefault(Basler.Pylon.IStringParameter,System.String)">
-            <summary>Gets the parameter value if the parameter is readable. Otherwise, returns the default value.</summary>
-            <returns>Returns the parameter value if the parameter is readable. Otherwise, returns the default value.</returns>
-            <param name="parameter">The interface of the parameter.</param>
-            <param name="defaultValue">The default value returned if the parameter is not readable.</param>
-            <remarks>
-                <para>
-                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
-                <para>
-                    <b>Error safety:</b> Can throw exceptions if reading the value fails.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.IStringParameterExtensions.TrySetValue(Basler.Pylon.IStringParameter,System.String)">
-            <summary>Sets the provided value if the parameter is writable.</summary>
-            <returns>Returns false if the parameter is not writable.</returns>
-            <param name="parameter">The interface of the parameter.</param>
-            <param name="value">The string value to set.</param>
-            <remarks>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item>The length of the string must be less than GetMaxLength().</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
-                <para>
-                    <b>Error safety:</b> Can throw exceptions if the preconditions are not met or if writing the value fails.</para>
-            </remarks>
-        </member>
-        <member name="T:Basler.Pylon.IStringParameterExtensions">
-            <tocexclude />
-            <summary>Extension class for the string parameter interface.</summary>
-        </member>
-        <member name="M:Basler.Pylon.IStringParameter.GetMaxLength">
-            <summary>Gets the maximum length of the string parameter.</summary>
-            <returns>Returns the maximum number of characters the string parameter supports.</returns>
-            <remarks>
-                <para>
-                    <b>Preconditions:</b> The parameter must be readable.</para>
-                <para>
-                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
-                <para>
-                    <b>Error safety:</b> Can throw exceptions if the parameter is not readable or if reading the value fails.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.IStringParameter.GetValue">
-            <summary>Gets the current parameter value.</summary>
-            <returns>Returns the current parameter value.</returns>
-            <remarks>
-                <para>
-                    <b>Preconditions:</b> The parameter must be readable.</para>
-                <para>
-                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
-                <para>
-                    <b>Error safety:</b> Can throw exceptions if the parameter is not readable or if reading the value fails.</para>
-            </remarks>
-        </member>
-        <member name="M:Basler.Pylon.IStringParameter.SetValue(System.String)">
-            <summary>Sets the provided value.</summary>
-            <param name="value">The string to set.</param>
-            <remarks>
-                <para>
-                    <b>Preconditions:</b>
-                    <br />
-                    <list type="bullet">
-                        <item>The length of the string must be less than GetMaxLength().</item>
-                        <item>The parameter must be writable.</item>
-                    </list>
-                </para>
-                <para>
-                    <b>Thread safety:</b> This method is synchronized with the source of the parameter collection, if any.</para>
-                <para>
-                    <b>Error safety:</b> Can throw exceptions if writing the value fails or if the parameter is not writable.</para>
-            </remarks>
-        </member>
-        <member name="T:Basler.Pylon.IStringParameter">
-            <summary>Interface class for string parameters.</summary>
         </member>
         <member name="E:Basler.Pylon.IParameter.ParameterValueChanged">
             <summary>This event fires after the parameter value has changed.</summary>
