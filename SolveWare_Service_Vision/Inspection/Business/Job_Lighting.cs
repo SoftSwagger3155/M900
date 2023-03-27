@@ -21,7 +21,6 @@ namespace SolveWare_Service_Vision.Inspection.Business
         {
             throw new NotImplementedException();
         }
-
         public void Setup(IElement data)
         {
             this.jobParam = data as JobSheet_Lighting;

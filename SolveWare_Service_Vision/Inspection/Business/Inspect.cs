@@ -15,14 +15,6 @@ namespace SolveWare_Service_Vision.Inspection.Business
 {
     public class Inspect : IInspectionKit
     {
-        string id_Camera;
-        Data_InspectionKit dataKit;
-        CameraBase camera;
-        public void Setup(IElement data)
-        {
-            dataKit = data as Data_InspectionKit;
-        }
-
         public int Do_Blob()
         {
             int errorCode = ErrorCodes.NoError;
@@ -42,7 +34,6 @@ namespace SolveWare_Service_Vision.Inspection.Business
 
             errorCode = Do_PatternMath();
             errorCode = Do_Blob();
-
 
             return errorCode;
         }
@@ -76,11 +67,6 @@ namespace SolveWare_Service_Vision.Inspection.Business
             {
                 x.GetModule().Do_Job();
             });
-        }
-
-        public void Save()
-        {
-            
         }
     }
 }
