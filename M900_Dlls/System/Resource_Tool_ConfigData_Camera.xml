@@ -2,7 +2,7 @@
 <ArrayOfConfigData_Camera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ConfigData_Camera>
     <Name>上相机</Name>
-    <IsSimulation>false</IsSimulation>
+    <IsSimulation>true</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
   </ConfigData_Camera>
   <ConfigData_Camera>

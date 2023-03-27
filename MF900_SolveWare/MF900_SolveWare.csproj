@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Basler.Pylon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=x86">
+    <Reference Include="Basler.Pylon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\Basler.Pylon.dll</HintPath>
     </Reference>
@@ -80,6 +80,18 @@
       <DependentUpon>AxisJop.cs</DependentUpon>
     </Compile>
     <Compile Include="Business\MainManager.cs" />
+    <Compile Include="DeControls\InputIo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DeControls\InputIo.designer.cs">
+      <DependentUpon>InputIo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeControls\OutputSwitch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DeControls\OutputSwitch.designer.cs">
+      <DependentUpon>OutputSwitch.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommunic\FormSwitch.cs" />
     <Compile Include="FSM\Auto\FSM_Auto_Controller.cs" />
     <Compile Include="FSM\Home\FSM_Home_Controller.cs" />
@@ -279,6 +291,12 @@
     <EmbeddedResource Include="DeControls\AxisJop.resx">
       <DependentUpon>AxisJop.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DeControls\InputIo.resx">
+      <DependentUpon>InputIo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeControls\OutputSwitch.resx">
+      <DependentUpon>OutputSwitch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AxisMesForm\AxisDebugForm.resx">
       <DependentUpon>AxisDebugForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -417,6 +435,8 @@
   <ItemGroup>
     <Content Include="Basler.Pylon.dll" />
     <Content Include="Remarks.txt" />
+    <None Include="Resources\Circle_Gray.png" />
+    <None Include="Resources\Circle_Green.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Left.png" />
