@@ -92,6 +92,18 @@
     <Compile Include="Offset\Job\Job_Offset_BtmCamera_BtmProber.cs" />
     <Compile Include="Offset\Job\Job_Offset_TopCamera_BtmPin.cs" />
     <Compile Include="Offset\Job\Job_Offset_TopCamera_TopProber.cs" />
+    <Compile Include="Views\AxisMesForm\AxisDebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\AxisDebugForm.designer.cs">
+      <DependentUpon>AxisDebugForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\IODebugForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\IODebugForm.designer.cs">
+      <DependentUpon>IODebugForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +278,12 @@
     </Compile>
     <EmbeddedResource Include="DeControls\AxisJop.resx">
       <DependentUpon>AxisJop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\AxisDebugForm.resx">
+      <DependentUpon>AxisDebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\IODebugForm.resx">
+      <DependentUpon>IODebugForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>

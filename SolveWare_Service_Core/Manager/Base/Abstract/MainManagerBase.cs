@@ -142,6 +142,9 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             InitToolResource();
             InitDataResource();
             InitMachineResource();
+
+            //run status reading
+            SolveWare.Core.MMgr.Resource_Tool_Center.ToList().ForEach(x => x.StartStatusReading());
         }
 
         public abstract void Setup();

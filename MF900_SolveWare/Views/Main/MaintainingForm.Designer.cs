@@ -53,6 +53,18 @@ namespace MF900_SolveWare
             this.uiRadioButton1 = new Sunny.UI.UIRadioButton();
             this.uiButton4 = new Sunny.UI.UIButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.uiTableLayoutPanel3 = new Sunny.UI.UITableLayoutPanel();
+            this.uiTableLayoutPanel4 = new Sunny.UI.UITableLayoutPanel();
+            this.uiGroupBox4 = new Sunny.UI.UIGroupBox();
+            this.uiGroupBox3 = new Sunny.UI.UIGroupBox();
+            this.btn_SetBaseLocation = new Sunny.UI.UIButton();
+            this.uiTableLayoutPanel5 = new Sunny.UI.UITableLayoutPanel();
+            this.uiGroupBox10 = new Sunny.UI.UIGroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.uiGroupBox8 = new Sunny.UI.UIGroupBox();
+            this.btn_AxisDebugShow = new Sunny.UI.UIButton();
+            this.btn_IoShow = new Sunny.UI.UIButton();
+            this.uiGroupBox9 = new Sunny.UI.UIGroupBox();
             this.uiTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.uiTableLayoutPanel1.SuspendLayout();
@@ -63,6 +75,13 @@ namespace MF900_SolveWare
             this.uiGroupBox7.SuspendLayout();
             this.uiGroupBox6.SuspendLayout();
             this.uiGroupBox5.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.uiTableLayoutPanel3.SuspendLayout();
+            this.uiTableLayoutPanel4.SuspendLayout();
+            this.uiGroupBox3.SuspendLayout();
+            this.uiTableLayoutPanel5.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.uiGroupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiTabControl1
@@ -450,6 +469,7 @@ namespace MF900_SolveWare
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.uiTableLayoutPanel3);
             this.tabPage2.Location = new System.Drawing.Point(0, 36);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(1125, 592);
@@ -457,10 +477,213 @@ namespace MF900_SolveWare
             this.tabPage2.Text = "高级维护";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // uiTableLayoutPanel3
+            // 
+            this.uiTableLayoutPanel3.BackColor = System.Drawing.Color.White;
+            this.uiTableLayoutPanel3.ColumnCount = 2;
+            this.uiTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiTableLayoutPanel3.Controls.Add(this.uiTableLayoutPanel4, 0, 0);
+            this.uiTableLayoutPanel3.Controls.Add(this.uiTableLayoutPanel5, 1, 0);
+            this.uiTableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.uiTableLayoutPanel3.Name = "uiTableLayoutPanel3";
+            this.uiTableLayoutPanel3.RowCount = 1;
+            this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.uiTableLayoutPanel3.Size = new System.Drawing.Size(1125, 592);
+            this.uiTableLayoutPanel3.TabIndex = 1;
+            this.uiTableLayoutPanel3.TagString = null;
+            // 
+            // uiTableLayoutPanel4
+            // 
+            this.uiTableLayoutPanel4.ColumnCount = 1;
+            this.uiTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTableLayoutPanel4.Controls.Add(this.uiGroupBox4, 0, 1);
+            this.uiTableLayoutPanel4.Controls.Add(this.uiGroupBox3, 0, 0);
+            this.uiTableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
+            this.uiTableLayoutPanel4.Name = "uiTableLayoutPanel4";
+            this.uiTableLayoutPanel4.RowCount = 3;
+            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 313F));
+            this.uiTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTableLayoutPanel4.Size = new System.Drawing.Size(556, 586);
+            this.uiTableLayoutPanel4.TabIndex = 0;
+            this.uiTableLayoutPanel4.TagString = null;
+            // 
+            // uiGroupBox4
+            // 
+            this.uiGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGroupBox4.FillColor = System.Drawing.Color.White;
+            this.uiGroupBox4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiGroupBox4.Location = new System.Drawing.Point(4, 144);
+            this.uiGroupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox4.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiGroupBox4.Name = "uiGroupBox4";
+            this.uiGroupBox4.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiGroupBox4.Size = new System.Drawing.Size(548, 303);
+            this.uiGroupBox4.Style = Sunny.UI.UIStyle.Custom;
+            this.uiGroupBox4.StyleCustomMode = true;
+            this.uiGroupBox4.TabIndex = 1;
+            this.uiGroupBox4.Text = "图像显示";
+            this.uiGroupBox4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiGroupBox4.TitleTop = 10;
+            this.uiGroupBox4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // uiGroupBox3
+            // 
+            this.uiGroupBox3.Controls.Add(this.btn_SetBaseLocation);
+            this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGroupBox3.FillColor = System.Drawing.Color.White;
+            this.uiGroupBox3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiGroupBox3.Location = new System.Drawing.Point(4, 5);
+            this.uiGroupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox3.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiGroupBox3.Name = "uiGroupBox3";
+            this.uiGroupBox3.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiGroupBox3.Size = new System.Drawing.Size(548, 129);
+            this.uiGroupBox3.Style = Sunny.UI.UIStyle.Custom;
+            this.uiGroupBox3.StyleCustomMode = true;
+            this.uiGroupBox3.TabIndex = 0;
+            this.uiGroupBox3.Text = "台面基准设置";
+            this.uiGroupBox3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiGroupBox3.TitleTop = 10;
+            this.uiGroupBox3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // btn_SetBaseLocation
+            // 
+            this.btn_SetBaseLocation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_SetBaseLocation.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_SetBaseLocation.Location = new System.Drawing.Point(396, 72);
+            this.btn_SetBaseLocation.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_SetBaseLocation.Name = "btn_SetBaseLocation";
+            this.btn_SetBaseLocation.Size = new System.Drawing.Size(110, 45);
+            this.btn_SetBaseLocation.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_SetBaseLocation.TabIndex = 1;
+            this.btn_SetBaseLocation.Text = "台面基准设置";
+            this.btn_SetBaseLocation.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_SetBaseLocation.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // uiTableLayoutPanel5
+            // 
+            this.uiTableLayoutPanel5.ColumnCount = 1;
+            this.uiTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTableLayoutPanel5.Controls.Add(this.uiGroupBox10, 0, 1);
+            this.uiTableLayoutPanel5.Controls.Add(this.panel2, 0, 0);
+            this.uiTableLayoutPanel5.Controls.Add(this.uiGroupBox9, 0, 2);
+            this.uiTableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTableLayoutPanel5.Location = new System.Drawing.Point(565, 3);
+            this.uiTableLayoutPanel5.Name = "uiTableLayoutPanel5";
+            this.uiTableLayoutPanel5.RowCount = 3;
+            this.uiTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 136F));
+            this.uiTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.uiTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.uiTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.uiTableLayoutPanel5.Size = new System.Drawing.Size(557, 586);
+            this.uiTableLayoutPanel5.TabIndex = 1;
+            this.uiTableLayoutPanel5.TagString = null;
+            // 
+            // uiGroupBox10
+            // 
+            this.uiGroupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGroupBox10.FillColor = System.Drawing.Color.White;
+            this.uiGroupBox10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiGroupBox10.Location = new System.Drawing.Point(4, 141);
+            this.uiGroupBox10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox10.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiGroupBox10.Name = "uiGroupBox10";
+            this.uiGroupBox10.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiGroupBox10.Size = new System.Drawing.Size(549, 213);
+            this.uiGroupBox10.Style = Sunny.UI.UIStyle.Custom;
+            this.uiGroupBox10.StyleCustomMode = true;
+            this.uiGroupBox10.TabIndex = 3;
+            this.uiGroupBox10.Text = "测试软件通讯设置";
+            this.uiGroupBox10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiGroupBox10.TitleTop = 10;
+            this.uiGroupBox10.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.uiGroupBox8);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(551, 130);
+            this.panel2.TabIndex = 0;
+            // 
+            // uiGroupBox8
+            // 
+            this.uiGroupBox8.Controls.Add(this.btn_AxisDebugShow);
+            this.uiGroupBox8.Controls.Add(this.btn_IoShow);
+            this.uiGroupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGroupBox8.FillColor = System.Drawing.Color.White;
+            this.uiGroupBox8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiGroupBox8.Location = new System.Drawing.Point(0, 0);
+            this.uiGroupBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox8.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiGroupBox8.Name = "uiGroupBox8";
+            this.uiGroupBox8.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiGroupBox8.Size = new System.Drawing.Size(551, 130);
+            this.uiGroupBox8.Style = Sunny.UI.UIStyle.Custom;
+            this.uiGroupBox8.StyleCustomMode = true;
+            this.uiGroupBox8.TabIndex = 1;
+            this.uiGroupBox8.Text = "设备信息";
+            this.uiGroupBox8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiGroupBox8.TitleTop = 10;
+            this.uiGroupBox8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // btn_AxisDebugShow
+            // 
+            this.btn_AxisDebugShow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_AxisDebugShow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_AxisDebugShow.Location = new System.Drawing.Point(214, 51);
+            this.btn_AxisDebugShow.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_AxisDebugShow.Name = "btn_AxisDebugShow";
+            this.btn_AxisDebugShow.Size = new System.Drawing.Size(92, 45);
+            this.btn_AxisDebugShow.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_AxisDebugShow.TabIndex = 1;
+            this.btn_AxisDebugShow.Text = "轴调试";
+            this.btn_AxisDebugShow.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_AxisDebugShow.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_AxisDebugShow.Click += new System.EventHandler(this.btn_AxisDebugShow_Click);
+            // 
+            // btn_IoShow
+            // 
+            this.btn_IoShow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_IoShow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_IoShow.Location = new System.Drawing.Point(80, 51);
+            this.btn_IoShow.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_IoShow.Name = "btn_IoShow";
+            this.btn_IoShow.Size = new System.Drawing.Size(92, 45);
+            this.btn_IoShow.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_IoShow.TabIndex = 1;
+            this.btn_IoShow.Text = "IO";
+            this.btn_IoShow.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_IoShow.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_IoShow.Click += new System.EventHandler(this.btn_IoShow_Click);
+            // 
+            // uiGroupBox9
+            // 
+            this.uiGroupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiGroupBox9.FillColor = System.Drawing.Color.White;
+            this.uiGroupBox9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiGroupBox9.Location = new System.Drawing.Point(4, 364);
+            this.uiGroupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiGroupBox9.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiGroupBox9.Name = "uiGroupBox9";
+            this.uiGroupBox9.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.uiGroupBox9.Size = new System.Drawing.Size(549, 217);
+            this.uiGroupBox9.Style = Sunny.UI.UIStyle.Custom;
+            this.uiGroupBox9.StyleCustomMode = true;
+            this.uiGroupBox9.TabIndex = 2;
+            this.uiGroupBox9.Text = "平台测试高度设置";
+            this.uiGroupBox9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiGroupBox9.TitleTop = 10;
+            this.uiGroupBox9.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
             // MaintainingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1125, 628);
             this.Controls.Add(this.uiTabControl1);
@@ -477,6 +700,13 @@ namespace MF900_SolveWare
             this.uiGroupBox7.ResumeLayout(false);
             this.uiGroupBox6.ResumeLayout(false);
             this.uiGroupBox5.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.uiTableLayoutPanel3.ResumeLayout(false);
+            this.uiTableLayoutPanel4.ResumeLayout(false);
+            this.uiGroupBox3.ResumeLayout(false);
+            this.uiTableLayoutPanel5.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.uiGroupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -507,5 +737,17 @@ namespace MF900_SolveWare
         private Sunny.UI.UIButton uiButton3;
         private Sunny.UI.UIButton uiButton2;
         private Sunny.UI.UIButton uiButton1;
+        private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel3;
+        private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel4;
+        private Sunny.UI.UIGroupBox uiGroupBox4;
+        private Sunny.UI.UIGroupBox uiGroupBox3;
+        private Sunny.UI.UIButton btn_SetBaseLocation;
+        private Sunny.UI.UITableLayoutPanel uiTableLayoutPanel5;
+        private Sunny.UI.UIGroupBox uiGroupBox10;
+        private System.Windows.Forms.Panel panel2;
+        private Sunny.UI.UIGroupBox uiGroupBox8;
+        private Sunny.UI.UIButton btn_AxisDebugShow;
+        private Sunny.UI.UIButton btn_IoShow;
+        private Sunny.UI.UIGroupBox uiGroupBox9;
     }
 }
