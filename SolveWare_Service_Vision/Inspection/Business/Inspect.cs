@@ -15,12 +15,14 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Business
 {
+    
     public class Inspect : DataJobPairFundamentalBase<Data_InspectionKit>,  IInspectionKit
     {
         public Inspect(string name):base(name)
         {
             
         }
+   
         public int Do_Blob()
         {
             int errorCode = ErrorCodes.NoError;

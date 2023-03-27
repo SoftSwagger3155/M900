@@ -24,3 +24,10 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Servic
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\Utilities.dll
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Core.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CopyComplete
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Utility.dll
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Tool.dll
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\Basler.Pylon.dll
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\halcondotnet.dll
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Utility.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Tool.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\halcondotnet.xml

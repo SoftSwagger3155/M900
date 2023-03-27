@@ -10,13 +10,14 @@ namespace SolveWare_Service_Utility.Common.Motion
 {
     public class Data_Motion: ElementBase
     {
-        public IList<DetailData_Motion> DetailDatas { get; set; }
+        public List<DetailData_Motion> DetailDatas { get; set; }
         public Data_Motion()
         {
             DetailDatas = new List<DetailData_Motion>();
         }
     }
 
+    //TODO 杨工 UI
     public class DetailData_Motion : DetailDataElementBase
     {
 

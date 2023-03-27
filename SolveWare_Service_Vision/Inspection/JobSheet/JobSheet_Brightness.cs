@@ -12,13 +12,21 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SolveWare_Service_Vision.Inspection.JobSheet
 {
     [PairAttribute(typeof(Job_Brightness))]
     public class JobSheet_Brightness : JobSheetDataBase
     {
+        [XmlIgnore]
         public CameraBase Camera { get; private set; }
+
+        public JobSheet_Brightness()
+        {
+            
+        }
+
         public JobSheet_Brightness(string cameraName)
         {
             this.Camera = cameraName.GetCamera();

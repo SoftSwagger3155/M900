@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace MF900_SolveWare.Resource
         public const string Op_TowerLight_Green = "塔灯-绿";
         public const string Op_TowerLight_Red = "塔灯-红";
         public const string Op_TowerLight_Yellow = "塔灯-黄";
+        public const string OP_Buzzer = "蜂鸣器";
        
 
         //Motor
@@ -53,7 +55,12 @@ namespace MF900_SolveWare.Resource
 
 
         //Pos
-        public const string Pos_TopCameraInspectGitHole = "Pos-上相机-定位圆孔";
-        public const string Pos_BtmCameraInspectGitHole = "Pos-下相机-定位圆孔";
+        public const string Pos_WorldCenter_TopCamera = "位置-世界中心-上相机";
+        public const string Pos_WorldCenter_BtmCamera = "位置-世界中心-下相机";
+        public const string Pos_Top_StandbyPos = "Pos-上预备位置";
+        public const string Pos_Btm_StandbyPos = "Pos-下预备位置";
+
+        //Data
+        public const string Data_GlobalWorldCenter = "世界中心资料";
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data_Motion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DetailDatas>
+    <DetailData_Motion>
+      <Priority>1</Priority>
+      <IsSelected>false</IsSelected>
+      <Pos>0</Pos>
+      <AxisName>上马达X</AxisName>
+      <SlowDownGap>0</SlowDownGap>
+      <SlowDownSpeedRate>100</SlowDownSpeedRate>
+      <SlowDownType>正常速度</SlowDownType>
+      <EnableSlowDown>false</EnableSlowDown>
+    </DetailData_Motion>
+    <DetailData_Motion>
+      <Priority>1</Priority>
+      <IsSelected>false</IsSelected>
+      <Pos>0</Pos>
+      <AxisName>上马达Y</AxisName>
+      <SlowDownGap>0</SlowDownGap>
+      <SlowDownSpeedRate>100</SlowDownSpeedRate>
+      <SlowDownType>正常速度</SlowDownType>
+      <EnableSlowDown>false</EnableSlowDown>
+    </DetailData_Motion>
+  </DetailDatas>
+</Data_Motion>

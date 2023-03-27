@@ -30,6 +30,10 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             SystemPath.RootLogDirectory = $@"{fullPath} Logs";
             SystemPath.RootDataDirectory = $@"{fullPath} Data";
             SystemPath.CreateDefaultDirectory(true);
+
+            Resource_Tool_Center = new List<IToolResourceProvider>();
+            Resource_Data_Center = new List<IDataResourceProvider>();
+            Resource_DataPair_Center = new List<ICommonJobFundamental>();
         }
         public MainManagerBase(IInfoHandler infoHandler)
         {
@@ -199,8 +203,18 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public IElement Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind kind, string name)
         {
-            IResourceProvider provider = Get_Single_Tool_Resource(kind);
-            IElement element = provider.Get_Single_Item(name);
+            IElement element = null;
+            try
+            {
+                IResourceProvider provider = Get_Single_Tool_Resource(kind);
+                if (provider == null) { return null; }
+                
+                element = provider.Get_Single_Item(name);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
             return element;
         }

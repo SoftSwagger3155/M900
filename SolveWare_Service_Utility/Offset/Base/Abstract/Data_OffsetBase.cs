@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Utility.Business.Offset.Base.Abstract
 {
+    //TODO: 杨工 UI
     public class Data_OffsetBase : ElementBase
-    {
+    {     
         public double OffsetX { get; set; }
         public double OffsetY { get; set; }
         public bool IsReverseX { get; set; }
         public bool IsReverseY { get; set; }
+
         public double ManualOffsetX { get; set; }
         public double ManualOffsetY { get; set; }
     }

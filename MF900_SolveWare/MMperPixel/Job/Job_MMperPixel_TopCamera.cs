@@ -23,9 +23,7 @@ namespace MF900_SolveWare.MMperPixel.Job
     public class Job_MMperPixel_TopCamera: DataJobPairFundamentalBase<Data_MMperPixel>, IMMperPixelJob
     {
         CameraBase camera;
-
-        public Job_Motion job_Inspection_Motion;
-        public Job_MMperPixel_TopCamera(string name)
+        public Job_MMperPixel_TopCamera(string name) : base(name)
         {
             this.Name = name;
             camera = ResourceKey.Top_Camera.GetCamera();

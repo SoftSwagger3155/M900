@@ -13,7 +13,7 @@ namespace MF900_SolveWare.Offset.Job
     //TODO: 杨工 UI | Stanley 实现细节 
     public class Job_Offset_TopCamera_TopProber : DataJobPairFundamentalBase<Data_OffsetData>, IOffset
     {
-        public Job_Offset_TopCamera_TopProber(string name)
+        public Job_Offset_TopCamera_TopProber(string name): base(name)
         {
             this.Name = name;
         }

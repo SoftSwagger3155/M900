@@ -24,6 +24,7 @@ namespace SolveWare_Service_Vision.Data
 
         public double CenterX { get; set; }
         public double CenterY { get; set; }
+        public double Angle { get; set; }
         public string CameraName { get; set; }
 
         public Data_InspectionKit(string cameraName)

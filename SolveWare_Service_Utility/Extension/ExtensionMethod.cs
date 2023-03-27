@@ -1,9 +1,11 @@
 ﻿using SolveWare_Service_Core;
 using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Tool.Camera.Base.Interface;
+using SolveWare_Service_Tool.IO.Base.Abstract;
 using SolveWare_Service_Tool.IO.Base.Interface;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using System;
@@ -53,18 +55,51 @@ namespace SolveWare_Service_Utility.Extension
         }
         public static CameraBase GetCamera(this string name)
         {
-            CameraBase camera = (CameraBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
+            CameraBase camera;
+            try
+            {
+                camera = (CameraBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
             return camera;
         }
         public static AxisBase GetAxisBase(this string name)
         {
-            AxisBase mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Motor, name);
+            AxisBase mtr = null;
+            try
+            {
+               mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Motor, name);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
             return mtr;
         }
-        public static IIOBase GetIOBase(this string name)
+        public static IOBase GetIOBase(this string name)
         {
-            IIOBase io = (IIOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.IO, name);
+            IOBase io = null;
+            try
+            {
+                io = (IOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.IO, name);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
             return io;
+        }
+        public static ICommonJobFundamental GetJob(this string name)
+        {
+           return  SolveWare.Core.MMgr.Resource_DataPair_Center.FirstOrDefault(x => (x as IElement).Name == name);
         }
         public static string GetResourceKey<TData>(this TData data)
         {

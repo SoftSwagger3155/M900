@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Core.Base.Abstract
 {
-    public class DetailDataElementBase: ElementBase
+    public abstract class DetailDataElementBase: ElementBase
     {
         int priority = 1;
         public int Priority
