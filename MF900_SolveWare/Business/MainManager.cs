@@ -113,11 +113,11 @@ namespace MF900_SolveWare.Business
 
 
             //相机物件
-            //provider = new Resource_Tool_Manager<ConfigData_Camera>(new Factory_Camera());
-            //provider.Initialize();
-            //provider.Plug_In();
-            //provider.DoubleCheck(ResourceKey.Top_Camera,
-            //                                   ResourceKey.Btm_Camera);
+            provider = new Resource_Tool_Manager<ConfigData_Camera>(new Factory_Camera());
+            provider.Initialize();
+            provider.Plug_In();
+            provider.DoubleCheck(ResourceKey.Top_Camera,
+                                               ResourceKey.Btm_Camera);
 
         }
 

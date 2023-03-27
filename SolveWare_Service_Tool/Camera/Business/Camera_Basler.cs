@@ -43,8 +43,8 @@ namespace SolveWare_Service_Tool.Camera.Business
             this.camera_Basler = obj_Camera as Basler.Pylon.Camera;
             string sn = this.camera_Basler.CameraInfo[CameraInfoKey.SerialNumber];
             string modelName = this.camera_Basler.CameraInfo[CameraInfoKey.ModelName];
-
-            this.Id_Camera = $"[{sn}] {modelName}";
+            string userID = this.camera_Basler.CameraInfo[CameraInfoKey.UserDefinedName];
+            this.Id_Camera = $"[{sn}]-{userID}-{modelName}";
             this.ConfigData.Id_Camera = this.Id_Camera;
             this.Name = this.ConfigData.Name;
         }

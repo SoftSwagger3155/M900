@@ -13,7 +13,7 @@ namespace SolveWare_Service_Tool.Camera.Data
     {
         public string Id_Camera { get; set; }
         public string Camera_Name { get; set; }
-        public bool IsSimulation { get; set; }
+        public bool IsSimulation { get; set; } = true;
         public string Resource { get; set; }
         public Master_Driver_Camera MasterDriver { get; set; } = Master_Driver_Camera.Basler;
 

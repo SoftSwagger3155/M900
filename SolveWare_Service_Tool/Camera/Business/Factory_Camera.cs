@@ -1,5 +1,4 @@
-﻿using Basler.Pylon;
-using SolveWare_Service_Core.Base.Interface;
+﻿using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Manager.Base.Interface;
 using SolveWare_Service_Tool.Camera.Data;
 using SolveWare_Service_Tool.Camera.Definition;
@@ -26,15 +25,17 @@ namespace SolveWare_Service_Tool.Camera.Business
             switch (config.MasterDriver)
             {
                 case Master_Driver_Camera.Basler:
-                  
-                    List<ICameraInfo> allCameraInfos = CameraFinder.Enumerate();
-                    ICameraInfo iCamInfo = null;
+                    if (config.IsSimulation) return null;
+                    List<Basler.Pylon.ICameraInfo> allCameraInfos = Basler.Pylon.CameraFinder.Enumerate();
+                    Basler.Pylon.ICameraInfo iCamInfo = null;
                     if (allCameraInfos.Count > 0)
+                    {
+                        index_Basler++;
                         iCamInfo = allCameraInfos[index_Basler];
+                    }
 
                     Basler.Pylon.Camera camera;
-                    cameraBase = new Camera_Basler(cameraBase);
-                    index_Basler++;
+                    cameraBase = new Camera_Basler(config);
                    
 
                     if(iCamInfo != null)

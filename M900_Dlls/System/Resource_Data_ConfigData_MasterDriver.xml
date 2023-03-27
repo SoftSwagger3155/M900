@@ -6,7 +6,7 @@
     <Is_Simulation_IO>false</Is_Simulation_IO>
     <Master_Driver_Motor>Zmcaux</Master_Driver_Motor>
     <Master_Driver_IO>Zmcaux</Master_Driver_IO>
-    <Is_Basler_Camera>false</Is_Basler_Camera>
+    <Is_Basler_Camera>true</Is_Basler_Camera>
     <Is_HIK_Camera>false</Is_HIK_Camera>
   </ConfigData_MasterDriver>
 </ArrayOfConfigData_MasterDriver>

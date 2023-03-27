@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\halcondotnet.dll</HintPath>
     </Reference>
+    <Reference Include="PylonC.NET, Version=4.1.0.0, Culture=neutral, PublicKeyToken=a77e8471c5919d5a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\M900_Dlls\PylonC.NET.dll</HintPath>
+    </Reference>
     <Reference Include="SunnyUI, Version=3.3.1.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\SunnyUI.dll</HintPath>
@@ -411,6 +415,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Basler.Pylon.dll" />
     <Content Include="Remarks.txt" />
   </ItemGroup>
   <ItemGroup>
