@@ -44,6 +44,18 @@ namespace MF900_SolveWare
             ResourceKey.Op_TowerLight_Green.GetIOBase();
 
         }
+        /// <summary>
+        /// 双缓冲
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
 
         #region InitalAxis
         private void InitalAxisMes()
@@ -61,7 +73,7 @@ namespace MF900_SolveWare
             }
             uiDataGridView8.Rows.Add(new object[] {axisArry[8], keyAxis[axisArry[8]].MtrTable.AxisNo,keyAxis[axisArry[8]].MtrTable.Param_Home_IO,
                     keyAxis[axisArry[8]].MtrTable.Param_Fwd_Limit,keyAxis[axisArry[8]].MtrTable.Param_Rev_Limit});
-
+            uiDataGridView8.Rows[0].Height = 30;
         }
         private void InitalAxisVel()
         {
@@ -78,7 +90,7 @@ namespace MF900_SolveWare
             }
             uiDataGridView6.Rows.Add(new object[] {axisArry[8], keyAxis[axisArry[8]].MtrSpeed.Jog_Max_Velocity,
                 keyAxis[axisArry[8]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[8]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[8]].MtrSpeed.Jog_Deceleration});
-            uiDataGridView6.Rows[0].Height = 30;
+            
         }
         private void InitalAxisJop()
         {
@@ -96,5 +108,110 @@ namespace MF900_SolveWare
         }
         #endregion
 
+        #region TopAxis_Home
+        //X_Home
+        private void uiButton1_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Top_X.GetAxisBase().HomeMove();
+        }
+        //Y_Home
+        private void uiButton2_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Top_Y.GetAxisBase().HomeMove();
+        }
+        //Z_Home
+        private void uiButton3_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Top_Z.GetAxisBase().HomeMove();
+        }
+        //T_Home
+        private void uiButton4_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Top_T.GetAxisBase().HomeMove();
+        }
+
+        #endregion
+
+        #region BtmAxis_Home
+        //X_Home
+        private void uiButton6_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Btm_X.GetAxisBase().HomeMove();
+        }
+        //Y_Home
+        private void uiButton8_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Btm_Y.GetAxisBase().HomeMove();
+        }
+        //Z_Home
+        private void uiButton7_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Btm_Z.GetAxisBase().HomeMove();
+        }
+        //T_Home
+        private void uiButton5_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Btm_T.GetAxisBase().HomeMove();
+        }
+
+        #endregion
+
+        #region TopAxis and BtmAxis Jop
+        //TopAxis_Jop
+        private void uiDataGridView7_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //需加正则判断输入的值是否为double
+
+            TopAndBtmAxisMove(uiDataGridView7, e.RowIndex, e.ColumnIndex);
+        }
+
+        //BtmAxis_Jop
+        private void uiDataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //需加正则判断输入的值是否为double
+
+            TopAndBtmAxisMove(uiDataGridView3, e.RowIndex, e.ColumnIndex);
+        }
+        public void TopAndBtmAxisMove(DataGridView dataGridView,int row,int col)
+        {
+            switch (col)
+            {
+                case 2:
+                    keyAxis[dataGridView[0, row].Value.ToString()].MoveTo(double.Parse(dataGridView[1, row].Value.ToString()));
+                    break;
+                case 4:
+                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(true);
+                    break;
+                case 5:
+                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(false);
+                    break;
+            }
+        }
+        #endregion
+
+        #region TableOpation
+        //Home
+        private void uiButton11_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Table.GetAxisBase().HomeMove();
+        }
+        //Jop+
+        private void uiButton12_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Table.GetAxisBase().Jog(true);
+        }
+        //Jop-
+        private void uiButton10_Click(object sender, EventArgs e)
+        {
+            ResourceKey.Motor_Table.GetAxisBase().Jog(false);
+        }
+        //Move
+        private void uiButton9_Click(object sender, EventArgs e)
+        {
+            //需加正则判断
+            ResourceKey.Motor_Table.GetAxisBase().MoveTo(double.Parse(uiTextBox1.Text));
+        }
+
+        #endregion
     }
 }
