@@ -31,3 +31,4 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\halcondotnet.dll
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Utility.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Tool.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\halcondotnet.xml
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\Basler.Pylon.xml
