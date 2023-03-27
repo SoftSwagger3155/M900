@@ -1,4 +1,6 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Camera.Definition;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Camera.Data
 {
+    [ResourceBaseAttribute(ConstantProperty.Camera)]
     public class ConfigData_Camera: ElementBase
     {
         public string Id_Camera { get; set; }

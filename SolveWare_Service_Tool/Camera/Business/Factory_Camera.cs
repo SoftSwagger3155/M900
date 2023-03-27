@@ -25,7 +25,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             switch (config.MasterDriver)
             {
                 case Master_Driver_Camera.Basler:
-                    if (config.IsSimulation) return null;
+                    if (config.IsSimulation) return new Camera_Basler(new ConfigData_Camera() { IsSimulation = true});
                     List<Basler.Pylon.ICameraInfo> allCameraInfos = Basler.Pylon.CameraFinder.Enumerate();
                     Basler.Pylon.ICameraInfo iCamInfo = null;
                     if (allCameraInfos.Count > 0)

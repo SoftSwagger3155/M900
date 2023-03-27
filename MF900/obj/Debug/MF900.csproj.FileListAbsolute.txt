@@ -51,7 +51,6 @@ C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\MF900.exe
 C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\MF900.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.csproj.AssemblyReference.cache
 C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.csproj.SuggestedBindingRedirects.cache
-C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.exe.config
 C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.FormAxisDebug.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.CameraHWControls.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.FormJigOpations.resources
@@ -135,3 +134,4 @@ D:\M900开发平台\M901\MF900\obj\Debug\MF900.csproj.CoreCompileInputs.cache
 D:\M900开发平台\M901\MF900\obj\Debug\MF900.csproj.CopyComplete
 D:\M900开发平台\M901\MF900\obj\Debug\MF900.exe
 D:\M900开发平台\M901\MF900\obj\Debug\MF900.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900\obj\Debug\MF900.exe.config

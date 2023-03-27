@@ -2,6 +2,7 @@
 <ArrayOfConfigData_Camera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ConfigData_Camera>
     <Name>上相机</Name>
+    <Id_Camera>[23367119]-S_Camera-acA1300-60gm</Id_Camera>
     <IsSimulation>false</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
   </ConfigData_Camera>

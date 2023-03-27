@@ -150,7 +150,7 @@ namespace SolveWare_Service_Core.Manager.Business
                 foreach (var item in this.DataBase)
                 {
                     IElement tool = Factory.BuildTool(item);
-                    if (tool == null) throw new Exception($"{this.Name} 创造资源物件失败");
+                    if (tool == null ) throw new Exception($"{this.Name} 创造资源物件失败");
                     tool.Name = item.Name;
                     this.WareHouse.Add(tool);
                 }

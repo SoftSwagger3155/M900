@@ -47,6 +47,8 @@ namespace SolveWare_Service_Tool.Camera.Business
             this.Id_Camera = $"[{sn}]-{userID}-{modelName}";
             this.ConfigData.Id_Camera = this.Id_Camera;
             this.Name = this.ConfigData.Name;
+
+            BaingEvent();
         }
 
         public override void CloseCamera()
@@ -141,6 +143,8 @@ namespace SolveWare_Service_Tool.Camera.Business
                     }
 
                     if (camera_Basler == null) break;
+
+                    if(!camera_Basler.IsOpen) camera_Basler.Open(); 
                     if (!camera_Basler.StreamGrabber.IsGrabbing)
                     {
                         camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);

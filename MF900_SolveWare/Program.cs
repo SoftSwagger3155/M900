@@ -1,6 +1,10 @@
 ﻿using MF900_SolveWare.Business;
+using MF900_SolveWare.Resource;
 using SolveWare_Service_Core;
 using SolveWare_Service_Tool.MasterDriver.Business;
+using SolveWare_Service_Utility.Extension;
+using SolveWare_Service_Vision;
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +29,12 @@ namespace MF900_SolveWare
             SolveWare.Core.MMgr.AssignMasterDriver(new MasterDriverManager());
             SolveWare.Core.MMgr.Initialize();
 
-
-            Application.Run(new MainForm());
+            UserHWControls control = new UserHWControls();
+            control.Setup(ResourceKey.Top_Camera.GetCamera());
+            Form form = new Form();
+            form.Controls.Add(control);
+            Application.Run(form);
+            //Application.Run(new MainForm());
         }
     }
 }
