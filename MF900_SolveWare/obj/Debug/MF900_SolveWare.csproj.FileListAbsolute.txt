@@ -118,3 +118,5 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csp
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.pdb
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.AxisDebugForm.resources
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.IODebugForm.resources
