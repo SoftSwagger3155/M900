@@ -956,9 +956,9 @@ namespace MF900_SolveWare
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.uiDataGridView3);
-            this.tabPage2.Location = new System.Drawing.Point(0, 40);
+            this.tabPage2.Location = new System.Drawing.Point(0, 36);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(200, 60);
+            this.tabPage2.Size = new System.Drawing.Size(415, 269);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "点动操作";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1021,7 +1021,7 @@ namespace MF900_SolveWare
             this.uiDataGridView3.ScrollBarBackColor = System.Drawing.Color.White;
             this.uiDataGridView3.ScrollBarRectColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             this.uiDataGridView3.SelectedIndex = -1;
-            this.uiDataGridView3.Size = new System.Drawing.Size(200, 60);
+            this.uiDataGridView3.Size = new System.Drawing.Size(415, 269);
             this.uiDataGridView3.StripeOddColor = System.Drawing.Color.White;
             this.uiDataGridView3.Style = Sunny.UI.UIStyle.Custom;
             this.uiDataGridView3.StyleCustomMode = true;

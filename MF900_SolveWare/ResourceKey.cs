@@ -20,7 +20,7 @@ namespace MF900_SolveWare.Resource
         //Motor
         public const string Motor_Top_X = "上马达X";
         public const string Motor_Top_Y = "上马达Y";
-        public const string Motor_Top_Z = "上马达Y";
+        public const string Motor_Top_Z = "上马达Z";
         public const string Motor_Top_T = "上治具T";
         public const string Motor_Btm_X = "下马达X";
         public const string Motor_Btm_Y = "下马达Y";

@@ -89,11 +89,14 @@ namespace MF900_SolveWare.Business
             provider.Plug_In();
             provider.DoubleCheck(ResourceKey.Motor_Top_X,
                                                ResourceKey.Motor_Top_Y,
+                                               ResourceKey.Motor_Top_Z,
                                                ResourceKey.Motor_Top_T,
                                                ResourceKey.Motor_Btm_X,
                                                ResourceKey.Motor_Btm_Y,
                                                ResourceKey.Motor_Btm_Z,
-                                               ResourceKey.Motor_Btm_T);
+                                               ResourceKey.Motor_Btm_T,
+                                               ResourceKey.Motor_Table
+                                               );
 
             //AxisBase mtrA = ResourceKey.Motor_Top_X.GetAxisBase();
             //IOBase ioA = ResourceKey.Op_TowerLight_Green.GetIOBase();

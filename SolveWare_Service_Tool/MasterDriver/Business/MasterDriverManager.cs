@@ -53,18 +53,33 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                     switch(config.Master_Driver_Motor)
                     {
                         case Master_Driver_Kind.Zmcaux:
-                            this.CardInfo = new IOMotionCardInfo();
-                            int cardNo = Dll_Zmcaux.ZAux_GetMaxPciCards();
+                            #region 连接控制器  ---杨工
                             IntPtr Handle;
-                            isOk = cardNo > 0;
-                            if (isOk)
+                            int cardNo = 0;
+                            this.CardInfo = new IOMotionCardInfo();
+                            isOk = Dll_Zmcaux.ZAux_OpenEth("127.0.0.1", out Handle) == 0 ? true : false;
+                            Dll_Zmcaux.ZAux_BusCmd_GetNodeNum(Handle, 0, ref cardNo);
+                            for (int i = 0; i < cardNo; i++)
                             {
-                                for (int i = 0; i < cardNo; i++)
-                                {
-                                    Dll_Zmcaux.ZAux_OpenPci(Convert.ToUInt32(i), out Handle);
-                                    CardInfo.Dic_CardHandler.Add(i, Handle);
-                                }
+                                CardInfo.Dic_CardHandler.Add(i, Handle);
                             }
+                            #endregion
+
+
+                            #region PCIE控制卡卡
+                            //this.CardInfo = new IOMotionCardInfo();
+                            //int cardNo = Dll_Zmcaux.ZAux_GetMaxPciCards();
+                            //IntPtr Handle;
+                            //isOk = cardNo > 0;
+                            //if (isOk)
+                            //{
+                            //    for (int i = 0; i < cardNo; i++)
+                            //    {
+                            //        Dll_Zmcaux.ZAux_OpenPci(Convert.ToUInt32(i), out Handle);
+                            //        CardInfo.Dic_CardHandler.Add(i, Handle);
+                            //    }
+                            //}
+                            #endregion
                             break;
                     }
                 }

@@ -2,7 +2,7 @@
 <ArrayOfConfigData_Motor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ConfigData_Motor>
     <Name>上马达X</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -87,7 +87,92 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>上马达Y</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
+    <MtrTable>
+      <CardNo>0</CardNo>
+      <AxisNo>0</AxisNo>
+      <Param_Home_IO>0</Param_Home_IO>
+      <Param_Fwd_Limit>0</Param_Fwd_Limit>
+      <Param_Rev_Limit>0</Param_Rev_Limit>
+      <ServoOn_Logic>0</ServoOn_Logic>
+      <UnitPerRevolution>1</UnitPerRevolution>
+      <PulsePerRevolution>1000</PulsePerRevolution>
+      <PulseFactor>0</PulseFactor>
+      <IsFormulaAxis>false</IsFormulaAxis>
+      <Decimal_Digit>0</Decimal_Digit>
+      <MotorMasterDriver>Zmcaux</MotorMasterDriver>
+      <IsMM>false</IsMM>
+      <AcceptableInPositionOffset>0</AcceptableInPositionOffset>
+      <MotorRealDirectionState>Positive</MotorRealDirectionState>
+      <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
+      <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
+      <OnBoardHome>1</OnBoardHome>
+      <StatusReadTiming>1</StatusReadTiming>
+      <CustomHomeType>HomeOnNEL</CustomHomeType>
+      <CustomHomeStepSize>0</CustomHomeStepSize>
+      <MotionTimeOut>0</MotionTimeOut>
+      <HomeTimeOut>0</HomeTimeOut>
+      <Enable_SoftLimit>false</Enable_SoftLimit>
+      <MaxDistance_SoftLimit>0</MaxDistance_SoftLimit>
+      <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
+    </MtrTable>
+    <MtrConfig>
+      <Home_mode>0</Home_mode>
+      <ORG_Logic>0</ORG_Logic>
+      <EZ_Logic>0</EZ_Logic>
+      <EZ_Count>0</EZ_Count>
+      <ERC_Output>0</ERC_Output>
+      <Alm_Enable>0</Alm_Enable>
+      <Alm_Logic>0</Alm_Logic>
+      <Alm_Mode>0</Alm_Mode>
+      <INP_Enable>0</INP_Enable>
+      <INP_Logic>0</INP_Logic>
+      <SD_Mode>0</SD_Mode>
+      <EL_Enable>0</EL_Enable>
+      <EL_Logic>0</EL_Logic>
+      <EL_Mode>0</EL_Mode>
+      <Pulse_Mode>0</Pulse_Mode>
+      <PELConfig>正限位</PELConfig>
+      <MELConfig>正限位</MELConfig>
+      <ORGConfig>正限位</ORGConfig>
+      <Enable_SoftLimit>0</Enable_SoftLimit>
+      <Max_SoftLimit>0</Max_SoftLimit>
+      <Min_SoftLimit>0</Min_SoftLimit>
+    </MtrConfig>
+    <MtrSpeed>
+      <Jog_Min_Velocity>0</Jog_Min_Velocity>
+      <Jog_Max_Velocity>10</Jog_Max_Velocity>
+      <Jog_Acceleration>0.1</Jog_Acceleration>
+      <Jog_Deceleration>0.1</Jog_Deceleration>
+      <Jog_Jerk>1</Jog_Jerk>
+      <SpeedRate_Jog>100</SpeedRate_Jog>
+      <Home_Min_Velocity>0</Home_Min_Velocity>
+      <Home_Max_Velocity>10</Home_Max_Velocity>
+      <Home_Acceleration>0.1</Home_Acceleration>
+      <Home_Deceleration>0.1</Home_Deceleration>
+      <Home_Jerk>1</Home_Jerk>
+      <SpeedRate_Home>100</SpeedRate_Home>
+    </MtrSpeed>
+    <MtrSafe>
+      <IsPositionDataUpated>false</IsPositionDataUpated>
+      <IsZoneDataUpated>false</IsZoneDataUpated>
+      <PositionSafeDatas />
+      <ZoneSafeDatas />
+    </MtrSafe>
+    <MtrMisc>
+      <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
+      <LeftRelativeButtonImage>左箭头</LeftRelativeButtonImage>
+      <RightJogButtonImage>右箭头</RightJogButtonImage>
+      <LeftJogButtonImage>左箭头</LeftJogButtonImage>
+      <MotorUnit>mm</MotorUnit>
+    </MtrMisc>
+    <Driver>Zmcaux</Driver>
+    <SpeedRate_Home>0.1</SpeedRate_Home>
+    <SpeedRate_Jog>1</SpeedRate_Jog>
+  </ConfigData_Motor>
+  <ConfigData_Motor>
+    <Name>上马达Z</Name>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -172,7 +257,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>上治具T</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -257,7 +342,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下马达X</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -342,7 +427,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下马达Y</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -427,7 +512,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下马达Z</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -512,7 +597,92 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下治具T</Name>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
+    <MtrTable>
+      <CardNo>0</CardNo>
+      <AxisNo>0</AxisNo>
+      <Param_Home_IO>0</Param_Home_IO>
+      <Param_Fwd_Limit>0</Param_Fwd_Limit>
+      <Param_Rev_Limit>0</Param_Rev_Limit>
+      <ServoOn_Logic>0</ServoOn_Logic>
+      <UnitPerRevolution>1</UnitPerRevolution>
+      <PulsePerRevolution>1000</PulsePerRevolution>
+      <PulseFactor>0</PulseFactor>
+      <IsFormulaAxis>false</IsFormulaAxis>
+      <Decimal_Digit>0</Decimal_Digit>
+      <MotorMasterDriver>Zmcaux</MotorMasterDriver>
+      <IsMM>false</IsMM>
+      <AcceptableInPositionOffset>0</AcceptableInPositionOffset>
+      <MotorRealDirectionState>Positive</MotorRealDirectionState>
+      <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
+      <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
+      <OnBoardHome>1</OnBoardHome>
+      <StatusReadTiming>1</StatusReadTiming>
+      <CustomHomeType>HomeOnNEL</CustomHomeType>
+      <CustomHomeStepSize>0</CustomHomeStepSize>
+      <MotionTimeOut>0</MotionTimeOut>
+      <HomeTimeOut>0</HomeTimeOut>
+      <Enable_SoftLimit>false</Enable_SoftLimit>
+      <MaxDistance_SoftLimit>0</MaxDistance_SoftLimit>
+      <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
+    </MtrTable>
+    <MtrConfig>
+      <Home_mode>0</Home_mode>
+      <ORG_Logic>0</ORG_Logic>
+      <EZ_Logic>0</EZ_Logic>
+      <EZ_Count>0</EZ_Count>
+      <ERC_Output>0</ERC_Output>
+      <Alm_Enable>0</Alm_Enable>
+      <Alm_Logic>0</Alm_Logic>
+      <Alm_Mode>0</Alm_Mode>
+      <INP_Enable>0</INP_Enable>
+      <INP_Logic>0</INP_Logic>
+      <SD_Mode>0</SD_Mode>
+      <EL_Enable>0</EL_Enable>
+      <EL_Logic>0</EL_Logic>
+      <EL_Mode>0</EL_Mode>
+      <Pulse_Mode>0</Pulse_Mode>
+      <PELConfig>正限位</PELConfig>
+      <MELConfig>正限位</MELConfig>
+      <ORGConfig>正限位</ORGConfig>
+      <Enable_SoftLimit>0</Enable_SoftLimit>
+      <Max_SoftLimit>0</Max_SoftLimit>
+      <Min_SoftLimit>0</Min_SoftLimit>
+    </MtrConfig>
+    <MtrSpeed>
+      <Jog_Min_Velocity>0</Jog_Min_Velocity>
+      <Jog_Max_Velocity>10</Jog_Max_Velocity>
+      <Jog_Acceleration>0.1</Jog_Acceleration>
+      <Jog_Deceleration>0.1</Jog_Deceleration>
+      <Jog_Jerk>1</Jog_Jerk>
+      <SpeedRate_Jog>100</SpeedRate_Jog>
+      <Home_Min_Velocity>0</Home_Min_Velocity>
+      <Home_Max_Velocity>10</Home_Max_Velocity>
+      <Home_Acceleration>0.1</Home_Acceleration>
+      <Home_Deceleration>0.1</Home_Deceleration>
+      <Home_Jerk>1</Home_Jerk>
+      <SpeedRate_Home>100</SpeedRate_Home>
+    </MtrSpeed>
+    <MtrSafe>
+      <IsPositionDataUpated>false</IsPositionDataUpated>
+      <IsZoneDataUpated>false</IsZoneDataUpated>
+      <PositionSafeDatas />
+      <ZoneSafeDatas />
+    </MtrSafe>
+    <MtrMisc>
+      <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
+      <LeftRelativeButtonImage>左箭头</LeftRelativeButtonImage>
+      <RightJogButtonImage>右箭头</RightJogButtonImage>
+      <LeftJogButtonImage>左箭头</LeftJogButtonImage>
+      <MotorUnit>mm</MotorUnit>
+    </MtrMisc>
+    <Driver>Zmcaux</Driver>
+    <SpeedRate_Home>0.1</SpeedRate_Home>
+    <SpeedRate_Jog>1</SpeedRate_Jog>
+  </ConfigData_Motor>
+  <ConfigData_Motor>
+    <Name>平台</Name>
+    <Simulation>false</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
