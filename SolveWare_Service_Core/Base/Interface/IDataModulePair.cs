@@ -9,6 +9,6 @@ namespace SolveWare_Service_Core.Base.Interface
     public interface IDataModulePair: IJobFundamental
     {
         void Setup(IElement data);
-        void Save(bool isShowWindow = false);
+       // void Save(bool isShowWindow = false);
     }
 }

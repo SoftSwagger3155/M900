@@ -72,6 +72,17 @@
     </Compile>
     <Compile Include="Business\MainManager.cs" />
     <Compile Include="FormCommunic\FormSwitch.cs" />
+    <Compile Include="FSM\Auto\FSM_Auto_Controller.cs" />
+    <Compile Include="FSM\Home\FSM_Home_Controller.cs" />
+    <Compile Include="FSM\Reset\FSM_Reset_Controller.cs" />
+    <Compile Include="Index\Data\Data_Index.cs" />
+    <Compile Include="Index\Job\Job_Index.cs" />
+    <Compile Include="MMperPixel\Data\Data_MMperPixel.cs" />
+    <Compile Include="MMperPixel\Job\Job_MMperPixel_BtmCamera.cs" />
+    <Compile Include="MMperPixel\Job\Job_MMperPixel_TopCamera.cs" />
+    <Compile Include="Offset\Job\Job_Offset_BtmCamera_BtmProber.cs" />
+    <Compile Include="Offset\Job\Job_Offset_TopCamera_BtmPin.cs" />
+    <Compile Include="Offset\Job\Job_Offset_TopCamera_TopProber.cs" />
     <Compile Include="Views\ProductPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,11 +233,7 @@
     <Compile Include="Views\Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Index\Data\MF900_IndexData.cs" />
-    <Compile Include="MMperPixel\Business\Job_MMperPixel_BtmCamera.cs" />
-    <Compile Include="MMperPixel\Business\Job_MMperPixel_TopCamera.cs" />
-    <Compile Include="Offset\Data\Data_Camera_To_Prober_Offset.cs" />
-    <Compile Include="Offset\Data\MF900_OffsetDataBase.cs" />
+    <Compile Include="Offset\Data\Data_OffsetData.cs" />
     <Compile Include="DeControls\OutButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,7 +248,7 @@
       <DependentUpon>ProgramSetForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource\ResourceKey.cs" />
+    <Compile Include="ResourceKey.cs" />
     <Compile Include="Views\Main\RunForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,17 +378,16 @@
       <Project>{A50E0066-FC5A-46CA-95FA-EB178D6F864D}</Project>
       <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolveWare_Service_Utility\SolveWare_Service_Utility.csproj">
+      <Project>{A329E8D8-E7A4-4070-ACBB-86601F296534}</Project>
+      <Name>SolveWare_Service_Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolveWare_Service_Vision\SolveWare_Service_Vision.csproj">
       <Project>{D6664D67-8766-4D73-B8FE-94CEE959171B}</Project>
       <Name>SolveWare_Service_Vision</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Base\" />
-    <Folder Include="Data\" />
-    <Folder Include="FSM\" />
-    <Folder Include="Index\Business\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Left.png" />
   </ItemGroup>

@@ -12,6 +12,7 @@ namespace SolveWare_Service_Core.Base.Abstract
     {
         protected int priority;
         protected int errorCode = 0;
+        protected string errorMsg = string.Empty;
         protected DateTime st = DateTime.Now;
         protected JobStatus status = JobStatus.Unknown;
 
@@ -24,7 +25,7 @@ namespace SolveWare_Service_Core.Base.Abstract
         public int ErrorCode
         {
             get => errorCode;
-            set => UpdateProper(ref errorCode, value);
+            private set=> UpdateProper(ref errorCode, value);
         }
 
         public JobStatus Status
@@ -33,6 +34,11 @@ namespace SolveWare_Service_Core.Base.Abstract
             set => UpdateProper(ref status, value);
         }
 
+        public string ErrorMsg
+        {
+            get=> errorMsg;
+            set => UpdateProper(ref errorMsg, value);
+        }
 
         protected void LogActionMessage()
         {
@@ -47,7 +53,7 @@ namespace SolveWare_Service_Core.Base.Abstract
         public void OnExit()
         {
             this.Status = ErrorCode == 0 ? JobStatus.Done : JobStatus.Fail;
-            SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, this.GetType().Name, st, errorCode);
+            SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, this.GetType().Name, st, errorCode, errorMsg);
         }
 
         public virtual int Do_Job() { return 0; }

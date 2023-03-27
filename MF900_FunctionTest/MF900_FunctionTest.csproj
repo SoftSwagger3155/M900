@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MF900_FunctionTest</RootNamespace>
     <AssemblyName>MF900_FunctionTest</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,11 +45,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Array_2D_Logic.cs" />
+    <Compile Include="DataMairPairTest\Base_DMpair.cs" />
+    <Compile Include="DataMairPairTest\Data_DMpair.cs" />
+    <Compile Include="DataMairPairTest\Job_DMpair.cs" />
+    <Compile Include="DataMairPairTest\Obj_DataJobPair.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
+      <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
+      <Name>SolveWare_Service_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SolveWare_Service_Utility\SolveWare_Service_Utility.csproj">
+      <Project>{a329e8d8-e7a4-4070-acbb-86601f296534}</Project>
+      <Name>SolveWare_Service_Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

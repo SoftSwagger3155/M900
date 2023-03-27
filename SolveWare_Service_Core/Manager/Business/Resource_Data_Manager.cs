@@ -142,5 +142,9 @@ namespace SolveWare_Service_Core.Manager.Business
             correctDatas.ForEach(x => this.DataBase.Add(x as IElement));
             Save(false);
         }
+        public void Plug_In()
+        {
+            SolveWare.Core.MMgr.Resource_Data_Center.Add(this);
+        }
     }
 }

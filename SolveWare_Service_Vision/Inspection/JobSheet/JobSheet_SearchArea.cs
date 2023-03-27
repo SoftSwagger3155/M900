@@ -1,7 +1,9 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
+using SolveWare_Service_Vision.Inspection.Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.JobSheet
 {
+    [PairAttribute(typeof(Job_SearchArea))]
     public class JobSheet_SearchArea: JobSheetDataBase
     {
         [Category("Lighting 参数")]

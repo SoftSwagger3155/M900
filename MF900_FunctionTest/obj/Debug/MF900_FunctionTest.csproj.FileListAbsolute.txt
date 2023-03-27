@@ -12,3 +12,15 @@ D:\M900开发平台\M901\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.pdb
 D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CoreCompileInputs.cache
 D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.exe
 D:\M900开发平台\M901\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.exe.config
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.exe
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\MF900_FunctionTest.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.AssemblyReference.cache
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.SuggestedBindingRedirects.cache
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CoreCompileInputs.cache
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.exe
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Core.dll
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\Utilities.dll
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\bin\Debug\SolveWare_Service_Core.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_FunctionTest\obj\Debug\MF900_FunctionTest.csproj.CopyComplete

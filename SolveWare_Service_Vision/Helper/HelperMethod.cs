@@ -15,10 +15,14 @@ namespace SolveWare_Service_Vision.Helper
         {
             IDataModulePair pair = null;
             var attr = (PairAttribute)data.GetType().GetCustomAttribute(typeof(PairAttribute));
-
             pair = (IDataModulePair)Activator.CreateInstance(attr.PartnerType);
-            pair.Setup(data as IElement);
+            //pair.Setup(data as IElement);
             return pair;
+        }
+        public static int Do_PairModuleJob(this IDataModulePair pair, IElement data)
+        {
+            pair.Setup(data);
+            return pair.Do_Job();
         }
     }
 }

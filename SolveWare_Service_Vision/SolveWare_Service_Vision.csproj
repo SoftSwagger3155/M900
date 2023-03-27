@@ -61,6 +61,7 @@
     <Compile Include="Inspection\Base\Interface\IJobSheetModule.cs" />
     <Compile Include="Inspection\Business\Inspect.cs" />
     <Compile Include="Inspection\Business\Job_Blob.cs" />
+    <Compile Include="Inspection\Business\Job_Brightness.cs" />
     <Compile Include="Inspection\Business\Job_Lighting.cs" />
     <Compile Include="Inspection\Business\Job_PatternMatch.cs" />
     <Compile Include="Inspection\Business\Job_SearchArea.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Inspection\JobSheet\JobSheet_Lighting.cs" />
     <Compile Include="Inspection\JobSheet\JobSheet_PatternMatch.cs" />
     <Compile Include="Inspection\JobSheet\JobSheet_SearchArea.cs" />
-    <Compile Include="MMperPixel\Base\Abstract\MMperPixelJobBase.cs" />
     <Compile Include="MMperPixel\Base\Interface\IMMperPixelJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -112,6 +112,10 @@
       <Project>{A50E0066-FC5A-46CA-95FA-EB178D6F864D}</Project>
       <Name>SolveWare_Service_Tool</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolveWare_Service_Utility\SolveWare_Service_Utility.csproj">
+      <Project>{A329E8D8-E7A4-4070-ACBB-86601F296534}</Project>
+      <Name>SolveWare_Service_Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="View\Resources\Auto.png" />
@@ -140,6 +144,9 @@
     <EmbeddedResource Include="View\Forms\Form_InspectionKit.resx">
       <DependentUpon>Form_InspectionKit.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MMperPixel\Job\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

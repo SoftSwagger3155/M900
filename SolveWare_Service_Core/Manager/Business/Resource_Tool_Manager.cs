@@ -199,5 +199,20 @@ namespace SolveWare_Service_Core.Manager.Business
             corretDatas.ForEach(x => this.DataBase.Add(x as IElement));
             Save(false);
         }
+
+        public void Plug_In()
+        {
+            SolveWare.Core.MMgr.Resource_Tool_Center.Add(this);
+        }
+
+        public void StartStatusReading()
+        {
+            this.WareHouse.ToList().ForEach(x=> (x as IToolElement).StartStatusReading());
+        }
+
+        public void StopStatusReading()
+        {
+            this.WareHouse.ToList().ForEach(x => (x as IToolElement).StopStatusReading());
+        }
     }
 }

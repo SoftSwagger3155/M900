@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.IO.Base.Abstract
 {
-    public abstract class IOBase : ElementBase, IIOBase
+    public abstract class IOBase : ToolElementBase, IIOBase
     {
         protected ConfigData_IO configData;
         protected CancellationTokenSource readStatusSource;
@@ -83,7 +83,7 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
         public abstract void On();
         public abstract void UpdateStatus();
 
-        public void StartStatusReading()
+        public override void StartStatusReading()
         {
             if (readStatusSource != null) return;
             readStatusSource = new CancellationTokenSource();
@@ -102,7 +102,7 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
             }, readStatusSource.Token, TaskCreationOptions.LongRunning);
             task.Start();
         }
-        public void StopStatusReading()
+        public override void StopStatusReading()
         {
             if (readStatusSource == null) return;
             readStatusSource.Cancel();

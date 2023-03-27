@@ -18,5 +18,6 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IList<IElement> Get_All_Items();
         IList<string> Get_All_Item_Name();
         void DoubleCheck(params string[] names);
+        void Plug_In();
     }
 }

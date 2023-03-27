@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Motor.Base.Abstract
 {
-    public abstract class AxisBase : ElementBase
+    public abstract class AxisBase : ToolElementBase
     {
         #region ctor
         public AxisBase(IElement configData)

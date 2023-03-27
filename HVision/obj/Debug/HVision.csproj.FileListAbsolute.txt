@@ -27,3 +27,13 @@ D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.CoreCompileInputs.cach
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.CopyComplete
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.dll
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\HVision.dll
+C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\HVision.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.csproj.AssemblyReference.cache
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.Properties.Resources.resources
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.UserHWControls.resources
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.csproj.GenerateResource.cache
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.csproj.CoreCompileInputs.cache
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.csproj.CopyComplete
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.dll
+C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.pdb

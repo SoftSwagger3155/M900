@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolveWare_Service_Utility",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MF900_SolveWare", "MF900_SolveWare\MF900_SolveWare.csproj", "{446725E6-F56C-4778-928B-9E901A095CDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolveWare_Service_Index", "SolveWare_Service_Index\SolveWare_Service_Index.csproj", "{1F9C09AA-F105-4245-B504-286A180CAB0A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MF900_FunctionTest", "MF900_FunctionTest\MF900_FunctionTest.csproj", "{853D8D4C-EF59-44B1-AFB1-FC262E099D8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolveWare_ViewTest", "SolveWare_ViewTest\SolveWare_ViewTest.csproj", "{BFEA11DB-2B83-4525-98AE-FCEE5CEBB145}"
@@ -63,10 +61,6 @@ Global
 		{446725E6-F56C-4778-928B-9E901A095CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446725E6-F56C-4778-928B-9E901A095CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446725E6-F56C-4778-928B-9E901A095CDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F9C09AA-F105-4245-B504-286A180CAB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F9C09AA-F105-4245-B504-286A180CAB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F9C09AA-F105-4245-B504-286A180CAB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F9C09AA-F105-4245-B504-286A180CAB0A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{853D8D4C-EF59-44B1-AFB1-FC262E099D8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{853D8D4C-EF59-44B1-AFB1-FC262E099D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{853D8D4C-EF59-44B1-AFB1-FC262E099D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU

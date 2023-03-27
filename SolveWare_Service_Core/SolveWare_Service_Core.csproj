@@ -51,14 +51,18 @@
   <ItemGroup>
     <Compile Include="Attributes\PairAttribute.cs" />
     <Compile Include="Attributes\ResourceBaseAttribute.cs" />
+    <Compile Include="Base\Abstract\DataJobPairFundamentalBase.cs" />
     <Compile Include="Base\Abstract\ElementBase.cs" />
     <Compile Include="Base\Abstract\JobFundamentalBase.cs" />
     <Compile Include="Base\Abstract\DetailDataElementBase.cs" />
     <Compile Include="Base\Abstract\RESTFulBase.cs" />
+    <Compile Include="Base\Abstract\ToolElementBase.cs" />
+    <Compile Include="Base\Interface\ICommonJobFundamental.cs" />
     <Compile Include="Base\Interface\IDataModulePair.cs" />
     <Compile Include="Base\Interface\IElement.cs" />
     <Compile Include="Base\Interface\IJobFundamental.cs" />
     <Compile Include="Base\Interface\IRESTFul.cs" />
+    <Compile Include="Base\Interface\IToolElement.cs" />
     <Compile Include="Base\Interface\IView.cs" />
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Communication\Base\Abstract\InstrumentChassisBase.cs" />
@@ -73,19 +77,24 @@
     <Compile Include="Definition\Enum_Match_DataModule_Kind.cs" />
     <Compile Include="Definition\Enum_Match_DataView_Kind.cs" />
     <Compile Include="Definition\Enum_Tool_Resource_Kind.cs" />
+    <Compile Include="FSM\Base\Abstract\FSMBase.cs" />
+    <Compile Include="FSM\Base\Abstract\FSMStationBase.cs" />
+    <Compile Include="FSM\Base\Abstract\StateBase.cs" />
     <Compile Include="FSM\Base\Interface\IFSM.cs" />
-    <Compile Include="FSM\Base\Interface\IStation.cs" />
+    <Compile Include="FSM\Base\Interface\IState.cs" />
+    <Compile Include="FSM\Base\Interface\IFSMStation.cs" />
+    <Compile Include="FSM\FSMState\BasicState.cs" />
+    <Compile Include="FSM\FSMState\BoolState.cs" />
+    <Compile Include="FSM\FSMState\WaitState.cs" />
+    <Compile Include="FSM\Helper\FSMHelper.cs" />
     <Compile Include="General\ConstantProperty.cs" />
     <Compile Include="General\ErrorCodes.cs" />
+    <Compile Include="General\Extension.cs" />
     <Compile Include="General\IdentityGenerator.cs" />
     <Compile Include="General\InfoReport.cs" />
     <Compile Include="General\MathCalculateHelper.cs" />
     <Compile Include="General\SystemPath.cs" />
     <Compile Include="General\XMLHelper.cs" />
-    <Compile Include="Index\Base\Abstract\IndexBase.cs" />
-    <Compile Include="Index\Base\Interface\IIndex.cs" />
-    <Compile Include="Index\Base\Interface\IIndexData.cs" />
-    <Compile Include="Index\Base\Interface\ILoadCargo.cs" />
     <Compile Include="Info\Base\Interface\IInfoHandler.cs" />
     <Compile Include="Info\Business\ErrorEventManager.cs" />
     <Compile Include="Info\Business\InfoHandler.cs" />
@@ -104,6 +113,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolveWare.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FSM\FSMStation\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

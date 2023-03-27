@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SolveWare_Service_Vision.Data
 {
@@ -20,6 +21,15 @@ namespace SolveWare_Service_Vision.Data
         public JobSheet_SearchArea JobSheet_SearchArea_Data { get; set; }
         public JobSheet_PatternMatch JobSheet_PatternMatch_Data { get; set; }
         public JobSheet_Blob JobSheet_Blob_Data { get; set; }
+
+        public double CenterX { get; set; }
+        public double CenterY { get; set; }
+        public string CameraName { get; set; }
+
+        public Data_InspectionKit(string cameraName)
+        {
+            this.CameraName = cameraName;
+        }
 
         public Data_InspectionKit()
         {

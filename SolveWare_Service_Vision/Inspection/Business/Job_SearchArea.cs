@@ -1,6 +1,7 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Vision.Data;
+using SolveWare_Service_Vision.Inspection.JobSheet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,18 @@ namespace SolveWare_Service_Vision.Inspection.Business
 {
     public class Job_SearchArea : JobFundamentalBase, IDataModulePair
     {
-        Data_InspectionKit dataKit = null;
+        Data_InspectionKit jobParam;
 
         public override int Do_Job()
         {
-            throw new NotImplementedException();
-        }
+            //TODO: Stanley 1.实现 Search Area 细节
 
-        public void Save(bool isShowWindow = false)
-        {
-            throw new NotImplementedException();
+            return ErrorCode;
         }
 
         public void Setup(IElement data)
         {
-            
+            this.jobParam = data as Data_InspectionKit;
         }
     }
 }

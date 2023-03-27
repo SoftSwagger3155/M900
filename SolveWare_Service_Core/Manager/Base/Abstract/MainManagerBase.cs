@@ -35,22 +35,22 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
         {
             this.Infohandler = infoHandler;
         }
-        public MainManagerBase(IInfoHandler infoHandler, IFSM fsm)
-        {
-            this.Infohandler = infoHandler;
-            this.FSM = fsm;
-        }
-        
+
+        public IFSM FSM_Home { get; set; }
+        public IFSM FSM_Auto { get; set; }
+        public IFSM FSM_Reset { get; set; }
+
+
         public event AddResourceDelegation On_Tool_Resource_Loading_Handler;
         public event AddResourceDelegation On_Data_Resource_Loading_Handler;
         public event AddResourceDelegation On_Machine_Resource_Loading_Handler;
         public IView MainWint { get; set; }
-        public IFSM FSM { get; set; }
         public string LoadingStatus { get; set; }
         public IMachineUI MachineUI { get; set; }
         public IInfoHandler Infohandler { get; set; }
         public IList<IDataResourceProvider> Resource_Data_Center { get; set; }
         public IList<IToolResourceProvider> Resource_Tool_Center { get; set; }
+        public IList<ICommonJobFundamental> Resource_DataPair_Center { get; set; }
 
         protected Machine_Status status = Machine_Status.UnInitialised;
         public Machine_Status Status { get; private set; }
@@ -149,6 +149,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         protected IMasterDriver masterDriver;
         public IMasterDriver MasterDriver { get => masterDriver; }
+   
         public void AssignMasterDriver(IMasterDriver master)
         {
             this.masterDriver = master;

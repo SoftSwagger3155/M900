@@ -18,3 +18,13 @@ D:\M900开发平台\M901\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Ind
 D:\M900开发平台\M901\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.CopyComplete
 D:\M900开发平台\M901\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.dll
 D:\M900开发平台\M901\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Index.dll
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Index.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Core.dll
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\bin\Debug\Utilities.dll
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\bin\Debug\SolveWare_Service_Core.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.AssemblyReference.cache
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.CoreCompileInputs.cache
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.csproj.CopyComplete
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.dll
+C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Index\obj\Debug\SolveWare_Service_Index.pdb

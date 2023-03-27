@@ -37,6 +37,7 @@ namespace SolveWare_Service_Core.General
         public const string LogDirectory = "Log";
         public const string LotDirectory = "Lot";
         public const string SystemDirectory = "System";
+        public const string DataJobPairDirectory = "DataJobPair";
         public const string MVVMDirectory = "MVVM";
         public const string WorkOrderDirectory = "WorkOrder";
         public const string VisionDirectory = "Vision";
@@ -98,6 +99,10 @@ namespace SolveWare_Service_Core.General
         {
             get { return RootDirectory + "\\" + SystemDirectory; }
         }
+        static public string GetSystemDataPairPath
+        {
+            get=> RootDirectory + "\\" + DataJobPairDirectory;
+        }
         static public string GetMVVMPath
         {
             get { return RootDirectory + "\\" + MVVMDirectory; }
@@ -146,6 +151,7 @@ namespace SolveWare_Service_Core.General
             CreateDirectoryIfDontHave(RootLogDirectory);
             //CreateDirectoryIfDontHave(GetRecipePath);
             CreateDirectoryIfDontHave(GetSystemPath);
+            CreateDirectoryIfDontHave(GetSystemDataPairPath);
             //CreateDirectoryIfDontHave(GetLastCntPath);
             //CreateDirectoryIfDontHave(GetWorkOrderPath);
             //CreateDirectoryIfDontHave(GetVisionSupportRecipePath);

@@ -71,6 +71,7 @@
     <Compile Include="IO\Definition\Enum_IO_Status.cs" />
     <Compile Include="IO\Definition\Enum_IO_Type.cs" />
     <Compile Include="IO\Definition\Enum_Master_Driver_IO.cs" />
+    <Compile Include="Lighting\Base\ILighting.cs" />
     <Compile Include="MasterDriver\Business\MasterDriverManager.cs" />
     <Compile Include="MasterDriver\Data\ConfigData_MasterDriver.cs" />
     <Compile Include="MasterDriver\Definition\Enum_Master_Driver_Kind.cs" />
@@ -95,9 +96,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Lighting\Base\Interface\" />
-    <Folder Include="Lighting\Business\" />
-    <Folder Include="Lighting\Data\" />
     <Folder Include="MasterDriver\Base\Interface\" />
   </ItemGroup>
   <ItemGroup>

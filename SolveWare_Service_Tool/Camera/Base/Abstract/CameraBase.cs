@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Camera.Base.Abstract
 {
-    public abstract class CameraBase : ElementBase, ICamera
+    public abstract class CameraBase : ToolElementBase, ICamera
     {
         public CameraBase(IElement configData)
         {
@@ -69,5 +69,11 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         public abstract void CloseCamera();
 
         public abstract void AssingCamera(object obj_Camera);
+
+        public override void StartStatusReading()
+        {
+            return;
+        }
+        public override void StopStatusReading() { return;}
     }
 }

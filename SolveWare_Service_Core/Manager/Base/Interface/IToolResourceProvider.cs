@@ -11,5 +11,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
     {
         IFactory Factory { get; }
         IList<IElement> WareHouse { get; }
+        void StartStatusReading();
+        void StopStatusReading();
     }
 }

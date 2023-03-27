@@ -1,6 +1,8 @@
 ﻿using SolveWare_Service_Core;
 using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Core.General;
+using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Tool.IO.Base.Interface;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
@@ -49,9 +51,9 @@ namespace SolveWare_Service_Utility.Extension
             objs[index] = temp;
             selectedIndex = index + 1;
         }
-        public static ICamera GetCamera(this string name)
+        public static CameraBase GetCamera(this string name)
         {
-            ICamera camera = (ICamera)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
+            CameraBase camera = (CameraBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
             return camera;
         }
         public static AxisBase GetAxisBase(this string name)
@@ -69,7 +71,6 @@ namespace SolveWare_Service_Utility.Extension
             string key = "";
             var resource = (ResourceBaseAttribute)data.GetType().GetCustomAttribute(typeof(ResourceBaseAttribute));
             key = resource.ResourceKey;
-            
 
             return key;
         }
