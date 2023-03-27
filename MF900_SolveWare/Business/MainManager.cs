@@ -9,6 +9,7 @@ using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.FSM.Base.Interface;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Info.Base.Interface;
 using SolveWare_Service_Core.Manager.Base.Abstract;
 using SolveWare_Service_Core.Manager.Base.Interface;
@@ -140,6 +141,8 @@ namespace MF900_SolveWare.Business
             Resource_DataPair_Center.Add(Pos_TopCameraInspectGitHole);
             Resource_DataPair_Center.Add(Pos_btmCameraInspectGitHole);
 
+           
+
             //Offset
             ICommonJobFundamental Offset_TopCamera_TopProber = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Top_Prober);
             ICommonJobFundamental Offset_BtmCamera_BtmProber = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Btm_Camera_Btm_Prober);
@@ -151,6 +154,8 @@ namespace MF900_SolveWare.Business
             //Inspect
             ICommonJobFundamental inspect_1 = new Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
             Resource_DataPair_Center.Add(inspect_1);
+
+           
         }
 
         private void AssignFSM()
