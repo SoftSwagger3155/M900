@@ -10,6 +10,7 @@ namespace MF900_SolveWare.MMperPixel.Data
 {
     public class Data_MMperPixel : ElementBase
     {
+        //下拉选单去选
         public string Name_Data_Inspection { get; set; }
         public Data_Motion Data_Inspection_Pos { get; set; }
         public double MovePitch { get; set; }

@@ -13,7 +13,7 @@ namespace SolveWare_Service_Utility.Common.Motion
 {
     public class Job_Motion: DataJobPairFundamentalBase<Data_Motion>
     {
-        public Job_Motion(string name)
+        public Job_Motion(string name) : base(name)
         {
             this.Name = name;
         }

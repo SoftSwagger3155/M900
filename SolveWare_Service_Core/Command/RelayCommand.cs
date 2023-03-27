@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace SolveWare_Service_Core.Command
 {
+    //Wpf Use Only
     public class RelayCommand : ICommand
     {
         private Action<object> _execute;

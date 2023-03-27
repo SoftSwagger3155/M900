@@ -24,7 +24,11 @@ namespace SolveWare_Service_Core.Base.Abstract
             this.Name = name;
             this.filePath = Path.Combine(SystemPath.GetSystemDataPairPath, $"{this.Name}.xml");
             Data = XMLHelper.Load<TData>(filePath);
-            if ( Data == null ) { Save(); }
+            if ( Data == null ) 
+            {
+                this.Data =(TData)Activator.CreateInstance(typeof(TData));    
+                Save(); 
+            }
 
         }
         public void Save(bool isWindowShow = false)
