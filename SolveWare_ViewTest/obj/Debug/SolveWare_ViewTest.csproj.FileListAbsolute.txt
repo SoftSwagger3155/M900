@@ -26,6 +26,7 @@ D:\M900开发平台\M901\M900_Dlls\SolveWare_ViewTest.exe.config
 D:\M900开发平台\M901\M900_Dlls\SolveWare_ViewTest.exe
 D:\M900开发平台\M901\M900_Dlls\SolveWare_ViewTest.pdb
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.AssemblyReference.cache
+D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.exe.config
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Form1.resources
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.Properties.Resources.resources
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.GenerateResource.cache
@@ -33,4 +34,3 @@ D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.csproj.CopyComplete
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.exe
 D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.pdb
-D:\M900开发平台\M901\SolveWare_ViewTest\obj\Debug\SolveWare_ViewTest.exe.config

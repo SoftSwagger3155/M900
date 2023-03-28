@@ -2,6 +2,7 @@ D:\M900开发平台\M901\M900_Dlls\MF900_SolveWare.exe.config
 D:\M900开发平台\M901\M900_Dlls\MF900_SolveWare.exe
 D:\M900开发平台\M901\M900_Dlls\MF900_SolveWare.pdb
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.AssemblyReference.cache
+D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe.config
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.AxisJop.resources
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.InputIo.resources
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.OutputSwitch.resources
@@ -41,4 +42,3 @@ D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CoreCo
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe
 D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.pdb
-D:\M900开发平台\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe.config
