@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfConfigData_Camera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<ArrayOfConfigData_Camera xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ConfigData_Camera>
     <Name>上相机</Name>
-<<<<<<< HEAD
     <IsSimulation>true</IsSimulation>
-=======
-    <Id_Camera>[23367119]-S_Camera-acA1300-60gm</Id_Camera>
-    <IsSimulation>false</IsSimulation>
->>>>>>> 31072a2f9b46292e6ccec16bd6529d5f68cdc028
     <MasterDriver>Basler</MasterDriver>
   </ConfigData_Camera>
   <ConfigData_Camera>

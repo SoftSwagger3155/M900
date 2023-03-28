@@ -23,7 +23,7 @@ namespace HVision
                     break;
                 case RoiType.rectangle:
                     m_RoiRecData = (RoiRectgancleData)roiDataBase;
-                    m_RoiBase = new RoiRectangle(m_RoiRecData);
+                    m_RoiBase = new RoiRectangle1(m_RoiRecData);
                     break;
                 case RoiType.line:
                     m_RoiLineData = (RoiLineData)roiDataBase;

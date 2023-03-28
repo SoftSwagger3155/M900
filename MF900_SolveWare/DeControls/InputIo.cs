@@ -29,11 +29,6 @@ namespace MF900_SolveWare
         public InputIo()
         {
             InitializeComponent();
-            if (!string.IsNullOrEmpty(this.IoName))
-            {
-                mtr = (IOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.IO, this.IoName);
-                Status = IoStatus.OFF;
-            }
         }
 
         private string ioName;
@@ -47,6 +42,7 @@ namespace MF900_SolveWare
             {
                 ioName = value;
                 lbl_Name.Text = ioName;
+                mtr = (IOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.IO, this.ioName);
             }
         }
         [Description("IO号"), Category("自定义属性")]

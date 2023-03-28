@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,12 +30,27 @@ namespace MF900_SolveWare
                 InputIo inputIo = new InputIo();
                 inputIo.IoName = names[i];
                 inputIo.Size = new Size(120, 35);
-                inputIo.Location = new Point(20 + i % 6 * 160, 15 + row * 60);
+                inputIo.Location = new Point(20 + i % 6 * 160, 30 + row * 60);
                 inputIo.Status = IoStatus.OFF;
                 this.uiGroupBox1.Controls.Add(inputIo);
             }
+            Task.Run(new Action(() => RefreshInputIo()));
         }
-
+        public void RefreshInputIo()
+        {
+            while (true)
+            {
+                if (!this.IsHandleCreated)
+                    continue;
+                Thread.Sleep(50);
+                foreach (Control control in uiGroupBox1.Controls)
+                {
+                    if (control is InputIo)
+                        control.Refresh();
+                }
+               
+            }
+        }
         private void GenOutputIoControls()
         {
 

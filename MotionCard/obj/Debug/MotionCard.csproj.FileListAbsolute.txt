@@ -127,3 +127,4 @@ C:\Users\softs\Desktop\YAMAHA\M900\MotionCard\obj\Debug\MotionCard.csproj.CoreCo
 C:\Users\softs\Desktop\YAMAHA\M900\MotionCard\obj\Debug\MotionCard.csproj.CopyComplete
 C:\Users\softs\Desktop\YAMAHA\M900\MotionCard\obj\Debug\MotionCard.dll
 C:\Users\softs\Desktop\YAMAHA\M900\MotionCard\obj\Debug\MotionCard.pdb
+D:\M900开发平台\M901\MotionCard\obj\Debug\MotionCard.csproj.AssemblyReference.cache

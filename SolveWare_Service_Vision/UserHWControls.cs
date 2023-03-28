@@ -16,11 +16,11 @@ using System.Windows.Forms;
 
 namespace SolveWare_Service_Vision
 {
-    public partial class UserHWControls : UserControl, IView
+    public partial class UserHWControl : UserControl, IView
     {
         Manage_HWindow_Controller hController;
         CameraBase camera;
-        public UserHWControls()
+        public UserHWControl()
         {
             InitializeComponent();
         }

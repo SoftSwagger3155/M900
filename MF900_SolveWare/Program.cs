@@ -23,18 +23,20 @@ namespace MF900_SolveWare
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            SolveWare.Core.SetMMgr(new MainManager());
-            SolveWare.Core.MMgr.Setup();
-            SolveWare.Core.MMgr.AssignMasterDriver(new MasterDriverManager());
-            SolveWare.Core.MMgr.Initialize();
-
-            UserHWControls control = new UserHWControls();
-            control.Setup(ResourceKey.Top_Camera.GetCamera());
-            Form form = new Form();
-            form.Controls.Add(control);
-            Application.Run(form);
-            //Application.Run(new MainForm());
+            Task.Run(new Action(() =>
+            {
+                SolveWare.Core.SetMMgr(new MainManager());
+                SolveWare.Core.MMgr.Setup();
+                SolveWare.Core.MMgr.AssignMasterDriver(new MasterDriverManager());
+                SolveWare.Core.MMgr.Initialize();
+            }));
+            
+            //UserHWControls control = new UserHWControls();
+            //control.Setup(ResourceKey.Top_Camera.GetCamera());
+            //Form form = new Form();
+            //form.Controls.Add(control);
+            //Application.Run(form);
+            Application.Run(new MainForm());
         }
     }
 }
