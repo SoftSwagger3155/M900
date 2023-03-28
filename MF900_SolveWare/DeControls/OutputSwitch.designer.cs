@@ -45,9 +45,9 @@ namespace MF900_SolveWare
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(96, 74);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(96, 57);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lbl_Name
@@ -56,7 +56,7 @@ namespace MF900_SolveWare
             this.lbl_Name.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_Name.Location = new System.Drawing.Point(3, 0);
             this.lbl_Name.Name = "lbl_Name";
-            this.lbl_Name.Size = new System.Drawing.Size(90, 31);
+            this.lbl_Name.Size = new System.Drawing.Size(90, 21);
             this.lbl_Name.TabIndex = 0;
             this.lbl_Name.Text = "名称";
             this.lbl_Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,15 +65,16 @@ namespace MF900_SolveWare
             // 
             this.uiSwitch1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiSwitch1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSwitch1.Location = new System.Drawing.Point(3, 34);
+            this.uiSwitch1.Location = new System.Drawing.Point(3, 24);
             this.uiSwitch1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch1.Name = "uiSwitch1";
-            this.uiSwitch1.Size = new System.Drawing.Size(90, 37);
+            this.uiSwitch1.Size = new System.Drawing.Size(90, 30);
             this.uiSwitch1.StyleCustomMode = true;
             this.uiSwitch1.SwitchShape = Sunny.UI.UISwitch.UISwitchShape.Square;
             this.uiSwitch1.TabIndex = 1;
             this.uiSwitch1.Text = "uiSwitch1";
             this.uiSwitch1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.uiSwitch1.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.uiSwitch1_ValueChanged);
             // 
             // OutputSwitch
             // 
@@ -81,7 +82,7 @@ namespace MF900_SolveWare
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "OutputSwitch";
-            this.Size = new System.Drawing.Size(96, 74);
+            this.Size = new System.Drawing.Size(96, 57);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

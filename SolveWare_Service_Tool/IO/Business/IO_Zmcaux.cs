@@ -27,6 +27,7 @@ namespace SolveWare_Service_Tool.IO.Business
 
         public override void Init()
         {
+            this.IOType = this.configData.IOType;
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
             Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
         }
@@ -35,7 +36,7 @@ namespace SolveWare_Service_Tool.IO.Business
         {
             int errorCode = ErrorCodes.NoError;
             string exMSg = string.Empty;
-            int triggerMode = configData.Logic_Op == 0 ? 1 : 0;
+            int triggerMode = configData.Logic_Op == 0 ? 0 : 1;
 
             try
             {
@@ -54,7 +55,7 @@ namespace SolveWare_Service_Tool.IO.Business
         {
             int errorCode = ErrorCodes.NoError;
             string exMSg = string.Empty;
-            int triggerMode = configData.Logic_Op == 0 ? 0 : 1;
+            int triggerMode = configData.Logic_Op == 0 ? 1 : 0;
 
             try
             {

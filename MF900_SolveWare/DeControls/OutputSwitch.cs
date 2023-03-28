@@ -19,11 +19,6 @@ namespace MF900_SolveWare
         public OutputSwitch()
         {
             InitializeComponent();
-            if (!string.IsNullOrEmpty(this.IoName))
-            {
-                mtr = (IOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.IO, this.IoName);
-
-            }
         }
 
         private string ioName;
@@ -35,55 +30,58 @@ namespace MF900_SolveWare
             { 
                 ioName = value;
                 lbl_Name.Text = ioName;
+                mtr = (IOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.IO, this.ioName);
+
             }
         }
 
         [Description("IO号"), Category("自定义属性")]
         public float IoNum { get; set; }
 
-        private IoStatus status;
+        private IO_Status status;
         [Description("状态"), Category("自定义属性")]
-        public IoStatus Status
+        public IO_Status Status
         {
             get { return status; }
             set
             {
                 status = value;
-                switch (status)
-                {
-                    case IoStatus.ON:
-                        uiSwitch1.Active = true;
-                        break;
-                    case IoStatus.OFF:
-                        uiSwitch1.Active = false;
-                        break;
-                }
+            }
+        }
+        private bool isRefresh = false;
+        public override void Refresh()
+        {
+            //mtr.Status
+            switch (mtr.Status)
+            {
+                case IO_Status.On:
+                    isRefresh = true;
+                    uiSwitch1.Active = true;
+                    break;
+                case IO_Status.Off:
+                    isRefresh = true;
+                    uiSwitch1.Active = false;
+                    break;
             }
         }
 
-        private bool setStatus;
-
-        public bool SetStatus
+        private void uiSwitch1_ValueChanged(object sender, bool value)
         {
-            get { return setStatus; }
-            set 
-            { 
-                setStatus = uiSwitch1.Active;
-                if(uiSwitch1.Active)
+            if(isRefresh)
+            {
+                isRefresh = false;
+            }
+            else
+            {
+                if (mtr.Status == IO_Status.On)
                 {
-                    mtr.Status = IO_Status.On;
+                    mtr.Off();
                 }
                 else
                 {
-                    mtr.Status = IO_Status.Off;
+                    mtr.On();
                 }
             }
-        }
-
-
-        public override void Refresh()
-        {
-            Status = mtr.Status == IO_Status.On ? IoStatus.ON : IoStatus.OFF;
         }
     }
 }
