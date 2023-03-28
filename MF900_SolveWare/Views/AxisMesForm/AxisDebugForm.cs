@@ -174,10 +174,36 @@ namespace MF900_SolveWare
         }
         public void TopAndBtmAxisMove(DataGridView dataGridView,int row,int col)
         {
+            MtrSpeed mtrSpeed = null;
+            string[] axiss = keyAxis.Keys.ToArray();
+            if (dataGridView == uiDataGridView7)
+            {
+                //axiss[row].GetAxisBase().MtrSpeed
+                mtrSpeed = new MtrSpeed()
+                {
+                    Jog_Acceleration = 1000,
+                    Jog_Deceleration = 1000,
+                    Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
+                    Jog_Min_Velocity = 1,
+                };
+            }
+            else
+            {
+                //axiss[row + 4].GetAxisBase().MtrSpeed 
+                mtrSpeed = new MtrSpeed()
+                {
+                    Jog_Acceleration = 1000,
+                    Jog_Deceleration = 1000,
+                    Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
+                    Jog_Min_Velocity = 1,
+                };
+            }
             switch (col)
             {
-                case 2:
-                    keyAxis[dataGridView[0, row].Value.ToString()].MoveTo(double.Parse(dataGridView[1, row].Value.ToString()));
+                case 2: //MoveRelative
+                    keyAxis[dataGridView[0, row].Value.ToString()].MoveRelative(double.Parse(dataGridView[1, row].Value.ToString()),
+                       mtrSpeed);
+                    //keyAxis[dataGridView[0, row].Value.ToString()].MoveTo(double.Parse(dataGridView[1, row].Value.ToString()));
                     break;
                 case 4:
                     keyAxis[dataGridView[0, row].Value.ToString()].Jog(true);
@@ -209,7 +235,15 @@ namespace MF900_SolveWare
         private void uiButton9_Click(object sender, EventArgs e)
         {
             //需加正则判断
-            ResourceKey.Motor_Table.GetAxisBase().MoveTo(double.Parse(uiTextBox1.Text));
+
+            ResourceKey.Motor_Table.GetAxisBase().MtrSpeed = new MtrSpeed()
+            {
+                Jog_Min_Velocity = 10,
+                Jog_Max_Velocity = 100,
+                Jog_Acceleration = 1000,
+                Jog_Deceleration = 1000
+            };
+            ResourceKey.Motor_Table.GetAxisBase().MoveRelative(double.Parse(uiTextBox1.Text), ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
         }
 
         #endregion

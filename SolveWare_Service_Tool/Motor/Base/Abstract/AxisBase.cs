@@ -292,7 +292,9 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract double Get_CurUnitPos();
         public abstract double Get_AnalogInputValue();
         public abstract bool Get_ServoStatus();
+        public abstract bool MoveRelative(double distance, MtrSpeed mtrSpeed, bool BypassDangerCheck = false);
         public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
+        public abstract bool MoveTo(double pos, MtrSpeed mtrSpeed,  bool BypassDangerCheck = false);
         public abstract bool ManualMoveTo(double pos);
         public abstract void Stop();
         public abstract bool HomeMove();
