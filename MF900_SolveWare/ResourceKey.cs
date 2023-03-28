@@ -10,12 +10,62 @@ namespace MF900_SolveWare.Resource
 {
     public class ResourceKey
     {
-        //IO
-        public const string Op_TowerLight_Green = "塔灯-绿";
+        //OutPut_IO
         public const string Op_TowerLight_Red = "塔灯-红";
         public const string Op_TowerLight_Yellow = "塔灯-黄";
+        public const string Op_TowerLight_Green = "塔灯-绿";
         public const string OP_Buzzer = "蜂鸣器";
-       
+        public const string Op_StartButton = "启动按钮";
+        public const string Op_ZeroButton = "归零按钮";
+        public const string Op_StopButton = "停止按钮";
+        public const string Op_ResetButton = "复位按钮";
+        public const string LeftX_RailTighten = "左X向导轨固定气缸紧";
+        public const string LeftX_RailLoosen = "左X向导轨固定气缸松";
+        public const string RightX_RailTighten = "右X向导轨固定气缸紧";
+        public const string RightX_RailLoosen = "右X向导轨固定气缸松";
+        public const string Y_RailTighten = "Y向导轨固定气缸紧";
+        public const string Y_RailLoosen = "Y向导轨固定气缸松";
+        public const string PCB_Clamp = "软板夹紧气缸紧";
+        public const string PCB_Loosen = "软板夹紧气缸松";
+        public const string X_StretchAirOn = "X向拉伸气缸伸";
+        public const string X_StretchAirOff = "X向拉伸气缸缩";
+        public const string Y_StretchAirOn = "Y向拉伸气缸伸";
+        public const string Y_StretchAirOff = "Y向拉伸气缸缩";
+        public const string MarkeInkBoxOn = "打标墨盒盖开";
+        public const string MarkeInkBoxOff = "打标墨盒盖关";
+        public const string UpMarkeOn = "上模打标气缸伸";
+        public const string DownMarkOn = "下模打标气缸伸";
+        public const string UpJipClampAirOn = "上模治具夹紧气缸紧";
+        public const string UpJipClampAirOff = "上模治具夹紧气缸松";
+        public const string DownJipClampAirOn = "下模治具夹紧气缸紧";
+        public const string DownJipClampAirOff = "下模治具夹紧气缸松";
+
+
+
+        //Input_I0
+        public const string In_Start = "启动";
+        public const string In_Zero = "归零";
+        public const string In_Stop = "停止";
+        public const string In_Reset = "复位";
+        public const string In_E_Stop = "急停1";
+        public const string In_MoveFornt = "前";
+        public const string In_MoveBack = "后";
+        public const string In_MoveLeft = "左";
+        public const string In_MoveRight = "右";
+        public const string In_TopJigInductor = "上模治具到位感应";
+        public const string In_BtmJigInductor = "下模治具到位感应";
+        public const string In_ForntBanner = "正前方安全光栅";
+        public const string In_TopBanner = "上方安全光栅";
+        public const string In_XStretchAir1 = "X向拉伸气缸1";
+        public const string In_XStretchAir2 = "X向拉伸气缸2";
+        public const string In_YStretchAir1 = "Y向拉伸气缸1";
+        public const string In_YStretchAir2 = "Y向拉伸气缸2";
+        public const string In_TopMarkeInkycapOut = "上模打标墨盒盖气缸伸";
+        public const string In_TopMarkeAirOut = "上模打标气缸伸";
+        public const string In_TopMarkeAirRetract = "上模打标气缸缩";
+        public const string In_BtmPropUpAirOut = "下模打标气缸伸";
+        public const string In_BtmPropUpAirRetract = "下模打标气缸缩";
+
 
         //Motor
         public const string Motor_Top_X = "上马达X";

@@ -1,7 +1,7 @@
 ﻿
 namespace SolveWare_Service_Vision
 {
-    partial class UserHWControls
+    partial class UserHWControl
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,7 +29,7 @@ namespace SolveWare_Service_Vision
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHWControls));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHWControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_GrayValue = new System.Windows.Forms.ToolStripStatusLabel();

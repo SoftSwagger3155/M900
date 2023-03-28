@@ -33,6 +33,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace MF900_SolveWare.Business
 {
@@ -102,14 +103,61 @@ namespace MF900_SolveWare.Business
             //IOBase ioA = ResourceKey.Op_TowerLight_Green.GetIOBase();
             //CameraBase camA = ResourceKey.Btm_Camera.GetCamera();
 
-          
+            
             //IO物件
             provider = new Resource_Tool_Manager<ConfigData_IO>(new Factory_IO());
             provider.Initialize();
             provider.Plug_In();
-            provider.DoubleCheck(ResourceKey.Op_TowerLight_Green,
-                                               ResourceKey.Op_TowerLight_Yellow,
-                                               ResourceKey.Op_TowerLight_Red);
+            //provider.DoubleCheck(ResourceKey.In_Start,
+            //                                   ResourceKey.In_Zero,
+            //                                   ResourceKey.In_Stop,
+            //                                   ResourceKey.In_Reset,
+            //                                   ResourceKey.In_E_Stop,
+            //                                   ResourceKey.In_MoveFornt,
+            //                                   ResourceKey.In_MoveBack,
+            //                                   ResourceKey.In_MoveLeft,
+            //                                   ResourceKey.In_MoveRight,
+            //                                   ResourceKey.In_TopJigInductor,
+            //                                   ResourceKey.In_BtmJigInductor,
+            //                                   ResourceKey.In_ForntBanner,
+            //                                   ResourceKey.In_TopBanner,
+            //                                   ResourceKey.In_XStretchAir1,
+            //                                   ResourceKey.In_XStretchAir2,
+            //                                   ResourceKey.In_YStretchAir1,
+            //                                   ResourceKey.In_YStretchAir2,
+            //                                   ResourceKey.In_TopMarkeInkycapOut,
+            //                                   ResourceKey.In_TopMarkeAirOut,
+            //                                   ResourceKey.In_TopMarkeAirRetract,
+            //                                   ResourceKey.In_BtmPropUpAirOut,
+            //                                   ResourceKey.In_BtmPropUpAirRetract,
+            //                                   ResourceKey.Op_TowerLight_Red,
+            //                                   ResourceKey.Op_TowerLight_Yellow,
+            //                                   ResourceKey.Op_TowerLight_Green,
+            //                                   ResourceKey.OP_Buzzer,
+            //                                   ResourceKey.Op_StartButton,
+            //                                   ResourceKey.Op_ZeroButton,
+            //                                   ResourceKey.Op_StopButton,
+            //                                   ResourceKey.Op_ResetButton,
+            //                                   ResourceKey.LeftX_RailTighten,
+            //                                   ResourceKey.LeftX_RailLoosen,
+            //                                   ResourceKey.RightX_RailTighten,
+            //                                   ResourceKey.RightX_RailLoosen,
+            //                                   ResourceKey.Y_RailTighten,
+            //                                   ResourceKey.Y_RailLoosen,
+            //                                   ResourceKey.PCB_Clamp,
+            //                                   ResourceKey.PCB_Loosen,
+            //                                   ResourceKey.X_StretchAirOn,
+            //                                   ResourceKey.X_StretchAirOff,
+            //                                   ResourceKey.Y_StretchAirOn,
+            //                                   ResourceKey.Y_StretchAirOff,
+            //                                   ResourceKey.MarkeInkBoxOn,
+            //                                   ResourceKey.MarkeInkBoxOff,
+            //                                   ResourceKey.UpMarkeOn,
+            //                                   ResourceKey.DownMarkOn,
+            //                                   ResourceKey.UpJipClampAirOn,
+            //                                   ResourceKey.UpJipClampAirOff,
+            //                                   ResourceKey.DownJipClampAirOn,
+            //                                   ResourceKey.DownJipClampAirOff);
 
 
             //相机物件

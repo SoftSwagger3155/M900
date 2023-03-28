@@ -24,7 +24,7 @@ namespace MF900_SolveWare
         public AxisDebugForm()
         {
             InitializeComponent();
-            //List<string> names = SolveWare.Core.MMgr.Get_Single_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.Motor).Get_All_Item_Name().ToList();         
+            //List<string> names = SolveWare.Core.MMgr.Get_Single_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.Motor).Get_All_Item_Name().ToList(); 
             keyAxis = new Dictionary<string, AxisBase>()
             {
                 {ResourceKey.Motor_Top_X, ResourceKey.Motor_Top_X.GetAxisBase() },

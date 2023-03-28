@@ -276,7 +276,7 @@ namespace HVision
         #region 轮廓
         public RoiLine roiLine { get; set; }
         public RoiCircle roiCircle { get; set; }
-        public RoiRectangle roiRectangle { get; set; }
+        public RoiRectangle1 roiRectangle { get; set; }
         public RoiManage m_RoiManage { get; set; }
         private RoiDataBase roiDataBase;
         private void hWindowControl1_HMouseDown(object sender, HMouseEventArgs e)
@@ -309,7 +309,7 @@ namespace HVision
             m_RoiManage = new RoiManage(RoiType.rectangle, roiDataBase);
             m_RoiManage.m_RoiBase.CreateDrawingObject(Color.Red);
             HOperatorSet.AttachDrawingObjectToWindow(HWindows, m_RoiManage.m_RoiBase.DrawingObject);
-            roiRectangle= (RoiRectangle)m_RoiManage.m_RoiBase;
+            roiRectangle= (RoiRectangle1)m_RoiManage.m_RoiBase;
             ResetShowImage(true);
         }
 

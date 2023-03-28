@@ -26,7 +26,7 @@ namespace SolveWare_ViewTest
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            IView testView = new SolveWare_Service_Vision.UserHWControls();
+            IView testView = new SolveWare_Service_Vision.UserHWControl();
             ConfigData_Camera data = new ConfigData_Camera { IsSimulation = true };
             ICamera camera = new Camera_Basler(data);
             testView.Setup(camera);
