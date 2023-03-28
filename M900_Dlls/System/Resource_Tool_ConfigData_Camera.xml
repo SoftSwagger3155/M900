@@ -2,14 +2,9 @@
 <ArrayOfConfigData_Camera xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ConfigData_Camera>
     <Name>上相机</Name>
-<<<<<<< HEAD
-    <Id_Camera>[22705845]-涓婄浉鏈?-acA640-90gm</Id_Camera>
-    <ImagePart_X>659</ImagePart_X>
-    <ImagePart_Y>494</ImagePart_Y>
-    <IsSimulation>false</IsSimulation>
-=======
+    <ImagePart_X>1280</ImagePart_X>
+    <ImagePart_Y>1080</ImagePart_Y>
     <IsSimulation>true</IsSimulation>
->>>>>>> 36ccb1b323d79a086071414c2035c2f90c3d7db4
     <MasterDriver>Basler</MasterDriver>
   </ConfigData_Camera>
   <ConfigData_Camera>

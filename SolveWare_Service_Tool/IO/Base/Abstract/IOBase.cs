@@ -31,8 +31,6 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
             this.configData = data as ConfigData_IO;
             this.Simulation = (data as ConfigData_IO).Simulation;
             if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
-
-            StartStatusReading();
         }
         public void Setup(IElement configData)
         {
@@ -94,7 +92,7 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
                 while (!readStatusSource.IsCancellationRequested)
                 {
                     UpdateStatus();
-                    Thread.Sleep(10);
+                    Thread.Sleep(20);
                 }
 
                 cancelDoneFlag.Set();
