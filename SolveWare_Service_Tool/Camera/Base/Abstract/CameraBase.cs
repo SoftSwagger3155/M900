@@ -40,6 +40,18 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
             set => configData = value;
         }
 
+        protected int imagePart_X = 0;
+        public int ImagePart_X
+        {
+            get=> imagePart_X;
+        }
+
+        protected int imagePart_Y = 0;
+        public int ImagePart_Y
+        {
+            get => imagePart_Y;
+        }
+
         public string CameraGrabCapabilityInfo
         {
             get => $"{GrabTime} ms";

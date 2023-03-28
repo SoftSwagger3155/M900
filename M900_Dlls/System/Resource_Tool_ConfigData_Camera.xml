@@ -2,11 +2,15 @@
 <ArrayOfConfigData_Camera xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ConfigData_Camera>
     <Name>上相机</Name>
+    <ImagePart_X>1280</ImagePart_X>
+    <ImagePart_Y>1080</ImagePart_Y>
     <IsSimulation>true</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
   </ConfigData_Camera>
   <ConfigData_Camera>
     <Name>下相机</Name>
+    <ImagePart_X>1280</ImagePart_X>
+    <ImagePart_Y>1080</ImagePart_Y>
     <IsSimulation>true</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
   </ConfigData_Camera>

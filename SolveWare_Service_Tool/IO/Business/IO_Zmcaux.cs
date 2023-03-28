@@ -1,10 +1,13 @@
 ﻿using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
+using SolveWare_Service_Core.Manager.Base.Abstract;
 using SolveWare_Service_Tool.Dlls;
 using SolveWare_Service_Tool.IO.Base.Abstract;
 using SolveWare_Service_Tool.IO.Data;
 using SolveWare_Service_Tool.IO.Definition;
+using SolveWare_Service_Tool.MasterDriver.Business;
+using SolveWare_Service_Tool.Motor.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +18,11 @@ namespace SolveWare_Service_Tool.IO.Business
 {
     public class IO_Zmcaux : IOBase
     {
+        IntPtr Handler;
         public IO_Zmcaux(IElement data) : base(data)
         {
-            
+            var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
+            Handler = master.CardInfo.Dic_CardHandler[(data as ConfigData_IO).CardNo];
         }
 
         public override void Off()
@@ -28,7 +33,7 @@ namespace SolveWare_Service_Tool.IO.Business
 
             try
             {
-                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp((IntPtr)configData.CardNo, configData.Bit, (uint)triggerMode);
+                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)triggerMode);
             }
             catch (Exception ex)
             {
@@ -47,7 +52,7 @@ namespace SolveWare_Service_Tool.IO.Business
 
             try
             {
-                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp((IntPtr)configData.CardNo, configData.Bit, (uint)triggerMode);
+                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)triggerMode);
             }
             catch (Exception ex)
             {
@@ -73,9 +78,9 @@ namespace SolveWare_Service_Tool.IO.Business
                 uint ioStatus = 0;
 
                 if (this.IOType == IO_Type.Input)
-                    errorCode = Dll_Zmcaux.ZAux_Direct_GetIn((IntPtr)configData.CardNo, configData.Bit, ref ioStatus);
+                    errorCode = Dll_Zmcaux.ZAux_Direct_GetIn(Handler, configData.Bit, ref ioStatus);
                 else if (this.IOType ==  IO_Type.Output)
-                    errorCode = Dll_Zmcaux.ZAux_Direct_GetOp((IntPtr)configData.CardNo, configData.Bit, ref ioStatus);
+                    errorCode = Dll_Zmcaux.ZAux_Direct_GetOp(Handler, configData.Bit, ref ioStatus);
 
 
                 if (configData.Logic_Read == 0)
@@ -86,7 +91,7 @@ namespace SolveWare_Service_Tool.IO.Business
             }
             catch (Exception ex)
             {
-
+                Status = IO_Status.Off;
             }
         }
     }

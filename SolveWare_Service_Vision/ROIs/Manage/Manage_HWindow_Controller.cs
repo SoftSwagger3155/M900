@@ -58,6 +58,7 @@ namespace SolveWare_Service_Vision.ROIs.Manage
             ROIList = new List<ROIBase>();
             event_Mode = Mouse_Event_Mode.None;
             this.camera = camera as CameraBase;
+            this.camera.SetWindowHost(imageHost.HalconWindow);
 
             // graphical stack 
             HObjList = new List<HObjectEntry>();
@@ -87,13 +88,16 @@ namespace SolveWare_Service_Vision.ROIs.Manage
         {
             int idxROI = -1;
             double max = 10000, dist = 0;
-            double epsilon = 35.0;          //maximal shortest distance to one of
-                                            //the handles
+            double epsilon = 35.0;          //maximal shortest distance to one of the handles
 
            
 
             if (roiMode != null)            
             {              
+
+
+
+
                 roiMode.createROI(Column, Row);
                 ROIList.Add(roiMode);
                 roiMode = null;
@@ -205,6 +209,8 @@ namespace SolveWare_Service_Vision.ROIs.Manage
             {
                 if(this.image == null)
                 {
+                    this.Row = e.Y;
+                    this.Column = e.X;
                     this.Location = $"R: {(int)e.X} C: {(int)e.Y}";
                     this.PointGrey = $"0";
                     OnPropertyChanged(nameof(Location));
@@ -222,8 +228,8 @@ namespace SolveWare_Service_Vision.ROIs.Manage
                     double rowValue = Row;
                     double widthValue = Width;
                     double heightValue = Height;
-                    double factorX = 1080 / widthValue;
-                    double factorY = 1920 / heightValue;
+                    double factorX = this.imageWidth / widthValue;
+                    double factorY = this.imageHeight / heightValue;
 
                     int posX = (int)(colValue * factorX);
                     int posY = (int)(rowValue * factorY);
