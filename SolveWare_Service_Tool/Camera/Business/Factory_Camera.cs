@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using Basler.Pylon;
+using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Manager.Base.Interface;
 using SolveWare_Service_Tool.Camera.Data;
 using SolveWare_Service_Tool.Camera.Definition;
@@ -42,6 +43,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                     {
                         camera = new Basler.Pylon.Camera(iCamInfo);
                         (cameraBase as Camera_Basler).AssingCamera(camera);
+                                 
                     }
                     else
                     {

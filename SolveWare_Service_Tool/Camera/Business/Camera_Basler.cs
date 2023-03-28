@@ -38,6 +38,9 @@ namespace SolveWare_Service_Tool.Camera.Business
         }
         public override void AssingCamera(object obj_Camera)
         {
+            this.imagePart_X = this.configData.ImagePart_X;
+            this.imagePart_Y = this.configData.ImagePart_Y;
+
             if (obj_Camera == null) return;
 
             this.camera_Basler = obj_Camera as Basler.Pylon.Camera;
@@ -48,8 +51,24 @@ namespace SolveWare_Service_Tool.Camera.Business
             this.ConfigData.Id_Camera = this.Id_Camera;
             this.Name = this.ConfigData.Name;
 
+            OpenCamera();
             BaingEvent();
         }
+
+        private void OpenCamera()
+        {
+
+            if (this.configData.IsSimulation) return;
+            if(camera_Basler == null) return;
+
+            this.camera_Basler.Open();
+            int width = (int)camera_Basler.Parameters[PLGigECamera.SensorWidth].GetValue();
+            int height = (int)camera_Basler.Parameters[PLGigECamera.SensorHeight].GetValue();
+
+            this.configData.ImagePart_X = (int)width;
+            this.configData.ImagePart_Y = (int)height;
+        }
+
 
         public override void CloseCamera()
         {
@@ -118,7 +137,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             {
                 do
                 {
-                    if (this.configData.IsSimulation)
+                    if (this.configData.IsSimulation || this.camera_Basler == null)
                     {
                         simulateSource = new CancellationTokenSource();
                         Task task = new Task(() =>
@@ -171,7 +190,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             {
                 do
                 {
-                    if (this.configData.IsSimulation)
+                    if (this.configData.IsSimulation || this.camera_Basler == null)
                     {
                         simulateSource.Cancel();
                         StopFlag.WaitOne(5000);
@@ -226,7 +245,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                         converter.Convert(latestFrameAddress, grabResult.PayloadSize, grabResult);
                         // 转换为Halcon图像显示
                         HOperatorSet.GenImage1(out ho_Image, "byte", (HTuple)grabResult.Width, (HTuple)grabResult.Height, (HTuple)latestFrameAddress);
-                        this.image = ho_Image as HImage;
+                        HobjectToHimage(ho_Image, ref this.image);
                         if (this.WindowHost != null) HOperatorSet.DispImage(image, WindowHost);
                     }
                 }
@@ -240,6 +259,13 @@ namespace SolveWare_Service_Tool.Camera.Business
                 e.DisposeGrabResultIfClone();
             }
         }
+        private void HobjectToHimage(HObject hobj, ref HImage img)
+        {
+            HTuple pointer,type,width,height;
+            HOperatorSet.GetImagePointer1(hobj, out pointer, out type, out width, out height);
+            img.GenImage1(type, width, height, pointer);
+        }
+
         private void OnConnectionLost(Object sender, EventArgs e)
         {
             try
