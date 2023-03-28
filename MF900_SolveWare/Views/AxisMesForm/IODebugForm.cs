@@ -1,4 +1,6 @@
 ﻿using SolveWare_Service_Core;
+using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Tool.IO.Base.Abstract;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,10 @@ namespace MF900_SolveWare
         private void GenInputIoControls()
         {
             int row = 0;
-            List<string> names = SolveWare.Core.MMgr.Get_Single_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.IO).Get_All_Item_Name().ToList();
+            var pro = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.IO);
+            var ips = pro.Get_All_Items().ToList().FindAll(x => (x as IOBase).IOType == SolveWare_Service_Tool.IO.Definition.IO_Type.Input);
+
+            List<string> names = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.IO).Get_All_Item_Name().ToList();
             for (int i = 0; i < names.Count; i++)
             {
                 InputIo inputIo = new InputIo();

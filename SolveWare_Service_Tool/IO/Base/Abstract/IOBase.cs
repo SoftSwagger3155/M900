@@ -38,6 +38,8 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
         }
         #endregion
 
+        public abstract void Init();
+
         public string Description
         {
             get;

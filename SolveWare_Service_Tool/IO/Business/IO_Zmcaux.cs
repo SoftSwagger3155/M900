@@ -21,8 +21,14 @@ namespace SolveWare_Service_Tool.IO.Business
         IntPtr Handler;
         public IO_Zmcaux(IElement data) : base(data)
         {
+            if (configData.Simulation) return;
+            Init();
+        }
+
+        public override void Init()
+        {
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
-            Handler = master.CardInfo.Dic_CardHandler[(data as ConfigData_IO).CardNo];
+            Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
         }
 
         public override void Off()
