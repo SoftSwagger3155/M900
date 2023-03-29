@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\SolveWare_Service_Vision.dll
 C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\SolveWare_Service_Vision.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.AssemblyReference.cache
@@ -9,3 +10,16 @@ C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+=======
+D:\M900开发平台\M901\M900_Dlls\SolveWare_Service_Vision.dll
+D:\M900开发平台\M901\M900_Dlls\SolveWare_Service_Vision.pdb
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.AssemblyReference.cache
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.Properties.Resources.resources
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.UserHWControl.resources
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.View.Forms.Form_InspectionKit.resources
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.GenerateResource.cache
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CoreCompileInputs.cache
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
+D:\M900开发平台\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+>>>>>>> f920eb7eec2d594c294f27d44c6a46990249596e

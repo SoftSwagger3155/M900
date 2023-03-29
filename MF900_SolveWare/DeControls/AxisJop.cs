@@ -43,46 +43,21 @@ namespace MF900_SolveWare
                 {AxisDirection.RightRotate,Properties.Resources.RightRotate}
             };
  
-            if(!string.IsNullOrEmpty(this.AxisName))
-            {
-                mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.Motor, this.AxisName);
-
-            }
             uiSymbolButton_Forward.MouseDown += UiSymbolButton_Forward_MouseDown;
             uiSymbolButton_Forward.MouseUp += UiSymbolButton_Forward_MouseUp;
             uiSymbolButton_Backward.MouseDown += UiSymbolButton_Backward_MouseDown;
             uiSymbolButton_Backward.MouseUp += UiSymbolButton_Backward_MouseUp;
         }
 
-        #region 点动
-
-        private void UiSymbolButton_Backward_MouseUp(object sender, MouseEventArgs e)
-        {
-            mtr.Stop();
-        }
-
-        private void UiSymbolButton_Backward_MouseDown(object sender, MouseEventArgs e)
-        {
-            mtr.Jog(false);
-        }
-
-        private void UiSymbolButton_Forward_MouseUp(object sender, MouseEventArgs e)
-        {
-            mtr.Stop();
-        }
-
-        private void UiSymbolButton_Forward_MouseDown(object sender, MouseEventArgs e)
-        {
-            mtr.Jog(true);
-        }
-
-        #endregion
-
         [Description("轴名称"),Category("自定属性")]
         public string AxisName
         {
             get { return uiTitlePanel1.Text; }
-            set { this.uiTitlePanel1.Text = value; }
+            set
+            {
+                this.uiTitlePanel1.Text = value;
+                mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.Motor, this.AxisName);
+            }
         }
 
         private short axisNum;
@@ -121,8 +96,34 @@ namespace MF900_SolveWare
             set
             {
                 imageBackward = value;
-                this.uiSymbolButton_Backward.Image = DicAxisDirection[imageForward];
+                this.uiSymbolButton_Backward.Image = DicAxisDirection[imageBackward];
             }
         }
+
+
+        #region 点动
+
+        private void UiSymbolButton_Backward_MouseUp(object sender, MouseEventArgs e)
+        {
+            mtr.Stop();
+        }
+
+        private void UiSymbolButton_Backward_MouseDown(object sender, MouseEventArgs e)
+        {
+            mtr.Jog(false);
+        }
+
+        private void UiSymbolButton_Forward_MouseUp(object sender, MouseEventArgs e)
+        {
+            mtr.Stop();
+        }
+
+        private void UiSymbolButton_Forward_MouseDown(object sender, MouseEventArgs e)
+        {
+            mtr.Jog(true);
+        }
+
+        #endregion
+
     }
 }

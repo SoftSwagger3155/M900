@@ -6,7 +6,7 @@
     <Bit>0</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -14,10 +14,10 @@
   <ConfigData_IO>
     <Name>归零</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>1</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -25,10 +25,10 @@
   <ConfigData_IO>
     <Name>停止</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>2</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -36,10 +36,10 @@
   <ConfigData_IO>
     <Name>复位</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>3</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -47,10 +47,10 @@
   <ConfigData_IO>
     <Name>急停1</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>4</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -58,10 +58,10 @@
   <ConfigData_IO>
     <Name>前</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>5</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -69,10 +69,10 @@
   <ConfigData_IO>
     <Name>后</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>6</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -80,10 +80,10 @@
   <ConfigData_IO>
     <Name>左</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>7</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -91,10 +91,10 @@
   <ConfigData_IO>
     <Name>右</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>8</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -102,10 +102,10 @@
   <ConfigData_IO>
     <Name>上模治具到位感应</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>9</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -113,10 +113,10 @@
   <ConfigData_IO>
     <Name>下模治具到位感应</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>10</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -124,10 +124,10 @@
   <ConfigData_IO>
     <Name>正前方安全光栅</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>11</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -135,10 +135,10 @@
   <ConfigData_IO>
     <Name>上方安全光栅</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>12</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -146,10 +146,10 @@
   <ConfigData_IO>
     <Name>X向拉伸气缸1</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>13</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -157,10 +157,10 @@
   <ConfigData_IO>
     <Name>X向拉伸气缸2</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>14</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -168,10 +168,10 @@
   <ConfigData_IO>
     <Name>Y向拉伸气缸1</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>15</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -179,10 +179,10 @@
   <ConfigData_IO>
     <Name>Y向拉伸气缸2</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>16</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -190,10 +190,10 @@
   <ConfigData_IO>
     <Name>上模打标墨盒盖气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>17</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -201,10 +201,10 @@
   <ConfigData_IO>
     <Name>上模打标气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>18</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -212,10 +212,10 @@
   <ConfigData_IO>
     <Name>上模打标气缸缩</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>19</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -223,10 +223,10 @@
   <ConfigData_IO>
     <Name>下模打标气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>20</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -234,10 +234,10 @@
   <ConfigData_IO>
     <Name>下模打标气缸缩</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>21</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -248,249 +248,249 @@
     <Bit>0</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>塔灯-黄</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>1</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>塔灯-绿</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>2</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>蜂鸣器</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>3</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>启动按钮</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>4</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>归零按钮</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>5</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>停止按钮</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>6</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>复位按钮</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>7</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>左X向导轨固定气缸紧</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>8</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>左X向导轨固定气缸松</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>9</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>右X向导轨固定气缸紧</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>10</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>右X向导轨固定气缸松</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>11</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>Y向导轨固定气缸紧</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>12</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>Y向导轨固定气缸松</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>13</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>软板夹紧气缸紧</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>14</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>软板夹紧气缸松</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>15</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>X向拉伸气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>16</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>X向拉伸气缸缩</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>17</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>Y向拉伸气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>18</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>Y向拉伸气缸缩</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>19</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>打标墨盒盖开</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>20</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>打标墨盒盖关</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>21</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模打标气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>18</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -498,10 +498,10 @@
   <ConfigData_IO>
     <Name>下模打标气缸伸</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>20</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
@@ -509,45 +509,45 @@
   <ConfigData_IO>
     <Name>上模治具夹紧气缸紧</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>24</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模治具夹紧气缸松</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>25</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>下模治具夹紧气缸紧</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>26</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>下模治具夹紧气缸松</Name>
     <CardNo>0</CardNo>
-    <Bit>0</Bit>
+    <Bit>27</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
-    <Simulation>true</Simulation>
+    <Simulation>false</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
 </ArrayOfConfigData_IO>

@@ -233,6 +233,92 @@ namespace SolveWare_Service_Tool.Motor.Business
             return true;
         }
 
+        public override bool MoveRelative(double distance, MtrSpeed mtrSpeed, bool BypassDangerCheck = false)
+        {
+            double currPoints = Get_CurUnitPos();
+            MoveTo(currPoints + distance, mtrSpeed, BypassDangerCheck);
+            return true;
+        }
+        public override bool MoveTo(double pos, MtrSpeed mtrSpeed, bool BypassDangerCheck = false)
+        {
+            bool isMoveSuccessful = false;
+            DateTime st = DateTime.Now;
+
+            double tempPos = 0;
+            if (this.MtrTable.IsFormulaAxis)
+            {
+                tempPos = FormulaCalc_UnitToAngle(pos);
+                pos = tempPos;
+            }
+
+            if (IsProhibitToMove()) return false;
+            if (IsDangerousToMove)
+            {
+                if (DoAvoidDangerousPosAction() == false) return false;
+                //if (IsDangerousToMove) return false;
+            }
+            if (IsZoneSafeToGo(pos) == false) return false;
+
+
+            //float minVel = 0;
+            //float maxVel = 0;
+            //double acc = 0;
+            //double dec = 0;
+            ////转算速度参数
+            //Conver_To_Jog_MMPerSec(ref minVel, ref maxVel, ref acc, ref dec);
+
+
+            double distanceToMove = pos - Get_CurUnitPos();
+            double estimateTimeTaken = 0.01 * (Math.Abs(distanceToMove) / mtrSpeed.Jog_Max_Velocity);
+            pos = Math.Round(pos, 5, MidpointRounding.AwayFromZero);
+            DateTime commmandStartTime = DateTime.Now;
+
+            MtrTable.NewPos = pos;
+            double targetPos = pos / mtrTable.UnitPerRevolution * mtrTable.PulsePerRevolution;
+            if (Simulation)
+            {
+                TimeSpan ts = estimateTimeTaken < 0.5 ?
+                                           TimeSpan.FromSeconds(0.5) :
+                                           TimeSpan.FromSeconds(estimateTimeTaken);
+
+
+                TimeSpan ts2 = DateTime.Now - commmandStartTime;
+                double temppos = MtrTable.CurPos;
+                double tempfliction = 1;
+                while (ts2.TotalMilliseconds < ts.TotalMilliseconds)
+                {
+                    ts2 = DateTime.Now - commmandStartTime;
+                    //tempfliction = ts2.TotalMilliseconds / ts.TotalMilliseconds;
+                    //if (tempfliction > 1)
+                    //    tempfliction = 1;
+
+                    MtrTable.CurPos = temppos + tempfliction * distanceToMove;
+                    Thread.Sleep(5);
+                    if (isStopReq) break;
+                }
+                if (!isStopReq)
+                {
+                    MtrTable.CurPos = MtrTable.NewPos;
+                    CurrentPhysicalPos = MtrTable.CurPos;
+                }
+
+
+                return true;
+            }
+
+
+            double factor = MtrTable.MotorRealDirectionState == DirectionState.Negative && MtrTable.MotorDisplayDirectionState == DirectionState.Positive ||
+                                     MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
+
+            targetPos *= factor;
+            //设置速度参数
+            SetSpeedParameters((float)mtrSpeed.Jog_Min_Velocity, (float)mtrSpeed.Jog_Max_Velocity, (float)mtrSpeed.Jog_Acceleration, (float)mtrSpeed.Jog_Deceleration);
+            //绝对位置
+            Dll_Zmcaux.ZAux_Direct_Single_MoveAbs(Handler, mtrTable.AxisNo, (float)pos);
+
+            isMoveSuccessful = WaitStop() == Motor_Wait_Kind.Success;
+            return isMoveSuccessful;
+        }
         public override bool MoveTo(double pos, bool BypassDangerCheck = false)
         {
             bool isMoveSuccessful = false;
@@ -523,5 +609,6 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             return true;
         }
+
     }
 }

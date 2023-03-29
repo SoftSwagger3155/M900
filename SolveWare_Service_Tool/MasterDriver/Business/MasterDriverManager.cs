@@ -46,7 +46,11 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
             bool isOk = false;
             try
             {
+<<<<<<< HEAD
                 if (config.Is_Simulation_IO && config.Is_Simulation_Motor) return true;
+=======
+                if (this.config.Is_Simulation_Motor && this.config.Is_Simulation_IO) return true;
+>>>>>>> f920eb7eec2d594c294f27d44c6a46990249596e
                 //同样的卡
                 if(config.Master_Driver_Motor == config.Master_Driver_IO)
                 {
@@ -55,14 +59,13 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                         case Master_Driver_Kind.Zmcaux:
                             #region 连接控制器  ---杨工
                             IntPtr Handle;
-                            int cardNo = 0;
                             this.CardInfo = new IOMotionCardInfo();
-                            isOk = Dll_Zmcaux.ZAux_OpenEth("127.0.0.1", out Handle) == 0 ? true : false;
-                            Dll_Zmcaux.ZAux_BusCmd_GetNodeNum(Handle, 0, ref cardNo);
-                            for (int i = 0; i < cardNo; i++)
+                            isOk = Dll_Zmcaux.ZAux_OpenEth("127.0.0.1", out Handle) == 0;
+                            if (isOk)
                             {
-                                CardInfo.Dic_CardHandler.Add(i, Handle);
+                                CardInfo.Dic_CardHandler.Add(0, Handle);
                             }
+                           
                             #endregion
 
 

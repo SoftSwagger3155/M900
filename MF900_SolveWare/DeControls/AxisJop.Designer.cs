@@ -54,7 +54,7 @@ namespace MF900_SolveWare
             this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
-            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(1, 35, 1, 1);
             this.uiTitlePanel1.RectColor = System.Drawing.SystemColors.ActiveCaption;
             this.uiTitlePanel1.ShowText = false;
             this.uiTitlePanel1.Size = new System.Drawing.Size(167, 145);
@@ -73,12 +73,12 @@ namespace MF900_SolveWare
             this.uiTableLayoutPanel1.Controls.Add(this.uiTableLayoutPanel2, 0, 0);
             this.uiTableLayoutPanel1.Controls.Add(this.uiTableLayoutPanel3, 0, 1);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(0, 35);
+            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(1, 35);
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 2;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(167, 110);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(165, 109);
             this.uiTableLayoutPanel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel1.TabIndex = 0;
             this.uiTableLayoutPanel1.TagString = null;
@@ -95,7 +95,7 @@ namespace MF900_SolveWare
             this.uiTableLayoutPanel2.Name = "uiTableLayoutPanel2";
             this.uiTableLayoutPanel2.RowCount = 1;
             this.uiTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiTableLayoutPanel2.Size = new System.Drawing.Size(161, 57);
+            this.uiTableLayoutPanel2.Size = new System.Drawing.Size(159, 56);
             this.uiTableLayoutPanel2.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel2.TabIndex = 0;
             this.uiTableLayoutPanel2.TagString = null;
@@ -108,7 +108,7 @@ namespace MF900_SolveWare
             this.uiSymbolButton_Backward.Location = new System.Drawing.Point(3, 3);
             this.uiSymbolButton_Backward.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton_Backward.Name = "uiSymbolButton_Backward";
-            this.uiSymbolButton_Backward.Size = new System.Drawing.Size(74, 51);
+            this.uiSymbolButton_Backward.Size = new System.Drawing.Size(73, 50);
             this.uiSymbolButton_Backward.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton_Backward.TabIndex = 0;
             this.uiSymbolButton_Backward.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -119,10 +119,10 @@ namespace MF900_SolveWare
             this.uiSymbolButton_Forward.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiSymbolButton_Forward.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiSymbolButton_Forward.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiSymbolButton_Forward.Location = new System.Drawing.Point(83, 3);
+            this.uiSymbolButton_Forward.Location = new System.Drawing.Point(82, 3);
             this.uiSymbolButton_Forward.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSymbolButton_Forward.Name = "uiSymbolButton_Forward";
-            this.uiSymbolButton_Forward.Size = new System.Drawing.Size(75, 51);
+            this.uiSymbolButton_Forward.Size = new System.Drawing.Size(74, 50);
             this.uiSymbolButton_Forward.Style = Sunny.UI.UIStyle.Custom;
             this.uiSymbolButton_Forward.TabIndex = 0;
             this.uiSymbolButton_Forward.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -139,11 +139,11 @@ namespace MF900_SolveWare
             this.uiTableLayoutPanel3.Controls.Add(this.txt_Pos, 1, 0);
             this.uiTableLayoutPanel3.Controls.Add(this.uiLabel2, 2, 0);
             this.uiTableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel3.Location = new System.Drawing.Point(3, 66);
+            this.uiTableLayoutPanel3.Location = new System.Drawing.Point(3, 65);
             this.uiTableLayoutPanel3.Name = "uiTableLayoutPanel3";
             this.uiTableLayoutPanel3.RowCount = 1;
             this.uiTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.uiTableLayoutPanel3.Size = new System.Drawing.Size(161, 41);
+            this.uiTableLayoutPanel3.Size = new System.Drawing.Size(159, 41);
             this.uiTableLayoutPanel3.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel3.TabIndex = 1;
             this.uiTableLayoutPanel3.TagString = null;

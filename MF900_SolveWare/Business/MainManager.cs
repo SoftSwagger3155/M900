@@ -108,6 +108,7 @@ namespace MF900_SolveWare.Business
             provider = new Resource_Tool_Manager<ConfigData_IO>(new Factory_IO());
             provider.Initialize();
             provider.Plug_In();
+            
             provider.DoubleCheck(ResourceKey.In_Start,
                                                ResourceKey.In_Zero,
                                                ResourceKey.In_Stop,

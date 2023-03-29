@@ -21,17 +21,27 @@ namespace SolveWare_Service_Tool.IO.Business
         IntPtr Handler;
         public IO_Zmcaux(IElement data) : base(data)
         {
+<<<<<<< HEAD
             if ((data as ConfigData_IO).Simulation) return;
 
+=======
+            if (configData.Simulation) return;
+            Init();
+        }
+
+        public override void Init()
+        {
+            this.IOType = this.configData.IOType;
+>>>>>>> f920eb7eec2d594c294f27d44c6a46990249596e
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
-            Handler = master.CardInfo.Dic_CardHandler[(data as ConfigData_IO).CardNo];
+            Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
         }
 
         public override void Off()
         {
             int errorCode = ErrorCodes.NoError;
             string exMSg = string.Empty;
-            int triggerMode = configData.Logic_Op == 0 ? 1 : 0;
+            int triggerMode = configData.Logic_Op == 0 ? 0 : 1;
 
             try
             {
@@ -50,7 +60,7 @@ namespace SolveWare_Service_Tool.IO.Business
         {
             int errorCode = ErrorCodes.NoError;
             string exMSg = string.Empty;
-            int triggerMode = configData.Logic_Op == 0 ? 0 : 1;
+            int triggerMode = configData.Logic_Op == 0 ? 1 : 0;
 
             try
             {

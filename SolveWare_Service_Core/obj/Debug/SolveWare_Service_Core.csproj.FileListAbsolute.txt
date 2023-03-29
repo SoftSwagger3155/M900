@@ -4,11 +4,3 @@ D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb
-D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.AssemblyReference.cache
-C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\SolveWare_Service_Core.dll
-C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\SolveWare_Service_Core.pdb
-C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.AssemblyReference.cache
-C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CoreCompileInputs.cache
-C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
-C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
-C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb
