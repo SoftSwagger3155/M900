@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Camera.Base.Interface
 {
-    public interface ICamera : IElement
+    public interface ICameraBase : IElement
     {
         void AssingCamera(object obj_Camera);
         void GetExposureTime();

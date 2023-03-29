@@ -1,8 +1,8 @@
-﻿using HalconDotNet;
-using SolveWare_Service_Core.Base.Interface;
+﻿using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Tool.Camera.Base.Abstract;
+using SolveWare_Service_Vision.Controller.Base.Abstract;
+using SolveWare_Service_Vision.Controller.Base.Interface;
 using SolveWare_Service_Vision.ROIs.Business;
-using SolveWare_Service_Vision.ROIs.Manage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ namespace SolveWare_Service_Vision
 {
     public partial class UserHWControl : UserControl, IView
     {
-        Manage_HWindow_Controller hController;
+        VisionControllerBase hController;
         CameraBase camera;
         public UserHWControl()
         {
@@ -28,23 +28,23 @@ namespace SolveWare_Service_Vision
         public void Setup<TObj>(TObj camera)
         {
             this.camera = camera as CameraBase;
-            hController = new Manage_HWindow_Controller(this.hWindowControl1, this.camera);
-
-            this.camera.PropertyChanged -= Camera_PropertyChanged;
-            this.camera.PropertyChanged += Camera_PropertyChanged;
+            this.hController = new VisionController(this.hWindowControl1, this.camera);
 
             this.hController.PropertyChanged -= HController_PropertyChanged;
             this.hController.PropertyChanged += HController_PropertyChanged;
+
+            this.hController.CameraBase.PropertyChanged -= Camera_PropertyChanged;
+            this.hController.CameraBase.PropertyChanged += Camera_PropertyChanged;
         }
 
         private void HController_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(hController.Location) || e.PropertyName == nameof(hController.PointGrey))
+            if(e.PropertyName == nameof(hController.Location) || e.PropertyName == nameof(hController.PointGray))
             {
                 this.Invoke(new Action(() =>
                 {
                     this.tssl_Location.Text = hController.Location;
-                    this.tssl_GrayValue.Text = hController.PointGrey;
+                    this.tssl_GrayValue.Text = hController.PointGray;
                 }));
             }
         }
@@ -87,7 +87,7 @@ namespace SolveWare_Service_Vision
 
         private void tsb_IsShowCrros_Click(object sender, EventArgs e)
         {
-            if (this.hController.IsShowCross)
+            if (this.hController.IsShowCrossLine)
                 this.hController.ClearCrossLine();
             else
                 this.hController.GenerateCrossLine();

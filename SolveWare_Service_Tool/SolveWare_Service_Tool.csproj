@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Camera\Attributes\Resource_Tool_Camera_Indicator.cs" />
     <Compile Include="Camera\Base\Abstract\CameraBase.cs" />
-    <Compile Include="Camera\Base\Interface\ICamera.cs" />
+    <Compile Include="Camera\Base\Interface\ICameraBase.cs" />
     <Compile Include="Camera\Business\Camera_Basler.cs" />
     <Compile Include="Camera\Business\Factory_Camera.cs" />
     <Compile Include="Camera\Data\ConfigData_Camera.cs" />
@@ -100,9 +100,6 @@
       <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
       <Name>SolveWare_Service_Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Basler.Pylon.dll" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

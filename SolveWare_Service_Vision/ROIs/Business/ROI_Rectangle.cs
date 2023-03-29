@@ -81,8 +81,8 @@ namespace SolveWare_Service_Vision.ROIs.Business
         public override void draw(HalconDotNet.HWindow window)
         {
             //window.DispText("Search Area", "window", row1 - 10,; col1 - 10, "white", new HTuple(), new HTuple());
-            window.SetColor("yellow");
-            Disp_Text(window, (int)row1 - 25, (int)col1 + 6, "yellow", "搜索范围");
+            //window.SetColor("yellow");
+            //Disp_Text(window, (int)row1 - 25, (int)col1 + 6, "yellow", "搜索范围");
 
             window.SetColor("cyan");
             window.DispRectangle1(row1, col1, row2, col2);
@@ -116,9 +116,12 @@ namespace SolveWare_Service_Vision.ROIs.Business
             HOperatorSet.QueryFont(win, out hv_Font);
 
             //50表示字体大小，括号中的数字表示第几种字体
-            hv_FontWithSize = "微软雅黑-11";//hv_Font.TupleSelect(0) + "-9";//缺点在此，不知道想要的黑体排第几，所以括号里不知道填几
+            //hv_FontWithSize = "微软雅黑-11";//hv_Font.TupleSelect(0) + "-9";//缺点在此，不知道想要的黑体排第几，所以括号里不知道填几
+            //win.SetFont("微软雅黑-11");
 
-            win.SetFont(hv_FontWithSize);
+            hv_FontWithSize = (hv_Font.TupleSelect(0)) + "-20";
+            win.SetFont( hv_FontWithSize);
+
             //设置显示的位置（坐标）
             win.SetTposition(row, col);
             //设置显示的内容

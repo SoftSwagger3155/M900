@@ -46,7 +46,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
             bool isOk = false;
             try
             {
-                if (IsSimulation) return true;
+                if (config.Is_Simulation_IO && config.Is_Simulation_Motor) return true;
                 //同样的卡
                 if(config.Master_Driver_Motor == config.Master_Driver_IO)
                 {

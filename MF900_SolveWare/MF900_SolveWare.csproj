@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -42,6 +42,10 @@
     <Reference Include="halcondotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\MVTec\HALCON-18.11-Progress\bin\dotnet35\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="SolveWare_Service_Vision, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\M900_Dlls\SolveWare_Service_Vision.dll</HintPath>
     </Reference>
     <Reference Include="SunnyUI, Version=3.3.1.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -408,10 +412,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HVision\HVision.csproj">
-      <Project>{C2AA7957-5893-4E49-B874-437FD448622F}</Project>
-      <Name>HVision</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SolveWare_Service_Core\SolveWare_Service_Core.csproj">
       <Project>{6BCA7AA8-C9F6-43EB-B6D6-0CD85461F4B0}</Project>
       <Name>SolveWare_Service_Core</Name>
@@ -423,10 +423,6 @@
     <ProjectReference Include="..\SolveWare_Service_Utility\SolveWare_Service_Utility.csproj">
       <Project>{A329E8D8-E7A4-4070-ACBB-86601F296534}</Project>
       <Name>SolveWare_Service_Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolveWare_Service_Vision\SolveWare_Service_Vision.csproj">
-      <Project>{D6664D67-8766-4D73-B8FE-94CEE959171B}</Project>
-      <Name>SolveWare_Service_Vision</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

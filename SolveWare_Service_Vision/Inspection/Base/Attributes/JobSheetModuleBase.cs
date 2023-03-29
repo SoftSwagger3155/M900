@@ -10,9 +10,9 @@ namespace SolveWare_Service_Vision.Inspection.Base.Attributes
 {
     public abstract class JobSheetModuleBase : JobSheetModule
     {
-        ICamera camera;
+        ICameraBase camera;
         IJobSheetData data;
-        public JobSheetModuleBase(ICamera camera, IJobSheetData data)
+        public JobSheetModuleBase(ICameraBase camera, IJobSheetData data)
         {
             this.camera = camera;
         }
