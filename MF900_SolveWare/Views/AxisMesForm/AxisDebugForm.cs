@@ -41,7 +41,7 @@ namespace MF900_SolveWare
             InitalAxisMes();
             InitalAxisVel();
             InitalAxisJop();
-            ResourceKey.Op_TowerLight_Green.GetIOBase();
+            //ResourceKey.Op_TowerLight_Green.GetIOBase();
 
         }
         /// <summary>
@@ -58,6 +58,10 @@ namespace MF900_SolveWare
         }
 
         #region InitalAxis
+        private void SetColEnable(DataGridView dataGridView)
+        {
+            dataGridView.Columns[0].ReadOnly = false;
+        }
         private void InitalAxisMes()
         {
             var axisArry = keyAxis.Keys.ToArray();
@@ -74,6 +78,9 @@ namespace MF900_SolveWare
             uiDataGridView8.Rows.Add(new object[] {axisArry[8], keyAxis[axisArry[8]].MtrTable.AxisNo,keyAxis[axisArry[8]].MtrTable.Param_Home_IO,
                     keyAxis[axisArry[8]].MtrTable.Param_Fwd_Limit,keyAxis[axisArry[8]].MtrTable.Param_Rev_Limit});
             uiDataGridView8.Rows[0].Height = 30;
+            SetColEnable(uiDataGridView2);
+            SetColEnable(uiDataGridView4);
+            SetColEnable(uiDataGridView8);
         }
         private void InitalAxisVel()
         {
@@ -90,7 +97,9 @@ namespace MF900_SolveWare
             }
             uiDataGridView6.Rows.Add(new object[] {axisArry[8], keyAxis[axisArry[8]].MtrSpeed.Jog_Max_Velocity,
                 keyAxis[axisArry[8]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[8]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[8]].MtrSpeed.Jog_Deceleration});
-            
+            SetColEnable(uiDataGridView1);
+            SetColEnable(uiDataGridView5);
+            SetColEnable(uiDataGridView6);
         }
         private void InitalAxisJop()
         {
@@ -105,6 +114,8 @@ namespace MF900_SolveWare
                 uiDataGridView3.Rows.Add(new object[] { axisArry[i], 0, "移动", "10", "左", "右" });
                 uiDataGridView3.Rows[i - 4].Height = 35;
             }
+            SetColEnable(uiDataGridView7);
+            SetColEnable(uiDataGridView3);
         }
         #endregion
 

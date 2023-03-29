@@ -62,6 +62,7 @@ namespace MF900_SolveWare
                 }
             }
         }
+
         private void GenOutputIoControls()
         {
             int row = 0;
