@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Camera.Base.Abstract
 {
-    public abstract class CameraBase : ToolElementBase, ICamera
+    public abstract class CameraBase : ToolElementBase, ICameraBase
     {
         public CameraBase(IElement configData)
         {
@@ -24,7 +24,11 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         public HImage Image
         {
             get => image;
-            private set => image = value;
+            private set
+            {
+                image = value;
+                OnPropertyChanged(nameof(Image));
+            }
         }
         public byte[] image_Buffer { get; }
         public int ExposureTime { get; set; }
@@ -54,7 +58,7 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
 
         public string CameraGrabCapabilityInfo
         {
-            get => $"{GrabTime} ms";
+            get => $"{GrabTime} fps";
         }
         
 

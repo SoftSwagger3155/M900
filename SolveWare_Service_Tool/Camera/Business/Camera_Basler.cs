@@ -61,14 +61,23 @@ namespace SolveWare_Service_Tool.Camera.Business
             if (this.configData.IsSimulation) return;
             if(camera_Basler == null) return;
 
-            this.camera_Basler.Open();
-            int width = (int)camera_Basler.Parameters[PLGigECamera.SensorWidth].GetValue();
-            int height = (int)camera_Basler.Parameters[PLGigECamera.SensorHeight].GetValue();
+            try
+            {
+                if(this.camera_Basler.IsOpen) this.camera_Basler.Close();
 
-            this.configData.ImagePart_X = (int)width;
-            this.configData.ImagePart_Y = (int)height;
+                this.camera_Basler.Open();
+                int width = (int)camera_Basler.Parameters[PLGigECamera.SensorWidth].GetValue();
+                int height = (int)camera_Basler.Parameters[PLGigECamera.SensorHeight].GetValue();
+
+                this.configData.ImagePart_X = (int)width;
+                this.configData.ImagePart_Y = (int)height;
+
+            }
+            catch (Exception)
+            {
+                OnConnectionLost();
+            }          
         }
-
 
         public override void CloseCamera()
         {
@@ -97,7 +106,7 @@ namespace SolveWare_Service_Tool.Camera.Business
         public override int GrabImageOnce()
         {
             int errorCode = ErrorCodes.NoError;
-            DateTime st = DateTime.Now;
+            st = DateTime.Now;
             try
             {
                 if (camera_Basler.StreamGrabber.IsGrabbing)
@@ -147,9 +156,6 @@ namespace SolveWare_Service_Tool.Camera.Business
                                 this.FrameRate = new Random().Next(50, 101);
                                 this.GrabTime = new Random().Next(50, 101);
                                 OnPropertyChanged(nameof(CameraGrabCapabilityInfo));
-                                //HOperatorSet.SetTposition(this.WindowHost, 10, 10);
-                                //HOperatorSet.SetColor(this.WindowHost, "green");
-                                //HOperatorSet.WriteString(this.WindowHost, this.CameraGrabCapabilityInfo);
 
                                 Thread.Sleep(delayTime_ms);
                             }
@@ -168,6 +174,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                     {
                         camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
                         camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
+                        st = DateTime.Now;
                     }
 
                 } while (false);
@@ -183,6 +190,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             return errorCode;
         }
 
+        DateTime st = DateTime.Now;
         public override int StopLive(int delayTime__ms = 100)
         {
             int errorCode = ErrorCodes.NoError;
@@ -201,8 +209,10 @@ namespace SolveWare_Service_Tool.Camera.Business
                     if (camera_Basler == null) break;
                     if (camera_Basler.StreamGrabber.IsGrabbing)
                     {
-                        camera_Basler.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
-                        camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
+                        camera_Basler.StreamGrabber.Stop();
+                        //camera_Basler.Parameters[PLCamera.AcquisitionStop].SetValue();
+                        //camera_Basler.StreamGrabber.Start(GrabStrategy.LatestImages, GrabLoop.ProvidedByStreamGrabber);
+                   
                     }
 
                 } while (false);
@@ -213,7 +223,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             }
 
             if (errorCode != ErrorCodes.NoError)
-                SolveWare.Core.MMgr.Infohandler.LogMessage("Error: 相机实时拍摄功能", true, true);
+                SolveWare.Core.MMgr.Infohandler.LogMessage("Error: 相机停止实时拍摄功能", true, true);
 
             return errorCode;
         }
@@ -227,12 +237,17 @@ namespace SolveWare_Service_Tool.Camera.Business
             camera_Basler.ConnectionLost += OnConnectionLost;
         }
 
+        int index = 0;
+        int count = 1;
+        double totalTime = 0;
         private void OnImageGrabbed(Object sender, ImageGrabbedEventArgs e)
         {
+            double timeTick = 0;
             try
             {
                 IGrabResult grabResult = e.GrabResult;
                 HObject ho_Image;
+               
                 if (grabResult.GrabSucceeded)
                 {
                     GrabTime = stopwatch.ElapsedMilliseconds;
@@ -245,8 +260,28 @@ namespace SolveWare_Service_Tool.Camera.Business
                         converter.Convert(latestFrameAddress, grabResult.PayloadSize, grabResult);
                         // 转换为Halcon图像显示
                         HOperatorSet.GenImage1(out ho_Image, "byte", (HTuple)grabResult.Width, (HTuple)grabResult.Height, (HTuple)latestFrameAddress);
+                        
                         HobjectToHimage(ho_Image, ref this.image);
+                        OnPropertyChanged(nameof(Image));
+                        
                         if (this.WindowHost != null) HOperatorSet.DispImage(image, WindowHost);
+                        TimeSpan ts = DateTime.Now - st;
+                        double result = ts.TotalMilliseconds;
+                        timeTick = (int)(1000 / result*1000)/1000;
+                        st = DateTime.Now;
+
+                        index++;
+                        if(index >= 15)
+                        {
+                            //totalTime += timeTick;
+                            //this.GrabTime = (int)totalTime / count;
+                            //count++;
+
+                            this.GrabTime = (int)timeTick;
+                            OnPropertyChanged(nameof(this.CameraGrabCapabilityInfo));
+                            index = 0;
+                        }
+                       
                     }
                 }
             }
@@ -267,6 +302,10 @@ namespace SolveWare_Service_Tool.Camera.Business
         }
 
         private void OnConnectionLost(Object sender, EventArgs e)
+        {
+            OnConnectionLost();
+        }
+        public void OnConnectionLost()
         {
             try
             {
@@ -307,6 +346,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                 SolveWare.Core.MMgr.Infohandler.LogExceptionMessage($"{this.Name} ReConnected Failed", ex, DateTime.Now);
             }
         }
+
         public void SetHeartBeatTime(long value)
         {
             try

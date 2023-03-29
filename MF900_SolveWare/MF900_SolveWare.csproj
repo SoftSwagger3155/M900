@@ -43,9 +43,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\MVTec\HALCON-18.11-Progress\bin\dotnet35\halcondotnet.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
+    <Reference Include="SolveWare_Service_Vision, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\M900_Dlls\SolveWare_Service_Vision.dll</HintPath>
+=======
     <Reference Include="SolveWare_Service_Tool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\SolveWare_Service_Tool.dll</HintPath>
+>>>>>>> f920eb7eec2d594c294f27d44c6a46990249596e
     </Reference>
     <Reference Include="SunnyUI, Version=3.3.1.0, Culture=neutral, PublicKeyToken=27d7d2e821d97aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -419,10 +425,6 @@
     <ProjectReference Include="..\SolveWare_Service_Utility\SolveWare_Service_Utility.csproj">
       <Project>{A329E8D8-E7A4-4070-ACBB-86601F296534}</Project>
       <Name>SolveWare_Service_Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolveWare_Service_Vision\SolveWare_Service_Vision.csproj">
-      <Project>{D6664D67-8766-4D73-B8FE-94CEE959171B}</Project>
-      <Name>SolveWare_Service_Vision</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

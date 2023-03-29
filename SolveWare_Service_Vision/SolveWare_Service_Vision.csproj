@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="Basler.Pylon, Version=1.1.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\M900_Dlls\Basler.Pylon.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Basler\pylon 5\Development\Assemblies\Basler.Pylon\x64\Basler.Pylon.dll</HintPath>
     </Reference>
     <Reference Include="halcondotnet, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Base\Abstract\VisionControllerBase.cs" />
+    <Compile Include="Controller\Base\Interface\IVisionController.cs" />
+    <Compile Include="Controller\VisionController.cs" />
     <Compile Include="Data\Data_InspectionKit.cs" />
     <Compile Include="Data\Data_ROI.cs" />
     <Compile Include="Definitions\Enum_Threshold_Search_Direction.cs" />
@@ -93,7 +96,6 @@
     <Compile Include="ROIs\Business\ROI_Circle.cs" />
     <Compile Include="ROIs\Business\ROI_Line.cs" />
     <Compile Include="ROIs\Defintions\Enum_Mouse_Event_Mode.cs" />
-    <Compile Include="ROIs\Manage\Manage_HWindow_Controller.cs" />
     <Compile Include="UserHWControls.cs">
       <SubType>UserControl</SubType>
     </Compile>
