@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Utility.Extension;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,17 @@ namespace MF900_SolveWare
         public MaintainingForm()
         {
             InitializeComponent();
-            
+            axisJop1.AxisName = "平台";
+            Task.Run(new Action(() => ReadTimeGetPos()));
         }
 
+        public void ReadTimeGetPos()
+        {
+            while (true)
+            {
+                axisJop1.Refresh();
+            }
+        }
         public void Setup<TData>(TData data)
         {
             throw new NotImplementedException();
