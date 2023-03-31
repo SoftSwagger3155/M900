@@ -21,11 +21,6 @@ namespace SolveWare_Service_Tool.IO.Business
         IntPtr Handler;
         public IO_Zmcaux(IElement data) : base(data)
         {
-<<<<<<< HEAD
-            if ((data as ConfigData_IO).Simulation) return;
-
-=======
->>>>>>> b1678c740739c0181817e5350cd9dabf867176e4
             if (configData.Simulation) return;
             Init();
         }
