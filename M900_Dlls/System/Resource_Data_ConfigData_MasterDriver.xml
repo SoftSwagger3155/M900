@@ -2,11 +2,11 @@
 <ArrayOfConfigData_MasterDriver xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ConfigData_MasterDriver>
     <Name>开机驱动档案</Name>
-    <Is_Simulation_Motor>true</Is_Simulation_Motor>
-    <Is_Simulation_IO>true</Is_Simulation_IO>
+    <Is_Simulation_Motor>false</Is_Simulation_Motor>
+    <Is_Simulation_IO>false</Is_Simulation_IO>
     <Master_Driver_Motor>Zmcaux</Master_Driver_Motor>
     <Master_Driver_IO>Zmcaux</Master_Driver_IO>
-    <Is_Basler_Camera>true</Is_Basler_Camera>
+    <Is_Basler_Camera>false</Is_Basler_Camera>
     <Is_HIK_Camera>false</Is_HIK_Camera>
   </ConfigData_MasterDriver>
 </ArrayOfConfigData_MasterDriver>

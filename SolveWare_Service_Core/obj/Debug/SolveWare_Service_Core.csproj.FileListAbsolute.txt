@@ -4,3 +4,16 @@ D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
 D:\M900开发平台\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb
+D:\M901\M900_Dlls\SolveWare_Service_Core.dll
+D:\M901\M900_Dlls\SolveWare_Service_Core.pdb
+D:\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CoreCompileInputs.cache
+D:\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
+D:\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
+D:\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb
+D:\M900开发平台\最新\M901\M900_Dlls\SolveWare_Service_Core.dll
+D:\M900开发平台\最新\M901\M900_Dlls\SolveWare_Service_Core.pdb
+D:\M900开发平台\最新\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.AssemblyReference.cache
+D:\M900开发平台\最新\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CoreCompileInputs.cache
+D:\M900开发平台\最新\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.csproj.CopyComplete
+D:\M900开发平台\最新\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.dll
+D:\M900开发平台\最新\M901\SolveWare_Service_Core\obj\Debug\SolveWare_Service_Core.pdb

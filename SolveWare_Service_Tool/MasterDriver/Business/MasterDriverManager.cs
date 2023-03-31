@@ -56,7 +56,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                             #region 连接控制器  ---杨工
                             IntPtr Handle;
                             this.CardInfo = new IOMotionCardInfo();
-                            isOk = Dll_Zmcaux.ZAux_OpenEth("127.0.0.1", out Handle) == 0;
+                            isOk = Dll_Zmcaux.ZAux_OpenEth("192.168.0.11", out Handle) == 0;
                             if (isOk)
                             {
                                 CardInfo.Dic_CardHandler.Add(0, Handle);

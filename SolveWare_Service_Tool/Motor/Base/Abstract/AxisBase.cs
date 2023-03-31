@@ -295,15 +295,18 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract bool MoveRelative(double distance, MtrSpeed mtrSpeed, bool BypassDangerCheck = false);
         public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool MoveTo(double pos, MtrSpeed mtrSpeed,  bool BypassDangerCheck = false);
+        public abstract bool HomeMoveTo(double pos, MtrSpeed mtrSpeed, bool BypassDangerCheck = false);
         public abstract bool ManualMoveTo(double pos);
         public abstract void Stop();
         public abstract bool HomeMove();
+        public abstract bool HomeMove(MtrSpeed mtrSpeed);
         public abstract bool MoveToSafeObservedPos(double pos);
         public abstract bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false);
         public abstract Motor_Wait_Kind WaitStop();
         public abstract Motor_Wait_Kind WaitHomeDone();
 
         public abstract void Jog(bool isPositive);
+        public abstract void Jog(bool isPositive, MtrSpeed mtrSpeed);
         public abstract int Get_IO_sts();
         public abstract void Set_Servo(bool on);
 
