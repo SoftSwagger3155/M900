@@ -26,7 +26,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             switch (config.MasterDriver)
             {
                 case Master_Driver_Camera.Basler:
-                    if (config.IsSimulation) return new Camera_Basler(new ConfigData_Camera() { IsSimulation = true});
+                    if (config.IsSimulation) return new Camera_Media_Basler(config.Camera_Name, config.IsSimulation);
                     List<Basler.Pylon.ICameraInfo> allCameraInfos = Basler.Pylon.CameraFinder.Enumerate();
                     Basler.Pylon.ICameraInfo iCamInfo = null;
                     if (allCameraInfos.Count > 0)
@@ -36,18 +36,18 @@ namespace SolveWare_Service_Tool.Camera.Business
                     }
 
                     Basler.Pylon.Camera camera;
-                    cameraBase = new Camera_Basler(config);
+                    cameraBase = new Camera_Media_Basler(config.Camera_Name, config.IsSimulation);
                    
 
                     if(iCamInfo != null)
                     {
                         camera = new Basler.Pylon.Camera(iCamInfo);
-                        (cameraBase as Camera_Basler).AssingCamera(camera);
+                        (cameraBase as Camera_Media_Basler).AssignCameraMedia(camera);
                                  
                     }
                     else
                     {
-                        (cameraBase as Camera_Basler).AssingCamera(null);
+                        (cameraBase as Camera_Media_Basler).AssignCameraMedia(null);
                     }
                     break;
 

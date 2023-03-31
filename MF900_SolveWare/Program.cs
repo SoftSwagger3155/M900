@@ -35,7 +35,7 @@ namespace MF900_SolveWare
             Form form = new Form();
             form.FormClosing += (s, e) =>
             {
-                ResourceKey.Top_Camera.GetCamera().CloseCamera();
+                ResourceKey.Top_Camera.GetCamera().Close();
             };
             form.Controls.Add(control);
             Application.Run(form);

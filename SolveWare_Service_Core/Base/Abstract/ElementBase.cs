@@ -41,6 +41,20 @@ namespace SolveWare_Service_Core.Base.Abstract
         }
         #endregion INotifyPropertyChanged
 
+        protected bool Get_Result(string jobName, string message)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"[{Name} 功能 {jobName}] : 成功");
+                return true;
+            }
+            else
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"[{Name} 功能 {jobName}] : 失败\r\n{message}", true, true);
+                return false;
+            }
+        }
+
         public string Name { get; set; }
         public string Content { get; set; }
 

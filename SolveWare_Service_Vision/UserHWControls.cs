@@ -19,7 +19,7 @@ namespace SolveWare_Service_Vision
     public partial class UserHWControl : UserControl, IView
     {
         VisionControllerBase hController;
-        CameraBase camera;
+        CameraMediaBase camera;
         public UserHWControl()
         {
             InitializeComponent();
@@ -27,37 +27,19 @@ namespace SolveWare_Service_Vision
 
         public void Setup<TObj>(TObj camera)
         {
-            this.camera = camera as CameraBase;
-            this.hController = new VisionController(this.hWindowControl1, this.camera);
-
-            this.hController.PropertyChanged -= HController_PropertyChanged;
-            this.hController.PropertyChanged += HController_PropertyChanged;
-
-            this.hController.CameraBase.PropertyChanged -= Camera_PropertyChanged;
-            this.hController.CameraBase.PropertyChanged += Camera_PropertyChanged;
+            this.camera = camera as CameraMediaBase;
+            this.hController = new VisionController();
+            this.hController.Setup(this.hWindowControl1, this.camera);
         }
 
         private void HController_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(hController.Location) || e.PropertyName == nameof(hController.PointGray))
-            {
-                this.Invoke(new Action(() =>
-                {
-                    this.tssl_Location.Text = hController.Location;
-                    this.tssl_GrayValue.Text = hController.PointGray;
-                }));
-            }
+          
         }
 
         private void Camera_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(this.camera.CameraGrabCapabilityInfo))
-            {
-                this.Invoke(new Action(() =>
-                {
-                    this.tssl_CameraCapabilityInfo.Text = this.camera.CameraGrabCapabilityInfo;
-                }));
-            }
+          
         }
 
         private void tsb_Play_Click(object sender, EventArgs e)
@@ -67,7 +49,7 @@ namespace SolveWare_Service_Vision
 
         private void tsb_Stop_Click(object sender, EventArgs e)
         {
-            this.hController.StopLive(100);
+           this.hController.StopLive();
         }
 
         private void tsb_OpenImage_Click(object sender, EventArgs e)
@@ -87,10 +69,10 @@ namespace SolveWare_Service_Vision
 
         private void tsb_IsShowCrros_Click(object sender, EventArgs e)
         {
-            if (this.hController.IsShowCrossLine)
-                this.hController.ClearCrossLine();
-            else
-                this.hController.GenerateCrossLine();
+            //if (this.hController.IsShowCrossLine)
+            //    this.hController.ClearCrossLine();
+            //else
+            //    this.hController.GenerateCrossLine();
         }
 
         private void tsb_DrawCircle_Click(object sender, EventArgs e)
@@ -111,6 +93,11 @@ namespace SolveWare_Service_Vision
         private void tsb_ClearHwindow_Click(object sender, EventArgs e)
         {
             this.hController.ClearROIs();
+        }
+
+        private void tsb_GrabOne_Click(object sender, EventArgs e)
+        {
+            this.hController.GrabOneShot();
         }
     }
 }

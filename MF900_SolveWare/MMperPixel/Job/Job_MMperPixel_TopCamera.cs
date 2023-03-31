@@ -22,7 +22,7 @@ namespace MF900_SolveWare.MMperPixel.Job
     //TODO 杨工: 1. UI 2. 实现细节
     public class Job_MMperPixel_TopCamera: DataJobPairFundamentalBase<Data_MMperPixel>, IMMperPixelJob
     {
-        CameraBase camera;
+        CameraMediaBase camera;
         public Job_MMperPixel_TopCamera(string name) : base(name)
         {
             this.Name = name;
@@ -88,7 +88,7 @@ namespace MF900_SolveWare.MMperPixel.Job
                     if (errorCode.NotPass()) break;
 
 
-                    this.camera.MMperPixelData.Average_MMperPixel = averagePixel;
+                    this.camera.Data_MMperPixal.Average_MMperPixel= averagePixel;
                     IResourceProvider provider = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Camera);
                     (provider as IRESTFul).SaveSingleData(this.camera);
 

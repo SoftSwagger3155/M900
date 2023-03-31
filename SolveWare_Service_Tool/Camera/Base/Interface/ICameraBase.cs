@@ -9,7 +9,7 @@ namespace SolveWare_Service_Tool.Camera.Base.Interface
 {
     public interface ICameraBase : IElement
     {
-        void AssingCamera(object obj_Camera);
+        void AssingCameraMedia(object obj_Camera);
         void GetExposureTime();
         int SetBrightness();
         void GetFrameRate();

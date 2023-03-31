@@ -2,7 +2,7 @@
 <ArrayOfConfigData_Motor xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ConfigData_Motor>
     <Name>上马达X</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -87,7 +87,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>上马达Y</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -172,7 +172,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>上马达Z</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -257,7 +257,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>上治具T</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -342,7 +342,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下马达X</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -427,7 +427,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下马达Y</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -512,7 +512,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下马达Z</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -597,7 +597,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>下治具T</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>
@@ -682,7 +682,7 @@
   </ConfigData_Motor>
   <ConfigData_Motor>
     <Name>平台</Name>
-    <Simulation>false</Simulation>
+    <Simulation>true</Simulation>
     <MtrTable>
       <CardNo>0</CardNo>
       <AxisNo>0</AxisNo>

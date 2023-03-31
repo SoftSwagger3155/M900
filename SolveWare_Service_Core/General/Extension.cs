@@ -16,5 +16,21 @@ namespace SolveWare_Service_Core.General
 
             return false;
         }
+        public static string ErrorMsg(this string function)
+        {
+            return $"功能 [{function}] Error:\n";
+        }
+        public static string ErrorMsg(this string function, string title)
+        {
+            return $"{title} 功能 [{function}] Error:\n";
+        }
+        public static string OkMsg(this string function)
+        {
+            return $"功能 [{function}] 成功\n";
+        }
+        public static string OkMsg(this string function, string title)
+        {
+            return $"{title} 功能 [{function}] 成功\n";
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace SolveWare_Service_Vision
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_GrayValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_Location = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssl_CameraCapabilityInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_OpenImage = new System.Windows.Forms.ToolStripButton();
             this.tsb_Savemage = new System.Windows.Forms.ToolStripButton();
@@ -43,10 +44,10 @@ namespace SolveWare_Service_Vision
             this.tsb_DrawRectangle = new System.Windows.Forms.ToolStripButton();
             this.tsb_DrawLines = new System.Windows.Forms.ToolStripButton();
             this.tsb_ClearHwindow = new System.Windows.Forms.ToolStripButton();
-            this.hWindowControl1 = new HalconDotNet.HWindowControl();
-            this.tssl_CameraCapabilityInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsb_Play = new System.Windows.Forms.ToolStripButton();
             this.tsb_Stop = new System.Windows.Forms.ToolStripButton();
+            this.hWindowControl1 = new HalconDotNet.HWindowControl();
+            this.tsb_GrabOne = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -97,6 +98,13 @@ namespace SolveWare_Service_Vision
             this.tssl_Location.Size = new System.Drawing.Size(51, 17);
             this.tssl_Location.Text = "0,0";
             // 
+            // tssl_CameraCapabilityInfo
+            // 
+            this.tssl_CameraCapabilityInfo.Image = ((System.Drawing.Image)(resources.GetObject("tssl_CameraCapabilityInfo.Image")));
+            this.tssl_CameraCapabilityInfo.Name = "tssl_CameraCapabilityInfo";
+            this.tssl_CameraCapabilityInfo.Size = new System.Drawing.Size(68, 17);
+            this.tssl_CameraCapabilityInfo.Text = "00ms";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -110,7 +118,8 @@ namespace SolveWare_Service_Vision
             this.tsb_DrawLines,
             this.tsb_ClearHwindow,
             this.tsb_Play,
-            this.tsb_Stop});
+            this.tsb_Stop,
+            this.tsb_GrabOne});
             this.toolStrip1.Location = new System.Drawing.Point(1, 355);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(362, 23);
@@ -197,25 +206,6 @@ namespace SolveWare_Service_Vision
             this.tsb_ClearHwindow.Text = "清除ROI";
             this.tsb_ClearHwindow.Click += new System.EventHandler(this.tsb_ClearHwindow_Click);
             // 
-            // hWindowControl1
-            // 
-            this.hWindowControl1.BackColor = System.Drawing.Color.Black;
-            this.hWindowControl1.BorderColor = System.Drawing.Color.Black;
-            this.hWindowControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hWindowControl1.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
-            this.hWindowControl1.Location = new System.Drawing.Point(4, 3);
-            this.hWindowControl1.Name = "hWindowControl1";
-            this.hWindowControl1.Size = new System.Drawing.Size(356, 349);
-            this.hWindowControl1.TabIndex = 2;
-            this.hWindowControl1.WindowSize = new System.Drawing.Size(356, 349);
-            // 
-            // tssl_CameraCapabilityInfo
-            // 
-            this.tssl_CameraCapabilityInfo.Image = ((System.Drawing.Image)(resources.GetObject("tssl_CameraCapabilityInfo.Image")));
-            this.tssl_CameraCapabilityInfo.Name = "tssl_CameraCapabilityInfo";
-            this.tssl_CameraCapabilityInfo.Size = new System.Drawing.Size(68, 17);
-            this.tssl_CameraCapabilityInfo.Text = "00ms";
-            // 
             // tsb_Play
             // 
             this.tsb_Play.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -234,12 +224,34 @@ namespace SolveWare_Service_Vision
             this.tsb_Stop.Size = new System.Drawing.Size(29, 20);
             this.tsb_Stop.Click += new System.EventHandler(this.tsb_Stop_Click);
             // 
-            // UserHWControls
+            // hWindowControl1
+            // 
+            this.hWindowControl1.BackColor = System.Drawing.Color.Black;
+            this.hWindowControl1.BorderColor = System.Drawing.Color.Black;
+            this.hWindowControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hWindowControl1.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.hWindowControl1.Location = new System.Drawing.Point(4, 3);
+            this.hWindowControl1.Name = "hWindowControl1";
+            this.hWindowControl1.Size = new System.Drawing.Size(356, 349);
+            this.hWindowControl1.TabIndex = 2;
+            this.hWindowControl1.WindowSize = new System.Drawing.Size(356, 349);
+            // 
+            // tsb_GrabOne
+            // 
+            this.tsb_GrabOne.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_GrabOne.Image = ((System.Drawing.Image)(resources.GetObject("tsb_GrabOne.Image")));
+            this.tsb_GrabOne.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_GrabOne.Name = "tsb_GrabOne";
+            this.tsb_GrabOne.Size = new System.Drawing.Size(29, 20);
+            this.tsb_GrabOne.Text = "toolStripButton1";
+            this.tsb_GrabOne.Click += new System.EventHandler(this.tsb_GrabOne_Click);
+            // 
+            // UserHWControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "UserHWControls";
+            this.Name = "UserHWControl";
             this.Size = new System.Drawing.Size(364, 401);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -270,5 +282,6 @@ namespace SolveWare_Service_Vision
         private System.Windows.Forms.ToolStripStatusLabel tssl_CameraCapabilityInfo;
         private System.Windows.Forms.ToolStripButton tsb_Play;
         private System.Windows.Forms.ToolStripButton tsb_Stop;
+        private System.Windows.Forms.ToolStripButton tsb_GrabOne;
     }
 }
