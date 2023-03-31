@@ -117,6 +117,12 @@ namespace MF900_SolveWare
             this.uiButton8 = new Sunny.UI.UIButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.uiDataGridView3 = new Sunny.UI.UIDataGridView();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.uiTitlePanel2 = new Sunny.UI.UITitlePanel();
             this.uiDataGridView5 = new Sunny.UI.UIDataGridView();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -143,6 +149,12 @@ namespace MF900_SolveWare
             this.uiButton2 = new Sunny.UI.UIButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.uiDataGridView7 = new Sunny.UI.UIDataGridView();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.uiTitlePanel1 = new Sunny.UI.UITitlePanel();
             this.uiDataGridView1 = new Sunny.UI.UIDataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -152,18 +164,8 @@ namespace MF900_SolveWare
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiPanel2 = new Sunny.UI.UIPanel();
             this.btn_Save = new Sunny.UI.UIButton();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.uiTableLayoutPanel1.SuspendLayout();
             this.uiTableLayoutPanel2.SuspendLayout();
             this.uiGroupBox3.SuspendLayout();
@@ -1041,8 +1043,44 @@ namespace MF900_SolveWare
             this.uiDataGridView3.TabIndex = 1;
             this.uiDataGridView3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiDataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.uiDataGridView3_CellContentClick);
-            this.uiDataGridView3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.uiDataGridView3_MouseDown);
-            this.uiDataGridView3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.uiDataGridView3_MouseUp);
+            this.uiDataGridView3.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.uiDataGridView3_CellMouseDown);
+            this.uiDataGridView3.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.uiDataGridView3_CellMouseUp);
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.FillWeight = 121.8274F;
+            this.dataGridViewTextBoxColumn14.HeaderText = "轴名称";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.FillWeight = 95.63452F;
+            this.dataGridViewTextBoxColumn15.HeaderText = "距离";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.FillWeight = 95.63452F;
+            this.dataGridViewButtonColumn1.HeaderText = "运行";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.FillWeight = 95.63452F;
+            this.dataGridViewTextBoxColumn16.HeaderText = "速度";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.FillWeight = 95.63452F;
+            this.dataGridViewButtonColumn2.HeaderText = "Jop(-)";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            // 
+            // dataGridViewButtonColumn3
+            // 
+            this.dataGridViewButtonColumn3.FillWeight = 95.63452F;
+            this.dataGridViewButtonColumn3.HeaderText = "Jop(+)";
+            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
             // 
             // uiTitlePanel2
             // 
@@ -1516,8 +1554,44 @@ namespace MF900_SolveWare
             this.uiDataGridView7.TabIndex = 1;
             this.uiDataGridView7.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.uiDataGridView7.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.uiDataGridView7_CellContentClick);
-            this.uiDataGridView7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.uiDataGridView7_MouseDown);
-            this.uiDataGridView7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.uiDataGridView7_MouseUp);
+            this.uiDataGridView7.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.uiDataGridView7_CellMouseDown);
+            this.uiDataGridView7.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.uiDataGridView7_CellMouseUp);
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            this.dataGridViewTextBoxColumn23.FillWeight = 121.8274F;
+            this.dataGridViewTextBoxColumn23.HeaderText = "轴名称";
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            this.dataGridViewTextBoxColumn24.FillWeight = 95.63451F;
+            this.dataGridViewTextBoxColumn24.HeaderText = "距离";
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 95.63451F;
+            this.Column3.HeaderText = "运行";
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 95.63451F;
+            this.Column6.HeaderText = "速度";
+            this.Column6.Name = "Column6";
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 95.63451F;
+            this.Column4.HeaderText = "Jop(-)";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 95.63451F;
+            this.Column5.HeaderText = "Jop(+)";
+            this.Column5.Name = "Column5";
             // 
             // uiTitlePanel1
             // 
@@ -1633,6 +1707,8 @@ namespace MF900_SolveWare
             // 
             // uiPanel2
             // 
+            this.uiPanel2.Controls.Add(this.label2);
+            this.uiPanel2.Controls.Add(this.label1);
             this.uiPanel2.Controls.Add(this.btn_Save);
             this.uiPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel2.FillColor = System.Drawing.Color.White;
@@ -1667,77 +1743,23 @@ namespace MF900_SolveWare
             this.btn_Save.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_Save.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // dataGridViewTextBoxColumn23
+            // label1
             // 
-            this.dataGridViewTextBoxColumn23.FillWeight = 121.8274F;
-            this.dataGridViewTextBoxColumn23.HeaderText = "轴名称";
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(280, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 21);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
-            // dataGridViewTextBoxColumn24
+            // label2
             // 
-            this.dataGridViewTextBoxColumn24.FillWeight = 95.63451F;
-            this.dataGridViewTextBoxColumn24.HeaderText = "距离";
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 95.63451F;
-            this.Column3.HeaderText = "运行";
-            this.Column3.Name = "Column3";
-            // 
-            // Column6
-            // 
-            this.Column6.FillWeight = 95.63451F;
-            this.Column6.HeaderText = "速度";
-            this.Column6.Name = "Column6";
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 95.63451F;
-            this.Column4.HeaderText = "Jop(-)";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 95.63451F;
-            this.Column5.HeaderText = "Jop(+)";
-            this.Column5.Name = "Column5";
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.FillWeight = 121.8274F;
-            this.dataGridViewTextBoxColumn14.HeaderText = "轴名称";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.FillWeight = 95.63452F;
-            this.dataGridViewTextBoxColumn15.HeaderText = "距离";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.FillWeight = 95.63452F;
-            this.dataGridViewButtonColumn1.HeaderText = "运行";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            this.dataGridViewTextBoxColumn16.FillWeight = 95.63452F;
-            this.dataGridViewTextBoxColumn16.HeaderText = "速度";
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            // 
-            // dataGridViewButtonColumn2
-            // 
-            this.dataGridViewButtonColumn2.FillWeight = 95.63452F;
-            this.dataGridViewButtonColumn2.HeaderText = "Jop(-)";
-            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
-            // 
-            // dataGridViewButtonColumn3
-            // 
-            this.dataGridViewButtonColumn3.FillWeight = 95.63452F;
-            this.dataGridViewButtonColumn3.HeaderText = "Jop(+)";
-            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(359, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 21);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "label1";
             // 
             // AxisDebugForm
             // 
@@ -1788,6 +1810,7 @@ namespace MF900_SolveWare
             this.uiTitlePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiDataGridView1)).EndInit();
             this.uiPanel2.ResumeLayout(false);
+            this.uiPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1889,5 +1912,7 @@ namespace MF900_SolveWare
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.DataGridViewButtonColumn Column5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

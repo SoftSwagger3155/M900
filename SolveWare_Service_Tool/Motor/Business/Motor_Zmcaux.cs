@@ -193,7 +193,7 @@ namespace SolveWare_Service_Tool.Motor.Business
         public override bool Init()
         {
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
-            Handler = master.CardInfo.Dic_CardHandler[mtrTable.CardNo];
+            //Handler = master.CardInfo.Dic_CardHandler[mtrTable.CardNo];
             Dll_Zmcaux.ZAux_Direct_SetUnits(Handler, mtrTable.AxisNo, (float)mtrTable.PulsePerRevolution);
             return true;
         }

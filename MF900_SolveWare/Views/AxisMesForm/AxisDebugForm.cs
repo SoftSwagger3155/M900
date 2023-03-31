@@ -206,7 +206,7 @@ namespace MF900_SolveWare
             btmRow = e.RowIndex;
             btmCol = e.ColumnIndex;
             //需加正则判断输入的值是否为double
-
+           
             TopAndBtmSetSpeed(uiDataGridView3, e.RowIndex);
             TopAndBtmAxisMove(uiDataGridView3, e.RowIndex, e.ColumnIndex);
         }
@@ -245,24 +245,31 @@ namespace MF900_SolveWare
                     break;
             }
         }
-        private void uiDataGridView7_MouseDown(object sender, MouseEventArgs e)
-        {
 
+        private void uiDataGridView7_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            topRow = e.RowIndex;
+            topCol = e.ColumnIndex;
+
+            TopAndBtmSetSpeed(uiDataGridView7, e.RowIndex);
             TopAndBtmJog(uiDataGridView7, topRow, topCol);
         }
-
-        private void uiDataGridView7_MouseUp(object sender, MouseEventArgs e)
+        private void uiDataGridView7_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             TopAndBtmAxisStopJog(uiDataGridView7, topRow, topCol);
         }
         #endregion
         #region Btm Jog
-        private void uiDataGridView3_MouseDown(object sender, MouseEventArgs e)
+        private void uiDataGridView3_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            btmRow = e.RowIndex;
+            btmCol = e.ColumnIndex;
+
+            TopAndBtmSetSpeed(uiDataGridView3, e.RowIndex);
             TopAndBtmJog(uiDataGridView3, btmRow, btmCol);
         }
 
-        private void uiDataGridView3_MouseUp(object sender, MouseEventArgs e)
+        private void uiDataGridView3_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             TopAndBtmAxisStopJog(uiDataGridView3, btmRow, btmCol);
         }
@@ -299,6 +306,9 @@ namespace MF900_SolveWare
             };
             ResourceKey.Motor_Table.GetAxisBase().MoveRelative(double.Parse(uiTextBox1.Text), ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
         }
+
+
+
 
         #endregion
 
