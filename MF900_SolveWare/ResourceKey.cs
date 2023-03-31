@@ -19,26 +19,26 @@ namespace MF900_SolveWare.Resource
         public const string Op_ZeroButton = "归零按钮";
         public const string Op_StopButton = "停止按钮";
         public const string Op_ResetButton = "复位按钮";
-        public const string LeftX_RailTighten = "左X向导轨固定气缸紧";
-        public const string LeftX_RailLoosen = "左X向导轨固定气缸松";
-        public const string RightX_RailTighten = "右X向导轨固定气缸紧";
-        public const string RightX_RailLoosen = "右X向导轨固定气缸松";
-        public const string Y_RailTighten = "Y向导轨固定气缸紧";
-        public const string Y_RailLoosen = "Y向导轨固定气缸松";
-        public const string PCB_Clamp = "软板夹紧气缸紧";
-        public const string PCB_Loosen = "软板夹紧气缸松";
-        public const string X_StretchAirOn = "X向拉伸气缸伸";
-        public const string X_StretchAirOff = "X向拉伸气缸缩";
-        public const string Y_StretchAirOn = "Y向拉伸气缸伸";
-        public const string Y_StretchAirOff = "Y向拉伸气缸缩";
-        public const string MarkeInkBoxOn = "打标墨盒盖开";
-        public const string MarkeInkBoxOff = "打标墨盒盖关";
-        public const string UpMarkeOn = "上模打标气缸伸";
-        public const string DownMarkOn = "下模打标气缸伸";
-        public const string UpJipClampAirOn = "上模治具夹紧气缸紧";
-        public const string UpJipClampAirOff = "上模治具夹紧气缸松";
-        public const string DownJipClampAirOn = "下模治具夹紧气缸紧";
-        public const string DownJipClampAirOff = "下模治具夹紧气缸松";
+        public const string Op_LeftX_RailTighten = "左X向导轨固定气缸紧";
+        public const string Op_LeftX_RailLoosen = "左X向导轨固定气缸松";
+        public const string Op_RightX_RailTighten = "右X向导轨固定气缸紧";
+        public const string Op_RightX_RailLoosen = "右X向导轨固定气缸松";
+        public const string Op_Y_RailTighten = "Y向导轨固定气缸紧";
+        public const string Op_Y_RailLoosen = "Y向导轨固定气缸松";
+        public const string Op_PCB_Clamp = "软板夹紧气缸紧";
+        public const string Op_PCB_Loosen = "软板夹紧气缸松";
+        public const string Op_X_StretchAirOn = "X向拉伸气缸伸";
+        public const string Op_X_StretchAirOff = "X向拉伸气缸缩";
+        public const string Op_Y_StretchAirOn = "Y向拉伸气缸伸";
+        public const string Op_Y_StretchAirOff = "Y向拉伸气缸缩";
+        public const string Op_MarkeInkBoxOn = "打标墨盒盖开";
+        public const string Op_MarkeInkBoxOff = "打标墨盒盖关";
+        public const string Op_UpMarkeOn = "上模打标气缸_伸";
+        public const string Op_DownMarkOn = "下模打标气缸_伸";
+        public const string Op_UpJipClampAirOn = "上模治具夹紧气缸紧";
+        public const string Op_UpJipClampAirOff = "上模治具夹紧气缸松";
+        public const string Op_DownJipClampAirOn = "下模治具夹紧气缸紧";
+        public const string Op_DownJipClampAirOff = "下模治具夹紧气缸松";
 
 
 

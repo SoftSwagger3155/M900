@@ -73,13 +73,13 @@ namespace MF900_SolveWare
             }
             else
             {
-                if (mtr.Status == IO_Status.On)
+                if(uiSwitch1.Active)
                 {
-                    mtr.Off();
+                    mtr.On();
                 }
                 else
                 {
-                    mtr.On();
+                    mtr.Off();
                 }
             }
         }

@@ -485,25 +485,25 @@
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>上模打标气缸伸</Name>
+    <Name>上模打标气缸_伸</Name>
     <CardNo>0</CardNo>
-    <Bit>18</Bit>
+    <Bit>22</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
     <Simulation>true</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>下模打标气缸伸</Name>
+    <Name>下模打标气缸_伸</Name>
     <CardNo>0</CardNo>
-    <Bit>20</Bit>
+    <Bit>23</Bit>
     <Logic_Op>0</Logic_Op>
     <Logic_Read>0</Logic_Read>
     <Simulation>true</Simulation>
     <IsForSelect>false</IsForSelect>
-    <IOType>Input</IOType>
+    <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>

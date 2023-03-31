@@ -30,7 +30,6 @@ C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.dll
 C:\Users\softs\Desktop\YAMAHA\M900\HVision\obj\Debug\HVision.pdb
 D:\M900开发平台\M901\M900_Dlls\HVision.dll
 D:\M900开发平台\M901\M900_Dlls\HVision.pdb
-D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.AssemblyReference.cache
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.Properties.Resources.resources
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.UserHWControls.resources
 D:\M900开发平台\M901\HVision\obj\Debug\HVision.csproj.GenerateResource.cache

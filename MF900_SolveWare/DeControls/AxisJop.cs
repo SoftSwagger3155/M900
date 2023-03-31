@@ -3,6 +3,7 @@ using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Business;
 using SolveWare_Service_Tool.Motor.Data;
+using SolveWare_Service_Utility.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,15 +49,16 @@ namespace MF900_SolveWare
             uiSymbolButton_Backward.MouseDown += UiSymbolButton_Backward_MouseDown;
             uiSymbolButton_Backward.MouseUp += UiSymbolButton_Backward_MouseUp;
         }
-
+        private string axisName;
         [Description("轴名称"),Category("自定属性")]
         public string AxisName
         {
-            get { return uiTitlePanel1.Text; }
+            get { return axisName; }
             set
             {
-                this.uiTitlePanel1.Text = value;
-                mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.Motor, this.AxisName);
+                axisName = value;
+                this.uiTitlePanel1.Text = axisName;
+                mtr = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(SolveWare_Service_Core.Definition.Tool_Resource_Kind.Motor, this.axisName);
             }
         }
 
@@ -100,6 +102,24 @@ namespace MF900_SolveWare
             }
         }
 
+        private float pos;
+        [Description("位置"), Category("自定义属性")]
+        public float Pos
+        {
+            get { return pos; }
+            set 
+            { 
+                pos = value;
+                if (!txt_Pos.InvokeRequired)
+                    txt_Pos.Text = pos.ToString();
+                else txt_Pos.Invoke(new Action(() => txt_Pos.Text = pos.ToString()));
+            }
+        }
+
+        public override void Refresh()
+        {
+            Pos = (float)AxisName.GetAxisBase().Get_CurUnitPos();
+        }
 
         #region 点动
 
