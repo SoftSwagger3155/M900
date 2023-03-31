@@ -25,7 +25,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Interface
 {
     public class VisionController: VisionControllerBase
     {
-        public VisionController(HWindowControl hwindow, ICameraBase camera):base(hwindow, camera)
+        public VisionController()
         {
             
         }

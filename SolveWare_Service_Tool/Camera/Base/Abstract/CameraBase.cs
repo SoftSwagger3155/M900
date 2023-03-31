@@ -84,7 +84,7 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
 
         public abstract void CloseCamera();
 
-        public abstract void AssingCamera(object obj_Camera);
+        public abstract void AssingCameraMedia(object obj_Camera);
 
         public override void StartStatusReading()
         {

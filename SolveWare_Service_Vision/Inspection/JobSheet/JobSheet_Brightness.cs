@@ -20,7 +20,7 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
     public class JobSheet_Brightness : JobSheetDataBase
     {
         [XmlIgnore]
-        public CameraBase Camera { get; private set; }
+        public CameraMediaBase Camera { get; private set; }
 
         public JobSheet_Brightness()
         {

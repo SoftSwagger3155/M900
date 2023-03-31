@@ -2,6 +2,7 @@
 using SolveWare_Service_Core.Manager.Base.Interface;
 using SolveWare_Service_Tool.IO.Business;
 using SolveWare_Service_Tool.IO.Data;
+using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Data;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             {
                 case Definition.Master_Driver_Motor.Zmcaux:
                     mtr = new Motor_Zmcaux(data);
+                    (mtr as AxisBase).Init();
                     break;
                 case Definition.Master_Driver_Motor.ACS:
                     break;

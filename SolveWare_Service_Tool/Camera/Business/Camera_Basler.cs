@@ -36,7 +36,7 @@ namespace SolveWare_Service_Tool.Camera.Business
 
             if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
         }
-        public override void AssingCamera(object obj_Camera)
+        public override void AssingCameraMedia(object obj_Camera)
         {
             this.imagePart_X = this.configData.ImagePart_X;
             this.imagePart_Y = this.configData.ImagePart_Y;

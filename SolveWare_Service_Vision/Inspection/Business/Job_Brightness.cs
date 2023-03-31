@@ -20,9 +20,8 @@ namespace SolveWare_Service_Vision.Inspection.Business
             {
                 jobParam.JobSheet_Brightness_Datas.ForEach(x =>
                 {
-                    x.Camera.Gain = x.Gain;
-                    x.Camera.ExposureTime = x.ExposureTime;
-                    x.Camera.SetBrightness();
+                    x.Camera.SetGain(x.Gain);
+                    x.Camera.SetExposureTime(x.ExposureTime);
                 });
             }
             catch (Exception ex)

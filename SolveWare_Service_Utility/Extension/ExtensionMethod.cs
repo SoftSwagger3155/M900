@@ -53,12 +53,12 @@ namespace SolveWare_Service_Utility.Extension
             objs[index] = temp;
             selectedIndex = index + 1;
         }
-        public static CameraBase GetCamera(this string name)
+        public static CameraMediaBase GetCamera(this string name)
         {
-            CameraBase camera;
+            CameraMediaBase camera;
             try
             {
-                camera = (CameraBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
+                camera = (CameraMediaBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Camera, name);
             }
             catch (Exception)
             {

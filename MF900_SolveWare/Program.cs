@@ -30,6 +30,7 @@ namespace MF900_SolveWare
             SolveWare.Core.MMgr.AssignMasterDriver(new MasterDriverManager());
             SolveWare.Core.MMgr.Initialize();
 
+<<<<<<< HEAD
             //SolveWare_Service_Vision.UserHWControl control = new SolveWare_Service_Vision.UserHWControl();        
             //control.Setup(ResourceKey.Top_Camera.GetCamera());
             //Form form = new Form();
@@ -40,6 +41,18 @@ namespace MF900_SolveWare
             //form.Controls.Add(control);
             //Application.Run(form);
             Application.Run(new MainForm());
+=======
+            SolveWare_Service_Vision.UserHWControl control = new SolveWare_Service_Vision.UserHWControl();        
+            control.Setup(ResourceKey.Top_Camera.GetCamera());
+            Form form = new Form();
+            form.FormClosing += (s, e) =>
+            {
+                ResourceKey.Top_Camera.GetCamera().Close();
+            };
+            form.Controls.Add(control);
+            Application.Run(form);
+            //Application.Run(new MainForm());
+>>>>>>> 8397a4a9b53b17fd3c8c99a7ef4f53ef68dfbc30
         }
     }
 }
