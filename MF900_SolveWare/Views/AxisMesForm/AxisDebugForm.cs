@@ -123,6 +123,7 @@ namespace MF900_SolveWare
         //X_Home
         private void uiButton1_Click(object sender, EventArgs e)
         {
+            TopAndBtmSetSpeed(uiDataGridView7, 0, uiDataGridView1);
             ResourceKey.Motor_Top_X.GetAxisBase().HomeMove();
         }
         //Y_Home
@@ -147,83 +148,137 @@ namespace MF900_SolveWare
         //X_Home
         private void uiButton6_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_X.GetAxisBase().HomeMove();
+            TopAndBtmSetSpeed(uiDataGridView7, 0, uiDataGridView1);
+            ResourceKey.Motor_Btm_X.GetAxisBase().HomeMove(mtrSpeed);
         }
         //Y_Home
         private void uiButton8_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_Y.GetAxisBase().HomeMove();
+            ResourceKey.Motor_Btm_Y.GetAxisBase().HomeMove(mtrSpeed);
         }
         //Z_Home
         private void uiButton7_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_Z.GetAxisBase().HomeMove();
+            ResourceKey.Motor_Btm_Z.GetAxisBase().HomeMove(mtrSpeed);
         }
         //T_Home
         private void uiButton5_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_T.GetAxisBase().HomeMove();
+            ResourceKey.Motor_Btm_T.GetAxisBase().HomeMove(mtrSpeed);
         }
 
         #endregion
 
         #region TopAxis and BtmAxis Jop
-        //TopAxis_Jop
+        int topRow = 0;
+        int topCol = 0;
+        int btmRow = 0;
+        int btmCol = 0;
+        MtrSpeed mtrSpeed = null;
+
+        /// <summary>
+        /// 速度设置更换
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="row"></param>
+        private void TopAndBtmSetSpeed(DataGridView dataGridView,int row,DataGridView speedData)
+        {
+            mtrSpeed = new MtrSpeed()
+            {
+                Jog_Acceleration = double.Parse(speedData[3, row].Value.ToString()),
+                Jog_Deceleration = double.Parse(speedData[4, row].Value.ToString()),
+                Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
+                Jog_Min_Velocity = double.Parse(speedData[2, row].Value.ToString()),
+            };
+        }
+        #region MoveTo
+
+        //TopAxis_MoveTo
         private void uiDataGridView7_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            topRow = e.RowIndex;
+            topCol = e.ColumnIndex;
             //需加正则判断输入的值是否为double
 
+            TopAndBtmSetSpeed(uiDataGridView7, e.RowIndex, uiDataGridView1);
             TopAndBtmAxisMove(uiDataGridView7, e.RowIndex, e.ColumnIndex);
         }
 
-        //BtmAxis_Jop
+        //BtmAxis_MoveTo
         private void uiDataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            btmRow = e.RowIndex;
+            btmCol = e.ColumnIndex;
             //需加正则判断输入的值是否为double
-
+           
+            TopAndBtmSetSpeed(uiDataGridView3, e.RowIndex, uiDataGridView5);
             TopAndBtmAxisMove(uiDataGridView3, e.RowIndex, e.ColumnIndex);
         }
         public void TopAndBtmAxisMove(DataGridView dataGridView,int row,int col)
         {
-            MtrSpeed mtrSpeed = null;
-            string[] axiss = keyAxis.Keys.ToArray();
-            if (dataGridView == uiDataGridView7)
+            if(col==2)
             {
-                //axiss[row].GetAxisBase().MtrSpeed
-                mtrSpeed = new MtrSpeed()
-                {
-                    Jog_Acceleration = 1000,
-                    Jog_Deceleration = 1000,
-                    Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
-                    Jog_Min_Velocity = 1,
-                };
+                keyAxis[dataGridView[0, row].Value.ToString()].MoveRelative(double.Parse(dataGridView[1, row].Value.ToString()),
+                       mtrSpeed);
+                //keyAxis[dataGridView[0, row].Value.ToString()].MoveTo(double.Parse(dataGridView[1, row].Value.ToString()));
             }
-            else
-            {
-                //axiss[row + 4].GetAxisBase().MtrSpeed 
-                mtrSpeed = new MtrSpeed()
-                {
-                    Jog_Acceleration = 1000,
-                    Jog_Deceleration = 1000,
-                    Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
-                    Jog_Min_Velocity = 1,
-                };
-            }
+        }
+
+        #endregion
+        #region Top Jog
+        private void TopAndBtmJog(DataGridView dataGridView, int row, int col)
+        {
             switch (col)
             {
-                case 2: //MoveRelative
-                    keyAxis[dataGridView[0, row].Value.ToString()].MoveRelative(double.Parse(dataGridView[1, row].Value.ToString()),
-                       mtrSpeed);
-                    //keyAxis[dataGridView[0, row].Value.ToString()].MoveTo(double.Parse(dataGridView[1, row].Value.ToString()));
-                    break;
                 case 4:
-                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(true);
+                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(false, mtrSpeed);
                     break;
                 case 5:
-                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(false);
+                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(true, mtrSpeed);
                     break;
             }
         }
+        private void TopAndBtmAxisStopJog(DataGridView dataGridView, int row, int col)
+        {
+            switch (col)
+            {
+                case 4:
+                    keyAxis[dataGridView[0, row].Value.ToString()].Stop();
+                    break;
+                case 5:
+                    keyAxis[dataGridView[0, row].Value.ToString()].Stop();
+                    break;
+            }
+        }
+
+        private void uiDataGridView7_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            topRow = e.RowIndex;
+            topCol = e.ColumnIndex;
+
+            TopAndBtmSetSpeed(uiDataGridView7, e.RowIndex, uiDataGridView1);
+            TopAndBtmJog(uiDataGridView7, topRow, topCol);
+        }
+        private void uiDataGridView7_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            TopAndBtmAxisStopJog(uiDataGridView7, topRow, topCol);
+        }
+        #endregion
+        #region Btm Jog
+        private void uiDataGridView3_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            btmRow = e.RowIndex;
+            btmCol = e.ColumnIndex;
+
+            TopAndBtmSetSpeed(uiDataGridView3, e.RowIndex, uiDataGridView5);
+            TopAndBtmJog(uiDataGridView3, btmRow, btmCol);
+        }
+
+        private void uiDataGridView3_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            TopAndBtmAxisStopJog(uiDataGridView3, btmRow, btmCol);
+        }
+        #endregion
         #endregion
 
         #region TableOpation
@@ -232,29 +287,47 @@ namespace MF900_SolveWare
         {
             ResourceKey.Motor_Table.GetAxisBase().HomeMove();
         }
-        //Jop+
-        private void uiButton12_Click(object sender, EventArgs e)
-        {
-            ResourceKey.Motor_Table.GetAxisBase().Jog(true);
-        }
-        //Jop-
-        private void uiButton10_Click(object sender, EventArgs e)
-        {
-            ResourceKey.Motor_Table.GetAxisBase().Jog(false);
-        }
+       
         //Move
         private void uiButton9_Click(object sender, EventArgs e)
         {
             //需加正则判断
 
+            TableSpeed();
+            ResourceKey.Motor_Table.GetAxisBase().MoveRelative(double.Parse(uiTextBox1.Text), ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+        }
+
+        private void TableSpeed()
+        {
             ResourceKey.Motor_Table.GetAxisBase().MtrSpeed = new MtrSpeed()
             {
-                Jog_Min_Velocity = 10,
-                Jog_Max_Velocity = 100,
+                Jog_Min_Velocity = 1,
+                Jog_Max_Velocity = double.Parse(txt_TableSpeed.Text),
                 Jog_Acceleration = 1000,
                 Jog_Deceleration = 1000
             };
-            ResourceKey.Motor_Table.GetAxisBase().MoveRelative(double.Parse(uiTextBox1.Text), ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+        }
+        //Jog+
+        private void uiButton12_MouseDown(object sender, MouseEventArgs e)
+        {
+            TableSpeed();
+            ResourceKey.Motor_Table.GetAxisBase().Jog(true, ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+        }
+
+        private void uiButton12_MouseUp(object sender, MouseEventArgs e)
+        {
+            ResourceKey.Motor_Table.GetAxisBase().Stop();
+        }
+        //Jog-
+        private void uiButton10_MouseDown(object sender, MouseEventArgs e)
+        {
+            TableSpeed();
+            ResourceKey.Motor_Table.GetAxisBase().Jog(false, ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+        }
+        
+        private void uiButton10_MouseUp(object sender, MouseEventArgs e)
+        {
+            ResourceKey.Motor_Table.GetAxisBase().Stop();
         }
 
         #endregion

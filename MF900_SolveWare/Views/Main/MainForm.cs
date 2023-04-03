@@ -36,6 +36,9 @@ namespace MF900_SolveWare
             form.SwitchProcessForm += SwitchForm;
             ProgramPanelForm.ProgramSetForm = form;
         }
+        /// <summary>
+        /// 双缓冲
+        /// </summary>
         protected override CreateParams CreateParams
         {
             get
