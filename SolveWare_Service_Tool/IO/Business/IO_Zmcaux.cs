@@ -24,8 +24,6 @@ namespace SolveWare_Service_Tool.IO.Business
 <<<<<<< HEAD
             if ((data as ConfigData_IO).Simulation) return;
 
-=======
->>>>>>> b1678c740739c0181817e5350cd9dabf867176e4
             if (configData.Simulation) return;
             Init();
         }
