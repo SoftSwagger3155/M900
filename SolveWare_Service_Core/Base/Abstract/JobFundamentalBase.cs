@@ -49,10 +49,13 @@ namespace SolveWare_Service_Core.Base.Abstract
         {
             this.st = DateTime.Now;
             this.Status = JobStatus.Entrance;
+            SolveWare.Core.MMgr.SetStatus(Machine_Status.Busy);
         }
         public void OnExit()
         {
             this.Status = ErrorCode == 0 ? JobStatus.Done : JobStatus.Fail;
+            Machine_Status mStatus = errorCode == 0 ? Machine_Status.Idle : Machine_Status.Error;
+            SolveWare.Core.MMgr.SetStatus(mStatus);
             SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, this.GetType().Name, st, errorCode, errorMsg);
         }
 

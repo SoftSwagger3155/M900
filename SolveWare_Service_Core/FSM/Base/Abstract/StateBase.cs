@@ -53,6 +53,10 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         protected StateBase noState;
         public StateBase NoState { get=> noState; }
 
+        protected StateBase designatedState;
+
+        public void Set_Designated_State(StateBase state) { this.designatedState = state; }
+
         public void SetStateChain(IState yesState, IState noState = null)
         {
             this.yesState = yesState as StateBase;

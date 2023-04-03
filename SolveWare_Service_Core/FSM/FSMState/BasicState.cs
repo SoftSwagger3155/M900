@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.FSM.Base.Abstract;
+﻿using Microsoft.SqlServer.Server;
+using SolveWare_Service_Core.FSM.Base.Abstract;
 using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace SolveWare_Service_Core.FSM.FSMState
 
         public override int Do_Job()
         {
+            string errMsg = string.Empty;
             OnEntrance();
             try
             {
@@ -35,23 +37,30 @@ namespace SolveWare_Service_Core.FSM.FSMState
                     errorCode = OnExecuteHandler(this);
                     if (errorCode != ErrorCodes.NoError)
                     {
-                        SolveWare.Core.MMgr.Infohandler.LogActionMessage($"{this.Name} Error | ErrorCode {errorCode} | Description {ErrorCodes.GetErrorDescription(errorCode)}");
-                        break;
+                        if(OnExecuteErrorHandler !=  null)
+                            errorCode = OnExecuteErrorHandler(this);
+
+                        if (errorCode != ErrorCodes.NoError)
+                        {
+                            if (designatedState != null) this.nextState = designatedState;
+                            errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                            break;
+                        }
+                        
                     }
 
                     this.nextState = YesState;
 
-
                 } while (false);
             }
-            catch
+            catch(Exception ex)
             {
-                errorCode = ErrorCodes.ActionNotTaken;
+                errMsg += ex.Message;
             }
-            
+
+            Get_Result(nameof(this.Do_Job), errMsg);
             OnExit();
-            if (IsSimulation)
-                Thread.Sleep(500);
+            if (IsSimulation) Thread.Sleep(500);
 
             return errorCode;
         }

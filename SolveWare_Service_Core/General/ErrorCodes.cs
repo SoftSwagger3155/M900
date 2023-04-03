@@ -26,6 +26,7 @@ namespace SolveWare_Service_Core.General
         public const int NoIOObject = -15;
         public const int IOFunctionError = -16;
         public const int MotionFunctionError = -17;
+        public const int CyclingFailed = -18;
         public const int MachineStopCall = -10000;
 
 
@@ -49,6 +50,7 @@ namespace SolveWare_Service_Core.General
             m.Add(IOFunctionError, "IO Function Error | IO 执行失败");
             m.Add(MotionFunctionError, "Motion Function Error | Motion 执行失败");
             m.Add(MachineStopCall, "Machine Stop Request | 机器暂停");
+            m.Add(CyclingFailed, "Cycling Failed | 自动运行 失败");
         }
 
         public static string GetErrorDescription(int errorCode, string extraInfo = "")
