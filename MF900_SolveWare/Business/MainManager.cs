@@ -211,8 +211,8 @@ namespace MF900_SolveWare.Business
         }
 
         private void AssignFSM()
-        {
-            this.FSM_Home = new FSM_Home_Controller();
+        {       
+            this.FSM_Home = new FSM_Home_Controller(true);
             this.FSM_Auto = new FSM_Auto_Controller();
             this.FSM_Reset = new FSM_Reset_Controller();
         }

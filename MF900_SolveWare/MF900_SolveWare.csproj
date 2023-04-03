@@ -43,7 +43,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\MVTec\HALCON-18.11-Progress\bin\dotnet35\halcondotnet.dll</HintPath>
     </Reference>
-
     <Reference Include="SolveWare_Service_Tool, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\M900_Dlls\SolveWare_Service_Tool.dll</HintPath>
@@ -97,6 +96,8 @@
     <Compile Include="FormCommunic\FormSwitch.cs" />
     <Compile Include="FSM\Auto\FSM_Auto_Controller.cs" />
     <Compile Include="FSM\Home\FSM_Home_Controller.cs" />
+    <Compile Include="FSM\Home\FSM_Home_MachineEvent.cs" />
+    <Compile Include="FSM\Home\Stations\FSM_Home_Station.cs" />
     <Compile Include="FSM\Reset\FSM_Reset_Controller.cs" />
     <Compile Include="Index\Data\Data_Index.cs" />
     <Compile Include="Index\Job\Job_Index.cs" />

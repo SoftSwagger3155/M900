@@ -109,7 +109,8 @@ namespace SolveWare_Service_Core.Info.Business
                 }
 
                 CleanMessages();
-
+                if(TotalMessage.Count > limitCount) { TotalMessage.RemoveAt(0); }
+                if (TotalErrorMessage.Count > limitCount) { TotalErrorMessage.RemoveAt(0); }
                 //(this.uiForDisplayInfo as ListBox)?.ScrollIntoView(_totalMessage.Last());
 
             });
@@ -151,7 +152,8 @@ namespace SolveWare_Service_Core.Info.Business
                 }
 
                 CleanMessages();
-
+                if (TotalMessage.Count > limitCount) { TotalMessage.RemoveAt(0); }
+                if (TotalErrorMessage.Count > limitCount) { TotalErrorMessage.RemoveAt(0); }
                 //  (this.uiForDisplayInfo as ListBox)?.ScrollIntoView(_totalMessage.Last());
 
             });
@@ -181,6 +183,8 @@ namespace SolveWare_Service_Core.Info.Business
                 }
 
                 CleanMessages();
+                if (TotalMessage.Count > limitCount) { TotalMessage.RemoveAt(0); }
+                if (TotalErrorMessage.Count > limitCount) { TotalErrorMessage.RemoveAt(0); }
                 //this.uiForDisplayInfo.SelectedItem = this.uiForDisplayInfo.Items[this.uiForDisplayInfo.Items.Count - 1];
                 if (isWindowShow)
                     MessageBox.Show(info, "通知讯息", MessageBoxButtons.OK);
@@ -269,6 +273,8 @@ namespace SolveWare_Service_Core.Info.Business
                     ErrorEventMngr?.ProcessError(msg);
 
                 CleanMessages();
+                if (TotalMessage.Count > limitCount) { TotalMessage.RemoveAt(0); }
+                if (TotalErrorMessage.Count > limitCount) { TotalErrorMessage.RemoveAt(0); }
                 if (isWindowShow)
                     MessageBox.Show(infos, "通知讯息", MessageBoxButtons.OK);
                 //  (this.uiForDisplayInfo as ListBox)?.ScrollIntoView(_totalMessage.Last());
