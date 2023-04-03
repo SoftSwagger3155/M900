@@ -106,7 +106,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            SolveWare.Core.MMgr.SetStatus(Definition.Machine_Status.Stop);
         }
     }
 }
