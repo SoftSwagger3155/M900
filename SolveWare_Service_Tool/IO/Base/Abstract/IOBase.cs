@@ -38,7 +38,7 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
         }
         #endregion
 
-        public abstract void Init();
+        public abstract bool Init();
 
         public string Description
         {

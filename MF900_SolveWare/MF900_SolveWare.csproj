@@ -113,6 +113,24 @@
     <Compile Include="Views\AxisMesForm\AxisDebugForm.designer.cs">
       <DependentUpon>AxisDebugForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Configuration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Configuration.Designer.cs">
+      <DependentUpon>Form_Axis_Configuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSafe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSafe.Designer.cs">
+      <DependentUpon>Form_Axis_Configuration_Item_MtrSafe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSpeed.Designer.cs">
+      <DependentUpon>Form_Axis_Configuration_Item_MtrSpeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AxisMesForm\IODebugForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,6 +320,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AxisMesForm\AxisDebugForm.resx">
       <DependentUpon>AxisDebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_Configuration.resx">
+      <DependentUpon>Form_Axis_Configuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSafe.resx">
+      <DependentUpon>Form_Axis_Configuration_Item_MtrSafe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSpeed.resx">
+      <DependentUpon>Form_Axis_Configuration_Item_MtrSpeed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AxisMesForm\IODebugForm.resx">
       <DependentUpon>IODebugForm.cs</DependentUpon>

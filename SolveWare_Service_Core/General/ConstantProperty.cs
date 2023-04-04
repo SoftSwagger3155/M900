@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SolveWare_Service_Core.General
 {
@@ -49,5 +50,9 @@ namespace SolveWare_Service_Core.General
         public const string ToolManager_Motor = "Tool_Motor";
         public const string ToolManager_IO = "Tool_IO";
         public const string ToolManager_Camera = "Tool_Camera";
+        public const string SpeedSetting_Home = "复位速度";
+        public const string SpeedSetting_Jog = "移动速度";
+        public const string SpeedSetting_TestHome = "测试 复位速度";
+        public const string SpeedSetting_TestJog = "测试 移动速度";
     }
 }

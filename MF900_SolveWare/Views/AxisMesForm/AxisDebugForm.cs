@@ -84,22 +84,22 @@ namespace MF900_SolveWare
         }
         private void InitalAxisVel()
         {
-            var axisArry = keyAxis.Keys.ToArray();
-            for (int i = 0; i < 4; i++)
-            {
-                uiDataGridView1.Rows.Add(new object[] {axisArry[i], keyAxis[axisArry[i]].MtrSpeed.Jog_Max_Velocity,
-                keyAxis[axisArry[i]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[i]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[i]].MtrSpeed.Jog_Deceleration});
-            }
-            for (int i = 4; i < 8; i++)
-            {
-                uiDataGridView5.Rows.Add(new object[] {axisArry[i], keyAxis[axisArry[i]].MtrSpeed.Jog_Max_Velocity,
-                keyAxis[axisArry[i]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[i]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[i]].MtrSpeed.Jog_Deceleration});
-            }
-            uiDataGridView6.Rows.Add(new object[] {axisArry[8], keyAxis[axisArry[8]].MtrSpeed.Jog_Max_Velocity,
-                keyAxis[axisArry[8]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[8]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[8]].MtrSpeed.Jog_Deceleration});
-            SetColEnable(uiDataGridView1);
-            SetColEnable(uiDataGridView5);
-            SetColEnable(uiDataGridView6);
+            //var axisArry = keyAxis.Keys.ToArray();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    uiDataGridView1.Rows.Add(new object[] {axisArry[i], keyAxis[axisArry[i]].MtrSpeed.Jog_Max_Velocity,
+            //    keyAxis[axisArry[i]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[i]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[i]].MtrSpeed.Jog_Deceleration});
+            //}
+            //for (int i = 4; i < 8; i++)
+            //{
+            //    uiDataGridView5.Rows.Add(new object[] {axisArry[i], keyAxis[axisArry[i]].MtrSpeed.Jog_Max_Velocity,
+            //    keyAxis[axisArry[i]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[i]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[i]].MtrSpeed.Jog_Deceleration});
+            //}
+            //uiDataGridView6.Rows.Add(new object[] {axisArry[8], keyAxis[axisArry[8]].MtrSpeed.Jog_Max_Velocity,
+            //    keyAxis[axisArry[8]].MtrSpeed.Jog_Min_Velocity,keyAxis[axisArry[8]].MtrSpeed.Jog_Acceleration,keyAxis[axisArry[8]].MtrSpeed.Jog_Deceleration});
+            //SetColEnable(uiDataGridView1);
+            //SetColEnable(uiDataGridView5);
+            //SetColEnable(uiDataGridView6);
         }
         private void InitalAxisJop()
         {
@@ -183,13 +183,13 @@ namespace MF900_SolveWare
         /// <param name="row"></param>
         private void TopAndBtmSetSpeed(DataGridView dataGridView,int row,DataGridView speedData)
         {
-            mtrSpeed = new MtrSpeed()
-            {
-                Jog_Acceleration = double.Parse(speedData[3, row].Value.ToString()),
-                Jog_Deceleration = double.Parse(speedData[4, row].Value.ToString()),
-                Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
-                Jog_Min_Velocity = double.Parse(speedData[2, row].Value.ToString()),
-            };
+            //mtrSpeed = new MtrSpeed()
+            //{
+            //    Jog_Acceleration = double.Parse(speedData[3, row].Value.ToString()),
+            //    Jog_Deceleration = double.Parse(speedData[4, row].Value.ToString()),
+            //    Jog_Max_Velocity = double.Parse(dataGridView[3, row].Value.ToString()),
+            //    Jog_Min_Velocity = double.Parse(speedData[2, row].Value.ToString()),
+            //};
         }
         #region MoveTo
 
@@ -299,13 +299,13 @@ namespace MF900_SolveWare
 
         private void TableSpeed()
         {
-            ResourceKey.Motor_Table.GetAxisBase().MtrSpeed = new MtrSpeed()
-            {
-                Jog_Min_Velocity = 1,
-                Jog_Max_Velocity = double.Parse(txt_TableSpeed.Text),
-                Jog_Acceleration = 1000,
-                Jog_Deceleration = 1000
-            };
+            //ResourceKey.Motor_Table.GetAxisBase().MtrSpeed = new MtrSpeed()
+            //{
+            //    Jog_Min_Velocity = 1,
+            //    Jog_Max_Velocity = double.Parse(txt_TableSpeed.Text),
+            //    Jog_Acceleration = 1000,
+            //    Jog_Deceleration = 1000
+            //};
         }
         //Jog+
         private void uiButton12_MouseDown(object sender, MouseEventArgs e)

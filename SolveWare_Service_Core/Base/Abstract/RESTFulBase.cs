@@ -9,20 +9,20 @@ using System.Windows.Forms;
 
 namespace SolveWare_Service_Core.Base.Abstract
 {
-    public abstract class RESTFulBase : IRESTFul
+    public class RESTFulBase<TData> : IRESTFul<TData> where TData : IElement
     {
         public string FilePath
         {
             get;
             set;
         }
-        public IList<IElement> DataBase
+        public IList<TData> DataBase
         {
             get;
             set;
         }
 
-        public bool AddSingleData(IElement data)
+        public bool AddSingleData(TData data)
         {
             if (this.DataBase.ToList().Exists(x => (x as IElement).Id == (data as IElement).Id))
             {
@@ -32,7 +32,7 @@ namespace SolveWare_Service_Core.Base.Abstract
             this.DataBase.Add(data);
             return true;
         }
-        public bool DeleteSingleData(IElement data)
+        public bool DeleteSingleData(TData data)
         {
             int index = this.DataBase.ToList().FindIndex(x => (x as IElement).Id == (data as IElement).Id);
             if (index < 0)
@@ -40,7 +40,7 @@ namespace SolveWare_Service_Core.Base.Abstract
                 return false;
             }
 
-            List<IElement> tempDatas = this.DataBase.ToList();
+            List<TData> tempDatas = this.DataBase.ToList();
             tempDatas.RemoveAt(index);
 
             this.DataBase.Clear();
@@ -52,23 +52,23 @@ namespace SolveWare_Service_Core.Base.Abstract
 
             return true;
         }
-        public IElement GetSingleData(string name)
+        public TData GetSingleData(string name)
         {
-            IElement data = default(IElement);
+            TData data = default(TData);
             if (this.DataBase.Count == 0) return data;
 
             data = this.DataBase.ToList().Find(x => (x as IElement).Name == name);
             return data;
         }
-        public IElement GetSingleData(IElement IElementBase)
+        public TData GetSingleData(TData IElementBase)
         {
-            IElement data = default(IElement);
+            TData data = default(TData);
             if (this.DataBase.Count == 0) return data;
 
             data = this.DataBase.ToList().Find(x => (x as IElement).Name == IElementBase.Name && (x as IElement).Id == IElementBase.Id);
             return data;
         }
-        public bool SaveSingleData(IElement data)
+        public bool SaveSingleData(TData data)
         {
             bool isSaveOK = false;
             var result = MessageBox.Show("确认 储存?", "提示", MessageBoxButtons.YesNo);
@@ -91,7 +91,7 @@ namespace SolveWare_Service_Core.Base.Abstract
             else
             {
                 //有相同的物件 抓出来
-                int index = this.DataBase.ToList().FindIndex(x => (x as IElement).Id == (data as IElement).Id);
+                int index = this.DataBase.ToList().FindIndex(x => (x as IElement).Name == (data as IElement).Name);
                 if (index < 0)
                 {
                     MessageBox.Show("已有相同名字的物件 | 储存 失败");
@@ -101,7 +101,7 @@ namespace SolveWare_Service_Core.Base.Abstract
                 this.DataBase[index] = data;
             }
 
-            XMLHelper.Save<List<IElement>>(DataBase.ToList(), FilePath);
+            XMLHelper.Save(DataBase.ToList(), FilePath);
             MessageBox.Show("储存 成功");
             isSaveOK = true;
             return isSaveOK;

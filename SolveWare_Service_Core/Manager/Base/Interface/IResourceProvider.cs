@@ -19,5 +19,9 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IList<string> Get_All_Item_Name();
         void DoubleCheck(params string[] names);
         void Plug_In();
+
+        bool SaveSingleData(IElement item);
+        bool AddSingleData(IElement item);
+        bool DeleteSingleData(IElement item);
     }
 }

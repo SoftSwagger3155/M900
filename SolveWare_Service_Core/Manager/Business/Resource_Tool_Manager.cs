@@ -14,8 +14,11 @@ using System.Xml.Linq;
 
 namespace SolveWare_Service_Core.Manager.Business
 {
-    public class Resource_Tool_Manager<TConfigData> : RESTFulBase, IToolResourceProvider where TConfigData : IElement
+    public class Resource_Tool_Manager<TConfigData> : IToolResourceProvider where TConfigData : IElement
     {
+        private RESTFulBase<TConfigData> RESTFul = null;
+        private string FilePath = string.Empty;
+
         public IFactory Factory { get; private set; }
         public IList<IElement> WareHouse { get; private set; }
         public string ResourceKey { get; private set; }
@@ -30,6 +33,7 @@ namespace SolveWare_Service_Core.Manager.Business
             this.Factory = factory;
             Name = $"Resource_Tool_{typeof(TConfigData).Name}";
             this.FilePath = Path.Combine(SystemPath.GetSystemPath, $"{this.Name}.xml");
+            this.RESTFul = new RESTFulBase<TConfigData>() { FilePath = this.FilePath };
 
             var customeKeys = typeof(TConfigData).GetCustomAttributes();
             foreach (var item in customeKeys)
@@ -87,7 +91,7 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             bool isOk = false;
             if (string.IsNullOrEmpty(FilePath)) throw new Exception($"无档案路径");
-            this.DataBase = new List<IElement>();
+            this.RESTFul.DataBase = new List<TConfigData>();
             List<TConfigData> tempConfigDatas = new List<TConfigData>();
             try
             {
@@ -105,10 +109,10 @@ namespace SolveWare_Service_Core.Manager.Business
                 else
                 {
                     var tempList = XMLHelper.Load<List<TConfigData>>(FilePath);
-                    this.DataBase.Clear();
+                    this.RESTFul.DataBase.Clear();
                     foreach (var item in tempList)
                     {
-                        this.DataBase.Add(item);
+                        this.RESTFul.DataBase.Add(item);
                     }
                 }
 
@@ -126,10 +130,10 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             try
             {
-                List<TConfigData> tempList = new List<TConfigData>();
-                this.DataBase.ToList().ForEach(x => tempList.Add((TConfigData)x));
+                //List<TConfigData> tempList = new List<TConfigData>();
+                //this.DataBase.ToList().ForEach(x => tempList.Add((TConfigData)x));
                 
-                XMLHelper.Save(tempList, FilePath);
+                XMLHelper.Save(RESTFul.DataBase.ToList(), FilePath);
                 SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg);
                 //SolveWare.Core.MMgr.Infohandler.PopUpHandyControlMessage($"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] 储存 成功");
             }
@@ -147,7 +151,7 @@ namespace SolveWare_Service_Core.Manager.Business
             this.WareHouse = new List<IElement>();
             try
             {
-                foreach (var item in this.DataBase)
+                foreach (var item in this.RESTFul.DataBase)
                 {
                     IElement tool = Factory.BuildTool(item);
                     if (tool == null ) throw new Exception($"{this.Name} 创造资源物件失败");
@@ -161,6 +165,7 @@ namespace SolveWare_Service_Core.Manager.Business
             {
                 SolveWare.Core.MMgr.Infohandler.LogMessage($"{this.Name} 生产物件失败 {Environment.NewLine} {ex.Message}", isWindowShow:true, isError:true);
             }
+            if (isOk) Save(false);
 
             return isOk;
         }
@@ -188,15 +193,15 @@ namespace SolveWare_Service_Core.Manager.Business
                 else
                 {
                     correntTools.Add((IElement)WareHouse[index]);
-                    IElement data = this.DataBase.ToList().FirstOrDefault(x => x.Name == name);
+                    IElement data = this.RESTFul.DataBase.ToList().FirstOrDefault(x => x.Name == name);
                     corretDatas.Add(data);
                 }
             }
 
             this.WareHouse.Clear();
-            this.DataBase.Clear();
+            this.RESTFul.DataBase.Clear();
             correntTools.ForEach(x => this.WareHouse.Add(x as IElement));
-            corretDatas.ForEach(x => this.DataBase.Add(x as IElement));
+            corretDatas.ForEach(x => this.RESTFul.DataBase.Add((TConfigData)x));
             Save(false);
         }
 
@@ -213,6 +218,21 @@ namespace SolveWare_Service_Core.Manager.Business
         public void StopStatusReading()
         {
             this.WareHouse.ToList().ForEach(x => (x as IToolElement).StopStatusReading());
+        }
+
+        public bool SaveSingleData(IElement item)
+        {
+            return this.RESTFul.SaveSingleData((TConfigData) item);
+        }
+
+        public bool AddSingleData(IElement item)
+        {
+            return this.RESTFul.AddSingleData((TConfigData)item);
+        }
+
+        public bool DeleteSingleData(IElement item)
+        {
+            return this.RESTFul.DeleteSingleData((TConfigData)item);
         }
     }
 }

@@ -90,7 +90,7 @@ namespace MF900_SolveWare.MMperPixel.Job
 
                     this.camera.Data_MMperPixal.Average_MMperPixel= averagePixel;
                     IResourceProvider provider = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Camera);
-                    (provider as IRESTFul).SaveSingleData(this.camera);
+                    provider.SaveSingleData(this.camera);
 
                 } while (false);
             }

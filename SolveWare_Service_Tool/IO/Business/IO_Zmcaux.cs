@@ -25,11 +25,15 @@ namespace SolveWare_Service_Tool.IO.Business
             Init();
         }
 
-        public override void Init()
+        public override bool Init()
         {
             this.IOType = this.configData.IOType;
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
+            if (master.CardInfo.Dic_CardHandler.Count == 0 && !configData.Simulation) return false;
+            if (master.CardInfo.Dic_CardHandler.Count == 0 && configData.Simulation) return true;
+
             Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
+            return true;
         }
 
         public override void Off()

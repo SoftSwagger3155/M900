@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using MF900_SolveWare.Views.AxisMesForm;
+using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Utility.Extension;
 using Sunny.UI;
 using System;
@@ -33,7 +34,7 @@ namespace MF900_SolveWare
         }
         public void Setup<TData>(TData data)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void btn_IoShow_Click(object sender, EventArgs e)
@@ -44,8 +45,10 @@ namespace MF900_SolveWare
 
         private void btn_AxisDebugShow_Click(object sender, EventArgs e)
         {
-            axisDebug = new AxisDebugForm();
-            axisDebug.Show();
+            Form_Axis_Configuration form = new Form_Axis_Configuration();
+            form.Show();
+            //axisDebug = new AxisDebugForm();
+            //axisDebug.Show();
         }
     }
 }

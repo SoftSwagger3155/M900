@@ -10,18 +10,22 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SolveWare_Service_Core.Manager.Business
 {
-    public class Resource_Data_Manager<TData> : RESTFulBase, IDataResourceProvider
+    public class Resource_Data_Manager<TData> : IDataResourceProvider where TData:IElement
     {
+        private RESTFulBase<TData> RESTFul;
+        private string FilePath = string.Empty;
         public string ResourceKey { get; private set; }
         public string Name { get; set; }
-
+       
         public Resource_Data_Manager()
         {
             Name = $"Resource_Data_{typeof(TData).Name}";
             this.FilePath = Path.Combine(SystemPath.GetSystemPath, $"{this.Name}.xml");
+            RESTFul = new RESTFulBase<TData>() { FilePath = this.FilePath};
 
             var customeKeys = typeof(TData).GetCustomAttributes();
             foreach (var item in customeKeys)
@@ -35,20 +39,20 @@ namespace SolveWare_Service_Core.Manager.Business
        
         public IList<IElement> Get_All_Items()
         {
-            return DataBase;
+            return RESTFul.DataBase.ToList().ConvertAll(x=> x as IElement);
         }
 
         public IList<string> Get_All_Item_Name()
         {
             List<string> list = new List<string>();
-            DataBase.ToList().ForEach(x => list.Add(x.Name));
+            RESTFul.DataBase.ToList().ForEach(x => list.Add((x as IElement).Name));
 
             return list;
         }
 
         public IElement Get_Single_Item(string name)
         {
-            return Get_All_Items().FirstOrDefault(x => x.Name == name);
+            return Get_All_Items().FirstOrDefault(x => (x as IElement).Name == name);
         }
 
         public bool Initialize()
@@ -76,7 +80,7 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             bool isOk = false;
             if (string.IsNullOrEmpty(FilePath)) throw new Exception($"无档案路径");
-            this.DataBase = new List<IElement>();
+            this.RESTFul.DataBase = new List<TData>();
 
             try
             {
@@ -85,7 +89,7 @@ namespace SolveWare_Service_Core.Manager.Business
                     var tempList = XMLHelper.Load<List<TData>>(FilePath);
                     foreach (var item in tempList)
                     {
-                        this.DataBase.Add(item as IElement);
+                        this.RESTFul.DataBase.Add(item);
                     }
                     isOk = true;
                 }
@@ -102,9 +106,9 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             try
             {
-                List<TData> tempList = new List<TData>();
-                this.DataBase.ToList().ForEach(x => tempList.Add((TData)x));
-                XMLHelper.Save(tempList, FilePath);
+                //List<TData> tempList = new List<TData>();
+                //this.DataBase.ToList().ForEach(x => tempList.Add((TData)x));
+                XMLHelper.Save(RESTFul.DataBase.ToList(), FilePath);
 
                 //XMLHelper.Save<List<TData>>((this.DataBase.ToList() as List<TData>), FilePath);
                 SolveWare.Core.MMgr.Infohandler.LogMessage($"储存 成功", isWindowShow: isWindowShowMsg);
@@ -119,7 +123,7 @@ namespace SolveWare_Service_Core.Manager.Business
         {
             int totalCount = names.Length;
             List<TData> correctDatas = new List<TData>();
-            var databases = this.DataBase.ToList();
+            var databases = this.RESTFul.DataBase.ToList();
 
             foreach (string name in names)
             {
@@ -138,13 +142,28 @@ namespace SolveWare_Service_Core.Manager.Business
             }
 
 
-            this.DataBase.Clear();
-            correctDatas.ForEach(x => this.DataBase.Add(x as IElement));
+            this.RESTFul.DataBase.Clear();
+            correctDatas.ForEach(x => this.RESTFul.DataBase.Add(x));
             Save(false);
         }
         public void Plug_In()
         {
             SolveWare.Core.MMgr.Resource_Data_Center.Add(this);
+        }
+
+        public bool SaveSingleData(IElement item)
+        {
+            return this.RESTFul.SaveSingleData((TData)item);
+        }
+
+        public bool AddSingleData(IElement item)
+        {
+            return this.RESTFul.AddSingleData((TData)item);
+        }
+
+        public bool DeleteSingleData(IElement item)
+        {
+            return this.RESTFul.DeleteSingleData((TData)item);
         }
     }
 }

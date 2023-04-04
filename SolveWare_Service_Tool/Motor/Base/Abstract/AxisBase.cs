@@ -17,17 +17,18 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 {
     public abstract class AxisBase : ToolElementBase
     {
+        public ConfigData_Motor ConfigData { get; private set; }
         #region ctor
         public AxisBase(IElement configData)
         {
-            ConfigData_Motor config = (configData as ConfigData_Motor);
+            ConfigData = (configData as ConfigData_Motor);
 
-            this.mtrTable = config.MtrTable;
-            this.mtrConfig = config.MtrConfig;
-            this.mtrMisc = config.MtrMisc;
-            this.mtrSafe = config.MtrSafe;
-            this.mtrSpeed = config.MtrSpeed;
-            this.simulation = config.Simulation;
+            this.mtrTable = ConfigData.MtrTable;
+            this.mtrConfig = ConfigData.MtrConfig;
+            this.mtrMisc = ConfigData.MtrMisc;
+            this.mtrSafe = ConfigData.MtrSafe;
+            this.mtrSpeed = ConfigData.MtrSpeed;
+            this.simulation = ConfigData.Simulation;
             this.Name = mtrTable.Name;
             if (this.Id == 0) Id = IdentityGenerator.IG.GetIdentity();
 
@@ -312,15 +313,18 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
         public void Conver_To_Home_MMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
         {
-            double speedRatio = 100 / mtrSpeed.SpeedRate_Home;
+            SpeedSeting mtrSpeed = this.ConfigData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == ConstantProperty.SpeedSetting_Home);
+
+
+            double speedRatio = 100 / mtrSpeed.SpeedRatio;
       
 
             double unitPerSec = mtrTable.PulsePerRevolution / mtrTable.UnitPerRevolution;
-            double acc_Unit = mtrSpeed.Home_Acceleration * unitPerSec * speedRatio;
-            double dec_Unit = mtrSpeed.Home_Deceleration * unitPerSec * speedRatio;
+            double acc_Unit = mtrSpeed.Acceleration * unitPerSec * speedRatio;
+            double dec_Unit = mtrSpeed.Deceleration * unitPerSec * speedRatio;
 
-            startVel = (float)(unitPerSec * mtrSpeed.Home_Min_Velocity);
-            maxVel = (float)(unitPerSec * mtrSpeed.Home_Max_Velocity * speedRatio);
+            startVel = (float)(unitPerSec * mtrSpeed.Min_Velocity);
+            maxVel = (float)(unitPerSec * mtrSpeed.Max_Velocity * speedRatio);
 
             double factor = maxVel == startVel ? 1 : maxVel - startVel;
             acc = factor / acc_Unit;
@@ -329,15 +333,18 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
         public void Conver_To_Jog_MMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
         {
-            double speedRatio = 100 / mtrSpeed.SpeedRate_Jog;
+            SpeedSeting mtrSpeed = this.ConfigData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == ConstantProperty.SpeedSetting_Jog);
+
+
+            double speedRatio = 100 / mtrSpeed.SpeedRatio;
 
 
             double unitPerSec = mtrTable.PulsePerRevolution / mtrTable.UnitPerRevolution;
-            double acc_Unit = mtrSpeed.Jog_Acceleration * unitPerSec * speedRatio;
-            double dec_Unit = mtrSpeed.Jog_Deceleration * unitPerSec * speedRatio;
+            double acc_Unit = mtrSpeed.Acceleration * unitPerSec * speedRatio;
+            double dec_Unit = mtrSpeed.Deceleration * unitPerSec * speedRatio;
 
-            startVel = (float)(unitPerSec * mtrSpeed.Jog_Min_Velocity);
-            maxVel = (float)(unitPerSec * mtrSpeed.Jog_Max_Velocity * speedRatio);
+            startVel = (float)(unitPerSec * mtrSpeed.Min_Velocity);
+            maxVel = (float)(unitPerSec * mtrSpeed.Max_Velocity * speedRatio);
 
             double factor = maxVel == startVel ? 1 : maxVel - startVel;
             acc = factor / acc_Unit;

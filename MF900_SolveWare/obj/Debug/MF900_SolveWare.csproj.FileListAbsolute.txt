@@ -171,3 +171,6 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csp
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.exe
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Configuration.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Configuration_Item_MtrSpeed.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Configuration_Item_MtrSafe.resources

@@ -93,6 +93,7 @@
     <Compile Include="Motor\Definition\Enum_Limit_Config.cs" />
     <Compile Include="Motor\Definition\Enum_Master_Driver_Motor.cs" />
     <Compile Include="Motor\Definition\Enum_Motor_Wait_Kind.cs" />
+    <Compile Include="Motor\Definition\Enum_Safety_Operand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
