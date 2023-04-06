@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Tool.Camera.Base.Interface;
+﻿using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Base.Attributes
 {
-    public abstract class JobSheetModuleBase : JobSheetModule
+    public abstract class JobSheetModuleBase : ElementBase, JobSheetModule
     {
         ICameraBase camera;
         IJobSheetData data;

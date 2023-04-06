@@ -98,19 +98,17 @@ namespace MF900_SolveWare.Resource
         public const string OffsetData_Btm_Camera_Btm_Prober = "OffsetData-下相机-下治具";
         public const string OffsetData_Top_Camera_Btm_Pin = "OffsetData-上相机-下顶针";
 
-        
+
         //MMperPixel
         public const string MMperPixel_TopCamera = "MMperPixel-上相机";
         public const string MMperPixel_BtmCamera = "MMperPixel-下相机";
 
 
         //Pos
-        public const string Pos_WorldCenter_TopCamera = "位置-世界中心-上相机";
-        public const string Pos_WorldCenter_BtmCamera = "位置-世界中心-下相机";
         public const string Pos_Top_StandbyPos = "Pos-上预备位置";
         public const string Pos_Btm_StandbyPos = "Pos-下预备位置";
 
         //Data
-        public const string Data_GlobalWorldCenter = "世界中心资料";
+        public const string GlobalWorldCenter = "世界中心";
     }
 }

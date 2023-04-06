@@ -18,6 +18,18 @@ namespace SolveWare_Service_Vision.Inspection.Business
     
     public class Inspect : DataJobPairFundamentalBase<Data_InspectionKit>,  IInspectionKit
     {
+        private double offsetX = 0;
+        private double offsetY = 0;
+
+        public double OffsetX
+        {
+            get => offsetX;
+        }
+        public double OffsetY
+        {
+            get=> offsetY;
+        }
+
         public Inspect(string name):base(name)
         {
             
@@ -89,6 +101,8 @@ namespace SolveWare_Service_Vision.Inspection.Business
                     errorCode = Do_Blob();
                     if (errorCode.NotPass()) break;
 
+
+                    //计算Offset
 
                 } while (false);
             }

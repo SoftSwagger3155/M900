@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -112,6 +113,10 @@ namespace SolveWare_Service_Utility.Extension
             }
 
             return lighting;
+        }
+        public static double GetUnitPos(this string name)
+        {
+            return name.GetAxisBase().Get_CurUnitPos();
         }
         public static ICommonJobFundamental GetJob(this string name)
         {

@@ -235,5 +235,11 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
             return element;
         }
+
+        public ICommonJobFundamental Get_PairJob(string jobName)
+        {
+            ICommonJobFundamental job = this.Resource_DataPair_Center.FirstOrDefault(x=> (x as IElement).Name ==  jobName);
+            return job;
+        }
     }
 }

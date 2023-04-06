@@ -56,5 +56,11 @@ namespace MF900_SolveWare
             (view as Form).Show();
 
         }
+
+        private void btn_Gold_Center_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_Learn_Global_Center();
+            (view as Form).Show();
+        }
     }
 }

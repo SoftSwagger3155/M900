@@ -33,6 +33,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IElement Get_Single_Element_Form_Data_Resource(string resourceKey, string name);
         IResourceProvider Get_Single_Tool_Resource(Tool_Resource_Kind kind);
         IElement Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind kind, string name);
+        ICommonJobFundamental Get_PairJob(string jobName);
         void CloseAll();
     }
 }

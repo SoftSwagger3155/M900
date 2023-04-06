@@ -30,7 +30,6 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
         {
             this.configData = data as ConfigData_IO;
             this.Simulation = (data as ConfigData_IO).Simulation;
-            if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
         }
         public void Setup(IElement configData)
         {

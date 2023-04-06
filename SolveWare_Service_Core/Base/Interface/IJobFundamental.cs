@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Core.Base.Interface
 {
-    public  interface IJobFundamental
+    public  interface IJobFundamental: IElement
     {
         int Do_Job();
     }

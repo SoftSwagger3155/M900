@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Business\Global.cs" />
     <Compile Include="Business\RecipeHandler.cs" />
+    <Compile Include="WorldCenter\Data\Data_GlobalWorldCenter.cs" />
     <Compile Include="DeControls\AxisJop.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,11 +192,11 @@
     <Compile Include="Views\Child\Form_InspectKit_PatternMatch.Designer.cs">
       <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Child\Form_Learn_Golden_Center.cs">
+    <Compile Include="Views\Child\Form_Learn_Global_Center.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Child\Form_Learn_Golden_Center.Designer.cs">
-      <DependentUpon>Form_Learn_Golden_Center.cs</DependentUpon>
+    <Compile Include="Views\Child\Form_Learn_Global_Center.Designer.cs">
+      <DependentUpon>Form_Learn_Global_Center.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductPanelForm.cs">
       <SubType>Form</SubType>
@@ -369,6 +370,7 @@
     <Compile Include="Views\Main\RunForm.Designer.cs">
       <DependentUpon>RunForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorldCenter\Job\Job_GlobalWorldCenter.cs" />
     <EmbeddedResource Include="DeControls\AxisJop.resx">
       <DependentUpon>AxisJop.cs</DependentUpon>
     </EmbeddedResource>
@@ -420,8 +422,8 @@
     <EmbeddedResource Include="Views\Child\Form_InspectKit_PatternMatch.resx">
       <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Child\Form_Learn_Golden_Center.resx">
-      <DependentUpon>Form_Learn_Golden_Center.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Child\Form_Learn_Global_Center.resx">
+      <DependentUpon>Form_Learn_Global_Center.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>
@@ -590,5 +592,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

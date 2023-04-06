@@ -33,8 +33,7 @@ namespace SolveWare_Service_Tool.Camera.Business
         {
             //this.ConfigData = configData as ConfigData_Camera;
             stopwatch = new Stopwatch();
-
-            if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
+            
         }
         public override void AssingCameraMedia(object obj_Camera)
         {

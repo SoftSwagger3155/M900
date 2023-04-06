@@ -21,7 +21,6 @@ namespace SolveWare_Service_Vision.Data
         public JobSheet_SearchArea JobSheet_SearchArea_Data { get; set; }
         public JobSheet_PatternMatch JobSheet_PatternMatch_Data { get; set; }
         public JobSheet_Blob JobSheet_Blob_Data { get; set; }
-
         public double CenterX { get; set; }
         public double CenterY { get; set; }
         public double Angle { get; set; }

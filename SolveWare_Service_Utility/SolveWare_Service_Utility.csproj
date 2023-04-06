@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Common\IO\Data_IO.cs" />
     <Compile Include="Common\IO\Job_IO.cs" />
+    <Compile Include="Common\MotionHelper.cs" />
     <Compile Include="Common\Motion\Data_Motion.cs" />
     <Compile Include="Common\Motion\Job_Motion.cs" />
     <Compile Include="Extension\ExtensionMethod.cs" />

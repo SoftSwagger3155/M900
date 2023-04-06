@@ -18,7 +18,6 @@ namespace SolveWare_Service_Tool.IO.Data
 
         public ConfigData_IO()
         {
-            if (Id == 0) id = IdentityGenerator.IG.GetIdentity();
         }
 
         public int CardNo { get; set; }

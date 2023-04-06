@@ -30,7 +30,6 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             this.mtrSpeed = ConfigData.MtrSpeed;
             this.simulation = ConfigData.Simulation;
             this.Name = mtrTable.Name;
-            if (this.Id == 0) Id = IdentityGenerator.IG.GetIdentity();
 
             //StartStatusReading();
         }

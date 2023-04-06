@@ -70,6 +70,9 @@ namespace MF900_SolveWare.Business
         private void MainManager_On_Data_Resource_Loading_Handler()
         {
             IResourceProvider provider = null;
+
+            //世界中心
+            //provider 
           
             //视物Data
             //provider = new Resource_Data_Manager<Data_InspectionKit>();
@@ -177,22 +180,6 @@ namespace MF900_SolveWare.Business
             ICommonJobFundamental MMperPixel_BtmCamera = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_BtmCamera);
             Resource_DataPair_Center.Add(MMperPixel_TopCamera);
             Resource_DataPair_Center.Add(MMperPixel_BtmCamera);
-
-
-            //Pos
-            Job_Motion Pos_TopCameraInspectGitHole = new Job_Motion(ResourceKey.Pos_WorldCenter_TopCamera);
-            List<DetailData_Motion> top_MotionDetails = new List<DetailData_Motion>
-            {
-                new DetailData_Motion{ AxisName = ResourceKey.Motor_Top_X, Pos =0 },
-                new DetailData_Motion{ AxisName = ResourceKey.Motor_Top_Y, Pos =0 }
-            };
-            Pos_TopCameraInspectGitHole.Data.DetailDatas = top_MotionDetails;
-            Pos_TopCameraInspectGitHole.Save();
-           
-            ICommonJobFundamental Pos_btmCameraInspectGitHole = new Job_Motion(ResourceKey.Pos_WorldCenter_BtmCamera);
-            Resource_DataPair_Center.Add(Pos_TopCameraInspectGitHole);
-            Resource_DataPair_Center.Add(Pos_btmCameraInspectGitHole);
-
            
 
             //Offset

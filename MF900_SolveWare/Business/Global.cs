@@ -25,7 +25,7 @@ namespace MF900_SolveWare.Business
         {
             provider = new Resource_Data_Manager<Data_GlobalCenter>();
             provider.Initialize();
-            provider.DoubleCheck(ResourceKey.Data_GlobalWorldCenter);
+            provider.DoubleCheck(ResourceKey.GlobalWorldCenter);
             CreateJobMotion();
        
         }
@@ -44,7 +44,7 @@ namespace MF900_SolveWare.Business
             }
         }
      
-        public Data_GlobalCenter Data_Center { get => (Data_GlobalCenter)provider.Get_Single_Item(ResourceKey.Data_GlobalWorldCenter); }
+        public Data_GlobalCenter Data_Center { get => (Data_GlobalCenter)provider.Get_Single_Item(ResourceKey.GlobalWorldCenter); }
 
         /// <summary>
         /// TODO Run Global Center Process : Stanley  实现细节
@@ -56,21 +56,21 @@ namespace MF900_SolveWare.Business
 
         private void CreateJobMotion()
         {
-            Pos_TopCamera = new Job_Motion(ResourceKey.Pos_WorldCenter_TopCamera);
-            List<DetailData_Motion> top_MotionDetails = new List<DetailData_Motion>
-            {
-                new DetailData_Motion{ AxisName = ResourceKey.Motor_Top_X, Pos =0 },
-                new DetailData_Motion{ AxisName = ResourceKey.Motor_Top_Y, Pos =0 }
-            };
-            Pos_TopCamera.Data.DetailDatas = top_MotionDetails;
+            //Pos_TopCamera = new Job_Motion(ResourceKey.Pos_WorldCenter_TopCamera);
+            //List<DetailData_Motion> top_MotionDetails = new List<DetailData_Motion>
+            //{
+            //    new DetailData_Motion{ AxisName = ResourceKey.Motor_Top_X, Pos =0 },
+            //    new DetailData_Motion{ AxisName = ResourceKey.Motor_Top_Y, Pos =0 }
+            //};
+            //Pos_TopCamera.Data.DetailDatas = top_MotionDetails;
 
-            Pos_BtmCamera = new Job_Motion(ResourceKey.Pos_WorldCenter_BtmCamera);
-            List<DetailData_Motion> btm_MotionDetails = new List<DetailData_Motion>
-            {
-                new DetailData_Motion{ AxisName = ResourceKey.Motor_Btm_X, Pos =0 },
-                new DetailData_Motion{ AxisName = ResourceKey.Motor_Btm_Y, Pos =0 }
-            };
-            Pos_BtmCamera.Data.DetailDatas = btm_MotionDetails;
+            //Pos_BtmCamera = new Job_Motion(ResourceKey.Pos_WorldCenter_BtmCamera);
+            //List<DetailData_Motion> btm_MotionDetails = new List<DetailData_Motion>
+            //{
+            //    new DetailData_Motion{ AxisName = ResourceKey.Motor_Btm_X, Pos =0 },
+            //    new DetailData_Motion{ AxisName = ResourceKey.Motor_Btm_Y, Pos =0 }
+            //};
+            //Pos_BtmCamera.Data.DetailDatas = btm_MotionDetails;
         }
     }
 

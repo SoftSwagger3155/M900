@@ -93,7 +93,7 @@ namespace MF900_SolveWare.Views.Child
                     break;
 
             }
-
+            this.tView_Content.ExpandAll();
         }
 
     }

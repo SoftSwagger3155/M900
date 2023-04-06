@@ -24,7 +24,11 @@ namespace SolveWare_Service_Core.General
         public const string Vision = "Vision-视觉";
         public const string GapOffset = "GapOffset-间距移动";
         public const string MMperPixel = "MMperPiexel-相机校正";
+        public const string Pos = "位置";
+        public const string Offset = "间距";
+        public const string WorldCenter = "世界中心";
         public const string Motor = "马达";
+        public const string Index = "索引";
         public const string Setting_Content = "设置内容";
         public const string Execute_Content = "執行內容";
         public const string Display_Content = "顯示內容";
