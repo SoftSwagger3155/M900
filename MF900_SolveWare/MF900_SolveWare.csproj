@@ -384,6 +384,9 @@
     <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.resx">
       <DependentUpon>Form_InspectKit_Lighting_Item_LightSource.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit_PatternMatch.resx">
+      <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>
     </EmbeddedResource>

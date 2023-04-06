@@ -75,6 +75,9 @@ namespace MF900_SolveWare.Views.Child
                     (view_Lighting as Form).ShowDialog();
                     break;
                 case NodeName_PatternMatch:
+                    IView view_PatternMatch = new Form_InspectKit_PatternMatch();
+                    view_PatternMatch.Setup(dataKit);
+                    (view_PatternMatch as Form).ShowDialog();
                     break;
                 case NodeName_Blob:
                     break;
