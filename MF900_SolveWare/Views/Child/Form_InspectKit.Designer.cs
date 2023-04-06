@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("上相机 曝光时间 100 us  增益 10");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("相机亮度设定", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("上相机 光源 OP 开");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("下相机 光源 OP 关");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("光源设定", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("模板学习");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("模板", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Blob学习");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Blob", new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("上相机 曝光时间 100 us  增益 10");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("相机亮度设定", new System.Windows.Forms.TreeNode[] {
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("上相机 光源 OP 开");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("下相机 光源 OP 关");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("光源设定", new System.Windows.Forms.TreeNode[] {
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("模板学习");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("模板", new System.Windows.Forms.TreeNode[] {
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Blob学习");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Blob", new System.Windows.Forms.TreeNode[] {
+            treeNode17});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_InspectKit));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Inspect = new System.Windows.Forms.Button();
             this.tView_Content = new System.Windows.Forms.TreeView();
             this.hWindowControl1 = new HalconDotNet.HWindowControl();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -63,7 +63,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btn_Inspect);
             this.groupBox1.Controls.Add(this.tView_Content);
             this.groupBox1.Controls.Add(this.hWindowControl1);
             this.groupBox1.Location = new System.Drawing.Point(24, 26);
@@ -73,14 +73,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "视觉设定功能";
             // 
-            // button1
+            // btn_Inspect
             // 
-            this.button1.Location = new System.Drawing.Point(1122, 365);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 45);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "视觉测试";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Inspect.Location = new System.Drawing.Point(1122, 365);
+            this.btn_Inspect.Name = "btn_Inspect";
+            this.btn_Inspect.Size = new System.Drawing.Size(106, 45);
+            this.btn_Inspect.TabIndex = 5;
+            this.btn_Inspect.Text = "视觉测试";
+            this.btn_Inspect.UseVisualStyleBackColor = true;
             // 
             // tView_Content
             // 
@@ -88,29 +88,29 @@
             this.tView_Content.HideSelection = false;
             this.tView_Content.Location = new System.Drawing.Point(571, 23);
             this.tView_Content.Name = "tView_Content";
-            treeNode1.Name = "节点5";
-            treeNode1.Text = "上相机 曝光时间 100 us  增益 10";
-            treeNode2.Name = "节点0";
-            treeNode2.Text = "相机亮度设定";
-            treeNode3.Name = "节点6";
-            treeNode3.Text = "上相机 光源 OP 开";
-            treeNode4.Name = "节点7";
-            treeNode4.Text = "下相机 光源 OP 关";
-            treeNode5.Name = "节点1";
-            treeNode5.Text = "光源设定";
-            treeNode6.Name = "节点8";
-            treeNode6.Text = "模板学习";
-            treeNode7.Name = "节点2";
-            treeNode7.Text = "模板";
-            treeNode8.Name = "节点10";
-            treeNode8.Text = "Blob学习";
-            treeNode9.Name = "节点9";
-            treeNode9.Text = "Blob";
+            treeNode10.Name = "节点5";
+            treeNode10.Text = "上相机 曝光时间 100 us  增益 10";
+            treeNode11.Name = "节点0";
+            treeNode11.Text = "相机亮度设定";
+            treeNode12.Name = "节点6";
+            treeNode12.Text = "上相机 光源 OP 开";
+            treeNode13.Name = "节点7";
+            treeNode13.Text = "下相机 光源 OP 关";
+            treeNode14.Name = "节点1";
+            treeNode14.Text = "光源设定";
+            treeNode15.Name = "节点8";
+            treeNode15.Text = "模板学习";
+            treeNode16.Name = "节点2";
+            treeNode16.Text = "模板";
+            treeNode17.Name = "节点10";
+            treeNode17.Text = "Blob学习";
+            treeNode18.Name = "节点9";
+            treeNode18.Text = "Blob";
             this.tView_Content.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode5,
-            treeNode7,
-            treeNode9});
+            treeNode11,
+            treeNode14,
+            treeNode16,
+            treeNode18});
             this.tView_Content.ShowNodeToolTips = true;
             this.tView_Content.Size = new System.Drawing.Size(534, 388);
             this.tView_Content.TabIndex = 3;
@@ -238,7 +238,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TreeView tView_Content;
         private HalconDotNet.HWindowControl hWindowControl1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Inspect;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;

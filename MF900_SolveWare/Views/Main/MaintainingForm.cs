@@ -49,5 +49,12 @@ namespace MF900_SolveWare
             Form_InspectKit form_InspectKit = new Form_InspectKit();
             form_InspectKit.Show();
         }
+
+        private void btn_All_Motor_Click(object sender, EventArgs e)
+        {
+             IView view = new Form_Axis_General_Controller();
+            (view as Form).Show();
+
+        }
     }
 }

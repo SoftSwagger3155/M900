@@ -131,6 +131,24 @@
     <Compile Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSpeed.Designer.cs">
       <DependentUpon>Form_Axis_Configuration_Item_MtrSpeed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_General_Controller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_General_Controller.Designer.cs">
+      <DependentUpon>Form_Axis_General_Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Simple_Controller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Simple_Controller.Designer.cs">
+      <DependentUpon>Form_Axis_Simple_Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Simple_Controller_Horizontal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AxisMesForm\Form_Axis_Simple_Controller_Horizontal.Designer.cs">
+      <DependentUpon>Form_Axis_Simple_Controller_Horizontal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AxisMesForm\IODebugForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +190,12 @@
     </Compile>
     <Compile Include="Views\Child\Form_InspectKit_PatternMatch.Designer.cs">
       <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_Learn_Golden_Center.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Learn_Golden_Center.Designer.cs">
+      <DependentUpon>Form_Learn_Golden_Center.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductPanelForm.cs">
       <SubType>Form</SubType>
@@ -366,6 +390,15 @@
     <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_Configuration_Item_MtrSpeed.resx">
       <DependentUpon>Form_Axis_Configuration_Item_MtrSpeed.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_General_Controller.resx">
+      <DependentUpon>Form_Axis_General_Controller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_Simple_Controller.resx">
+      <DependentUpon>Form_Axis_Simple_Controller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AxisMesForm\Form_Axis_Simple_Controller_Horizontal.resx">
+      <DependentUpon>Form_Axis_Simple_Controller_Horizontal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AxisMesForm\IODebugForm.resx">
       <DependentUpon>IODebugForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -386,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_InspectKit_PatternMatch.resx">
       <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Learn_Golden_Center.resx">
+      <DependentUpon>Form_Learn_Golden_Center.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>
@@ -520,6 +556,8 @@
     <Content Include="Resources\Clear.png" />
     <Content Include="Resources\ColorChanne.png" />
     <Content Include="Resources\Cross.png" />
+    <Content Include="Resources\GPS.jpg" />
+    <Content Include="Resources\Home.jpg" />
     <Content Include="Resources\Lines.png" />
     <Content Include="Resources\moviePlay.png" />
     <Content Include="Resources\OpenFile.png" />

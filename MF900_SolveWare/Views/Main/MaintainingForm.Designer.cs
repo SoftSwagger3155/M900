@@ -76,6 +76,7 @@ namespace MF900_SolveWare
             this.uiButton5 = new Sunny.UI.UIButton();
             this.btn_AxisDebugShow = new Sunny.UI.UIButton();
             this.btn_IoShow = new Sunny.UI.UIButton();
+            this.btn_All_Motor = new Sunny.UI.UIButton();
             this.uiTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.uiTableLayoutPanel1.SuspendLayout();
@@ -792,6 +793,7 @@ namespace MF900_SolveWare
             // 
             // uiGroupBox8
             // 
+            this.uiGroupBox8.Controls.Add(this.btn_All_Motor);
             this.uiGroupBox8.Controls.Add(this.btn_InspectKit);
             this.uiGroupBox8.Controls.Add(this.uiButton5);
             this.uiGroupBox8.Controls.Add(this.btn_AxisDebugShow);
@@ -817,7 +819,7 @@ namespace MF900_SolveWare
             // 
             this.btn_InspectKit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_InspectKit.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_InspectKit.Location = new System.Drawing.Point(476, 51);
+            this.btn_InspectKit.Location = new System.Drawing.Point(341, 51);
             this.btn_InspectKit.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_InspectKit.Name = "btn_InspectKit";
             this.btn_InspectKit.Size = new System.Drawing.Size(92, 45);
@@ -832,7 +834,7 @@ namespace MF900_SolveWare
             // 
             this.uiButton5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiButton5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton5.Location = new System.Drawing.Point(353, 51);
+            this.uiButton5.Location = new System.Drawing.Point(245, 51);
             this.uiButton5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton5.Name = "uiButton5";
             this.uiButton5.Size = new System.Drawing.Size(84, 45);
@@ -846,7 +848,7 @@ namespace MF900_SolveWare
             // 
             this.btn_AxisDebugShow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_AxisDebugShow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_AxisDebugShow.Location = new System.Drawing.Point(214, 51);
+            this.btn_AxisDebugShow.Location = new System.Drawing.Point(139, 51);
             this.btn_AxisDebugShow.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_AxisDebugShow.Name = "btn_AxisDebugShow";
             this.btn_AxisDebugShow.Size = new System.Drawing.Size(92, 45);
@@ -861,7 +863,7 @@ namespace MF900_SolveWare
             // 
             this.btn_IoShow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_IoShow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_IoShow.Location = new System.Drawing.Point(80, 51);
+            this.btn_IoShow.Location = new System.Drawing.Point(33, 51);
             this.btn_IoShow.MinimumSize = new System.Drawing.Size(1, 1);
             this.btn_IoShow.Name = "btn_IoShow";
             this.btn_IoShow.Size = new System.Drawing.Size(92, 45);
@@ -871,6 +873,21 @@ namespace MF900_SolveWare
             this.btn_IoShow.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_IoShow.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btn_IoShow.Click += new System.EventHandler(this.btn_IoShow_Click);
+            // 
+            // btn_All_Motor
+            // 
+            this.btn_All_Motor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_All_Motor.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_All_Motor.Location = new System.Drawing.Point(449, 51);
+            this.btn_All_Motor.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_All_Motor.Name = "btn_All_Motor";
+            this.btn_All_Motor.Size = new System.Drawing.Size(92, 45);
+            this.btn_All_Motor.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_All_Motor.TabIndex = 3;
+            this.btn_All_Motor.Text = "马达展示";
+            this.btn_All_Motor.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_All_Motor.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_All_Motor.Click += new System.EventHandler(this.btn_All_Motor_Click);
             // 
             // MaintainingForm
             // 
@@ -955,5 +972,6 @@ namespace MF900_SolveWare
         private AxisJop axisJop1;
         private Sunny.UI.UIButton uiButton5;
         private Sunny.UI.UIButton btn_InspectKit;
+        private Sunny.UI.UIButton btn_All_Motor;
     }
 }

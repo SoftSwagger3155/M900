@@ -32,8 +32,8 @@ namespace MF900_SolveWare.Views.Child
             IView form_IO = new Form_InspectKit_Lighting_Item_IO();
             IView form_Source = new Form_InspectKit_Lighting_Item_LightSource();
 
-            StyleForm(ref form_IO, 1);
-            StyleForm(ref form_Source, 2);
+            StyleForm(ref form_IO);
+            StyleForm(ref form_Source);
 
             gpb_Content.Controls.Clear();
             gpb_Content.Controls.Add((Form)form_IO);
@@ -88,7 +88,7 @@ namespace MF900_SolveWare.Views.Child
         }
 
         int pitch = 45;
-        private void StyleForm(ref IView form, int count)
+        private void StyleForm(ref IView form)
         {
             (form as Form).TopLevel = false;
             (form as Form).Visible = true;

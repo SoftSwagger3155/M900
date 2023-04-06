@@ -673,6 +673,15 @@ namespace SolveWare_Service_Tool.Motor.Business
                     this.CurrentPhysicalPos = pfvalue;
                     this.CurrentPulse = pulse;
                     this.isMoving = motor_Idle == 0 ? true : false;
+
+                    OnPropertyChanged(nameof(IsMoving));
+                    OnPropertyChanged(nameof(IsPosLimit));
+                    OnPropertyChanged(nameof(IsNegLimit));
+                    OnPropertyChanged(nameof(IsAlarm));
+                    OnPropertyChanged(nameof(IsServoOn));
+                    OnPropertyChanged(nameof(IsOrg));
+                    OnPropertyChanged(nameof(CurrentPhysicalPos));
+                    OnPropertyChanged(nameof(CurrentPulse));
                     Thread.Sleep(mtrTable.StatusReadTiming);
                 }
 

@@ -180,3 +180,7 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Vie
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_Lighting_Item_IO.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_Lighting_Item_LightSource.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_PatternMatch.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Simple_Controller.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Learn_Golden_Center.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_General_Controller.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Simple_Controller_Horizontal.resources
