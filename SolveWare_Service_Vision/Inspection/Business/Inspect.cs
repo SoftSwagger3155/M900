@@ -50,8 +50,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
             int errorCode = ErrorCodes.NoError;
             if (Data == null) return ErrorCodes.VisionFailed;
 
-            if (this.Data.JobSheet_Brightness_Datas.Count == 0) return errorCode;
-            errorCode = Data.JobSheet_Brightness_Datas[0].GetModule().Do_PairModuleJob(this.Data);
+            errorCode = Data.JobSheet_Brightness_Data.GetModule().Do_PairModuleJob(this.Data);
 
             return errorCode;
         }

@@ -7,6 +7,7 @@ using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Tool.IO.Base.Abstract;
 using SolveWare_Service_Tool.IO.Base.Interface;
+using SolveWare_Service_Tool.Lighting.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using System;
 using System.Collections.Generic;
@@ -96,6 +97,21 @@ namespace SolveWare_Service_Utility.Extension
             }
             
             return io;
+        }
+        public static LightingBase GetLighting(this string name)
+        {
+            LightingBase lighting = null;
+            try
+            {
+                lighting = (LightingBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Lighting, name);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return lighting;
         }
         public static ICommonJobFundamental GetJob(this string name)
         {

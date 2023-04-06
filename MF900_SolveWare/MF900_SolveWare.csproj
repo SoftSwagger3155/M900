@@ -137,6 +137,42 @@
     <Compile Include="Views\AxisMesForm\IODebugForm.designer.cs">
       <DependentUpon>IODebugForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Brightness.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Brightness.Designer.cs">
+      <DependentUpon>Form_InspectKit_Brightness.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit.Designer.cs">
+      <DependentUpon>Form_InspectKit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting.Designer.cs">
+      <DependentUpon>Form_InspectKit_Lighting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_IO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_IO.Designer.cs">
+      <DependentUpon>Form_InspectKit_Lighting_Item_IO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.Designer.cs">
+      <DependentUpon>Form_InspectKit_Lighting_Item_LightSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_PatternMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_PatternMatch.Designer.cs">
+      <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -333,6 +369,21 @@
     <EmbeddedResource Include="Views\AxisMesForm\IODebugForm.resx">
       <DependentUpon>IODebugForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit.resx">
+      <DependentUpon>Form_InspectKit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit_Brightness.resx">
+      <DependentUpon>Form_InspectKit_Brightness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting.resx">
+      <DependentUpon>Form_InspectKit_Lighting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting_Item_IO.resx">
+      <DependentUpon>Form_InspectKit_Lighting_Item_IO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.resx">
+      <DependentUpon>Form_InspectKit_Lighting_Item_LightSource.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,6 +511,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Remarks.txt" />
+    <Content Include="Resources\Auto.png" />
+    <Content Include="Resources\camera.png" />
+    <Content Include="Resources\Circle.png" />
+    <Content Include="Resources\Clear.png" />
+    <Content Include="Resources\ColorChanne.png" />
+    <Content Include="Resources\Cross.png" />
+    <Content Include="Resources\Lines.png" />
+    <Content Include="Resources\moviePlay.png" />
+    <Content Include="Resources\OpenFile.png" />
+    <Content Include="Resources\play-green.png" />
+    <Content Include="Resources\Rectangle.png" />
+    <Content Include="Resources\Save.png" />
+    <Content Include="Resources\stop-red.png" />
+    <Content Include="Resources\VisionLocation.png" />
     <None Include="Resources\Circle_Gray.png" />
     <None Include="Resources\Circle_Green.png" />
   </ItemGroup>

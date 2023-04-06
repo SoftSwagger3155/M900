@@ -1,6 +1,8 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
+using SolveWare_Service_Tool.Camera.Base.Abstract;
+using SolveWare_Service_Utility.Extension;
 using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.JobSheet;
 using System;
@@ -16,20 +18,30 @@ namespace SolveWare_Service_Vision.Inspection.Business
         public Data_InspectionKit jobParam;
         public override int Do_Job()
         {
+            string errMsg  = string.Empty;
             try
             {
-                jobParam.JobSheet_Brightness_Datas.ForEach(x =>
+                do
                 {
-                    x.Camera.SetGain(x.Gain);
-                    x.Camera.SetExposureTime(x.ExposureTime);
-                });
+                    CameraMediaBase camera = jobParam.CameraName.GetCamera();
+                    if (camera == null) 
+                    {
+                        errorCode = ErrorCodes.NoRelevantObject;
+                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                        break;
+                     }
+
+                    camera.SetGain(this.jobParam.JobSheet_Brightness_Data.Gain);
+                    camera.SetExposureTime(this.jobParam.JobSheet_Brightness_Data.ExposureTime);
+
+                } while (false);
             }
             catch (Exception ex)
             {
                 this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.ActionFailed;
             }
 
+            Get_Result(nameof(Do_Job), errMsg);
             return ErrorCode;
         }
         public void Setup(IElement data)

@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Attributes;
+﻿using HalconDotNet;
+using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SolveWare_Service_Vision.Inspection.JobSheet
 {
@@ -35,6 +37,14 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         public double MinScore { get; set; }
 
         [Category("Pattern Match 参数")]
+        [DisplayName("最小规模-MinScale")]
+        public double MinScale { get; set; }
+
+        [Category("Pattern Match 参数")]
+        [DisplayName("最大规模-MaxScale")]
+        public double MaxScale { get; set; }
+
+        [Category("Pattern Match 参数")]
         [DisplayName("匹配最大个数-Num Matches")]
         public double NumMatches { get; set; }
 
@@ -50,6 +60,13 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         [DisplayName("重迭最大个数-Max OverLap")]
         public double MaxOverLap { get; set; }
 
-        
+        [Category("Pattern Match 参数")]
+        [DisplayName("贪婪度-Greediness")]
+        public double Greediness { get; set; }
+
+        [XmlIgnore]
+        public HTuple Hv_WindowHandle { get; set; }
+
+        public HObject Ho_HImage { get; set; } 
     }
 }

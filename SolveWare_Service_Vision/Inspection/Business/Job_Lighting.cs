@@ -1,6 +1,9 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
+using SolveWare_Service_Tool.Lighting.Base;
+using SolveWare_Service_Tool.Lighting.Base.Abstract;
 using SolveWare_Service_Utility.Extension;
 using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.JobSheet;
@@ -9,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Business
@@ -35,8 +39,13 @@ namespace SolveWare_Service_Vision.Inspection.Business
                                 break;
                         }
                     }
-
-                });
+                    // 如果有光源控制器
+                    else
+                    {
+                        LightingBase lighting = x.Lighting_Name.GetLighting();
+                        lighting.Set_Intensity((int)x.Intensity);
+                    }
+                });                
             }
             catch (Exception ex)
             {

@@ -16,7 +16,7 @@ namespace SolveWare_Service_Vision.Data
     public class Data_InspectionKit: ElementBase
     {
         //照顺序来设定视觉
-        public List<JobSheet_Brightness> JobSheet_Brightness_Datas { get; set; }
+        public JobSheet_Brightness JobSheet_Brightness_Data { get; set; }
         public List<JobSheet_Lighting> JobSheet_Lighting_Datas { get; set; }
         public JobSheet_SearchArea JobSheet_SearchArea_Data { get; set; }
         public JobSheet_PatternMatch JobSheet_PatternMatch_Data { get; set; }
@@ -34,7 +34,7 @@ namespace SolveWare_Service_Vision.Data
 
         public Data_InspectionKit()
         {
-            JobSheet_Brightness_Datas = new List<JobSheet_Brightness>();
+            JobSheet_Brightness_Data = new JobSheet_Brightness();
             JobSheet_Lighting_Datas = new List<JobSheet_Lighting>(); ;
             JobSheet_SearchArea_Data = new JobSheet_SearchArea() { InspectKitData_Name = Name };
             JobSheet_PatternMatch_Data = new JobSheet_PatternMatch() { InspectKitData_Name = Name };

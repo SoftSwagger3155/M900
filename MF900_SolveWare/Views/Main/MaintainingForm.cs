@@ -1,4 +1,5 @@
 ﻿using MF900_SolveWare.Views.AxisMesForm;
+using MF900_SolveWare.Views.Child;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Utility.Extension;
 using Sunny.UI;
@@ -14,22 +15,16 @@ using System.Windows.Forms;
 
 namespace MF900_SolveWare
 {
-    public partial class MaintainingForm : Form,IView
+    public partial class MaintainingForm : Form, IView
     {
         private IODebugForm ioDebug;
         private AxisDebugForm axisDebug;
         public MaintainingForm()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
 
-        public void ReadTimeGetPos()
-        {
-            while (true)
-            {
-                axisJop1.Refresh();
-            }
-        }
+       
         public void Setup<TData>(TData data)
         {
             
@@ -47,6 +42,12 @@ namespace MF900_SolveWare
             form.Show();
             //axisDebug = new AxisDebugForm();
             //axisDebug.Show();
+        }
+
+        private void btn_InspectKit_Click(object sender, EventArgs e)
+        {
+            Form_InspectKit form_InspectKit = new Form_InspectKit();
+            form_InspectKit.Show();
         }
     }
 }

@@ -96,10 +96,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -207,10 +204,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -318,10 +312,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -429,10 +420,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -540,10 +528,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -651,10 +636,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -762,10 +744,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -873,10 +852,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>
@@ -984,10 +960,7 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <IsPositionDataUpated>false</IsPositionDataUpated>
-      <IsZoneDataUpated>false</IsZoneDataUpated>
-      <PositionSafeDatas />
-      <ZoneSafeDatas />
+      <Data_Safetys />
     </MtrSafe>
     <MtrMisc>
       <RightRelativeButtonImage>右箭头</RightRelativeButtonImage>

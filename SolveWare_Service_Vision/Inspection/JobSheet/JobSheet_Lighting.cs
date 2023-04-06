@@ -40,7 +40,7 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         [Category("Lighting 参数")]
         [DisplayName("光源名称-Lighting Name")]
         [TypeConverter(typeof(StringConverter_DropDown_Lighting_Name))]
-        public double Lighting_Name { get; set; }
+        public string Lighting_Name { get; set; }
 
 
         [Category("Lighting 参数")]

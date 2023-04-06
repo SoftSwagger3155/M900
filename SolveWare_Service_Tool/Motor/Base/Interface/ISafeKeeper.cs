@@ -9,11 +9,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Interface
 {
     public interface ISafeKeeper
     {
-        bool IsPositionDangerous(PositionSafeData pSafeData);
-        void RunSafeKeeper();
-        void StopSafeKeeper();
-        bool CheckZoneSafeToMove(double pos);
+        bool Is_Safe_To_Move(MtrSafe mtrSafe);
 
-        bool MoveToObserverPos(PositionSafeData pSafeData);
     }
 }

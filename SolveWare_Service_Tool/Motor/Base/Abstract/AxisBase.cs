@@ -38,7 +38,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
         public void SetSafeKeeper(ISafeKeeper keeper)
         {
-            this.SafeKeeper = keeper;
+            this.safeKeeper = keeper;
         }
 
         protected string name;
@@ -96,7 +96,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             get => isSafeToMoveInZone;
             set => UpdateProper(ref isSafeToMoveInZone, value);
         }
-        public ISafeKeeper SafeKeeper { get; private set; }
+        public ISafeKeeper safeKeeper { get; set; }
 
         public MtrTable MtrTable
         {
@@ -239,7 +239,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             string sErr = string.Empty;
             this.isProhibitActivated = false;
             bool result = false;
-
+            if (safeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) { return true; }
             if (mtrTable.pIsInhibitToHome == null) return false;
 
             if (mtrTable.pIsInhibitToHome(ref sErr))
@@ -260,7 +260,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             bool result = false;
             string sErr = string.Empty;
 
-
+            if (safeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) { return true; }
             if (mtrTable.pIsInhibitToMove == null) return false;
             if (mtrTable.pIsInhibitToMove(ref sErr))
             {

@@ -5,6 +5,7 @@ using SolveWare_Service_Core.Manager.Base.Abstract;
 using SolveWare_Service_Tool.Dlls;
 using SolveWare_Service_Tool.MasterDriver.Business;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
+using SolveWare_Service_Tool.Motor.Base.Interface;
 using SolveWare_Service_Tool.Motor.Data;
 using SolveWare_Service_Tool.Motor.Definition;
 using System;
@@ -22,6 +23,7 @@ namespace SolveWare_Service_Tool.Motor.Business
         IntPtr Handler;
         public Motor_Zmcaux(IElement configData) : base(configData)
         {
+            SetSafeKeeper(new SafeKeeper());    
         }
 
         public override bool DoAvoidDangerousPosAction()
@@ -107,6 +109,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             int homemode = 0;
             DateTime st = DateTime.Now;
 
+          
             if (IsProhibitToHome()) { return false; }
 
 
@@ -127,10 +130,10 @@ namespace SolveWare_Service_Tool.Motor.Business
                 MoveTo(0);
                 return true;
             }
-            Dll_Zmcaux.ZAux_Direct_SetRevIn(Handler, mtrTable.AxisNo, mtrTable.Param_Rev_Limit); //设置负限位
-            Dll_Zmcaux.ZAux_Direct_SetFwdIn(Handler, mtrTable.AxisNo, mtrTable.Param_Fwd_Limit); //设置正限位
-            Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
-            Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Rev_Limit, ref revStatus);
+            //Dll_Zmcaux.ZAux_Direct_SetRevIn(Handler, mtrTable.AxisNo, mtrTable.Param_Rev_Limit); //设置负限位
+            //Dll_Zmcaux.ZAux_Direct_SetFwdIn(Handler, mtrTable.AxisNo, mtrTable.Param_Fwd_Limit); //设置正限位
+            //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
+            //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Rev_Limit, ref revStatus);
 
             //先往原点方向一直走，直到到达限位
             if (homeStatus != 0 && revStatus != 0)              
@@ -290,6 +293,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             Handler = master.CardInfo.Dic_CardHandler[mtrTable.CardNo];
             Dll_Zmcaux.ZAux_Direct_SetUnits(Handler, mtrTable.AxisNo, (float)mtrTable.PulsePerRevolution/(float)mtrTable.UnitPerRevolution);
+            Set_Servo(true);
             return true;
         }
         public override void Jog(bool isPositive)
@@ -810,10 +814,10 @@ namespace SolveWare_Service_Tool.Motor.Business
         }
         private bool IsZoneSafeToGo(double pos)
         {
-            if (this.IsInZone == false) return true;
+            //if (this.IsInZone == false) return true;
 
-            var foundZone = this.MtrSafe.ZoneSafeDatas.ToList().Find(x => x.IsInZone == true);
-            if (pos < foundZone.AllowableMinPos || pos > foundZone.AllowableMaxPos) return false;
+            //var foundZone = this.MtrSafe.ZoneSafeDatas.ToList().Find(x => x.IsInZone == true);
+            //if (pos < foundZone.AllowableMinPos || pos > foundZone.AllowableMaxPos) return false;
 
             return true;
         }

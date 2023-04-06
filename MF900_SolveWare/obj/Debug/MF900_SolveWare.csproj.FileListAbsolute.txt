@@ -174,3 +174,8 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Configuration.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Configuration_Item_MtrSpeed.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Configuration_Item_MtrSafe.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_Brightness.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_Lighting.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_Lighting_Item_IO.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_InspectKit_Lighting_Item_LightSource.resources
