@@ -21,8 +21,6 @@ namespace MF900_SolveWare
         public MaintainingForm()
         {
             InitializeComponent();
-            axisJop1.AxisName = "平台";
-            Task.Run(new Action(() => ReadTimeGetPos()));
         }
 
         public void ReadTimeGetPos()
