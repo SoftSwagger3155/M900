@@ -22,10 +22,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -130,10 +132,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -238,10 +242,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -346,10 +352,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -454,10 +462,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -562,10 +572,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -670,10 +682,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -778,10 +792,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
@@ -886,10 +902,12 @@
       <MotorRealDirectionState>Positive</MotorRealDirectionState>
       <MotorDisplayDirectionState>Positive</MotorDisplayDirectionState>
       <MotorHomeDirectionState>Positive</MotorHomeDirectionState>
-      <OnBoardHome>1</OnBoardHome>
       <StatusReadTiming>1</StatusReadTiming>
       <CustomHomeType>HomeOnNEL</CustomHomeType>
       <CustomHomeStepSize>0</CustomHomeStepSize>
+      <OnBoardHome>1</OnBoardHome>
+      <ZeroHoming>false</ZeroHoming>
+      <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
       <MotionTimeOut>0</MotionTimeOut>
       <HomeTimeOut>0</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>

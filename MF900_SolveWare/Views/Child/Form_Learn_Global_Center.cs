@@ -29,5 +29,70 @@ namespace MF900_SolveWare.Views.Child
             IView view = new Form_Axis_General_Controller();
             (view as Form).Show();
         }
+
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Execute_Both_Module_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Execute_Top_Moudle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Execute_Btm_Moudle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Top_Module_Update_Pos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Btm_Module_Update_Pos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Top_Module_Go_Pos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Btm_Module_Go_Pos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Top_Module_Update_InspectKit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Btm_Module_Update_InspectKit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Top_Module_Execute_InspectKit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Btm_Module_Execute_InspectKit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

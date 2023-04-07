@@ -62,5 +62,17 @@ namespace MF900_SolveWare
             IView view = new Form_Learn_Global_Center();
             (view as Form).Show();
         }
+
+        private void btn_Offset_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_Offset();
+            (view as Form).Show();
+        }
+
+        private void btn_MMperPixel_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_MMperPixel();
+            (view as Form).Show();
+        }
     }
 }

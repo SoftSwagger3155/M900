@@ -74,6 +74,18 @@
   <ItemGroup>
     <Compile Include="Business\Global.cs" />
     <Compile Include="Business\RecipeHandler.cs" />
+    <Compile Include="Views\Child\Form_MMperPixel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_MMperPixel.Designer.cs">
+      <DependentUpon>Form_MMperPixel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_Offset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Offset.Designer.cs">
+      <DependentUpon>Form_Offset.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorldCenter\Data\Data_GlobalWorldCenter.cs" />
     <Compile Include="DeControls\AxisJop.cs">
       <SubType>UserControl</SubType>
@@ -424,6 +436,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_Learn_Global_Center.resx">
       <DependentUpon>Form_Learn_Global_Center.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_MMperPixel.resx">
+      <DependentUpon>Form_MMperPixel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Offset.resx">
+      <DependentUpon>Form_Offset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>

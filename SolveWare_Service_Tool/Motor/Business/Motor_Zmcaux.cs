@@ -109,15 +109,14 @@ namespace SolveWare_Service_Tool.Motor.Business
             int homemode = 0;
             DateTime st = DateTime.Now;
 
-          
+
             if (IsProhibitToHome()) { return false; }
 
 
             //HasHome = false;
-            isStopReq = false;
-            Set_Servo(false);
-            Thread.Sleep(100);
-            Set_Servo(true);
+            //Set_Servo(false);
+            //Thread.Sleep(100);
+            //Set_Servo(true);
 
             isStopReq = false;
 
@@ -129,13 +128,26 @@ namespace SolveWare_Service_Tool.Motor.Business
                 MoveTo(0);
                 return true;
             }
-            //Dll_Zmcaux.ZAux_Direct_SetRevIn(Handler, mtrTable.AxisNo, mtrTable.Param_Rev_Limit); //设置负限位
-            //Dll_Zmcaux.ZAux_Direct_SetFwdIn(Handler, mtrTable.AxisNo, mtrTable.Param_Fwd_Limit); //设置正限位
-            //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
-            //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Rev_Limit, ref revStatus);
+
+            //目前不需要
+            if(mtrTable.SetLimitModeBeforeHoming)
+            {
+                Dll_Zmcaux.ZAux_Direct_SetRevIn(Handler, mtrTable.AxisNo, mtrTable.Param_Rev_Limit); //设置负限位
+                Dll_Zmcaux.ZAux_Direct_SetFwdIn(Handler, mtrTable.AxisNo, mtrTable.Param_Fwd_Limit); //设置正限位
+                Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
+                Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Rev_Limit, ref revStatus);
+            }
+
+            // 有此轴是零点复位
+            if(mtrTable.ZeroHoming)
+            {
+                return ZeroHoming();
+            }
+
+
 
             //先往原点方向一直走，直到到达限位
-            if (homeStatus != 0 && revStatus != 0)              
+            if (homeStatus != 0 && revStatus != 0)
                 if (MoveTo(-3000) == false) return false;
 
             //回零方式判断
@@ -160,7 +172,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //等待停止
-            if( WaitStop() == Motor_Wait_Kind.Fail)
+            if (WaitStop() == Motor_Wait_Kind.Fail)
                 return false;
 
             //设置HomeIO
@@ -192,6 +204,15 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             return isHomeSuccessful;
         }
+
+        private bool ZeroHoming()
+        {
+            //TODO - Zero Homing 填空
+
+            return false;
+        }
+
+
         public override bool HomeMove(MtrSpeed mtrSpeed)
         {
             bool isHomeSuccessful = false;

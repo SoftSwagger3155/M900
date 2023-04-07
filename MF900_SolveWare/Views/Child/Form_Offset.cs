@@ -1,5 +1,4 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
-using SolveWare_Service_Vision.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,23 +11,16 @@ using System.Windows.Forms;
 
 namespace MF900_SolveWare.Views.Child
 {
-    public partial class Form_InspectKit_PatternMatch : Form, IView
+    public partial class Form_Offset : Form, IView
     {
-        public Form_InspectKit_PatternMatch()
+        public Form_Offset()
         {
             InitializeComponent();
-            Data_InspectionKit data = new Data_InspectionKit();
-            pGrid_PatternMatch.SelectedObject = data.JobSheet_PatternMatch_Data;
         }
 
-        Data_InspectionKit dataKit;
         public void Setup<TObj>(TObj obj)
         {
-            dataKit = obj as Data_InspectionKit;    
-
-            
+           
         }
-
-
     }
 }

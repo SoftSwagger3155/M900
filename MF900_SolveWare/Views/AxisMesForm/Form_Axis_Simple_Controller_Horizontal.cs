@@ -202,5 +202,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
             }
         }
         #endregion
+
+        private void btn_Home_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

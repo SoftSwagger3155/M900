@@ -116,12 +116,7 @@ namespace SolveWare_Service_Tool.Motor.Data
         public DirectionState MotorHomeDirectionState { get; set; }
 
 
-        //复位选择
-        [Category("On Board")]
-        [DisplayName("OnBoardHome 使用板卡复位")]
-        [Description("On board home (0:No/1:Yes)")]
-        public short OnBoardHome { get; set; }
-
+      
 
         //状态读取间隔
         [Category("Status Read Timing")]
@@ -131,15 +126,31 @@ namespace SolveWare_Service_Tool.Motor.Data
 
 
         //自定义 复位设定
-        [Category("Custom Home Setting")]
+        [Category("Home Setting")]
         [Description("Custom Home Type (0:NEL/1:PEL/2:MID)")]
         [DisplayName("CustomHomeType")]
         public CustomHomeType CustomHomeType { get; set; }
 
-        [Category("Custom Home Setting")]
+        [Category("Home Setting")]
         [DisplayName("Custome Home StepSize")]
         [Description("Custom Home Type (0:NEL/1:PEL/2:MID)")]
         public double CustomHomeStepSize { get; set; }
+
+        [Category("Home Setting")]
+        [DisplayName("OnBoardHome 使用板卡复位")]
+        [Description("On board home (0:No/1:Yes)")]
+        public short OnBoardHome { get; set; }
+
+        [Category("Home Setting")]
+        [DisplayName("Zero Homing 零点复位")]
+        [Description("Zero Homing")]
+        public bool ZeroHoming { get; set; }
+
+        [Category("Home Setting")]
+        [DisplayName("Set Limit Mode 复位前设定限位功能")]
+        [Description("Set Limit Mode Before Homing")]
+        public bool SetLimitModeBeforeHoming { get; set; }
+
 
 
         //超时设定

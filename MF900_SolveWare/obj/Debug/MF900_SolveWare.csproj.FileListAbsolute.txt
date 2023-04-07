@@ -184,3 +184,5 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Vie
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_General_Controller.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.AxisMesForm.Form_Axis_Simple_Controller_Horizontal.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Learn_Global_Center.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_MMperPixel.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Offset.resources

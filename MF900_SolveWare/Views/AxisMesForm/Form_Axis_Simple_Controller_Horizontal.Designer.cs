@@ -43,6 +43,7 @@
             this.ckb_Servo_Switch = new System.Windows.Forms.CheckBox();
             this.btn_Go_Relative_Negative = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Home = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(761, 17);
+            this.label4.Location = new System.Drawing.Point(746, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 15);
             this.label4.TabIndex = 6;
@@ -125,7 +126,7 @@
             // 
             // btn_Go_Relative_Positive
             // 
-            this.btn_Go_Relative_Positive.Location = new System.Drawing.Point(965, 10);
+            this.btn_Go_Relative_Positive.Location = new System.Drawing.Point(950, 10);
             this.btn_Go_Relative_Positive.Name = "btn_Go_Relative_Positive";
             this.btn_Go_Relative_Positive.Size = new System.Drawing.Size(58, 30);
             this.btn_Go_Relative_Positive.TabIndex = 9;
@@ -136,7 +137,7 @@
             // txb_RelativePos
             // 
             this.txb_RelativePos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txb_RelativePos.Location = new System.Drawing.Point(859, 13);
+            this.txb_RelativePos.Location = new System.Drawing.Point(844, 13);
             this.txb_RelativePos.Name = "txb_RelativePos";
             this.txb_RelativePos.Size = new System.Drawing.Size(100, 25);
             this.txb_RelativePos.TabIndex = 8;
@@ -165,7 +166,7 @@
             // ckb_Servo_Switch
             // 
             this.ckb_Servo_Switch.AutoSize = true;
-            this.ckb_Servo_Switch.Location = new System.Drawing.Point(1135, 17);
+            this.ckb_Servo_Switch.Location = new System.Drawing.Point(1151, 17);
             this.ckb_Servo_Switch.Name = "ckb_Servo_Switch";
             this.ckb_Servo_Switch.Size = new System.Drawing.Size(89, 19);
             this.ckb_Servo_Switch.TabIndex = 12;
@@ -174,7 +175,7 @@
             // 
             // btn_Go_Relative_Negative
             // 
-            this.btn_Go_Relative_Negative.Location = new System.Drawing.Point(1029, 10);
+            this.btn_Go_Relative_Negative.Location = new System.Drawing.Point(1014, 10);
             this.btn_Go_Relative_Negative.Name = "btn_Go_Relative_Negative";
             this.btn_Go_Relative_Negative.Size = new System.Drawing.Size(58, 30);
             this.btn_Go_Relative_Negative.TabIndex = 13;
@@ -185,6 +186,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_Home);
             this.panel1.Controls.Add(this.btn_Go_Absolute);
             this.panel1.Controls.Add(this.btn_Go_Relative_Negative);
             this.panel1.Controls.Add(this.lbl_Motor_Name);
@@ -203,6 +205,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1317, 52);
             this.panel1.TabIndex = 14;
+            // 
+            // btn_Home
+            // 
+            this.btn_Home.Location = new System.Drawing.Point(1087, 10);
+            this.btn_Home.Name = "btn_Home";
+            this.btn_Home.Size = new System.Drawing.Size(58, 30);
+            this.btn_Home.TabIndex = 14;
+            this.btn_Home.Text = "复位";
+            this.btn_Home.UseVisualStyleBackColor = true;
+            this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
             // 
             // Form_Axis_Simple_Controller_Horizontal
             // 
@@ -237,5 +249,6 @@
         private System.Windows.Forms.CheckBox ckb_Servo_Switch;
         private System.Windows.Forms.Button btn_Go_Relative_Negative;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_Home;
     }
 }
