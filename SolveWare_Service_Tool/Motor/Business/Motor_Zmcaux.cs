@@ -119,7 +119,6 @@ namespace SolveWare_Service_Tool.Motor.Business
             Thread.Sleep(100);
             Set_Servo(true);
 
-
             isStopReq = false;
 
             if (Simulation)
