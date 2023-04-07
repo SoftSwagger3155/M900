@@ -130,5 +130,59 @@ namespace SolveWare_Service_Utility.Extension
 
             return key;
         }
+        public static void CopyTo<TFormObj, TToObj>(this TFormObj FromObj, TToObj ToObj)
+        {
+            Type fromType = FromObj.GetType();
+            Type toType = ToObj.GetType();
+            object fObject = Activator.CreateInstance(fromType);
+            object tObject = Activator.CreateInstance(toType);
+
+            PropertyInfo[] _fPropertyInfo = fromType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
+            if (_fPropertyInfo.Length > 0)
+            {
+                PropertyInfo[] _tInfo = toType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
+                foreach (var fItem in _fPropertyInfo)
+                {
+
+                    var value = fItem.GetValue(FromObj);
+                    foreach (var tItem in _tInfo)
+                    {
+                        if (fItem.Name.Equals(tItem.Name) && fItem.CanWrite)
+                        {
+                            tItem.SetValue(ToObj, value);
+                            break;
+                        }
+                        else if (fItem.Name.Equals(tItem.Name) && fItem.CanRead && !fItem.CanWrite)
+                        {
+                            tItem.GetValue(ToObj);
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            FieldInfo[] _fFieldInfo = fromType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
+            if (_fFieldInfo.Length > 0)
+            {
+                FieldInfo[] _tInfo = toType.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
+                foreach (var fItem in _fFieldInfo)
+                {
+                    var value = fItem.GetValue(FromObj);
+                    foreach (var tItem in _tInfo)
+                    {
+
+
+                        if (fItem.Name.Equals(tItem.Name))
+                        {
+                            tItem.SetValue(ToObj, value);
+                        }
+                    }
+                }
+            }
+
+
+
+        }
     }
 }

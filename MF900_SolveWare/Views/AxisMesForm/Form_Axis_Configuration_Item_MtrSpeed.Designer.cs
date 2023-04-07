@@ -31,21 +31,20 @@
             this.gpb_Selector = new System.Windows.Forms.GroupBox();
             this.btn_Copy = new System.Windows.Forms.Button();
             this.cmb_Selector_Copy = new System.Windows.Forms.ComboBox();
-            this.btn_Save = new System.Windows.Forms.Button();
             this.cmb_Selector_SpeedSetting = new System.Windows.Forms.ComboBox();
             this.pGrid_Speed = new System.Windows.Forms.PropertyGrid();
             this.gpb_Controller = new System.Windows.Forms.GroupBox();
+            this.btn_SetZero = new System.Windows.Forms.Button();
             this.btn_Home = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txb_RelayGap = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txb_RelayCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btn_Relay = new System.Windows.Forms.Button();
+            this.txb_AbsolutePos = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txb_RelativePos = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbl_Info_Motor = new System.Windows.Forms.Label();
             this.btn_Absolute = new System.Windows.Forms.Button();
             this.btn_Relative_Positive = new System.Windows.Forms.Button();
             this.btn_Relative_Negative = new System.Windows.Forms.Button();
@@ -54,7 +53,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_RelayCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_AverageTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btn_SetZero = new System.Windows.Forms.Button();
+            this.lbl_Main = new System.Windows.Forms.Label();
+            this.lbl_Copy = new System.Windows.Forms.Label();
+            this.tssl_Status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssl_CurPos = new System.Windows.Forms.ToolStripStatusLabel();
             this.gpb_Selector.SuspendLayout();
             this.gpb_Controller.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -62,9 +64,10 @@
             // 
             // gpb_Selector
             // 
+            this.gpb_Selector.Controls.Add(this.lbl_Copy);
+            this.gpb_Selector.Controls.Add(this.lbl_Main);
             this.gpb_Selector.Controls.Add(this.btn_Copy);
             this.gpb_Selector.Controls.Add(this.cmb_Selector_Copy);
-            this.gpb_Selector.Controls.Add(this.btn_Save);
             this.gpb_Selector.Controls.Add(this.cmb_Selector_SpeedSetting);
             this.gpb_Selector.Location = new System.Drawing.Point(28, 58);
             this.gpb_Selector.Name = "gpb_Selector";
@@ -75,36 +78,28 @@
             // 
             // btn_Copy
             // 
-            this.btn_Copy.Location = new System.Drawing.Point(503, 25);
+            this.btn_Copy.Location = new System.Drawing.Point(503, 39);
             this.btn_Copy.Name = "btn_Copy";
             this.btn_Copy.Size = new System.Drawing.Size(78, 35);
             this.btn_Copy.TabIndex = 3;
             this.btn_Copy.Text = "复制";
             this.btn_Copy.UseVisualStyleBackColor = true;
+            this.btn_Copy.Click += new System.EventHandler(this.btn_Copy_Click);
             // 
             // cmb_Selector_Copy
             // 
             this.cmb_Selector_Copy.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmb_Selector_Copy.FormattingEnabled = true;
-            this.cmb_Selector_Copy.Location = new System.Drawing.Point(310, 25);
+            this.cmb_Selector_Copy.Location = new System.Drawing.Point(310, 39);
             this.cmb_Selector_Copy.Name = "cmb_Selector_Copy";
             this.cmb_Selector_Copy.Size = new System.Drawing.Size(187, 28);
             this.cmb_Selector_Copy.TabIndex = 2;
-            // 
-            // btn_Save
-            // 
-            this.btn_Save.Location = new System.Drawing.Point(200, 25);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(78, 35);
-            this.btn_Save.TabIndex = 1;
-            this.btn_Save.Text = "储存";
-            this.btn_Save.UseVisualStyleBackColor = true;
             // 
             // cmb_Selector_SpeedSetting
             // 
             this.cmb_Selector_SpeedSetting.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmb_Selector_SpeedSetting.FormattingEnabled = true;
-            this.cmb_Selector_SpeedSetting.Location = new System.Drawing.Point(7, 25);
+            this.cmb_Selector_SpeedSetting.Location = new System.Drawing.Point(13, 42);
             this.cmb_Selector_SpeedSetting.Name = "cmb_Selector_SpeedSetting";
             this.cmb_Selector_SpeedSetting.Size = new System.Drawing.Size(187, 28);
             this.cmb_Selector_SpeedSetting.TabIndex = 0;
@@ -120,16 +115,15 @@
             // 
             this.gpb_Controller.Controls.Add(this.btn_SetZero);
             this.gpb_Controller.Controls.Add(this.btn_Home);
-            this.gpb_Controller.Controls.Add(this.textBox4);
+            this.gpb_Controller.Controls.Add(this.txb_RelayGap);
             this.gpb_Controller.Controls.Add(this.label4);
-            this.gpb_Controller.Controls.Add(this.textBox3);
+            this.gpb_Controller.Controls.Add(this.txb_RelayCount);
             this.gpb_Controller.Controls.Add(this.label3);
-            this.gpb_Controller.Controls.Add(this.button1);
-            this.gpb_Controller.Controls.Add(this.textBox2);
+            this.gpb_Controller.Controls.Add(this.btn_Relay);
+            this.gpb_Controller.Controls.Add(this.txb_AbsolutePos);
             this.gpb_Controller.Controls.Add(this.label2);
-            this.gpb_Controller.Controls.Add(this.textBox1);
+            this.gpb_Controller.Controls.Add(this.txb_RelativePos);
             this.gpb_Controller.Controls.Add(this.label1);
-            this.gpb_Controller.Controls.Add(this.lbl_Info_Motor);
             this.gpb_Controller.Controls.Add(this.btn_Absolute);
             this.gpb_Controller.Controls.Add(this.btn_Relative_Positive);
             this.gpb_Controller.Controls.Add(this.btn_Relative_Negative);
@@ -142,9 +136,19 @@
             this.gpb_Controller.TabStop = false;
             this.gpb_Controller.Text = "控制器";
             // 
+            // btn_SetZero
+            // 
+            this.btn_SetZero.Location = new System.Drawing.Point(149, 36);
+            this.btn_SetZero.Name = "btn_SetZero";
+            this.btn_SetZero.Size = new System.Drawing.Size(120, 40);
+            this.btn_SetZero.TabIndex = 16;
+            this.btn_SetZero.Text = "标定原点";
+            this.btn_SetZero.UseVisualStyleBackColor = true;
+            this.btn_SetZero.Click += new System.EventHandler(this.btn_SetZero_Click);
+            // 
             // btn_Home
             // 
-            this.btn_Home.Location = new System.Drawing.Point(23, 70);
+            this.btn_Home.Location = new System.Drawing.Point(23, 36);
             this.btn_Home.Name = "btn_Home";
             this.btn_Home.Size = new System.Drawing.Size(120, 40);
             this.btn_Home.TabIndex = 15;
@@ -152,13 +156,13 @@
             this.btn_Home.UseVisualStyleBackColor = true;
             this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
             // 
-            // textBox4
+            // txb_RelayGap
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(169, 354);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 25);
-            this.textBox4.TabIndex = 14;
+            this.txb_RelayGap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txb_RelayGap.Location = new System.Drawing.Point(169, 354);
+            this.txb_RelayGap.Name = "txb_RelayGap";
+            this.txb_RelayGap.Size = new System.Drawing.Size(100, 25);
+            this.txb_RelayGap.TabIndex = 14;
             // 
             // label4
             // 
@@ -170,13 +174,13 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "距离设定 / mm";
             // 
-            // textBox3
+            // txb_RelayCount
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(169, 383);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 25);
-            this.textBox3.TabIndex = 12;
+            this.txb_RelayCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txb_RelayCount.Location = new System.Drawing.Point(169, 383);
+            this.txb_RelayCount.Name = "txb_RelayCount";
+            this.txb_RelayCount.Size = new System.Drawing.Size(100, 25);
+            this.txb_RelayCount.TabIndex = 12;
             // 
             // label3
             // 
@@ -188,22 +192,22 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "来回次数";
             // 
-            // button1
+            // btn_Relay
             // 
-            this.button1.Location = new System.Drawing.Point(23, 405);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "点对点位移";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Relay.Location = new System.Drawing.Point(23, 405);
+            this.btn_Relay.Name = "btn_Relay";
+            this.btn_Relay.Size = new System.Drawing.Size(120, 40);
+            this.btn_Relay.TabIndex = 10;
+            this.btn_Relay.Text = "点对点位移";
+            this.btn_Relay.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txb_AbsolutePos
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(169, 266);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 25);
-            this.textBox2.TabIndex = 9;
+            this.txb_AbsolutePos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txb_AbsolutePos.Location = new System.Drawing.Point(169, 266);
+            this.txb_AbsolutePos.Name = "txb_AbsolutePos";
+            this.txb_AbsolutePos.Size = new System.Drawing.Size(100, 25);
+            this.txb_AbsolutePos.TabIndex = 9;
             // 
             // label2
             // 
@@ -215,13 +219,13 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "绝对位置设定/ mm";
             // 
-            // textBox1
+            // txb_RelativePos
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(169, 180);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 25);
-            this.textBox1.TabIndex = 7;
+            this.txb_RelativePos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txb_RelativePos.Location = new System.Drawing.Point(169, 180);
+            this.txb_RelativePos.Name = "txb_RelativePos";
+            this.txb_RelativePos.Size = new System.Drawing.Size(100, 25);
+            this.txb_RelativePos.TabIndex = 7;
             // 
             // label1
             // 
@@ -233,16 +237,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "相对位置设定 / mm";
             // 
-            // lbl_Info_Motor
-            // 
-            this.lbl_Info_Motor.AutoSize = true;
-            this.lbl_Info_Motor.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_Info_Motor.Location = new System.Drawing.Point(21, 37);
-            this.lbl_Info_Motor.Name = "lbl_Info_Motor";
-            this.lbl_Info_Motor.Size = new System.Drawing.Size(202, 23);
-            this.lbl_Info_Motor.TabIndex = 5;
-            this.lbl_Info_Motor.Text = "AxisName: Pos mm";
-            // 
             // btn_Absolute
             // 
             this.btn_Absolute.Location = new System.Drawing.Point(23, 288);
@@ -251,6 +245,7 @@
             this.btn_Absolute.TabIndex = 4;
             this.btn_Absolute.Text = "绝对位置";
             this.btn_Absolute.UseVisualStyleBackColor = true;
+            this.btn_Absolute.Click += new System.EventHandler(this.btn_Absolute_Click);
             // 
             // btn_Relative_Positive
             // 
@@ -260,6 +255,7 @@
             this.btn_Relative_Positive.TabIndex = 3;
             this.btn_Relative_Positive.Text = "相对位置 +";
             this.btn_Relative_Positive.UseVisualStyleBackColor = true;
+            this.btn_Relative_Positive.Click += new System.EventHandler(this.btn_Relative_Positive_Click);
             // 
             // btn_Relative_Negative
             // 
@@ -269,19 +265,22 @@
             this.btn_Relative_Negative.TabIndex = 2;
             this.btn_Relative_Negative.Text = "相对位置 -";
             this.btn_Relative_Negative.UseVisualStyleBackColor = true;
+            this.btn_Relative_Negative.Click += new System.EventHandler(this.btn_Relative_Negative_Click);
             // 
             // btn_Jog_Positive
             // 
-            this.btn_Jog_Positive.Location = new System.Drawing.Point(149, 116);
+            this.btn_Jog_Positive.Location = new System.Drawing.Point(149, 82);
             this.btn_Jog_Positive.Name = "btn_Jog_Positive";
             this.btn_Jog_Positive.Size = new System.Drawing.Size(120, 40);
             this.btn_Jog_Positive.TabIndex = 1;
             this.btn_Jog_Positive.Text = "Jog +";
             this.btn_Jog_Positive.UseVisualStyleBackColor = true;
+            this.btn_Jog_Positive.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_Jog_Positive_MouseDown);
+            this.btn_Jog_Positive.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btn_Jog_Positive_MouseUp);
             // 
             // btn_Jog_Negative
             // 
-            this.btn_Jog_Negative.Location = new System.Drawing.Point(23, 116);
+            this.btn_Jog_Negative.Location = new System.Drawing.Point(23, 82);
             this.btn_Jog_Negative.Name = "btn_Jog_Negative";
             this.btn_Jog_Negative.Size = new System.Drawing.Size(120, 40);
             this.btn_Jog_Negative.TabIndex = 0;
@@ -294,8 +293,10 @@
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssl_CurPos,
             this.tssl_RelayCount,
-            this.tssl_AverageTime});
+            this.tssl_AverageTime,
+            this.tssl_Status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 574);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1238, 26);
@@ -314,15 +315,38 @@
             this.tssl_AverageTime.Size = new System.Drawing.Size(90, 20);
             this.tssl_AverageTime.Text = "平均时间/秒";
             // 
-            // btn_SetZero
+            // lbl_Main
             // 
-            this.btn_SetZero.Location = new System.Drawing.Point(149, 70);
-            this.btn_SetZero.Name = "btn_SetZero";
-            this.btn_SetZero.Size = new System.Drawing.Size(120, 40);
-            this.btn_SetZero.TabIndex = 16;
-            this.btn_SetZero.Text = "标定原点";
-            this.btn_SetZero.UseVisualStyleBackColor = true;
-            this.btn_SetZero.Click += new System.EventHandler(this.btn_SetZero_Click);
+            this.lbl_Main.AutoSize = true;
+            this.lbl_Main.Location = new System.Drawing.Point(10, 24);
+            this.lbl_Main.Name = "lbl_Main";
+            this.lbl_Main.Size = new System.Drawing.Size(52, 15);
+            this.lbl_Main.TabIndex = 4;
+            this.lbl_Main.Text = "使用项";
+            // 
+            // lbl_Copy
+            // 
+            this.lbl_Copy.AutoSize = true;
+            this.lbl_Copy.Location = new System.Drawing.Point(307, 21);
+            this.lbl_Copy.Name = "lbl_Copy";
+            this.lbl_Copy.Size = new System.Drawing.Size(52, 15);
+            this.lbl_Copy.TabIndex = 5;
+            this.lbl_Copy.Text = "复制项";
+            // 
+            // tssl_Status
+            // 
+            this.tssl_Status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.tssl_Status.Margin = new System.Windows.Forms.Padding(10, 4, 0, 2);
+            this.tssl_Status.Name = "tssl_Status";
+            this.tssl_Status.Size = new System.Drawing.Size(77, 20);
+            this.tssl_Status.Text = "状态: 成功";
+            // 
+            // tssl_CurPos
+            // 
+            this.tssl_CurPos.AutoSize = false;
+            this.tssl_CurPos.Name = "tssl_CurPos";
+            this.tssl_CurPos.Size = new System.Drawing.Size(170, 20);
+            this.tssl_CurPos.Text = "位置 : 000.000 mm";
             // 
             // Form_Axis_Configuration_Item_MtrSpeed
             // 
@@ -337,6 +361,7 @@
             this.Name = "Form_Axis_Configuration_Item_MtrSpeed";
             this.Text = "Form_Axis_Configuration_Item_MtrSpeed";
             this.gpb_Selector.ResumeLayout(false);
+            this.gpb_Selector.PerformLayout();
             this.gpb_Controller.ResumeLayout(false);
             this.gpb_Controller.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -351,7 +376,6 @@
         private System.Windows.Forms.GroupBox gpb_Selector;
         private System.Windows.Forms.Button btn_Copy;
         private System.Windows.Forms.ComboBox cmb_Selector_Copy;
-        private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.ComboBox cmb_Selector_SpeedSetting;
         private System.Windows.Forms.PropertyGrid pGrid_Speed;
         private System.Windows.Forms.GroupBox gpb_Controller;
@@ -359,21 +383,24 @@
         private System.Windows.Forms.Button btn_Relative_Negative;
         private System.Windows.Forms.Button btn_Jog_Positive;
         private System.Windows.Forms.Button btn_Jog_Negative;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txb_AbsolutePos;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txb_RelativePos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbl_Info_Motor;
         private System.Windows.Forms.Button btn_Absolute;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txb_RelayGap;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txb_RelayCount;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Relay;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tssl_RelayCount;
         private System.Windows.Forms.ToolStripStatusLabel tssl_AverageTime;
         private System.Windows.Forms.Button btn_Home;
         private System.Windows.Forms.Button btn_SetZero;
+        private System.Windows.Forms.Label lbl_Copy;
+        private System.Windows.Forms.Label lbl_Main;
+        private System.Windows.Forms.ToolStripStatusLabel tssl_Status;
+        private System.Windows.Forms.ToolStripStatusLabel tssl_CurPos;
     }
 }

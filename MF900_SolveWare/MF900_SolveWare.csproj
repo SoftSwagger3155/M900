@@ -86,6 +86,7 @@
     <Compile Include="Views\Child\Form_Offset.Designer.cs">
       <DependentUpon>Form_Offset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewHelper.cs" />
     <Compile Include="WorldCenter\Data\Data_GlobalWorldCenter.cs" />
     <Compile Include="DeControls\AxisJop.cs">
       <SubType>UserControl</SubType>

@@ -296,6 +296,12 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool HomeMoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool ManualMoveTo(double pos);
+        public abstract void Jog(bool isPositive);
+        public abstract void Jog(bool isPositive, SpeedSeting speed);
+        public abstract bool MoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
+        public abstract bool HomeMove(SpeedSeting speed);
+        public abstract bool HomeMoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
+        public abstract bool MoveRelative(double distance, SpeedSeting speed, bool BypassDangerCheck = false);
         public abstract void Stop();
         public abstract bool HomeMove();
         public abstract bool MoveToSafeObservedPos(double pos);
@@ -303,8 +309,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract Motor_Wait_Kind WaitStop();
         public abstract Motor_Wait_Kind WaitHomeDone();
 
-        public abstract void SetZero();
-        public abstract void Jog(bool isPositive);
+        public abstract void SetZero(uint homeMode = 35);     
         public abstract int Get_IO_sts();
         public abstract void Set_Servo(bool on);
 
@@ -327,7 +332,6 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             acc = factor / acc_Unit;
             dec = factor / dec_Unit;
         }
-
         public void Conver_To_Jog_MMPerSec(ref float startVel, ref float maxVel, ref float acc, ref float dec)
         {
             SpeedSeting mtrSpeed = this.ConfigData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == ConstantProperty.SpeedSetting_Jog);

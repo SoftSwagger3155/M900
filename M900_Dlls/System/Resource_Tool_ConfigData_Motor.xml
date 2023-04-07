@@ -14,6 +14,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -63,8 +64,8 @@
           <Name>复位速度</Name>
           <Min_Velocity>0</Min_Velocity>
           <Max_Velocity>10</Max_Velocity>
-          <Acceleration>1000</Acceleration>
-          <Deceleration>1000</Deceleration>
+          <Acceleration>3000</Acceleration>
+          <Deceleration>3000</Deceleration>
           <Jerk>0</Jerk>
           <SpeedRatio>0</SpeedRatio>
         </SpeedSeting>
@@ -81,8 +82,8 @@
           <Name>测试 复位速度</Name>
           <Min_Velocity>0</Min_Velocity>
           <Max_Velocity>10</Max_Velocity>
-          <Acceleration>1000</Acceleration>
-          <Deceleration>1000</Deceleration>
+          <Acceleration>3000</Acceleration>
+          <Deceleration>3000</Deceleration>
           <Jerk>0</Jerk>
           <SpeedRatio>0</SpeedRatio>
         </SpeedSeting>
@@ -124,6 +125,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -234,6 +236,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -344,6 +347,7 @@
       <UnitPerRevolution>360</UnitPerRevolution>
       <PulsePerRevolution>1440</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -454,6 +458,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -564,6 +569,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -674,6 +680,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -784,6 +791,7 @@
       <UnitPerRevolution>360</UnitPerRevolution>
       <PulsePerRevolution>1440</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>
@@ -894,6 +902,7 @@
       <UnitPerRevolution>1</UnitPerRevolution>
       <PulsePerRevolution>1000</PulsePerRevolution>
       <PulseFactor>0</PulseFactor>
+      <IsConvertedToMMperSec>false</IsConvertedToMMperSec>
       <IsFormulaAxis>false</IsFormulaAxis>
       <Decimal_Digit>0</Decimal_Digit>
       <MotorMasterDriver>Zmcaux</MotorMasterDriver>

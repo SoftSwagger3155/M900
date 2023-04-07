@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Data;
@@ -32,6 +33,9 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             if (axis == null) return;
 
+            this.tssl_CurPos.Text = $" 位置 {axis.CurrentPhysicalPos} mm";
+            this.tssl_Status.SetStatus(JobStatus.Unknown);
+            
             Fillup_Combobox_SpeedSetting();
             this.cmb_Selector_SpeedSetting.SelectionChangeCommitted -= Cmb_Selector_SpeedSetting_SelectionChangeCommitted;
             this.cmb_Selector_SpeedSetting.SelectionChangeCommitted += Cmb_Selector_SpeedSetting_SelectionChangeCommitted;
@@ -59,7 +63,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             {
                 this.Invoke(new Action(() =>
                 {
-                    this.lbl_Info_Motor.Text = $"{this.configData.MtrTable.Name} {axis.CurrentPhysicalPos} mm";
+                    this.tssl_CurPos.Text = $" 位置 {axis.CurrentPhysicalPos} mm";
                 }));
             }
         }
@@ -93,6 +97,9 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             try
             {
+                var result = MessageBox.Show("确认设立 此位置 设为原点?", "提问", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) { return; }
+
                 axis.SetZero();
             }
             catch (Exception ex)
@@ -103,12 +110,149 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Jog_Negative_MouseDown(object sender, MouseEventArgs e)
         {
-
+            try
+            {
+            
+                this.axis.Jog(false, GetMainSpeedSetting());
+            }
+            catch (Exception ex)
+            {
+                tssl_Status.SetStatus(JobStatus.Fail);
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
         }
 
         private void btn_Jog_Negative_MouseUp(object sender, MouseEventArgs e)
         {
-
+            try
+            {
+                this.axis.Stop();
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
         }
+
+        private void btn_Jog_Positive_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this.axis.Jog(true, GetMainSpeedSetting());
+            }
+            catch (Exception ex)
+            {
+                tssl_Status.SetStatus(JobStatus.Fail);
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
+        }
+
+        private void btn_Jog_Positive_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this.axis.Stop();
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
+        }
+
+        private void btn_Copy_Click(object sender, EventArgs e)
+        {
+            if(cmb_Selector_Copy.SelectedItem == null)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage("请选择一个复制项", true);
+                return;
+            }
+            if(cmb_Selector_SpeedSetting.SelectedItem == null)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage("请选择一个使用项", true);
+                return;
+            }
+
+
+            try
+            {
+                var copy = this.configData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == cmb_Selector_Copy.SelectedItem as string);
+                var main = this.configData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == cmb_Selector_SpeedSetting.SelectedItem as string);
+
+                var reslut = MessageBox.Show($"确认复制?\r\n原 MinVel {main.Min_Velocity} MaxVel {main.Max_Velocity} Acc {main.Acceleration} Dec{main.Deceleration} \r\n" +
+                                                                                        $"新 MinVel {copy.Min_Velocity} MaxVel {copy.Max_Velocity} Acc {copy.Acceleration} Dec{copy.Deceleration}", "提问", MessageBoxButtons.YesNo);
+                if(reslut == DialogResult.No) { return; }
+
+
+                main.Min_Velocity = copy.Min_Velocity;
+                main.Max_Velocity = copy.Max_Velocity;
+                main.Acceleration = copy.Acceleration;
+                main.Deceleration = copy.Deceleration;
+
+                this.pGrid_Speed.SelectedObject = main;
+
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
+        }
+
+        private void btn_Relative_Negative_Click(object sender, EventArgs e)
+        {
+            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+            {
+                int errorCode = ErrorCodes.NoError;
+                if(string.IsNullOrEmpty(txb_RelativePos.Text))
+                {
+                    SolveWare.Core.MMgr.Infohandler.LogMessage("相对位置栏位不得为空", true);
+                    return 0;
+                }
+
+                errorCode = axis.MoveRelative( -1 * double.Parse(txb_RelativePos.Text), GetMainSpeedSetting()) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+
+                return errorCode;
+            });
+        }
+
+        private void btn_Relative_Positive_Click(object sender, EventArgs e)
+        {
+            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+            {
+                int errorCode = ErrorCodes.NoError;
+                if (string.IsNullOrEmpty(txb_RelativePos.Text))
+                {
+                    SolveWare.Core.MMgr.Infohandler.LogMessage("相对位置栏位不得为空", true);
+                    return 0;
+                }
+
+                errorCode = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text), GetMainSpeedSetting()) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+
+                return errorCode;
+            });
+        }
+
+        private void btn_Absolute_Click(object sender, EventArgs e)
+        {
+            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+            {
+                int errorCode = ErrorCodes.NoError;
+                if (string.IsNullOrEmpty(txb_AbsolutePos.Text))
+                {
+                    SolveWare.Core.MMgr.Infohandler.LogMessage("相对位置栏位不得为空", true);
+                    return 0;
+                }
+
+                errorCode = axis.MoveTo(double.Parse(txb_AbsolutePos.Text), GetMainSpeedSetting()) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+
+                return errorCode;
+            });
+        }
+        private SpeedSeting GetMainSpeedSetting()
+        {
+            var setting = this.configData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == (cmb_Selector_SpeedSetting.SelectedItem as string));
+            return setting;
+        }
+
+      
     }
 }
