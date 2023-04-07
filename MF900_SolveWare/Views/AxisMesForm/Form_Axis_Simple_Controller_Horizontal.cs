@@ -205,7 +205,19 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Home_Click(object sender, EventArgs e)
         {
+            try
+            {
+                SolveWare.Core.MMgr.DoButtonClickTask(() =>
+                {
+                    int errorCode = mtr.HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
+                    return errorCode;
+                });
 
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
         }
     }
 }

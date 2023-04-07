@@ -76,15 +76,18 @@
             this.btn_Clear = new System.Windows.Forms.Button();
             this.btn_Save = new System.Windows.Forms.Button();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.gpb_Selector = new System.Windows.Forms.GroupBox();
+            this.cmb_Selector_Offset = new System.Windows.Forms.ComboBox();
             this.gpb_Btm_Module.SuspendLayout();
             this.gpb_Top_Module.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gpb_Selector.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_Execute_Both_Module
             // 
-            this.btn_Execute_Both_Module.Location = new System.Drawing.Point(1215, 489);
+            this.btn_Execute_Both_Module.Location = new System.Drawing.Point(1222, 585);
             this.btn_Execute_Both_Module.Name = "btn_Execute_Both_Module";
             this.btn_Execute_Both_Module.Size = new System.Drawing.Size(120, 40);
             this.btn_Execute_Both_Module.TabIndex = 17;
@@ -110,7 +113,7 @@
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_MotorZ_Info);
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_MotorY_Info);
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_MotorX_Info);
-            this.gpb_Btm_Module.Location = new System.Drawing.Point(518, 28);
+            this.gpb_Btm_Module.Location = new System.Drawing.Point(525, 124);
             this.gpb_Btm_Module.Name = "gpb_Btm_Module";
             this.gpb_Btm_Module.Size = new System.Drawing.Size(480, 501);
             this.gpb_Btm_Module.TabIndex = 16;
@@ -228,7 +231,7 @@
             // 
             // btn_Motor_General_Controller
             // 
-            this.btn_Motor_General_Controller.Location = new System.Drawing.Point(1086, 489);
+            this.btn_Motor_General_Controller.Location = new System.Drawing.Point(1093, 585);
             this.btn_Motor_General_Controller.Name = "btn_Motor_General_Controller";
             this.btn_Motor_General_Controller.Size = new System.Drawing.Size(120, 40);
             this.btn_Motor_General_Controller.TabIndex = 15;
@@ -253,7 +256,7 @@
             this.gpb_Top_Module.Controls.Add(this.lbl_Top_MotorZ_Info);
             this.gpb_Top_Module.Controls.Add(this.lbl_Top_MotorY_Info);
             this.gpb_Top_Module.Controls.Add(this.btn_Top_MotorX_Info);
-            this.gpb_Top_Module.Location = new System.Drawing.Point(16, 28);
+            this.gpb_Top_Module.Location = new System.Drawing.Point(23, 124);
             this.gpb_Top_Module.Name = "gpb_Top_Module";
             this.gpb_Top_Module.Size = new System.Drawing.Size(480, 501);
             this.gpb_Top_Module.TabIndex = 14;
@@ -362,7 +365,7 @@
             this.tssl_TimeSpent,
             this.tssl_Status,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 620);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 677);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1386, 26);
             this.statusStrip1.TabIndex = 18;
@@ -477,7 +480,7 @@
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Location = new System.Drawing.Point(1020, 33);
+            this.groupBox1.Location = new System.Drawing.Point(1027, 129);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(315, 112);
             this.groupBox1.TabIndex = 19;
@@ -522,7 +525,7 @@
             // 
             // btn_Clear
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(1086, 443);
+            this.btn_Clear.Location = new System.Drawing.Point(1093, 539);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(120, 40);
             this.btn_Clear.TabIndex = 20;
@@ -531,7 +534,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(1212, 443);
+            this.btn_Save.Location = new System.Drawing.Point(1219, 539);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(120, 40);
             this.btn_Save.TabIndex = 21;
@@ -545,11 +548,31 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(235, 20);
             this.toolStripStatusLabel1.Text = "储存日期 : 2023/00/00 00:00:00 ";
             // 
+            // gpb_Selector
+            // 
+            this.gpb_Selector.Controls.Add(this.cmb_Selector_Offset);
+            this.gpb_Selector.Location = new System.Drawing.Point(23, 12);
+            this.gpb_Selector.Name = "gpb_Selector";
+            this.gpb_Selector.Size = new System.Drawing.Size(392, 87);
+            this.gpb_Selector.TabIndex = 22;
+            this.gpb_Selector.TabStop = false;
+            this.gpb_Selector.Text = "选择器";
+            // 
+            // cmb_Selector_Offset
+            // 
+            this.cmb_Selector_Offset.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_Offset.FormattingEnabled = true;
+            this.cmb_Selector_Offset.Location = new System.Drawing.Point(9, 33);
+            this.cmb_Selector_Offset.Name = "cmb_Selector_Offset";
+            this.cmb_Selector_Offset.Size = new System.Drawing.Size(365, 28);
+            this.cmb_Selector_Offset.TabIndex = 0;
+            // 
             // Form_Offset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1386, 646);
+            this.ClientSize = new System.Drawing.Size(1386, 703);
+            this.Controls.Add(this.gpb_Selector);
             this.Controls.Add(this.btn_Save);
             this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.groupBox1);
@@ -568,6 +591,7 @@
             this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gpb_Selector.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -623,5 +647,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.GroupBox gpb_Selector;
+        private System.Windows.Forms.ComboBox cmb_Selector_Offset;
     }
 }

@@ -56,17 +56,23 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmb_Selector_InspectKit = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_Save);
             this.groupBox1.Controls.Add(this.btn_Inspect);
             this.groupBox1.Controls.Add(this.tView_Content);
             this.groupBox1.Controls.Add(this.hWindowControl1);
-            this.groupBox1.Location = new System.Drawing.Point(24, 26);
+            this.groupBox1.Location = new System.Drawing.Point(24, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1246, 426);
             this.groupBox1.TabIndex = 1;
@@ -133,8 +139,9 @@
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
-            this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 505);
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel5});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 627);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1297, 26);
             this.statusStrip1.TabIndex = 2;
@@ -181,7 +188,7 @@
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(16, 465);
+            this.toolStrip1.Location = new System.Drawing.Point(16, 891);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1291, 33);
             this.toolStrip1.TabIndex = 6;
@@ -214,11 +221,47 @@
             this.toolStripButton3.Size = new System.Drawing.Size(29, 30);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(1122, 314);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(106, 45);
+            this.btn_Save.TabIndex = 6;
+            this.btn_Save.Text = "储存资料";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(10, 4, 0, 2);
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(231, 20);
+            this.toolStripStatusLabel5.Text = "储存日期 : 2023/00/00 00:00:00";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cmb_Selector_InspectKit);
+            this.groupBox2.Location = new System.Drawing.Point(24, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(365, 79);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "选择器";
+            // 
+            // cmb_Selector_InspectKit
+            // 
+            this.cmb_Selector_InspectKit.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_InspectKit.FormattingEnabled = true;
+            this.cmb_Selector_InspectKit.Location = new System.Drawing.Point(23, 29);
+            this.cmb_Selector_InspectKit.Name = "cmb_Selector_InspectKit";
+            this.cmb_Selector_InspectKit.Size = new System.Drawing.Size(317, 28);
+            this.cmb_Selector_InspectKit.TabIndex = 0;
+            // 
             // Form_InspectKit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 531);
+            this.ClientSize = new System.Drawing.Size(1297, 653);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
@@ -229,6 +272,7 @@
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,5 +292,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmb_Selector_InspectKit;
     }
 }
