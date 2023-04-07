@@ -69,6 +69,11 @@ namespace SolveWare_Service_Tool.Motor.Data
         public double PulseFactor { get; set; }
 
         [Category("Axis Table")]
+        [DisplayName("IsConvertedToMMperSec 是否转换MM per Sec")]
+        [Description("IsConvertedToMMperSec")]
+        public bool IsConvertedToMMperSec { get; set; }
+
+        [Category("Axis Table")]
         [DisplayName("Is Formula Axis (公式轴)")]
         [Description("Is Formula Axis")]
         public bool IsFormulaAxis { get; set; }

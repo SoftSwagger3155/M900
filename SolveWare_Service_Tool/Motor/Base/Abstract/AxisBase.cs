@@ -292,21 +292,19 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract double Get_CurUnitPos();
         public abstract double Get_AnalogInputValue();
         public abstract bool Get_ServoStatus();
-        public abstract bool MoveRelative(double distance, MtrSpeed mtrSpeed, bool BypassDangerCheck = false);
+        public abstract bool MoveRelative(double distance, bool BypassDangerCheck = false);
         public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
-        public abstract bool MoveTo(double pos, MtrSpeed mtrSpeed,  bool BypassDangerCheck = false);
-        public abstract bool HomeMoveTo(double pos, MtrSpeed mtrSpeed, bool BypassDangerCheck = false);
+        public abstract bool HomeMoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool ManualMoveTo(double pos);
         public abstract void Stop();
         public abstract bool HomeMove();
-        public abstract bool HomeMove(MtrSpeed mtrSpeed);
         public abstract bool MoveToSafeObservedPos(double pos);
         public abstract bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false);
         public abstract Motor_Wait_Kind WaitStop();
         public abstract Motor_Wait_Kind WaitHomeDone();
 
+        public abstract void SetZero();
         public abstract void Jog(bool isPositive);
-        public abstract void Jog(bool isPositive, MtrSpeed mtrSpeed);
         public abstract int Get_IO_sts();
         public abstract void Set_Servo(bool on);
 
@@ -330,7 +328,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             dec = factor / dec_Unit;
         }
 
-        public void Conver_To_Jog_MMPerSec(ref float startVel, ref float maxVel, ref double acc, ref double dec)
+        public void Conver_To_Jog_MMPerSec(ref float startVel, ref float maxVel, ref float acc, ref float dec)
         {
             SpeedSeting mtrSpeed = this.ConfigData.MtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == ConstantProperty.SpeedSetting_Jog);
 
@@ -346,8 +344,8 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             maxVel = (float)(unitPerSec * mtrSpeed.Max_Velocity * speedRatio);
 
             double factor = maxVel == startVel ? 1 : maxVel - startVel;
-            acc = factor / acc_Unit;
-            dec = factor / dec_Unit;
+            acc = (float)(factor / acc_Unit);
+            dec = (float)(factor / dec_Unit);
         }
 
         public double FormulaCalc_AngleToUnit(double Angle)

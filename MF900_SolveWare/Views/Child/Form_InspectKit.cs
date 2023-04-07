@@ -25,12 +25,7 @@ namespace MF900_SolveWare.Views.Child
         const string NodeName_PatternMatch = "模板";
         const string NodeName_Blob = "Blob";
 
-        static string leftArrow = "";
-        static string rightArrow = "";
-        static string upArrow = "";
-        static string downArrow = "";
-        static string leftTurn = "";
-        static string rightTurn = "";
+        
 
         public Form_InspectKit()
         {

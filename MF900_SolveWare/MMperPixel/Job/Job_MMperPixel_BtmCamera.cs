@@ -15,10 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using MF900_SolveWare.MMperPixel.Data;
 using SolveWare_Service_Utility.Extension;
+using SolveWare_Service_Core.Attributes;
 
 namespace MF900_SolveWare.MMperPixel.Job
 {
     //TODO 杨工: 1. UI 2. 实现细节
+    [ResourceBase(ConstantProperty.MMperPixel)]
     public class Job_MMperPixel_BtmCamera : DataJobPairFundamentalBase<Data_MMperPixel>, IMMperPixelJob
     {
         CameraMediaBase camera;

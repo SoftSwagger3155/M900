@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Camera.Base.Abstract;
@@ -15,7 +16,8 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Vision.Inspection.Business
 {
-    
+
+    [ResourceBaseAttribute(ConstantProperty.Inspect)]
     public class Inspect : DataJobPairFundamentalBase<Data_InspectionKit>,  IInspectionKit
     {
         private double offsetX = 0;

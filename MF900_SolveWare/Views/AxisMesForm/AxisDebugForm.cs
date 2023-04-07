@@ -149,22 +149,22 @@ namespace MF900_SolveWare
         private void uiButton6_Click(object sender, EventArgs e)
         {
             TopAndBtmSetSpeed(uiDataGridView7, 0, uiDataGridView1);
-            ResourceKey.Motor_Btm_X.GetAxisBase().HomeMove(mtrSpeed);
+            //ResourceKey.Motor_Btm_X.GetAxisBase().HomeMove(mtrSpeed);
         }
         //Y_Home
         private void uiButton8_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_Y.GetAxisBase().HomeMove(mtrSpeed);
+            //ResourceKey.Motor_Btm_Y.GetAxisBase().HomeMove(mtrSpeed);
         }
         //Z_Home
         private void uiButton7_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_Z.GetAxisBase().HomeMove(mtrSpeed);
+            //ResourceKey.Motor_Btm_Z.GetAxisBase().HomeMove(mtrSpeed);
         }
         //T_Home
         private void uiButton5_Click(object sender, EventArgs e)
         {
-            ResourceKey.Motor_Btm_T.GetAxisBase().HomeMove(mtrSpeed);
+            //ResourceKey.Motor_Btm_T.GetAxisBase().HomeMove(mtrSpeed);
         }
 
         #endregion
@@ -218,8 +218,8 @@ namespace MF900_SolveWare
         {
             if(col==2)
             {
-                keyAxis[dataGridView[0, row].Value.ToString()].MoveRelative(double.Parse(dataGridView[1, row].Value.ToString()),
-                       mtrSpeed);
+               // keyAxis[dataGridView[0, row].Value.ToString()].MoveRelative(double.Parse(dataGridView[1, row].Value.ToString()),
+                       //mtrSpeed);
                 //keyAxis[dataGridView[0, row].Value.ToString()].MoveTo(double.Parse(dataGridView[1, row].Value.ToString()));
             }
         }
@@ -231,10 +231,10 @@ namespace MF900_SolveWare
             switch (col)
             {
                 case 4:
-                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(false, mtrSpeed);
+                    //keyAxis[dataGridView[0, row].Value.ToString()].Jog(false, mtrSpeed);
                     break;
                 case 5:
-                    keyAxis[dataGridView[0, row].Value.ToString()].Jog(true, mtrSpeed);
+                    //keyAxis[dataGridView[0, row].Value.ToString()].Jog(true, mtrSpeed);
                     break;
             }
         }
@@ -294,7 +294,7 @@ namespace MF900_SolveWare
             //需加正则判断
 
             TableSpeed();
-            ResourceKey.Motor_Table.GetAxisBase().MoveRelative(double.Parse(uiTextBox1.Text), ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+            //ResourceKey.Motor_Table.GetAxisBase().MoveRelative(double.Parse(uiTextBox1.Text), ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
         }
 
         private void TableSpeed()
@@ -311,7 +311,7 @@ namespace MF900_SolveWare
         private void uiButton12_MouseDown(object sender, MouseEventArgs e)
         {
             TableSpeed();
-            ResourceKey.Motor_Table.GetAxisBase().Jog(true, ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+            //ResourceKey.Motor_Table.GetAxisBase().Jog(true, ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
         }
 
         private void uiButton12_MouseUp(object sender, MouseEventArgs e)
@@ -322,7 +322,7 @@ namespace MF900_SolveWare
         private void uiButton10_MouseDown(object sender, MouseEventArgs e)
         {
             TableSpeed();
-            ResourceKey.Motor_Table.GetAxisBase().Jog(false, ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
+            //ResourceKey.Motor_Table.GetAxisBase().Jog(false, ResourceKey.Motor_Table.GetAxisBase().MtrSpeed);
         }
         
         private void uiButton10_MouseUp(object sender, MouseEventArgs e)

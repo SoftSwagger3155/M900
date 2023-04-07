@@ -1,6 +1,7 @@
 ﻿using MF900_SolveWare.MMperPixel.Data;
 using MF900_SolveWare.Resource;
 using SolveWare_Service_Core;
+using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
@@ -20,6 +21,7 @@ using System.Threading.Tasks;
 namespace MF900_SolveWare.MMperPixel.Job
 {
     //TODO 杨工: 1. UI 2. 实现细节
+    [ResourceBase(ConstantProperty.MMperPixel)]
     public class Job_MMperPixel_TopCamera: DataJobPairFundamentalBase<Data_MMperPixel>, IMMperPixelJob
     {
         CameraMediaBase camera;

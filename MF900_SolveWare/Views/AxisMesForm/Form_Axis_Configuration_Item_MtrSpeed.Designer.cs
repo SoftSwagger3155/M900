@@ -35,6 +35,12 @@
             this.cmb_Selector_SpeedSetting = new System.Windows.Forms.ComboBox();
             this.pGrid_Speed = new System.Windows.Forms.PropertyGrid();
             this.gpb_Controller = new System.Windows.Forms.GroupBox();
+            this.btn_Home = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -45,15 +51,10 @@
             this.btn_Relative_Negative = new System.Windows.Forms.Button();
             this.btn_Jog_Positive = new System.Windows.Forms.Button();
             this.btn_Jog_Negative = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_RelayCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_AverageTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btn_Home = new System.Windows.Forms.Button();
+            this.btn_SetZero = new System.Windows.Forms.Button();
             this.gpb_Selector.SuspendLayout();
             this.gpb_Controller.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             // gpb_Controller
             // 
+            this.gpb_Controller.Controls.Add(this.btn_SetZero);
             this.gpb_Controller.Controls.Add(this.btn_Home);
             this.gpb_Controller.Controls.Add(this.textBox4);
             this.gpb_Controller.Controls.Add(this.label4);
@@ -139,6 +141,61 @@
             this.gpb_Controller.TabIndex = 3;
             this.gpb_Controller.TabStop = false;
             this.gpb_Controller.Text = "控制器";
+            // 
+            // btn_Home
+            // 
+            this.btn_Home.Location = new System.Drawing.Point(23, 70);
+            this.btn_Home.Name = "btn_Home";
+            this.btn_Home.Size = new System.Drawing.Size(120, 40);
+            this.btn_Home.TabIndex = 15;
+            this.btn_Home.Text = "复位";
+            this.btn_Home.UseVisualStyleBackColor = true;
+            this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox4.Location = new System.Drawing.Point(169, 354);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 25);
+            this.textBox4.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(28, 361);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "距离设定 / mm";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.Location = new System.Drawing.Point(169, 383);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 25);
+            this.textBox3.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(28, 390);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "来回次数";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(23, 405);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 40);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "点对点位移";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -230,51 +287,8 @@
             this.btn_Jog_Negative.TabIndex = 0;
             this.btn_Jog_Negative.Text = "Jog -";
             this.btn_Jog_Negative.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(23, 405);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "点对点位移";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(169, 383);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 25);
-            this.textBox3.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(28, 390);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "来回次数";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(169, 354);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 25);
-            this.textBox4.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(28, 361);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "距离设定 / mm";
+            this.btn_Jog_Negative.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_Jog_Negative_MouseDown);
+            this.btn_Jog_Negative.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btn_Jog_Negative_MouseUp);
             // 
             // statusStrip1
             // 
@@ -300,14 +314,15 @@
             this.tssl_AverageTime.Size = new System.Drawing.Size(90, 20);
             this.tssl_AverageTime.Text = "平均时间/秒";
             // 
-            // btn_Home
+            // btn_SetZero
             // 
-            this.btn_Home.Location = new System.Drawing.Point(23, 70);
-            this.btn_Home.Name = "btn_Home";
-            this.btn_Home.Size = new System.Drawing.Size(120, 40);
-            this.btn_Home.TabIndex = 15;
-            this.btn_Home.Text = "复位";
-            this.btn_Home.UseVisualStyleBackColor = true;
+            this.btn_SetZero.Location = new System.Drawing.Point(149, 70);
+            this.btn_SetZero.Name = "btn_SetZero";
+            this.btn_SetZero.Size = new System.Drawing.Size(120, 40);
+            this.btn_SetZero.TabIndex = 16;
+            this.btn_SetZero.Text = "标定原点";
+            this.btn_SetZero.UseVisualStyleBackColor = true;
+            this.btn_SetZero.Click += new System.EventHandler(this.btn_SetZero_Click);
             // 
             // Form_Axis_Configuration_Item_MtrSpeed
             // 
@@ -359,5 +374,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tssl_RelayCount;
         private System.Windows.Forms.ToolStripStatusLabel tssl_AverageTime;
         private System.Windows.Forms.Button btn_Home;
+        private System.Windows.Forms.Button btn_SetZero;
     }
 }

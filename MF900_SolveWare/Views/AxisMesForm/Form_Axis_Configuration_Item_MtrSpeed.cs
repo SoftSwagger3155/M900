@@ -1,4 +1,6 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using SolveWare_Service_Core;
+using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Data;
 using SolveWare_Service_Utility.Extension;
@@ -70,6 +72,43 @@ namespace MF900_SolveWare.Views.AxisMesForm
             axis.ConfigData.MtrSpeed.SpeedSettings.ForEach(s => { this.cmb_Selector_SpeedSetting.Items.Add(s.Name); });
         }
 
-        
+        private void btn_Home_Click(object sender, EventArgs e)
+        {
+            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+            {
+                try
+                {
+                    int errorCode = axis.HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
+                    return errorCode;
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message);
+                    return ErrorCodes.MotorHomingError;
+                }
+            });
+        }
+
+        private void btn_SetZero_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                axis.SetZero();
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
+        }
+
+        private void btn_Jog_Negative_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void btn_Jog_Negative_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

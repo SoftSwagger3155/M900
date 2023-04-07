@@ -1,5 +1,7 @@
 ﻿using MF900_SolveWare.Offset.Data;
+using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Offset.Base.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 namespace MF900_SolveWare.Offset.Job
 {
     //TODO 杨工UI | Stanley 实现细节
+    [ResourceBase(ConstantProperty.Offset)]
     public class Job_Offset_TopCamera_BtmPin : DataJobPairFundamentalBase<Data_OffsetData>, IOffset
     {
         /// <summary>
