@@ -129,9 +129,14 @@ namespace SolveWare_Service_Tool.Motor.Business
             bool isTimeOut = false;
             TimeSpent = "0.000";
             Stopwatch sw = Stopwatch.StartNew();
-   
+            errorReport = string.Empty;
+
             //先检查安全问题
-            if (IsProhibitToHome()) { return isHomeSuccessful; }
+            if (IsProhibitToHome()) 
+            {
+                errorReport += "不安全复位";
+                return isHomeSuccessful; 
+            }
 
             //模拟状态
             if (Simulation)
@@ -189,6 +194,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             if (isTimeOut)
             {
+                errorReport += "运动超时";
                 Stop();
                 hasHome = false;
                 return isHomeSuccessful;
@@ -205,12 +211,14 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(st))
                 {
+                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
            if(isTimeOut)
             {
+                errorReport += "运动超时";
                 Stop();
                 hasHome = false;
                 return isHomeSuccessful;
@@ -219,6 +227,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             if (HomeMoveTo(mtrTable.MoveOutGapAfterHoming) == false)
             {
+                errorReport += $"复位后 位移{mtrTable.MoveOutGapAfterHoming} mm 失败";
                 Stop();
                 return isHomeSuccessful;
             }
@@ -241,9 +250,13 @@ namespace SolveWare_Service_Tool.Motor.Business
             int homemode = 0;
             TimeSpent = "0.000";
             Stopwatch sw = Stopwatch.StartNew();
+            errorReport = string.Empty;
 
-
-            if (IsProhibitToHome()) { return false; }
+            if (IsProhibitToHome()) 
+            {
+                errorReport += "不安全复位";
+                return false; 
+            }
 
             isStopReq = false;
 
@@ -304,6 +317,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             if (isTimeOut )
             {
+                errorReport += "运动超时";
                 Stop();
                 return isHomeSuccessful;
             }
@@ -318,12 +332,14 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(st))
                 {
+                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
             if (isTimeOut)
             {
+                errorReport += "运动超时";
                 Stop();
                 hasHome = false;
                 return isHomeSuccessful;
@@ -332,6 +348,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             if (HomeMoveTo(mtrTable.MoveOutGapAfterHoming) == false)
             {
+                errorReport += $"复位后 位移 {mtrTable.MoveOutGapAfterHoming} mm 失败";
                 Stop();
                 return isHomeSuccessful;
             }
@@ -642,6 +659,8 @@ namespace SolveWare_Service_Tool.Motor.Business
             DateTime st = DateTime.Now;
             double tempPos = 0;
             Stopwatch sw = Stopwatch.StartNew();
+            errorReport = string.Empty;
+            
             //公式轴执行方式
             if (this.MtrTable.IsFormulaAxis)
             {
@@ -650,12 +669,23 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //安全检查
-            if (IsProhibitToMove()) return false;
+            if (IsProhibitToMove()) {
+
+                errorReport += "不安全运动";
+                return false;
+            }
             if (IsDangerousToMove)
             {
-                if (DoAvoidDangerousPosAction() == false) return false;
+                if (DoAvoidDangerousPosAction() == false) {
+                    errorReport += "不安全运动";
+                    return false;
+                }
             }
-            if (IsZoneSafeToGo(pos) == false) return false;
+            if (IsZoneSafeToGo(pos) == false)
+            {
+                errorReport += "超出限位距离";
+                return false;
+            }
 
 
             //获取速度
@@ -715,7 +745,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
 
             double factor = MtrTable.MotorRealDirectionState == DirectionState.Negative && MtrTable.MotorDisplayDirectionState == DirectionState.Positive ||
-                                     MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
+                                      MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
 
             //double targetPos = pos / mtrTable.UnitPerRevolution * mtrTable.PulsePerRevolution;
             pos *= factor;
@@ -735,12 +765,14 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(st))
                 {
+                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
             if (isTimeOut)
             {
+                errorReport += "运动超时";
                 Stop();
                 return isMoveSuccessful;
             }
@@ -756,6 +788,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             DateTime st = DateTime.Now;
             double tempPos = 0;
             Stopwatch sw = Stopwatch.StartNew();
+            errorReport = string.Empty;
 
             //公式轴执行方式
             if (this.MtrTable.IsFormulaAxis)
@@ -765,13 +798,25 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //安全检查
-            if (IsProhibitToMove()) return false;
+            if (IsProhibitToMove())
+            {
+
+                errorReport += "不安全运动";
+                return false;
+            }
             if (IsDangerousToMove)
             {
-                if (DoAvoidDangerousPosAction() == false) return false;
+                if (DoAvoidDangerousPosAction() == false)
+                {
+                    errorReport += "不安全运动";
+                    return false;
+                }
             }
-            if (IsZoneSafeToGo(pos) == false) return false;
-
+            if (IsZoneSafeToGo(pos) == false)
+            {
+                errorReport += "超出限位距离";
+                return false;
+            }
 
             //获取速度
             float minVel = 0;
@@ -830,7 +875,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
 
             double factor = MtrTable.MotorRealDirectionState == DirectionState.Negative && MtrTable.MotorDisplayDirectionState == DirectionState.Positive ||
-                                     MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
+                                      MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
 
             //double targetPos = pos / mtrTable.UnitPerRevolution * mtrTable.PulsePerRevolution;
             pos *= factor;
@@ -851,12 +896,14 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(st))
                 {
+                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
             if (isTimeOut)
             {
+                errorReport += "运动超时";
                 Stop();
                 return isMoveSuccessful;
             }

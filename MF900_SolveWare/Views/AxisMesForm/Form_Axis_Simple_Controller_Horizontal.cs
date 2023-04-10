@@ -59,7 +59,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                     {
                         this.BeginInvoke(new Action(() =>
                         {
-                            Color bcolor = this.axis.IsOrg ? Color.Red : Color.Green;
+                            Color bcolor = this.axis.IsOrg ? Color.Green : Color.Red;
                             this.lbl_Lmt_Negative.BackColor = bcolor;
                         }));
                     }

@@ -101,7 +101,14 @@
       </SpeedSettings>
     </MtrSpeed>
     <MtrSafe>
-      <Data_Pos_Safetys />
+      <Data_Pos_Safetys>
+        <Data_Pos_Safety>
+          <IsSelected>false</IsSelected>
+          <MotorName>上马达Z</MotorName>
+          <Operand>大于等于</Operand>
+          <Pos>10</Pos>
+        </Data_Pos_Safety>
+      </Data_Pos_Safetys>
       <Data_IO_Safetys />
     </MtrSafe>
     <MtrMisc>

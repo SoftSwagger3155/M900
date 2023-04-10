@@ -65,6 +65,7 @@
             this.btn_Enable_Servo = new System.Windows.Forms.Button();
             this.btn_Disable_Servo = new System.Windows.Forms.Button();
             this.lbl_Org = new System.Windows.Forms.Label();
+            this.lbl_ErrorReport = new System.Windows.Forms.Label();
             this.gpb_Selector.SuspendLayout();
             this.gpb_Controller.SuspendLayout();
             this.SuspendLayout();
@@ -486,11 +487,23 @@
             this.lbl_Org.Text = "成功";
             this.lbl_Org.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lbl_ErrorReport
+            // 
+            this.lbl_ErrorReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lbl_ErrorReport.Location = new System.Drawing.Point(637, 533);
+            this.lbl_ErrorReport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_ErrorReport.Name = "lbl_ErrorReport";
+            this.lbl_ErrorReport.Size = new System.Drawing.Size(331, 26);
+            this.lbl_ErrorReport.TabIndex = 15;
+            this.lbl_ErrorReport.Text = "失败报告";
+            this.lbl_ErrorReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form_Axis_Configuration_Item_MtrSpeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1237, 600);
+            this.Controls.Add(this.lbl_ErrorReport);
             this.Controls.Add(this.lbl_Org);
             this.Controls.Add(this.lbl_Servo);
             this.Controls.Add(this.label9);
@@ -558,5 +571,6 @@
         private System.Windows.Forms.Button btn_Disable_Servo;
         private System.Windows.Forms.Button btn_Enable_Servo;
         private System.Windows.Forms.Label lbl_Org;
+        private System.Windows.Forms.Label lbl_ErrorReport;
     }
 }

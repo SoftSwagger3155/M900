@@ -25,8 +25,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
         public Form_Axis_Configuration_Item_MtrSafe()
         {
             InitializeComponent();
-            MakeDataGridView();
-            MakeIODataGridView();
             Fillup_Combobox_Motor();
             Fillup_Combobox_IOType();
             Fillup_Combobox_Operand();
@@ -38,6 +36,9 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             this.configData = obj as ConfigData_Motor;
             this.mtrSafe = configData.MtrSafe;
+
+            MakeDataGridView();
+            MakeIODataGridView();
         }
 
         private const string Pos_Property_Name_IsSelected = "IsSelected";
@@ -90,7 +91,12 @@ namespace MF900_SolveWare.Views.AxisMesForm
             text_Column.DataPropertyName = Pos_Property_Name_Pos;
             text_Column.Width = 150;
             text_Column.Resizable = DataGridViewTriState.False;
-            this.dgv_Pos_Content.Columns.Insert(3, text_Column);       
+            this.dgv_Pos_Content.Columns.Insert(3, text_Column);
+
+            dgv_Pos_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
+            dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
+            dgv_Pos_Content.DataSource = mtrSafe.Data_Pos_Safetys;
+
         }
         private void MakeIODataGridView()
         {
@@ -132,7 +138,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
             combo_Selector_Operand_Column.Resizable = DataGridViewTriState.False;
             combo_Selector_Operand_Column.DataSource = new List<string> { ConstantProperty.ON, ConstantProperty.OFF };
             this.dgv_IO_Content.Columns.Insert(3, combo_Selector_Operand_Column);
-            
+
+
+            dgv_IO_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
+            dgv_IO_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
+            dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
         }
 
         private void dgv_Content_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -210,7 +220,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             MakeDataGridView();
 
-            dgv_Pos_Content.DataSource = this.mtrSafe.Data_Pos_Safetys;
+            //dgv_Pos_Content.DataSource = this.mtrSafe.Data_Pos_Safetys;
         }
 
         //public List<DataSourceTest> list = new List<DataSourceTest>();
@@ -230,9 +240,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             mtrSafe.Data_Pos_Safetys.Add(data);
             dgv_Pos_Content.Columns.Clear();
-            dgv_Pos_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment= DataGridViewContentAlignment.MiddleCenter };
-            dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
-            dgv_Pos_Content.DataSource = mtrSafe.Data_Pos_Safetys;
             MakeDataGridView();
         }
 
@@ -252,9 +259,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             mtrSafe.Data_IO_Safetys.Add(data);
             dgv_IO_Content.Columns.Clear();
-            dgv_IO_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
-            dgv_IO_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
-            dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
+          
             MakeIODataGridView();
         }
 

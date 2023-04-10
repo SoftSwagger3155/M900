@@ -37,7 +37,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
         public void SetSafeKeeper(ISafeKeeper keeper)
         {
-            this.safeKeeper = keeper;
+            this.SafeKeeper = keeper;
         }
 
         protected string name;
@@ -71,7 +71,13 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected bool isSafeToMoveInZone;
         protected bool isIgnoreDanger;
         protected string timeSpent = "0.000";
+        protected string errorReport = string.Empty;
 
+        public string ErrorReport
+        {
+            get => errorReport;
+            protected set=> UpdateProper(ref  errorReport, value);
+        }
         public bool IsIgnoreDanger
         {
             get => isIgnoreDanger;
@@ -101,7 +107,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             get => isSafeToMoveInZone;
             set => UpdateProper(ref isSafeToMoveInZone, value);
         }
-        public ISafeKeeper safeKeeper { get; set; }
+        public ISafeKeeper SafeKeeper { get; set; }
 
         public MtrTable MtrTable
         {
@@ -292,13 +298,19 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             string sErr = string.Empty;
             this.isProhibitActivated = false;
             bool result = false;
-            if (safeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) { return true; }
+            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
+            {
+                errorReport += "不安全运动";
+                return true;
+            }
             if (mtrTable.pIsInhibitToHome == null) return false;
 
             if (mtrTable.pIsInhibitToHome(ref sErr))
             {
                 this.isProhibitActivated = true;
                 this.InterlockWaringMsg = sErr;
+                errorReport += "禁止运动";
+
                 result = true;
             }
 
@@ -313,7 +325,10 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             bool result = false;
             string sErr = string.Empty;
 
-            if (safeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) { return true; }
+            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) 
+            {
+                return true; 
+            }
             if (mtrTable.pIsInhibitToMove == null) return false;
             if (mtrTable.pIsInhibitToMove(ref sErr))
             {
