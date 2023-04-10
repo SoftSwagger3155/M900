@@ -156,6 +156,16 @@ namespace SolveWare_Service_Tool.Motor.Data
         [Description("Set Limit Mode Before Homing")]
         public bool SetLimitModeBeforeHoming { get; set; }
 
+        [Category("Home Setting")]
+        [DisplayName("MoveOutGapAfterHoming 复位后离开原点距离")]
+        [Description("Move Out Gap After Homing")]
+        public double MoveOutGapAfterHoming { get; set; } = 20;
+
+        [Category("Home Setting")]
+        [DisplayName("HomeCreepSpeedRate 复位爬升速度")]
+        [Description("Home Creep Speed Rate")]
+        public float HomeCreepSpeedRate { get; set; } = 0.5f;
+
 
 
         //超时设定

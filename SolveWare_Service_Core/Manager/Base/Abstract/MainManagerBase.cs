@@ -264,5 +264,22 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             ICommonJobFundamental job = this.Resource_DataPair_Center.FirstOrDefault(x=> (x as IElement).Name ==  jobName);
             return job;
         }
+
+        public void Do_Homing()
+        {
+
+        }
+        public void Do_AutoCycle()
+        {
+
+        }
+        public void Do_SingleCycle()
+        {
+
+        }
+        public void Do_Resset()
+        {
+
+        }
     }
 }

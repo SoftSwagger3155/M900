@@ -16,6 +16,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Data
         public string Resource { get; set; } = "192.168.0.11";
         public bool Is_Simulation_Motor { get; set; }
         public bool Is_Simulation_IO { get; set; }
+        public bool Is_Simulation_Camera { get; set; } = true;
 
         private Master_Driver_Kind master_Driver_Motor = Master_Driver_Kind.Zmcaux;
         public Master_Driver_Kind Master_Driver_Motor { get => master_Driver_Motor; set => master_Driver_Motor = value; }

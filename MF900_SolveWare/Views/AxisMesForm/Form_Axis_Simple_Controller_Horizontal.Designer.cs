@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lbl_Motor_Name = new System.Windows.Forms.Label();
-            this.lbl_CurrentPhysicalPos = new System.Windows.Forms.Label();
+            this.lbl_Tag_CurrentPhysicalPos = new System.Windows.Forms.Label();
             this.btn_Jog_Positive = new System.Windows.Forms.Button();
             this.btn_Jog_Negative = new System.Windows.Forms.Button();
             this.txb_AbsolutePos = new System.Windows.Forms.TextBox();
@@ -43,6 +43,7 @@
             this.ckb_Servo_Switch = new System.Windows.Forms.CheckBox();
             this.btn_Go_Relative_Negative = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_CurrentPhysicalPos = new System.Windows.Forms.Label();
             this.btn_Home = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,14 +57,14 @@
             this.lbl_Motor_Name.TabIndex = 0;
             this.lbl_Motor_Name.Text = "上马达 X";
             // 
-            // lbl_CurrentPhysicalPos
+            // lbl_Tag_CurrentPhysicalPos
             // 
-            this.lbl_CurrentPhysicalPos.AutoSize = true;
-            this.lbl_CurrentPhysicalPos.Location = new System.Drawing.Point(96, 17);
-            this.lbl_CurrentPhysicalPos.Name = "lbl_CurrentPhysicalPos";
-            this.lbl_CurrentPhysicalPos.Size = new System.Drawing.Size(163, 15);
-            this.lbl_CurrentPhysicalPos.TabIndex = 1;
-            this.lbl_CurrentPhysicalPos.Text = "当前位置: 200.000 mm";
+            this.lbl_Tag_CurrentPhysicalPos.AutoSize = true;
+            this.lbl_Tag_CurrentPhysicalPos.Location = new System.Drawing.Point(96, 17);
+            this.lbl_Tag_CurrentPhysicalPos.Name = "lbl_Tag_CurrentPhysicalPos";
+            this.lbl_Tag_CurrentPhysicalPos.Size = new System.Drawing.Size(61, 15);
+            this.lbl_Tag_CurrentPhysicalPos.TabIndex = 1;
+            this.lbl_Tag_CurrentPhysicalPos.Text = "位置/mm";
             // 
             // btn_Jog_Positive
             // 
@@ -186,12 +187,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lbl_CurrentPhysicalPos);
             this.panel1.Controls.Add(this.btn_Home);
             this.panel1.Controls.Add(this.btn_Go_Absolute);
             this.panel1.Controls.Add(this.btn_Go_Relative_Negative);
             this.panel1.Controls.Add(this.lbl_Motor_Name);
             this.panel1.Controls.Add(this.ckb_Servo_Switch);
-            this.panel1.Controls.Add(this.lbl_CurrentPhysicalPos);
+            this.panel1.Controls.Add(this.lbl_Tag_CurrentPhysicalPos);
             this.panel1.Controls.Add(this.lbl_Lmt_Positive);
             this.panel1.Controls.Add(this.btn_Jog_Positive);
             this.panel1.Controls.Add(this.lbl_Lmt_Negative);
@@ -205,6 +207,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1317, 52);
             this.panel1.TabIndex = 14;
+            // 
+            // lbl_CurrentPhysicalPos
+            // 
+            this.lbl_CurrentPhysicalPos.AutoSize = true;
+            this.lbl_CurrentPhysicalPos.Location = new System.Drawing.Point(163, 17);
+            this.lbl_CurrentPhysicalPos.Name = "lbl_CurrentPhysicalPos";
+            this.lbl_CurrentPhysicalPos.Size = new System.Drawing.Size(63, 15);
+            this.lbl_CurrentPhysicalPos.TabIndex = 15;
+            this.lbl_CurrentPhysicalPos.Text = "000.000";
             // 
             // btn_Home
             // 
@@ -226,6 +237,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_Axis_Simple_Controller_Horizontal";
             this.Text = "Form_Axis_Simple_Controller_Horizontal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Axis_Simple_Controller_Horizontal_FormClosing);
+            this.Load += new System.EventHandler(this.Form_Axis_Simple_Controller_Horizontal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -235,7 +248,7 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_Motor_Name;
-        private System.Windows.Forms.Label lbl_CurrentPhysicalPos;
+        private System.Windows.Forms.Label lbl_Tag_CurrentPhysicalPos;
         private System.Windows.Forms.Button btn_Jog_Positive;
         private System.Windows.Forms.Button btn_Jog_Negative;
         private System.Windows.Forms.TextBox txb_AbsolutePos;
@@ -250,5 +263,6 @@
         private System.Windows.Forms.Button btn_Go_Relative_Negative;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_Home;
+        private System.Windows.Forms.Label lbl_CurrentPhysicalPos;
     }
 }

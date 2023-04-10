@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_Pos_Content = new System.Windows.Forms.DataGridView();
             this.btn_Delete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,24 +54,23 @@
             // 
             this.dgv_Pos_Content.AllowUserToAddRows = false;
             this.dgv_Pos_Content.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgv_Pos_Content.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgv_Pos_Content.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_Pos_Content.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Pos_Content.Location = new System.Drawing.Point(9, 95);
-            this.dgv_Pos_Content.Margin = new System.Windows.Forms.Padding(2);
+            this.dgv_Pos_Content.Location = new System.Drawing.Point(12, 119);
+            this.dgv_Pos_Content.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_Pos_Content.Name = "dgv_Pos_Content";
             this.dgv_Pos_Content.RowHeadersWidth = 51;
             this.dgv_Pos_Content.RowTemplate.Height = 27;
-            this.dgv_Pos_Content.Size = new System.Drawing.Size(690, 134);
+            this.dgv_Pos_Content.Size = new System.Drawing.Size(920, 168);
             this.dgv_Pos_Content.TabIndex = 1;
-            this.dgv_Pos_Content.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_Content_CellMouseClick);
             // 
             // btn_Delete
             // 
-            this.btn_Delete.Location = new System.Drawing.Point(487, 24);
-            this.btn_Delete.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Delete.Location = new System.Drawing.Point(649, 30);
+            this.btn_Delete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Delete.Name = "btn_Delete";
-            this.btn_Delete.Size = new System.Drawing.Size(75, 36);
+            this.btn_Delete.Size = new System.Drawing.Size(100, 45);
             this.btn_Delete.TabIndex = 2;
             this.btn_Delete.Text = "删除选择项";
             this.btn_Delete.UseVisualStyleBackColor = true;
@@ -85,21 +84,21 @@
             this.groupBox1.Controls.Add(this.txb_Pos);
             this.groupBox1.Controls.Add(this.cmb_Selector_Operand);
             this.groupBox1.Controls.Add(this.cmb_Selector_Motor);
-            this.groupBox1.Location = new System.Drawing.Point(9, 9);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 11);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(690, 80);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(920, 100);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "𣷹加设定";
             // 
             // btn_Add
             // 
-            this.btn_Add.Location = new System.Drawing.Point(406, 24);
-            this.btn_Add.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Add.Location = new System.Drawing.Point(541, 30);
+            this.btn_Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(75, 36);
+            this.btn_Add.Size = new System.Drawing.Size(100, 45);
             this.btn_Add.TabIndex = 4;
             this.btn_Add.Text = "加入";
             this.btn_Add.UseVisualStyleBackColor = true;
@@ -108,10 +107,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 36);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(275, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "位置";
             // 
@@ -119,30 +117,30 @@
             // 
             this.txb_Pos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txb_Pos.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txb_Pos.Location = new System.Drawing.Point(239, 29);
-            this.txb_Pos.Margin = new System.Windows.Forms.Padding(2);
+            this.txb_Pos.Location = new System.Drawing.Point(319, 36);
+            this.txb_Pos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txb_Pos.Name = "txb_Pos";
-            this.txb_Pos.Size = new System.Drawing.Size(76, 26);
+            this.txb_Pos.Size = new System.Drawing.Size(101, 30);
             this.txb_Pos.TabIndex = 2;
             // 
             // cmb_Selector_Operand
             // 
             this.cmb_Selector_Operand.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmb_Selector_Operand.FormattingEnabled = true;
-            this.cmb_Selector_Operand.Location = new System.Drawing.Point(100, 30);
-            this.cmb_Selector_Operand.Margin = new System.Windows.Forms.Padding(2);
+            this.cmb_Selector_Operand.Location = new System.Drawing.Point(133, 38);
+            this.cmb_Selector_Operand.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_Selector_Operand.Name = "cmb_Selector_Operand";
-            this.cmb_Selector_Operand.Size = new System.Drawing.Size(92, 24);
+            this.cmb_Selector_Operand.Size = new System.Drawing.Size(121, 28);
             this.cmb_Selector_Operand.TabIndex = 1;
             // 
             // cmb_Selector_Motor
             // 
             this.cmb_Selector_Motor.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmb_Selector_Motor.FormattingEnabled = true;
-            this.cmb_Selector_Motor.Location = new System.Drawing.Point(4, 30);
-            this.cmb_Selector_Motor.Margin = new System.Windows.Forms.Padding(2);
+            this.cmb_Selector_Motor.Location = new System.Drawing.Point(5, 38);
+            this.cmb_Selector_Motor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_Selector_Motor.Name = "cmb_Selector_Motor";
-            this.cmb_Selector_Motor.Size = new System.Drawing.Size(92, 24);
+            this.cmb_Selector_Motor.Size = new System.Drawing.Size(121, 28);
             this.cmb_Selector_Motor.TabIndex = 0;
             // 
             // groupBox2
@@ -151,21 +149,21 @@
             this.groupBox2.Controls.Add(this.btn_Delete_IO);
             this.groupBox2.Controls.Add(this.cmb_Selector_IO);
             this.groupBox2.Controls.Add(this.cmb_Selector_IOType);
-            this.groupBox2.Location = new System.Drawing.Point(9, 238);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Location = new System.Drawing.Point(12, 298);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(690, 80);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(920, 100);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "𣷹加设定";
             // 
             // btn_IO_Add
             // 
-            this.btn_IO_Add.Location = new System.Drawing.Point(406, 24);
-            this.btn_IO_Add.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_IO_Add.Location = new System.Drawing.Point(541, 30);
+            this.btn_IO_Add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_IO_Add.Name = "btn_IO_Add";
-            this.btn_IO_Add.Size = new System.Drawing.Size(75, 36);
+            this.btn_IO_Add.Size = new System.Drawing.Size(100, 45);
             this.btn_IO_Add.TabIndex = 4;
             this.btn_IO_Add.Text = "加入";
             this.btn_IO_Add.UseVisualStyleBackColor = true;
@@ -173,10 +171,10 @@
             // 
             // btn_Delete_IO
             // 
-            this.btn_Delete_IO.Location = new System.Drawing.Point(487, 24);
-            this.btn_Delete_IO.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Delete_IO.Location = new System.Drawing.Point(649, 30);
+            this.btn_Delete_IO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Delete_IO.Name = "btn_Delete_IO";
-            this.btn_Delete_IO.Size = new System.Drawing.Size(75, 36);
+            this.btn_Delete_IO.Size = new System.Drawing.Size(100, 45);
             this.btn_Delete_IO.TabIndex = 2;
             this.btn_Delete_IO.Text = "删除选择项";
             this.btn_Delete_IO.UseVisualStyleBackColor = true;
@@ -186,20 +184,20 @@
             // 
             this.cmb_Selector_IO.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmb_Selector_IO.FormattingEnabled = true;
-            this.cmb_Selector_IO.Location = new System.Drawing.Point(100, 30);
-            this.cmb_Selector_IO.Margin = new System.Windows.Forms.Padding(2);
+            this.cmb_Selector_IO.Location = new System.Drawing.Point(133, 38);
+            this.cmb_Selector_IO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_Selector_IO.Name = "cmb_Selector_IO";
-            this.cmb_Selector_IO.Size = new System.Drawing.Size(276, 24);
+            this.cmb_Selector_IO.Size = new System.Drawing.Size(367, 28);
             this.cmb_Selector_IO.TabIndex = 1;
             // 
             // cmb_Selector_IOType
             // 
             this.cmb_Selector_IOType.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cmb_Selector_IOType.FormattingEnabled = true;
-            this.cmb_Selector_IOType.Location = new System.Drawing.Point(4, 30);
-            this.cmb_Selector_IOType.Margin = new System.Windows.Forms.Padding(2);
+            this.cmb_Selector_IOType.Location = new System.Drawing.Point(5, 38);
+            this.cmb_Selector_IOType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_Selector_IOType.Name = "cmb_Selector_IOType";
-            this.cmb_Selector_IOType.Size = new System.Drawing.Size(92, 24);
+            this.cmb_Selector_IOType.Size = new System.Drawing.Size(121, 28);
             this.cmb_Selector_IOType.TabIndex = 0;
             this.cmb_Selector_IOType.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_IOType_SelectionChangeCommitted);
             // 
@@ -207,28 +205,28 @@
             // 
             this.dgv_IO_Content.AllowUserToAddRows = false;
             this.dgv_IO_Content.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgv_IO_Content.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgv_IO_Content.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_IO_Content.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_IO_Content.Location = new System.Drawing.Point(9, 322);
-            this.dgv_IO_Content.Margin = new System.Windows.Forms.Padding(2);
+            this.dgv_IO_Content.Location = new System.Drawing.Point(12, 402);
+            this.dgv_IO_Content.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_IO_Content.Name = "dgv_IO_Content";
             this.dgv_IO_Content.RowHeadersWidth = 51;
             this.dgv_IO_Content.RowTemplate.Height = 27;
-            this.dgv_IO_Content.Size = new System.Drawing.Size(690, 151);
+            this.dgv_IO_Content.Size = new System.Drawing.Size(920, 189);
             this.dgv_IO_Content.TabIndex = 6;
             // 
             // Form_Axis_Configuration_Item_MtrSafe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 570);
+            this.ClientSize = new System.Drawing.Size(980, 712);
             this.Controls.Add(this.dgv_IO_Content);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_Pos_Content);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_Axis_Configuration_Item_MtrSafe";
             this.Text = "Form_Axis_Configuration_Item_MtrSafe";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Pos_Content)).EndInit();

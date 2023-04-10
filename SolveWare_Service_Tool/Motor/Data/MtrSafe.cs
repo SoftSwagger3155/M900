@@ -21,16 +21,18 @@ namespace SolveWare_Service_Tool.Motor.Data
         }      
     }
 
-    public class Data_Pos_Safety : ElementBase
+    public class Data_Pos_Safety 
     {
+        public bool IsSelected { get; set; }
         public string MotorName { get; set; }
         public string Operand { get; set; }
         public double Pos { get; set; }
-        public bool IsSelected { get; set; }
     }
-    public class Data_IO_Safety : ElementBase
+    public class Data_IO_Safety 
     {
+        public bool IsSelected { get; set; }
         public string IOName { get; set; }
+        public string IOType { get; set; }
         public string TriggerMode { get; set; }
     }
 }

@@ -104,6 +104,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 tab_MtrSpeed.Controls.Add(form_Speed as Form);
 
                 form_Safety = new Form_Axis_Configuration_Item_MtrSafe();
+                form_Safety.Setup(this.axis.ConfigData);
                 (form_Safety as Form).TopLevel = false;
                 (form_Safety as Form).Visible = true;
                 (form_Safety as Form).Dock = DockStyle.Fill;

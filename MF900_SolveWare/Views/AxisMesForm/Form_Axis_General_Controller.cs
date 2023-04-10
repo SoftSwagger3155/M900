@@ -49,5 +49,15 @@ namespace MF900_SolveWare.Views.AxisMesForm
             (form as Form).Dock = DockStyle.Top;
             (form as Form).FormBorderStyle = FormBorderStyle.None;
         }
+
+        private void Form_Axis_General_Controller_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(gpb_Content.Controls.Count > 0) {
+                foreach (var item in gpb_Content.Controls)
+                {
+                    (item as Form).Close();
+                }
+            }
+        }
     }
 }

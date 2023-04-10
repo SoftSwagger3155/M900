@@ -1,4 +1,6 @@
-﻿using SolveWare_Service_Core.Definition;
+﻿using SolveWare_Service_Core;
+using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MF900_SolveWare.Views
 {
@@ -36,6 +39,27 @@ namespace MF900_SolveWare.Views
             if (!sWatch.IsRunning) return;
             lbl.Text = $"{(sWatch.ElapsedMilliseconds / 1000).ToString("F3")}";
             sWatch.Stop();
+        }
+        public static void DoButtonTask(this bool action)
+        {
+            Task.Run(() =>
+            {
+                if (SolveWare.Core.MMgr.Status == Machine_Status.Busy) return;
+                if (SolveWare.Core.MMgr.Status == Machine_Status.Initialising) return;
+                if (SolveWare.Core.MMgr.Status == Machine_Status.SingleCycle) return;
+                if (SolveWare.Core.MMgr.Status == Machine_Status.Auto) return;
+
+                string errMsg = string.Empty;
+                SolveWare.Core.MMgr.SetStatus(Machine_Status.Busy);
+                errMsg = action ? ErrorCodes.GetErrorDescription(ErrorCodes.ActionFailed) : string.Empty;
+                if (errMsg == string.Empty) SolveWare.Core.MMgr.SetStatus(Machine_Status.Idle);
+                else
+                {
+                    SolveWare.Core.MMgr.SetStatus(Machine_Status.Error);
+                    SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true, true);
+                }
+
+            });
         }
     }
 }

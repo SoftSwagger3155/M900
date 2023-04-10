@@ -52,13 +52,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
            source = new CancellationTokenSource();
             Task task = new Task(() =>
             {
-                while(true)
+                while(!source.IsCancellationRequested)
                 {
                     if (this.lbl_TestPos.InvokeRequired)
                     {
                         this.BeginInvoke(new Action(() =>
                         {
-                            lbl_TestPos.Text = $"{this.axis.CurrentPhysicalPos}";
+                            lbl_TestPos.Text = $"{this.axis.CurrentPhysicalPos.ToString("F3")}";
                         }));
                     }
                     if(this.lbl_TimeSpent.InvokeRequired)
@@ -68,12 +68,34 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             lbl_TimeSpent.Text = $"{this.axis.TimeSpent}";
                         }));
                     }
-                    
-                    if (source.IsCancellationRequested)
+                    if (this.lbl_Servo.InvokeRequired)
                     {
-                        break;
+                        this.BeginInvoke(new Action(() =>
+                        {
+                            if (axis.IsServoOn)
+                            {
+                                lbl_Servo.Text = "使能中";
+                                lbl_Servo.TextAlign = ContentAlignment.MiddleCenter;
+                                lbl_Servo.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                lbl_Servo.Text = "无使能";
+                                lbl_Servo.TextAlign = ContentAlignment.MiddleCenter;
+                                lbl_Servo.BackColor = Color.Red;
+                            }
+                        }));
                     }
-                    Thread.Sleep(10);
+                    if (this.lbl_Org.InvokeRequired)
+                    {
+                        this.BeginInvoke(new Action(() =>
+                        {
+                            string orgMsg = this.axis.IsOrg ? "1" : "0";
+                            lbl_Org.TextAlign = ContentAlignment.MiddleCenter;
+                            lbl_Org.Text = $"原点状态 {orgMsg}";
+                        }));
+                    }
+                    Thread.Sleep(5);
 
                 }
                 stopFlag.Set();
@@ -114,107 +136,187 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Home_Click(object sender, EventArgs e)
         {
+            string errMsg = string.Empty;
+            int errorCode = ErrorCodes.NoError;
             SpeedSeting setting = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+
+
+            Task task = Task.Run(() =>
             {
                 try
                 {
-                    if(setting == null)
+                    do
                     {
-                        return "请选择一个使用项";
-                    }
+                        if( Check_Machine_Status() == false)
+                        {
+                            errMsg += "机器状态不允许此时按钮运行";
+                            break;
+                        }
+                        if (setting == null)
+                        {
+                            errMsg += "请选择一个使用项";
+                            break;
+                        }
 
-                    string errMsg = string.Empty;
-                    int errorCode = axis.HomeMove(setting) ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    SetStatus(errorCode);
-                    return errMsg = errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode); 
+                        errorCode  = axis.HomeMove(setting) ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
+                        errMsg += errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode);
+
+                    } while (false);
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
+                    errMsg += ex.Message;
                 }
+
+                CheckErrMsg(errMsg);
             });
         }
+        private bool Check_Machine_Status()
+        {
+            if (SolveWare.Core.MMgr.Status == Machine_Status.Busy) return false;
+            if (SolveWare.Core.MMgr.Status == Machine_Status.Initialising) return false;
+            if (SolveWare.Core.MMgr.Status == Machine_Status.SingleCycle) return false;
+            if (SolveWare.Core.MMgr.Status == Machine_Status.Auto) return false;
 
+            SolveWare.Core.MMgr.SetStatus(Machine_Status.Busy);
+            return true;
+        }
+
+        private bool CheckErrMsg(string msg)
+        {
+            if(string.IsNullOrEmpty(msg)) 
+            {
+                SetStatus(msg);
+                SolveWare.Core.MMgr.SetStatus(Machine_Status.Idle);
+                return true; 
+            }
+            else
+            {
+                SetStatus(msg);
+                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, true, true);
+                SolveWare.Core.MMgr.SetStatus(Machine_Status.Error);
+                return false;
+            }
+        }
+
+        private void SetStatus(string msg)
+        {
+            JobStatus status = msg != string.Empty ? JobStatus.Fail : JobStatus.Done;
+            Thread.Sleep(1);
+            this.BeginInvoke(new Action(() =>
+            {
+                this.lbl_Status.SetStatus(status);
+
+            }));
+        }
         private void btn_SetZero_Click(object sender, EventArgs e)
         {
+            string errMsg = string.Empty;
             try
             {
-                var result = MessageBox.Show("确认设立 此位置 设为原点?", "提问", MessageBoxButtons.YesNo);
-                if (result == DialogResult.No) { return; }
-                axis.SetZero();
+                do
+                {
+                    if (Check_Machine_Status() == false)
+                    {
+                        errMsg += "机器状态不允许此时按钮运行";
+                        break;
+                    }
+
+                    var result = MessageBox.Show("确认设立 此位置 设为原点?", "提问", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) { return; }
+                    axis.SetZero();
+
+                } while (false);
             }
             catch (Exception ex)
             {
-                SetStatus(ErrorCodes.MotorHomingError);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+                errMsg += ex.Message;
             }
+            CheckErrMsg(errMsg);
         }
 
         private void btn_Jog_Negative_MouseDown(object sender, MouseEventArgs e)
         {
+            string errMsg = string.Empty;
             SpeedSeting speed = GetMainSpeedSetting();
             try
             {
-                if (speed == null)
+                do
                 {
-                    SolveWare.Core.MMgr.Infohandler.LogMessage("请选择一个使用项", true, true); return;
-                }
-                this.axis.Jog(false, speed);
+                 
+                    if(speed == null)
+                    {
+                        errMsg += "请选择一个使用项";
+                        break;
+                    }
+
+                    axis.Jog(false, speed);
+
+                } while (false);
             }
             catch (Exception ex)
             {
-                SetStatus(ErrorCodes.MotorMoveError);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+                errMsg += ex.Message;
             }
         }
 
         private void btn_Jog_Negative_MouseUp(object sender, MouseEventArgs e)
         {
+            string errMsg = string.Empty;
             try
             {
                 this.axis.Stop();
             }
             catch (Exception ex)
             {
-                SetStatus(ErrorCodes.ActionFailed);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+                errMsg += ex.Message;
             }
+            //CheckErrMsg(errMsg);
         }
 
         private void btn_Jog_Positive_MouseDown(object sender, MouseEventArgs e)
         {
+            string errMsg = string.Empty;
             SpeedSeting speed =GetMainSpeedSetting();
             try
             {
-                if (speed == null)
+                do
                 {
-                    SolveWare.Core.MMgr.Infohandler.LogMessage("请选择一个使用项", true, true); return;
-                }
-                this.axis.Jog(true, speed);
+                   
+                    if (speed == null)
+                    {
+                        errMsg += "请选择一个使用项";
+                        break;
+                    }
+
+                    axis.Jog(true, speed);
+
+                } while (false);
             }
             catch (Exception ex)
             {
-                SetStatus(ErrorCodes.MotorMoveError);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+                errMsg += ex.Message;
             }
         }
 
         private void btn_Jog_Positive_MouseUp(object sender, MouseEventArgs e)
         {
+            string errMsg = string.Empty;
             try
             {
                 this.axis.Stop();
             }
             catch (Exception ex)
             {
-                SetStatus(ErrorCodes.ActionFailed); 
-                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+                errMsg += ex.Message;
             }
+            //CheckErrMsg(errMsg);
         }
 
         private void btn_Copy_Click(object sender, EventArgs e)
         {
+            string errMsg = string.Empty;
+
             if(cmb_Selector_Copy.SelectedItem == null)
             {
                 SolveWare.Core.MMgr.Infohandler.LogMessage("请选择一个复制项", true);
@@ -247,71 +349,131 @@ namespace MF900_SolveWare.Views.AxisMesForm
             }
             catch (Exception ex)
             {
-                SetStatus(ErrorCodes.ActionFailed);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+                errMsg += ex.Message;
             }
+            CheckErrMsg(errMsg);
         }
 
         private void btn_Relative_Negative_Click(object sender, EventArgs e)
         {
+            int errorCode = ErrorCodes.NoError;
+            string errMsg = string.Empty;
             SpeedSeting speed = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+
+            Task.Run(() =>
             {
-                int errorCode = ErrorCodes.NoError;
-                if(string.IsNullOrEmpty(txb_RelativePos.Text))
+                try
                 {
-                    return "相对位置栏位不得为空";
+                    do
+                    {
+                        if (Check_Machine_Status() == false)
+                        {
+                            errMsg += "机器状态不允许此时按钮运行";
+                            break;
+                        }
+                        if (speed == null)
+                        {
+                            errMsg += "请选择一个使用项";
+                            break;
+                        }
+                        if (string.IsNullOrEmpty(txb_RelativePos.Text))
+                        {
+                            errMsg += "相对位置栏位不得为空";
+                            break;
+                        }
+
+                        errorCode = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+
+                    } while (false);
                 }
-                if (speed == null)
+                catch (Exception ex)
                 {
-                    return "请选择一个使用项";
+                    errMsg += ex.Message;
                 }
-                string errMsg = string.Empty;
-                errorCode = axis.MoveRelative( -1 * double.Parse(txb_RelativePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                SetStatus(errorCode);
-                return errMsg = errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode);
-            });
+                CheckErrMsg(errMsg);
+            }); 
         }
 
         private void btn_Relative_Positive_Click(object sender, EventArgs e)
         {
-            SpeedSeting speed  = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+            int errorCode = ErrorCodes.NoError;
+            string errMsg = string.Empty;
+            SpeedSeting speed = GetMainSpeedSetting();
+
+            Task.Run(() =>
             {
-                int errorCode = ErrorCodes.NoError;
-                if (string.IsNullOrEmpty(txb_RelativePos.Text))
+                try
                 {
-                    return "相对位置栏位不得为空";
+                    do
+                    {
+                        if (Check_Machine_Status() == false)
+                        {
+                            errMsg += "机器状态不允许此时按钮运行";
+                            break;
+                        }
+                        if (speed == null)
+                        {
+                            errMsg += "请选择一个使用项";
+                            break;
+                        }
+                        if (string.IsNullOrEmpty(txb_RelativePos.Text))
+                        {
+                            errMsg += "相对位置栏位不得为空";
+                            break;
+                        }
+
+                        errorCode = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+
+                    } while (false);
                 }
-                if (speed == null)
+                catch (Exception ex)
                 {
-                    return "请选择一个使用项";
+                    errMsg += ex.Message;
                 }
-                string errMsg = string.Empty;
-                errorCode = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                SetStatus (errorCode);  
-                return errMsg = errorCode == ErrorCodes.NoError ? string.Empty: ErrorCodes.GetErrorDescription(errorCode);
+                CheckErrMsg(errMsg);
             });
         }
 
         private void btn_Absolute_Click(object sender, EventArgs e)
         {
+            int errorCode = ErrorCodes.NoError;
+            string errMsg = string.Empty;
             SpeedSeting speed = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickTask(() =>
+
+            Task.Run(() =>
             {
-                int errorCode = ErrorCodes.NoError;
-                if (string.IsNullOrEmpty(txb_AbsolutePos.Text))
+                try
                 {
-                    return "相对位置栏位不得为空";
+                    do
+                    {
+                        if (Check_Machine_Status() == false)
+                        {
+                            errMsg += "机器状态不允许此时按钮运行";
+                            break;
+                        }
+                        if (speed == null)
+                        {
+                            errMsg += "请选择一个使用项";
+                            break;
+                        }
+                        if (string.IsNullOrEmpty(txb_AbsolutePos.Text))
+                        {
+                            errMsg += "绝对位置栏位不得为空";
+                            break;
+                        }
+
+                        errorCode = axis.MoveTo( double.Parse(txb_AbsolutePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+
+                    } while (false);
                 }
-                if(speed == null)
+                catch (Exception ex)
                 {
-                    return "请选择一个使用项";
+                    errMsg += ex.Message;
                 }
-                string errMsg = string.Empty;
-                errorCode = axis.MoveTo(double.Parse(txb_AbsolutePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;               
-                SetStatus(errorCode);
-                return errMsg = errorCode == ErrorCodes.NoError ? string.Empty: ErrorCodes.GetErrorDescription(errorCode);
+                CheckErrMsg(errMsg);
             });
         }
         private SpeedSeting GetMainSpeedSetting()
@@ -341,63 +503,155 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Relay_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txb_RelayCount.Text))
+            int errorCode = ErrorCodes.NoError;
+            string errMsg = string.Empty;
+            SpeedSeting speed = GetMainSpeedSetting();
+            relayStop = false;  
+            Task.Run(() =>
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage("来回次数栏位不得为空", true, true);
-                return;
-            }
-            if(string.IsNullOrEmpty (txb_RelayGap.Text))
-            {
-                SolveWare.Core.MMgr.Infohandler.LogMessage("距离设定栏位不得零", true, true);
-                return;
-            }
-            
-            int count = int.Parse(txb_RelayCount.Text);
-            double pitch = double.Parse(txb_RelayGap.Text);
-
-            SolveWare.Core.MMgr.DoButtonClickTask(() =>
-            {
-                int errorCode = ErrorCodes.NoError;
-                string errMsg = string.Empty;
-                double fromPos = axis.Get_CurUnitPos() ;
-                double toPos = axis.Get_CurUnitPos() + pitch;
-
-                for (int i = 0; i < count; i++)
-                {                    
-                    errorCode = axis.MoveTo(toPos) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                    if (errorCode != ErrorCodes.NoError)
+                try
+                {
+                    do
                     {
-                        errMsg = ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                        if (Check_Machine_Status() == false)
+                        {
+                            errMsg += "机器状态不允许此时按钮运行";
+                            break;
+                        }
+                        if (string.IsNullOrEmpty(txb_RelayCount.Text))
+                        {
+                            errMsg += "来回次数栏位不得为空";
+                            break;
+                        }
+                        if (string.IsNullOrEmpty(txb_RelayGap.Text))
+                        {
+                            errMsg += "距离设定栏位不得零";
+                            break;
+                        }
 
-                    Thread.Sleep(5);
+                        int count = int.Parse(txb_RelayCount.Text);
+                        double pitch = double.Parse(txb_RelayGap.Text);
 
-                    errorCode = axis.MoveTo(fromPos) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errMsg = ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                        double fromPos = axis.Get_CurUnitPos();
+                        double toPos = axis.Get_CurUnitPos() + pitch;
+                        Stopwatch sw = Stopwatch.StartNew();
+                        for (int i = 0; i < count; i++)
+                        {
+                            sw.Restart();
+                            errorCode = axis.MoveTo(toPos) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+                            if (errorCode != ErrorCodes.NoError)
+                            {
+                                errMsg = ErrorCodes.GetErrorDescription(errorCode);
+                                break;
+                            }
+                            if (relayStop) break;
+                            Thread.Sleep(5);
 
-                    Thread.Sleep(1);
-                    this.BeginInvoke(new Action(() =>
-                    {
-                        this.lbl_RelayCount.Text = $"{i + 1}";
-                    }));
+                            errorCode = axis.MoveTo(fromPos) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+                            if (errorCode != ErrorCodes.NoError)
+                            {
+                                errMsg = ErrorCodes.GetErrorDescription(errorCode);
+                                break;
+                            }
+                            if (relayStop) break;
+                            Thread.Sleep(1);
+                            int outputCount = i + 1;
+                            string timeSpent = sw.Elapsed.TotalSeconds.ToString("F3");
+                            this.BeginInvoke(new Action(() =>
+                            {
+                                this.lbl_RelayCount.Text = $"{outputCount}";
+                                this.lbl_TimeSpent.Text = $"{timeSpent}";
+                            }));
+                        }
+
+                    } while (false);
+                }
+                catch (Exception ex)
+                {
+                    errMsg += ex.Message;
                 }
 
-                return errMsg;
+                CheckErrMsg(errMsg);
             });
+
+
+        //     do
+        //    {
+
+
+        //        if (Check_Machine_Status() == false)
+        //        {
+        //            errMsg += "机器状态不允许此时按钮运行";
+        //            break;
+        //        }
+
+        //        if (string.IsNullOrEmpty(txb_RelayCount.Text))
+        //        {
+        //            SolveWare.Core.MMgr.Infohandler.LogMessage("来回次数栏位不得为空", true, true);
+        //            return;
+        //        }
+        //        if (string.IsNullOrEmpty(txb_RelayGap.Text))
+        //        {
+        //            SolveWare.Core.MMgr.Infohandler.LogMessage("距离设定栏位不得零", true, true);
+        //            return;
+        //        }
+
+        //        int count = int.Parse(txb_RelayCount.Text);
+        //        double pitch = double.Parse(txb_RelayGap.Text);
+
+
+        //        int errorCode = ErrorCodes.NoError;
+        //        string errMsg = string.Empty;
+        //        double fromPos = axis.Get_CurUnitPos();
+        //        double toPos = axis.Get_CurUnitPos() + pitch;
+
+        //        for (int i = 0; i < count; i++)
+        //        {
+        //            errorCode = axis.MoveTo(toPos) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+        //            if (errorCode != ErrorCodes.NoError)
+        //            {
+        //                errMsg = ErrorCodes.GetErrorDescription(errorCode);
+        //                break;
+        //            }
+
+        //            Thread.Sleep(5);
+
+        //            errorCode = axis.MoveTo(fromPos) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+        //            if (errorCode != ErrorCodes.NoError)
+        //            {
+        //                errMsg = ErrorCodes.GetErrorDescription(errorCode);
+        //                break;
+        //            }
+
+        //            Thread.Sleep(1);
+        //            int outputCount = i + 1;
+        //            this.BeginInvoke(new Action(() =>
+        //            {
+        //                this.lbl_RelayCount.Text = $"{outputCount}";
+        //            }));
+        //        }
+
+        //    } while (false);
+        //});
         }
-        private void SetStatus(int errorCode)
+
+        volatile bool relayStop = false;
+      
+
+        private void btn_Stop_Click(object sender, EventArgs e)
         {
-            JobStatus status = errorCode != ErrorCodes.NoError ? JobStatus.Fail : JobStatus.Done;
-            Thread.Sleep(1);
-            this.BeginInvoke(new Action(() =>
-            {
-                this.lbl_Status.SetStatus(status);
-            }));
+            relayStop = true;
+            this.axis.Stop();
+        }
+
+        private void btn_Disable_Servo_Click(object sender, EventArgs e)
+        {
+            this.axis.Set_Servo(false);
+        }
+
+        private void btn_Enable_Servo_Click(object sender, EventArgs e)
+        {
+            this.axis.Set_Servo(true);
         }
     }
 }

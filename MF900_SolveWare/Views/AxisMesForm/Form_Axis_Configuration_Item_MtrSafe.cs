@@ -4,6 +4,7 @@ using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.IO.Base.Abstract;
 using SolveWare_Service_Tool.IO.Definition;
+using SolveWare_Service_Tool.Motor.Data;
 using SolveWare_Service_Tool.Motor.Definition;
 using Sunny.UI;
 using System;
@@ -31,12 +32,23 @@ namespace MF900_SolveWare.Views.AxisMesForm
             Fillup_Combobox_Operand();
         }
 
-        private string checkColumnName = "IsChecked";
-        private string combo_Selector_Motor_Column_Name = "MotorName";
-        private string combo_Selector_Operand_Column_Name = "Operand";
-        private string text_Column_Name = "Pos";
-        private string combo_Selector_IO_Column_Name = "IOName";
-        private string combo_Selector_TriggerMode_Column_Name = "TriggerMode";
+        ConfigData_Motor configData;
+        MtrSafe mtrSafe;
+        public void Setup<TObj>(TObj obj)
+        {
+            this.configData = obj as ConfigData_Motor;
+            this.mtrSafe = configData.MtrSafe;
+        }
+
+        private const string Pos_Property_Name_IsSelected = "IsSelected";
+        private const string Pos_Property_Name_MotorName = "MotorName";
+        private const string Pos_Property_Name_Operand = "Operand";
+        private const string Pos_Property_Name_Pos = "Pos";
+        
+        private const string IO_Property_Name_IOName = "IOName";
+        private const string IO_Property_Name_TriggerMode = "TriggerMode";
+        private const string IO_Property_Name_IsSelected = "IsSelected";
+        private const string IO_Property_Name_IOType = "IOType";
 
 
         private void MakeDataGridView()
@@ -45,35 +57,37 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.HeaderText = "选择";
-            checkColumn.Name = checkColumnName;
+            checkColumn.Name = Pos_Property_Name_IsSelected;
             checkColumn.TrueValue = true;
             checkColumn.FalseValue = false;
-            checkColumn.DataPropertyName = checkColumnName;
+            checkColumn.DataPropertyName = Pos_Property_Name_IsSelected;
             checkColumn.Width = 150;
             checkColumn.Resizable = DataGridViewTriState.False;
             this.dgv_Pos_Content.Columns.Insert(0, checkColumn);
 
             DataGridViewTextBoxColumn combo_Selector_Motor_Column = new DataGridViewTextBoxColumn();
             combo_Selector_Motor_Column.HeaderText = "轴选择";
-            combo_Selector_Motor_Column.Name = combo_Selector_Motor_Column_Name;
-            combo_Selector_Motor_Column.DataPropertyName = combo_Selector_Motor_Column_Name;
+            combo_Selector_Motor_Column.Name = Pos_Property_Name_MotorName;
+            combo_Selector_Motor_Column.DataPropertyName = Pos_Property_Name_MotorName;
             combo_Selector_Motor_Column.Width = 150;
             combo_Selector_Motor_Column.Resizable = DataGridViewTriState.False;
-             this.dgv_Pos_Content.Columns.Insert(1, combo_Selector_Motor_Column);
+            combo_Selector_Motor_Column.ReadOnly = true;
+            this.dgv_Pos_Content.Columns.Insert(1, combo_Selector_Motor_Column);
 
             DataGridViewTextBoxColumn combo_Selector_Operand_Column = new DataGridViewTextBoxColumn();
             combo_Selector_Operand_Column.HeaderText = "运算符";
-            combo_Selector_Operand_Column.Name = combo_Selector_Operand_Column_Name;
-            combo_Selector_Operand_Column.DataPropertyName = combo_Selector_Operand_Column_Name;
+            combo_Selector_Operand_Column.Name = Pos_Property_Name_Operand;
+            combo_Selector_Operand_Column.DataPropertyName = Pos_Property_Name_Operand;
             combo_Selector_Operand_Column.Width = 150;
             combo_Selector_Operand_Column.Resizable = DataGridViewTriState.False;
+            combo_Selector_Operand_Column.ReadOnly = true;
            this.dgv_Pos_Content.Columns.Insert(2, combo_Selector_Operand_Column);
 
 
             DataGridViewTextBoxColumn text_Column = new DataGridViewTextBoxColumn();
             text_Column.HeaderText = "位置";
-            text_Column.Name = text_Column_Name;
-            text_Column.DataPropertyName = text_Column_Name;
+            text_Column.Name = Pos_Property_Name_Pos;
+            text_Column.DataPropertyName = Pos_Property_Name_Pos;
             text_Column.Width = 150;
             text_Column.Resizable = DataGridViewTriState.False;
             this.dgv_Pos_Content.Columns.Insert(3, text_Column);       
@@ -82,32 +96,42 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             if (dgv_IO_Content.Columns.Count > 0) dgv_IO_Content.Columns.Clear();
 
-            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-            checkColumn.HeaderText = "选择";
-            checkColumn.Name = checkColumnName;
-            checkColumn.TrueValue = true;
-            checkColumn.FalseValue = false;
-            checkColumn.DataPropertyName = checkColumnName;
-            checkColumn.Width = 150;
-            checkColumn.Resizable = DataGridViewTriState.False;
-            this.dgv_IO_Content.Columns.Insert(0, checkColumn);
+            DataGridViewCheckBoxColumn SelectedColumn = new DataGridViewCheckBoxColumn();
+            SelectedColumn.HeaderText = "选择";
+            SelectedColumn.Name = IO_Property_Name_IsSelected;
+            SelectedColumn.TrueValue = true;
+            SelectedColumn.FalseValue = false;
+            SelectedColumn.DataPropertyName = IO_Property_Name_IsSelected;
+            SelectedColumn.Width = 150;
+            SelectedColumn.Resizable = DataGridViewTriState.False;
+            this.dgv_IO_Content.Columns.Insert(0, SelectedColumn);
 
-            DataGridViewTextBoxColumn combo_Selector_Motor_Column = new DataGridViewTextBoxColumn();
-            combo_Selector_Motor_Column.HeaderText = "输入输出";
-            combo_Selector_Motor_Column.Name = combo_Selector_IO_Column_Name;
-            combo_Selector_Motor_Column.DataPropertyName = combo_Selector_IO_Column_Name;
-            combo_Selector_Motor_Column.Width = 150;
-            combo_Selector_Motor_Column.Resizable = DataGridViewTriState.False;
-            this.dgv_IO_Content.Columns.Insert(1, combo_Selector_Motor_Column);
+            DataGridViewTextBoxColumn combo_Selector_IOName_Column = new DataGridViewTextBoxColumn();
+            combo_Selector_IOName_Column.HeaderText = "输入输出";
+            combo_Selector_IOName_Column.Name = IO_Property_Name_IOName;
+            combo_Selector_IOName_Column.DataPropertyName = IO_Property_Name_IOName;
+            combo_Selector_IOName_Column.Width = 150;
+            combo_Selector_IOName_Column.Resizable = DataGridViewTriState.False;
+            combo_Selector_IOName_Column.ReadOnly = true;    
+            this.dgv_IO_Content.Columns.Insert(1, combo_Selector_IOName_Column);
+
+            DataGridViewTextBoxColumn combo_Selector_IOType_Column = new DataGridViewTextBoxColumn();
+           combo_Selector_IOType_Column.HeaderText = "型态";
+           combo_Selector_IOType_Column.Name = IO_Property_Name_IOType;
+           combo_Selector_IOType_Column.DataPropertyName = IO_Property_Name_IOType;
+           combo_Selector_IOType_Column.Width = 150;
+           combo_Selector_IOType_Column.Resizable = DataGridViewTriState.False;
+            combo_Selector_IOType_Column.ReadOnly = true;
+            this.dgv_IO_Content.Columns.Insert(2, combo_Selector_IOType_Column);
 
             DataGridViewComboBoxColumn combo_Selector_Operand_Column = new DataGridViewComboBoxColumn();
             combo_Selector_Operand_Column.HeaderText = "TriggerMode";
-            combo_Selector_Operand_Column.Name = combo_Selector_TriggerMode_Column_Name;
-            combo_Selector_Operand_Column.DataPropertyName = combo_Selector_TriggerMode_Column_Name;
+            combo_Selector_Operand_Column.Name = IO_Property_Name_TriggerMode;
+            combo_Selector_Operand_Column.DataPropertyName = IO_Property_Name_TriggerMode;
             combo_Selector_Operand_Column.Width = 150;
             combo_Selector_Operand_Column.Resizable = DataGridViewTriState.False;
             combo_Selector_Operand_Column.DataSource = new List<string> { ConstantProperty.ON, ConstantProperty.OFF };
-            this.dgv_IO_Content.Columns.Insert(2, combo_Selector_Operand_Column);
+            this.dgv_IO_Content.Columns.Insert(3, combo_Selector_Operand_Column);
             
         }
 
@@ -176,63 +200,62 @@ namespace MF900_SolveWare.Views.AxisMesForm
             SolveWare.Core.MMgr.Infohandler.LogMessage(msg, true);
         }
 
-        public void Setup<TObj>(TObj obj)
-        {
-            
-        }
-
         private void btn_Delete_Click(object sender, EventArgs e)
         {
-            var deleteItems = this.list.FindAll(x => x.IsChecked == true);    
-            deleteItems.ToList().ForEach(item => this.list.Remove(item));
+            var deleteItems = this.mtrSafe.Data_Pos_Safetys.FindAll(x => x.IsSelected == true);
+            if (deleteItems.Count == 0) return;
+            deleteItems.ToList().ForEach(item => this.mtrSafe.Data_Pos_Safetys.Remove(item));
 
             dgv_Pos_Content.DataSource = null;
             dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             MakeDataGridView();
 
-            dgv_Pos_Content.DataSource = list;
+            dgv_Pos_Content.DataSource = this.mtrSafe.Data_Pos_Safetys;
         }
 
-        public List<DataSourceTest> list = new List<DataSourceTest>();
+        //public List<DataSourceTest> list = new List<DataSourceTest>();
         private void btn_Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cmb_Selector_Motor.SelectedItem as string) ||
                 string.IsNullOrEmpty(cmb_Selector_Operand.SelectedItem as string) ||
                 string.IsNullOrEmpty(txb_Pos.Text)) return;
 
-            DataSourceTest data = new DataSourceTest()
+            Data_Pos_Safety data = new Data_Pos_Safety()
             {
-                IsChecked = false,
+                IsSelected = false,
                 MotorName = cmb_Selector_Motor.SelectedItem as string,
-                Operand = (string)cmb_Selector_Operand.SelectedItem,
+                Operand = cmb_Selector_Operand.SelectedItem as string,
                 Pos = double.Parse(txb_Pos.Text)
             };
 
-            list.Add(data);
+            mtrSafe.Data_Pos_Safetys.Add(data);
             dgv_Pos_Content.Columns.Clear();
-            MakeDataGridView();
-            dgv_Pos_Content.DataSource = list;
+            dgv_Pos_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment= DataGridViewContentAlignment.MiddleCenter };
             dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
+            dgv_Pos_Content.DataSource = mtrSafe.Data_Pos_Safetys;
+            MakeDataGridView();
         }
 
-        private List<DataSourceIOTest> iOTests = new List<DataSourceIOTest>();
+        //public List<DataSourceIOTest> iOTests = new List<DataSourceIOTest>();
         private void btn_IO_Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cmb_Selector_IOType.SelectedItem as string) ||
                 string.IsNullOrEmpty(cmb_Selector_IO.SelectedItem as string)) return;
 
-            DataSourceIOTest data = new DataSourceIOTest()
+            Data_IO_Safety data = new Data_IO_Safety()
             {
-                IsChecked = false,
+                IsSelected = false,
                 IOName = cmb_Selector_IO.SelectedItem as string,
-                TriggerMode = ConstantProperty.ON
+                TriggerMode = ConstantProperty.ON,
+                IOType = cmb_Selector_IOType.SelectedItem as string
             };
 
-            iOTests.Add(data);
+            mtrSafe.Data_IO_Safetys.Add(data);
             dgv_IO_Content.Columns.Clear();
-            MakeIODataGridView();
-            dgv_IO_Content.DataSource = iOTests;
+            dgv_IO_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             dgv_IO_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
+            dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
+            MakeIODataGridView();
         }
 
         private void cmb_Selector_IOType_SelectionChangeCommitted(object sender, EventArgs e)
@@ -251,14 +274,16 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Delete_IO_Click(object sender, EventArgs e)
         {
-            var deleteItems = this.iOTests.FindAll(x => x.IsChecked == true);
-            deleteItems.ToList().ForEach(item => this.iOTests.Remove(item));
+            var deleteItems = this.mtrSafe.Data_IO_Safetys.FindAll(x => x.IsSelected == true);
+            if (deleteItems.Count == 0) return;
+
+            deleteItems.ToList().ForEach(item => this.mtrSafe.Data_IO_Safetys.Remove(item));
 
             dgv_IO_Content.DataSource = null;
             dgv_IO_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             MakeIODataGridView();
 
-            dgv_IO_Content.DataSource = iOTests;
+            dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
         }
     }
 
