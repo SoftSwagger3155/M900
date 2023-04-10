@@ -42,27 +42,40 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             this.cmb_Selector_Motor.SelectionChangeCommitted -= Cmb_Selector_Motor_SelectionChangeCommitted;
             this.cmb_Selector_Motor.SelectionChangeCommitted += Cmb_Selector_Motor_SelectionChangeCommitted;
+
+            if(cmb_Selector_Motor.Items.Count > 0) {
+                cmb_Selector_Motor.SelectedItem = cmb_Selector_Motor.Items[0];
+                string mtr = cmb_Selector_Motor.SelectedItem as string;
+                Fillup_TabControl(mtr);
+            }
         }
 
         private void Cmb_Selector_Motor_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            string mtr = (string)(sender as ComboBox).SelectedItem;
+            Fillup_TabControl(mtr);
+        }
+        private void Fillup_TabControl(string mtr)
+        {
             string errMsg = string.Empty;
             try
             {
-                string mtr = (string)(sender as ComboBox).SelectedItem;
                 axis = mtr.GetAxisBase();
 
                 if (axis == null) return;
                 MakePropertyGrid(axis);
-                
+
             }
             catch (Exception ex)
             {
                 errMsg += ex.Message;
             }
-            if(string.IsNullOrEmpty(errMsg) == false) { SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true); }
+            if (string.IsNullOrEmpty(errMsg) == false) { SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true); }
         }
 
+
+        IView form_Speed = null;
+        IView form_Safety = null;
         private void MakePropertyGrid(AxisBase axis)
         {
             PropertyGrid pGrid = null;
@@ -82,7 +95,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 tab_MtrConfig.Controls.Clear();
                 tab_MtrConfig.Controls.Add(pGrid);
 
-                IView form_Speed = new Form_Axis_Configuration_Item_MtrSpeed();
+                form_Speed = new Form_Axis_Configuration_Item_MtrSpeed();
                 form_Speed.Setup(this.axis.ConfigData);
                 (form_Speed as Form).TopLevel = false;
                 (form_Speed as Form).Visible = true;
@@ -90,7 +103,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 tab_MtrSpeed.Controls.Clear();
                 tab_MtrSpeed.Controls.Add(form_Speed as Form);
 
-                IView form_Safety = new Form_Axis_Configuration_Item_MtrSafe();
+                form_Safety = new Form_Axis_Configuration_Item_MtrSafe();
                 (form_Safety as Form).TopLevel = false;
                 (form_Safety as Form).Visible = true;
                 (form_Safety as Form).Dock = DockStyle.Fill;
@@ -137,6 +150,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
             }
 
             if (string.IsNullOrEmpty(errMsg) == false) SolveWare.Core.MMgr.Infohandler.LogMessage($"{errMsg}", true);
+        }
+
+        private void Form_Axis_Configuration_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (form_Speed != null) (form_Speed as Form).Close();
         }
     }
 }

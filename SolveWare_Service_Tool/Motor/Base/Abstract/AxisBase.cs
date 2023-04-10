@@ -70,11 +70,17 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected bool isInZone;
         protected bool isSafeToMoveInZone;
         protected bool isIgnoreDanger;
+        protected string timeSpent = "0.000";
 
         public bool IsIgnoreDanger
         {
             get => isIgnoreDanger;
             set => UpdateProper(ref isIgnoreDanger, value);
+        }
+        public string TimeSpent
+        {
+            get => timeSpent;
+            protected set=> UpdateProper(ref timeSpent, value);
         }
         public bool IsDangerousToMove
         {
@@ -152,81 +158,129 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public bool IsAlarm
         {
             get => isAlarm;
-            set => UpdateProper(ref isAlarm, value);
+            protected set => UpdateProper(ref isAlarm, value);
         }
         public bool IsOrg
         {
             get => isOrg;
-            set => UpdateProper(ref isOrg, value);
+            protected set => UpdateProper(ref isOrg, value);
         }
         public bool IsPosLimit
         {
             get => isPosLimit;
-            set => UpdateProper(ref isPosLimit, value);
+            protected set => UpdateProper(ref isPosLimit, value);
         }
         public bool IsNegLimit
         {
             get => isNegLimit;
-            set => UpdateProper(ref isNegLimit, value);
+            protected set => UpdateProper(ref isNegLimit, value);
         }
         public bool HasHome
         {
             get => hasHome;
-            private set => UpdateProper(ref hasHome, value);
+            protected set => UpdateProper(ref hasHome, value);
         }
         public double CurrentPulse
         {
             get => currentPulse;
-            set => UpdateProper(ref currentPulse, value);
+            protected set => UpdateProper(ref currentPulse, value);
         }
         public double CurrentPhysicalPos
         {
             get => currentPhysicalPos;
-            set
+            protected set
             {
                 currentPhysicalPos = value;
                 OnPropertyChanged(nameof(CurrentPhysicalPos));
-                OnPropertyChanged(nameof(Description));
-                UpdateDynamicStatus();
             }
         }
         public double AnalogInputValue
         {
             get => analogInputValue;
-            set => UpdateProper(ref analogInputValue, value);
+            protected set => UpdateProper(ref analogInputValue, value);
         }
         public string InterlockWaringMsg
         {
             get => interlockWaringMsg;
-            set => UpdateProper(ref interlockWaringMsg, value);
-        }
-        public long Id { get; set; }
-
-        public string Description
-        {
-            get;
-            set;
+            protected set => UpdateProper(ref interlockWaringMsg, value);
         }
 
-        private string dynamicContent;
-        public string DynamicContent
+        private string dynamicMotorPhysicalPosInfo;
+        public string DynamicMotorPhysicalPosInfo
         {
-            get => dynamicContent;
-            set => UpdateProper(ref dynamicContent, value);
+            get => dynamicMotorPhysicalPosInfo;
+            protected set => UpdateProper(ref dynamicMotorPhysicalPosInfo, value);
         }
         public bool IsMoving
         {
             get => isMoving;
+            protected set=> UpdateProper(ref isMoving, value);
         }
+
+
         private void UpdateDynamicStatus()
         {
             string unit = MtrTable.IsMM ? "mm" : "Deg";
-            DynamicContent = $"{Name} {CurrentPhysicalPos.ToString("F4")} {unit}";
-            OnPropertyChanged(nameof(DynamicContent));
+            DynamicMotorPhysicalPosInfo = $"{Name} {CurrentPhysicalPos.ToString("F4")} {unit}";
+            OnPropertyChanged(nameof(DynamicMotorPhysicalPosInfo));
         }
         //公用部份
-        public abstract void StartStatusReading();
-        public void StopStatusReading()
+        public override void StartStatusReading()
+        {
+            if (this.Simulation) { return; }
+            if (readStatusSource != null) return;
+            readStatusSource = new CancellationTokenSource();
+
+            int motor_OriginValue = 0;
+            int motor_Enable = 0;
+            int motor_Idle = 0;
+            uint motor_OriginSignal = 0;
+            float pulse = 0;
+
+
+            Task task = new Task(() =>
+            {
+                while (!readStatusSource.IsCancellationRequested)
+                {
+                    //Dll_Zmcaux.ZAux_Direct_GetDatumIn(Handler, mtrTable.AxisNo, ref motor_OriginValue);
+                    //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.AxisNo, ref motor_OriginSignal);  //轴原点
+                    //Dll_Zmcaux.ZAux_Direct_GetAxisStatus(Handler, mtrTable.AxisNo, ref axis_Read_Status);  //轴状态
+                    //Dll_Zmcaux.ZAux_Direct_GetAxisEnable(Handler, mtrTable.AxisNo, ref motor_Enable);  //轴使能
+                    //                                                                                   //  <param name="piValue">运动状态反馈值 0-运动中 -1 停止</param>
+                    //Dll_Zmcaux.ZAux_Direct_GetDpos(Handler, mtrTable.AxisNo, ref pfvalue);
+                    //Dll_Zmcaux.ZAux_Direct_GetMpos(Handler, mtrTable.AxisNo, ref pulse);
+
+                    this.IsPosLimit = Get_PEL_Signal();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                   
+                    this.IsNegLimit = Get_NEL_Signal();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                    
+                    this.IsAlarm = Get_Alarm_Signal();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                    
+                    this.IsServoOn = Get_ServoStatus();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                    
+                    this.IsOrg = Get_Origin_Signal();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                    
+                    this.CurrentPhysicalPos = Get_CurUnitPos();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                    
+                    this.CurrentPulse = Get_CurPulse();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                    
+                    this.IsMoving = Get_MovingStatus();
+                    Thread.Sleep(mtrTable.StatusReadTiming);
+                }
+
+                cancelDoneFlag.Set();
+
+            }, readStatusSource.Token, TaskCreationOptions.LongRunning);
+            task.Start();
+        }
+        public override void StopStatusReading()
         {
             if (readStatusSource == null) return;
             readStatusSource.Cancel();
@@ -292,6 +346,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract double Get_CurUnitPos();
         public abstract double Get_AnalogInputValue();
         public abstract bool Get_ServoStatus();
+        public abstract bool Get_MovingStatus();
         public abstract bool MoveRelative(double distance, bool BypassDangerCheck = false);
         public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool HomeMoveTo(double pos, bool BypassDangerCheck = false);
@@ -439,10 +494,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             TimeSpan ts = DateTime.Now - st;
             return ts.TotalMilliseconds > mtrTable.HomeTimeOut;
         }
-
-
         public abstract bool DoAvoidDangerousPosAction();
-
         public void Setup(IElement configData)
         {
 

@@ -19,20 +19,25 @@ namespace SolveWare_Service_Tool.IO.Business
     public class IO_Zmcaux : IOBase
     {
         IntPtr Handler;
-        public IO_Zmcaux(IElement data) : base(data)
+        public IO_Zmcaux(IElement data, bool simulation) : base(data)
         {
-            if (configData.Simulation) return;
-            Init();
+            this.Simulation = simulation;
         }
 
         public override bool Init()
         {
             this.IOType = this.configData.IOType;
-            var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
-            if (master.CardInfo.Dic_CardHandler.Count == 0 && !configData.Simulation) return false;
-            if (master.CardInfo.Dic_CardHandler.Count == 0 && configData.Simulation) return true;
 
-            Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
+            if(this.Simulation == false)
+            {
+
+                var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
+                if (master.CardInfo.Dic_CardHandler.Count == 0 && !configData.Simulation) return false;
+                if (master.CardInfo.Dic_CardHandler.Count == 0 && configData.Simulation) return true;
+
+                Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
+            }
+
             return true;
         }
 
@@ -44,6 +49,12 @@ namespace SolveWare_Service_Tool.IO.Business
 
             try
             {
+                if (this.Simulation)
+                {
+                    this.Status = IO_Status.Off;
+                    return;
+                }
+
                 errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)triggerMode);
             }
             catch (Exception ex)
@@ -63,6 +74,12 @@ namespace SolveWare_Service_Tool.IO.Business
 
             try
             {
+                if (this.Simulation)
+                {
+                    this.Status = IO_Status.On;
+                    return;
+                }
+
                 errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)triggerMode);
             }
             catch (Exception ex)
@@ -78,10 +95,10 @@ namespace SolveWare_Service_Tool.IO.Business
         {
             try
             {
-                if (configData.Simulation)
+                if (this.Simulation)
                 {
-                    Status = IO_Status.Off;
-                    return;
+                    this.Status = Status;
+                    return; 
                 }
 
                 //0：低电平，1：高电平

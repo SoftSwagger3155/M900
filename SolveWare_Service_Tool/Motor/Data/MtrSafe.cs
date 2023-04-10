@@ -12,20 +12,25 @@ namespace SolveWare_Service_Tool.Motor.Data
 {
     public class MtrSafe : ElementBase
     {
-        public List<Data_Safety> Data_Safetys { get; set; }
+        public List<Data_Pos_Safety> Data_Pos_Safetys { get; set; }
+        public List<Data_IO_Safety> Data_IO_Safetys { get; set; }
         public MtrSafe()
         {
-          this.Data_Safetys = new List<Data_Safety>();
-        }
-
-        
+            this.Data_Pos_Safetys = new List<Data_Pos_Safety>();
+            this.Data_IO_Safetys = new List<Data_IO_Safety>();
+        }      
     }
 
-    public class Data_Safety : ElementBase
+    public class Data_Pos_Safety : ElementBase
     {
         public string MotorName { get; set; }
         public string Operand { get; set; }
         public double Pos { get; set; }
         public bool IsSelected { get; set; }
+    }
+    public class Data_IO_Safety : ElementBase
+    {
+        public string IOName { get; set; }
+        public string TriggerMode { get; set; }
     }
 }

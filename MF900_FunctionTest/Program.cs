@@ -27,9 +27,14 @@ namespace MF900_FunctionTest
                }
             */
             {
-                
+                Task task = Task.Run(() =>
+                {
+                    Console.WriteLine( "线程内");
+                });
+               task.Wait(1000);
 
-
+                Console.WriteLine("线程外");
+                Console.ReadKey();
             }
         }
     }

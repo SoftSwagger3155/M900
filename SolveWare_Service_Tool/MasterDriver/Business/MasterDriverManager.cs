@@ -21,6 +21,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
     {
         IResourceProvider provider = null;
         ConfigData_MasterDriver config = null;
+        public ConfigData_MasterDriver Config { get => config; }
         static string FileName = "开机驱动档案";
         public IOMotionCardInfo CardInfo { get; private set; }
         public bool IsSimulation { get; set; } = true;
@@ -56,10 +57,19 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                             #region 连接控制器  ---杨工
                             IntPtr Handle;
                             this.CardInfo = new IOMotionCardInfo();
-                            isOk = Dll_Zmcaux.ZAux_OpenEth("192.168.0.11", out Handle) == 0;
+                            isOk = Dll_Zmcaux.ZAux_OpenEth(config.Resource, out Handle) == 0;
+
+                            //TODO - Master连线失败回复
+
                             if (isOk)
                             {
                                 CardInfo.Dic_CardHandler.Add(0, Handle);
+                            }
+                            else
+                            {
+                                SolveWare.Core.MMgr.Infohandler.LogMessage("控制器连线失败, 开启 模拟系统", true, true);
+                                this.config.Is_Simulation_IO = true;
+                                this.config.Is_Simulation_Motor = true;
                             }
                            
                             #endregion

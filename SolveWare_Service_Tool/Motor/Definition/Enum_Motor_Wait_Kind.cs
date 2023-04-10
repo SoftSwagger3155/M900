@@ -10,6 +10,6 @@ namespace SolveWare_Service_Tool.Motor.Definition
     {
         Success,
         Fail,
-        UnKnown
+        Moving
     }
 }

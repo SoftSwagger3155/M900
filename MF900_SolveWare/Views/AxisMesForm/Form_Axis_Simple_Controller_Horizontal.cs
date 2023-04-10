@@ -135,14 +135,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     if (string.IsNullOrEmpty(txb_AbsolutePos.Text))
                     {
-                        SolveWare.Core.MMgr.Infohandler.LogMessage("相对位置 的 格子 不得为空", true);
-                        return ErrorCodes.MotionFunctionError;
+                        return "相对位置 的 格子 不得为空";
                     }
 
                     double pos = double.Parse(txb_AbsolutePos.Text);
                     int errorCode = mtr.MoveTo(pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
 
-                    return errorCode;
+                    return ErrorCodes.GetErrorDescription(errorCode);
                 });
                 
             }
@@ -160,14 +159,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     if (string.IsNullOrEmpty(txb_RelativePos.Text))
                     {
-                        SolveWare.Core.MMgr.Infohandler.LogMessage("绝对位置 的 格子 不得为空", true);
-                        return ErrorCodes.MotionFunctionError;
+                        return "绝对位置 的 格子 不得为空";
                     }
 
                     double pos = mtr.CurrentPhysicalPos + double.Parse(txb_AbsolutePos.Text);
                     int errorCode = mtr.MoveTo(pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
 
-                    return errorCode;
+                    return ErrorCodes.GetErrorDescription(errorCode);
                 });
 
             }
@@ -185,14 +183,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     if (string.IsNullOrEmpty(txb_RelativePos.Text))
                     {
-                        SolveWare.Core.MMgr.Infohandler.LogMessage("相对位置 的 格子 不得为空", true);
-                        return ErrorCodes.MotionFunctionError;
+                        return "相对位置 的 格子 不得为空";
                     }
 
                     double pos = mtr.CurrentPhysicalPos - double.Parse(txb_AbsolutePos.Text);
                     int errorCode = mtr.MoveTo(pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
 
-                    return errorCode;
+                    return ErrorCodes.GetErrorDescription(errorCode);
                 });
 
             }
@@ -210,7 +207,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 SolveWare.Core.MMgr.DoButtonClickTask(() =>
                 {
                     int errorCode = mtr.HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    return errorCode;
+                    return ErrorCodes.GetErrorDescription(errorCode);
                 });
 
             }

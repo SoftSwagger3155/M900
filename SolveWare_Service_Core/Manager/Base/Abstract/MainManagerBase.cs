@@ -75,21 +75,44 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         }
 
-        public void DoButtonClickTask(Func<int> action)
+        public void DoButtonClickTask(Func<string> action)
         {
             if (Status == Machine_Status.Busy) return;
             if (Status == Machine_Status.Initialising) return;
             if (Status == Machine_Status.SingleCycle) return;
             if (Status == Machine_Status.Auto) return;
-            
-            int errorCode = ErrorCodes.NoError;
+
+            string errMsg = string.Empty;
             List<Task> tasks = new List<Task>();
             tasks.Add(Task.Run(() =>
             {
-                errorCode = action();
-                if (errorCode != ErrorCodes.NoError) Status = Machine_Status.Error;
+                this.Status = Machine_Status.Busy;  
+                errMsg = action();
+                if (errMsg == string.Empty) this.Status = Machine_Status.Idle;
+                else
+                {
+                    this.Status = Machine_Status.Error;
+                    SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true, true);
+                }
             }));
             Task.WaitAll(tasks.ToArray());
+        }
+        public void DoButtonClick(Func<string> action)
+        {
+            if (Status == Machine_Status.Busy) return;
+            if (Status == Machine_Status.Initialising) return;
+            if (Status == Machine_Status.SingleCycle) return;
+            if (Status == Machine_Status.Auto) return;
+
+            string errMsg = string.Empty;
+            this.Status = Machine_Status.Busy;
+            errMsg = action();
+            if (string.IsNullOrEmpty(errMsg)) this.status = Machine_Status.Idle;
+            else
+            {
+                this.Status = Machine_Status.Error;
+                SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true, true);
+            }
         }
 
         public IResourceProvider Get_Single_Data_Resource(Type classType)

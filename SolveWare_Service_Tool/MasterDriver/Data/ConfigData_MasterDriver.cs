@@ -12,7 +12,8 @@ namespace SolveWare_Service_Tool.MasterDriver.Data
 {
     [ResourceBaseAttribute("Init_Master_Driver")]
     public class ConfigData_MasterDriver : ElementBase
-    {      
+    {
+        public string Resource { get; set; } = "192.168.0.11";
         public bool Is_Simulation_Motor { get; set; }
         public bool Is_Simulation_IO { get; set; }
 

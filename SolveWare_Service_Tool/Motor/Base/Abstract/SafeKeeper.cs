@@ -2,6 +2,8 @@
 using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.General;
+using SolveWare_Service_Tool.IO.Base.Abstract;
+using SolveWare_Service_Tool.IO.Base.Interface;
 using SolveWare_Service_Tool.Motor.Base.Interface;
 using SolveWare_Service_Tool.Motor.Data;
 using SolveWare_Service_Tool.Motor.Definition;
@@ -20,29 +22,48 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             string errMsg = string.Empty;
 			try
 			{
-                if (mtrSafe.Data_Safetys.Count == 0l) return true;
-
-                bool isDangerous = false;
-                foreach (var safeItem in mtrSafe.Data_Safetys)
+                do
                 {
-                    AxisBase axis = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Motor, safeItem.MotorName);
+                    if (mtrSafe.Data_Pos_Safetys.Count == 0l) return true;
 
-                    if(safeItem.Operand == Safety_Operand.大于等于.ToString())
+                    bool isDangerous = false;
+                    foreach (var safeItem in mtrSafe.Data_Pos_Safetys)
                     {
-                        isDangerous = axis.Get_CurUnitPos() >= safeItem.Pos;
+                        AxisBase axis = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Motor, safeItem.MotorName);
+
+                        if (safeItem.Operand == Safety_Operand.大于等于.ToString())
+                        {
+                            isDangerous = axis.Get_CurUnitPos() >= safeItem.Pos;
+                        }
+                        else
+                        {
+                            isDangerous = axis.Get_CurUnitPos() <= safeItem.Pos;
+                        }
+
+                        if (isDangerous)
+                        {
+                            errMsg += $"马达 {safeItem.MotorName} 现在位置 {axis.Get_CurUnitPos()} mm  {safeItem.Operand} {safeItem.Pos} mm";
+                            break;
+                        }
                     }
-                    else
+                    if (isDangerous) break;
+
+                    foreach (var safeItem in mtrSafe.Data_IO_Safetys)
                     {
-                        isDangerous = axis.Get_CurUnitPos() <= safeItem.Pos;
+                        IOBase iO = (IOBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.IO, safeItem.IOName);
+                        if (safeItem.TriggerMode == ConstantProperty.ON)
+                            isDangerous = iO.IsOn();
+                        else if (safeItem.TriggerMode == ConstantProperty.OFF)
+                            isDangerous = iO.IsOff();
+
+                        if (isDangerous)
+                        {
+                            errMsg += $"IO {safeItem.IOName} 在危险触发模式";
+                            break;
+                        }
                     }
 
-                    if (isDangerous)
-                    {
-                        errMsg += $"马达 {safeItem.MotorName} 现在位置 {axis.Get_CurUnitPos()} mm  {safeItem.Operand} {safeItem.Pos} mm";
-                        break;
-                    }
-                }
-
+                } while (false);
 			}
 			catch (Exception ex)
 			{
