@@ -29,6 +29,7 @@ namespace MF900_SolveWare
             SolveWare.Core.MMgr.Setup();
             SolveWare.Core.MMgr.AssignMasterDriver(new MasterDriverManager());
             SolveWare.Core.MMgr.Initialize();
+            SolveWare.Core.MMgr.AssignFSM();
 
 
             //SolveWare_Service_Vision.UserHWControl control = new SolveWare_Service_Vision.UserHWControl();        

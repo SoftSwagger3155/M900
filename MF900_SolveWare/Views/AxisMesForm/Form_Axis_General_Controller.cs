@@ -59,5 +59,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 }
             }
         }
+
+        private void btn_Home_All_Click(object sender, EventArgs e)
+        {
+            SolveWare.Core.MMgr.Do_Homing();
+        }
     }
 }

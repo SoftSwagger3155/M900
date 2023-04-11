@@ -9,5 +9,9 @@ namespace MF900_SolveWare.FSM.Auto
 {
     public class FSM_Auto_Controller: FSMBase
     {
+        public FSM_Auto_Controller(bool isSimulation): base(isSimulation) 
+        {
+            
+        }
     }
 }

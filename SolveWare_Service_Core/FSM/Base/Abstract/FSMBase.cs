@@ -6,17 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SolveWare_Service_Core.FSM.Base.Abstract
 {
     public abstract class FSMBase : JobFundamentalBase, IFSM
     {
-
+        protected  bool isSimulation;
         public IList<IFSMStation> Stations { get; set; }
 
-        public FSMBase()
+        public FSMBase(bool isSimulation)
         {
             Stations = new List<IFSMStation>();
+            this.isSimulation = isSimulation;
+
         }
 
         /// <summary>
@@ -33,6 +36,11 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         /// <returns></returns>
         public int Run_Auto_Cycle()
         {
+            if(isSimulation)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行", true);
+            }
+
             OnEntrance();
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
@@ -79,6 +87,11 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         /// <returns></returns>
         public int Run_One_Cycle()
         {
+            if (isSimulation)
+            {
+                SolveWare.Core.MMgr.Infohandler.LogMessage("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行", true);
+            }
+
             SolveWare.Core.MMgr.SetStatus(Definition.Machine_Status.Auto);
             OnEntrance();
             int errorCode = ErrorCodes.NoError;

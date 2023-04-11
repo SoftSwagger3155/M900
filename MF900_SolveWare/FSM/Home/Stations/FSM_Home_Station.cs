@@ -24,7 +24,6 @@ namespace MF900_SolveWare.FSM.Home.Stations
     {
         private HomeStation_Selector selector;
         private FSM_Home_MachineEvent mcEvent;
-        private bool isSimulation = false;
 
         #region 
         BasicState st_HomeStart;
@@ -219,6 +218,8 @@ namespace MF900_SolveWare.FSM.Home.Stations
                         int err = mtrY.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
                         errors.Add(err);
                     });
+                    tasks.Add(task1);
+                    tasks.Add(task2);
                     tasks.ForEach(task => task.Start());
                     Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                     {

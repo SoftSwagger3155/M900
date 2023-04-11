@@ -267,7 +267,13 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public void Do_Homing()
         {
+            if(FSM_Home == null)
+            {
+                this.Infohandler.LogMessage("无FSM Home 物件", true, true);
+                return;
+            }
 
+            FSM_Home.Run_One_Cycle();
         }
         public void Do_AutoCycle()
         {
@@ -281,5 +287,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
         {
 
         }
+
+        public abstract void AssignFSM();
     }
 }

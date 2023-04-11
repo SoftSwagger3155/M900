@@ -27,5 +27,6 @@ namespace SolveWare_Service_Tool.MasterDriver.Data
         public bool Is_Basler_Camera { get; set; }
         public bool Is_HIK_Camera { get; set; }
 
+
     }
 }

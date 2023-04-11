@@ -34,6 +34,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using SolveWare_Service_Tool.MasterDriver.Business;
 
 namespace MF900_SolveWare.Business
 {
@@ -64,7 +65,6 @@ namespace MF900_SolveWare.Business
 
             //其他初始化任务
             Init();
-            //AssignFSM();
         }
 
         private void MainManager_On_Data_Resource_Loading_Handler()
@@ -197,12 +197,7 @@ namespace MF900_SolveWare.Business
            
         }
 
-        private void AssignFSM()
-        {       
-            this.FSM_Home = new FSM_Home_Controller(true);
-            this.FSM_Auto = new FSM_Auto_Controller();
-            this.FSM_Reset = new FSM_Reset_Controller();
-        }
+
 
         private void Init()
         {
@@ -221,7 +216,12 @@ namespace MF900_SolveWare.Business
             return false;
         }
 
-
-
+        public override void AssignFSM()
+        {
+            var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
+            this.FSM_Home = new FSM_Home_Controller(master.Is_Simulation_FSM);
+            //this.FSM_Auto = new FSM_Auto_Controller();
+            //this.FSM_Reset = new FSM_Reset_Controller();
+        }
     }
 }

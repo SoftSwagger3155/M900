@@ -20,5 +20,6 @@ namespace SolveWare_Service_Core.FSM.Base.Interface
         void SetFirstState(IState state);
         void SetFinalState(IState state);
         void Add_State(params IState[] states);
+        void SetSimulationMode();
     }
 }

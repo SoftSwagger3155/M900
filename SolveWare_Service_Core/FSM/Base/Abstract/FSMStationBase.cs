@@ -11,6 +11,13 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
 {
     public abstract class FSMStationBase: JobFundamentalBase, IFSMStation
     {
+        protected bool isSimulation;
+
+        public FSMStationBase()
+        {
+            this.states = new List<StateBase>();
+
+        }
         protected StateBase firstState;
         public StateBase FirstState { get=> firstState; }
 
@@ -120,5 +127,11 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         }
 
         public abstract void SetStateChain();
+
+        public void SetSimulationMode()
+        {
+            this.isSimulation = true;
+            //this.states.ToList().ForEach(state => { state.IsSimulation = this.isSimulation; });
+        }
     }
 }

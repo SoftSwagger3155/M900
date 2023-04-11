@@ -36,6 +36,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IElement Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind kind, string name);
         ICommonJobFundamental Get_PairJob(string jobName);
         void CloseAll();
+        void AssignFSM();
 
         void Do_Homing();
         void Do_AutoCycle();

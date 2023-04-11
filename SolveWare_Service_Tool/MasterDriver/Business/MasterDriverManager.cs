@@ -25,6 +25,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
         static string FileName = "开机驱动档案";
         public IOMotionCardInfo CardInfo { get; private set; }
         public bool IsSimulation { get; set; } = true;
+        public bool Is_Simulation_FSM { get; private set;} 
 
         public IList<ICameraInfo> Basler_Camera_Infos { get; private set; }
 
@@ -45,9 +46,14 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
         public bool Init()
         {
             bool isOk = false;
+            
             try
             {
-                if (config.Is_Simulation_Motor && config.Is_Simulation_IO) return true;
+                if (config.Is_Simulation_Motor && config.Is_Simulation_IO)
+                {
+                    this.Is_Simulation_FSM = true;   
+                    return true;
+                }
                 //同样的卡
                 if(config.Master_Driver_Motor == config.Master_Driver_IO)
                 {
@@ -70,6 +76,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                                 SolveWare.Core.MMgr.Infohandler.LogMessage("控制器连线失败, 开启 模拟系统", true, true);
                                 this.config.Is_Simulation_IO = true;
                                 this.config.Is_Simulation_Motor = true;
+                                Is_Simulation_FSM = true;
                             }
                            
                             #endregion

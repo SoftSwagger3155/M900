@@ -10,15 +10,13 @@ namespace MF900_SolveWare.FSM.Home
 {
     public class FSM_Home_Controller : FSMBase
     {
-        private bool isSimulation;
         public FSM_Home_MachineEvent McEvent { get; private set; }
         public FSM_Home_Station TopStation { get; private set; }
         public FSM_Home_Station BtmStation { get; private set; }
 
 
-        public FSM_Home_Controller(bool isSimulation)
+        public FSM_Home_Controller(bool isSimulation): base(isSimulation)
         {
-            this.isSimulation = isSimulation;
             McEvent = new FSM_Home_MachineEvent();
             CreateStations();
         }

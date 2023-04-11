@@ -49,6 +49,7 @@
             this.btn_Home_All.TabIndex = 1;
             this.btn_Home_All.Text = "全复位";
             this.btn_Home_All.UseVisualStyleBackColor = true;
+            this.btn_Home_All.Click += new System.EventHandler(this.btn_Home_All_Click);
             // 
             // Form_Axis_General_Controller
             // 
