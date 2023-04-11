@@ -266,7 +266,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         errMsg += "请选择一个使用项";
                         break;
                     }
-
+                    if (MonitorJog() == false)
+                    {
+                        errMsg += "不安全位移";
+                        break;
+                    }
                     axis.Jog(false, speed);
 
                 } while (false);
@@ -282,12 +286,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             string errMsg = string.Empty;
             try
             {
-                if (jogSource != null)
-                {
-                    jogSource.Cancel();
-                    jogEvent.WaitOne(100);
-                    jogSource = null;
-                }
+                axis.Stop();
             }
             catch (Exception ex)
             {
@@ -298,20 +297,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         CancellationTokenSource jogSource = null;
         AutoResetEvent jogEvent = new AutoResetEvent(false);
-        public void MonitorJog()
+        public bool MonitorJog()
         {
-            jogSource = new CancellationTokenSource();
-            Task.Run(() =>
-            {
-                while (!jogSource.IsCancellationRequested)
-                {
-                    if (axis.SafeKeeper.Is_Safe_To_Move(axis.MtrSafe) == false) break;
-                    Thread.Sleep(10);
-                }
-                axis.Stop();
-                jogEvent.Set();
-            });
-           
+            return axis.SafeKeeper.Is_Safe_To_Move(axis.MtrSafe);
+
         }
         private void btn_Jog_Positive_MouseDown(object sender, MouseEventArgs e)
         {
@@ -327,7 +316,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         errMsg += "请选择一个使用项";
                         break;
                     }
-
+                    if( MonitorJog() == false)
+                    {
+                        errMsg += "不安全位移";
+                        break;
+                    }
                     axis.Jog(true, speed);
 
                 } while (false);
@@ -343,13 +336,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             string errMsg = string.Empty;
             try
             {
-                if(jogSource != null) 
-                { 
-                    jogSource.Cancel();
-                    jogEvent.WaitOne(100);
-                    jogSource = null;
-                }   
-
+                axis.Stop();
             }
             catch (Exception ex)
             {

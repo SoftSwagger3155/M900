@@ -30,6 +30,7 @@ namespace SolveWare_Service_Core.General
         public const int WaitTimeOutError = -19;
         public const int NoVisionPatternObject = -20;
         public const int PatternMatchFailed = -21;
+        public const int FSMRunningFailed = -22;
         public const int MachineStopCall = -10000;
 
 
@@ -57,6 +58,7 @@ namespace SolveWare_Service_Core.General
             m.Add(WaitTimeOutError, "Wait Time Out | 等待超时");
             m.Add(NoVisionPatternObject, "No Visoin Pattern Object | 无视觉模板物件");
             m.Add(PatternMatchFailed, "Pattern Match Failed | 视觉模板失败");
+            m.Add(FSMRunningFailed, "FSM Running Failed | FSM 运行失败");
         }
 
         public static string GetErrorDescription(int errorCode, string extraInfo = "")

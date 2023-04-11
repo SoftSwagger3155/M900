@@ -992,7 +992,7 @@
         <SpeedSeting>
           <Name>复位速度</Name>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>10</Max_Velocity>
+          <Max_Velocity>5</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>

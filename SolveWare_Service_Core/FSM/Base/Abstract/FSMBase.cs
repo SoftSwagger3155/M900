@@ -64,7 +64,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                 {
                     int index = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = index >= 0 ? ErrorCodes.CyclingFailed : ErrorCodes.NoError;
+                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
 
                     errMsg += ErrorCodes.GetErrorDescription(errorCode);
                 });
@@ -115,10 +115,10 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 tasks.ForEach(task => { task.Start(); });
                 Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                 {
-                    int index = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = index >= 0 ? ErrorCodes.CyclingFailed : ErrorCodes.NoError;
+                    int index = errors.FindIndex(x => x != ErrorCodes.NoError);
+                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
 
-                    errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                    errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
 
                     string status = errorCode == ErrorCodes.NoError ? "成功" : "失败";
                     SolveWare.Core.MMgr.Infohandler.LogMessage($"FSM 运行结束, 结果 {status}", true);
