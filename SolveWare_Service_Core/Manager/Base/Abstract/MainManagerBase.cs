@@ -22,14 +22,15 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
     {
         public MainManagerBase()
         {
-            this.Infohandler = InfoHandler.Instance;
-            ErrorCodes.InitErrorMap();
+            
             string fullPath = "";//ConfigurationManager.AppSettings["FilePathRoot"];
             fullPath = Debugger.IsAttached ? Directory.GetCurrentDirectory() : fullPath;
             SystemPath.RootInfoDirection = $@"{fullPath}";
             SystemPath.RootLogDirectory = $@"{fullPath} Logs";
             SystemPath.RootDataDirectory = $@"{fullPath} Data";
             SystemPath.CreateDefaultDirectory(true);
+            this.Infohandler = InfoHandler.Instance;
+            ErrorCodes.InitErrorMap();
 
             Resource_Tool_Center = new List<IToolResourceProvider>();
             Resource_Data_Center = new List<IDataResourceProvider>();

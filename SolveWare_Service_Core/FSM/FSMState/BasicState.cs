@@ -58,7 +58,6 @@ namespace SolveWare_Service_Core.FSM.FSMState
                 errMsg += ex.Message;
             }
 
-            Get_Result(nameof(this.Do_Job), errMsg);
             OnExit();
             if (IsSimulation) Thread.Sleep(300);
 

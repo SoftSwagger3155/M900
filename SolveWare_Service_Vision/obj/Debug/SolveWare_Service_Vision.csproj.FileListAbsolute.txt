@@ -42,3 +42,4 @@ C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\Info\Log\Log4net.config

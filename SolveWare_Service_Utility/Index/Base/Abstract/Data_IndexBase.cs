@@ -16,8 +16,17 @@ namespace SolveWare_Service_Utility.Index.Base.Abstract
         public int Number_ToGo { get; set; }
         public int Number_Column_X_ToGo { get; set; }
         public int Number_Column_Y_ToGo { get; set; }
+        public int Total_Column { get; set; }
+        public int Total_Row { get; set; }
         public double MoveGap_Column_X { get; set; }
         public double MoveGap_Row_Y { get; set; }
         public Point BasePoint { get; set; }
+        public IndexPriority Priority { get; set; }
+    }
+
+    public enum IndexPriority
+    {
+        RowFirst,
+        ColumnFirst
     }
 }

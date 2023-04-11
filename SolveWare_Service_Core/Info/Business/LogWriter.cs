@@ -245,6 +245,8 @@ namespace SolveWare_Service_Core.Info.Business
                 {
                     bool flag = !File.Exists(path);
                     oldHeader = headerString;
+
+
                     FileStream stream = File.Open(path, FileMode.Append, FileAccess.Write);
                     StreamWriter streamWriter = new StreamWriter(stream);
                     if (flag && headerString != "")
@@ -267,7 +269,7 @@ namespace SolveWare_Service_Core.Info.Business
                     streamWriter.WriteLine($"{log.LogTime}\t{log.Summary}");
                     streamWriter.WriteLine(string.Format("{0}\t{1}", "Detail", log.Message));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     Thread.Sleep(10);
                 }

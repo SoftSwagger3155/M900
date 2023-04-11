@@ -1,10 +1,12 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Info.Base.Interface;
+using SolveWare_Service_Core.Info.Log;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -45,8 +47,10 @@ namespace SolveWare_Service_Core.Info.Business
             _totalMessage = new ObservableCollection<string>();
             _totalErrorMessage = new ObservableCollection<string>();
             ErrorEventMngr = new ErrorEventManager("error", "event");
-            string ExeRoot = SystemPath.RootInfoDirection;
+            string ExeRoot = $"C:\\{Assembly.GetExecutingAssembly().GetName().Name}";//SystemPath.RootInfoDirection;
             ErrorEventMngr.Init("", $@"{ExeRoot}\Log");
+            this.EnableLog(true);
+            Log4NetHepler.BingListView(new ListView());
         }
 
         public static InfoHandler Instance
@@ -73,15 +77,13 @@ namespace SolveWare_Service_Core.Info.Business
         }
         public void LogActionMessage(string msg, string errorMsg = "", int errorCode = 0)
         {
-            if (this.uiForDisplayInfo == null) return;
-
-            this.uiForDisplayInfo.Invoke(new Action(() =>
+            if (this.uiForDisplayInfo != null)
             {
-                this.uiForDisplayInfo.Items.Add(msg);
-
-
-            }));
-
+                this.uiForDisplayInfo.Invoke(new Action(() =>
+                {
+                    this.uiForDisplayInfo.Items.Add(msg);
+                }));
+            }
 
             Action ac = new Action(() =>
             {
@@ -129,32 +131,28 @@ namespace SolveWare_Service_Core.Info.Business
                 TimeSpan ts = nowTime - st;
 
 
-                infos += $"开始时间 [{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}]{Environment.NewLine} ";
-                infos += $"名称 [{title}]{Environment.NewLine}";
-                infos += $"讯息 [{msg}]{Environment.NewLine}";
-                infos += $"状态 [{status}]{Environment.NewLine}";
-                infos += $"错误码 [{errorCode}]{Environment.NewLine}";
-                infos += $"错误Remark [{errorMsg}]{Environment.NewLine}";
-                infos += $"耗时 [{(ts.TotalMilliseconds / 1000).ToString("F3")} 秒]";
-                infos += $"结束时间 [{nowTime.ToString("yyyy/MM/dd HH:mm:ss")}]";
+                infos += $"\r\n开始时间 [{st.ToString("yyyy/MM/dd HH:mm:ss")}]\r\n";
+                infos += $"名称 [{title}]\r\n";
+                infos += $"讯息 [{msg}]\r\n";
+                infos += $"状态 [{status}]\r\n";
+                infos += $"错误码 [{errorCode}]\r\n";
+                infos += $"错误Remark [{errorMsg}]\r\n";
+                infos += $"耗时 [{(ts.TotalMilliseconds / 1000).ToString("F3")} 秒]\r\n";
+                infos += $"结束时间 [{nowTime.ToString("yyyy/MM/dd HH:mm:ss")}]\r\n";
 
                 this.TotalMessage.Add(infos);
-                if (ErrorEventMngr.HasToWriteEventLogFile)
-                    ErrorEventMngr?.ProcessEvent(msg);
-
-
+                Log4NetHepler.WriteInfo(infos);
 
                 if (errorCode != 0 || errorMsg != string.Empty)
                 {
                     this.TotalErrorMessage.Add(infos);
-                    if (ErrorEventMngr.HasToWriteErrorLogFile)
-                        ErrorEventMngr?.ProcessError(msg);
+                    Log4NetHepler.WriteError(infos);
+                    MessageBox.Show($"{errorMsg}", "错误通知");
                 }
 
                 CleanMessages();
                 if (TotalMessage.Count > limitCount) { TotalMessage.RemoveAt(0); }
                 if (TotalErrorMessage.Count > limitCount) { TotalErrorMessage.RemoveAt(0); }
-                //  (this.uiForDisplayInfo as ListBox)?.ScrollIntoView(_totalMessage.Last());
 
             });
             if (Dispatcher.CheckAccess()) ac();
@@ -163,36 +161,25 @@ namespace SolveWare_Service_Core.Info.Business
         }
         public void LogMessage(string msg, bool isWindowShow = false, bool isError = false)
         {
-            Action ac = new Action(() =>
+       
+            Task task = Task.Run(() =>
             {
-                string info = $"时间 [{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}]{Environment.NewLine}讯息 [{msg}]";
+                string info = $"\r\n时间 [{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}]\r\n讯息 [{msg}]\r\n";
 
                 this.TotalMessage.Add(info);
-                //this.uiForDisplayInfo.Items.Add(info);
-
-                if (ErrorEventMngr.HasToWriteEventLogFile)
-                    ErrorEventMngr?.ProcessEvent(msg);
-
-
-
+                Log4NetHepler.WriteInfo(info);
+                
                 if (isError)
                 {
                     this.TotalErrorMessage.Add(info);
-                    if (ErrorEventMngr.HasToWriteErrorLogFile)
-                        ErrorEventMngr?.ProcessError(msg);
+                    Log4NetHepler.WriteError(info); 
                 }
 
                 CleanMessages();
                 if (TotalMessage.Count > limitCount) { TotalMessage.RemoveAt(0); }
                 if (TotalErrorMessage.Count > limitCount) { TotalErrorMessage.RemoveAt(0); }
-                //this.uiForDisplayInfo.SelectedItem = this.uiForDisplayInfo.Items[this.uiForDisplayInfo.Items.Count - 1];
-                if (isWindowShow)
-                    MessageBox.Show(info, "通知讯息", MessageBoxButtons.OK);
-
+                if (isWindowShow)  MessageBox.Show(info, "通知讯息", MessageBoxButtons.OK);
             });
-            if (Dispatcher.CheckAccess()) ac();
-            else Dispatcher.BeginInvoke(ac, DispatcherPriority.Normal, null);
-
         }
         public void SetUI(object uiForDisplayInfo, object uiMessageForm)
         {

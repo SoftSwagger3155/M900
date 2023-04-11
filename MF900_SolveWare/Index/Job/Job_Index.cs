@@ -1,7 +1,9 @@
 ﻿using MF900_SolveWare.Index.Data;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Index.Base.Interface;
 using SolveWare_Service_Vision.MMperPixel.Base.Interface;
+using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +31,37 @@ namespace MF900_SolveWare.Index.Job
         /// <returns></returns>
         public int Go(int number)
         {
-            return 0;
+            int errorCode = ErrorCodes.NoError;
+            string errMsg = string.Empty;
+            double posX =0, posY = 0;
+            try
+            {
+                do
+                {
+                   if(GetPosition(number, ref posX, ref posY) == false)
+                    {
+                        errMsg += "获取产品座标位置失败";
+                        break;
+                    }
+
+                    errorCode = Do_Save_Prevention();
+                    if(errorCode != ErrorCodes.NoError)
+                    {
+                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
+                        break;
+                    }
+
+                     
+
+                } while (false);
+            }
+            catch (Exception ex)
+            {
+                errMsg += ex.Message;
+            }
+
+            Get_Result(nameof(Go), errMsg);
+            return errorCode;
         }
 
 
@@ -53,10 +85,104 @@ namespace MF900_SolveWare.Index.Job
             return 0;
         }
 
+
         public override int Do_Job()
         {
             return ErrorCode;
         }
+
+
+        #region 本地方法
+        private bool GetPosition(int number, ref double posX, ref double posY)
+        {
+            int col = 0, row = 0;
+
+            if (ConvertToRowAndColumn(number, Data.Total_Column, Data.Total_Row, ref col, ref row) == false)
+                return false;
+
+            if(GetPosition(row, col, Data.BasePoint.X, Data.BasePoint.Y, Data.MoveGap_Row_Y, Data.MoveGap_Column_X, 0, 0, ref posX ,ref posY) == false)
+                return false;
+            return true;
+        }
+
+        private bool GetPosition(int row, int col, double basePosX, double basePosY, double rowPitch, double colPitch, double colOffset, double rowOffset, ref double posX, ref double posY)
+        {
+            if (rowPitch == 0 || colPitch == 0) return false;
+
+            posY = (col - 1) * colPitch + colOffset;
+            posX = (row - 1) * rowPitch + rowOffset;
+            posX += basePosX;
+            posY += basePosY;
+
+            return true;
+        }
+
+        private bool IsInValidRange(int row, int col, int totalRow, int totalCol)
+        {
+            if (col < 1 || col > totalCol) return false;
+            if (row < 1 || row > totalRow) return false;
+
+            return true;
+        }
+        private bool IndexNext(int row, int col, int totalRow, int totalCol, ref int nextRow, ref int nextCol)
+        {
+            bool haveNextIndex = false;
+            if (col >= totalCol && row >= totalRow) return false;
+
+            col++;
+
+            if (col >= totalCol)
+            {
+                col = 1;
+                row++;
+            }
+
+            nextRow = row;
+            nextCol = col;
+
+            haveNextIndex = (row != 1 || col != 1);
+
+            return haveNextIndex;
+        }
+        private bool IndexPrevious(int row, int col, int totalRow, int totalCol, ref int nextRow, ref int nextCol)
+        {
+            bool haveNextIndex = false;
+
+            if (row <= 1 || col <= 1) return false;
+            col--;
+
+            if (col <= 1)
+            {
+                col = totalCol;
+                row--;
+            }
+
+            nextRow = row;
+            nextCol = col;
+            haveNextIndex = (row != 0 && col != 0);
+
+            return haveNextIndex;
+        }
+        private bool ConvertToRowAndColumn(int noOfUnit, int totalCol, int totalRow, ref int col, ref int row)
+        {
+            if (noOfUnit > (totalCol * totalRow)) return false;
+
+            //TotalCol: 10, TotalRow: 3,  NoOfUnit:11 => 11 % 10 =1;
+            int reminding = noOfUnit % totalCol;
+            if (reminding == 0)
+                col = totalCol;
+            else
+                col = reminding;
+
+
+
+            int temp = (int)Math.Ceiling((double)noOfUnit / totalCol);
+            row = temp;
+
+            return true;
+        }
+        #endregion
+
     }
 
     public class Array_2D_Logic

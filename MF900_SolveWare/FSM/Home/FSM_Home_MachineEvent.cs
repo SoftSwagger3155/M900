@@ -12,6 +12,8 @@ namespace MF900_SolveWare.FSM.Home
         public ManualResetEvent Evnt_HomeTopZ_Done  = new ManualResetEvent(false);
         public ManualResetEvent Evnt_HomeBtmZ_Done = new ManualResetEvent(false);
         public ManualResetEvent Evnt_HomeTable_Done = new ManualResetEvent(false);
+
+
         public FSM_Home_MachineEvent()
         {
             

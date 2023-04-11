@@ -9,8 +9,8 @@ using System.Xml.Serialization;
 
 namespace SolveWare_Service_Core.FSM.Base.Abstract
 {
-    public delegate int ExecuteHandler(IState sender);
-    public delegate int ExecuteErrorHandler(IState sender);
+    public delegate int ExecuteHandler(StateBase sender);
+    public delegate int ExecuteErrorHandler(StateBase sender);
     public class StateBase : JobFundamentalBase, IState
     {
         public StateBase()

@@ -49,10 +49,11 @@ namespace MF900_SolveWare.FSM.Home.Stations
         
 
         #region State 方法
-        private int StartHome(IState sender)
+        private int StartHome(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
+            sender.Info = this.Name;
             try
             {
                 do
@@ -67,13 +68,13 @@ namespace MF900_SolveWare.FSM.Home.Stations
             {
                 errMsg += ex.Message;
             }
-            Get_Result(nameof(StartHome), errMsg);
             return errorCode;
         }
-        private int HomeTable(IState sender)
+        private int HomeTable(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
+            sender.Info = this.Name;
             try
             {
                 do
@@ -90,13 +91,13 @@ namespace MF900_SolveWare.FSM.Home.Stations
             {
                 errMsg += ex.Message;
             }
-            Get_Result(nameof(HomeTable), errMsg);
             return errorCode;
         }
-        private int SetHomeTableDone(IState sender)
+        private int SetHomeTableDone(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
+            sender.Info = this.Name;
             try
             {
                 do
@@ -111,10 +112,10 @@ namespace MF900_SolveWare.FSM.Home.Stations
             {
                 errMsg += ex.Message;
             }
-            Get_Result(nameof(SetHomeTableDone), errMsg);
+            
             return errorCode;
         }
-        private int EndHome(IState sender)
+        private int EndHome(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
@@ -132,13 +133,12 @@ namespace MF900_SolveWare.FSM.Home.Stations
             {
                 errMsg += ex.Message;
             }
-            Get_Result(nameof(EndHome), errMsg);
             return errorCode;
         }
 
         #endregion
 
-        private int OnErrorHanding(IState sender)
+        private int OnErrorHanding(StateBase sender)
         {
             return 0;
         }

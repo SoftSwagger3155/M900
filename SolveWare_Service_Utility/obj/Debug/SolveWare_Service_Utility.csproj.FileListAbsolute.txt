@@ -45,3 +45,4 @@ D:\M900开发平台\最新\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Se
 D:\M900开发平台\最新\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.csproj.CopyComplete
 D:\M900开发平台\最新\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.dll
 D:\M900开发平台\最新\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.pdb
+C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\Info\Log\Log4net.config

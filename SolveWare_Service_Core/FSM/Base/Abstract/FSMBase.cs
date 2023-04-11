@@ -38,7 +38,8 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         {
             if(isSimulation)
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行", true);
+               var result = MessageBox.Show("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行\r\n继续按 Yes", "提示", MessageBoxButtons.YesNo);
+                if(result == DialogResult.No) { return 0; }
             }
 
             OnEntrance();
@@ -89,7 +90,8 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         {
             if (isSimulation)
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行", true);
+                var result = MessageBox.Show("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行\r\n继续按 Yes", "提示", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) { return 0; }
             }
 
             SolveWare.Core.MMgr.SetStatus(Definition.Machine_Status.Auto);

@@ -32,8 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -98,6 +103,8 @@
     <Compile Include="Info\Business\ErrorEventManager.cs" />
     <Compile Include="Info\Business\InfoHandler.cs" />
     <Compile Include="Info\Business\LogWriter.cs" />
+    <Compile Include="Info\Log\ListViewBaseAppender.cs" />
+    <Compile Include="Info\Log\Log4NetHepler.cs" />
     <Compile Include="Manager\Base\Abstract\MainManagerBase.cs" />
     <Compile Include="Manager\Base\Interface\IDataResourceProvider.cs" />
     <Compile Include="Manager\Base\Interface\IFactory.cs" />
@@ -114,6 +121,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FSM\FSMStation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info\Log\Log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

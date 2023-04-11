@@ -39,6 +39,12 @@ namespace SolveWare_Service_Core.Base.Abstract
             get=> errorMsg;
             set => UpdateProper(ref errorMsg, value);
         }
+        protected string info;
+        public string Info
+        {
+            get => info;
+            set => UpdateProper(ref info, value);
+        }
 
         protected void LogActionMessage()
         {
@@ -56,7 +62,7 @@ namespace SolveWare_Service_Core.Base.Abstract
             this.Status = ErrorCode == 0 ? JobStatus.Done : JobStatus.Fail;
             Machine_Status mStatus = errorCode == 0 ? Machine_Status.Idle : Machine_Status.Error;
             SolveWare.Core.MMgr.SetStatus(mStatus);
-            SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, this.GetType().Name, st, errorCode, errorMsg);
+            SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, info, st, errorCode, errorMsg);
         }
 
         public virtual int Do_Job() { return 0; }

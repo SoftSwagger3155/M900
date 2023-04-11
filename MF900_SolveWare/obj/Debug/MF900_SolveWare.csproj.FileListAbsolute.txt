@@ -186,3 +186,4 @@ C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Vie
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Learn_Global_Center.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_MMperPixel.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Offset.resources
+C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\Info\Log\Log4net.config

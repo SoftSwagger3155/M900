@@ -443,7 +443,7 @@
       <DependentUpon>ResultCountDgv.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Log\Log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
