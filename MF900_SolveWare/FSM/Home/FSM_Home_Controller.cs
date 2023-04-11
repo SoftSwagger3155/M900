@@ -11,6 +11,7 @@ namespace MF900_SolveWare.FSM.Home
     public class FSM_Home_Controller : FSMBase
     {
         public FSM_Home_MachineEvent McEvent { get; private set; }
+        public FSM_Home_Table_Station Table_Station { get; private set; }
         public FSM_Home_Station TopStation { get; private set; }
         public FSM_Home_Station BtmStation { get; private set; }
 
@@ -24,9 +25,10 @@ namespace MF900_SolveWare.FSM.Home
         private void CreateStations()
         {
             Add_Station(
+               Table_Station = new FSM_Home_Table_Station(this.McEvent, isSimulation),
                TopStation = new FSM_Home_Station(HomeStation_Selector.Up, McEvent, isSimulation),
                BtmStation = new FSM_Home_Station(HomeStation_Selector.Bottom, McEvent, isSimulation)
-                );
+                ); ;
         }
     }
 }

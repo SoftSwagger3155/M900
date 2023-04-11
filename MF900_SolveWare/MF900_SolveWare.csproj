@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Business\Global.cs" />
     <Compile Include="Business\RecipeHandler.cs" />
+    <Compile Include="FSM\Home\Stations\FSM_Home_Table_Station.cs" />
     <Compile Include="Views\Child\Form_MMperPixel.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -273,7 +273,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 return;
             }
 
-            FSM_Home.Run_One_Cycle();
+           FSM_Home.Run_One_Cycle();    
         }
         public void Do_AutoCycle()
         {

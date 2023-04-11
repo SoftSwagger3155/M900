@@ -29,7 +29,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         BasicState st_HomeStart;
         BasicState st_HomeZ;
         BasicState st_Set_HomeZ_Done;
-        BasicState st_Wait_HomeZ_Done;
+        BasicState st_Wait_Z_Table_Done;
         BasicState st_HomeT;
         BasicState st_HomeXY;
         BasicState st_EndHome;
@@ -50,7 +50,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
                 st_HomeStart = new BasicState("开始复位", StartHome, OnErrorHanding, this.isSimulation),
                 st_HomeZ = new BasicState("Z轴复位", HomeZ, OnErrorHanding, this.isSimulation),
                 st_Set_HomeZ_Done = new BasicState("Z轴复位结束", SetHomeZDone,  OnErrorHanding, this.isSimulation),
-                st_Wait_HomeZ_Done = new BasicState("等待Z轴复位结束", WaitHomeZDone, OnErrorHanding, this.isSimulation),
+                st_Wait_Z_Table_Done = new BasicState("等待Z轴 平台复位结束", WaitZandTableDone, OnErrorHanding, this.isSimulation),
                 st_HomeT = new BasicState("T轴复位", HomeT, OnErrorHanding, this.isSimulation),
                 st_HomeXY = new BasicState("T轴复位", HomeXY, OnErrorHanding, this.isSimulation),
                 st_EndHome = new BasicState("T轴复位", EndHome, OnErrorHanding, this.isSimulation)
@@ -136,7 +136,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
             Get_Result(nameof(SetHomeZDone), errMsg);
             return errorCode;
         }
-        private int WaitHomeZDone(IState sender)
+        private int WaitZandTableDone(IState sender)
         {
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
@@ -150,8 +150,9 @@ namespace MF900_SolveWare.FSM.Home.Stations
                     sWatch.Start();
                     while(true)
                     {
-                        isOk = mcEvent.Evnt_HomeBtmZ_Done.WaitOne(10) && mcEvent.Evnt_HomeTopZ_Done.WaitOne(10);
-                        if (isOk) break;
+                        isOk = mcEvent.Evnt_HomeBtmZ_Done.WaitOne(10) && mcEvent.Evnt_HomeTopZ_Done.WaitOne(10) && mcEvent.Evnt_HomeTable_Done.WaitOne(10);
+                        if (isOk)
+                            break;
                         if(sWatch.ElapsedMilliseconds > timeOut)
                         {
                             errorCode = ErrorCodes.WaitTimeOutError;
@@ -167,7 +168,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
             {
                 errMsg += ex.Message;
             }
-            Get_Result(nameof(WaitHomeZDone), errMsg);
+            Get_Result(nameof(WaitZandTableDone), errMsg);
             return errorCode;
         }
         private int HomeT(IState sender)
@@ -263,15 +264,15 @@ namespace MF900_SolveWare.FSM.Home.Stations
         #endregion
         private int OnErrorHanding(IState sender)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public override void SetStateChain()
         {
             FSMHelper.SetStateChain(st_HomeStart, st_HomeZ);
             FSMHelper.SetStateChain(st_HomeZ, st_Set_HomeZ_Done);
-            FSMHelper.SetStateChain(st_Set_HomeZ_Done, st_Wait_HomeZ_Done) ;
-            FSMHelper.SetStateChain(st_Wait_HomeZ_Done, st_HomeT);
+            FSMHelper.SetStateChain(st_Set_HomeZ_Done, st_Wait_Z_Table_Done) ;
+            FSMHelper.SetStateChain(st_Wait_Z_Table_Done, st_HomeT);
             FSMHelper.SetStateChain(st_HomeT, st_HomeXY);
             FSMHelper.SetStateChain(st_HomeXY, st_EndHome);
 

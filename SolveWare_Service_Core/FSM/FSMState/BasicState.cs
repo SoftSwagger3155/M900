@@ -26,7 +26,7 @@ namespace SolveWare_Service_Core.FSM.FSMState
                 do
                 {                 
                     if (IsSimulation)
-                        Thread.Sleep(1000);
+                        Thread.Sleep(500);
 
                     if (OnExecuteHandler == null)
                     {
@@ -60,7 +60,7 @@ namespace SolveWare_Service_Core.FSM.FSMState
 
             Get_Result(nameof(this.Do_Job), errMsg);
             OnExit();
-            if (IsSimulation) Thread.Sleep(500);
+            if (IsSimulation) Thread.Sleep(300);
 
             return errorCode;
         }

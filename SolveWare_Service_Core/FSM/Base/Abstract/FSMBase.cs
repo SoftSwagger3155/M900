@@ -119,6 +119,9 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                     errorCode = index >= 0 ? ErrorCodes.CyclingFailed : ErrorCodes.NoError;
 
                     errMsg += ErrorCodes.GetErrorDescription(errorCode);
+
+                    string status = errorCode == ErrorCodes.NoError ? "成功" : "失败";
+                    SolveWare.Core.MMgr.Infohandler.LogMessage($"FSM 运行结束, 结果 {status}", true);
                 });
 
 
