@@ -32,7 +32,8 @@ namespace MF900_SolveWare.FSM.Home.Stations
             CreateObjectInstance();
             SetStateChain();
             this.mcEvent = mcEvent;
-            this.isSimulation = isSimulation;   
+            this.isSimulation = isSimulation;
+            this.Name = $"FSM_Table_Home_Station";    
         }
 
 
@@ -119,6 +120,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         {
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
+            sender.Info = this.Name;
             try
             {
                 do

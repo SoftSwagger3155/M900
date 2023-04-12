@@ -39,6 +39,7 @@
             this.cmb_Selector_Operand = new System.Windows.Forms.ComboBox();
             this.cmb_Selector_Motor = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmb_Selector_TriggerMode = new System.Windows.Forms.ComboBox();
             this.btn_IO_Add = new System.Windows.Forms.Button();
             this.btn_Delete_IO = new System.Windows.Forms.Button();
             this.cmb_Selector_IO = new System.Windows.Forms.ComboBox();
@@ -145,6 +146,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmb_Selector_TriggerMode);
             this.groupBox2.Controls.Add(this.btn_IO_Add);
             this.groupBox2.Controls.Add(this.btn_Delete_IO);
             this.groupBox2.Controls.Add(this.cmb_Selector_IO);
@@ -157,6 +159,16 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "𣷹加设定";
+            // 
+            // cmb_Selector_TriggerMode
+            // 
+            this.cmb_Selector_TriggerMode.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_TriggerMode.FormattingEnabled = true;
+            this.cmb_Selector_TriggerMode.Location = new System.Drawing.Point(437, 38);
+            this.cmb_Selector_TriggerMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmb_Selector_TriggerMode.Name = "cmb_Selector_TriggerMode";
+            this.cmb_Selector_TriggerMode.Size = new System.Drawing.Size(87, 28);
+            this.cmb_Selector_TriggerMode.TabIndex = 5;
             // 
             // btn_IO_Add
             // 
@@ -187,7 +199,7 @@
             this.cmb_Selector_IO.Location = new System.Drawing.Point(133, 38);
             this.cmb_Selector_IO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmb_Selector_IO.Name = "cmb_Selector_IO";
-            this.cmb_Selector_IO.Size = new System.Drawing.Size(367, 28);
+            this.cmb_Selector_IO.Size = new System.Drawing.Size(298, 28);
             this.cmb_Selector_IO.TabIndex = 1;
             // 
             // cmb_Selector_IOType
@@ -208,12 +220,12 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgv_IO_Content.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_IO_Content.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_IO_Content.Location = new System.Drawing.Point(12, 402);
+            this.dgv_IO_Content.Location = new System.Drawing.Point(12, 407);
             this.dgv_IO_Content.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_IO_Content.Name = "dgv_IO_Content";
             this.dgv_IO_Content.RowHeadersWidth = 51;
             this.dgv_IO_Content.RowTemplate.Height = 27;
-            this.dgv_IO_Content.Size = new System.Drawing.Size(920, 189);
+            this.dgv_IO_Content.Size = new System.Drawing.Size(920, 168);
             this.dgv_IO_Content.TabIndex = 6;
             // 
             // Form_Axis_Configuration_Item_MtrSafe
@@ -252,6 +264,7 @@
         private System.Windows.Forms.Button btn_Delete_IO;
         private System.Windows.Forms.ComboBox cmb_Selector_IO;
         private System.Windows.Forms.ComboBox cmb_Selector_IOType;
+        private System.Windows.Forms.ComboBox cmb_Selector_TriggerMode;
         private System.Windows.Forms.DataGridView dgv_IO_Content;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using Sunny.UI;
 
@@ -51,8 +52,11 @@ namespace MF900_SolveWare
 
         private void uiButton_Close_Click(object sender, EventArgs e)
         {
+            SolveWare.Core.MMgr.CloseAll();
             this.Close();
         }
+
+    
     }
 }
 

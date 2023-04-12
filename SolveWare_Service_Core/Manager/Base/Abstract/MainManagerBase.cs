@@ -71,9 +71,10 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public virtual void CloseAll()
         {
+            this.Resource_Tool_Center.ToList().ForEach(tool => tool.StopStatusReading());   
+
             if (this.masterDriver != null)
                 masterDriver.Close();
-
         }
 
         public void DoButtonClickTask(Func<string> action)

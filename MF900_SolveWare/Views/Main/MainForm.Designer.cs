@@ -85,11 +85,13 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 591);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 740);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1232, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1643, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -97,7 +99,7 @@
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.Color.Red;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(92, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(114, 20);
             this.toolStripStatusLabel1.Text = "测试软件未连接";
             // 
             // panel2
@@ -105,8 +107,9 @@
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1232, 591);
+            this.panel2.Size = new System.Drawing.Size(1643, 740);
             this.panel2.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -117,23 +120,24 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 191F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1232, 591);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1643, 740);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 7;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 213F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 213F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 213F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 138F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 184F));
             this.tableLayoutPanel2.Controls.Add(this.uiTitlePanel2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.uiButton_Close, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.uiTitlePanel1, 1, 0);
@@ -142,11 +146,12 @@
             this.tableLayoutPanel2.Controls.Add(this.uiTitlePanel5, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.uiTableLayoutPanel1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1226, 147);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1635, 183);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // uiTitlePanel2
@@ -155,13 +160,13 @@
             this.uiTitlePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel2.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel2.Location = new System.Drawing.Point(308, 5);
-            this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel2.Location = new System.Drawing.Point(411, 6);
+            this.uiTitlePanel2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel2.Name = "uiTitlePanel2";
-            this.uiTitlePanel2.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel2.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel2.ShowText = false;
-            this.uiTitlePanel2.Size = new System.Drawing.Size(152, 137);
+            this.uiTitlePanel2.Size = new System.Drawing.Size(203, 171);
             this.uiTitlePanel2.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel2.StyleCustomMode = true;
             this.uiTitlePanel2.TabIndex = 3;
@@ -193,12 +198,13 @@
             this.uiButton_Close.FillHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.uiButton_Close.FillPressColor = System.Drawing.Color.Silver;
             this.uiButton_Close.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiButton_Close.Location = new System.Drawing.Point(1091, 3);
+            this.uiButton_Close.Location = new System.Drawing.Point(1455, 4);
+            this.uiButton_Close.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiButton_Close.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiButton_Close.Name = "uiButton_Close";
             this.uiButton_Close.RectColor = System.Drawing.Color.Red;
             this.uiButton_Close.RectHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.uiButton_Close.Size = new System.Drawing.Size(132, 141);
+            this.uiButton_Close.Size = new System.Drawing.Size(176, 175);
             this.uiButton_Close.Style = Sunny.UI.UIStyle.Custom;
             this.uiButton_Close.StyleCustomMode = true;
             this.uiButton_Close.TabIndex = 0;
@@ -214,13 +220,13 @@
             this.uiTitlePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel1.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel1.Location = new System.Drawing.Point(468, 5);
-            this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel1.Location = new System.Drawing.Point(624, 6);
+            this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel1.Name = "uiTitlePanel1";
-            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel1.ShowText = false;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(152, 137);
+            this.uiTitlePanel1.Size = new System.Drawing.Size(203, 171);
             this.uiTitlePanel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel1.StyleCustomMode = true;
             this.uiTitlePanel1.TabIndex = 1;
@@ -261,13 +267,13 @@
             this.uiTitlePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel3.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel3.Location = new System.Drawing.Point(628, 5);
-            this.uiTitlePanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel3.Location = new System.Drawing.Point(837, 6);
+            this.uiTitlePanel3.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel3.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel3.Name = "uiTitlePanel3";
-            this.uiTitlePanel3.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel3.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel3.ShowText = false;
-            this.uiTitlePanel3.Size = new System.Drawing.Size(152, 137);
+            this.uiTitlePanel3.Size = new System.Drawing.Size(203, 171);
             this.uiTitlePanel3.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel3.StyleCustomMode = true;
             this.uiTitlePanel3.TabIndex = 1;
@@ -281,14 +287,14 @@
             this.uiTitlePanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel4.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel4.Location = new System.Drawing.Point(788, 5);
-            this.uiTitlePanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel4.Location = new System.Drawing.Point(1050, 6);
+            this.uiTitlePanel4.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel4.Name = "uiTitlePanel4";
-            this.uiTitlePanel4.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel4.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel4.Radius = 1;
             this.uiTitlePanel4.ShowText = false;
-            this.uiTitlePanel4.Size = new System.Drawing.Size(144, 137);
+            this.uiTitlePanel4.Size = new System.Drawing.Size(193, 171);
             this.uiTitlePanel4.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel4.StyleCustomMode = true;
             this.uiTitlePanel4.TabIndex = 1;
@@ -307,13 +313,13 @@
             this.uiTableLayoutPanel8.Controls.Add(this.uiDoubleUpDown2, 1, 0);
             this.uiTableLayoutPanel8.Controls.Add(this.uiPanel1, 0, 0);
             this.uiTableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel8.Location = new System.Drawing.Point(0, 35);
+            this.uiTableLayoutPanel8.Location = new System.Drawing.Point(0, 44);
             this.uiTableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.uiTableLayoutPanel8.Name = "uiTableLayoutPanel8";
             this.uiTableLayoutPanel8.RowCount = 2;
             this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiTableLayoutPanel8.Size = new System.Drawing.Size(144, 102);
+            this.uiTableLayoutPanel8.Size = new System.Drawing.Size(193, 127);
             this.uiTableLayoutPanel8.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel8.TabIndex = 2;
             this.uiTableLayoutPanel8.TagString = null;
@@ -323,12 +329,12 @@
             this.uiDoubleUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiDoubleUpDown1.FillColor = System.Drawing.Color.White;
             this.uiDoubleUpDown1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiDoubleUpDown1.Location = new System.Drawing.Point(47, 56);
+            this.uiDoubleUpDown1.Location = new System.Drawing.Point(61, 68);
             this.uiDoubleUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiDoubleUpDown1.MinimumSize = new System.Drawing.Size(100, 0);
             this.uiDoubleUpDown1.Name = "uiDoubleUpDown1";
             this.uiDoubleUpDown1.ShowText = false;
-            this.uiDoubleUpDown1.Size = new System.Drawing.Size(100, 41);
+            this.uiDoubleUpDown1.Size = new System.Drawing.Size(128, 54);
             this.uiDoubleUpDown1.Step = 1D;
             this.uiDoubleUpDown1.Style = Sunny.UI.UIStyle.Custom;
             this.uiDoubleUpDown1.StyleCustomMode = true;
@@ -342,13 +348,13 @@
             this.uiPanel4.Controls.Add(this.uiLabel7);
             this.uiPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel4.Location = new System.Drawing.Point(4, 56);
+            this.uiPanel4.Location = new System.Drawing.Point(4, 68);
             this.uiPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel4.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel4.Name = "uiPanel4";
             this.uiPanel4.Padding = new System.Windows.Forms.Padding(2);
             this.uiPanel4.Radius = 1;
-            this.uiPanel4.Size = new System.Drawing.Size(35, 41);
+            this.uiPanel4.Size = new System.Drawing.Size(49, 54);
             this.uiPanel4.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel4.TabIndex = 2;
             this.uiPanel4.Text = null;
@@ -361,7 +367,7 @@
             this.uiLabel7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiLabel7.Location = new System.Drawing.Point(2, 2);
             this.uiLabel7.Name = "uiLabel7";
-            this.uiLabel7.Size = new System.Drawing.Size(31, 37);
+            this.uiLabel7.Size = new System.Drawing.Size(45, 50);
             this.uiLabel7.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel7.TabIndex = 0;
             this.uiLabel7.Text = "2";
@@ -373,12 +379,12 @@
             this.uiDoubleUpDown2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiDoubleUpDown2.FillColor = System.Drawing.Color.White;
             this.uiDoubleUpDown2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiDoubleUpDown2.Location = new System.Drawing.Point(47, 5);
+            this.uiDoubleUpDown2.Location = new System.Drawing.Point(61, 5);
             this.uiDoubleUpDown2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiDoubleUpDown2.MinimumSize = new System.Drawing.Size(100, 0);
             this.uiDoubleUpDown2.Name = "uiDoubleUpDown2";
             this.uiDoubleUpDown2.ShowText = false;
-            this.uiDoubleUpDown2.Size = new System.Drawing.Size(100, 41);
+            this.uiDoubleUpDown2.Size = new System.Drawing.Size(128, 53);
             this.uiDoubleUpDown2.Step = 1D;
             this.uiDoubleUpDown2.Style = Sunny.UI.UIStyle.Custom;
             this.uiDoubleUpDown2.StyleCustomMode = true;
@@ -398,7 +404,7 @@
             this.uiPanel1.Name = "uiPanel1";
             this.uiPanel1.Padding = new System.Windows.Forms.Padding(2);
             this.uiPanel1.Radius = 1;
-            this.uiPanel1.Size = new System.Drawing.Size(35, 41);
+            this.uiPanel1.Size = new System.Drawing.Size(49, 53);
             this.uiPanel1.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel1.TabIndex = 0;
             this.uiPanel1.Text = null;
@@ -411,7 +417,7 @@
             this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiLabel6.Location = new System.Drawing.Point(2, 2);
             this.uiLabel6.Name = "uiLabel6";
-            this.uiLabel6.Size = new System.Drawing.Size(31, 37);
+            this.uiLabel6.Size = new System.Drawing.Size(45, 49);
             this.uiLabel6.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel6.TabIndex = 0;
             this.uiLabel6.Text = "1";
@@ -424,14 +430,14 @@
             this.uiTitlePanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel5.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel5.Location = new System.Drawing.Point(940, 5);
-            this.uiTitlePanel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel5.Location = new System.Drawing.Point(1253, 6);
+            this.uiTitlePanel5.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel5.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel5.Name = "uiTitlePanel5";
-            this.uiTitlePanel5.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel5.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel5.Radius = 1;
             this.uiTitlePanel5.ShowText = false;
-            this.uiTitlePanel5.Size = new System.Drawing.Size(144, 137);
+            this.uiTitlePanel5.Size = new System.Drawing.Size(193, 171);
             this.uiTitlePanel5.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel5.StyleCustomMode = true;
             this.uiTitlePanel5.TabIndex = 1;
@@ -453,12 +459,12 @@
             this.uiTableLayoutPanel7.Controls.Add(this.uiTextBox1, 1, 0);
             this.uiTableLayoutPanel7.Controls.Add(this.uiTextBox2, 1, 1);
             this.uiTableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel7.Location = new System.Drawing.Point(0, 35);
+            this.uiTableLayoutPanel7.Location = new System.Drawing.Point(0, 44);
             this.uiTableLayoutPanel7.Name = "uiTableLayoutPanel7";
             this.uiTableLayoutPanel7.RowCount = 2;
             this.uiTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiTableLayoutPanel7.Size = new System.Drawing.Size(144, 102);
+            this.uiTableLayoutPanel7.Size = new System.Drawing.Size(193, 127);
             this.uiTableLayoutPanel7.Style = Sunny.UI.UIStyle.Custom;
             this.uiTableLayoutPanel7.TabIndex = 1;
             this.uiTableLayoutPanel7.TagString = null;
@@ -468,13 +474,13 @@
             this.uiPanel10.Controls.Add(this.uiLabel11);
             this.uiPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel10.Location = new System.Drawing.Point(4, 56);
+            this.uiPanel10.Location = new System.Drawing.Point(4, 68);
             this.uiPanel10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel10.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel10.Name = "uiPanel10";
             this.uiPanel10.Padding = new System.Windows.Forms.Padding(1);
             this.uiPanel10.Radius = 1;
-            this.uiPanel10.Size = new System.Drawing.Size(57, 41);
+            this.uiPanel10.Size = new System.Drawing.Size(80, 54);
             this.uiPanel10.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel10.TabIndex = 4;
             this.uiPanel10.Text = null;
@@ -488,7 +494,7 @@
             this.uiLabel11.Location = new System.Drawing.Point(1, 1);
             this.uiLabel11.Name = "uiLabel11";
             this.uiLabel11.Padding = new System.Windows.Forms.Padding(2);
-            this.uiLabel11.Size = new System.Drawing.Size(55, 39);
+            this.uiLabel11.Size = new System.Drawing.Size(78, 52);
             this.uiLabel11.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel11.TabIndex = 0;
             this.uiLabel11.Text = "治具2";
@@ -506,7 +512,7 @@
             this.uiPanel7.Name = "uiPanel7";
             this.uiPanel7.Padding = new System.Windows.Forms.Padding(2);
             this.uiPanel7.Radius = 1;
-            this.uiPanel7.Size = new System.Drawing.Size(57, 41);
+            this.uiPanel7.Size = new System.Drawing.Size(80, 53);
             this.uiPanel7.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel7.TabIndex = 1;
             this.uiPanel7.Text = null;
@@ -519,7 +525,7 @@
             this.uiLabel8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiLabel8.Location = new System.Drawing.Point(2, 2);
             this.uiLabel8.Name = "uiLabel8";
-            this.uiLabel8.Size = new System.Drawing.Size(53, 37);
+            this.uiLabel8.Size = new System.Drawing.Size(76, 49);
             this.uiLabel8.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel8.TabIndex = 0;
             this.uiLabel8.Text = "治具1";
@@ -531,13 +537,13 @@
             this.uiPanel12.Controls.Add(this.uiLabel13);
             this.uiPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel12.Location = new System.Drawing.Point(120, 5);
+            this.uiPanel12.Location = new System.Drawing.Point(161, 5);
             this.uiPanel12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel12.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel12.Name = "uiPanel12";
             this.uiPanel12.Padding = new System.Windows.Forms.Padding(3);
             this.uiPanel12.Radius = 1;
-            this.uiPanel12.Size = new System.Drawing.Size(20, 41);
+            this.uiPanel12.Size = new System.Drawing.Size(28, 53);
             this.uiPanel12.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel12.TabIndex = 1;
             this.uiPanel12.Text = null;
@@ -550,7 +556,7 @@
             this.uiLabel13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiLabel13.Location = new System.Drawing.Point(3, 3);
             this.uiLabel13.Name = "uiLabel13";
-            this.uiLabel13.Size = new System.Drawing.Size(14, 35);
+            this.uiLabel13.Size = new System.Drawing.Size(22, 47);
             this.uiLabel13.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel13.TabIndex = 0;
             this.uiLabel13.Text = "次";
@@ -562,13 +568,13 @@
             this.uiPanel8.Controls.Add(this.uiLabel9);
             this.uiPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiPanel8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiPanel8.Location = new System.Drawing.Point(120, 56);
+            this.uiPanel8.Location = new System.Drawing.Point(161, 68);
             this.uiPanel8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel8.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel8.Name = "uiPanel8";
             this.uiPanel8.Padding = new System.Windows.Forms.Padding(3);
             this.uiPanel8.Radius = 1;
-            this.uiPanel8.Size = new System.Drawing.Size(20, 41);
+            this.uiPanel8.Size = new System.Drawing.Size(28, 54);
             this.uiPanel8.Style = Sunny.UI.UIStyle.Custom;
             this.uiPanel8.TabIndex = 2;
             this.uiPanel8.Text = null;
@@ -581,7 +587,7 @@
             this.uiLabel9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiLabel9.Location = new System.Drawing.Point(3, 3);
             this.uiLabel9.Name = "uiLabel9";
-            this.uiLabel9.Size = new System.Drawing.Size(14, 35);
+            this.uiLabel9.Size = new System.Drawing.Size(22, 48);
             this.uiLabel9.Style = Sunny.UI.UIStyle.Custom;
             this.uiLabel9.TabIndex = 0;
             this.uiLabel9.Text = "次";
@@ -593,13 +599,13 @@
             this.uiTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox1.Location = new System.Drawing.Point(69, 5);
+            this.uiTextBox1.Location = new System.Drawing.Point(92, 5);
             this.uiTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox1.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox1.Name = "uiTextBox1";
             this.uiTextBox1.Radius = 1;
             this.uiTextBox1.ShowText = false;
-            this.uiTextBox1.Size = new System.Drawing.Size(43, 41);
+            this.uiTextBox1.Size = new System.Drawing.Size(61, 53);
             this.uiTextBox1.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox1.TabIndex = 5;
             this.uiTextBox1.Text = "0";
@@ -612,13 +618,13 @@
             this.uiTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.uiTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTextBox2.Location = new System.Drawing.Point(69, 56);
+            this.uiTextBox2.Location = new System.Drawing.Point(92, 68);
             this.uiTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiTextBox2.MinimumSize = new System.Drawing.Size(1, 16);
             this.uiTextBox2.Name = "uiTextBox2";
             this.uiTextBox2.Radius = 1;
             this.uiTextBox2.ShowText = false;
-            this.uiTextBox2.Size = new System.Drawing.Size(43, 41);
+            this.uiTextBox2.Size = new System.Drawing.Size(61, 54);
             this.uiTextBox2.Style = Sunny.UI.UIStyle.Custom;
             this.uiTextBox2.TabIndex = 6;
             this.uiTextBox2.Text = "0";
@@ -633,12 +639,13 @@
             this.uiTableLayoutPanel1.Controls.Add(this.uiTitlePanel6, 0, 0);
             this.uiTableLayoutPanel1.Controls.Add(this.uiTitlePanel7, 0, 1);
             this.uiTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.uiTableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
+            this.uiTableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uiTableLayoutPanel1.Name = "uiTableLayoutPanel1";
             this.uiTableLayoutPanel1.RowCount = 2;
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(298, 141);
+            this.uiTableLayoutPanel1.Size = new System.Drawing.Size(398, 175);
             this.uiTableLayoutPanel1.TabIndex = 2;
             this.uiTableLayoutPanel1.TagString = null;
             // 
@@ -647,15 +654,15 @@
             this.uiTitlePanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel6.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel6.Location = new System.Drawing.Point(4, 5);
-            this.uiTitlePanel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel6.Location = new System.Drawing.Point(5, 6);
+            this.uiTitlePanel6.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel6.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel6.Name = "uiTitlePanel6";
-            this.uiTitlePanel6.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel6.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel6.Radius = 1;
             this.uiTitlePanel6.RectColor = System.Drawing.Color.DimGray;
             this.uiTitlePanel6.ShowText = false;
-            this.uiTitlePanel6.Size = new System.Drawing.Size(290, 60);
+            this.uiTitlePanel6.Size = new System.Drawing.Size(388, 75);
             this.uiTitlePanel6.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel6.StyleCustomMode = true;
             this.uiTitlePanel6.TabIndex = 1;
@@ -670,15 +677,15 @@
             this.uiTitlePanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTitlePanel7.FillColor = System.Drawing.Color.White;
             this.uiTitlePanel7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTitlePanel7.Location = new System.Drawing.Point(4, 75);
-            this.uiTitlePanel7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.uiTitlePanel7.Location = new System.Drawing.Point(5, 93);
+            this.uiTitlePanel7.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.uiTitlePanel7.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiTitlePanel7.Name = "uiTitlePanel7";
-            this.uiTitlePanel7.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this.uiTitlePanel7.Padding = new System.Windows.Forms.Padding(0, 44, 0, 0);
             this.uiTitlePanel7.Radius = 1;
             this.uiTitlePanel7.RectColor = System.Drawing.Color.DimGray;
             this.uiTitlePanel7.ShowText = false;
-            this.uiTitlePanel7.Size = new System.Drawing.Size(290, 61);
+            this.uiTitlePanel7.Size = new System.Drawing.Size(388, 76);
             this.uiTitlePanel7.Style = Sunny.UI.UIStyle.Custom;
             this.uiTitlePanel7.StyleCustomMode = true;
             this.uiTitlePanel7.TabIndex = 1;
@@ -691,20 +698,22 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 156);
+            this.panel1.Location = new System.Drawing.Point(4, 195);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1226, 432);
+            this.panel1.Size = new System.Drawing.Size(1635, 541);
             this.panel1.TabIndex = 1;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1232, 613);
+            this.ClientSize = new System.Drawing.Size(1643, 766);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "MF901";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

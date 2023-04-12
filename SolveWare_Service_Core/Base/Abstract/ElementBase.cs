@@ -45,12 +45,12 @@ namespace SolveWare_Service_Core.Base.Abstract
         {
             if (string.IsNullOrEmpty(message))
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage($"\r\n{Name} 功能 {jobName} : 成功\r\n");
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"{Name}\r\n功能 {jobName} : 成功");
                 return true;
             }
             else
             {
-                SolveWare.Core.MMgr.Infohandler.LogMessage($"\r\n{Name} 功能 {jobName} : 失败\r\n{message}", true, true);
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"{Name}\r\n功能 {jobName} : 失败\r\n{message}", true, true);
                 return false;
             }
         }

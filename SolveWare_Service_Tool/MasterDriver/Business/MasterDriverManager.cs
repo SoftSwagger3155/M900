@@ -21,6 +21,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
     {
         IResourceProvider provider = null;
         ConfigData_MasterDriver config = null;
+        protected bool is_Driver_Really_Existed = false;
         public ConfigData_MasterDriver Config { get => config; }
         static string FileName = "开机驱动档案";
         public IOMotionCardInfo CardInfo { get; private set; }
@@ -70,6 +71,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                             if (isOk)
                             {
                                 CardInfo.Dic_CardHandler.Add(0, Handle);
+                                is_Driver_Really_Existed = true;
                             }
                             else
                             {
@@ -118,6 +120,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
 
         public void Close()
         {
+            if (is_Driver_Really_Existed == false) return;
             switch (config.Master_Driver_Motor)
             {
                 case Master_Driver_Kind.Zmcaux:

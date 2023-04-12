@@ -20,8 +20,8 @@ namespace MF900_SolveWare.WorldCenter.Job
 
         private int Do_Top_Module_Safe_Prevention()
         {
-            //TODO - Job_GlobalWorldCenter- Do_Top_Module_Safe_Prevention
-
+            //TODO - Job_GlobalWorldCenter-
+            //降下平台-上下Z退回安全位置-上打标气缸收回
             return 0;
         }
         private int Do_Btm_Module_Safe_Prevention()

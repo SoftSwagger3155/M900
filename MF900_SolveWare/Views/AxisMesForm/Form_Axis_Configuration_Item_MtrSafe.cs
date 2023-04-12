@@ -95,54 +95,57 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             dgv_Pos_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
-            dgv_Pos_Content.DataSource = mtrSafe.Data_Pos_Safetys;
-
+           
+            if (mtrSafe.Data_Pos_Safetys.Count > 0)
+            {
+                dgv_Pos_Content.DataSource = mtrSafe.Data_Pos_Safetys;
+            }
         }
         private void MakeIODataGridView()
         {
             if (dgv_IO_Content.Columns.Count > 0) dgv_IO_Content.Columns.Clear();
 
-            DataGridViewCheckBoxColumn SelectedColumn = new DataGridViewCheckBoxColumn();
-            SelectedColumn.HeaderText = "选择";
-            SelectedColumn.Name = IO_Property_Name_IsSelected;
-            SelectedColumn.TrueValue = true;
-            SelectedColumn.FalseValue = false;
-            SelectedColumn.DataPropertyName = IO_Property_Name_IsSelected;
-            SelectedColumn.Width = 150;
-            SelectedColumn.Resizable = DataGridViewTriState.False;
-            this.dgv_IO_Content.Columns.Insert(0, SelectedColumn);
+            DataGridViewCheckBoxColumn Selected_Column = new DataGridViewCheckBoxColumn();
+            Selected_Column.HeaderText = "选择";
+            Selected_Column.Name = IO_Property_Name_IsSelected;
+            Selected_Column.TrueValue = true;
+            Selected_Column.FalseValue = false;
+            Selected_Column.DataPropertyName = IO_Property_Name_IsSelected;
+            Selected_Column.Width = 150;
+            Selected_Column.Resizable = DataGridViewTriState.False;
+            this.dgv_IO_Content.Columns.Insert(0, Selected_Column);
 
-            DataGridViewTextBoxColumn combo_Selector_IOName_Column = new DataGridViewTextBoxColumn();
-            combo_Selector_IOName_Column.HeaderText = "输入输出";
-            combo_Selector_IOName_Column.Name = IO_Property_Name_IOName;
-            combo_Selector_IOName_Column.DataPropertyName = IO_Property_Name_IOName;
-            combo_Selector_IOName_Column.Width = 150;
-            combo_Selector_IOName_Column.Resizable = DataGridViewTriState.False;
-            combo_Selector_IOName_Column.ReadOnly = true;    
-            this.dgv_IO_Content.Columns.Insert(1, combo_Selector_IOName_Column);
+            DataGridViewTextBoxColumn iOName_Column = new DataGridViewTextBoxColumn();
+            iOName_Column.HeaderText = "输入输出";
+            iOName_Column.Name = IO_Property_Name_IOName;
+            iOName_Column.DataPropertyName = IO_Property_Name_IOName;
+            iOName_Column.Width = 150;
+            iOName_Column.Resizable = DataGridViewTriState.False;
+            this.dgv_IO_Content.Columns.Insert(1, iOName_Column);
 
-            DataGridViewTextBoxColumn combo_Selector_IOType_Column = new DataGridViewTextBoxColumn();
-           combo_Selector_IOType_Column.HeaderText = "型态";
-           combo_Selector_IOType_Column.Name = IO_Property_Name_IOType;
-           combo_Selector_IOType_Column.DataPropertyName = IO_Property_Name_IOType;
-           combo_Selector_IOType_Column.Width = 150;
-           combo_Selector_IOType_Column.Resizable = DataGridViewTriState.False;
-            combo_Selector_IOType_Column.ReadOnly = true;
-            this.dgv_IO_Content.Columns.Insert(2, combo_Selector_IOType_Column);
+            DataGridViewTextBoxColumn iOType_Column = new DataGridViewTextBoxColumn();
+            iOType_Column.HeaderText = "型态";
+            iOType_Column.Name = IO_Property_Name_IOType;
+            iOType_Column.DataPropertyName = IO_Property_Name_IOType;
+            iOType_Column.Width = 150;
+            iOType_Column.Resizable = DataGridViewTriState.False;
+            this.dgv_IO_Content.Columns.Insert(2, iOType_Column);
 
-            DataGridViewComboBoxColumn combo_Selector_Operand_Column = new DataGridViewComboBoxColumn();
-            combo_Selector_Operand_Column.HeaderText = "TriggerMode";
-            combo_Selector_Operand_Column.Name = IO_Property_Name_TriggerMode;
-            combo_Selector_Operand_Column.DataPropertyName = IO_Property_Name_TriggerMode;
-            combo_Selector_Operand_Column.Width = 150;
-            combo_Selector_Operand_Column.Resizable = DataGridViewTriState.False;
-            combo_Selector_Operand_Column.DataSource = new List<string> { ConstantProperty.ON, ConstantProperty.OFF };
-            this.dgv_IO_Content.Columns.Insert(3, combo_Selector_Operand_Column);
+            DataGridViewTextBoxColumn triggerMode_Column = new DataGridViewTextBoxColumn();
+            triggerMode_Column.HeaderText = "模式";
+            triggerMode_Column.Name = IO_Property_Name_TriggerMode;
+            triggerMode_Column.DataPropertyName = IO_Property_Name_TriggerMode;
+            triggerMode_Column.Width = 150;
+            triggerMode_Column.Resizable = DataGridViewTriState.False;
+            this.dgv_IO_Content.Columns.Insert(3, triggerMode_Column);
 
-
+     
             dgv_IO_Content.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             dgv_IO_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
-            dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
+            if (mtrSafe.Data_IO_Safetys.Count > 0)
+            {
+                dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
+            }
         }
 
         private void dgv_Content_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -163,6 +166,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 }
             }
         }
+        private void dgv_IO_Content_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
 
         private void Fillup_Combobox_Motor()
         {
@@ -179,6 +186,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
             this.cmb_Selector_IOType.Items.Clear();
             this.cmb_Selector_IOType.Items.Add(ConstantProperty.InPut);
             this.cmb_Selector_IOType.Items.Add(ConstantProperty.OutPut);
+
+            this.cmb_Selector_TriggerMode.Items.Clear();
+            this.cmb_Selector_TriggerMode.Items.Add(ConstantProperty.ON);
+            this.cmb_Selector_TriggerMode.Items.Add(ConstantProperty.OFF);
         }
         private void Fillup_Combobox_Inputs()
         {
@@ -220,10 +231,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
             dgv_Pos_Content.DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleCenter };
             MakeDataGridView();
 
-            //dgv_Pos_Content.DataSource = this.mtrSafe.Data_Pos_Safetys;
         }
 
-        //public List<DataSourceTest> list = new List<DataSourceTest>();
         private void btn_Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cmb_Selector_Motor.SelectedItem as string) ||
@@ -243,23 +252,22 @@ namespace MF900_SolveWare.Views.AxisMesForm
             MakeDataGridView();
         }
 
-        //public List<DataSourceIOTest> iOTests = new List<DataSourceIOTest>();
         private void btn_IO_Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cmb_Selector_IOType.SelectedItem as string) ||
-                string.IsNullOrEmpty(cmb_Selector_IO.SelectedItem as string)) return;
+                string.IsNullOrEmpty(cmb_Selector_IO.SelectedItem as string) ||
+                string.IsNullOrEmpty(cmb_Selector_TriggerMode.SelectedItem as string)) return;
 
             Data_IO_Safety data = new Data_IO_Safety()
             {
                 IsSelected = false,
                 IOName = cmb_Selector_IO.SelectedItem as string,
-                TriggerMode = ConstantProperty.ON,
+                TriggerMode = cmb_Selector_TriggerMode.SelectedItem as string,
                 IOType = cmb_Selector_IOType.SelectedItem as string
             };
 
             mtrSafe.Data_IO_Safetys.Add(data);
-            dgv_IO_Content.Columns.Clear();
-          
+            dgv_IO_Content.Columns.Clear();        
             MakeIODataGridView();
         }
 
@@ -290,6 +298,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
             dgv_IO_Content.DataSource = mtrSafe.Data_IO_Safetys;
         }
+
     }
 
     public class DataSourceTest

@@ -147,7 +147,7 @@ namespace SolveWare_Service_Core.Info.Business
                 {
                     this.TotalErrorMessage.Add(infos);
                     Log4NetHepler.WriteError(infos);
-                    MessageBox.Show($"{errorMsg}", "错误通知");
+                    LogMessage(errorMsg, true);
                 }
 
                 CleanMessages();
@@ -164,7 +164,7 @@ namespace SolveWare_Service_Core.Info.Business
        
             Task task = Task.Run(() =>
             {
-                string info = $"\r\n时间 [{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}]\r\n讯息 [{msg}]\r\n";
+                string info = $"时间 [{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}]\r\n讯息 [{msg}]";
 
                 this.TotalMessage.Add(info);
                 Log4NetHepler.WriteInfo(info);

@@ -29,7 +29,7 @@
       <OnBoardHome>1</OnBoardHome>
       <ZeroHoming>false</ZeroHoming>
       <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
-      <MoveOutGapAfterHoming>15</MoveOutGapAfterHoming>
+      <MoveOutGapAfterHoming>0.1</MoveOutGapAfterHoming>
       <HomeCreepSpeedRate>0.5</HomeCreepSpeedRate>
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
@@ -65,7 +65,7 @@
         <SpeedSeting>
           <Name>复位速度</Name>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>3</Max_Velocity>
+          <Max_Velocity>5</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -151,13 +151,13 @@
       <OnBoardHome>1</OnBoardHome>
       <ZeroHoming>false</ZeroHoming>
       <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
-      <MoveOutGapAfterHoming>5</MoveOutGapAfterHoming>
+      <MoveOutGapAfterHoming>0.1</MoveOutGapAfterHoming>
       <HomeCreepSpeedRate>0.5</HomeCreepSpeedRate>
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
-      <MaxDistance_SoftLimit>100</MaxDistance_SoftLimit>
-      <MinDistance_SoftLimit>-2</MinDistance_SoftLimit>
+      <MaxDistance_SoftLimit>200</MaxDistance_SoftLimit>
+      <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
       <Home_mode>0</Home_mode>
@@ -187,7 +187,7 @@
         <SpeedSeting>
           <Name>复位速度</Name>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>5</Max_Velocity>
+          <Max_Velocity>25</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -496,7 +496,7 @@
       <OnBoardHome>1</OnBoardHome>
       <ZeroHoming>false</ZeroHoming>
       <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
-      <MoveOutGapAfterHoming>5</MoveOutGapAfterHoming>
+      <MoveOutGapAfterHoming>0.1</MoveOutGapAfterHoming>
       <HomeCreepSpeedRate>0.5</HomeCreepSpeedRate>
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
@@ -611,7 +611,7 @@
       <OnBoardHome>1</OnBoardHome>
       <ZeroHoming>false</ZeroHoming>
       <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
-      <MoveOutGapAfterHoming>5</MoveOutGapAfterHoming>
+      <MoveOutGapAfterHoming>0.1</MoveOutGapAfterHoming>
       <HomeCreepSpeedRate>0.5</HomeCreepSpeedRate>
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
@@ -726,7 +726,7 @@
       <OnBoardHome>1</OnBoardHome>
       <ZeroHoming>false</ZeroHoming>
       <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
-      <MoveOutGapAfterHoming>0.2</MoveOutGapAfterHoming>
+      <MoveOutGapAfterHoming>0.1</MoveOutGapAfterHoming>
       <HomeCreepSpeedRate>0.5</HomeCreepSpeedRate>
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
@@ -956,7 +956,7 @@
       <OnBoardHome>1</OnBoardHome>
       <ZeroHoming>false</ZeroHoming>
       <SetLimitModeBeforeHoming>false</SetLimitModeBeforeHoming>
-      <MoveOutGapAfterHoming>5</MoveOutGapAfterHoming>
+      <MoveOutGapAfterHoming>0.1</MoveOutGapAfterHoming>
       <HomeCreepSpeedRate>0.5</HomeCreepSpeedRate>
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>

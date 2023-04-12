@@ -45,7 +45,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             OnEntrance();
             int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
-
+            this.Info = "复位FSM";
             try
             {
                 List<int> errors = new List<int>();
@@ -77,7 +77,6 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 errMsg += ex.Message;
             }
 
-            Get_Result(nameof(this.Run_One_Cycle), errMsg);
             OnExit();
             return errorCode;
         }
@@ -132,8 +131,6 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             {
                 errMsg += ex.Message;
             }
-
-            Get_Result(nameof(this.Run_One_Cycle), errMsg);
             OnExit();
             return errorCode;
         }
