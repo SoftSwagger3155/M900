@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data_InspectionKit xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JobSheet_Brightness_Data>
+    <Gain>0</Gain>
+    <ExposureTime>0</ExposureTime>
+  </JobSheet_Brightness_Data>
+  <JobSheet_Lighting_Datas />
+  <JobSheet_SearchArea_Data>
+    <Camera_Name>0</Camera_Name>
+    <Row_Y1>0</Row_Y1>
+    <Column_X1>0</Column_X1>
+    <Row_Y2>0</Row_Y2>
+    <Column_X2>0</Column_X2>
+  </JobSheet_SearchArea_Data>
+  <JobSheet_PatternMatch_Data>
+    <AngleStart>0</AngleStart>
+    <AngleExtent>0</AngleExtent>
+    <MinScore>0</MinScore>
+    <MinScale>0</MinScale>
+    <MaxScale>0</MaxScale>
+    <NumMatches>0</NumMatches>
+    <NumLevels>0</NumLevels>
+    <SubPixel>0</SubPixel>
+    <MaxOverLap>0</MaxOverLap>
+    <Greediness>0</Greediness>
+  </JobSheet_PatternMatch_Data>
+  <JobSheet_Blob_Data>
+    <Threshold>0</Threshold>
+    <VerticalMeasureLength>0</VerticalMeasureLength>
+    <HorizontalMeasureLength>0</HorizontalMeasureLength>
+    <MeasureSigma>0</MeasureSigma>
+  </JobSheet_Blob_Data>
+  <CenterX>0</CenterX>
+  <CenterY>0</CenterY>
+  <Angle>0</Angle>
+</Data_InspectionKit>

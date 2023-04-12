@@ -57,7 +57,6 @@ namespace SolveWare_Service_Vision.Inspection.Business
                 errMsg += ex.Message;
             }
 
-            Get_Result(nameof(Do_Job), errMsg);
             return ErrorCode;
         }
         public void Setup(IElement data)

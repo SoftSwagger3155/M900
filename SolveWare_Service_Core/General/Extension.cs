@@ -10,11 +10,44 @@ namespace SolveWare_Service_Core.General
     {
         public static bool NotPass(ref this int errorCode)
         {
-            if (errorCode != ErrorCodes.NoError) return true;
-            else if (errorCode == ErrorCodes.NoError) return false;
-            else if (errorCode == ErrorCodes.NoError && SolveWare.Core.MMgr.IsStop) { errorCode = ErrorCodes.MachineStopCall; return true; }
+            bool notPass = true;
+            if (errorCode != ErrorCodes.NoError)
+            {
+                notPass = true;
+            }
+            else if (errorCode == ErrorCodes.NoError)
+            {
+                notPass = false;
+            }
+            else if (errorCode == ErrorCodes.NoError && SolveWare.Core.MMgr.IsStop)
+            {
+                errorCode = ErrorCodes.MachineStopCall;
+                notPass = true;
+            }
 
-            return false;
+
+            return notPass;
+        }
+        public static bool NotPass(this int errorCode, ref string msg, string additionalMsg = "")
+        {
+            bool notPass = true;
+            if (errorCode != ErrorCodes.NoError)
+            {
+                notPass = true;
+            }
+            else if (errorCode == ErrorCodes.NoError)
+            {
+                notPass = false;
+            }
+            else if (errorCode == ErrorCodes.NoError && SolveWare.Core.MMgr.IsStop) 
+            {
+                errorCode = ErrorCodes.MachineStopCall; 
+                notPass = true; 
+            }
+
+
+            msg = ErrorCodes.GetErrorDescription(errorCode)+ "\n" + additionalMsg;
+            return notPass;
         }
         public static string ErrorMsg(this string function)
         {

@@ -35,6 +35,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using SolveWare_Service_Tool.MasterDriver.Business;
+using MF900_SolveWare.WorldCenter.Job;
 
 namespace MF900_SolveWare.Business
 {
@@ -69,19 +70,7 @@ namespace MF900_SolveWare.Business
 
         private void MainManager_On_Data_Resource_Loading_Handler()
         {
-            IResourceProvider provider = null;
-
-            //世界中心
-            //provider 
-          
-            //视物Data
-            //provider = new Resource_Data_Manager<Data_InspectionKit>();
-            //provider.Initialize();
-            //provider.Plug_In();
-            //provider.DoubleCheck(ResourceKey.InspectKit_Top_Camera_Btm_Prober_Mark_Point,
-            //                                   ResourceKey.InspectKit_Top_Camera_Git_Hole,
-            //                                   ResourceKey.InspectKit_Btm_Camera_Top_Prober_Mark_Point,
-            //                                   ResourceKey.InspectKit_Btm_Camera_Git_Hole);               
+            IResourceProvider provider = null;            
         }
 
         private void MainManager_On_Tool_Resource_Loading_Handler()
@@ -101,11 +90,6 @@ namespace MF900_SolveWare.Business
                                                ResourceKey.Motor_Btm_T,
                                                ResourceKey.Motor_Table
                                                );
-
-            //AxisBase mtrA = ResourceKey.Motor_Top_X.GetAxisBase();
-            //IOBase ioA = ResourceKey.Op_TowerLight_Green.GetIOBase();
-            //CameraBase camA = ResourceKey.Btm_Camera.GetCamera();
-
             
             //IO物件
             provider = new Resource_Tool_Manager<ConfigData_IO>(new Factory_IO());
@@ -176,23 +160,36 @@ namespace MF900_SolveWare.Business
         private void MainManager_On_Machine_Resource_Loading_Handler()
         {
             //MMperPixel 
-            ICommonJobFundamental MMperPixel_TopCamera = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_TopCamera);
-            ICommonJobFundamental MMperPixel_BtmCamera = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_BtmCamera);
-            Resource_DataPair_Center.Add(MMperPixel_TopCamera);
-            Resource_DataPair_Center.Add(MMperPixel_BtmCamera);
-           
+            ICommonJobFundamental job = null;
+            job  = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_TopCamera);
+            Resource_DataPair_Center.Add(job);
 
-            //Offset
-            ICommonJobFundamental Offset_TopCamera_TopProber = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Top_Prober);
-            ICommonJobFundamental Offset_BtmCamera_BtmProber = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Btm_Camera_Btm_Prober);
-            ICommonJobFundamental Offset_TopCamera_BtmPin = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Btm_Pin);
-            Resource_DataPair_Center.Add(Offset_TopCamera_TopProber);
-            Resource_DataPair_Center.Add(Offset_BtmCamera_BtmProber);
-            Resource_DataPair_Center.Add(Offset_TopCamera_BtmPin);
+            job = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_BtmCamera);
+            Resource_DataPair_Center.Add(job);
 
-            //Inspect
-            ICommonJobFundamental inspect_1 = new Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
-            Resource_DataPair_Center.Add(inspect_1);       
+
+            //Offset               
+            job = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Top_Prober);
+            Resource_DataPair_Center.Add(job);
+            
+            job = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Btm_Camera_Btm_Prober);
+            Resource_DataPair_Center.Add(job);
+
+            job = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Btm_Pin);
+            Resource_DataPair_Center.Add(job);
+
+
+            //Inspect            
+            job = new Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
+            Resource_DataPair_Center.Add(job);
+
+            job = new Inspect(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
+            Resource_DataPair_Center.Add(job);
+
+
+            //世界中心
+            job = new Job_GlobalWorldCenter(ResourceKey.GlobalWorldCenter);
+            Resource_DataPair_Center.Add(job);
         }
 
         private void Init()

@@ -39,6 +39,7 @@ namespace SolveWare_Service_Core.General
         public static void InitErrorMap()
         {
             Dictionary<int, string> m = ErrorMessageMap;
+            m.Add(ActionFailed, "Action Failed | 行动执行失败");
             m.Add(ActionNotTaken, "Action Not Taken | 行为任务尚未被执行");
             m.Add(UserReqestStop, "User Reqest Stop | 使用者停止机器");
             m.Add(NoStateActionAssign, "No State Action Assigned | 无行为任务指派");
@@ -47,6 +48,8 @@ namespace SolveWare_Service_Core.General
             m.Add(MotorMoveError, "Motor Move Error | 马达位移失败");
             m.Add(OutOfBoundary, "Out Of Boundary | 超出范围");
             m.Add(RunOutOfUnit, "Run Out Of Unit | 无产品");
+            m.Add(NoRelevantData, "No Relevant Data | 无相关运用Data");
+            m.Add(NoRelevantObject, "No Relevant Object | 无相关使用物件");
             m.Add(VisionFailed, "Vision Failed | 视觉失败");
             m.Add(NoMotorObject, "No Motor Object | 无马达物件");
             m.Add(MoveSlowDownError, "Move Slow Down Error | 缓速失败");

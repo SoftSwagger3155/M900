@@ -1,15 +1,17 @@
-﻿using SolveWare_Service_Core.General;
+﻿using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SolveWare_Service_Utility.Common
 {
     public class MotionHelper
-    {
+    { 
         public static int Move_Multiple_Motors(params Info_Motion[] motions)
         {
             int errorCode = ErrorCodes.NoError;
@@ -20,7 +22,7 @@ namespace SolveWare_Service_Utility.Common
 
                 foreach (var info in motions.ToList())
                 {
-                    Task task = new Task(() =>
+                    Task task = Task.Run(() =>
                     {
                         int err = info.Motor_Name.GetAxisBase().MoveTo(info.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
                         errors.Add(err);
@@ -28,13 +30,10 @@ namespace SolveWare_Service_Utility.Common
                     tasks.Add(task);
                 }
 
-                tasks.ForEach(task => { task.Start(); });
-                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
-                {
-                    int foundError = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = foundError >= 0 ? ErrorCodes.MotionFunctionError : ErrorCodes.NoError; 
-                });
+                Task.WaitAll(tasks.ToArray());
 
+                int foundError = errors.FindIndex(x => x != ErrorCodes.NoError);
+                errorCode = foundError >= 0 ? ErrorCodes.MotionFunctionError : ErrorCodes.NoError;
             }
             catch 
             {

@@ -62,6 +62,13 @@ namespace SolveWare_Service_Core.Base.Abstract
         [XmlIgnore]
         public long Id { get => id; private set => id =value; }
 
+        protected string saveDate = "2023/00/00 00:00:00";
+        public string SaveDate
+        {
+            get=>saveDate;
+            set=> UpdateProper(ref saveDate, value);
+        }
+
         public ElementBase()
         {
             if(Id == 0)

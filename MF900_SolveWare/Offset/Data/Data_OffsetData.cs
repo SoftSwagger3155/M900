@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MF900_SolveWare.Offset.Data
 {
-    [ResourceBaseAttribute(ConstantProperty.Offset)]
+    [ResourceBaseAttribute(ConstantProperty.ResourceKey_Offset)]
     public class Data_OffsetData: ElementBase
     {
     }

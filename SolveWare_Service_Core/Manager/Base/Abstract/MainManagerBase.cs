@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using SolveWare_Service_Core.Attributes;
+using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.FSM.Base.Interface;
 using SolveWare_Service_Core.General;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,15 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
     public delegate void AddResourceDelegation();
     public abstract class MainManagerBase : IMainManager
     {
+        public bool Is_Ready_Home
+        {
+            get;
+            protected set;
+        }
+
         public MainManagerBase()
         {
-            
+            this.Is_Ready_Home = false;
             string fullPath = "";//ConfigurationManager.AppSettings["FilePathRoot"];
             fullPath = Debugger.IsAttached ? Directory.GetCurrentDirectory() : fullPath;
             SystemPath.RootInfoDirection = $@"{fullPath}";
@@ -207,16 +215,16 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             switch (kind)
             {
                 case Tool_Resource_Kind.Motor:
-                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Motor);
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.ReosurceKey_Motor);
                     break;
                 case Tool_Resource_Kind.IO:
-                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.IO);
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.ResourceKey_IO);
                     break;
                 case Tool_Resource_Kind.Camera:
-                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Camera);
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.ResourceKey_Camera);
                     break;
                 case Tool_Resource_Kind.Lighting:
-                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.Lighting);
+                    provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.ResourceKey_Lighting);
                     break;
                 case Tool_Resource_Kind.BarCode_Gun:
                     provider = this.Resource_Tool_Center.ToList().FirstOrDefault(x => x.ResourceKey == ConstantProperty.BarCodeGun);
@@ -275,7 +283,12 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 return;
             }
 
-           FSM_Home.Run_One_Cycle();    
+           int errorCode = FSM_Home.Run_One_Cycle();
+            if(errorCode == ErrorCodes.NoError)
+            {
+               if(!this.Is_Ready_Home) this.Is_Ready_Home = true;
+            }
+            
         }
         public void Do_AutoCycle()
         {
@@ -291,5 +304,18 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
         }
 
         public abstract void AssignFSM();
+
+        public IList<ICommonJobFundamental> Get_Identical_ReosurcBase_Job(string resourceBaseName)
+        {
+            if (Resource_DataPair_Center.Count == 0) return null;
+            var allItems = Resource_DataPair_Center.ToList().FindAll(x =>
+            {
+                Type type = x.GetType();
+                ResourceBaseAttribute attr = (ResourceBaseAttribute)type.GetCustomAttribute(typeof(ResourceBaseAttribute));
+                return attr.ResourceKey == resourceBaseName;
+            });
+
+            return allItems;
+        }
     }
 }

@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace SolveWare_Service_Vision.Inspection.Business
 {
 
-    [ResourceBaseAttribute(ConstantProperty.Inspect)]
+    [ResourceBaseAttribute(ConstantProperty.ResourceKey_Inspect)]
     public class Inspect : DataJobPairFundamentalBase<Data_InspectionKit>,  IInspectionKit
     {
         private double offsetX = 0;
@@ -82,26 +82,43 @@ namespace SolveWare_Service_Vision.Inspection.Business
 
         public override int Do_Job()
         {
-            OnEntrance();
+            this.errorMsg = string.Empty;
+            Data.ErrorMsg = string.Empty;
             try
             {
                 do
                 {
                     //.设置 BrightNess
                     errorCode = Set_Brightness();
-                    if (errorCode.NotPass()) break;
+                    if (errorCode.NotPass())
+                    {
+                        errorMsg += Data.ErrorMsg;
+                        break;
+                    }
 
                     //设置Lighting
                     errorCode = Set_Lighting();
-                    if (errorCode.NotPass()) break;
+                    if (errorCode.NotPass())
+                    {
+                        errorMsg += Data.ErrorMsg;
+                        break;
+                    }
 
                     //执行 Pattern Match
                     errorCode = Do_PatternMath();
-                    if (errorCode.NotPass()) break;
+                    if (errorCode.NotPass())
+                    {
+                        errorMsg += Data.ErrorMsg;
+                        break;
+                    }
 
                     //执行 Blob
                     errorCode = Do_Blob();
-                    if (errorCode.NotPass()) break;
+                    if (errorCode.NotPass())
+                    {
+                        errorMsg += Data.ErrorMsg;
+                        break;
+                    }
 
 
                     //计算Offset
@@ -111,9 +128,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
             catch (Exception ex)
             {
                 this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.VisionFailed;
             }
-            OnExit();
 
             return ErrorCode;
         }

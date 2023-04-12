@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Camera.Data
 {
-    [ResourceBaseAttribute(ConstantProperty.Camera)]
+    [ResourceBaseAttribute(ConstantProperty.ResourceKey_Camera)]
     public class ConfigData_Camera: ElementBase
     {
         public string Id_Camera { get; set; }

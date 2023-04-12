@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data_GlobalWorldCenter xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SaveDate>2023年4月12日 15:59:39</SaveDate>
+  <Top_Module_PosX>10</Top_Module_PosX>
+  <Top_Module_PosY>10</Top_Module_PosY>
+  <Top_Module_PosZ>9</Top_Module_PosZ>
+  <Top_Module_PosT>5</Top_Module_PosT>
+  <Top_Module_InspectKit_Name>视觉-上相机圆孔</Top_Module_InspectKit_Name>
+  <Top_Module_Move_To_Center>true</Top_Module_Move_To_Center>
+  <Btm_Module_PosX>20</Btm_Module_PosX>
+  <Btm_Module_PosY>15</Btm_Module_PosY>
+  <Btm_Module_PosZ>9</Btm_Module_PosZ>
+  <Btm_Module_PosT>10</Btm_Module_PosT>
+  <Btm_Module_InspectKit_Name>视觉-下相机圆孔</Btm_Module_InspectKit_Name>
+  <Btm_Module_Move_To_Center>true</Btm_Module_Move_To_Center>
+  <Top_WorldCenter_PosX>0</Top_WorldCenter_PosX>
+  <Top_WorldCenter_PosY>0</Top_WorldCenter_PosY>
+  <Top_WorldCenter_PosZ>0</Top_WorldCenter_PosZ>
+  <Top_WorldCenter_PosT>0</Top_WorldCenter_PosT>
+  <Btm_WorldCenter_PosX>0</Btm_WorldCenter_PosX>
+  <Btm_WorldCenter_PosY>0</Btm_WorldCenter_PosY>
+  <Btm_WorldCenter_PosZ>0</Btm_WorldCenter_PosZ>
+  <Btm_WorldCenter_PosT>0</Btm_WorldCenter_PosT>
+</Data_GlobalWorldCenter>

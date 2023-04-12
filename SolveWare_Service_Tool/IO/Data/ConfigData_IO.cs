@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.IO.Data
 {
-    [ResourceBaseAttribute(ConstantProperty.IO)]
+    [ResourceBaseAttribute(ConstantProperty.ResourceKey_IO)]
     public class ConfigData_IO : ElementBase
     {
         IO_Type ioType = IO_Type.Input;

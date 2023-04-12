@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MF900_SolveWare.Offset.Job
 {
     //TODO: 杨工 UI | Stanley 实现细节 
-    [ResourceBase(ConstantProperty.Offset)]
+    [ResourceBase(ConstantProperty.ResourceKey_Offset)]
     public class Job_Offset_TopCamera_TopProber : DataJobPairFundamentalBase<Data_OffsetData>, IOffset
     {
         public Job_Offset_TopCamera_TopProber(string name): base(name)

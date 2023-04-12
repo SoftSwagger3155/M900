@@ -72,14 +72,14 @@ namespace MF900_SolveWare
             this.uiPanel2 = new Sunny.UI.UIPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiGroupBox8 = new Sunny.UI.UIGroupBox();
+            this.btn_Offset = new Sunny.UI.UIButton();
+            this.btn_MMperPixel = new Sunny.UI.UIButton();
             this.btn_Gold_Center = new Sunny.UI.UIButton();
             this.btn_All_Motor = new Sunny.UI.UIButton();
             this.btn_InspectKit = new Sunny.UI.UIButton();
             this.uiButton5 = new Sunny.UI.UIButton();
             this.btn_AxisDebugShow = new Sunny.UI.UIButton();
             this.btn_IoShow = new Sunny.UI.UIButton();
-            this.btn_MMperPixel = new Sunny.UI.UIButton();
-            this.btn_Offset = new Sunny.UI.UIButton();
             this.uiTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.uiTableLayoutPanel1.SuspendLayout();
@@ -821,6 +821,36 @@ namespace MF900_SolveWare
             this.uiGroupBox8.TitleTop = 10;
             this.uiGroupBox8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
+            // btn_Offset
+            // 
+            this.btn_Offset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Offset.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_Offset.Location = new System.Drawing.Point(115, 78);
+            this.btn_Offset.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_Offset.Name = "btn_Offset";
+            this.btn_Offset.Size = new System.Drawing.Size(92, 45);
+            this.btn_Offset.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_Offset.TabIndex = 6;
+            this.btn_Offset.Text = "间距";
+            this.btn_Offset.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_Offset.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_Offset.Click += new System.EventHandler(this.btn_Offset_Click);
+            // 
+            // btn_MMperPixel
+            // 
+            this.btn_MMperPixel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_MMperPixel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_MMperPixel.Location = new System.Drawing.Point(14, 78);
+            this.btn_MMperPixel.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_MMperPixel.Name = "btn_MMperPixel";
+            this.btn_MMperPixel.Size = new System.Drawing.Size(92, 45);
+            this.btn_MMperPixel.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_MMperPixel.TabIndex = 5;
+            this.btn_MMperPixel.Text = "像素";
+            this.btn_MMperPixel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_MMperPixel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_MMperPixel.Click += new System.EventHandler(this.btn_MMperPixel_Click);
+            // 
             // btn_Gold_Center
             // 
             this.btn_Gold_Center.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -909,36 +939,6 @@ namespace MF900_SolveWare
             this.btn_IoShow.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_IoShow.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btn_IoShow.Click += new System.EventHandler(this.btn_IoShow_Click);
-            // 
-            // btn_MMperPixel
-            // 
-            this.btn_MMperPixel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_MMperPixel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_MMperPixel.Location = new System.Drawing.Point(14, 78);
-            this.btn_MMperPixel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_MMperPixel.Name = "btn_MMperPixel";
-            this.btn_MMperPixel.Size = new System.Drawing.Size(92, 45);
-            this.btn_MMperPixel.Style = Sunny.UI.UIStyle.Custom;
-            this.btn_MMperPixel.TabIndex = 5;
-            this.btn_MMperPixel.Text = "像素";
-            this.btn_MMperPixel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_MMperPixel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btn_MMperPixel.Click += new System.EventHandler(this.btn_MMperPixel_Click);
-            // 
-            // btn_Offset
-            // 
-            this.btn_Offset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Offset.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Offset.Location = new System.Drawing.Point(115, 78);
-            this.btn_Offset.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_Offset.Name = "btn_Offset";
-            this.btn_Offset.Size = new System.Drawing.Size(92, 45);
-            this.btn_Offset.Style = Sunny.UI.UIStyle.Custom;
-            this.btn_Offset.TabIndex = 6;
-            this.btn_Offset.Text = "间距";
-            this.btn_Offset.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Offset.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btn_Offset.Click += new System.EventHandler(this.btn_Offset_Click);
             // 
             // MaintainingForm
             // 

@@ -2,6 +2,7 @@
 using MF900_SolveWare.Resource;
 using MF900_SolveWare.WorldCenter.Data;
 using SolveWare_Service_Core;
+using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Common;
@@ -15,8 +16,14 @@ using System.Threading.Tasks;
 
 namespace MF900_SolveWare.WorldCenter.Job
 {
+    [ResourceBaseAttribute(ConstantProperty.ResourceKey_WorldCenter)]
     public class Job_GlobalWorldCenter: DataJobPairFundamentalBase<Data_GlobalWorldCenter>
     {
+
+        public Job_GlobalWorldCenter(string name):base(name)
+        {
+            
+        }
 
         private int Do_Top_Module_Safe_Prevention()
         {
@@ -32,34 +39,23 @@ namespace MF900_SolveWare.WorldCenter.Job
 
         public int Go_Top_Module_Pos()
         {
+            errorMsg = string.Empty;
             try
             {
                 do
                 {
                     errorCode = Do_Top_Module_Safe_Prevention();
-                    if (errorCode != 0)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
                
                     errorCode = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = Data.Top_Module_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = Data.Top_Module_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_T, Pos = Data.Top_Module_PosT }
                         );
-                    if(errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
                     errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = Data.Top_Module_PosZ });
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
 
                 } while (false);
@@ -68,41 +64,28 @@ namespace MF900_SolveWare.WorldCenter.Job
             {
                 errorMsg += ex.Message;
             }
-
-            Get_Result(nameof(Go_Top_Module_Pos), errorMsg);
+            
             return errorCode;
         }
         public int Go_Btm_Module_Pos()
         {
+            errorMsg = string.Empty;
             try
             {
                 do
                 {
                     errorCode = Do_Top_Module_Safe_Prevention();
-                    if (errorCode != 0)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
                     errorCode = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = Data.Btm_Module_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = Data.Btm_Module_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_T, Pos = Data.Btm_Module_PosT }
                         );
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
                     errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = Data.Btm_Module_PosZ });
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
-
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
                 } while (false);
             }
@@ -111,25 +94,19 @@ namespace MF900_SolveWare.WorldCenter.Job
                 errorMsg += ex.Message;
             }
 
-            Get_Result(nameof(Go_Top_Module_Pos), errorMsg);
             return errorCode;
         }
 
         public int Do_Top_Module_Inspect()
         {
-
+            errorMsg = string.Empty;
             try
             {
                 do
                 {
                     var job = SolveWare.Core.MMgr.Get_PairJob(ResourceKey.InspectKit_Top_Camera_Git_Hole);
                     errorCode = job.Do_Job();
-
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg, (job as Inspect).ErrorMsg)) break;
 
                     if (!Data.Top_Module_Move_To_Center) break;
 
@@ -140,17 +117,13 @@ namespace MF900_SolveWare.WorldCenter.Job
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = posX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = posY }
                         );
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
                     //记忆当前位置
-                    this.Data.Top_Module_PosX = ResourceKey.Motor_Top_X.GetUnitPos();
-                    this.Data.Top_Module_PosY = ResourceKey.Motor_Top_Y.GetUnitPos();
-                    this.Data.Top_Module_PosZ = ResourceKey.Motor_Top_Z.GetUnitPos();
-                    this.Data.Top_Module_PosT = ResourceKey.Motor_Top_T.GetUnitPos();
+                    Data.Top_WorldCenter_PosX = Math.Round(ResourceKey.Motor_Top_X.GetUnitPos(), 3);
+                    Data.Top_WorldCenter_PosY = Math.Round(ResourceKey.Motor_Top_Y.GetUnitPos(), 3);
+                    Data.Top_WorldCenter_PosZ = Math.Round(ResourceKey.Motor_Top_Z.GetUnitPos(), 3);
+                    Data.Top_WorldCenter_PosT = Math.Round(ResourceKey.Motor_Top_T.GetUnitPos(), 3);
 
 
                 } while (false);
@@ -160,25 +133,18 @@ namespace MF900_SolveWare.WorldCenter.Job
             {
                 errorMsg += ex.Message;
             }
-
-            Get_Result(nameof(Do_Top_Module_Inspect), errorMsg);
             return errorCode;
         }
         public int Do_Btm_Module_Inspect()
         {
-
+            errorMsg = string.Empty;
             try
             {
                 do
                 {
                     var job = SolveWare.Core.MMgr.Get_PairJob(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
                     errorCode = job.Do_Job();
-
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg, (job as Inspect).ErrorMsg)) break;
 
                     if (!Data.Btm_Module_Move_To_Center) break;
 
@@ -189,18 +155,13 @@ namespace MF900_SolveWare.WorldCenter.Job
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = posX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = posY }
                         );
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (errorCode.NotPass(ref errorMsg)) break;
 
                     //记忆当前位置
-                    this.Data.Btm_Module_PosX = ResourceKey.Motor_Btm_X.GetUnitPos();
-                    this.Data.Btm_Module_PosY = ResourceKey.Motor_Btm_Y.GetUnitPos();
-                    this.Data.Btm_Module_PosZ = ResourceKey.Motor_Btm_Z.GetUnitPos();
-                    this.Data.Btm_Module_PosT = ResourceKey.Motor_Btm_T.GetUnitPos();
-
+                    Data.Btm_WorldCenter_PosX = Math.Round(ResourceKey.Motor_Btm_X.GetUnitPos(), 3);
+                    Data.Btm_WorldCenter_PosY = Math.Round(ResourceKey.Motor_Btm_Y.GetUnitPos(), 3);
+                    Data.Btm_WorldCenter_PosZ = Math.Round(ResourceKey.Motor_Btm_Z.GetUnitPos(), 3);
+                    Data.Btm_WorldCenter_PosT = Math.Round(ResourceKey.Motor_Btm_T.GetUnitPos(), 3);
 
                 } while (false);
 
@@ -210,7 +171,6 @@ namespace MF900_SolveWare.WorldCenter.Job
                 errorMsg += ex.Message;
             }
 
-            Get_Result(nameof(Do_Top_Module_Inspect), errorMsg);
             return errorCode;
         }
 
@@ -276,7 +236,6 @@ namespace MF900_SolveWare.WorldCenter.Job
                 errorMsg += ex.Message;
             }
 
-            Get_Result(nameof(Do_Job), errorMsg);
             return errorCode;
         }
     }

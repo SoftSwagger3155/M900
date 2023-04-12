@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.Motor.Data
 {
-    [ResourceBaseAttribute(ConstantProperty.Motor)]
+    [ResourceBaseAttribute(ConstantProperty.ReosurceKey_Motor)]
     public class ConfigData_Motor : ElementBase
     {
 

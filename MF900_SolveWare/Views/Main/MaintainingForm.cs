@@ -1,6 +1,11 @@
-﻿using MF900_SolveWare.Views.AxisMesForm;
+﻿using MF900_SolveWare.Resource;
+using MF900_SolveWare.Views.AxisMesForm;
 using MF900_SolveWare.Views.Child;
+using MF900_SolveWare.WorldCenter.Job;
+using SolveWare_Service_Core;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Extension;
 using Sunny.UI;
 using System;
@@ -60,6 +65,8 @@ namespace MF900_SolveWare
         private void btn_Gold_Center_Click(object sender, EventArgs e)
         {
             IView view = new Form_Learn_Global_Center();
+            var job = SolveWare.Core.MMgr.Get_PairJob(ResourceKey.GlobalWorldCenter);
+            view.Setup(job);
             (view as Form).Show();
         }
 

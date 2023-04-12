@@ -20,13 +20,14 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public bool Is_Safe_To_Move(MtrSafe mtrSafe)
         {
             string errMsg = string.Empty;
-			try
+            bool isDangerous = false;
+            try
 			{
                 do
                 {
                     if (mtrSafe.Data_Pos_Safetys.Count == 0l) return true;
 
-                    bool isDangerous = false;
+                  
                     foreach (var safeItem in mtrSafe.Data_Pos_Safetys)
                     {
                         AxisBase axis = (AxisBase)SolveWare.Core.MMgr.Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind.Motor, safeItem.MotorName);
@@ -70,7 +71,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
                 errMsg += ex.Message;
 			}
 
-            return Get_Result(nameof(Is_Safe_To_Move), errMsg); 
+            return isDangerous == false ? true : false; 
         }
     }
 

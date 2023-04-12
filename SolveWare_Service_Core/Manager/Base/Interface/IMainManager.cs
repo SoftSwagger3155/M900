@@ -12,6 +12,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
 {
     public interface IMainManager : IMachineStatus
     {
+        bool Is_Ready_Home { get; }
         IView MainWint { get; set; }        
         IFSM FSM_Home { get; set; }
         IFSM FSM_Auto { get; set; }
@@ -35,6 +36,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IResourceProvider Get_Single_Tool_Resource(Tool_Resource_Kind kind);
         IElement Get_Single_Element_Form_Tool_Resource(Tool_Resource_Kind kind, string name);
         ICommonJobFundamental Get_PairJob(string jobName);
+        IList<ICommonJobFundamental> Get_Identical_ReosurcBase_Job(string resourceBaseName);
         void CloseAll();
         void AssignFSM();
 

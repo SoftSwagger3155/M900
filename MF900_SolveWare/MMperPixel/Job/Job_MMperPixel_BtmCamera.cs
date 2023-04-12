@@ -20,7 +20,7 @@ using SolveWare_Service_Core.Attributes;
 namespace MF900_SolveWare.MMperPixel.Job
 {
     //TODO 杨工: 1. UI 2. 实现细节
-    [ResourceBase(ConstantProperty.MMperPixel)]
+    [ResourceBase(ConstantProperty.ResourceKey_MMperPixel)]
     public class Job_MMperPixel_BtmCamera : DataJobPairFundamentalBase<Data_MMperPixel>, IMMperPixelJob
     {
         CameraMediaBase camera;

@@ -27,7 +27,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
                     if (camera == null) 
                     {
                         errorCode = ErrorCodes.NoRelevantObject;
-                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                        jobParam.ErrorMsg += "无 相机 物件";
                         break;
                      }
 
@@ -41,7 +41,6 @@ namespace SolveWare_Service_Vision.Inspection.Business
                 this.errorMsg += ex.Message;
             }
 
-            Get_Result(nameof(Do_Job), errMsg);
             return ErrorCode;
         }
         public void Setup(IElement data)

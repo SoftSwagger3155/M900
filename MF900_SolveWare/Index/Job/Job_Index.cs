@@ -60,7 +60,6 @@ namespace MF900_SolveWare.Index.Job
                 errMsg += ex.Message;
             }
 
-            Get_Result(nameof(Go), errMsg);
             return errorCode;
         }
 

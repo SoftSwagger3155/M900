@@ -184,5 +184,10 @@ namespace SolveWare_Service_Utility.Extension
 
 
         }
+        public static string GetErrorMsg(this int errorCode)
+        {
+            return ErrorCodes.GetErrorDescription(errorCode);   
+        }
+      
     }
 }

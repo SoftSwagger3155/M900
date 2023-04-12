@@ -15,22 +15,12 @@ namespace SolveWare_Service_Core.General
         public const string Bussiness = "业务内容";
         public const string Validation = "确认内容";
         public const string ExitChores = "结束任务";
-        public const string IO = "IO-输入输出";
-        public const string Camera = "相机";
-        public const string Lighting = "光源";
         public const string Printer = "打印机";
         public const string BarCodeGun = "扫码枪";
         public const string Motion = "Motion-运动";
         public const string Home = "Home-复位";
         public const string Vision = "Vision-视觉";
-        public const string GapOffset = "GapOffset-间距移动";
-        public const string MMperPixel = "MMperPiexel-相机校正";
-        public const string Pos = "位置";
-        public const string Offset = "间距";
-        public const string WorldCenter = "世界中心";
-        public const string Motor = "马达";
-        public const string Index = "索引";
-        public const string Inspect = "视觉";
+        public const string GapOffset = "GapOffset-间距移动"; 
         public const string Setting_Content = "设置内容";
         public const string Execute_Content = "執行內容";
         public const string Display_Content = "顯示內容";
@@ -60,5 +50,16 @@ namespace SolveWare_Service_Core.General
         public const string SpeedSetting_Jog = "移动速度";
         public const string SpeedSetting_TestHome = "测试 复位速度";
         public const string SpeedSetting_TestJog = "测试 移动速度";
+
+        public const string ResourceKey_MMperPixel = "MMperPiexel-相机校正";
+        public const string ResourceKey_Pos = "位置";
+        public const string ResourceKey_Offset = "间距";
+        public const string ResourceKey_WorldCenter = "世界中心";
+        public const string ReosurceKey_Motor = "马达";
+        public const string ResourceKey_Index = "索引";
+        public const string ResourceKey_Inspect = "视觉";
+        public const string ResourceKey_IO = "IO-输入输出";
+        public const string ResourceKey_Camera = "相机";
+        public const string ResourceKey_Lighting = "光源";
     }
 }
