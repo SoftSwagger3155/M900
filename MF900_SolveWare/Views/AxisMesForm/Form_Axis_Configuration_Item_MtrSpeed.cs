@@ -241,7 +241,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
                     var result = MessageBox.Show("确认设立 此位置 设为原点?", "提问", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No) { return; }
-                    axis.SetZero();
+                    axis.SetZero(37);
 
                 } while (false);
             }

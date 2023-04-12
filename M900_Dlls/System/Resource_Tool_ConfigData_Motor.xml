@@ -34,8 +34,8 @@
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
-      <MaxDistance_SoftLimit>200</MaxDistance_SoftLimit>
-      <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
+      <MaxDistance_SoftLimit>400</MaxDistance_SoftLimit>
+      <MinDistance_SoftLimit>236</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
       <Home_mode>0</Home_mode>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace SolveWare_Service_Core.Base.Abstract
-{
+{  
     public class ElementBase : IElement, INotifyPropertyChanged
     {
         #region INotifyPropertyChanged

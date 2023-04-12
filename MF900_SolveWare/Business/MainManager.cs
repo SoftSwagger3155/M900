@@ -192,12 +192,8 @@ namespace MF900_SolveWare.Business
 
             //Inspect
             ICommonJobFundamental inspect_1 = new Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
-            Resource_DataPair_Center.Add(inspect_1);
-
-           
+            Resource_DataPair_Center.Add(inspect_1);       
         }
-
-
 
         private void Init()
         {
