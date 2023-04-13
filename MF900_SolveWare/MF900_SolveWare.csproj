@@ -79,7 +79,11 @@
   <ItemGroup>
     <Compile Include="Business\Global.cs" />
     <Compile Include="Business\RecipeHandler.cs" />
+    <Compile Include="Business\SafeProtector.cs" />
     <Compile Include="FSM\Home\Stations\FSM_Home_Table_Station.cs" />
+    <Compile Include="Offset\Job\Job_Offset.cs" />
+    <Compile Include="Safe\Data_Safe.cs" />
+    <Compile Include="Safe\Job_Safe.cs" />
     <Compile Include="Views\Child\Form_MMperPixel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +95,24 @@
     </Compile>
     <Compile Include="Views\Child\Form_Offset.Designer.cs">
       <DependentUpon>Form_Offset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_Safe_Protection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Safe_Protection.Designer.cs">
+      <DependentUpon>Form_Safe_Protection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_Safe_Protection_IO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Safe_Protection_IO.Designer.cs">
+      <DependentUpon>Form_Safe_Protection_IO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_Safe_Protection_Motion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Safe_Protection_Motion.Designer.cs">
+      <DependentUpon>Form_Safe_Protection_Motion.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewHelper.cs" />
     <Compile Include="WorldCenter\Data\Data_GlobalWorldCenter.cs" />
@@ -367,7 +389,7 @@
     <Compile Include="Views\Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Offset\Data\Data_OffsetData.cs" />
+    <Compile Include="Offset\Data\Data_Offset.cs" />
     <Compile Include="DeControls\OutButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -449,6 +471,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_Offset.resx">
       <DependentUpon>Form_Offset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Safe_Protection.resx">
+      <DependentUpon>Form_Safe_Protection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Safe_Protection_IO.resx">
+      <DependentUpon>Form_Safe_Protection_IO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Safe_Protection_Motion.resx">
+      <DependentUpon>Form_Safe_Protection_Motion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductPanelForm.resx">
       <DependentUpon>ProductPanelForm.cs</DependentUpon>

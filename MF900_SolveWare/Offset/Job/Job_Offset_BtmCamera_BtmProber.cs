@@ -14,7 +14,7 @@ namespace MF900_SolveWare.Offset.Job
 {
     //TODO: 杨工 UI | Stanley 实现细节 
     [ResourceBase(ConstantProperty.ResourceKey_Offset)]
-    public class Job_Offset_BtmCamera_BtmProber : DataJobPairFundamentalBase<Data_OffsetData>, IOffset
+    public class Job_Offset_BtmCamera_BtmProber : DataJobPairFundamentalBase<Data_Offset>, IOffset
     {
         /// <summary>
         /// 安全措施

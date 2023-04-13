@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gpb_Top_Module = new System.Windows.Forms.GroupBox();
+            this.btn_Go_Top_WorldCenter_Pos = new System.Windows.Forms.Button();
+            this.btn_Top_Update_WorldCenter = new System.Windows.Forms.Button();
             this.btn_Top_Module_Update_Pos = new System.Windows.Forms.Button();
             this.btn_Execute_Top_Moudle = new System.Windows.Forms.Button();
             this.btn_Top_Module_Go_Pos = new System.Windows.Forms.Button();
@@ -43,6 +45,8 @@
             this.lbl_Top_MotorX_Info = new System.Windows.Forms.Label();
             this.btn_Motor_General_Controller = new System.Windows.Forms.Button();
             this.gpb_Btm_Module = new System.Windows.Forms.GroupBox();
+            this.btn_Go_Btm_WorldCenter_Pos = new System.Windows.Forms.Button();
+            this.btn_Btm_Update_WorldCenter = new System.Windows.Forms.Button();
             this.btn_Btm_Module_Update_Pos = new System.Windows.Forms.Button();
             this.btn_Execute_Btm_Moudle = new System.Windows.Forms.Button();
             this.btn_Btm_Module_Go_Pos = new System.Windows.Forms.Button();
@@ -58,7 +62,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_TimeSpent = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_Top_Module_Status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssl_Btm_Module_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_Save_Date = new System.Windows.Forms.ToolStripStatusLabel();
             this.btn_Execute_Both_Module = new System.Windows.Forms.Button();
             this.gpb_WorldCenter = new System.Windows.Forms.GroupBox();
@@ -72,10 +75,6 @@
             this.lbl_Top_WorldCenter_PosX = new System.Windows.Forms.Label();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Clear = new System.Windows.Forms.Button();
-            this.btn_Top_Update_WorldCenter = new System.Windows.Forms.Button();
-            this.btn_Btm_Update_WorldCenter = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.gpb_Top_Module.SuspendLayout();
             this.gpb_Btm_Module.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -84,7 +83,7 @@
             // 
             // gpb_Top_Module
             // 
-            this.gpb_Top_Module.Controls.Add(this.button1);
+            this.gpb_Top_Module.Controls.Add(this.btn_Go_Top_WorldCenter_Pos);
             this.gpb_Top_Module.Controls.Add(this.btn_Top_Update_WorldCenter);
             this.gpb_Top_Module.Controls.Add(this.btn_Top_Module_Update_Pos);
             this.gpb_Top_Module.Controls.Add(this.btn_Execute_Top_Moudle);
@@ -104,6 +103,26 @@
             this.gpb_Top_Module.TabIndex = 0;
             this.gpb_Top_Module.TabStop = false;
             this.gpb_Top_Module.Text = "上模组";
+            // 
+            // btn_Go_Top_WorldCenter_Pos
+            // 
+            this.btn_Go_Top_WorldCenter_Pos.Location = new System.Drawing.Point(237, 308);
+            this.btn_Go_Top_WorldCenter_Pos.Name = "btn_Go_Top_WorldCenter_Pos";
+            this.btn_Go_Top_WorldCenter_Pos.Size = new System.Drawing.Size(120, 33);
+            this.btn_Go_Top_WorldCenter_Pos.TabIndex = 13;
+            this.btn_Go_Top_WorldCenter_Pos.Text = "前往世界中心";
+            this.btn_Go_Top_WorldCenter_Pos.UseVisualStyleBackColor = true;
+            this.btn_Go_Top_WorldCenter_Pos.Click += new System.EventHandler(this.btn_Go_Top_WorldCenter_Pos_Click);
+            // 
+            // btn_Top_Update_WorldCenter
+            // 
+            this.btn_Top_Update_WorldCenter.Location = new System.Drawing.Point(237, 347);
+            this.btn_Top_Update_WorldCenter.Name = "btn_Top_Update_WorldCenter";
+            this.btn_Top_Update_WorldCenter.Size = new System.Drawing.Size(120, 33);
+            this.btn_Top_Update_WorldCenter.TabIndex = 12;
+            this.btn_Top_Update_WorldCenter.Text = "更新世界中心";
+            this.btn_Top_Update_WorldCenter.UseVisualStyleBackColor = true;
+            this.btn_Top_Update_WorldCenter.Click += new System.EventHandler(this.btn_Top_Update_WorldCenter_Click);
             // 
             // btn_Top_Module_Update_Pos
             // 
@@ -231,7 +250,7 @@
             // 
             // gpb_Btm_Module
             // 
-            this.gpb_Btm_Module.Controls.Add(this.button2);
+            this.gpb_Btm_Module.Controls.Add(this.btn_Go_Btm_WorldCenter_Pos);
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_Update_WorldCenter);
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_Module_Update_Pos);
             this.gpb_Btm_Module.Controls.Add(this.btn_Execute_Btm_Moudle);
@@ -251,6 +270,26 @@
             this.gpb_Btm_Module.TabIndex = 11;
             this.gpb_Btm_Module.TabStop = false;
             this.gpb_Btm_Module.Text = "下模组";
+            // 
+            // btn_Go_Btm_WorldCenter_Pos
+            // 
+            this.btn_Go_Btm_WorldCenter_Pos.Location = new System.Drawing.Point(238, 308);
+            this.btn_Go_Btm_WorldCenter_Pos.Name = "btn_Go_Btm_WorldCenter_Pos";
+            this.btn_Go_Btm_WorldCenter_Pos.Size = new System.Drawing.Size(120, 33);
+            this.btn_Go_Btm_WorldCenter_Pos.TabIndex = 13;
+            this.btn_Go_Btm_WorldCenter_Pos.Text = "前往世界中心";
+            this.btn_Go_Btm_WorldCenter_Pos.UseVisualStyleBackColor = true;
+            this.btn_Go_Btm_WorldCenter_Pos.Click += new System.EventHandler(this.btn_Go_Btm_WorldCenter_Pos_Click);
+            // 
+            // btn_Btm_Update_WorldCenter
+            // 
+            this.btn_Btm_Update_WorldCenter.Location = new System.Drawing.Point(237, 347);
+            this.btn_Btm_Update_WorldCenter.Name = "btn_Btm_Update_WorldCenter";
+            this.btn_Btm_Update_WorldCenter.Size = new System.Drawing.Size(120, 33);
+            this.btn_Btm_Update_WorldCenter.TabIndex = 12;
+            this.btn_Btm_Update_WorldCenter.Text = "更新世界中心";
+            this.btn_Btm_Update_WorldCenter.UseVisualStyleBackColor = true;
+            this.btn_Btm_Update_WorldCenter.Click += new System.EventHandler(this.btn_Btm_Update_WorldCenter_Click);
             // 
             // btn_Btm_Module_Update_Pos
             // 
@@ -372,7 +411,6 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tssl_TimeSpent,
             this.tssl_Top_Module_Status,
-            this.tssl_Btm_Module_Status,
             this.tssl_Save_Date});
             this.statusStrip1.Location = new System.Drawing.Point(0, 457);
             this.statusStrip1.Name = "statusStrip1";
@@ -390,16 +428,8 @@
             this.tssl_Top_Module_Status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.tssl_Top_Module_Status.Margin = new System.Windows.Forms.Padding(4, 4, 0, 2);
             this.tssl_Top_Module_Status.Name = "tssl_Top_Module_Status";
-            this.tssl_Top_Module_Status.Size = new System.Drawing.Size(137, 20);
-            this.tssl_Top_Module_Status.Text = "上模组状态 : Good";
-            // 
-            // tssl_Btm_Module_Status
-            // 
-            this.tssl_Btm_Module_Status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.tssl_Btm_Module_Status.Margin = new System.Windows.Forms.Padding(4, 4, 0, 2);
-            this.tssl_Btm_Module_Status.Name = "tssl_Btm_Module_Status";
-            this.tssl_Btm_Module_Status.Size = new System.Drawing.Size(137, 20);
-            this.tssl_Btm_Module_Status.Text = "下模组状态 : Good";
+            this.tssl_Top_Module_Status.Size = new System.Drawing.Size(92, 20);
+            this.tssl_Top_Module_Status.Text = "状态 : Good";
             // 
             // tssl_Save_Date
             // 
@@ -527,44 +557,6 @@
             this.btn_Clear.UseVisualStyleBackColor = true;
             this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
             // 
-            // btn_Top_Update_WorldCenter
-            // 
-            this.btn_Top_Update_WorldCenter.Location = new System.Drawing.Point(237, 347);
-            this.btn_Top_Update_WorldCenter.Name = "btn_Top_Update_WorldCenter";
-            this.btn_Top_Update_WorldCenter.Size = new System.Drawing.Size(120, 33);
-            this.btn_Top_Update_WorldCenter.TabIndex = 12;
-            this.btn_Top_Update_WorldCenter.Text = "更新世界中心";
-            this.btn_Top_Update_WorldCenter.UseVisualStyleBackColor = true;
-            this.btn_Top_Update_WorldCenter.Click += new System.EventHandler(this.btn_Top_Update_WorldCenter_Click);
-            // 
-            // btn_Btm_Update_WorldCenter
-            // 
-            this.btn_Btm_Update_WorldCenter.Location = new System.Drawing.Point(237, 347);
-            this.btn_Btm_Update_WorldCenter.Name = "btn_Btm_Update_WorldCenter";
-            this.btn_Btm_Update_WorldCenter.Size = new System.Drawing.Size(120, 33);
-            this.btn_Btm_Update_WorldCenter.TabIndex = 12;
-            this.btn_Btm_Update_WorldCenter.Text = "更新世界中心";
-            this.btn_Btm_Update_WorldCenter.UseVisualStyleBackColor = true;
-            this.btn_Btm_Update_WorldCenter.Click += new System.EventHandler(this.btn_Btm_Update_WorldCenter_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(237, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 33);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "前往世界中心";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(238, 308);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 33);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "前往世界中心";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // Form_Learn_Global_Center
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -626,7 +618,6 @@
         private System.Windows.Forms.Button btn_Btm_Module_Update_Pos;
         private System.Windows.Forms.Button btn_Execute_Both_Module;
         private System.Windows.Forms.ToolStripStatusLabel tssl_Top_Module_Status;
-        private System.Windows.Forms.ToolStripStatusLabel tssl_Btm_Module_Status;
         private System.Windows.Forms.ToolStripStatusLabel tssl_Save_Date;
         private System.Windows.Forms.GroupBox gpb_WorldCenter;
         private System.Windows.Forms.Label lbl_Top_WorldCenter_PosX;
@@ -641,7 +632,7 @@
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.Button btn_Top_Update_WorldCenter;
         private System.Windows.Forms.Button btn_Btm_Update_WorldCenter;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_Go_Top_WorldCenter_Pos;
+        private System.Windows.Forms.Button btn_Go_Btm_WorldCenter_Pos;
     }
 }

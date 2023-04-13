@@ -34,7 +34,7 @@
             // 
             // gpb_Content
             // 
-            this.gpb_Content.Location = new System.Drawing.Point(12, 62);
+            this.gpb_Content.Location = new System.Drawing.Point(12, 65);
             this.gpb_Content.Name = "gpb_Content";
             this.gpb_Content.Size = new System.Drawing.Size(1358, 641);
             this.gpb_Content.TabIndex = 0;

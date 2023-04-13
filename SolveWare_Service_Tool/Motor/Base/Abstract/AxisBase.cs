@@ -300,7 +300,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             bool result = false;
             if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
             {
-                errorReport += "不安全运动";
+                errorReport += (SafeKeeper as SafeKeeper).ErrorMsg;
                 return true;
             }
             if (mtrTable.pIsInhibitToHome == null) return false;
@@ -327,6 +327,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
             if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) 
             {
+                errorReport += (SafeKeeper as SafeKeeper).ErrorMsg;
                 return true; 
             }
             if (mtrTable.pIsInhibitToMove == null) return false;

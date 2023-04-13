@@ -19,7 +19,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
     {
         public bool Is_Safe_To_Move(MtrSafe mtrSafe)
         {
-            string errMsg = string.Empty;
+            errorMsg = string.Empty;
             bool isDangerous = false;
             try
 			{
@@ -43,7 +43,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
                         if (isDangerous)
                         {
-                            errMsg += $"马达 {safeItem.MotorName} 现在位置 {axis.Get_CurUnitPos()} mm  {safeItem.Operand} {safeItem.Pos} mm";
+                            errorMsg += $"马达 {safeItem.MotorName} 现在位置 {axis.Get_CurUnitPos()} mm  {safeItem.Operand} {safeItem.Pos} mm";
                             break;
                         }
                     }
@@ -59,7 +59,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
                         if (isDangerous)
                         {
-                            errMsg += $"IO {safeItem.IOName} 在危险触发模式";
+                            errorMsg += $"IO {safeItem.IOName} 在危险触发模式";
                             break;
                         }
                     }
@@ -68,7 +68,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 			}
 			catch (Exception ex)
 			{
-                errMsg += ex.Message;
+                errorMsg += ex.Message;
 			}
 
             return isDangerous == false ? true : false; 

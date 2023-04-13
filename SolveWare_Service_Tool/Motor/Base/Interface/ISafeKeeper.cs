@@ -10,6 +10,5 @@ namespace SolveWare_Service_Tool.Motor.Base.Interface
     public interface ISafeKeeper
     {
         bool Is_Safe_To_Move(MtrSafe mtrSafe);
-
     }
 }

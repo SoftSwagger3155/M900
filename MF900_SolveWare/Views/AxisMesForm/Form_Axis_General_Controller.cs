@@ -64,5 +64,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             SolveWare.Core.MMgr.Do_Homing();
         }
+
+      
     }
 }

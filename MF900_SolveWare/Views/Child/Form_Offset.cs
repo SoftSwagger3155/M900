@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using MF900_SolveWare.Safe;
+using SolveWare_Service_Core.Base.Interface;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,13 @@ namespace MF900_SolveWare.Views.Child
         public void Setup<TObj>(TObj obj)
         {
            
+        }
+
+        private void btn_Top_Safe_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_Safe_Protection();
+            view.Setup(new Data_Safe());
+            (view as Form).Show();
         }
     }
 }

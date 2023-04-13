@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace SolveWare_Service_Core.General
 {
@@ -38,6 +39,8 @@ namespace SolveWare_Service_Core.General
             else if (errorCode == ErrorCodes.NoError)
             {
                 notPass = false;
+                msg = string.Empty;
+                return notPass;
             }
             else if (errorCode == ErrorCodes.NoError && SolveWare.Core.MMgr.IsStop) 
             {
