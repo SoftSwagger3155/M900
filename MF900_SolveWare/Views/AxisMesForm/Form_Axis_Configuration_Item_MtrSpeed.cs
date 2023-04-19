@@ -5,6 +5,7 @@ using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Data;
 using SolveWare_Service_Utility.Extension;
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -156,7 +157,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             string errMsg = string.Empty;
             int errorCode = ErrorCodes.NoError;
             SpeedSeting setting = GetMainSpeedSetting();
-
+            Stopwatch sw = Stopwatch.StartNew();
 
             Task task = Task.Run(() =>
             {
@@ -164,17 +165,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if( Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (setting == null)
                         {
                             errMsg += "请选择一个使用项";
                             break;
                         }
-
+                       sw.Restart();
+                        SetStatus();
                         errorCode  = axis.HomeMove(setting) ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
                         errMsg += errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode);
 
@@ -184,45 +181,36 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-
-                CheckErrMsg(errMsg);
+                finally
+                {
+                    SetSpentTime(sw);
+                    SetStatus(false, errorCode);  
+                }
+               SolveWare.Core.ShowMsg(errMsg);
             });
         }
-        private bool Check_Machine_Status()
-        {
-            if (SolveWare.Core.MMgr.Status == Machine_Status.Busy) return false;
-            if (SolveWare.Core.MMgr.Status == Machine_Status.Initialising) return false;
-            if (SolveWare.Core.MMgr.Status == Machine_Status.SingleCycle) return false;
-            if (SolveWare.Core.MMgr.Status == Machine_Status.Auto) return false;
 
-            SolveWare.Core.MMgr.SetStatus(Machine_Status.Busy);
-            return true;
-        }
-
-        private bool CheckErrMsg(string msg)
+        private void SetSpentTime(Stopwatch sw)
         {
-            if(string.IsNullOrEmpty(msg)) 
+            Thread.Sleep(1);
+            if (lbl_TimeSpent.InvokeRequired)
             {
-                SetStatus(msg);
-                SolveWare.Core.MMgr.SetStatus(Machine_Status.Idle);
-                return true; 
-            }
-            else
-            {
-                SetStatus(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, true, true);
-                SolveWare.Core.MMgr.SetStatus(Machine_Status.Error);
-                return false;
+                this.BeginInvoke(new Action(() =>
+                {
+                    lbl_TimeSpent.Text = $"{sw.Elapsed.TotalSeconds.ToString("F3")} 秒";
+                }));
             }
         }
-
-        private void SetStatus(string msg)
+        private void SetStatus(bool isBegining = true, int errorCode = 0)
         {
-            JobStatus status = msg != string.Empty ? JobStatus.Fail : JobStatus.Done;
+            JobStatus jStatus = JobStatus.Unknown;
+            if (isBegining) jStatus = JobStatus.Active;
+            else jStatus = errorCode == ErrorCodes.NoError ? JobStatus.Done: JobStatus.Fail;
+
             Thread.Sleep(1);
             this.BeginInvoke(new Action(() =>
             {
-                this.lbl_Status.SetStatus(status);
+                this.lbl_Status.SetStatus(jStatus);
 
             }));
         }
@@ -233,11 +221,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
             {
                 do
                 {
-                    if (Check_Machine_Status() == false)
-                    {
-                        errMsg += "机器状态不允许此时按钮运行";
-                        break;
-                    }
 
                     var result = MessageBox.Show("确认设立 此位置 设为原点?", "提问", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No) { return; }
@@ -249,7 +232,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             {
                 errMsg += ex.Message;
             }
-            CheckErrMsg(errMsg);
+            SolveWare.Core.ShowMsg(errMsg);
         }
 
         private void btn_Jog_Negative_MouseDown(object sender, MouseEventArgs e)
@@ -383,7 +366,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             {
                 errMsg += ex.Message;
             }
-            CheckErrMsg(errMsg);
+            SolveWare.Core.ShowMsg(errMsg);
         }
 
         private void btn_Relative_Negative_Click(object sender, EventArgs e)
@@ -398,11 +381,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (speed == null)
                         {
                             errMsg += "请选择一个使用项";
@@ -414,6 +392,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
+                        SetStatus();
                         errorCode = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
                         errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
 
@@ -423,7 +402,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-                CheckErrMsg(errMsg);
+                finally
+                {
+                    SetStatus(false, errorCode);
+                }
+                SolveWare.Core.ShowMsg(errMsg);
             }); 
         }
 
@@ -439,11 +422,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (speed == null)
                         {
                             errMsg += "请选择一个使用项";
@@ -455,6 +433,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
+                        SetStatus();
                         errorCode = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
                         errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
 
@@ -464,7 +443,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-                CheckErrMsg(errMsg);
+                finally
+                {
+                    SetStatus(false, errorCode);
+                }
+                SolveWare.Core.ShowMsg(errMsg);
             });
         }
 
@@ -480,11 +463,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (speed == null)
                         {
                             errMsg += "请选择一个使用项";
@@ -496,6 +474,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
+                        SetStatus();
                         errorCode = axis.MoveTo( double.Parse(txb_AbsolutePos.Text), speed) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
                         errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
 
@@ -505,7 +484,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-                CheckErrMsg(errMsg);
+                finally
+                {
+                    SetStatus(false, errorCode);
+                }
+                SolveWare.Core.ShowMsg(errMsg);
             });
         }
         private SpeedSeting GetMainSpeedSetting()
@@ -523,6 +506,9 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             DataBinding();
             lbl_ErrorReport.Visible = false;
+
+            if (axis != null)
+                this.ckb_Is_Jog_Monitoring.Checked = axis.Is_Jog_Monitoring;
         }
 
         private void Form_Axis_Configuration_Item_MtrSpeed_FormClosing(object sender, FormClosingEventArgs e)
@@ -546,11 +532,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (string.IsNullOrEmpty(txb_RelayCount.Text))
                         {
                             errMsg += "来回次数栏位不得为空";
@@ -586,15 +567,17 @@ namespace MF900_SolveWare.Views.AxisMesForm
                                 errMsg = ErrorCodes.GetErrorDescription(errorCode);
                                 break;
                             }
+
                             if (relayStop) break;
                             Thread.Sleep(1);
-                            int outputCount = i + 1;
-                            string timeSpent = sw.Elapsed.TotalSeconds.ToString("F3");
-                            this.BeginInvoke(new Action(() =>
-                            {
-                                this.lbl_RelayCount.Text = $"{outputCount}";
-                                this.lbl_TimeSpent.Text = $"{timeSpent}";
-                            }));
+                            //int outputCount = i + 1;
+                            //string timeSpent = sw.Elapsed.TotalSeconds.ToString("F3");
+
+                            //this.Invoke(new Action(() =>
+                            //{
+                            //    this.lbl_RelayCount.Text = $"{outputCount}";
+                            //    this.lbl_TimeSpent.Text = $"{timeSpent}";
+                            //}));
                         }
 
                     } while (false);
@@ -603,8 +586,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-
-                CheckErrMsg(errMsg);
+                finally
+                {
+                    SetStatus(false, errorCode);
+                }
+                SolveWare.Core.ShowMsg(errMsg); 
             });
 
 
@@ -685,6 +671,12 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void btn_Enable_Servo_Click(object sender, EventArgs e)
         {
             this.axis.Set_Servo(true);
+        }
+
+        private void ckb_Is_Jog_Monitoring_CheckedChanged(object sender, EventArgs e)
+        {
+            if(axis != null)
+                axis.Is_Jog_Monitoring = (sender as CheckBox).Checked;
         }
     }
 }

@@ -6,6 +6,7 @@ using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.IO.Base.Abstract;
 using SolveWare_Service_Tool.IO.Definition;
 using SolveWare_Service_Tool.Motor.Data;
+using SolveWare_Service_Utility.Extension;
 using Sunny.UI;
 using System;
 using System.Collections.Generic;
@@ -101,6 +102,30 @@ namespace MF900_SolveWare.Views.Child
             string iO = (sender as ComboBox).SelectedItem as string;
             if (string.IsNullOrEmpty(iO)) return;
             data.IOName = iO;
+        }
+
+        private void btn_Execute_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty; 
+            try
+            {
+                do
+                {
+
+                    if (string.IsNullOrEmpty(data.IOName) ||
+                       string.IsNullOrEmpty(data.TriggerMode) ||
+                       string.IsNullOrEmpty(data.IOType)) { msg += ErrorCodes.GetErrorDescription(ErrorCodes.NoRelevantData);  break; }
+
+                    int errorCode = data.IOName.IOFunction(data.TriggerMode);
+                    if(errorCode.NotPass(ref msg)) { break; }
+
+                } while (false);
+            }
+            catch (Exception ex)
+            {
+                msg += ex.Message;
+            }
+            SolveWare.Core.ShowMsg(msg);
         }
     }
 }

@@ -53,8 +53,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         private int StartHome(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;
+            string msg = string.Empty;
             try
             {
                 do
@@ -67,37 +66,44 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);  
             }
             return errorCode;
         }
         private int HomeTable(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;
+            errorCode = ErrorCodes.NoError;
+            string msg = string.Empty;
+
             try
             {
                 do
                 {
                      errorCode = ResourceKey.Motor_Table.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-
-                    if (errorCode != ErrorCodes.NoError)
-                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                    if (errorCode.NotPass(ref msg, ResourceKey.Motor_Table.GetAxisBase().ErrorReport)) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
             }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
+            }
+            
             return errorCode;
         }
         private int SetHomeTableDone(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
+            string msg = string.Empty;
             sender.Info = this.Name;
             try
             {
@@ -111,7 +117,11 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
             }
             
             return errorCode;
@@ -119,8 +129,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         private int EndHome(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;
+            string msg = string.Empty;
             try
             {
                 do
@@ -133,8 +142,13 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
             }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
+            }
+
             return errorCode;
         }
 
@@ -142,7 +156,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
 
         private int OnErrorHanding(StateBase sender)
         {
-            return 0;
+            return sender.ErrorCode;
         }
 
      

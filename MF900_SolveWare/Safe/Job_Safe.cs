@@ -120,7 +120,13 @@ namespace MF900_SolveWare.Safe
             if(!isPass) { errorMsg += "顺序安排错误"; }
             return isPass;
         }
-
+        public static void SortDetailDatas(Data_Safe data)
+        {
+            var tempOrders = data.SafeDetailDatas.AsEnumerable().OrderBy(x => x.Priority);
+            var temps = tempOrders.ToList();
+            data.SafeDetailDatas.Clear();
+            data.SafeDetailDatas.AddRange(temps);          
+         }
 
         public static int ExecuteDetailData(SafeDetailDataBase data)
         {
@@ -130,7 +136,10 @@ namespace MF900_SolveWare.Safe
                 string mtr = (data as DetailData_Safe_Pos).MotorName;
                 double pos = (data as DetailData_Safe_Pos).Pos;
 
-                errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = mtr, Pos = pos });
+                if (mtr.GetUnitPos() > pos)
+                {
+                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = mtr, Pos = pos });
+                }
             }
             else
             {

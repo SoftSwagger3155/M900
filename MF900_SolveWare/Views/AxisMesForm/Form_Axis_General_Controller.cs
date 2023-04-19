@@ -65,6 +65,9 @@ namespace MF900_SolveWare.Views.AxisMesForm
             SolveWare.Core.MMgr.Do_Homing();
         }
 
-      
+        private void btn_Stop_Click(object sender, EventArgs e)
+        {
+            SolveWare.Core.MMgr.Stop();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using SolveWare_Service_Core;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Extension;
 using System;
@@ -17,23 +18,38 @@ namespace SolveWare_Service_Utility.Common
             int errorCode = ErrorCodes.NoError;
             try
             {
-                List<int> errors = new List<int>();
-                List<Task> tasks = new List<Task>();
-
-                foreach (var info in motions.ToList())
+                do
                 {
-                    Task task = Task.Run(() =>
+                    List<Report_Info> infos = new List<Report_Info>();
+                    List<Task> tasks = new List<Task>();
+
+                    foreach (var info in motions.ToList())
                     {
-                        int err = info.Motor_Name.GetAxisBase().MoveTo(info.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
-                        errors.Add(err);
+                        Task task = Task.Run(() =>
+                        {
+                            int err = info.Motor_Name.GetAxisBase().MoveTo(info.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
+                            infos.Add(new Report_Info { ErrorCode = err, ErrorMsg = $"{ErrorCodes.GetErrorDescription(err)} +{info.Motor_Name.GetAxisBase().ErrorReport}" });
+                        });
+                        tasks.Add(task);
+                    }
+                 
+                    Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
+                    {
+                        string msg = string.Empty;
+                        infos.ForEach(x =>
+                        {
+                            if (x.ErrorCode != ErrorCodes.NoError)
+                                msg += x.ErrorMsg + "\r\n";
+                        });
+
+                        if(msg != string.Empty)
+                        {
+                            SolveWare.Core.ShowMsg(msg);
+                        }
                     });
-                    tasks.Add(task);
-                }
 
-                Task.WaitAll(tasks.ToArray());
+                } while (false);
 
-                int foundError = errors.FindIndex(x => x != ErrorCodes.NoError);
-                errorCode = foundError >= 0 ? ErrorCodes.MotionFunctionError : ErrorCodes.NoError;
             }
             catch 
             {
@@ -47,23 +63,7 @@ namespace SolveWare_Service_Utility.Common
             int errorCode = ErrorCodes.NoError;
             try
             {
-                List<int> errors = new List<int>();
-                List<Task> tasks = new List<Task>();
-
-                Task task = new Task(() =>
-                {
-                    int err = motion.Motor_Name.GetAxisBase().MoveTo(motion.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
-                    errors.Add(err);
-                });
-
-                tasks.Add(task);
-                tasks.ForEach(x => { x.Start(); });
-                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
-                {
-                    int foundError = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = foundError >= 0 ? ErrorCodes.MotionFunctionError : ErrorCodes.NoError;
-                });
-
+                errorCode = motion.Motor_Name.GetAxisBase().MoveTo(motion.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
             }
             catch
             {
@@ -73,7 +73,7 @@ namespace SolveWare_Service_Utility.Common
             return errorCode;
         }
     }
-    public class Info_Motion
+    public struct Info_Motion
     {
         public string Motor_Name { get; set; }
         public double Pos { get; set; }

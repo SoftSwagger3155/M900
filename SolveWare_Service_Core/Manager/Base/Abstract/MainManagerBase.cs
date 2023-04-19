@@ -317,5 +317,7 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
             return allItems;
         }
+
+        public abstract void Stop();
     }
 }

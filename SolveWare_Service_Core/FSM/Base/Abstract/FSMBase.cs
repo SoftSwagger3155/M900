@@ -62,6 +62,11 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 });
 
                 tasks.ForEach(task => { task.Start(); });
+                Task.Factory.ContinueWhenAny(tasks.ToArray(), act =>
+                {
+                    int index = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
+                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
+                });
                 Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                 {
                     int index = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
@@ -114,15 +119,27 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 });
 
                 tasks.ForEach(task => { task.Start(); });
+                Task.Factory.ContinueWhenAny(tasks.ToArray(), act =>
+                {
+                    int index = errors.FindIndex(x => x != ErrorCodes.NoError);
+                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
+                });
                 Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                 {
+                    bool showErrMsg = false;
                     int index = errors.FindIndex(x => x != ErrorCodes.NoError);
                     errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
 
                     errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+                    if (errorCode != ErrorCodes.NoError)
+                    {
+                        showErrMsg = true;
+                        this.Stations.ToList().ForEach(stn => errorMsg += $"\r\n{(stn as FSMStationBase).ErrorMsg}");
+                    }
+
 
                     string status = errorCode == ErrorCodes.NoError ? "成功" : "失败";
-                    SolveWare.Core.MMgr.Infohandler.LogMessage($"FSM 运行结束, 结果 {status}", true);
+                    SolveWare.Core.MMgr.Infohandler.LogMessage($"FSM 运行结束, 结果 {status}", true, showErrMsg);
                 });
 
 

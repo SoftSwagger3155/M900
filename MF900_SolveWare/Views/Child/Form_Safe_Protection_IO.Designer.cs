@@ -32,11 +32,12 @@
             this.ckb_Selected = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cmb_Selector_IO = new System.Windows.Forms.ComboBox();
-            this.cmb_Selector_IOType = new System.Windows.Forms.ComboBox();
-            this.cmb_Selector_TriggerMode = new System.Windows.Forms.ComboBox();
             this.txb_DelayTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmb_Selector_TriggerMode = new System.Windows.Forms.ComboBox();
+            this.cmb_Selector_IOType = new System.Windows.Forms.ComboBox();
+            this.cmb_Selector_IO = new System.Windows.Forms.ComboBox();
+            this.btn_Execute = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +73,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_Execute);
             this.panel1.Controls.Add(this.txb_DelayTime);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cmb_Selector_TriggerMode);
@@ -85,40 +87,10 @@
             this.panel1.Size = new System.Drawing.Size(1000, 50);
             this.panel1.TabIndex = 3;
             // 
-            // cmb_Selector_IO
-            // 
-            this.cmb_Selector_IO.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmb_Selector_IO.FormattingEnabled = true;
-            this.cmb_Selector_IO.Location = new System.Drawing.Point(350, 8);
-            this.cmb_Selector_IO.Name = "cmb_Selector_IO";
-            this.cmb_Selector_IO.Size = new System.Drawing.Size(273, 28);
-            this.cmb_Selector_IO.TabIndex = 4;
-            this.cmb_Selector_IO.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_IO_SelectionChangeCommitted);
-            // 
-            // cmb_Selector_IOType
-            // 
-            this.cmb_Selector_IOType.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmb_Selector_IOType.FormattingEnabled = true;
-            this.cmb_Selector_IOType.Location = new System.Drawing.Point(219, 8);
-            this.cmb_Selector_IOType.Name = "cmb_Selector_IOType";
-            this.cmb_Selector_IOType.Size = new System.Drawing.Size(121, 28);
-            this.cmb_Selector_IOType.TabIndex = 5;
-            this.cmb_Selector_IOType.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_IOType_SelectionChangeCommitted);
-            // 
-            // cmb_Selector_TriggerMode
-            // 
-            this.cmb_Selector_TriggerMode.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmb_Selector_TriggerMode.FormattingEnabled = true;
-            this.cmb_Selector_TriggerMode.Location = new System.Drawing.Point(629, 7);
-            this.cmb_Selector_TriggerMode.Name = "cmb_Selector_TriggerMode";
-            this.cmb_Selector_TriggerMode.Size = new System.Drawing.Size(121, 28);
-            this.cmb_Selector_TriggerMode.TabIndex = 6;
-            this.cmb_Selector_TriggerMode.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_TriggerMode_SelectionChangeCommitted);
-            // 
             // txb_DelayTime
             // 
             this.txb_DelayTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txb_DelayTime.Location = new System.Drawing.Point(869, 11);
+            this.txb_DelayTime.Location = new System.Drawing.Point(808, 11);
             this.txb_DelayTime.Name = "txb_DelayTime";
             this.txb_DelayTime.Size = new System.Drawing.Size(85, 25);
             this.txb_DelayTime.TabIndex = 7;
@@ -128,11 +100,51 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(802, 15);
+            this.label2.Location = new System.Drawing.Point(741, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 15);
             this.label2.TabIndex = 8;
             this.label2.Text = "延迟/ms";
+            // 
+            // cmb_Selector_TriggerMode
+            // 
+            this.cmb_Selector_TriggerMode.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_TriggerMode.FormattingEnabled = true;
+            this.cmb_Selector_TriggerMode.Location = new System.Drawing.Point(603, 8);
+            this.cmb_Selector_TriggerMode.Name = "cmb_Selector_TriggerMode";
+            this.cmb_Selector_TriggerMode.Size = new System.Drawing.Size(121, 28);
+            this.cmb_Selector_TriggerMode.TabIndex = 6;
+            this.cmb_Selector_TriggerMode.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_TriggerMode_SelectionChangeCommitted);
+            // 
+            // cmb_Selector_IOType
+            // 
+            this.cmb_Selector_IOType.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_IOType.FormattingEnabled = true;
+            this.cmb_Selector_IOType.Location = new System.Drawing.Point(219, 9);
+            this.cmb_Selector_IOType.Name = "cmb_Selector_IOType";
+            this.cmb_Selector_IOType.Size = new System.Drawing.Size(121, 28);
+            this.cmb_Selector_IOType.TabIndex = 5;
+            this.cmb_Selector_IOType.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_IOType_SelectionChangeCommitted);
+            // 
+            // cmb_Selector_IO
+            // 
+            this.cmb_Selector_IO.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_IO.FormattingEnabled = true;
+            this.cmb_Selector_IO.Location = new System.Drawing.Point(344, 9);
+            this.cmb_Selector_IO.Name = "cmb_Selector_IO";
+            this.cmb_Selector_IO.Size = new System.Drawing.Size(254, 28);
+            this.cmb_Selector_IO.TabIndex = 4;
+            this.cmb_Selector_IO.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_IO_SelectionChangeCommitted);
+            // 
+            // btn_Execute
+            // 
+            this.btn_Execute.Location = new System.Drawing.Point(904, 8);
+            this.btn_Execute.Name = "btn_Execute";
+            this.btn_Execute.Size = new System.Drawing.Size(75, 33);
+            this.btn_Execute.TabIndex = 9;
+            this.btn_Execute.Text = "执行";
+            this.btn_Execute.UseVisualStyleBackColor = true;
+            this.btn_Execute.Click += new System.EventHandler(this.btn_Execute_Click);
             // 
             // Form_Safe_Protection_IO
             // 
@@ -161,5 +173,6 @@
         private System.Windows.Forms.ComboBox cmb_Selector_TriggerMode;
         private System.Windows.Forms.ComboBox cmb_Selector_IOType;
         private System.Windows.Forms.ComboBox cmb_Selector_IO;
+        private System.Windows.Forms.Button btn_Execute;
     }
 }

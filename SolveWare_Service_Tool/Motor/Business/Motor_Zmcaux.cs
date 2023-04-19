@@ -27,6 +27,7 @@ namespace SolveWare_Service_Tool.Motor.Business
         {
             SetSafeKeeper(new SafeKeeper());
             this.simulation = simulation;
+            this.errorReport = string.Empty;
         }
 
         public override bool DoAvoidDangerousPosAction()
@@ -70,6 +71,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             {
                 float tempPos = 0;
                 Dll_Zmcaux.ZAux_Direct_GetDpos(Handler, mtrTable.AxisNo, ref tempPos);
+                //Dll_Zmcaux.ZAux_Direct_GetMpos(Handler, mtrTable.AxisNo, ref tempPos);
                 position = tempPos; //CurrentPulse * mtrTable.UnitPerRevolution / mtrTable.PulsePerRevolution;
             }
 
@@ -79,14 +81,14 @@ namespace SolveWare_Service_Tool.Motor.Business
                 position *= -1;
             }
 
-            if (is_Joging_Mission && !is_Home_Mission)
+            if (Is_Jog_Monitoring && is_Jog_Mission)
             {
-                if(position < mtrTable.MinDistance_SoftLimit)
+                if (position < mtrTable.MinDistance_SoftLimit)
                 {
                     Stop();
                     SolveWare.Core.MMgr.Infohandler.LogMessage($"触发 负软限位 {mtrTable.MinDistance_SoftLimit} mm", true);
                 }
-                if(position > mtrTable.MaxDistance_SoftLimit)
+                if (position > mtrTable.MaxDistance_SoftLimit)
                 {
                     Stop();
                     SolveWare.Core.MMgr.Infohandler.LogMessage($"触发 正软限位 {mtrTable.MaxDistance_SoftLimit} mm", true);
@@ -148,124 +150,182 @@ namespace SolveWare_Service_Tool.Motor.Business
             Stopwatch sw = Stopwatch.StartNew();
             errorReport = string.Empty;
             is_Home_Mission = true;
+            float minVel = 0;
+            float maxVel = 0;
+            float acc = 0;
+            float dec = 0;
+            int errorCode = ErrorCodes.NoError;
 
-            try
+
+
+            //先检查安全问题
+            if (IsProhibitToHome())
             {
+                errorReport += "不安全复位";
+                return isHomeSuccessful;
+            }
 
-                //先检查安全问题
-                if (IsProhibitToHome())
-                {
-                    errorReport += "不安全复位";
-                    return isHomeSuccessful;
-                }
-
-                //模拟状态
-                if (Simulation)
-                {
-                    sw.Restart();
-                    MtrTable.NewPos = 0;
-                    MoveTo(0);
-                    hasHome = true;
-                    isHomeSuccessful = true;
-                    TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-                    return isHomeSuccessful;
-                }
-
-                //设置正负限位
-                if (mtrTable.SetLimitModeBeforeHoming)
-                {
-                    Dll_Zmcaux.ZAux_Direct_SetRevIn(Handler, mtrTable.AxisNo, mtrTable.Param_Rev_Limit); //设置负限位
-                    Dll_Zmcaux.ZAux_Direct_SetFwdIn(Handler, mtrTable.AxisNo, mtrTable.Param_Fwd_Limit); //设置正限位
-                    Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Rev_Limit, ref revStatus);
-                }
-
-                // 零点复位
-                if (mtrTable.ZeroHoming)
-                {
-                    return ZeroHoming();
-                }
-
-                //读取原点
+            //模拟状态
+            if (Simulation)
+            {
                 sw.Restart();
-                Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
-
-                //先往原点方向一直走，直到到达限位
-                if (homeStatus != 0)
-                    Jog(false);
-
-                //回零方式判断
-                DateTime st = DateTime.Now;
-                while (true)
-                {
-                    Thread.Sleep(1);
-                    Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
-                    if (homeStatus == 0)
-                    {
-                        homemode = 4;
-                        Stop();
-                        break;
-                    }
-                    if (IsHomeTimeOut(st))
-                    {
-                        isTimeOut = true;
-                        break;
-                    }
-                    Thread.Sleep(10);
-                }
-
-                if (isTimeOut)
-                {
-                    errorReport += "运动超时";
-                    Stop();
-                    hasHome = false;
-                    return isHomeSuccessful;
-                }
-
-                //执行回原点
-                Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 1f);
-                Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, homemode);
-
-                //等待停止
-                st = DateTime.Now;
-                while (true)
-                {
-                    if (!Get_MovingStatus()) break;
-                    if (IsHomeTimeOut(st))
-                    {
-                        errorReport += "运动超时";
-                        isTimeOut = true;
-                        break;
-                    }
-                }
-                if (isTimeOut)
-                {
-                    errorReport += "运动超时";
-                    Stop();
-                    hasHome = false;
-                    return isHomeSuccessful;
-                }
-                Thread.Sleep(50);
-
-                if (HomeMoveTo(mtrTable.MoveOutGapAfterHoming) == false)
-                {
-                    errorReport += $"复位后 位移{mtrTable.MoveOutGapAfterHoming} mm 失败";
-                    Stop();
-                    return isHomeSuccessful;
-                }
-                Thread.Sleep(50);
-
-                Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
-                Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
-                //Dll_Zmcaux.ZAux_BusCmd_Datum(Handler, (uint)mtrTable.AxisNo, 35);
-
+                MtrTable.NewPos = 0;
+                MoveTo(0);
+                hasHome = true;
+                isHomeSuccessful = true;
                 TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
+                return isHomeSuccessful;
             }
-            finally
+
+            //设置正负限位
+            if (mtrTable.SetLimitModeBeforeHoming)
             {
-
-                is_Home_Mission = false;
+                Dll_Zmcaux.ZAux_Direct_SetRevIn(Handler, mtrTable.AxisNo, mtrTable.Param_Rev_Limit); //设置负限位
+                Dll_Zmcaux.ZAux_Direct_SetFwdIn(Handler, mtrTable.AxisNo, mtrTable.Param_Fwd_Limit); //设置正限位
+                Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Rev_Limit, ref revStatus);
             }
 
+            // 零点复位
+            if (mtrTable.ZeroHoming)
+            {
+                return ZeroHoming();
+            }
+
+            //执行回原点
+            if (mtrTable.IsConvertedToMMperSec)
+            {
+                Conver_To_Jog_MMPerSec(ref minVel, ref maxVel, ref acc, ref dec);
+            }
+            else
+            {
+                SpeedSeting speed = this.mtrSpeed.SpeedSettings.Find(x => x.Name == ConstantProperty.SpeedSetting_Home);
+
+                minVel = (float)speed.Min_Velocity;
+                maxVel = (float)speed.Max_Velocity;
+                acc = (float)speed.Acceleration;
+                dec = (float)speed.Deceleration;
+            }
+
+            errorCode = SetSpeedParameters(minVel, maxVel, acc, dec, false) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+            if (errorCode != ErrorCodes.NoError)
+            {
+                errorReport += "请定速度 失败";
+                return false;
+            }
+
+            sw.Restart();
+            Dll_Zmcaux.ZAux_Direct_SetDatumIn(Handler, mtrTable.AxisNo, mtrTable.Param_Home_IO);
+            //执行回原点
+            Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 5f);
+            Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, 4);
+
+            Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 0.5f);
+            Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, 4);
+
+            Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
+            Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
+
+            while (true)
+            {
+                if (!Get_MovingStatus()) break;
+                if (IsHomeTimeOut(sw))
+                {
+                    errorReport += "运动超时";
+                    isTimeOut = true;
+                    break;
+                }
+            }
+            if (isTimeOut)
+            {
+                errorReport += "运动超时";
+                Stop();
+                hasHome = false;
+                return isHomeSuccessful;
+            }
+            Thread.Sleep(50);
+            TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
+
+            #region 之前的Home版本
+            //    //读取原点
+            //    sw.Restart();
+            //    Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
+
+            //    //先往原点方向一直走，直到到达限位
+            //    if (homeStatus != 0)
+            //        Jog(false);
+
+            //    //回零方式判断               
+            //    while (true)
+            //    {
+            //        Thread.Sleep(1);
+            //        Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
+            //        if (homeStatus == 0)
+            //        {
+            //            homemode = 4;
+            //            Stop();
+            //            break;
+            //        }
+            //        if (IsHomeTimeOut(sw))
+            //        {
+            //            isTimeOut = true;
+            //            break;
+            //        }
+            //        Thread.Sleep(10);
+            //    }
+
+            //    if (isTimeOut)
+            //    {
+            //        errorReport += "运动超时";
+            //        Stop();
+            //        hasHome = false;
+            //        return isHomeSuccessful;
+            //    }
+
+            //    //执行回原点
+            //    Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 10f);
+            //    Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, homemode);
+
+            //    //等待停止
+            //    sw.Restart() ;
+            //    while (true)
+            //    {
+            //        if (!Get_MovingStatus()) break;
+            //        if (IsHomeTimeOut(sw))
+            //        {
+            //            errorReport += "运动超时";
+            //            isTimeOut = true;
+            //            break;
+            //        }
+            //    }
+            //    if (isTimeOut)
+            //    {
+            //        errorReport += "运动超时";
+            //        Stop();
+            //        hasHome = false;
+            //        return isHomeSuccessful;
+            //    }
+            //    Thread.Sleep(50);
+
+            //    if (HomeMoveTo(mtrTable.MoveOutGapAfterHoming) == false)
+            //    {
+            //        errorReport += $"复位后 位移{mtrTable.MoveOutGapAfterHoming} mm 失败";
+            //        Stop();
+            //        return isHomeSuccessful;
+            //    }
+            //    Thread.Sleep(50);
+
+            //    Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
+            //    Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
+            //    //Dll_Zmcaux.ZAux_BusCmd_Datum(Handler, (uint)mtrTable.AxisNo, 35);
+
+            //    TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
+            //}
+            //finally
+            //{
+
+            //    //is_Home_Mission = false;
+            //}
+            #endregion
 
             isHomeSuccessful = true;
             return isHomeSuccessful;
@@ -280,6 +340,12 @@ namespace SolveWare_Service_Tool.Motor.Business
             TimeSpent = "0.000";
             Stopwatch sw = Stopwatch.StartNew();
             errorReport = string.Empty;
+            float minVel = 0;
+            float maxVel = 0;
+            float acc = 0;
+            float dec = 0;
+            int errorCode = ErrorCodes.NoError;
+            bool isTimeOut = false;
 
             if (IsProhibitToHome()) 
             {
@@ -314,52 +380,43 @@ namespace SolveWare_Service_Tool.Motor.Business
                 return ZeroHoming();
             }
 
-            sw.Restart();
-            Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
-
-            //先往原点方向一直走，直到到达限位
-            if (homeStatus != 0) //&& revStatus != 0)
-            {
-                this.Jog(false, speed);
-            }
-
-            sw.Restart();
-            bool isTimeOut = false;
-            //回零方式判断
-            while (true)  //IsMoving(axis)  resetStop
-            {
-                Thread.Sleep(1);
-                Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
-                if (homeStatus == 0)
-                {
-                    homemode = 4;
-                    Stop();
-                    break;
-                }
-                if (sw.ElapsedMilliseconds >= mtrTable.HomeTimeOut)
-                {
-                    isTimeOut = true;
-                    break;
-                }
-                Thread.Sleep(10);
-            }
-
-            if (isTimeOut )
-            {
-                errorReport += "运动超时";
-                Stop();
-                return isHomeSuccessful;
-            }
-
             //执行回原点
-            Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 1f);
-            Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, homemode);
-            //等待停止
-            DateTime st = DateTime.Now;
+            if (mtrTable.IsConvertedToMMperSec)
+            {
+                Conver_To_Jog_MMPerSec(ref minVel, ref maxVel, ref acc, ref dec);
+            }
+            else
+            {             
+                minVel = (float)speed.Min_Velocity;
+                maxVel = (float)speed.Max_Velocity;
+                acc = (float)speed.Acceleration;
+                dec = (float)speed.Deceleration;
+            }
+
+            errorCode = SetSpeedParameters(minVel, maxVel, acc, dec, false) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
+            if (errorCode != ErrorCodes.NoError)
+            {
+                errorReport += "请定速度 失败";
+             
+                return false;
+            }
+
+            sw.Restart();
+            Dll_Zmcaux.ZAux_Direct_SetDatumIn(Handler, mtrTable.AxisNo, mtrTable.Param_Home_IO);
+            //执行回原点
+            Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 5f);
+            Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, 4);
+
+            Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 0.5f);
+            Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, 4);
+
+            Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
+            Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
+
             while (true)
             {
                 if (!Get_MovingStatus()) break;
-                if (IsHomeTimeOut(st))
+                if (IsHomeTimeOut(sw))
                 {
                     errorReport += "运动超时";
                     isTimeOut = true;
@@ -374,21 +431,84 @@ namespace SolveWare_Service_Tool.Motor.Business
                 return isHomeSuccessful;
             }
             Thread.Sleep(50);
-
-            if (HomeMoveTo(mtrTable.MoveOutGapAfterHoming) == false)
-            {
-                errorReport += $"复位后 位移 {mtrTable.MoveOutGapAfterHoming} mm 失败";
-                Stop();
-                return isHomeSuccessful;
-            }
-            Thread.Sleep(50);
-
-
-            Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
-            Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
-            //Dll_Zmcaux.ZAux_BusCmd_Datum(Handler, (uint)mtrTable.AxisNo, 35);
-
             TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
+
+            #region 之前的Home版本
+            //sw.Restart();
+            //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
+
+            ////先往原点方向一直走，直到到达限位
+            //if (homeStatus != 0) //&& revStatus != 0)
+            //{
+            //    this.Jog(false, speed);
+            //}
+
+            //sw.Restart();
+            //bool isTimeOut = false;
+            ////回零方式判断
+            //while (true)  //IsMoving(axis)  resetStop
+            //{
+            //    Thread.Sleep(1);
+            //    Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.Param_Home_IO, ref homeStatus);
+            //    if (homeStatus == 0)
+            //    {
+            //        homemode = 4;
+            //        Stop();
+            //        break;
+            //    }
+            //    if (sw.ElapsedMilliseconds >= mtrTable.HomeTimeOut)
+            //    {
+            //        isTimeOut = true;
+            //        break;
+            //    }
+            //    Thread.Sleep(10);
+            //}
+
+            //if (isTimeOut )
+            //{
+            //    errorReport += "运动超时";
+            //    Stop();
+            //    return isHomeSuccessful;
+            //}
+
+            ////执行回原点
+            //Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 1f);
+            //Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, homemode);
+            ////等待停止
+            //sw.Restart();
+            //while (true)
+            //{
+            //    if (!Get_MovingStatus()) break;
+            //    if (IsHomeTimeOut(sw))
+            //    {
+            //        errorReport += "运动超时";
+            //        isTimeOut = true;
+            //        break;
+            //    }
+            //}
+            //if (isTimeOut)
+            //{
+            //    errorReport += "运动超时";
+            //    Stop();
+            //    hasHome = false;
+            //    return isHomeSuccessful;
+            //}
+            //Thread.Sleep(50);
+
+            //if (HomeMoveTo(mtrTable.MoveOutGapAfterHoming) == false)
+            //{
+            //    errorReport += $"复位后 位移 {mtrTable.MoveOutGapAfterHoming} mm 失败";
+            //    Stop();
+            //    return isHomeSuccessful;
+            //}
+            //Thread.Sleep(50);
+
+
+            //Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
+            //Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
+            ////Dll_Zmcaux.ZAux_BusCmd_Datum(Handler, (uint)mtrTable.AxisNo, 35);
+            #endregion
+
             isHomeSuccessful = true;
             return isHomeSuccessful;
         }
@@ -412,11 +532,10 @@ namespace SolveWare_Service_Tool.Motor.Business
             Set_Servo(true);
             return true;
         }
-        volatile bool is_Joging_Mission = false;
         public override void Jog(bool isPositive)
         {
             if (isMoving) return;
-            is_Joging_Mission = true;
+            is_Jog_Mission = true;
             //变量
             int error = 0;
             float minVel = 0;
@@ -424,11 +543,18 @@ namespace SolveWare_Service_Tool.Motor.Business
             float acc = 0;
             float dec = 0;
             int dir = 0;
-
+            string msg  = string.Empty;
             try
             {
                 do
                 {
+                    if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
+                    {
+                        msg += (SafeKeeper as SafeKeeper).ErrorMsg;
+                        errorReport += msg;
+                        break;
+                    }
+
                     if (mtrTable.IsConvertedToMMperSec)
                     {
                         Conver_To_Jog_MMPerSec(ref minVel, ref maxVel, ref acc, ref dec);
@@ -451,15 +577,17 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
             catch
             {
-                error = ErrorCodes.MotionFunctionError;
+                msg += ErrorCodes.MotionFunctionError;
+                errorReport += msg;
             }
-            if(error != ErrorCodes.NoError) SolveWare.Core.MMgr.Infohandler.LogMessage($"{Name} Jog 失败");
+
+            SolveWare.Core.ShowMsg(msg, true);
         }
         public override void Jog(bool isPositive, SpeedSeting speed)
 
         {
             if (isMoving) return;
-            this.is_Joging_Mission = true;  
+            is_Jog_Mission = true;  
             //变量
             int error = 0;
             float minVel = 0;
@@ -467,11 +595,19 @@ namespace SolveWare_Service_Tool.Motor.Business
             float acc = 0;
             float dec = 0;
             int dir = 0;
+            string msg = string.Empty;
 
             try
             {
                 do
                 {
+                    if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
+                    {
+                        msg += (SafeKeeper as SafeKeeper).ErrorMsg;
+                        errorReport += msg;
+                        break;
+                    }
+
                     if (mtrTable.IsConvertedToMMperSec)
                     {
                         Conver_To_Jog_MMPerSec(ref minVel, ref maxVel, ref acc, ref dec);
@@ -494,9 +630,10 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
             catch
             {
-                error = ErrorCodes.MotionFunctionError;
+                msg += ErrorCodes.GetErrorDescription(ErrorCodes.MotionFunctionError);
+                errorReport += msg;
             }
-            if (error != ErrorCodes.NoError) SolveWare.Core.MMgr.Infohandler.LogMessage($"{Name} Jog 失败");
+            SolveWare.Core.ShowMsg(msg, true);
         }
 
 
@@ -519,6 +656,7 @@ namespace SolveWare_Service_Tool.Motor.Business
         {
             bool isMoveSuccessful = false;
             DateTime st = DateTime.Now;
+            Stopwatch sw = Stopwatch.StartNew();    
 
             double tempPos = 0;
             //公式轴执行方式
@@ -586,11 +724,11 @@ namespace SolveWare_Service_Tool.Motor.Business
             Dll_Zmcaux.ZAux_Direct_SetUnits(Handler, mtrTable.AxisNo, (float)mtrTable.PulsePerRevolution / (float)mtrTable.UnitPerRevolution);
             //绝对位置
             Dll_Zmcaux.ZAux_Direct_Single_MoveAbs(Handler, mtrTable.AxisNo, (float)pos);
-            
+            sw.Reset();
             while(true)
             {
                 if (!Get_MovingStatus()) break;
-                if (IsMoveTimeOut(st))
+                if (IsMoveTimeOut(sw))
                 {
                     Stop();
                     return isMoveSuccessful;
@@ -604,7 +742,7 @@ namespace SolveWare_Service_Tool.Motor.Business
         {
             //变量
             bool isMoveSuccessful = false;
-            DateTime st = DateTime.Now;
+            Stopwatch sw = Stopwatch.StartNew();
             double tempPos = 0;
 
             //公式轴执行方式
@@ -656,6 +794,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 return true;
             }
 
+            sw.Restart();
             //实际执行
             double factor = MtrTable.MotorRealDirectionState == DirectionState.Negative && MtrTable.MotorDisplayDirectionState == DirectionState.Positive ||
                                       MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
@@ -671,7 +810,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             while (true)
             {
                 if (!Get_MovingStatus()) break;
-                if (IsMoveTimeOut(st))
+                if (IsMoveTimeOut(sw))
                 {
                     Stop();
                     return isMoveSuccessful;
@@ -686,7 +825,6 @@ namespace SolveWare_Service_Tool.Motor.Business
         {
             //变量
             bool isMoveSuccessful = false;
-            DateTime st = DateTime.Now;
             double tempPos = 0;
             Stopwatch sw = Stopwatch.StartNew();
             errorReport = string.Empty;
@@ -773,7 +911,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 return true;
             }
 
-
+            sw.Restart();
             double factor = MtrTable.MotorRealDirectionState == DirectionState.Negative && MtrTable.MotorDisplayDirectionState == DirectionState.Positive ||
                                       MtrTable.MotorRealDirectionState == DirectionState.Positive && MtrTable.MotorDisplayDirectionState == DirectionState.Negative ? -1 : 1;
 
@@ -788,12 +926,11 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             //等待停止
             bool isTimeOut = false;
-            st = DateTime.Now;
             while (true)
             {
                 if (Simulation) break;
                 if (!Get_MovingStatus()) break;
-                if (IsHomeTimeOut(st))
+                if (IsHomeTimeOut(sw))
                 {
                     errorReport += "运动超时";
                     isTimeOut = true;
@@ -807,7 +944,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 return isMoveSuccessful;
             }
 
-            TimeSpent = (sw.ElapsedMilliseconds / 1000).ToString("F3");
+            TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
             isMoveSuccessful = true;
             return isMoveSuccessful;
         }
@@ -919,12 +1056,11 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             //等待停止
             bool isTimeOut = false;
-            st = DateTime.Now;
             while (true)
             {
                 if (Simulation) break;
                 if (!Get_MovingStatus()) break;
-                if (IsHomeTimeOut(st))
+                if (IsHomeTimeOut(sw))
                 {
                     errorReport += "运动超时";
                     isTimeOut = true;
@@ -977,7 +1113,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 this.IsMoving = false;
                 return;
             }
-            is_Joging_Mission = false;
+            is_Jog_Mission = false;
             /*         
           0 （缺省）取消当前运动
           1 取消缓冲的运动

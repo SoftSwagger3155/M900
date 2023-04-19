@@ -52,5 +52,10 @@ namespace SolveWare_Service_Core
 
             return true;
         }
+        public void ShowMsg(string msg, bool isError = false)
+        {
+            bool showMsg = !string.IsNullOrEmpty(msg);
+            this.mmgr.Infohandler.LogMessage(msg, showMsg, isError);
+        }
     }
 }

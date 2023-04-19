@@ -27,6 +27,7 @@ namespace MF900_SolveWare.Views.Child
         public Form_Learn_Global_Center()
         {
             InitializeComponent();
+            btn_Save_WorldCenter_Pos.Visible = true;
         }
         Job_GlobalWorldCenter job_GlobalWorld;
         Data_GlobalWorldCenter data_GlobalCenter;
@@ -94,17 +95,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
-            {
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            bool showMsg = !string.IsNullOrEmpty(msg);
-            SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
@@ -123,8 +114,7 @@ namespace MF900_SolveWare.Views.Child
             {
                 msg += ex.Message;
             }
-            bool showMsg = !string.IsNullOrEmpty(msg);
-            SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+           SolveWare.Core.ShowMsg(msg);
         }
 
         private void btn_Execute_Both_Module_Click(object sender, EventArgs e)
@@ -139,6 +129,7 @@ namespace MF900_SolveWare.Views.Child
                     do
                     {
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
                         errorCode = job_GlobalWorld.Do_Job();
@@ -153,7 +144,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -173,6 +165,7 @@ namespace MF900_SolveWare.Views.Child
                     do
                     {
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
                         errorCode = job_GlobalWorld.Go_Top_Module_Pos();
@@ -190,7 +183,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -210,6 +204,7 @@ namespace MF900_SolveWare.Views.Child
                     do
                     {
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
                         errorCode = job_GlobalWorld.Go_Top_Module_Pos();
@@ -227,7 +222,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -311,9 +307,9 @@ namespace MF900_SolveWare.Views.Child
                 try
                 {
                     do
-                    {             
+                    {                    
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
-
+                        ReportStatus(Status_Stage.运行中);
                         sw.Restart();
                         errorCode = job_GlobalWorld.Go_Top_Module_Pos();
                         msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
@@ -327,7 +323,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -347,6 +344,7 @@ namespace MF900_SolveWare.Views.Child
                     do
                     {
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
                         errorCode = job_GlobalWorld.Go_Btm_Module_Pos();
@@ -361,7 +359,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -402,6 +401,8 @@ namespace MF900_SolveWare.Views.Child
                 {
                     do
                     {
+                        ReportStatus(Status_Stage.运行中);
+
                         sw.Restart();
                         errorCode = job_GlobalWorld.Do_Top_Module_Inspect();
                         msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
@@ -415,7 +416,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -434,6 +436,8 @@ namespace MF900_SolveWare.Views.Child
                 {
                     do
                     {
+                        ReportStatus(Status_Stage.运行中);
+
                         sw.Restart();
                         errorCode = job_GlobalWorld.Do_Btm_Module_Inspect();
                         msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
@@ -447,7 +451,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -478,23 +483,30 @@ namespace MF900_SolveWare.Views.Child
 
             DataBinding_lbl_Pos(data_GlobalCenter);
         }
-        private void ReportStatus(int errorCode)
+        private void ReportStatus(Status_Stage stage)
         {
-            if(errorCode == ErrorCodes.NoError) {
-                this.Invoke(new Action(() =>
-                {
-                    tssl_Top_Module_Status.Text = "状态 : 成功";
-                    tssl_Top_Module_Status.BackColor = Color.Green;
-                }));
-            }
-            else
+            this.Invoke(new Action(() =>
             {
-                this.Invoke(new Action(() =>
+                switch (stage)
                 {
-                    tssl_Top_Module_Status.Text = "状态 : 失败";
-                    tssl_Top_Module_Status.BackColor = Color.IndianRed;
-                }));
-            }
+                    case Status_Stage.空闲:
+                        tssl_Top_Module_Status.Text = $"状态 : {stage}";
+                        tssl_Top_Module_Status.BackColor = Color.LightGray;
+                        break;
+                    case Status_Stage.运行中:
+                        tssl_Top_Module_Status.Text = $"状态 : {stage}";
+                        tssl_Top_Module_Status.BackColor = Color.Orange;
+                        break;
+                    case Status_Stage.成功:
+                        tssl_Top_Module_Status.Text = $"状态 : {stage}";
+                        tssl_Top_Module_Status.BackColor = Color.Green;
+                        break;
+                    case Status_Stage.失败:
+                        tssl_Top_Module_Status.Text = $"状态 : {stage}";
+                        tssl_Top_Module_Status.BackColor = Color.IndianRed;
+                        break;
+                }
+            }));
         }
 
         private void btn_Go_Top_WorldCenter_Pos_Click(object sender, EventArgs e)
@@ -509,6 +521,7 @@ namespace MF900_SolveWare.Views.Child
                     do
                     {
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
                         errorCode = job_GlobalWorld.Go_Top_WorldCenter_Pos();
@@ -523,7 +536,8 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds.ToString("F3")} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
@@ -543,6 +557,7 @@ namespace MF900_SolveWare.Views.Child
                     do
                     {
                         if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
                         errorCode = job_GlobalWorld.Go_Btm_WorldCenter_Pos();
@@ -557,12 +572,47 @@ namespace MF900_SolveWare.Views.Child
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds.ToString("F3")} 秒";
-                    ReportStatus(errorCode);
+                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    ReportStatus(stage);
                 }
 
                 bool showMsg = !string.IsNullOrEmpty(msg);
                 SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
             });
+        }
+
+        private void btn_Btm_Safe_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_Safe_Protection();
+            view.Setup(this.data_GlobalCenter.Data_Safe_Btm_Module);
+            (view as Form).Show();
+        }
+
+        private void btn_Top_Safe_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_Safe_Protection();
+            view.Setup(this.data_GlobalCenter.Data_Safe_Top_Module);
+            (view as Form).Show();
+        }
+
+        private void btn_Save_WorldCenter_Pos_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            try
+            {
+                job_GlobalWorld.Save_Pos();
+                DataBinding_lbl_Pos(data_GlobalCenter);
+            }
+            catch (Exception ex)
+            {
+                msg += ex.Message;
+            }
+            SolveWare.Core.ShowMsg(msg);
+        }
+
+        private void Form_Learn_Global_Center_Load(object sender, EventArgs e)
+        {
+            ReportStatus(Status_Stage.空闲);
         }
     }
 }

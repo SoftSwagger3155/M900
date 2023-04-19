@@ -62,5 +62,10 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             this.yesState = yesState as StateBase;
             this.noState = noState as StateBase;
         }
+        public void Set_Operation_Info(int errorCode, string errMsg)
+        {
+            this.errorCode = errorCode; 
+            this.errorMsg = errMsg;
+        }
     }
 }

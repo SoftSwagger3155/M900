@@ -45,6 +45,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_CurrentPhysicalPos = new System.Windows.Forms.Label();
             this.btn_Home = new System.Windows.Forms.Button();
+            this.ckb_Is_Jog_Monitoring = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             // lbl_Tag_CurrentPhysicalPos
             // 
             this.lbl_Tag_CurrentPhysicalPos.AutoSize = true;
-            this.lbl_Tag_CurrentPhysicalPos.Location = new System.Drawing.Point(96, 17);
+            this.lbl_Tag_CurrentPhysicalPos.Location = new System.Drawing.Point(88, 17);
             this.lbl_Tag_CurrentPhysicalPos.Name = "lbl_Tag_CurrentPhysicalPos";
             this.lbl_Tag_CurrentPhysicalPos.Size = new System.Drawing.Size(61, 15);
             this.lbl_Tag_CurrentPhysicalPos.TabIndex = 1;
@@ -68,7 +69,7 @@
             // 
             // btn_Jog_Positive
             // 
-            this.btn_Jog_Positive.Location = new System.Drawing.Point(296, 10);
+            this.btn_Jog_Positive.Location = new System.Drawing.Point(327, 10);
             this.btn_Jog_Positive.Name = "btn_Jog_Positive";
             this.btn_Jog_Positive.Size = new System.Drawing.Size(75, 30);
             this.btn_Jog_Positive.TabIndex = 2;
@@ -79,7 +80,7 @@
             // 
             // btn_Jog_Negative
             // 
-            this.btn_Jog_Negative.Location = new System.Drawing.Point(375, 10);
+            this.btn_Jog_Negative.Location = new System.Drawing.Point(405, 10);
             this.btn_Jog_Negative.Name = "btn_Jog_Negative";
             this.btn_Jog_Negative.Size = new System.Drawing.Size(75, 30);
             this.btn_Jog_Negative.TabIndex = 3;
@@ -91,25 +92,27 @@
             // txb_AbsolutePos
             // 
             this.txb_AbsolutePos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txb_AbsolutePos.Location = new System.Drawing.Point(565, 12);
+            this.txb_AbsolutePos.Location = new System.Drawing.Point(582, 12);
             this.txb_AbsolutePos.Name = "txb_AbsolutePos";
             this.txb_AbsolutePos.Size = new System.Drawing.Size(100, 25);
             this.txb_AbsolutePos.TabIndex = 4;
             this.txb_AbsolutePos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txb_AbsolutePos.TextChanged += new System.EventHandler(this.txb_AbsolutePos_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(469, 17);
+            this.label3.Location = new System.Drawing.Point(486, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 15);
             this.label3.TabIndex = 5;
             this.label3.Text = "绝对位置/mm";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(746, 17);
+            this.label4.Location = new System.Drawing.Point(753, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 15);
             this.label4.TabIndex = 6;
@@ -117,7 +120,7 @@
             // 
             // btn_Go_Absolute
             // 
-            this.btn_Go_Absolute.Location = new System.Drawing.Point(671, 9);
+            this.btn_Go_Absolute.Location = new System.Drawing.Point(688, 9);
             this.btn_Go_Absolute.Name = "btn_Go_Absolute";
             this.btn_Go_Absolute.Size = new System.Drawing.Size(58, 30);
             this.btn_Go_Absolute.TabIndex = 7;
@@ -127,7 +130,7 @@
             // 
             // btn_Go_Relative_Positive
             // 
-            this.btn_Go_Relative_Positive.Location = new System.Drawing.Point(950, 10);
+            this.btn_Go_Relative_Positive.Location = new System.Drawing.Point(957, 10);
             this.btn_Go_Relative_Positive.Name = "btn_Go_Relative_Positive";
             this.btn_Go_Relative_Positive.Size = new System.Drawing.Size(58, 30);
             this.btn_Go_Relative_Positive.TabIndex = 9;
@@ -138,7 +141,7 @@
             // txb_RelativePos
             // 
             this.txb_RelativePos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txb_RelativePos.Location = new System.Drawing.Point(844, 13);
+            this.txb_RelativePos.Location = new System.Drawing.Point(851, 13);
             this.txb_RelativePos.Name = "txb_RelativePos";
             this.txb_RelativePos.Size = new System.Drawing.Size(100, 25);
             this.txb_RelativePos.TabIndex = 8;
@@ -176,7 +179,7 @@
             // 
             // btn_Go_Relative_Negative
             // 
-            this.btn_Go_Relative_Negative.Location = new System.Drawing.Point(1014, 10);
+            this.btn_Go_Relative_Negative.Location = new System.Drawing.Point(1018, 10);
             this.btn_Go_Relative_Negative.Name = "btn_Go_Relative_Negative";
             this.btn_Go_Relative_Negative.Size = new System.Drawing.Size(58, 30);
             this.btn_Go_Relative_Negative.TabIndex = 13;
@@ -187,6 +190,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ckb_Is_Jog_Monitoring);
             this.panel1.Controls.Add(this.lbl_CurrentPhysicalPos);
             this.panel1.Controls.Add(this.btn_Home);
             this.panel1.Controls.Add(this.btn_Go_Absolute);
@@ -211,7 +215,7 @@
             // lbl_CurrentPhysicalPos
             // 
             this.lbl_CurrentPhysicalPos.AutoSize = true;
-            this.lbl_CurrentPhysicalPos.Location = new System.Drawing.Point(163, 17);
+            this.lbl_CurrentPhysicalPos.Location = new System.Drawing.Point(155, 17);
             this.lbl_CurrentPhysicalPos.Name = "lbl_CurrentPhysicalPos";
             this.lbl_CurrentPhysicalPos.Size = new System.Drawing.Size(63, 15);
             this.lbl_CurrentPhysicalPos.TabIndex = 15;
@@ -226,6 +230,17 @@
             this.btn_Home.Text = "复位";
             this.btn_Home.UseVisualStyleBackColor = true;
             this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
+            // 
+            // ckb_Is_Jog_Monitoring
+            // 
+            this.ckb_Is_Jog_Monitoring.AutoSize = true;
+            this.ckb_Is_Jog_Monitoring.Location = new System.Drawing.Point(227, 17);
+            this.ckb_Is_Jog_Monitoring.Name = "ckb_Is_Jog_Monitoring";
+            this.ckb_Is_Jog_Monitoring.Size = new System.Drawing.Size(89, 19);
+            this.ckb_Is_Jog_Monitoring.TabIndex = 16;
+            this.ckb_Is_Jog_Monitoring.Text = "安全监视";
+            this.ckb_Is_Jog_Monitoring.UseVisualStyleBackColor = true;
+            this.ckb_Is_Jog_Monitoring.CheckedChanged += new System.EventHandler(this.ckb_Is_Jog_Monitoring_CheckedChanged);
             // 
             // Form_Axis_Simple_Controller_Horizontal
             // 
@@ -264,5 +279,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_Home;
         private System.Windows.Forms.Label lbl_CurrentPhysicalPos;
+        private System.Windows.Forms.CheckBox ckb_Is_Jog_Monitoring;
     }
 }

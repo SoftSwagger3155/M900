@@ -2,6 +2,9 @@
 using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Core.General;
+using SolveWare_Service_Utility.Common;
+using SolveWare_Service_Utility.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,20 +51,100 @@ namespace MF900_SolveWare.Views.Child
 
         private void txb_Priority_TextChanged(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txb_Priority.Text)) { return; }
-            data.Priority = int.Parse(txb_Priority.Text);   
+            try
+            {
+                if (string.IsNullOrEmpty(txb_Priority.Text)) { return; }
+                data.Priority = int.Parse(txb_Priority.Text);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
         }
 
         private void txb_Pos_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txb_Pos.Text)) { return; }
-            data.Pos = Math.Round(double.Parse(txb_Pos.Text), 3);
+            try
+            {
+                if (string.IsNullOrEmpty(txb_Pos.Text)) { return; }
+                data.Pos = Math.Round(double.Parse(txb_Pos.Text), 3);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
         }
 
         private void cmb_Selector_Motor_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string mtr = (sender as ComboBox).SelectedItem as string;
             data.MotorName = mtr;
+        }
+
+        private void btn_Go_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            try
+            {
+                do
+                {
+                    if (SolveWare.Core.Is_Machine_Already_Homing() == false) break;
+
+                    int errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = data.MotorName, Pos = data.Pos });
+                    if (errorCode.NotPass(ref msg, data.MotorName.GetAxisBase().ErrorReport)) break;
+
+                } while (false);
+            }
+            catch (Exception ex)
+            {
+                msg += ex.Message;
+            }
+            SolveWare.Core.ShowMsg(msg);
+        }
+
+        private void btn_Update_Pos_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            try
+            {
+                data.Pos = Math.Round(data.MotorName.GetUnitPos(), 3);
+                this.Invoke(new Action(() =>
+                {
+                    txb_Pos.Text = data.Pos.ToString(); 
+                }));
+                SolveWare.Core.ShowMsg("更新成功");
+            }
+            catch (Exception ex)
+            {
+                msg += ex.Message;
+            }
+           SolveWare.Core.ShowMsg(msg);
+        }
+
+        private void btn_Manual_Update_Click(object sender, EventArgs e)
+        {
+            string msg = string.Empty;
+            try
+            {
+                do
+                {
+                    if (this.data == null) return;
+                    if (string.IsNullOrEmpty(txb_Pos.Text))
+                    {
+                        msg += "手输位置栏位不得为空";
+                        break;
+                    }
+
+                    this.data.Pos = double.Parse(txb_Pos.Text);
+                    SolveWare.Core.ShowMsg("更新成功");
+
+                } while (false);
+            }
+            catch (Exception ex)
+            {
+                msg += ex.Message;
+            }
+            SolveWare.Core.ShowMsg(msg);
         }
     }
 }

@@ -168,22 +168,25 @@ namespace MF900_SolveWare.Business
             Resource_DataPair_Center.Add(job);
 
 
-            //Offset               
-            job = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Top_Prober);
-            Resource_DataPair_Center.Add(job);
-            
-            job = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Btm_Camera_Btm_Prober);
-            Resource_DataPair_Center.Add(job);
-
-            job = new Job_Offset_TopCamera_TopProber(ResourceKey.OffsetData_Top_Camera_Btm_Pin);
-            Resource_DataPair_Center.Add(job);
-
-
             //Inspect            
             job = new Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
             Resource_DataPair_Center.Add(job);
 
             job = new Inspect(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
+            Resource_DataPair_Center.Add(job);
+
+
+            //Offset
+            job = new Job_Offset(ResourceKey.Offset_Top_Camera_Top_Prober, Data_Offset.TopModule);
+            Resource_DataPair_Center.Add( job);
+
+            job = new Job_Offset(ResourceKey.Offset_Top_Camera_Top_Pin, Data_Offset.TopModule);
+            Resource_DataPair_Center.Add(job);
+
+            job = new Job_Offset(ResourceKey.Offset_Btm_Camera_Btm_Prober, Data_Offset.BtmModule);
+            Resource_DataPair_Center.Add(job);
+
+            job = new Job_Offset(ResourceKey.Offset_Btm_Camera_Btm_Pin, Data_Offset.BtmModule);
             Resource_DataPair_Center.Add(job);
 
 
@@ -215,6 +218,15 @@ namespace MF900_SolveWare.Business
             this.FSM_Home = new FSM_Home_Controller(master.Is_Simulation_FSM);
             //this.FSM_Auto = new FSM_Auto_Controller();
             //this.FSM_Reset = new FSM_Reset_Controller();
+        }
+        public override void Stop()
+        {
+            //设止机器状态为停止
+            this.SetStatus(Machine_Status.Stop);
+
+            //设止马达停止
+            var allMotors = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Motor).Get_All_Items().ToList();
+            allMotors.ForEach(x => (x as AxisBase).Stop());
         }
     }
 }

@@ -15,9 +15,7 @@
   <SecondPosY>0</SecondPosY>
   <SecondPosZ>0</SecondPosZ>
   <SecondPosT>0</SecondPosT>
-  <Data_Protections>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <Data_Pos_Safetys />
-    <Data_IO_Safetys />
-  </Data_Protections>
+  <SafeData>
+    <SafeDetailDatas />
+  </SafeData>
 </Data_Offset>

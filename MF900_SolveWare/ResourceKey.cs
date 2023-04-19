@@ -94,10 +94,13 @@ namespace MF900_SolveWare.Resource
 
 
         //OffsetData
-        public const string OffsetData_Top_Camera_Top_Prober = "OffsetData-上相机-上治具";
-        public const string OffsetData_Btm_Camera_Btm_Prober = "OffsetData-下相机-下治具";
-        public const string OffsetData_Top_Camera_Btm_Pin = "OffsetData-上相机-下顶针";
+        public const string Offset_Top_Camera_Top_Prober = "Offset-上相机-上治具";
+        public const string Offset_Btm_Camera_Btm_Prober = "Offset-下相机-下治具";
+        public const string Offset_Top_Camera_Top_Pin = "Offset-上相机-上顶针";
+        public const string Offset_Btm_Camera_Btm_Pin = "Offset-下相机-下顶针";
 
+        //Index
+        public const string Index_Simulate = "Index-模拟板本";
 
         //MMperPixel
         public const string MMperPixel_TopCamera = "MMperPixel-上相机";

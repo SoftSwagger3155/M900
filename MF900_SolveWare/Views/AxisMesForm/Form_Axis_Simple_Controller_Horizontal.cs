@@ -146,12 +146,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 try
                 {
                     do
-                    {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
+                    {                     
                         if (string.IsNullOrEmpty(txb_AbsolutePos.Text))
                         {
                             errMsg += "绝对位置栏位不得为空";
@@ -159,7 +154,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         }
 
                         errorCode = axis.MoveTo(double.Parse(txb_AbsolutePos.Text)) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport : string.Empty;
 
                     } while (false);
                 }
@@ -167,7 +162,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-                CheckErrMsg(errMsg);
+                SolveWare.Core.ShowMsg(errMsg);
             });
         }
 
@@ -182,11 +177,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (string.IsNullOrEmpty(txb_RelativePos.Text))
                         {
                             errMsg += "相对位置栏位不得为空";
@@ -194,7 +184,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         }
 
                         errorCode = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text)) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport: string.Empty;
 
                     } while (false);
                 }
@@ -202,7 +192,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-                CheckErrMsg(errMsg);
+                SolveWare.Core.ShowMsg(errMsg);
             });
         }
 
@@ -217,11 +207,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     do
                     {
-                        if (Check_Machine_Status() == false)
-                        {
-                            errMsg += "机器状态不允许此时按钮运行";
-                            break;
-                        }
                         if (string.IsNullOrEmpty(txb_RelativePos.Text))
                         {
                             errMsg += "相对位置栏位不得为空";
@@ -229,7 +214,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         }
 
                         errorCode = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text)) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
+                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport : string.Empty;
 
                     } while (false);
                 }
@@ -237,7 +222,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-                CheckErrMsg(errMsg);
+                SolveWare.Core.ShowMsg(errMsg);
             });
         }
         #endregion
@@ -261,7 +246,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         }
 
                         errorCode = axis.HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                        errMsg += errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode);
+                        errMsg += errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport;
 
                     } while (false);
                 }
@@ -269,8 +254,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 {
                     errMsg += ex.Message;
                 }
-
-                CheckErrMsg(errMsg);
+                SolveWare.Core.ShowMsg(errMsg);
             });
         }
 
@@ -325,6 +309,26 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void Form_Axis_Simple_Controller_Horizontal_Load(object sender, EventArgs e)
         {
             DataBinding();
+            if(axis != null)
+            {
+                this.ckb_Is_Jog_Monitoring.Checked = axis.Is_Jog_Monitoring;
+            }
+        }
+
+        private void ckb_Is_Jog_Monitoring_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.axis != null)
+                axis.Is_Jog_Monitoring = (sender as CheckBox).Checked;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txb_AbsolutePos_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

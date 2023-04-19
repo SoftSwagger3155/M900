@@ -16,13 +16,18 @@ namespace MF900_SolveWare.Views
 {
     public static class ViewHelper
     {
-        public static void SetStatus(this Control lbl, JobStatus status)
+        public static void SetStatus(this Label lbl, JobStatus status)
         {
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
+            lbl.Margin = new Padding(4,0,4,0);
+            lbl.AutoSize = false;
+            lbl.Size = new Size(53, 26);
+
             switch (status)
             {
                 case JobStatus.Unknown:
-                    lbl.Text = "未知";
-                    lbl.BackColor = Color.Yellow;
+                    lbl.Text = "空闲";
+                    lbl.BackColor = Color.LightGray;
                     break;
                 case JobStatus.Fail:
                     lbl.Text = "失败";
@@ -31,6 +36,10 @@ namespace MF900_SolveWare.Views
                 case JobStatus.Done:
                     lbl.Text = "成功";
                     lbl.BackColor = Color.Green;
+                    break;
+                case JobStatus.Active:
+                    lbl.Text = "运行中";
+                    lbl.BackColor = Color.Orange;
                     break;
             }
         }
@@ -61,5 +70,13 @@ namespace MF900_SolveWare.Views
 
             });
         }
+    }
+
+    public enum Status_Stage
+    {
+        空闲,
+        运行中,
+        失败,
+        成功
     }
 }

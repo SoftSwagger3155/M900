@@ -1,4 +1,5 @@
-﻿using MF900_SolveWare.Resource;
+﻿using MF900_SolveWare.Index.Job;
+using MF900_SolveWare.Resource;
 using MF900_SolveWare.Views.AxisMesForm;
 using MF900_SolveWare.Views.Child;
 using MF900_SolveWare.WorldCenter.Job;
@@ -72,13 +73,20 @@ namespace MF900_SolveWare
 
         private void btn_Offset_Click(object sender, EventArgs e)
         {
-            IView view = new Form_Offset();
+            IView view = new Form_Offset_2();
             (view as Form).Show();
         }
 
         private void btn_MMperPixel_Click(object sender, EventArgs e)
         {
             IView view = new Form_MMperPixel();
+            (view as Form).Show();
+        }
+
+        private void btn_Index_Click(object sender, EventArgs e)
+        {
+            IView view = new Form_Index();
+            view.Setup(new Job_Index_Simulate(ResourceKey.Index_Simulate));
             (view as Form).Show();
         }
     }

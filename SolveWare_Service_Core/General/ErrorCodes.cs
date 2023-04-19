@@ -32,6 +32,7 @@ namespace SolveWare_Service_Core.General
         public const int PatternMatchFailed = -21;
         public const int FSMRunningFailed = -22;
         public const int SafetyViolation = -23;
+        public const int OffsetMoveError = -24;
         public const int MachineStopCall = -10000;
 
 
@@ -64,6 +65,7 @@ namespace SolveWare_Service_Core.General
             m.Add(PatternMatchFailed, "Pattern Match Failed | 视觉模板失败");
             m.Add(FSMRunningFailed, "FSM Running Failed | FSM 运行失败");
             m.Add(SafetyViolation, "Safe Violations | 违反安全措施");
+            m.Add(OffsetMoveError, "Offset Move Error | 移动间距失败");
         }
 
         public static string GetErrorDescription(int errorCode, string extraInfo = "")

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,8 +63,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         private int StartHome(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;
+            string msg = string.Empty;
             try
             {
                 do
@@ -76,15 +76,20 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
             }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
+            }
+
             return errorCode;
         }
         private int HomeZ(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;    
+            string msg = string.Empty;
+            
             try
             {
                 do
@@ -93,13 +98,17 @@ namespace MF900_SolveWare.FSM.Home.Stations
                     errorCode = mtr.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
 
                     if (errorCode != ErrorCodes.NoError)
-                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                        msg += ErrorCodes.GetErrorDescription(errorCode)+$"\r\n{mtr.GetAxisBase().ErrorReport}";
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
             }
 
             return errorCode;
@@ -107,8 +116,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         private int SetHomeZDone(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;
+            string msg = string.Empty;
             try
             {
                 do
@@ -126,24 +134,25 @@ namespace MF900_SolveWare.FSM.Home.Stations
                         mcEvent.Evnt_HomeBtmZ_Done.Set();
                     }
 
-
-
-
                 } while (false);
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info (errorCode, msg); 
             }
             return errorCode;
         }
         private int WaitZandTableDone(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
+            string msg = string.Empty;
             Stopwatch sWatch = new Stopwatch();
             int timeOut = 300 * 1000; //300秒延迟
-            sender.Info = this.Name;
+
             try
             {
                 do
@@ -158,9 +167,10 @@ namespace MF900_SolveWare.FSM.Home.Stations
                         if(sWatch.ElapsedMilliseconds > timeOut)
                         {
                             errorCode = ErrorCodes.WaitTimeOutError;
-                            errMsg += ErrorCodes.GetErrorDescription(ErrorCodes.WaitTimeOutError);
+                            msg += ErrorCodes.GetErrorDescription(ErrorCodes.WaitTimeOutError);
                             break;
                         }
+                        if (errorCode.NotPass(ref msg)) break;
                     }
 
 
@@ -168,14 +178,18 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
             }
             return errorCode;
         }
         private int HomeT(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
+            string msg = string.Empty;
             sender.Info += this.Name;   
             
             try
@@ -186,14 +200,18 @@ namespace MF900_SolveWare.FSM.Home.Stations
                     errorCode = mtr.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
 
                     if (errorCode != ErrorCodes.NoError)
-                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                        msg += ErrorCodes.GetErrorDescription(errorCode) + $"\r\n{mtr.GetAxisBase().ErrorReport}";
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
             }
             
             return errorCode;
@@ -201,7 +219,7 @@ namespace MF900_SolveWare.FSM.Home.Stations
         private int HomeXY(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
+            string msg = string.Empty;
             sender.Info = this.Name;
 
             try
@@ -229,21 +247,24 @@ namespace MF900_SolveWare.FSM.Home.Stations
                     task2.Wait();
 
                     errorCode = errorCode1 == ErrorCodes.NoError && errorCode2 == ErrorCodes.NoError ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;                 
+                    msg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode)+$"\r\n{mtrX.GetAxisBase().ErrorReport}\r\n{mtrY.GetAxisBase().ErrorReport}" : string.Empty;                 
                     
                 } while (false);
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
             }
             return errorCode;
         }
         private int EndHome(StateBase sender)
         {
             int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-            sender.Info = this.Name;
+            string msg = string.Empty;
             
             try
             {
@@ -257,16 +278,20 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                msg += ex.Message;
+            }
+            finally
+            {
+                sender.Set_Operation_Info(errorCode, msg);
             }
             return errorCode;
         }
         #endregion
-        private int OnErrorHanding(IState sender)
+        private int OnErrorHanding(StateBase sender)
         {      
             //Auto 比较多机会要用到此方法
             //此台一有事有停机，所以用处也不大
-            return 0;
+            return sender.ErrorCode;
         }
 
         public override void SetStateChain()

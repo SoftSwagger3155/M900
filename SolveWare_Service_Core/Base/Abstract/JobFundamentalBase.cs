@@ -25,7 +25,7 @@ namespace SolveWare_Service_Core.Base.Abstract
         public int ErrorCode
         {
             get => errorCode;
-            private set=> UpdateProper(ref errorCode, value);
+            set=> UpdateProper(ref errorCode, value);
         }
 
         public JobStatus Status
@@ -55,13 +55,14 @@ namespace SolveWare_Service_Core.Base.Abstract
         {
             this.st = DateTime.Now;
             this.Status = JobStatus.Entrance;
-            SolveWare.Core.MMgr.SetStatus(Machine_Status.Busy);
+            this.errorMsg = string.Empty;
+            //SolveWare.Core.MMgr.SetStatus(Machine_Status.Busy);
         }
         public void OnExit()
         {
             this.Status = ErrorCode == 0 ? JobStatus.Done : JobStatus.Fail;
-            Machine_Status mStatus = errorCode == 0 ? Machine_Status.Idle : Machine_Status.Error;
-            SolveWare.Core.MMgr.SetStatus(mStatus);
+            //Machine_Status mStatus = errorCode == 0 ? Machine_Status.Idle : Machine_Status.Error;
+            //SolveWare.Core.MMgr.SetStatus(mStatus);
             SolveWare.Core.MMgr.Infohandler.LogActionMessage(this.Name, info, st, errorCode, errorMsg);
         }
 

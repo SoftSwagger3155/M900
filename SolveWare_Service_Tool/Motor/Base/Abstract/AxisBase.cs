@@ -7,6 +7,7 @@ using SolveWare_Service_Tool.Motor.Data;
 using SolveWare_Service_Tool.Motor.Definition;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -30,7 +31,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             this.mtrSpeed = ConfigData.MtrSpeed;
             this.simulation = ConfigData.Simulation;
             this.Name = mtrTable.Name;
-
+            this.errorReport = string.Empty;
             //StartStatusReading();
         }
         #endregion
@@ -72,10 +73,28 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected bool isIgnoreDanger;
         protected string timeSpent = "0.000";
         protected string errorReport = string.Empty;
+        protected bool is_Jog_Monitoring = true;
 
+        protected bool is_Jog_Mission = false;
+        public bool Is_Jog_Mission
+        {
+            get => is_Jog_Mission;
+            set => UpdateProper(ref is_Jog_Mission, value);
+        }
+        public bool Is_Jog_Monitoring
+        {
+            get => is_Jog_Monitoring;
+            set=> UpdateProper(ref is_Jog_Monitoring, value);
+        }
         public string ErrorReport
         {
-            get => errorReport;
+            get
+            {
+                if (errorReport != string.Empty)
+                    errorReport= $"{mtrTable.Name} {errorReport}";
+                
+                return errorReport; 
+            }
             protected set=> UpdateProper(ref  errorReport, value);
         }
         public bool IsIgnoreDanger
@@ -500,15 +519,13 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             double result = (1) * (180 - InsideAngDeg);
             return result;
         }
-        public bool IsMoveTimeOut(DateTime st)
+        public bool IsMoveTimeOut(Stopwatch sw)
         {
-            TimeSpan ts = DateTime.Now - st;
-            return ts.TotalMilliseconds > mtrTable.MotionTimeOut;
+            return sw.Elapsed.TotalMilliseconds > mtrTable.HomeTimeOut;
         }
-        public bool IsHomeTimeOut(DateTime st)
+        public bool IsHomeTimeOut(Stopwatch sw)
         {
-            TimeSpan ts = DateTime.Now - st;
-            return ts.TotalMilliseconds > mtrTable.HomeTimeOut;
+            return sw.Elapsed.TotalMilliseconds > mtrTable.HomeTimeOut;
         }
         public abstract bool DoAvoidDangerousPosAction();
         public void Setup(IElement configData)

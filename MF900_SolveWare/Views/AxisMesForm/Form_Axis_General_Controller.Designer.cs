@@ -30,6 +30,7 @@
         {
             this.gpb_Content = new System.Windows.Forms.GroupBox();
             this.btn_Home_All = new System.Windows.Forms.Button();
+            this.btn_Stop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gpb_Content
@@ -51,11 +52,22 @@
             this.btn_Home_All.UseVisualStyleBackColor = true;
             this.btn_Home_All.Click += new System.EventHandler(this.btn_Home_All_Click);
             // 
+            // btn_Stop
+            // 
+            this.btn_Stop.Location = new System.Drawing.Point(1188, 12);
+            this.btn_Stop.Name = "btn_Stop";
+            this.btn_Stop.Size = new System.Drawing.Size(88, 47);
+            this.btn_Stop.TabIndex = 2;
+            this.btn_Stop.Text = "停止";
+            this.btn_Stop.UseVisualStyleBackColor = true;
+            this.btn_Stop.Click += new System.EventHandler(this.btn_Stop_Click);
+            // 
             // Form_Axis_General_Controller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1382, 726);
+            this.Controls.Add(this.btn_Stop);
             this.Controls.Add(this.btn_Home_All);
             this.Controls.Add(this.gpb_Content);
             this.Name = "Form_Axis_General_Controller";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.GroupBox gpb_Content;
         private System.Windows.Forms.Button btn_Home_All;
+        private System.Windows.Forms.Button btn_Stop;
     }
 }

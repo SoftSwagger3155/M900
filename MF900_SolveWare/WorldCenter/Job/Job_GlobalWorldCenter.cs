@@ -1,5 +1,6 @@
 ﻿using MF900_SolveWare.Offset.Data;
 using MF900_SolveWare.Resource;
+using MF900_SolveWare.Safe;
 using MF900_SolveWare.WorldCenter.Data;
 using SolveWare_Service_Core;
 using SolveWare_Service_Core.Attributes;
@@ -30,16 +31,12 @@ namespace MF900_SolveWare.WorldCenter.Job
             //TODO - Job_GlobalWorldCenter-
             //降下平台-上下Z退回安全位置-上打标气缸收回
             errorMsg = string.Empty;
+            errorCode = ErrorCodes.NoError;
             try
             {
                 do
                 {
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = 0 });
-                    if (errorCode.NotPass(ref errorMsg)) break;
-
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = 0 });
-                    if (errorCode.NotPass(ref errorMsg)) break;
-
+                    errorCode = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Top_Module, ref errorMsg);
 
                 } while (false);
             }
@@ -56,16 +53,12 @@ namespace MF900_SolveWare.WorldCenter.Job
             //TODO - Job_GlobalWorldCenter-
             //降下平台-上下Z退回安全位置-上打标气缸收回
             errorMsg = string.Empty;
+            errorCode = ErrorCodes.NoError;
             try
             {
                 do
                 {
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = 0 });
-                    if (errorCode.NotPass(ref errorMsg)) break;
-
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = 0 });
-                    if (errorCode.NotPass(ref errorMsg)) break;
-
+                    errorCode = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Btm_Module, ref errorMsg);
 
                 } while (false);
             }
@@ -75,7 +68,6 @@ namespace MF900_SolveWare.WorldCenter.Job
             }
 
             return errorCode;
-            return 0;
         }
 
         public int Go_Top_Module_Pos()
@@ -179,13 +171,13 @@ namespace MF900_SolveWare.WorldCenter.Job
                     if (errorCode.NotPass(ref errorMsg)) break;
 
                     errorCode = MotionHelper.Move_Multiple_Motors(
-                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = Data.Btm_WorldCenter_PosX },
-                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = Data.Btm_WorldCenter_PosY },
-                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_T, Pos = Data.Btm_WorldCenter_PosZ }
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = Data.Btm_Module_PosX },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = Data.Btm_Module_PosY },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_T, Pos = Data.Btm_Module_PosZ }
                         );
                     if (errorCode.NotPass(ref errorMsg)) break;
 
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos=Data.Btm_WorldCenter_PosZ });
+                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos=Data.Btm_Module_PosZ });
                     if (errorCode.NotPass(ref errorMsg)) break;
 
                 } while (false);
@@ -273,6 +265,18 @@ namespace MF900_SolveWare.WorldCenter.Job
             }
 
             return errorCode;
+        }
+        public void Save_Pos()
+        {
+            Data.Top_WorldCenter_PosX = Math.Round(ResourceKey.Motor_Top_X.GetUnitPos(), 3);
+            Data.Top_WorldCenter_PosY = Math.Round(ResourceKey.Motor_Top_Y.GetUnitPos(), 3);
+            Data.Top_WorldCenter_PosZ = Math.Round(ResourceKey.Motor_Top_Z.GetUnitPos(), 3);
+            Data.Top_WorldCenter_PosT = Math.Round(ResourceKey.Motor_Top_T.GetUnitPos(), 3);
+
+            Data.Btm_WorldCenter_PosX = Math.Round(ResourceKey.Motor_Btm_X.GetUnitPos(), 3);
+            Data.Btm_WorldCenter_PosY = Math.Round(ResourceKey.Motor_Btm_Y.GetUnitPos(), 3);
+            Data.Btm_WorldCenter_PosZ = Math.Round(ResourceKey.Motor_Btm_Z.GetUnitPos(), 3);
+            Data.Btm_WorldCenter_PosT = Math.Round(ResourceKey.Motor_Btm_T.GetUnitPos(), 3);
         }
 
 

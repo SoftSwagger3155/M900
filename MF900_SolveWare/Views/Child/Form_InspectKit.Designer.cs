@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("上相机 曝光时间 100 us  增益 10");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("相机亮度设定", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("上相机 光源 OP 开");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("下相机 光源 OP 关");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("光源设定", new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("模板学习");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("模板", new System.Windows.Forms.TreeNode[] {
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Blob学习");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Blob", new System.Windows.Forms.TreeNode[] {
-            treeNode17});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("上相机 曝光时间 100 us  增益 10");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("相机亮度设定", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("上相机 光源 OP 开");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("下相机 光源 OP 关");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("光源设定", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("模板学习");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("模板", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Blob学习");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Blob", new System.Windows.Forms.TreeNode[] {
+            treeNode8});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_InspectKit));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Inspect = new System.Windows.Forms.Button();
             this.tView_Content = new System.Windows.Forms.TreeView();
             this.hWindowControl1 = new HalconDotNet.HWindowControl();
@@ -52,12 +53,11 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.btn_Save = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmb_Selector_InspectKit = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
@@ -79,6 +79,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "视觉设定功能";
             // 
+            // btn_Save
+            // 
+            this.btn_Save.Location = new System.Drawing.Point(1122, 314);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(106, 45);
+            this.btn_Save.TabIndex = 6;
+            this.btn_Save.Text = "储存资料";
+            this.btn_Save.UseVisualStyleBackColor = true;
+            // 
             // btn_Inspect
             // 
             this.btn_Inspect.Location = new System.Drawing.Point(1122, 365);
@@ -94,29 +103,29 @@
             this.tView_Content.HideSelection = false;
             this.tView_Content.Location = new System.Drawing.Point(571, 23);
             this.tView_Content.Name = "tView_Content";
-            treeNode10.Name = "节点5";
-            treeNode10.Text = "上相机 曝光时间 100 us  增益 10";
-            treeNode11.Name = "节点0";
-            treeNode11.Text = "相机亮度设定";
-            treeNode12.Name = "节点6";
-            treeNode12.Text = "上相机 光源 OP 开";
-            treeNode13.Name = "节点7";
-            treeNode13.Text = "下相机 光源 OP 关";
-            treeNode14.Name = "节点1";
-            treeNode14.Text = "光源设定";
-            treeNode15.Name = "节点8";
-            treeNode15.Text = "模板学习";
-            treeNode16.Name = "节点2";
-            treeNode16.Text = "模板";
-            treeNode17.Name = "节点10";
-            treeNode17.Text = "Blob学习";
-            treeNode18.Name = "节点9";
-            treeNode18.Text = "Blob";
+            treeNode1.Name = "节点5";
+            treeNode1.Text = "上相机 曝光时间 100 us  增益 10";
+            treeNode2.Name = "节点0";
+            treeNode2.Text = "相机亮度设定";
+            treeNode3.Name = "节点6";
+            treeNode3.Text = "上相机 光源 OP 开";
+            treeNode4.Name = "节点7";
+            treeNode4.Text = "下相机 光源 OP 关";
+            treeNode5.Name = "节点1";
+            treeNode5.Text = "光源设定";
+            treeNode6.Name = "节点8";
+            treeNode6.Text = "模板学习";
+            treeNode7.Name = "节点2";
+            treeNode7.Text = "模板";
+            treeNode8.Name = "节点10";
+            treeNode8.Text = "Blob学习";
+            treeNode9.Name = "节点9";
+            treeNode9.Text = "Blob";
             this.tView_Content.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode14,
-            treeNode16,
-            treeNode18});
+            treeNode2,
+            treeNode5,
+            treeNode7,
+            treeNode9});
             this.tView_Content.ShowNodeToolTips = true;
             this.tView_Content.Size = new System.Drawing.Size(534, 388);
             this.tView_Content.TabIndex = 3;
@@ -176,6 +185,13 @@
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(130, 20);
             this.toolStripStatusLabel3.Text = "测试结果: Good";
             // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(10, 4, 0, 2);
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(231, 20);
+            this.toolStripStatusLabel5.Text = "储存日期 : 2023/00/00 00:00:00";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -221,22 +237,6 @@
             this.toolStripButton3.Size = new System.Drawing.Size(29, 30);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
-            // btn_Save
-            // 
-            this.btn_Save.Location = new System.Drawing.Point(1122, 314);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(106, 45);
-            this.btn_Save.TabIndex = 6;
-            this.btn_Save.Text = "储存资料";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            // 
-            // toolStripStatusLabel5
-            // 
-            this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(10, 4, 0, 2);
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(231, 20);
-            this.toolStripStatusLabel5.Text = "储存日期 : 2023/00/00 00:00:00";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cmb_Selector_InspectKit);
@@ -266,7 +266,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form_InspectKit";
-            this.Text = "Form_InspectKit";
+            this.Text = "视觉";
             this.groupBox1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

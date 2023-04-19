@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Go = new System.Windows.Forms.Button();
+            this.btn_Update_Pos = new System.Windows.Forms.Button();
             this.txb_Pos = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmb_Selector_Motor = new System.Windows.Forms.ComboBox();
             this.txb_Priority = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ckb_Selected = new System.Windows.Forms.CheckBox();
-            this.btn_Update_Pos = new System.Windows.Forms.Button();
-            this.btn_Go = new System.Windows.Forms.Button();
+            this.btn_Manual_Update = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_Manual_Update);
             this.panel1.Controls.Add(this.btn_Go);
             this.panel1.Controls.Add(this.btn_Update_Pos);
             this.panel1.Controls.Add(this.txb_Pos);
@@ -56,12 +58,32 @@
             this.panel1.Size = new System.Drawing.Size(1000, 50);
             this.panel1.TabIndex = 4;
             // 
+            // btn_Go
+            // 
+            this.btn_Go.Location = new System.Drawing.Point(699, 7);
+            this.btn_Go.Name = "btn_Go";
+            this.btn_Go.Size = new System.Drawing.Size(87, 34);
+            this.btn_Go.TabIndex = 10;
+            this.btn_Go.Text = "前往";
+            this.btn_Go.UseVisualStyleBackColor = true;
+            this.btn_Go.Click += new System.EventHandler(this.btn_Go_Click);
+            // 
+            // btn_Update_Pos
+            // 
+            this.btn_Update_Pos.Location = new System.Drawing.Point(885, 7);
+            this.btn_Update_Pos.Name = "btn_Update_Pos";
+            this.btn_Update_Pos.Size = new System.Drawing.Size(87, 34);
+            this.btn_Update_Pos.TabIndex = 9;
+            this.btn_Update_Pos.Text = "位置更新";
+            this.btn_Update_Pos.UseVisualStyleBackColor = true;
+            this.btn_Update_Pos.Click += new System.EventHandler(this.btn_Update_Pos_Click);
+            // 
             // txb_Pos
             // 
             this.txb_Pos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txb_Pos.Location = new System.Drawing.Point(567, 11);
+            this.txb_Pos.Location = new System.Drawing.Point(562, 11);
             this.txb_Pos.Name = "txb_Pos";
-            this.txb_Pos.Size = new System.Drawing.Size(188, 25);
+            this.txb_Pos.Size = new System.Drawing.Size(128, 25);
             this.txb_Pos.TabIndex = 7;
             this.txb_Pos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txb_Pos.TextChanged += new System.EventHandler(this.txb_Pos_TextChanged);
@@ -69,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(500, 15);
+            this.label2.Location = new System.Drawing.Point(495, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 15);
             this.label2.TabIndex = 8;
@@ -114,23 +136,15 @@
             this.ckb_Selected.Text = "选择";
             this.ckb_Selected.UseVisualStyleBackColor = true;
             // 
-            // btn_Update_Pos
+            // btn_Manual_Update
             // 
-            this.btn_Update_Pos.Location = new System.Drawing.Point(885, 7);
-            this.btn_Update_Pos.Name = "btn_Update_Pos";
-            this.btn_Update_Pos.Size = new System.Drawing.Size(87, 34);
-            this.btn_Update_Pos.TabIndex = 9;
-            this.btn_Update_Pos.Text = "更新位置";
-            this.btn_Update_Pos.UseVisualStyleBackColor = true;
-            // 
-            // btn_Go
-            // 
-            this.btn_Go.Location = new System.Drawing.Point(792, 7);
-            this.btn_Go.Name = "btn_Go";
-            this.btn_Go.Size = new System.Drawing.Size(87, 34);
-            this.btn_Go.TabIndex = 10;
-            this.btn_Go.Text = "前往";
-            this.btn_Go.UseVisualStyleBackColor = true;
+            this.btn_Manual_Update.Location = new System.Drawing.Point(792, 6);
+            this.btn_Manual_Update.Name = "btn_Manual_Update";
+            this.btn_Manual_Update.Size = new System.Drawing.Size(87, 34);
+            this.btn_Manual_Update.TabIndex = 11;
+            this.btn_Manual_Update.Text = "手动更新";
+            this.btn_Manual_Update.UseVisualStyleBackColor = true;
+            this.btn_Manual_Update.Click += new System.EventHandler(this.btn_Manual_Update_Click);
             // 
             // Form_Safe_Protection_Motion
             // 
@@ -159,5 +173,6 @@
         private System.Windows.Forms.CheckBox ckb_Selected;
         private System.Windows.Forms.Button btn_Go;
         private System.Windows.Forms.Button btn_Update_Pos;
+        private System.Windows.Forms.Button btn_Manual_Update;
     }
 }

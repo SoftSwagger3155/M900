@@ -80,10 +80,18 @@
     <Compile Include="Business\Global.cs" />
     <Compile Include="Business\RecipeHandler.cs" />
     <Compile Include="Business\SafeProtector.cs" />
+    <Compile Include="FSM\Auto\FSM_Auto_MachineEvent.cs" />
+    <Compile Include="FSM\Auto\Stations\FSM_Auto_Station.cs" />
     <Compile Include="FSM\Home\Stations\FSM_Home_Table_Station.cs" />
     <Compile Include="Offset\Job\Job_Offset.cs" />
     <Compile Include="Safe\Data_Safe.cs" />
     <Compile Include="Safe\Job_Safe.cs" />
+    <Compile Include="Views\Child\Form_Index.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Index.Designer.cs">
+      <DependentUpon>Form_Index.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Child\Form_MMperPixel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +103,12 @@
     </Compile>
     <Compile Include="Views\Child\Form_Offset.Designer.cs">
       <DependentUpon>Form_Offset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_Offset_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_Offset_2.Designer.cs">
+      <DependentUpon>Form_Offset_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Child\Form_Safe_Protection.cs">
       <SubType>Form</SubType>
@@ -142,7 +156,7 @@
     <Compile Include="FSM\Home\Stations\FSM_Home_Station.cs" />
     <Compile Include="FSM\Reset\FSM_Reset_Controller.cs" />
     <Compile Include="Index\Data\Data_Index.cs" />
-    <Compile Include="Index\Job\Job_Index.cs" />
+    <Compile Include="Index\Job\Job_Index_Simulate.cs" />
     <Compile Include="MMperPixel\Data\Data_MMperPixel.cs" />
     <Compile Include="MMperPixel\Job\Job_MMperPixel_BtmCamera.cs" />
     <Compile Include="MMperPixel\Job\Job_MMperPixel_TopCamera.cs" />
@@ -445,6 +459,9 @@
     <EmbeddedResource Include="Views\AxisMesForm\IODebugForm.resx">
       <DependentUpon>IODebugForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Index.resx">
+      <DependentUpon>Form_Index.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_InspectKit.resx">
       <DependentUpon>Form_InspectKit.cs</DependentUpon>
     </EmbeddedResource>
@@ -471,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_Offset.resx">
       <DependentUpon>Form_Offset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_Offset_2.resx">
+      <DependentUpon>Form_Offset_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_Safe_Protection.resx">
       <DependentUpon>Form_Safe_Protection.cs</DependentUpon>

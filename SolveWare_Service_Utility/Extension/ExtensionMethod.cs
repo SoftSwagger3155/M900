@@ -116,7 +116,8 @@ namespace SolveWare_Service_Utility.Extension
         }
         public static double GetUnitPos(this string name)
         {
-            return name.GetAxisBase().Get_CurUnitPos();
+            double unitPos = Math.Round(name.GetAxisBase().Get_CurUnitPos(), 3);
+            return unitPos;
         }
         public static ICommonJobFundamental GetJob(this string name)
         {
@@ -187,6 +188,28 @@ namespace SolveWare_Service_Utility.Extension
         public static string GetErrorMsg(this int errorCode)
         {
             return ErrorCodes.GetErrorDescription(errorCode);   
+        }
+        public static int IOFunction(this string iOName, string triggerMode)
+        {
+            int errorCode = ErrorCodes.NoError;
+            try
+            {
+                switch (triggerMode)
+                {
+                    case ConstantProperty.ON:
+                        iOName.GetIOBase().On();
+                        break;
+                    case ConstantProperty.OFF:
+                        iOName.GetIOBase().Off();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                errorCode = ErrorCodes.IOFunctionError;
+            }
+
+            return errorCode;
         }
       
     }

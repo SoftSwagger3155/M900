@@ -190,3 +190,5 @@ C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\Info\Log\Log4net.config
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Safe_Protection.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Safe_Protection_IO.resources
 C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Safe_Protection_Motion.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Index.resources
+C:\Users\softs\Desktop\YAMAHA\M900\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_Offset_2.resources

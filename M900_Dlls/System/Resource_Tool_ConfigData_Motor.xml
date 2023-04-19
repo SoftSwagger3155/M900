@@ -36,7 +36,7 @@
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
-      <MaxDistance_SoftLimit>400</MaxDistance_SoftLimit>
+      <MaxDistance_SoftLimit>1500</MaxDistance_SoftLimit>
       <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
@@ -69,7 +69,7 @@
           <Name>复位速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>5</Max_Velocity>
+          <Max_Velocity>30</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -79,7 +79,7 @@
           <Name>移动速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>10</Max_Velocity>
+          <Max_Velocity>300</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -109,14 +109,7 @@
     </MtrSpeed>
     <MtrSafe>
       <SaveDate>2023/00/00 00:00:00</SaveDate>
-      <Data_Pos_Safetys>
-        <Data_Pos_Safety>
-          <IsSelected>false</IsSelected>
-          <MotorName>上马达Z</MotorName>
-          <Operand>大于等于</Operand>
-          <Pos>10</Pos>
-        </Data_Pos_Safety>
-      </Data_Pos_Safetys>
+      <Data_Pos_Safetys />
       <Data_IO_Safetys />
     </MtrSafe>
     <MtrMisc>
@@ -167,7 +160,7 @@
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
-      <MaxDistance_SoftLimit>200</MaxDistance_SoftLimit>
+      <MaxDistance_SoftLimit>800</MaxDistance_SoftLimit>
       <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
@@ -200,7 +193,7 @@
           <Name>复位速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>25</Max_Velocity>
+          <Max_Velocity>50</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -210,7 +203,7 @@
           <Name>移动速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>10</Max_Velocity>
+          <Max_Velocity>300</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -324,7 +317,7 @@
           <Name>复位速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>3</Max_Velocity>
+          <Max_Velocity>10</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -539,8 +532,8 @@
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
-      <MaxDistance_SoftLimit>100</MaxDistance_SoftLimit>
-      <MinDistance_SoftLimit>-2</MinDistance_SoftLimit>
+      <MaxDistance_SoftLimit>1500</MaxDistance_SoftLimit>
+      <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
       <Home_mode>0</Home_mode>
@@ -572,7 +565,7 @@
           <Name>复位速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>5</Max_Velocity>
+          <Max_Velocity>30</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -582,7 +575,7 @@
           <Name>移动速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>10</Max_Velocity>
+          <Max_Velocity>300</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -663,7 +656,7 @@
       <MotionTimeOut>600000</MotionTimeOut>
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
-      <MaxDistance_SoftLimit>200</MaxDistance_SoftLimit>
+      <MaxDistance_SoftLimit>1500</MaxDistance_SoftLimit>
       <MinDistance_SoftLimit>0</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
@@ -696,7 +689,7 @@
           <Name>复位速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>5</Max_Velocity>
+          <Max_Velocity>50</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -706,7 +699,7 @@
           <Name>移动速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>10</Max_Velocity>
+          <Max_Velocity>300</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>
@@ -788,7 +781,7 @@
       <HomeTimeOut>600000</HomeTimeOut>
       <Enable_SoftLimit>false</Enable_SoftLimit>
       <MaxDistance_SoftLimit>200</MaxDistance_SoftLimit>
-      <MinDistance_SoftLimit>-200</MinDistance_SoftLimit>
+      <MinDistance_SoftLimit>-20</MinDistance_SoftLimit>
     </MtrTable>
     <MtrConfig>
       <Home_mode>0</Home_mode>
@@ -1068,7 +1061,7 @@
           <Name>复位速度</Name>
           <SaveDate>2023/00/00 00:00:00</SaveDate>
           <Min_Velocity>0</Min_Velocity>
-          <Max_Velocity>3</Max_Velocity>
+          <Max_Velocity>25</Max_Velocity>
           <Acceleration>1000</Acceleration>
           <Deceleration>1000</Deceleration>
           <Jerk>0</Jerk>

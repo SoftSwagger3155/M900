@@ -42,9 +42,11 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
 
         public int RunAutoCycle()
         {
+            this.states.ToList().ForEach(state => { state.Info = this.Name; });
             OnEntrance();
             errorCode = ErrorCodes.NoError;
             currentState = CurrentState ?? FirstState;
+            errorMsg = string.Empty;
 
             try
             {
@@ -53,7 +55,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 while (true)
                 {
                     errorCode = currentState.Do_Job();
-                    if (errorCode.NotPass()) break;
+                    if (errorCode.NotPass(ref errorMsg, currentState.ErrorMsg)) break;
 
 
                     //自动
@@ -77,9 +79,12 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
 
         public int RunSingleCycle()
         {
+            this.states.ToList().ForEach(state => { state.Info = this.Name; });
             OnEntrance();
             errorCode = ErrorCodes.NoError;
             currentState = CurrentState ?? FirstState;
+            errorMsg = string.Empty;
+
             try
             {
                 if (CurrentState == null) return ErrorCodes.NoStateActionAssign;
@@ -87,7 +92,11 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 while (true)
                 {
                     errorCode = CurrentState.Do_Job();
-                    if (errorCode.NotPass()) break;
+                    if (errorCode.NotPass(ref errorMsg, $"{currentState.Info}\r\n{currentState.ErrorMsg}"))
+                    {
+                        SolveWare.Core.MMgr.Stop();
+                        break;
+                    }
 
 
 

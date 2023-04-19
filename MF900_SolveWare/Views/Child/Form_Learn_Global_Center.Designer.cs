@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gpb_Top_Module = new System.Windows.Forms.GroupBox();
+            this.btn_Top_Safe = new System.Windows.Forms.Button();
             this.btn_Go_Top_WorldCenter_Pos = new System.Windows.Forms.Button();
             this.btn_Top_Update_WorldCenter = new System.Windows.Forms.Button();
             this.btn_Top_Module_Update_Pos = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.lbl_Top_MotorX_Info = new System.Windows.Forms.Label();
             this.btn_Motor_General_Controller = new System.Windows.Forms.Button();
             this.gpb_Btm_Module = new System.Windows.Forms.GroupBox();
+            this.btn_Btm_Safe = new System.Windows.Forms.Button();
             this.btn_Go_Btm_WorldCenter_Pos = new System.Windows.Forms.Button();
             this.btn_Btm_Update_WorldCenter = new System.Windows.Forms.Button();
             this.btn_Btm_Module_Update_Pos = new System.Windows.Forms.Button();
@@ -74,7 +76,7 @@
             this.lbl_Top_WorldCenter_PosY = new System.Windows.Forms.Label();
             this.lbl_Top_WorldCenter_PosX = new System.Windows.Forms.Label();
             this.btn_Save = new System.Windows.Forms.Button();
-            this.btn_Clear = new System.Windows.Forms.Button();
+            this.btn_Save_WorldCenter_Pos = new System.Windows.Forms.Button();
             this.gpb_Top_Module.SuspendLayout();
             this.gpb_Btm_Module.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -103,6 +105,16 @@
             this.gpb_Top_Module.TabIndex = 0;
             this.gpb_Top_Module.TabStop = false;
             this.gpb_Top_Module.Text = "上模组";
+            // 
+            // btn_Top_Safe
+            // 
+            this.btn_Top_Safe.Location = new System.Drawing.Point(1177, 288);
+            this.btn_Top_Safe.Name = "btn_Top_Safe";
+            this.btn_Top_Safe.Size = new System.Drawing.Size(120, 33);
+            this.btn_Top_Safe.TabIndex = 14;
+            this.btn_Top_Safe.Text = "安全措施";
+            this.btn_Top_Safe.UseVisualStyleBackColor = true;
+            this.btn_Top_Safe.Click += new System.EventHandler(this.btn_Top_Safe_Click);
             // 
             // btn_Go_Top_WorldCenter_Pos
             // 
@@ -198,7 +210,7 @@
             this.btn_Top_Module_Update_InspectKit.Name = "btn_Top_Module_Update_InspectKit";
             this.btn_Top_Module_Update_InspectKit.Size = new System.Drawing.Size(100, 33);
             this.btn_Top_Module_Update_InspectKit.TabIndex = 4;
-            this.btn_Top_Module_Update_InspectKit.Text = "更换视觉";
+            this.btn_Top_Module_Update_InspectKit.Text = "更新视觉";
             this.btn_Top_Module_Update_InspectKit.UseVisualStyleBackColor = true;
             this.btn_Top_Module_Update_InspectKit.Click += new System.EventHandler(this.btn_Top_Module_Update_InspectKit_Click);
             // 
@@ -250,6 +262,7 @@
             // 
             // gpb_Btm_Module
             // 
+            this.gpb_Btm_Module.Controls.Add(this.btn_Btm_Safe);
             this.gpb_Btm_Module.Controls.Add(this.btn_Go_Btm_WorldCenter_Pos);
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_Update_WorldCenter);
             this.gpb_Btm_Module.Controls.Add(this.btn_Btm_Module_Update_Pos);
@@ -270,6 +283,17 @@
             this.gpb_Btm_Module.TabIndex = 11;
             this.gpb_Btm_Module.TabStop = false;
             this.gpb_Btm_Module.Text = "下模组";
+            // 
+            // btn_Btm_Safe
+            // 
+            this.btn_Btm_Safe.Location = new System.Drawing.Point(364, 31);
+            this.btn_Btm_Safe.Name = "btn_Btm_Safe";
+            this.btn_Btm_Safe.Size = new System.Drawing.Size(100, 33);
+            this.btn_Btm_Safe.TabIndex = 14;
+            this.btn_Btm_Safe.Text = "安全措施";
+            this.btn_Btm_Safe.UseVisualStyleBackColor = true;
+            this.btn_Btm_Safe.Visible = false;
+            this.btn_Btm_Safe.Click += new System.EventHandler(this.btn_Btm_Safe_Click);
             // 
             // btn_Go_Btm_WorldCenter_Pos
             // 
@@ -365,7 +389,7 @@
             this.btn_Btm_Module_Update_InspectKit.Name = "btn_Btm_Module_Update_InspectKit";
             this.btn_Btm_Module_Update_InspectKit.Size = new System.Drawing.Size(100, 33);
             this.btn_Btm_Module_Update_InspectKit.TabIndex = 4;
-            this.btn_Btm_Module_Update_InspectKit.Text = "更换视觉";
+            this.btn_Btm_Module_Update_InspectKit.Text = "更新视觉";
             this.btn_Btm_Module_Update_InspectKit.UseVisualStyleBackColor = true;
             this.btn_Btm_Module_Update_InspectKit.Click += new System.EventHandler(this.btn_Btm_Module_Update_InspectKit_Click);
             // 
@@ -547,23 +571,24 @@
             this.btn_Save.UseVisualStyleBackColor = true;
             this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
-            // btn_Clear
+            // btn_Save_WorldCenter_Pos
             // 
-            this.btn_Clear.Location = new System.Drawing.Point(1053, 326);
-            this.btn_Clear.Name = "btn_Clear";
-            this.btn_Clear.Size = new System.Drawing.Size(120, 40);
-            this.btn_Clear.TabIndex = 15;
-            this.btn_Clear.Text = "清除资料";
-            this.btn_Clear.UseVisualStyleBackColor = true;
-            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            this.btn_Save_WorldCenter_Pos.Location = new System.Drawing.Point(1053, 326);
+            this.btn_Save_WorldCenter_Pos.Name = "btn_Save_WorldCenter_Pos";
+            this.btn_Save_WorldCenter_Pos.Size = new System.Drawing.Size(120, 40);
+            this.btn_Save_WorldCenter_Pos.TabIndex = 15;
+            this.btn_Save_WorldCenter_Pos.Text = "储存世界中心";
+            this.btn_Save_WorldCenter_Pos.UseVisualStyleBackColor = true;
+            this.btn_Save_WorldCenter_Pos.Click += new System.EventHandler(this.btn_Save_WorldCenter_Pos_Click);
             // 
             // Form_Learn_Global_Center
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1392, 483);
+            this.Controls.Add(this.btn_Top_Safe);
             this.Controls.Add(this.btn_Save);
-            this.Controls.Add(this.btn_Clear);
+            this.Controls.Add(this.btn_Save_WorldCenter_Pos);
             this.Controls.Add(this.gpb_WorldCenter);
             this.Controls.Add(this.btn_Execute_Both_Module);
             this.Controls.Add(this.statusStrip1);
@@ -572,6 +597,7 @@
             this.Controls.Add(this.gpb_Top_Module);
             this.Name = "Form_Learn_Global_Center";
             this.Text = "世界中心位";
+            this.Load += new System.EventHandler(this.Form_Learn_Global_Center_Load);
             this.gpb_Top_Module.ResumeLayout(false);
             this.gpb_Top_Module.PerformLayout();
             this.gpb_Btm_Module.ResumeLayout(false);
@@ -629,10 +655,12 @@
         private System.Windows.Forms.Label lbl_Top_WorldCenter_PosZ;
         private System.Windows.Forms.Label lbl_Top_WorldCenter_PosY;
         private System.Windows.Forms.Button btn_Save;
-        private System.Windows.Forms.Button btn_Clear;
+        private System.Windows.Forms.Button btn_Save_WorldCenter_Pos;
         private System.Windows.Forms.Button btn_Top_Update_WorldCenter;
         private System.Windows.Forms.Button btn_Btm_Update_WorldCenter;
         private System.Windows.Forms.Button btn_Go_Top_WorldCenter_Pos;
         private System.Windows.Forms.Button btn_Go_Btm_WorldCenter_Pos;
+        private System.Windows.Forms.Button btn_Top_Safe;
+        private System.Windows.Forms.Button btn_Btm_Safe;
     }
 }

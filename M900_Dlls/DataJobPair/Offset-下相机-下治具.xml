@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data_Offset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SaveDate>2023/00/00 00:00:00</SaveDate>
+  <OffsetX>-72</OffsetX>
+  <OffsetY>128</OffsetY>
+  <IsReverseX>false</IsReverseX>
+  <IsReverseY>false</IsReverseY>
+  <ManualOffsetX>0</ManualOffsetX>
+  <ManualOffsetY>0</ManualOffsetY>
+  <First_MotorX>下马达X</First_MotorX>
+  <First_MotorY>下马达Y</First_MotorY>
+  <FirstPosX>595</FirstPosX>
+  <FirstPosY>67</FirstPosY>
+  <FirstPosZ>595</FirstPosZ>
+  <FirstPosT>0</FirstPosT>
+  <SecondPosX>523</SecondPosX>
+  <SecondPosY>195</SecondPosY>
+  <SecondPosZ>523</SecondPosZ>
+  <SecondPosT>0</SecondPosT>
+  <Inspect_PosX>0</Inspect_PosX>
+  <Inspect_PosY>0</Inspect_PosY>
+  <Inspect_PosZ>0</Inspect_PosZ>
+  <Inspect_PosT>0</Inspect_PosT>
+  <Start_Top_PosX>615</Start_Top_PosX>
+  <Start_Top_PosY>78</Start_Top_PosY>
+  <Start_Top_PosZ>0.1</Start_Top_PosZ>
+  <Start_Top_PosT>0</Start_Top_PosT>
+  <Start_Btm_PosX>595</Start_Btm_PosX>
+  <Start_Btm_PosY>67</Start_Btm_PosY>
+  <Start_Btm_PosZ>0</Start_Btm_PosZ>
+  <Start_Btm_PosT>0</Start_Btm_PosT>
+  <Anchor_MotorX>下马达X</Anchor_MotorX>
+  <Anchor_MotorY>下马达Y</Anchor_MotorY>
+  <Anchor_MotorZ>下马达X</Anchor_MotorZ>
+  <Anchor_MotorT>下治具T</Anchor_MotorT>
+  <Start_Based_Module>下模具</Start_Based_Module>
+  <Move_To_Center>false</Move_To_Center>
+  <Enable_InspectKit>false</Enable_InspectKit>
+  <Data_Safe_Module>
+    <SafeDetailDatas>
+      <SafeDetailDataBase xsi:type="DetailData_Safe_Pos">
+        <SaveDate>2023/00/00 00:00:00</SaveDate>
+        <Priority>1</Priority>
+        <IsSelected>false</IsSelected>
+        <MotorName>平台</MotorName>
+        <Pos>0.1</Pos>
+      </SafeDetailDataBase>
+      <SafeDetailDataBase xsi:type="DetailData_Safe_Pos">
+        <SaveDate>2023/00/00 00:00:00</SaveDate>
+        <Priority>2</Priority>
+        <IsSelected>false</IsSelected>
+        <MotorName>上马达Z</MotorName>
+        <Pos>0.1</Pos>
+      </SafeDetailDataBase>
+      <SafeDetailDataBase xsi:type="DetailData_Safe_Pos">
+        <SaveDate>2023/00/00 00:00:00</SaveDate>
+        <Priority>2</Priority>
+        <IsSelected>false</IsSelected>
+        <MotorName>下马达Z</MotorName>
+        <Pos>0.1</Pos>
+      </SafeDetailDataBase>
+    </SafeDetailDatas>
+  </Data_Safe_Module>
+</Data_Offset>

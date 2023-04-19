@@ -20,7 +20,7 @@ namespace SolveWare_Service_Core.General
             {
                 notPass = false;
             }
-            else if (errorCode == ErrorCodes.NoError && SolveWare.Core.MMgr.IsStop)
+            else if (SolveWare.Core.MMgr.IsStop)
             {
                 errorCode = ErrorCodes.MachineStopCall;
                 notPass = true;
@@ -42,12 +42,11 @@ namespace SolveWare_Service_Core.General
                 msg = string.Empty;
                 return notPass;
             }
-            else if (errorCode == ErrorCodes.NoError && SolveWare.Core.MMgr.IsStop) 
+            else if (SolveWare.Core.MMgr.IsStop) 
             {
                 errorCode = ErrorCodes.MachineStopCall; 
                 notPass = true; 
             }
-
 
             msg = ErrorCodes.GetErrorDescription(errorCode)+ "\n" + additionalMsg;
             return notPass;

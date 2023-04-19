@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data_Index xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SaveDate>2023/00/00 00:00:00</SaveDate>
+  <Data_Display>
+    <Current_No>9</Current_No>
+    <Current_X>3</Current_X>
+    <Current_Y>3</Current_Y>
+  </Data_Display>
+  <Data_Operation>
+    <Go_Number>1</Go_Number>
+    <Go_Number_X>1</Go_Number_X>
+    <Go_Number_Y>1</Go_Number_Y>
+  </Data_Operation>
+  <Data_Setup>
+    <Total_Nos_Of_X>3</Total_Nos_Of_X>
+    <Total_Nos_Of_Y>3</Total_Nos_Of_Y>
+    <Pitch_X>200</Pitch_X>
+    <Pitch_Y>50</Pitch_Y>
+    <Move_Priority>ColumnFirst</Move_Priority>
+  </Data_Setup>
+  <Data_FirstPos>
+    <Top_PosX>364</Top_PosX>
+    <Top_PosY>533</Top_PosY>
+    <Top_PosZ>0.1</Top_PosZ>
+    <Top_PosT>0</Top_PosT>
+    <Btm_PosX>846</Btm_PosX>
+    <Btm_PosY>522</Btm_PosY>
+    <Btm_PosZ>0</Btm_PosZ>
+    <Btm_PosT>0</Btm_PosT>
+  </Data_FirstPos>
+</Data_Index>

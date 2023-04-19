@@ -39,6 +39,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IList<ICommonJobFundamental> Get_Identical_ReosurcBase_Job(string resourceBaseName);
         void CloseAll();
         void AssignFSM();
+        void Stop();
 
         void Do_Homing();
         void Do_AutoCycle();

@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Attributes;
+﻿using MF900_SolveWare.Safe;
+using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.General;
 using System;
@@ -12,6 +13,12 @@ namespace MF900_SolveWare.WorldCenter.Data
     [ResourceBaseAttribute(ConstantProperty.ResourceKey_WorldCenter)]
     public class Data_GlobalWorldCenter: ElementBase
     {
+        public Data_GlobalWorldCenter()
+        {
+            Data_Safe_Top_Module = new Data_Safe();
+            Data_Safe_Btm_Module = new Data_Safe();
+        }
+
         #region 上模具位置
         private double top_Module_PosX;
         public double Top_Module_PosX
@@ -156,6 +163,11 @@ namespace MF900_SolveWare.WorldCenter.Data
             get => btm_WorldCenter_PosT;
             set => UpdateProper(ref btm_WorldCenter_PosT, value);
         }
+        #endregion
+
+        #region 安全措施
+        public Data_Safe Data_Safe_Top_Module { get; set; }
+        public Data_Safe Data_Safe_Btm_Module { get; set; }
         #endregion
     }
 }
