@@ -97,7 +97,6 @@
     <Compile Include="General\IdentityGenerator.cs" />
     <Compile Include="General\InfoReport.cs" />
     <Compile Include="General\MathCalculateHelper.cs" />
-    <Compile Include="General\Report_Info.cs" />
     <Compile Include="General\SystemPath.cs" />
     <Compile Include="General\XMLHelper.cs" />
     <Compile Include="Info\Base\Interface\IInfoHandler.cs" />

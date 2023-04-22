@@ -26,12 +26,9 @@ namespace MF900_SolveWare.Offset.Job
         {
           this.Data.Start_Based_Module = module;
         }
-        public int Save_Start_Pos()
-        {        
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
-
+        public Mission_Report Save_Start_Pos()
+        {
+            Mission_Report context = new Mission_Report();
             double offsetX = 0, offsetY = 0; 
             try
             {
@@ -40,7 +37,7 @@ namespace MF900_SolveWare.Offset.Job
                     Job_GlobalWorldCenter worldCenter = (Job_GlobalWorldCenter)SolveWare.Core.MMgr.Get_PairJob(ResourceKey.GlobalWorldCenter);
                     if(worldCenter == null)
                     {
-                        errorMsg += "无 世界中心 位置资料";
+                        context.Set(ErrorCodes.NoRelevantData, "无 世界中心 位置资料");
                         break;
                     }
 
@@ -92,25 +89,23 @@ namespace MF900_SolveWare.Offset.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int Go_Start_Pos()
+        public Mission_Report Go_Start_Pos()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report ();
             try
             {
                 do
                 {
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
                     //上下模组 X Y T => 先行
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = Data.Start_Top_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = Data.Start_Top_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_T, Pos = Data.Start_Top_PosT },
@@ -118,30 +113,28 @@ namespace MF900_SolveWare.Offset.Job
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = Data.Start_Btm_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_T, Pos = Data.Start_Btm_PosT }
                         );
-                    if(errorCode.NotPass( ref errorMsg, addtionalMsg)) break;
+                    if(context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = Data.Start_Top_PosZ },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = Data.Start_Btm_PosZ }
                         );
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
         
-        public int Save_First_Pos()
+        public Mission_Report Save_First_Pos()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -172,48 +165,44 @@ namespace MF900_SolveWare.Offset.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int GoFirstPos()
+        public Mission_Report GoFirstPos()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorX, Pos = Data.FirstPosX },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorY, Pos = Data.FirstPosY },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorT, Pos = Data.FirstPosT });
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(
+                    context = MotionHelper.Move_Motor(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorZ, Pos = Data.FirstPosZ });
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Save_Second_Pos()
+        public Mission_Report Save_Second_Pos()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -242,47 +231,44 @@ namespace MF900_SolveWare.Offset.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int GoSecondPos() {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+        public Mission_Report GoSecondPos() {
+
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorX, Pos = Data.SecondPosX },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorY, Pos = Data.SecondPosY },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorT, Pos = Data.SecondPosT });
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(
+                    context = MotionHelper.Move_Motor(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorZ, Pos = Data.SecondPosZ });
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Save_Inspect_Pos()
+        public Mission_Report Save_Inspect_Pos()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -311,91 +297,83 @@ namespace MF900_SolveWare.Offset.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int Go_Inspect_Pos()
+        public Mission_Report Go_Inspect_Pos()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                     new Info_Motion { Motor_Name = Data.Anchor_MotorX, Pos = Data.Inspect_PosX },
                     new Info_Motion { Motor_Name = Data.Anchor_MotorY, Pos = Data.Inspect_PosY },
                     new Info_Motion { Motor_Name = Data.Anchor_MotorT, Pos = Data.Inspect_PosT });
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(
+                    context = MotionHelper.Move_Motor(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorZ, Pos = Data.Inspect_PosZ });
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    if (context.NotPass()) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int Do_Inspect()
+        public Mission_Report Do_Inspect()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     if (string.IsNullOrEmpty(Data.InspectKitName))
                     {
-                        errorCode = ErrorCodes.NoRelevantData;
-                        errorMsg += "无 视觉 物件";
+                        context.Set(ErrorCodes.NoRelevantData, "无 视觉 物件");
                         break;
                     }
 
                     if (Data.Enable_InspectKit == false) break;
 
                     Inspect job = (Inspect)SolveWare.Core.MMgr.Get_PairJob(Data.InspectKitName);
-                    errorCode = job.Do_Job();
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = job.Do_Job();
+                    if (context.NotPass()) break;
 
                     if(Data.Move_To_Center == false) break;
 
                     double targetPosX = this.Data.Anchor_MotorX.GetUnitPos() + job.OffsetX;
                     double targetPosY = this.Data.Anchor_MotorY.GetUnitPos() + job.OffsetY;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorX, Pos = targetPosX },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorY, Pos = targetPosY });
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Calculate_Offset()
-
+        public Mission_Report Calculate_Offset()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+           Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -410,153 +388,144 @@ namespace MF900_SolveWare.Offset.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Do_Safe_Prevention()
+        public Mission_Report Do_Safe_Prevention()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Module, ref addtionalMsg);              
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Module);              
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }   
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
                     //TODO -- Job Offset -- Do_Job()
-                    errorCode =Go_Start_Pos();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context =Go_Start_Pos();
+                    if (context.NotPass()) break;
 
-                    errorCode = Save_First_Pos();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Save_First_Pos();
+                    if (context.NotPass()) break;
 
-                    errorCode = Go_Inspect_Pos();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Go_Inspect_Pos();
+                    if (context.NotPass()) break;
 
-                    errorCode = Do_Inspect();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Inspect();
+                    if (context.NotPass()) break;
 
-                    errorCode = Save_Second_Pos();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Save_Second_Pos();
+                    if (context.NotPass()) break;
 
-                    errorCode = Calculate_Offset();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Calculate_Offset();
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Go_Offset()
+        public Mission_Report Go_Offset()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     if(string.IsNullOrEmpty(Data.Anchor_MotorX) || string.IsNullOrEmpty(Data.Anchor_MotorY))
                     {
-                        errorMsg += "无定位基础马达物件";
+                        context.Set(ErrorCodes.NoRelevantObject, "无定位基础马达物件");
                         break;
                     }
 
 
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
 
 
                     double posX = Data.Anchor_MotorX.GetUnitPos() + Data.OffsetX;
                     double posY = Data.Anchor_MotorY.GetUnitPos() + Data.OffsetY;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorX, Pos = posX },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorY, Pos = posY }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);   
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Return_Offset()
+        public Mission_Report Return_Offset()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
-            string addtionalMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     if (string.IsNullOrEmpty(Data.Anchor_MotorX) || string.IsNullOrEmpty(Data.Anchor_MotorY))
                     {
-                        errorMsg += "无定位基础马达物件";
+                        context.Set(ErrorCodes.NoRelevantObject, "无定位基础马达物件");
                         break;
                     }
 
 
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg, addtionalMsg)) break;
-
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
 
                     double posX = Data.Anchor_MotorX.GetUnitPos() + Data.OffsetX * -1;
                     double posY = Data.Anchor_MotorY.GetUnitPos() + Data.OffsetY * -1;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = Data.Anchor_MotorX, Pos = posX },
                         new Info_Motion { Motor_Name = Data.Anchor_MotorY, Pos = posY }
                         );
 
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
 

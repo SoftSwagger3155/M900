@@ -137,32 +137,29 @@ namespace SolveWare_Service_Tool.Motor.Business
             return isOn;
         }
         volatile bool is_Home_Mission = false;
-        public override bool HomeMove()
+        public override Mission_Report HomeMove()
         {
             //变数
-            bool isHomeSuccessful = false;
-            string sErr = string.Empty;
-            uint homeStatus = 0;
+            Mission_Report context = new Mission_Report();
+            string msg = string.Empty;
             uint revStatus = 0;
-            int homemode = 0;
+            bool isHomeSuccessful = false;
             bool isTimeOut = false;
             TimeSpent = "0.000";
             Stopwatch sw = Stopwatch.StartNew();
-            errorReport = string.Empty;
             is_Home_Mission = true;
             float minVel = 0;
             float maxVel = 0;
             float acc = 0;
             float dec = 0;
-            int errorCode = ErrorCodes.NoError;
 
 
 
             //先检查安全问题
-            if (IsProhibitToHome())
+            if (IsProhibitToHome(ref msg))
             {
-                errorReport += "不安全复位";
-                return isHomeSuccessful;
+                context.Set(ErrorCodes.MotorHomingError, msg);
+                return context;
             }
 
             //模拟状态
@@ -174,7 +171,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 hasHome = true;
                 isHomeSuccessful = true;
                 TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-                return isHomeSuccessful;
+                return context;
             }
 
             //设置正负限位
@@ -206,11 +203,10 @@ namespace SolveWare_Service_Tool.Motor.Business
                 dec = (float)speed.Deceleration;
             }
 
-            errorCode = SetSpeedParameters(minVel, maxVel, acc, dec, false) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-            if (errorCode != ErrorCodes.NoError)
+            if (SetSpeedParameters(minVel, maxVel, acc, dec, false)==false)
             {
-                errorReport += "请定速度 失败";
-                return false;
+                context.Set(ErrorCodes.SetMotorSpeedParameterError);
+                return context;
             }
 
             sw.Restart();
@@ -230,17 +226,15 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(sw))
                 {
-                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
             if (isTimeOut)
             {
-                errorReport += "运动超时";
                 Stop();
                 hasHome = false;
-                return isHomeSuccessful;
+                context.Set(ErrorCodes.WaitTimeOutError);
             }
             Thread.Sleep(50);
             TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
@@ -327,16 +321,15 @@ namespace SolveWare_Service_Tool.Motor.Business
             //}
             #endregion
 
-            isHomeSuccessful = true;
-            return isHomeSuccessful;
+     
+            return context;
         }
-        public override bool HomeMove(SpeedSeting speed)
+        public override Mission_Report HomeMove(SpeedSeting speed)
         {
+            Mission_Report context = new Mission_Report();
             bool isHomeSuccessful = false;
-            string sErr = string.Empty;
-            uint homeStatus = 0;
+            string msg = string.Empty;
             uint revStatus = 0;
-            int homemode = 0;
             TimeSpent = "0.000";
             Stopwatch sw = Stopwatch.StartNew();
             errorReport = string.Empty;
@@ -347,10 +340,10 @@ namespace SolveWare_Service_Tool.Motor.Business
             int errorCode = ErrorCodes.NoError;
             bool isTimeOut = false;
 
-            if (IsProhibitToHome()) 
+            if (IsProhibitToHome(ref msg)) 
             {
-                errorReport += "不安全复位";
-                return false; 
+                context.Set(ErrorCodes.MotorHomingError, msg);
+                return context; 
             }
 
             isStopReq = false;
@@ -363,7 +356,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 double EstimateTimeTaken = 0.01 * (Math.Abs(DistanceToMove) / mtrSpeed.SpeedSettings[0].Max_Velocity);
                 MoveTo(0);
                 TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-                return true;
+                return context;
             }
 
             //目前不需要
@@ -393,12 +386,10 @@ namespace SolveWare_Service_Tool.Motor.Business
                 dec = (float)speed.Deceleration;
             }
 
-            errorCode = SetSpeedParameters(minVel, maxVel, acc, dec, false) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-            if (errorCode != ErrorCodes.NoError)
+            if (SetSpeedParameters(minVel, maxVel, acc, dec, false)== false)
             {
-                errorReport += "请定速度 失败";
-             
-                return false;
+                context.Set(ErrorCodes.SetMotorSpeedParameterError);
+                return context;
             }
 
             sw.Restart();
@@ -425,13 +416,14 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
             if (isTimeOut)
             {
-                errorReport += "运动超时";
                 Stop();
                 hasHome = false;
-                return isHomeSuccessful;
+                context.Set(ErrorCodes.WaitTimeOutError);
+                return context;
             }
             Thread.Sleep(50);
             TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
+            return context;
 
             #region 之前的Home版本
             //sw.Restart();
@@ -509,10 +501,8 @@ namespace SolveWare_Service_Tool.Motor.Business
             ////Dll_Zmcaux.ZAux_BusCmd_Datum(Handler, (uint)mtrTable.AxisNo, 35);
             #endregion
 
-            isHomeSuccessful = true;
-            return isHomeSuccessful;
         }
-        private bool ZeroHoming()
+        private Mission_Report ZeroHoming()
         {
             //TODO - Zero Homing 填空
             return this.MoveTo(0);
@@ -532,7 +522,7 @@ namespace SolveWare_Service_Tool.Motor.Business
             Set_Servo(true);
             return true;
         }
-        public override void Jog(bool isPositive)
+        public override void Jog(bool isPositive, ref string msg)
         {
             if (isMoving) return;
             is_Jog_Mission = true;
@@ -543,15 +533,12 @@ namespace SolveWare_Service_Tool.Motor.Business
             float acc = 0;
             float dec = 0;
             int dir = 0;
-            string msg  = string.Empty;
             try
             {
                 do
                 {
-                    if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
+                    if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe, ref msg) == false)
                     {
-                        msg += (SafeKeeper as SafeKeeper).ErrorMsg;
-                        errorReport += msg;
                         break;
                     }
 
@@ -583,7 +570,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             SolveWare.Core.ShowMsg(msg, true);
         }
-        public override void Jog(bool isPositive, SpeedSeting speed)
+        public override void Jog(bool isPositive, SpeedSeting speed, ref string msg)
 
         {
             if (isMoving) return;
@@ -595,16 +582,13 @@ namespace SolveWare_Service_Tool.Motor.Business
             float acc = 0;
             float dec = 0;
             int dir = 0;
-            string msg = string.Empty;
 
             try
             {
                 do
                 {
-                    if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
+                    if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe, ref msg) == false)
                     {
-                        msg += (SafeKeeper as SafeKeeper).ErrorMsg;
-                        errorReport += msg;
                         break;
                     }
 
@@ -642,18 +626,20 @@ namespace SolveWare_Service_Tool.Motor.Business
             return true;
         }
 
-        public override bool MoveRelative(double distance, bool BypassDangerCheck = false)
+        public override Mission_Report MoveRelative(double distance, bool BypassDangerCheck = false)
         {
             double currPoints = Get_CurUnitPos();
             return MoveTo(currPoints + distance, BypassDangerCheck);
         }
-        public override bool MoveRelative(double distance, SpeedSeting speed, bool BypassDangerCheck = false)
+        public override Mission_Report MoveRelative(double distance, SpeedSeting speed, bool BypassDangerCheck = false)
         {
             double currPoints = Get_CurUnitPos();
             return MoveTo(currPoints + distance, speed, BypassDangerCheck);     
         }
-        public override bool HomeMoveTo(double pos, bool BypassDangerCheck = false)
+        public override Mission_Report HomeMoveTo(double pos, bool BypassDangerCheck = false)
         {
+            Mission_Report context = new Mission_Report();
+            string msg = string.Empty;
             bool isMoveSuccessful = false;
             DateTime st = DateTime.Now;
             Stopwatch sw = Stopwatch.StartNew();    
@@ -667,12 +653,22 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //安全检查
-            if (IsProhibitToMove()) return false;
+            if (IsProhibitToMove(ref msg))
+            {
+
+            }
             if (IsDangerousToMove)
             {
-                if (DoAvoidDangerousPosAction() == false) return false;
+                if (DoAvoidDangerousPosAction() == false)
+                {
+                    context.Set(ErrorCodes.SafetyViolation);
+                    return context;
+                }
             }
-            if (IsZoneSafeToGo(pos) == false) return false;
+            if (IsZoneSafeToGo(pos) == false) {
+                context.Set(ErrorCodes.SafetyViolation);
+                return context;
+            }
 
             //获取速度资料
             var homeMode = this.mtrSpeed.SpeedSettings.FirstOrDefault(x => x.Name == ConstantProperty.SpeedSetting_Home);
@@ -708,7 +704,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 }
 
 
-                return true;
+                return context;
             }
 
             //实际执行
@@ -731,17 +727,19 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (IsMoveTimeOut(sw))
                 {
                     Stop();
-                    return isMoveSuccessful;
+                    context.Set(ErrorCodes.WaitTimeOutError);
+                    return context;
                 }
             }
 
-            isMoveSuccessful = true;
-            return isMoveSuccessful;
+          return context;   
         }
-        public override bool HomeMoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false)
+        public override Mission_Report HomeMoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false)
         {
-            //变量
+            //
+            Mission_Report context = new Mission_Report();
             bool isMoveSuccessful = false;
+            string msg = string.Empty;
             Stopwatch sw = Stopwatch.StartNew();
             double tempPos = 0;
 
@@ -753,14 +751,26 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //安全检查
-            if (IsProhibitToMove()) return false;
+            if (IsProhibitToMove(ref msg))
+            {
+                context.Set(ErrorCodes.SafetyViolation);
+                return context;
+            }
             if (IsDangerousToMove)
             {
-                if (DoAvoidDangerousPosAction() == false) return false;
+                if (DoAvoidDangerousPosAction() == false)
+                {
+                    context.Set(ErrorCodes.SafetyViolation);
+                    return context;
+                }
             }
-            if (IsZoneSafeToGo(pos) == false) return false;
+            if (IsZoneSafeToGo(pos) == false)
+            {
+                context.Set(ErrorCodes.SafetyViolation);
+                return context;
+            }
 
-            
+
             //模拟方式
             double distanceToMove = pos - Get_CurUnitPos();
             double estimateTimeTaken = 0.01 * (Math.Abs(distanceToMove) / speed.Max_Velocity);
@@ -791,7 +801,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                     CurrentPhysicalPos = MtrTable.CurPos;
                 }
 
-                return true;
+                return context;
             }
 
             sw.Restart();
@@ -812,22 +822,23 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsMoveTimeOut(sw))
                 {
+                    context.Set(ErrorCodes.WaitTimeOutError);
                     Stop();
-                    return isMoveSuccessful;
+                    return context;
                 }
             }
-
-            isMoveSuccessful = true;
-            return isMoveSuccessful;
+            
+            return context;
         }
         
-        public override bool MoveTo(double pos, bool BypassDangerCheck = false)
+        public override Mission_Report MoveTo(double pos, bool BypassDangerCheck = false)
         {
             //变量
+            Mission_Report context = new Mission_Report();
             bool isMoveSuccessful = false;
             double tempPos = 0;
             Stopwatch sw = Stopwatch.StartNew();
-            errorReport = string.Empty;
+            string msg = string.Empty;
             
             //公式轴执行方式
             if (this.MtrTable.IsFormulaAxis)
@@ -837,22 +848,23 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //安全检查
-            if (IsProhibitToMove()) {
+            if (IsProhibitToMove(ref msg)) {
 
-                errorReport += "不安全运动";
-                return false;
+                context.Set(ErrorCodes.MotorMoveError, msg);
+                return context;
             }
             if (IsDangerousToMove)
             {
-                if (DoAvoidDangerousPosAction() == false) {
-                    errorReport += "不安全运动";
-                    return false;
+                if (DoAvoidDangerousPosAction() == false)
+                {
+                    context.Set(ErrorCodes.SafetyViolation);
+                    return context;
                 }
             }
             if (IsZoneSafeToGo(pos) == false)
             {
-                errorReport += "超出限位距离";
-                return false;
+                context.Set(ErrorCodes.SafetyViolation);
+                return context;
             }
 
 
@@ -908,7 +920,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 }
 
                 TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-                return true;
+                return context;
             }
 
             sw.Restart();
@@ -932,30 +944,29 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(sw))
                 {
-                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
             if (isTimeOut)
             {
-                errorReport += "运动超时";
+                context.Set(ErrorCodes.WaitTimeOutError);
                 Stop();
-                return isMoveSuccessful;
+                return context;
             }
 
             TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-            isMoveSuccessful = true;
-            return isMoveSuccessful;
+            return context;
         }
-        public override bool MoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false)
+        public override Mission_Report MoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false)
         {
             //变量
+            Mission_Report context = new Mission_Report();
             bool isMoveSuccessful = false;
             DateTime st = DateTime.Now;
             double tempPos = 0;
             Stopwatch sw = Stopwatch.StartNew();
-            errorReport = string.Empty;
+            string msg = string.Empty;
 
             //公式轴执行方式
             if (this.MtrTable.IsFormulaAxis)
@@ -965,24 +976,23 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
 
             //安全检查
-            if (IsProhibitToMove())
+            if (IsProhibitToMove(ref msg))
             {
-
-                errorReport += "不安全运动";
-                return false;
+                context.Set(ErrorCodes.MotorMoveError, msg);
+                return context;
             }
             if (IsDangerousToMove)
             {
                 if (DoAvoidDangerousPosAction() == false)
                 {
-                    errorReport += "不安全运动";
-                    return false;
+                    context.Set(ErrorCodes.MotorMoveError);
+                    return context;
                 }
             }
             if (IsZoneSafeToGo(pos) == false)
             {
-                errorReport += "超出限位距离";
-                return false;
+                context.Set(ErrorCodes.MotorMoveError);
+                return context;
             }
 
             //获取速度
@@ -1037,7 +1047,7 @@ namespace SolveWare_Service_Tool.Motor.Business
                 }
 
                 TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-                return true;
+                return context;
             }
 
 
@@ -1062,21 +1072,18 @@ namespace SolveWare_Service_Tool.Motor.Business
                 if (!Get_MovingStatus()) break;
                 if (IsHomeTimeOut(sw))
                 {
-                    errorReport += "运动超时";
                     isTimeOut = true;
                     break;
                 }
             }
             if (isTimeOut)
             {
-                errorReport += "运动超时";
+                context.Set(ErrorCodes.WaitTimeOutError);
                 Stop();
-                return isMoveSuccessful;
-            }
+                return context;            }
 
-            TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";
-            isMoveSuccessful = true;
-            return isMoveSuccessful;
+            TimeSpent = $"{sw.Elapsed.TotalSeconds.ToString("F3")}";   
+            return context;
         }
         public override bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false)
         {

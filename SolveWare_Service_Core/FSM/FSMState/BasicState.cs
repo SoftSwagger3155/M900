@@ -17,10 +17,10 @@ namespace SolveWare_Service_Core.FSM.FSMState
 
         }
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            string errMsg = string.Empty;
-            OnEntrance();
+            this.context = new Mission_Report();
+            this.Status = Definition.JobStatus.Entrance;
             try
             {
                 do
@@ -28,25 +28,28 @@ namespace SolveWare_Service_Core.FSM.FSMState
                     if (IsSimulation)
                         Thread.Sleep(500);
 
+                    this.Status = Definition.JobStatus.Active;
                     if (OnExecuteHandler == null)
                     {
-                        errorCode = ErrorCodes.NoStateActionAssign;
+                        this.context.Set(ErrorCodes.NoStateActionAssign);
                         break;
                     }
 
-                    errorCode = OnExecuteHandler(this);
-                    if (errorCode != ErrorCodes.NoError)
+                    this.context = OnExecuteHandler(this);
+                    if (this.context.NotPass())
                     {
                         if(OnExecuteErrorHandler !=  null)
-                            errorCode = OnExecuteErrorHandler(this);
+                            this.context = OnExecuteErrorHandler(this);
 
-                        if (errorCode != ErrorCodes.NoError)
+                        if (this.context.NotPass())
                         {
-                            if (designatedState != null) this.nextState = designatedState;
-                            errMsg += ErrorCodes.GetErrorDescription(errorCode);
                             break;
                         }
-                        
+                        else
+                        {
+                            if (designatedState != null) this.nextState = designatedState;
+                            break;
+                        }                   
                     }
 
                     this.nextState = YesState;
@@ -55,13 +58,12 @@ namespace SolveWare_Service_Core.FSM.FSMState
             }
             catch(Exception ex)
             {
-                errMsg += ex.Message;
+                SolveWare.Core.ShowMsg(ex.Message);
             }
-
-            OnExit();
+            this.Status = context.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;       
             if (IsSimulation) Thread.Sleep(300);
-
-            return errorCode;
+          
+            return this.context;
         }
     }
 }

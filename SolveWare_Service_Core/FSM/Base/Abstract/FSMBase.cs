@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace SolveWare_Service_Core.FSM.Base.Abstract
 {
+  
     public abstract class FSMBase : JobFundamentalBase, IFSM
     {
         protected  bool isSimulation;
@@ -34,122 +35,126 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         /// 持续自动循环
         /// </summary>
         /// <returns></returns>
-        public int Run_Auto_Cycle()
+        public Mission_Report Run_Auto_Cycle()
         {
-            if(isSimulation)
+            if (isSimulation)
             {
-               var result = MessageBox.Show("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行\r\n继续按 Yes", "提示", MessageBoxButtons.YesNo);
-                if(result == DialogResult.No) { return 0; }
+                var result = MessageBox.Show("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行\r\n继续按 Yes", "提示", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) { return new Mission_Report { ErrorCode = ErrorCodes.NoError }; }
             }
 
-            OnEntrance();
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report mContext = new Mission_Report();
+            SolveWare.Core.MMgr.SetStatus(Definition.Machine_Status.Auto);
             string errMsg = string.Empty;
-            this.Info = "复位FSM";
+            List<Task> tasks = new List<Task>();
+
             try
             {
-                List<int> errors = new List<int>();
-                List<Task> tasks = new List<Task>();
-
                 Stations.ToList().ForEach(stn =>
                 {
-                    Task task = new Task(() =>
+                    Task task = Task.Factory.StartNew((object obj) =>
                     {
-                        int err = stn.RunAutoCycle();
-                        errors.Add(err);
-                    });
+                        Data_Mission_Report fsm = obj as Data_Mission_Report;
+                        fsm.Context = stn.RunSingleCycle();
+                    }, new Data_Mission_Report());
                     tasks.Add(task);
                 });
 
-                tasks.ForEach(task => { task.Start(); });
-                Task.Factory.ContinueWhenAny(tasks.ToArray(), act =>
-                {
-                    int index = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
-                });
-                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
-                {
-                    int index = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
+                Task.WaitAll(tasks.ToArray());
 
-                    errMsg += ErrorCodes.GetErrorDescription(errorCode);
+
+                tasks.ForEach(task =>
+                {
+                    var taskReport = task.AsyncState as Data_Mission_Report;
+                    mContext.Message += taskReport.Context.Message + "\r\n";
                 });
 
 
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                mContext.Message += ex.Message;
+            }
+            finally
+            {
+                if (string.IsNullOrEmpty(mContext.Message) == false)
+                {
+                    mContext.ErrorCode = ErrorCodes.FSMRunningFailed;
+                    SolveWare.Core.ShowMsg($"任务 执行 失败, 原因如下\r\n{mContext.Message}", true);
+                }
+                else
+                {
+                    mContext.ErrorCode = ErrorCodes.NoError;
+                    SolveWare.Core.ShowMsg("任务完成");
+                }
+
+                this.Status = mContext.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
             }
 
-            OnExit();
-            return errorCode;
+            return mContext;
         }
 
         /// <summary>
         /// 一次自动循环
         /// </summary>
         /// <returns></returns>
-        public int Run_One_Cycle()
+        public Mission_Report Run_One_Cycle()
         {
             if (isSimulation)
             {
                 var result = MessageBox.Show("因有硬件相关系统设为模拟状态，FSM 会以模拟状态运行\r\n继续按 Yes", "提示", MessageBoxButtons.YesNo);
-                if (result == DialogResult.No) { return 0; }
+                if (result == DialogResult.No) { return new Mission_Report { ErrorCode = ErrorCodes.NoError}; }
             }
 
+            Mission_Report mContext = new Mission_Report();
             SolveWare.Core.MMgr.SetStatus(Definition.Machine_Status.Auto);
-            OnEntrance();
-            int errorCode = ErrorCodes.NoError;
             string errMsg = string.Empty;
+            List<Task> tasks = new List<Task>();
 
             try
-            {
-                List<int> errors = new List<int>();
-                List<Task> tasks = new List<Task>();
-
+            {              
                 Stations.ToList().ForEach(stn =>
                 {
-                    Task task = new Task(() =>
+                    Task task = Task.Factory.StartNew((object obj) =>
                     {
-                        int err = stn.RunSingleCycle();
-                        errors.Add(err);
-                    });
+                        Data_Mission_Report fsm = obj as Data_Mission_Report;
+                        fsm.Context = stn.RunSingleCycle();
+                    }, new Data_Mission_Report());
                     tasks.Add(task);
                 });
 
-                tasks.ForEach(task => { task.Start(); });
-                Task.Factory.ContinueWhenAny(tasks.ToArray(), act =>
+                Task.WaitAll(tasks.ToArray());
+
+
+                tasks.ForEach(task =>
                 {
-                    int index = errors.FindIndex(x => x != ErrorCodes.NoError);
-                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
+                    var taskReport = task.AsyncState as Data_Mission_Report;
+                    mContext.Message += taskReport.Context.Message + "\r\n";
                 });
-                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
-                {
-                    bool showErrMsg = false;
-                    int index = errors.FindIndex(x => x != ErrorCodes.NoError);
-                    errorCode = index >= 0 ? ErrorCodes.FSMRunningFailed : ErrorCodes.NoError;
-
-                    errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) : string.Empty;
-                    if (errorCode != ErrorCodes.NoError)
-                    {
-                        showErrMsg = true;
-                        this.Stations.ToList().ForEach(stn => errorMsg += $"\r\n{(stn as FSMStationBase).ErrorMsg}");
-                    }
-
-
-                    string status = errorCode == ErrorCodes.NoError ? "成功" : "失败";
-                    SolveWare.Core.MMgr.Infohandler.LogMessage($"FSM 运行结束, 结果 {status}", true, showErrMsg);
-                });
-
+               
 
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                mContext.Message += ex.Message;
             }
-            OnExit();
-            return errorCode;
+            finally
+            {
+                if (string.IsNullOrEmpty(mContext.Message) == false)
+                {
+                    mContext.ErrorCode = ErrorCodes.FSMRunningFailed;
+                    SolveWare.Core.ShowMsg($"任务 执行 失败, 原因如下\r\n{mContext.Message}", true);
+                }
+                else
+                {
+                    mContext.ErrorCode = ErrorCodes.NoError;
+                    SolveWare.Core.ShowMsg("任务完成");
+                }
+
+                this.Status = mContext.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
+            }
+
+            return mContext;
         }
 
         /// <summary>

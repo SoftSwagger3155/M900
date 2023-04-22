@@ -160,9 +160,6 @@
     <Compile Include="MMperPixel\Data\Data_MMperPixel.cs" />
     <Compile Include="MMperPixel\Job\Job_MMperPixel_BtmCamera.cs" />
     <Compile Include="MMperPixel\Job\Job_MMperPixel_TopCamera.cs" />
-    <Compile Include="Offset\Job\Job_Offset_BtmCamera_BtmProber.cs" />
-    <Compile Include="Offset\Job\Job_Offset_TopCamera_BtmPin.cs" />
-    <Compile Include="Offset\Job\Job_Offset_TopCamera_TopProber.cs" />
     <Compile Include="Views\AxisMesForm\AxisDebugForm.cs">
       <SubType>Form</SubType>
     </Compile>

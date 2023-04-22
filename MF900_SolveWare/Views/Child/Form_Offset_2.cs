@@ -15,6 +15,7 @@ using MF900_SolveWare.Offset.Job;
 using Sunny.UI;
 using MF900_SolveWare.Resource;
 using MF900_SolveWare.Views.AxisMesForm;
+using Sunny.UI.Win32;
 
 namespace MF900_SolveWare.Views.Child
 {
@@ -190,22 +191,22 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Save_Start_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     if (OffsetData == null)
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
+                        context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                        if (context.NotPass(true)) break;
                     }
 
-                    int errorCode = OffsetJob.Save_Start_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                    context = OffsetJob.Save_Start_Pos();
+                    if (context.NotPass()) break;
 
-                    errorCode = OffsetJob.Save_First_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                    context = OffsetJob.Save_First_Pos();
+                    if (context.NotPass()) break;
 
                     DataBinding_FirstPos_Info();
                     DataBinding_StartPos_Info();
@@ -215,35 +216,38 @@ namespace MF900_SolveWare.Views.Child
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            SolveWare.Core.ShowMsg(msg);
         }
 
         private void btn_Go_Start_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            if (context.NotPass(true)) break;
+                        }
 
-                    int errorCode = OffsetJob.Go_Start_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Go_Start_Pos();
+                        if (context.NotPass(true)) break;
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                }
+
+                return context;
+            });
         }
 
         #endregion
@@ -295,28 +299,32 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Do_Job_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            if(context.NotPass()) break;
+                        }
 
-                    int errorCode = OffsetJob.Do_Job();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Do_Job();
+                        if (context.NotPass()) break;
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                }
+
+                return context;
+            });    
         }
 
         private void btn_Clear_Offset_Click(object sender, EventArgs e)
@@ -360,8 +368,8 @@ namespace MF900_SolveWare.Views.Child
                         break;
                     }
 
-                    int errorCode = OffsetJob.Save_Second_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                    Mission_Report context = OffsetJob.Save_Second_Pos();
+                    if (context.NotPass()) break;
 
                     DataBinding_Second_Pos();
 
@@ -377,28 +385,33 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Second_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoMotorObject, "请选择一个 Offset物件");
+                            if(context.NotPass(true)) break;    
+                            break;
+                        }
 
-                    int errorCode = OffsetJob.GoSecondPos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.GoSecondPos();
+                        if (context.NotPass(true)) break;
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                   context.Set(ErrorCodes.ActionFailed, ex.Message);
+                    if (context.NotPass(true)) ;
+                }
+                return context;
+            });
         }
 
         private void btn_Confirm_InspectKit_Click(object sender, EventArgs e)
@@ -431,101 +444,118 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Do_Inspect_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            context.NotPass(true);  
+                            break;
+                        }
 
-                    int errorCode = OffsetJob.Do_Inspect();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Do_Inspect();
+                        if (context.NotPass()) break;
 
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                    context.NotPass(true);
+                }
+                return context;
+            });
         }
 
         private void btn_Save_Inspect_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            context.NotPass(true);
+                            break;
+                        }
 
-                    int errorCode = OffsetJob.Save_Inspect_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Save_Inspect_Pos();
+                        if (context.NotPass(true)) break;
 
-                    DataBinding_Inspect_Pos();
+                        DataBinding_Inspect_Pos();
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                }
+
+                return context;
+            });
         }
 
         private void btn_Go_Inspect_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            context.NotPass(true);
+                            break;
+                        }
 
-                    int errorCode = OffsetJob.Go_Inspect_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Go_Inspect_Pos();
+                        if (context.NotPass(true)) break;
 
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                    context.NotPass(true);
+                }
+
+                return context;
+            });
         }
 
         private void btn_Calculate_Offset_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     if (OffsetData == null)
                     {
-                        msg += "请选择一个 Offset物件";
+                        context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                        context.NotPass(true);  
                         break;
                     }
 
-                    int errorCode = OffsetJob.Calculate_Offset();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                    context = OffsetJob.Calculate_Offset();
+                    if (context.NotPass(true)) break;
 
                     DataBinding_Offset();
 
@@ -534,9 +564,9 @@ namespace MF900_SolveWare.Views.Child
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
+                context.NotPass(true);
             }
-            SolveWare.Core.ShowMsg(msg);
         }
 
         private void Form_Offset_2_Load(object sender, EventArgs e)
@@ -598,54 +628,64 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Offset_Go_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            Task task = Task.Factory.StartNew(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Set(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            context.NotPass(true);
+                            break;
+                        }
 
-                    int errorCode = OffsetJob.Go_Offset();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Go_Offset();
+                        if (context.NotPass(true)) break;
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                    context.NotPass(true);
+                }
+            });
+           Task.WaitAll(task);  
         }
 
         private void btn_Offset_Return_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "请选择一个 Offset物件");
+                            break;
+                        }
 
-                    int errorCode = OffsetJob.Return_Offset();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                        context = OffsetJob.Return_Offset();
+                        context.NotPass(true);
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                   context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed,ex.Message);
+                }
+
+                return context;
+            });
+
         }
     }
 }

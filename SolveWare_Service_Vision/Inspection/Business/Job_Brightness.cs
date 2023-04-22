@@ -16,9 +16,9 @@ namespace SolveWare_Service_Vision.Inspection.Business
     public class Job_Brightness : JobFundamentalBase, IDataModulePair
     {
         public Data_InspectionKit jobParam;
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            string errMsg  = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -26,8 +26,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
                     CameraMediaBase camera = jobParam.CameraName.GetCamera();
                     if (camera == null) 
                     {
-                        errorCode = ErrorCodes.NoRelevantObject;
-                        jobParam.ErrorMsg += "无 相机 物件";
+                        context.Set(ErrorCodes.NoRelevantObject, "无相机物件");
                         break;
                      }
 
@@ -38,10 +37,10 @@ namespace SolveWare_Service_Vision.Inspection.Business
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
+                context.Set(ErrorCodes.VisionFailed);
             }
 
-            return ErrorCode;
+            return context;
         }
         public void Setup(IElement data)
         {

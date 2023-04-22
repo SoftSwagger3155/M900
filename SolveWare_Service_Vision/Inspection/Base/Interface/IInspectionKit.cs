@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace SolveWare_Service_Vision.Inspection.Base.Interface
 {
     public interface IInspectionKit: IJobFundamental
     {
-        int Set_Lighting();
-        int Set_Brightness();
-        int Do_PatternMath();
-        int Do_Blob();
+        Mission_Report Set_Lighting();
+        Mission_Report Set_Brightness();
+        Mission_Report Do_PatternMath();
+        Mission_Report Do_Blob();
     }
 }

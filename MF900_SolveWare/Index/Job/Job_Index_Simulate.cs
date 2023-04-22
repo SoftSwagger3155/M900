@@ -1,6 +1,7 @@
 ﻿using MF900_SolveWare.Index.Data;
 using MF900_SolveWare.Offset.Job;
 using MF900_SolveWare.Resource;
+using MF900_SolveWare.Safe;
 using MF900_SolveWare.WorldCenter.Job;
 using SolveWare_Service_Core;
 using SolveWare_Service_Core.Attributes;
@@ -45,14 +46,27 @@ namespace MF900_SolveWare.Index.Job
         /// 安全措施
         /// </summary>
         /// <returns></returns>
-        public int Do_Save_Prevention()
+        public Mission_Report Do_Save_Prevention()
         {         
-            return 0;
+            Mission_Report mReport = new Mission_Report();
+
+            try
+            {
+                Job_Safe.Do_Safe_Proection(this.Data.SafeData);
+
+
+            }
+            catch (Exception ex)
+            {
+               
+            }
+
+            return mReport;
         }
 
-        public int Go(int number)
+        public Mission_Report Go(int number)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
             string errMsg = string.Empty;
             PosX_Top = 0;
             PosY_Top = 0;
@@ -64,17 +78,16 @@ namespace MF900_SolveWare.Index.Job
             {
                 do
                 {
-                    if (Get_Position(number) == false)
+                    if (Get_Position(number, ref errMsg) == false)
                     {
-                        errMsg += "获取产品座标位置失败";
                         break;
                     }
 
-                    errorCode = Do_Save_Prevention();
-                    if (errorCode.NotPass(ref errMsg)) break;
+                    context = Do_Save_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm);
-                    if (errorCode.NotPass(ref errMsg)) break;
+                    context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm);
+                    if (context.NotPass()) break;
 
                     this.Data.Data_Display.Current_No = number;
      
@@ -82,58 +95,54 @@ namespace MF900_SolveWare.Index.Job
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
        
-            return errorCode;
+            return context;
         }
         /// <summary>
         /// 走到指定产品数
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        public int Go_Offset_Press(int number)
+        public Mission_Report Go_Offset_Press(int number)
         {
-            int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             PosX_Top = 0;
             PosY_Top = 0;
             PosX_Btm = 0;
             PosY_Btm = 0;
-
 
             try
             {
                 do
                 {
                    
-                    errorCode = Go(number);
-                    if (errorCode.NotPass(ref errMsg)) break;
+                    context = Go(number);
+                    if (context.NotPass()) break;
                     Thread.Sleep(1000);
 
-                    errorCode = Go_Offset();
-                    if (errorCode.NotPass(ref errMsg)) break;
-                    Thread.Sleep(1000);
-
-
-                    errorCode = Go_Multiple_PosZ(15, 15);
-                    if (errorCode.NotPass(ref errMsg)) break;
-                    Thread.Sleep(1000);
-
-                    errorCode = Go_Multiple_PosZ(0, 0);
-                    if (errorCode.NotPass(ref errMsg)) break;
+                    context = Go_Offset();
+                    if (context.NotPass()) break;
                     Thread.Sleep(1000);
 
 
+                    context = Go_Multiple_PosZ(15, 15);
+                    if (context.NotPass()) break;
+                    Thread.Sleep(1000);
+
+                    context = Go_Multiple_PosZ(0, 0);
+                    if (context.NotPass()) break;
+                    Thread.Sleep(1000);
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
         /// <summary>
@@ -141,9 +150,9 @@ namespace MF900_SolveWare.Index.Job
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public int GoNext()
+        public Mission_Report GoNext()
         {
-            return 0;
+            return new Mission_Report();
         }
 
         /// <summary>
@@ -151,9 +160,9 @@ namespace MF900_SolveWare.Index.Job
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public int GoPrevious()
+        public Mission_Report GoPrevious()
         {
-            return 0;
+            return new Mission_Report();
         }
 
         public void Save_First_Pos()
@@ -195,16 +204,15 @@ namespace MF900_SolveWare.Index.Job
             SolveWare.Core.ShowMsg(msg);    
         }
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            return ErrorCode;
+            return new Mission_Report();
         }
 
         #region 新的index方法 
-        public int Go_Offset()
+        public Mission_Report Go_Offset()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             double topPosX = 0;
             double topPosY = 0;
             double btmPosX = 0;
@@ -229,27 +237,26 @@ namespace MF900_SolveWare.Index.Job
 
                     if(Is_Safe_To_Go(topPosX, topPosY, btmPosX, btmPosY))
                     {
-                       errorCode = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY);
-                        if (errorCode.NotPass(ref errorMsg)) break;
+                       context = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY);
+                        if (context.NotPass()) break;
                     }
                     else
                     {
-                        errorCode = ErrorCodes.OffsetMoveError;
+                        context.Set(ErrorCodes.OffsetMoveError, ErrorCodes.GetErrorDescription(ErrorCodes.OffsetMoveError));
                     }
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.MotorMoveError;
+                context.Set(ErrorCodes.MotorMoveError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int Return_Offset()
+        public Mission_Report Return_Offset()
         {
-            errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;
+          Mission_Report context = new Mission_Report();
             double topPosX = 0;
             double topPosY = 0;
             double btmPosX = 0;
@@ -274,28 +281,26 @@ namespace MF900_SolveWare.Index.Job
 
                     if (Is_Safe_To_Go(topPosX, topPosY, btmPosX, btmPosY))
                     {
-                        errorCode = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY);
-                        if (errorCode.NotPass(ref errorMsg)) break;
+                        context = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY);
+                        if (context.NotPass()) break;
                     }
                     else
                     {
-                        errorCode = ErrorCodes.OffsetMoveError;
+                        context.Set(ErrorCodes.OffsetMoveError, ErrorCodes.GetErrorDescription(ErrorCodes.OffsetMoveError));
                     }
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.MotorMoveError;
+                context.Set(ErrorCodes.MotorMoveError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public bool Get_Position(int no)
+        public bool Get_Position(int no, ref string msg)
         {
             bool isOk = false;
-            errorMsg = string.Empty;
-            errorCode = ErrorCodes.NoError;
             double topPosX = 0;
             double topPosY = 0;
             double btmPosX = 0;
@@ -309,7 +314,7 @@ namespace MF900_SolveWare.Index.Job
                 //判断是否可以行
                 if (no > Data.Data_Setup.Total_Nos_Of_X * Data.Data_Setup.Total_Nos_Of_Y)
                 {
-                    errorMsg += "超过总数";
+                    msg += "超过总数";
                     break;
                 }
 
@@ -330,6 +335,11 @@ namespace MF900_SolveWare.Index.Job
                     this.PosY_Top = topPosY;
                     this.PosX_Btm = btmPosX;
                     this.PosY_Btm = btmPosY;
+                }
+                else
+                {
+                    msg += "不安全位置";
+                    break;  
                 }
 
             } while (false);
@@ -395,185 +405,84 @@ namespace MF900_SolveWare.Index.Job
 
             return isDangerous ==false;
         }
-        private int Go_Multiple_PosXY(double topPosX, double topPosY, double btmPosX, double btmPosY)
+        private Mission_Report Go_Multiple_PosXY(double topPosX, double topPosY, double btmPosX, double btmPosY)
         {
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    string errMsg = string.Empty;
-                    int errorCode1 = ErrorCodes.NoError;
-                    int errorCode2 = ErrorCodes.NoError;
-                    int errorCode3 = ErrorCodes.NoError;
-                    int errorCode4 = ErrorCodes.NoError;
-
-                    //List<Task> tasks = new List<Task>();
-                    AutoResetEvent endFlag_1 = new AutoResetEvent(false);
-                    AutoResetEvent endFlag_2 = new AutoResetEvent(false);
-                    AutoResetEvent endFlag_3 = new AutoResetEvent(false);
-                    AutoResetEvent endFlag_4 = new AutoResetEvent(false);
-                    Task task1 = new Task(() =>
+                    List<Task> tasks = new List<Task>();
+                    List<Info_Motion> jobs = new List<Info_Motion>
                     {
-                        do
-                        {
-                            errorCode1 = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = topPosX });
-                            if (errorCode1.NotPass(ref errMsg))
-                            {
-                                break;
-                            }
-                            endFlag_1.Set();
-                        } while (false);
-                    });
-                    Task task2 = new Task(() =>
-                    {
-                        do
-                        {
-                          
-                            errorCode2 = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = topPosY });
-                            if (errorCode2.NotPass(ref errMsg))
-                            {
-                                break;
-                            }
-                            endFlag_2.Set();
-                        } while (false);
-                    });
-                    Task task3 = new Task(() =>
-                    {
-                        do
-                        {
-                            errorCode3 = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = btmPosX });
-                            if (errorCode3.NotPass(ref errMsg))
-                            {
-                                break;
-                            }
-                            endFlag_3.Set();
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = topPosX },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = topPosY },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = btmPosX },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = btmPosY }
+                    };
 
-                        } while (false);
-                    });
-                    Task task4 = new Task(() =>
+                    Info_Motion currentJob;
+                    foreach (var item in jobs)
                     {
-                        do
+                        currentJob = item;
+                        Task task = Task.Factory.StartNew((object obj) =>
                         {
-                            errorCode4 = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = btmPosY });
-                            if (errorCode4.NotPass(ref errMsg))
-                            {
-                                break;
-                            }
-                            endFlag_4.Set();
+                            Data_Mission_Report data = obj as Data_Mission_Report;
+                            data.Context = MotionHelper.Move_Motor(currentJob);
 
-                        } while (false);
-                    });
-                    task1.Start();
-                    task2.Start();
-                    task3.Start();
-                    task4.Start();
-                    Stopwatch sw = Stopwatch.StartNew();
-                    sw.Restart();
-                    bool isTimeOut = false;
-                    bool isOk = false;
-                    while (true)
-                    {
-
-                        isOk = endFlag_1.WaitOne() && endFlag_2.WaitOne() && endFlag_3.WaitOne() && endFlag_4.WaitOne();
-                        if (isOk)
-                            break;
-
-                        if (sw.ElapsedMilliseconds > 600000)
-                        {
-                            isTimeOut = true;
-                            break;
-                        }
+                        }, new Data_Mission_Report());
+                        tasks.Add(task);
                     }
+                    Task.WaitAll(tasks.ToArray());
+                    context = tasks.Converto_Mission_Report();
 
-                    if (isTimeOut || errorCode1 != ErrorCodes.NoError || errorCode2 != ErrorCodes.NoError || errorCode3 != ErrorCodes.NoError || errorCode4 != ErrorCodes.NoError)
-                    {
-                        errorCode = ErrorCodes.ActionFailed;
-                        break;
-                    }
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.ActionFailed;
+                context.ErrorCode = ErrorCodes.ActionFailed;
+                context.Message += ex.Message;
             }
 
-            return errorCode;
+            return context;
         }
-        private int Go_Multiple_PosZ(double posZ1, double posZ2)
+        private Mission_Report Go_Multiple_PosZ(double posZ1, double posZ2)
         {
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    string errMsg = string.Empty;
-                    int errorCode1 = ErrorCodes.NoError;
-                    int errorCode2 = ErrorCodes.NoError;
-
-                    //List<Task> tasks = new List<Task>();
-                    AutoResetEvent endFlag_1 = new AutoResetEvent(false);
-                    AutoResetEvent endFlag_2 = new AutoResetEvent(false);
-                    Task task1 = new Task(() =>
+                    List<Task> tasks = new List<Task>();
+                    List<Info_Motion> jobs = new List<Info_Motion>
                     {
-                        do
-                        {
-                            errorCode1 = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = posZ1 });
-                            if (errorCode1.NotPass(ref errMsg))
-                            {
-                                endFlag_1.Set();
-                                break;
-                            }
-                            endFlag_1.Set();
-                        } while (false);
-                    });
-                    Task task2 = new Task(() =>
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = posZ1 },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = posZ2 }
+                    };
+
+                    Info_Motion currentJob;
+                    foreach (var job in jobs)
                     {
-                        do
+                        currentJob = job;   
+                        Task task = Task.Factory.StartNew((object obj) =>
                         {
-                            errorCode2 = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = posZ2 });
-                            if (errorCode2.NotPass(ref errMsg))
-                            {
-                                endFlag_2.Set();
-                                break;
-                            }
-                            endFlag_2.Set();
+                            var data = obj as Data_Mission_Report;
+                            data.Context = MotionHelper.Move_Motor(currentJob);
 
-                        } while (false);
-                    });
-                    task1.Start();
-                    task2.Start();
-                    Stopwatch sw = Stopwatch.StartNew();
-                    sw.Restart();
-                    bool isTimeOut = false;
-                    bool isOk = false;
-                    while (true)
-                    {
-
-                        isOk = endFlag_1.WaitOne() && endFlag_2.WaitOne();
-                        if (isOk)
-                            break;
-
-                        if (sw.ElapsedMilliseconds > 600000)
-                        {
-                            isTimeOut = true;
-                            break;
-                        }
+                        }, new Data_Mission_Report());
                     }
-
-                    if (isTimeOut || errorCode1 != ErrorCodes.NoError || errorCode2 != ErrorCodes.NoError)
-                    {
-                        errorCode = ErrorCodes.ActionFailed;
-                        break;
-                    }
+                    context = tasks.Converto_Mission_Report();
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.ActionFailed;
+                context.ErrorCode = ErrorCodes.ActionFailed;
+                context.Message = ex.Message;   
             }
 
-            return errorCode;
+            return context;
         }
 
 

@@ -17,9 +17,9 @@ namespace SolveWare_Service_Vision.Inspection.Business
         public Data_InspectionKit jobParam;
 
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            string errMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             JobSheet_PatternMatch data = jobParam.JobSheet_PatternMatch_Data;
             HTuple hv_ModelID = new HTuple();
 
@@ -29,8 +29,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
                 {
                     if (string.IsNullOrEmpty(data.ModelID))
                     {
-                        errorCode = ErrorCodes.NoVisionPatternObject;
-                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
+                        context.Set(ErrorCodes.NoVisionPatternObject, "无 Model 物件");
                         break;
                     }
 
@@ -39,25 +38,21 @@ namespace SolveWare_Service_Vision.Inspection.Business
                     HOperatorSet.ReadShapeModel(fileName, out hv_ModelID);
 
                     //执行 Pattern Match 任务
-                    errorCode = new Service_PatternMatch().Execute(data.Hv_WindowHandle, data.ModelID, data.Ho_HImage,
+                    context = new Service_PatternMatch().Execute(data.Hv_WindowHandle, data.ModelID, data.Ho_HImage,
                                                                                                     data.AngleStart, data.AngleExtent, data.MinScale, data.MaxScale, data.MinScore, 
                                                                                                     data.NumMatches, data.MaxOverLap, data.SubPixel, data.NumLevels, data.Greediness);
 
-                    if(errorCode != ErrorCodes.NoError)
-                    {
-                        errMsg += ErrorCodes.GetErrorDescription(errorCode);
-                        break;
-                    }
+                    if (context.NotPass()) break;
 
                 } while (false);
 
             }
             catch (Exception ex)
             {
-                errMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return ErrorCode;
+            return context;
         }
         public void Setup(IElement data)
         {
@@ -91,11 +86,11 @@ namespace SolveWare_Service_Vision.Inspection.Business
         /// <param name="subPixel"></param>
         /// <param name="numLevels"></param>
         /// <param name="greediness"></param>
-        public int Execute(HTuple hv_WindowHandle, HTuple hv_ModelID, HObject ho_GrayImage,
+        public Mission_Report Execute(HTuple hv_WindowHandle, HTuple hv_ModelID, HObject ho_GrayImage,
                                       HTuple angleStart, HTuple angleExtent, HTuple scaleMin, HTuple scaleMax, HTuple minScore, HTuple numMatches, HTuple maxOverLap,
                                       HTuple subPixel, HTuple numLevels, HTuple greediness)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
 
             HTuple hv_Row1 = new HTuple();
             HTuple hv_Column1 = new HTuple();
@@ -141,7 +136,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
                 hv_Scale.Dispose();
                 hv_Score.Dispose();
 
-                errorCode = ErrorCodes.PatternMatchFailed;
+                context.Set(ErrorCodes.PatternMatchFailed);
             }
             //ho_GrayImage.Dispose();
 
@@ -154,7 +149,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
             hv_Score.Dispose();
 
 
-            return errorCode;
+            return context;
         }
 
         #region 公开方法

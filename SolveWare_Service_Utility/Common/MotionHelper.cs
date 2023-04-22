@@ -13,64 +13,53 @@ namespace SolveWare_Service_Utility.Common
 {
     public class MotionHelper
     { 
-        public static int Move_Multiple_Motors(params Info_Motion[] motions)
+        public static Mission_Report Move_Multiple_Motors(params Info_Motion[] motions)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context= new Mission_Report();
             try
             {
                 do
                 {
-                    List<Report_Info> infos = new List<Report_Info>();
                     List<Task> tasks = new List<Task>();
-
+                    Info_Motion currentJob;
                     foreach (var info in motions.ToList())
                     {
-                        Task task = Task.Run(() =>
+                        currentJob = info;
+
+                        Task task = Task.Factory.StartNew((object obj) =>
                         {
-                            int err = info.Motor_Name.GetAxisBase().MoveTo(info.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
-                            infos.Add(new Report_Info { ErrorCode = err, ErrorMsg = $"{ErrorCodes.GetErrorDescription(err)} +{info.Motor_Name.GetAxisBase().ErrorReport}" });
-                        });
+                            Data_Mission_Report data = obj as Data_Mission_Report;
+                            data.Context = MotionHelper.Move_Motor(currentJob);
+
+                        }, new Data_Mission_Report());
                         tasks.Add(task);
                     }
-                 
-                    Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
-                    {
-                        string msg = string.Empty;
-                        infos.ForEach(x =>
-                        {
-                            if (x.ErrorCode != ErrorCodes.NoError)
-                                msg += x.ErrorMsg + "\r\n";
-                        });
 
-                        if(msg != string.Empty)
-                        {
-                            SolveWare.Core.ShowMsg(msg);
-                        }
-                    });
-
+                    context = tasks.Converto_Mission_Report();
+                    
                 } while (false);
 
             }
-            catch 
+            catch (Exception ex)
             {
-                errorCode = ErrorCodes.MotorMoveError;
+                context.Set(ErrorCodes.MotorMoveError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public static int Move_Motor(Info_Motion motion)
+        public static Mission_Report Move_Motor(Info_Motion motion)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
             try
             {
-                errorCode = motion.Motor_Name.GetAxisBase().MoveTo(motion.Pos) ? ErrorCodes.NoError : ErrorCodes.MotionFunctionError;
+                context = motion.Motor_Name.GetAxisBase().MoveTo(motion.Pos);
             }
-            catch
+            catch(Exception ex)
             {
-                errorCode = ErrorCodes.MotorMoveError;
+                context.Set(ErrorCodes.MotorMoveError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
     }
     public struct Info_Motion

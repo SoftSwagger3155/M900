@@ -267,14 +267,6 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             {
                 while (!readStatusSource.IsCancellationRequested)
                 {
-                    //Dll_Zmcaux.ZAux_Direct_GetDatumIn(Handler, mtrTable.AxisNo, ref motor_OriginValue);
-                    //Dll_Zmcaux.ZAux_Direct_GetIn(Handler, mtrTable.AxisNo, ref motor_OriginSignal);  //轴原点
-                    //Dll_Zmcaux.ZAux_Direct_GetAxisStatus(Handler, mtrTable.AxisNo, ref axis_Read_Status);  //轴状态
-                    //Dll_Zmcaux.ZAux_Direct_GetAxisEnable(Handler, mtrTable.AxisNo, ref motor_Enable);  //轴使能
-                    //                                                                                   //  <param name="piValue">运动状态反馈值 0-运动中 -1 停止</param>
-                    //Dll_Zmcaux.ZAux_Direct_GetDpos(Handler, mtrTable.AxisNo, ref pfvalue);
-                    //Dll_Zmcaux.ZAux_Direct_GetMpos(Handler, mtrTable.AxisNo, ref pulse);
-
                     this.IsPosLimit = Get_PEL_Signal();
                     Thread.Sleep(mtrTable.StatusReadTiming);
                    
@@ -312,14 +304,13 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             cancelDoneFlag.WaitOne();
             readStatusSource = null;
         }
-        public bool IsProhibitToHome()
+        public bool IsProhibitToHome(ref string msg)
         {
             string sErr = string.Empty;
             this.isProhibitActivated = false;
             bool result = false;
-            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false)
+            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe, ref msg) == false)
             {
-                errorReport += (SafeKeeper as SafeKeeper).ErrorMsg;
                 return true;
             }
             if (mtrTable.pIsInhibitToHome == null) return false;
@@ -335,7 +326,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
             return result;
         }
-        public bool IsProhibitToMove()
+        public bool IsProhibitToMove(ref string msg)
         {
 
 
@@ -344,9 +335,8 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             bool result = false;
             string sErr = string.Empty;
 
-            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe) == false) 
+            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe, ref msg) == false) 
             {
-                errorReport += (SafeKeeper as SafeKeeper).ErrorMsg;
                 return true; 
             }
             if (mtrTable.pIsInhibitToMove == null) return false;
@@ -382,18 +372,18 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract double Get_AnalogInputValue();
         public abstract bool Get_ServoStatus();
         public abstract bool Get_MovingStatus();
-        public abstract bool MoveRelative(double distance, bool BypassDangerCheck = false);
-        public abstract bool MoveTo(double pos, bool BypassDangerCheck = false);
-        public abstract bool HomeMoveTo(double pos, bool BypassDangerCheck = false);
+        public abstract Mission_Report MoveRelative(double distance, bool BypassDangerCheck = false);
+        public abstract Mission_Report MoveTo(double pos, bool BypassDangerCheck = false);
+        public abstract Mission_Report HomeMoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool ManualMoveTo(double pos);
-        public abstract void Jog(bool isPositive);
-        public abstract void Jog(bool isPositive, SpeedSeting speed);
-        public abstract bool MoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
-        public abstract bool HomeMove(SpeedSeting speed);
-        public abstract bool HomeMoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
-        public abstract bool MoveRelative(double distance, SpeedSeting speed, bool BypassDangerCheck = false);
+        public abstract void Jog(bool isPositive, ref string msg);
+        public abstract void Jog(bool isPositive, SpeedSeting speed, ref string msg);
+        public abstract Mission_Report MoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
+        public abstract Mission_Report HomeMove(SpeedSeting speed);
+        public abstract Mission_Report HomeMoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
+        public abstract Mission_Report MoveRelative(double distance, SpeedSeting speed, bool BypassDangerCheck = false);
         public abstract void Stop();
-        public abstract bool HomeMove();
+        public abstract Mission_Report HomeMove();
         public abstract bool MoveToSafeObservedPos(double pos);
         public abstract bool MoveToAndStopByIO(double pos, Func<bool> StopAction, bool BypassDangerCheck = false);
         public abstract Motor_Wait_Kind WaitStop();

@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace SolveWare_Service_Core.FSM.Base.Interface
     {
         IList<IFSMStation> Stations { get; set; }
         void Stop();
-        int Run_Auto_Cycle();
-        int Run_One_Cycle();
+        Mission_Report Run_Auto_Cycle();
+        Mission_Report Run_One_Cycle();
         void Build_Resource();
     }
 }

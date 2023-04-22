@@ -43,3 +43,15 @@ C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
 C:\Users\softs\Desktop\YAMAHA\M900\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb
 C:\Users\softs\Desktop\YAMAHA\M900\M900_Dlls\Info\Log\Log4net.config
+C:\Users\softs\Desktop\YAMAHA\M901\M900_Dlls\Info\Log\Log4net.config
+C:\Users\softs\Desktop\YAMAHA\M901\M900_Dlls\SolveWare_Service_Vision.dll
+C:\Users\softs\Desktop\YAMAHA\M901\M900_Dlls\SolveWare_Service_Vision.pdb
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.AssemblyReference.cache
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.Properties.Resources.resources
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.UserHWControl.resources
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.View.Forms.Form_InspectionKit.resources
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.GenerateResource.cache
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CoreCompileInputs.cache
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.csproj.CopyComplete
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.dll
+C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Vision\obj\Debug\SolveWare_Service_Vision.pdb

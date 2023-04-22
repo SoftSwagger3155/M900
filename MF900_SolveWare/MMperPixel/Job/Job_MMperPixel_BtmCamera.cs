@@ -35,23 +35,23 @@ namespace MF900_SolveWare.MMperPixel.Job
         /// 将轴或IO移到安全的位置
         /// </summary>
         /// <returns></returns>
-        public int Do_Safe_Prevention()
+        public Mission_Report Do_Safe_Prevention()
         {
 
-            return 0;
+            return new Mission_Report();
         }
 
         /// <summary>
         /// 请移到拍摄的位置
         /// </summary>
         /// <returns></returns>
-        public int Move_To_Inspection_Pos()
+        public Mission_Report Move_To_Inspection_Pos()
         {
-            return 0;
+            return new Mission_Report();
         }
-        public int Do_MMperPixel_Conversion(ref double average)
+        public Mission_Report Do_MMperPixel_Conversion(ref double average)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
             try
             {
 
@@ -60,33 +60,32 @@ namespace MF900_SolveWare.MMperPixel.Job
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.ActionFailed;
+                context.Set(ErrorCodes.ActionFailed);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            OnEntrance();
-
+            this.Status = JobStatus.Entrance;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     //1.移去安全位置
-                    errorCode = Do_Safe_Prevention();
-                    if (errorCode.NotPass()) break;
+                    context = Do_Safe_Prevention();
+                    if (context.NotPass()) break;
 
                     //2.移去拍摄位置
-                    errorCode = Move_To_Inspection_Pos();
-                    if (errorCode.NotPass()) break;
+                    context = Move_To_Inspection_Pos();
+                    if (context.NotPass()) break;
 
                     //3.执行MMperPixel任务
                     double averagePixel = 0;
-                    errorCode = Do_MMperPixel_Conversion(ref averagePixel);
-                    if (errorCode.NotPass()) break;
+                    context = Do_MMperPixel_Conversion(ref averagePixel);
+                    if (context.NotPass()) break;
 
 
                     this.camera.Data_MMperPixal.Average_MMperPixel = averagePixel;
@@ -97,12 +96,10 @@ namespace MF900_SolveWare.MMperPixel.Job
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.ActionFailed;
+                context.Set(ErrorCodes.ActionFailed);
             }
-
-            OnExit();
-            return ErrorCode;
+            this.Status = context.ErrorCode == ErrorCodes.NoError ? JobStatus.Done : JobStatus.Fail;
+            return context;
         }
 
     }

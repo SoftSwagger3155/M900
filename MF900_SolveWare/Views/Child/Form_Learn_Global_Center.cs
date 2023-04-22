@@ -119,115 +119,111 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Execute_Both_Module_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
+           
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            { 
+                Mission_Report context = new Mission_Report();
             Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
-            {
-                try
+            try
                 {
                     do
                     {
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false)
+                        {
+                            return context;
+                        }
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Do_Job();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Do_Job();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
-
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
         private void btn_Execute_Top_Moudle_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
                     {
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return context;
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Go_Top_Module_Pos();
-                        if (errorCode.NotPass(ref msg, job_GlobalWorld.ErrorMsg)) break;
+                        context = job_GlobalWorld.Go_Top_Module_Pos();
+                        if (context.NotPass(true)) break;
 
-                        errorCode = job_GlobalWorld.Do_Top_Module_Inspect();
-                        if (errorCode.NotPass(ref msg, job_GlobalWorld.ErrorMsg)) break;
+                        context = job_GlobalWorld.Do_Top_Module_Inspect();
+                        if (context.NotPass(true)) break;
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
+
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
-
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
         private void btn_Execute_Btm_Moudle_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
                     {
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return context;
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Go_Top_Module_Pos();
-                        if (errorCode.NotPass(ref msg, job_GlobalWorld.ErrorMsg)) break;
+                        context = job_GlobalWorld.Go_Top_Module_Pos();
+                        if (context.NotPass(true)) break;
 
-                        errorCode = job_GlobalWorld.Do_Top_Module_Inspect();
-                        if (errorCode.NotPass(ref msg, job_GlobalWorld.ErrorMsg)) break;
+                        context = job_GlobalWorld.Do_Top_Module_Inspect();
+                        if (context.NotPass(true)) break;
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
-
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
@@ -299,72 +295,68 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Top_Module_Go_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
                     {                    
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return context;
                         ReportStatus(Status_Stage.运行中);
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Go_Top_Module_Pos();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Go_Top_Module_Pos();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
 
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context; ;
             });
         }
 
         private void btn_Btm_Module_Go_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
                     {
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return context;
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Go_Btm_Module_Pos();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Go_Btm_Module_Pos();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
 
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
@@ -392,11 +384,10 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Top_Module_Execute_InspectKit_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
@@ -404,34 +395,32 @@ namespace MF900_SolveWare.Views.Child
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Do_Top_Module_Inspect();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Do_Top_Module_Inspect();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
 
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
         private void btn_Btm_Module_Execute_InspectKit_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
@@ -439,24 +428,23 @@ namespace MF900_SolveWare.Views.Child
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Do_Btm_Module_Inspect();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Do_Btm_Module_Inspect();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
 
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
@@ -511,73 +499,69 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Top_WorldCenter_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
                     {
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return context;
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Go_Top_WorldCenter_Pos();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Go_Top_WorldCenter_Pos();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds.ToString("F3")} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
 
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 
         private void btn_Go_Btm_WorldCenter_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            Stopwatch sw = Stopwatch.StartNew();
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
                     {
-                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return;
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) return context;
                         ReportStatus(Status_Stage.运行中);
 
                         sw.Restart();
-                        errorCode = job_GlobalWorld.Go_Btm_WorldCenter_Pos();
-                        msg += errorCode != ErrorCodes.NoError ? job_GlobalWorld.ErrorMsg : string.Empty;
+                        context = job_GlobalWorld.Go_Btm_WorldCenter_Pos();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
                 finally
                 {
                     tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds.ToString("F3")} 秒";
-                    Status_Stage stage = errorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
+                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
                     ReportStatus(stage);
                 }
 
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg);
+                return context;
             });
         }
 

@@ -6,6 +6,7 @@ using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Data;
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -100,8 +101,7 @@ namespace MF900_SolveWare.Views.Child
         {
             Task.Run(() =>
             {
-                string msg = string.Empty;
-                int errorCode = ErrorCodes.NoError;
+                Mission_Report mReport;
                 try
                 {
                     do
@@ -110,21 +110,20 @@ namespace MF900_SolveWare.Views.Child
 
                         if (string.IsNullOrEmpty(txb_NoToGo.Text))
                         {
-                            msg += "请输入产品目标数";
+                            SolveWare.Core.ShowMsg("请输入产品目标数");
                             break;
                         }
                         int noToGo = int.Parse(txb_NoToGo.Text);
-                        errorCode = job_Index.Go(noToGo);
+                        mReport = job_Index.Go(noToGo);
 
-                        if (errorCode.NotPass(ref msg, job_Index.ErrorMsg)) break;
+                        if (mReport.NotPass(true)) break;
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    SolveWare.Core.ShowMsg(ex.Message);
                 }
-                SolveWare.Core.ShowMsg(msg, true);
             });
         }
 
@@ -206,49 +205,53 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Offset_Go_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
-            {
-                do
-                {
-                    if (indexData == null) return;
-                    int errorCode = job_Index.Go_Offset();
-                    if (errorCode.NotPass(ref msg, job_Index.ErrorMsg)) break;
 
-                } while (false);
-            }
-            catch (Exception ex)
+            Task job = Task.Factory.StartNew(() =>
             {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                try
+                {
+                    do
+                    {
+                        if (indexData == null) return;
+                        Mission_Report mReport = job_Index.Go_Offset();
+                        if (mReport.NotPass(true)) break;
+
+                    } while (false);
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.ShowMsg(ex.Message);
+                }
+            });
+            Task.WaitAll(job);
         }
 
         private void btn_Offset_Return_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            Task job = Task.Factory.StartNew(() =>
             {
-                do
+                try
                 {
-                    if (indexData == null) return;
-                    int errorCode = job_Index.Return_Offset();
-                    if (errorCode.NotPass(ref msg, job_Index.ErrorMsg)) break;
+                    do
+                    {
+                        if (indexData == null) return;
+                        Mission_Report mReport = job_Index.Return_Offset();
+                        if (mReport.NotPass()) break;
 
-                } while (false);
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                    } while (false);
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.ShowMsg(ex.Message);
+                }
+            });
+            Task.WaitAll(job);
         }
 
         private void btn_Go_Action_Click(object sender, EventArgs e)
         {
-            Task.Run(() =>
+            Task job = Task.Factory.StartNew(() =>
             {
-                string msg = string.Empty;
                 try
                 {
                     do
@@ -256,94 +259,97 @@ namespace MF900_SolveWare.Views.Child
                         if (indexData == null) return;
                         if (string.IsNullOrEmpty(txb_NoToGo.Text))
                         {
-                            msg += "请输入产品目标数";
+                            SolveWare.Core.ShowMsg("请输入产品目标数");
                             break;
                         }
                         int noToGo = int.Parse(txb_NoToGo.Text);
-                        int errorCode = job_Index.Go_Offset_Press(noToGo);
-                        if (errorCode.NotPass(ref msg, job_Index.ErrorMsg)) break;
+                        Mission_Report mReport = job_Index.Go_Offset_Press(noToGo);
+                        if (mReport.NotPass()) break;
 
                     } while (false);
 
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    SolveWare.Core.ShowMsg(ex.Message);
                 }
-                SolveWare.Core.ShowMsg(msg);
             });
+            Task.WaitAll(job);
         }
 
         private void btn_Go_Previous_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            Task job = Task.Factory.StartNew(() =>
             {
-                do
+                try
                 {
-                    if (indexData == null) return;
-                    if (string.IsNullOrEmpty(txb_NoToGo.Text))
+                    do
                     {
-                        msg += "请输入产品目标数";
-                        break;
-                    }
-                    int noToGo = indexData.Data_Display.Current_No;
-                    noToGo -= 1;
+                        if (indexData == null) return;
+                        if (string.IsNullOrEmpty(txb_NoToGo.Text))
+                        {
+                            SolveWare.Core.ShowMsg("请输入产品目标数");
+                            break;
+                        }
+                        int noToGo = indexData.Data_Display.Current_No;
+                        noToGo -= 1;
 
-                    if (noToGo <= 0 || noToGo > indexData.Data_Setup.Total_Nos_Of_X * indexData.Data_Setup.Total_Nos_Of_Y)
-                    {
-                        msg += $"超出索引范围数量\r\n有效产品数为 X {indexData.Data_Setup.Total_Nos_Of_X} *  Y {indexData.Data_Setup.Total_Nos_Of_Y} = {indexData.Data_Setup.Total_Nos_Of_Y * indexData.Data_Setup.Total_Nos_Of_X}";
-                        break;
-                    }
+                        if (noToGo <= 0 || noToGo > indexData.Data_Setup.Total_Nos_Of_X * indexData.Data_Setup.Total_Nos_Of_Y)
+                        {
+                            SolveWare.Core.ShowMsg($"超出索引范围数量\r\n有效产品数为 X {indexData.Data_Setup.Total_Nos_Of_X} *  Y {indexData.Data_Setup.Total_Nos_Of_Y} = {indexData.Data_Setup.Total_Nos_Of_Y * indexData.Data_Setup.Total_Nos_Of_X}");
+                            break;
+                        }
 
 
-                    int errorCode = job_Index.Go_Offset_Press(noToGo);
-                    if (errorCode.NotPass(ref msg, job_Index.ErrorMsg)) break;
+                        Mission_Report mReport = job_Index.Go_Offset_Press(noToGo);
+                        if (mReport.NotPass(true)) break;
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.ShowMsg(ex.Message);
+                }
+            });
+            Task.WaitAll(job);
         }
 
         private void btn_Go_Next_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            Task job = Task.Factory.StartNew(() =>
             {
-                do
+                try
                 {
-                    if (indexData == null) return;
-                    if (string.IsNullOrEmpty(txb_NoToGo.Text))
+                    do
                     {
-                        msg += "请输入产品目标数";
-                        break;
-                    }
-                    int noToGo = indexData.Data_Display.Current_No;
-                    noToGo -= 1;
+                        if (indexData == null) return;
+                        if (string.IsNullOrEmpty(txb_NoToGo.Text))
+                        {
+                            SolveWare.Core.ShowMsg("请输入产品目标数");
+                            break;
+                        }
+                        int noToGo = indexData.Data_Display.Current_No;
+                        noToGo -= 1;
 
-                    if (noToGo <= 0 || noToGo > indexData.Data_Setup.Total_Nos_Of_X * indexData.Data_Setup.Total_Nos_Of_Y)
-                    {
-                        msg += $"超出索引范围数量\r\n有效产品数为 X {indexData.Data_Setup.Total_Nos_Of_X} *  Y {indexData.Data_Setup.Total_Nos_Of_Y} = {indexData.Data_Setup.Total_Nos_Of_Y * indexData.Data_Setup.Total_Nos_Of_X}";
-                        break;
-                    }
+                        if (noToGo <= 0 || noToGo > indexData.Data_Setup.Total_Nos_Of_X * indexData.Data_Setup.Total_Nos_Of_Y)
+                        {
+                            SolveWare.Core.ShowMsg($"超出索引范围数量\r\n有效产品数为 X {indexData.Data_Setup.Total_Nos_Of_X} *  Y {indexData.Data_Setup.Total_Nos_Of_Y} = {indexData.Data_Setup.Total_Nos_Of_Y * indexData.Data_Setup.Total_Nos_Of_X}");
+                            break;
+                        }
 
 
-                    int errorCode =  job_Index.Go_Offset_Press(noToGo);
-                    if(errorCode.NotPass(ref msg,job_Index.ErrorMsg)) break;
+                        Mission_Report mReport = job_Index.Go_Offset_Press(noToGo);
+                        if (mReport.NotPass()) break;
 
-                } while (false);
+                    } while (false);
 
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.ShowMsg(ex.Message);
+                }
+            });
         }
 
         Thread Action_Thread;
@@ -371,8 +377,8 @@ namespace MF900_SolveWare.Views.Child
                     for (int i = 0; i < total; i++)
                     {
                         int no = i + 1;
-                        int errorCode = job_Index.Go_Offset_Press(no);
-                        if (errorCode.NotPass(ref msg, job_Index.ErrorMsg)) break;
+                        Mission_Report mReport = job_Index.Go_Offset_Press(no);
+                        if (mReport.NotPass()) break;
                         if (stopFlag.WaitOne(10)) break;
                     }
 

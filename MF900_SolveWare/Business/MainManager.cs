@@ -219,14 +219,17 @@ namespace MF900_SolveWare.Business
             //this.FSM_Auto = new FSM_Auto_Controller();
             //this.FSM_Reset = new FSM_Reset_Controller();
         }
-        public override void Stop()
+        public override void Stop(bool stopMotor = true)
         {
             //设止机器状态为停止
             this.SetStatus(Machine_Status.Stop);
 
             //设止马达停止
-            var allMotors = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Motor).Get_All_Items().ToList();
-            allMotors.ForEach(x => (x as AxisBase).Stop());
+            if (stopMotor)
+            {
+                var allMotors = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Motor).Get_All_Items().ToList();
+                allMotors.ForEach(x => (x as AxisBase).Stop());
+            }
         }
     }
 }

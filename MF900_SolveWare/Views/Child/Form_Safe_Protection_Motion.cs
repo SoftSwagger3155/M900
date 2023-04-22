@@ -83,23 +83,26 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (SolveWare.Core.Is_Machine_Already_Homing() == false) break;
+                    do
+                    {
+                        if (SolveWare.Core.Is_Machine_Already_Homing() == false) break;
 
-                    int errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = data.MotorName, Pos = data.Pos });
-                    if (errorCode.NotPass(ref msg, data.MotorName.GetAxisBase().ErrorReport)) break;
+                        context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = data.MotorName, Pos = data.Pos });
+                        if (context.NotPass()) break;
 
-                } while (false);
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                    } while (false);
+                }
+                catch (Exception ex)
+                {
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                }
+                return context;
+            });
         }
 
         private void btn_Update_Pos_Click(object sender, EventArgs e)

@@ -29,9 +29,10 @@ namespace SolveWare_Service_Core.FSM.FSMState
             if (source == null) return;
             source.Cancel();
         }
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            OnEntrance();
+            Mission_Report context = new Mission_Report();
+            this.Status = Definition.JobStatus.Entrance;
             try
             {
                 do
@@ -56,15 +57,14 @@ namespace SolveWare_Service_Core.FSM.FSMState
             }
             catch
             {
-                errorCode = ErrorCodes.ActionNotTaken;
+                context.Set(ErrorCodes.ActionNotTaken);
             }
 
-            OnExit();
-            if (IsSimulation)
-                Thread.Sleep(500);
+            this.Status = context.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
+            if (IsSimulation) Thread.Sleep(500);
 
 
-            return ErrorCodes.NoError;
+            return context;
         }
     }
 }

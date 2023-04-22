@@ -9,12 +9,14 @@ using SolveWare_Service_Core.Manager.Base.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace SolveWare_Service_Core.Manager.Base.Abstract
@@ -85,44 +87,44 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 masterDriver.Close();
         }
 
-        public void DoButtonClickTask(Func<string> action)
+        public void DoButtonClickActionTask(Func<Mission_Report> action)
         {
-            if (Status == Machine_Status.Busy) return;
-            if (Status == Machine_Status.Initialising) return;
-            if (Status == Machine_Status.SingleCycle) return;
-            if (Status == Machine_Status.Auto) return;
-
-            string errMsg = string.Empty;
-            List<Task> tasks = new List<Task>();
-            tasks.Add(Task.Run(() =>
+            Task task = Task.Factory.StartNew((object obj) =>
             {
-                this.Status = Machine_Status.Busy;  
-                errMsg = action();
-                if (errMsg == string.Empty) this.Status = Machine_Status.Idle;
-                else
+                try
                 {
-                    this.Status = Machine_Status.Error;
-                    SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true, true);
-                }
-            }));
-            Task.WaitAll(tasks.ToArray());
-        }
-        public void DoButtonClick(Func<string> action)
-        {
-            if (Status == Machine_Status.Busy) return;
-            if (Status == Machine_Status.Initialising) return;
-            if (Status == Machine_Status.SingleCycle) return;
-            if (Status == Machine_Status.Auto) return;
+                   if(this.Is_Machine_In_Action)
+                    {
+                        var result = MessageBox.Show("机器状态运行中\r\n继续请按 是\r\n结束请按 否", "提问", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.No) return;
+                    }
 
-            string errMsg = string.Empty;
-            this.Status = Machine_Status.Busy;
-            errMsg = action();
-            if (string.IsNullOrEmpty(errMsg)) this.status = Machine_Status.Idle;
-            else
-            {
-                this.Status = Machine_Status.Error;
-                SolveWare.Core.MMgr.Infohandler.LogMessage(errMsg, true, true);
-            }
+                    this.Status = Machine_Status.Busy;
+                    Data_Mission_Report mReport = obj as Data_Mission_Report;
+                    mReport.Context = action();
+
+                    Machine_Status mStatus = Machine_Status.Idle;
+                    if (mReport.Context.ErrorCode == ErrorCodes.MachineStopCall)
+                    {
+                        mStatus = Machine_Status.Stop;
+                    }
+                    else
+                    {
+                        mStatus = mReport.Context.ErrorCode == ErrorCodes.NoError ? Machine_Status.Idle : Machine_Status.Error;
+                    }
+
+                    this.SetStatus(mStatus);
+
+                }
+                catch (Exception ex)
+                {
+                    this.SetStatus(Machine_Status.Error);
+                    Mission_Report context = new Mission_Report();
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
+                }
+                
+            }, new Data_Mission_Report());
+            Task.WaitAll(task);
         }
 
         public IResourceProvider Get_Single_Data_Resource(Type classType)
@@ -283,8 +285,8 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 return;
             }
 
-           int errorCode = FSM_Home.Run_One_Cycle();
-            if(errorCode == ErrorCodes.NoError)
+            Mission_Report context = FSM_Home.Run_One_Cycle();
+            if(context.ErrorCode == ErrorCodes.NoError)
             {
                if(!this.Is_Ready_Home) this.Is_Ready_Home = true;
             }
@@ -318,6 +320,13 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
             return allItems;
         }
 
-        public abstract void Stop();
+        public abstract void Stop(bool stopMotor= true);
+        public bool Is_Machine_In_Action
+        {
+              get=>   Status == Machine_Status.Busy ||
+                           Status == Machine_Status.Initialising ||
+                           Status == Machine_Status.SingleCycle ||
+                           Status == Machine_Status.Auto;
+        }
     }
 }

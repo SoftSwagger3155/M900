@@ -11,6 +11,7 @@ using SolveWare_Service_Vision.Inspection.Base.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,86 +38,98 @@ namespace SolveWare_Service_Vision.Inspection.Business
             
         }
    
-        public int Do_Blob()
+        public Mission_Report Do_Blob()
         {
-            int errorCode = ErrorCodes.NoError;
-            if (Data == null) return ErrorCodes.VisionFailed;
+            Mission_Report context = new Mission_Report();
+            if (Data == null)
+            {
+                context.Set(ErrorCodes.VisionFailed);
+                return context; 
+            }
 
             IDataModulePair pair =  Data.JobSheet_Blob_Data.GetModule();
-            errorCode = pair.Do_PairModuleJob(this.Data);
+            context = pair.Do_PairModuleJob(this.Data);
 
-            return errorCode;
+            return context;
         }
 
-        public int Do_PatternMath()
+        public Mission_Report Do_PatternMath()
         {
-            int errorCode = ErrorCodes.NoError;
-            if (Data == null) return ErrorCodes.VisionFailed;
+            Mission_Report context = new Mission_Report();
+            if (Data == null)
+            {
+                context.Set(ErrorCodes.VisionFailed);
+                return context;
+            }
 
             IDataModulePair pair = Data.JobSheet_PatternMatch_Data.GetModule();
-            errorCode = pair.Do_PairModuleJob(this.Data);
+            context = pair.Do_PairModuleJob(this.Data);
 
-            return errorCode;
+            return context;
         }
 
-        public int Set_Brightness()
+        public Mission_Report Set_Brightness()
         {
             int errorCode = ErrorCodes.NoError;
-            if (Data == null) return ErrorCodes.VisionFailed;
+            Mission_Report context = new Mission_Report();
+            if (Data == null)
+            {
+                context.Set(ErrorCodes.VisionFailed);
+                return context;
+            }
 
-            errorCode = Data.JobSheet_Brightness_Data.GetModule().Do_PairModuleJob(this.Data);
+            context = Data.JobSheet_Brightness_Data.GetModule().Do_PairModuleJob(this.Data);
 
-            return errorCode;
+            return context;
         }
 
-        public int Set_Lighting()
+        public Mission_Report Set_Lighting()
         {
-            int errorCode = ErrorCodes.NoError;
-            if (Data == null) return ErrorCodes.VisionFailed;
+            Mission_Report context = new Mission_Report();
+            if (Data == null)
+            {
+                context.Set(ErrorCodes.VisionFailed);
+                return context;
+            }
 
-            if (this.Data.JobSheet_Lighting_Datas.Count == 0) return errorCode;
-            errorCode = Data.JobSheet_Lighting_Datas[0].GetModule().Do_PairModuleJob(this.Data);
+            if (this.Data.JobSheet_Lighting_Datas.Count == 0) return context;
+            context = Data.JobSheet_Lighting_Datas[0].GetModule().Do_PairModuleJob(this.Data);
 
-            return errorCode;
+            return context;
         }
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            this.errorMsg = string.Empty;
-            Data.ErrorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     //.设置 BrightNess
-                    errorCode = Set_Brightness();
-                    if (errorCode.NotPass())
+                    context = Set_Brightness();
+                    if (context.NotPass())
                     {
-                        errorMsg += Data.ErrorMsg;
                         break;
                     }
 
                     //设置Lighting
-                    errorCode = Set_Lighting();
-                    if (errorCode.NotPass())
+                    context = Set_Lighting();
+                    if (context.NotPass())
                     {
-                        errorMsg += Data.ErrorMsg;
                         break;
                     }
 
                     //执行 Pattern Match
-                    errorCode = Do_PatternMath();
-                    if (errorCode.NotPass())
+                    context = Do_PatternMath();
+                    if (context.NotPass())
                     {
-                        errorMsg += Data.ErrorMsg;
                         break;
                     }
 
                     //执行 Blob
-                    errorCode = Do_Blob();
-                    if (errorCode.NotPass())
+                    context = Do_Blob();
+                    if (context.NotPass())
                     {
-                        errorMsg += Data.ErrorMsg;
                         break;
                     }
 
@@ -127,10 +140,10 @@ namespace SolveWare_Service_Vision.Inspection.Business
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
+                context.Set(ErrorCodes.VisionFailed);
             }
 
-            return ErrorCode;
+            return context;
         }
     }
 }

@@ -33,9 +33,10 @@ namespace SolveWare_Service_Core.FSM.FSMState
         #endregion
 
         #region 方法
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            OnEntrance();
+            Mission_Report context = new Mission_Report();
+            this.Status = Definition.JobStatus.Entrance;
             try
             {
                 do
@@ -43,14 +44,15 @@ namespace SolveWare_Service_Core.FSM.FSMState
                     if (IsSimulation)
                         Thread.Sleep(1000);
 
+                    this.Status = Definition.JobStatus.Active;
                     if (OnExecuteHandler == null)
                     {
-                        errorCode = ErrorCodes.NoStateActionAssign;
+                        context.Set(ErrorCodes.NoStateActionAssign);
                         break;
                     }
 
-                    errorCode = this.OnExecuteHandler(this);
-                    if (errorCode != ErrorCodes.NoError) break;
+                    context = this.OnExecuteHandler(this);
+                    if (context.NotPass()) break;
 
                     this.nextState = this.BoolResult || IsSimulation? this.yesState : this.noState;
                     break;
@@ -59,14 +61,12 @@ namespace SolveWare_Service_Core.FSM.FSMState
             }
             catch
             {
-                errorCode = ErrorCodes.ActionNotTaken;
+                context.Set(ErrorCodes.ActionNotTaken);
             }
-            OnExit();
+            this.Status = context.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
 
-            if (IsSimulation)
-                Thread.Sleep(500);
-
-            return errorCode;  // 回自已拼的组合  
+            if (IsSimulation) Thread.Sleep(500);
+            return context;  // 回自已拼的组合  
         }
         #endregion
     }

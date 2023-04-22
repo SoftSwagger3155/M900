@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.FSM.Base.Interface;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ using System.Xml.Serialization;
 
 namespace SolveWare_Service_Core.FSM.Base.Abstract
 {
-    public delegate int ExecuteHandler(StateBase sender);
-    public delegate int ExecuteErrorHandler(StateBase sender);
+    public delegate Mission_Report ExecuteHandler(StateBase sender);
+    public delegate Mission_Report ExecuteErrorHandler(StateBase sender);
     public class StateBase : JobFundamentalBase, IState
     {
         public StateBase()
@@ -61,11 +62,6 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
         {
             this.yesState = yesState as StateBase;
             this.noState = noState as StateBase;
-        }
-        public void Set_Operation_Info(int errorCode, string errMsg)
-        {
-            this.errorCode = errorCode; 
-            this.errorMsg = errMsg;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Utility.Extension;
@@ -17,25 +18,22 @@ namespace SolveWare_Service_Utility.Common.Motion
         {
             this.Name = name;
         }
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            OnEntrance();
+            Mission_Report context = new Mission_Report();
             try
             {
-                errorCode = Execute(Data);
+                context = Execute(Data);
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.MotionFunctionError;
+                context.Set(ErrorCodes.MotionFunctionError, ex.Message);
             }
-            OnExit();
-            return ErrorCode;
+            return context;
         }
-
-        private static int Execute(Data_Motion data)
+        private static Mission_Report Execute(Data_Motion data)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
             try
             {
                 int index = 1;
@@ -44,55 +42,51 @@ namespace SolveWare_Service_Utility.Common.Motion
                 {
                     var detail = data.DetailDatas.ToList().FindAll(x => x.Priority == index);
                     if (detail.Count == 0) break;
-                    if (SolveWare.Core.MMgr.IsStop) return ErrorCodes.MachineStopCall;
+                    if (context.NotPass()) break;
 
                     if(totalCount ==1)
                     {
-                        errorCode = Execute_Single_DetailData(detail[0]);
+                        context = Execute_Single_DetailData(detail[0]);
                     }
                     else
-                    {
-                        bool isError = false;
+                    {                       
                         List<int> errorCodes = new List<int>();
                         List<Task> tasks = new List<Task>();
 
                         for (int i = 0; i < detail.Count; i++)
                         {
                             int num = i;
-                            Task task = new Task(() =>
+                            DetailData_Motion dData = detail[num];
+                            Task task = Task.Factory.StartNew((object obj) =>
                             {
-                                DetailData_Motion dData= detail[num];
-                                errorCode = Execute_Single_DetailData(dData);
-                                errorCodes.Add(errorCode);
-                            });
+                                Data_Mission_Report mReport  = obj as Data_Mission_Report; 
+                                mReport.Context = Execute_Single_DetailData(dData);                               
+                            }, new Data_Mission_Report());
+
                             tasks.Add(task);                            
                         }
-                        tasks.ForEach(x => x.Start());
                         Task.WaitAll(tasks.ToArray());
-                        isError = errorCodes.FirstOrDefault(x => x != ErrorCodes.NoError) > 0;
-                        errorCode = isError ? ErrorCodes.MotionFunctionError : ErrorCodes.NoError;
+                        context = tasks.Converto_Mission_Report();
                     }
 
-                    if (errorCode != ErrorCodes.NoError) break;
+                    if(context.NotPass()) break;    
                     totalCount-=detail.Count;
                     if (totalCount == 0) break;
                 }
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.MotionFunctionError;
+                context.Set(ErrorCodes.MotionFunctionError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-
-        private static int Execute_Single_DetailData(DetailData_Motion detailData)
+        private static Mission_Report Execute_Single_DetailData(DetailData_Motion detailData)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
 
             try
-            {
-                
+            {             
                 if(detailData.EnableSlowDown)
                 {
                     switch (detailData.SlowDownType)
@@ -108,15 +102,15 @@ namespace SolveWare_Service_Utility.Common.Motion
                 else
                 {
                     AxisBase mtr = detailData.AxisName.GetAxisBase();
-                    errorCode = mtr.MoveTo(detailData.Pos) ? ErrorCodes.NoError : ErrorCodes.NoError;
+                    context = mtr.MoveTo(detailData.Pos);
                 }
             }
-            catch 
+            catch(Exception ex)
             {
-                errorCode = ErrorCodes.MotionFunctionError;
+                context.Set( ErrorCodes.MotionFunctionError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
     }

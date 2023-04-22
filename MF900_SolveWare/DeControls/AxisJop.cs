@@ -130,7 +130,8 @@ namespace MF900_SolveWare
 
         private void UiSymbolButton_Backward_MouseDown(object sender, MouseEventArgs e)
         {
-            mtr.Jog(false);
+            string msg = string.Empty;
+            mtr.Jog(false, ref msg);
         }
 
         private void UiSymbolButton_Forward_MouseUp(object sender, MouseEventArgs e)
@@ -140,7 +141,8 @@ namespace MF900_SolveWare
 
         private void UiSymbolButton_Forward_MouseDown(object sender, MouseEventArgs e)
         {
-            mtr.Jog(true);
+            string msg = string.Empty;
+            mtr.Jog(true, ref msg);
         }
 
         #endregion

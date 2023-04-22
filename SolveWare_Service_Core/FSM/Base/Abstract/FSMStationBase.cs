@@ -1,4 +1,5 @@
-﻿using SolveWare_Service_Core.Base.Abstract;
+﻿using log4net.Core;
+using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.FSM.Base.Interface;
 using SolveWare_Service_Core.General;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SolveWare_Service_Core.FSM.Base.Abstract
 {
@@ -40,84 +42,108 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
 
         public abstract void CreateObjectInstance();
 
-        public int RunAutoCycle()
+        public Mission_Report RunAutoCycle()
         {
             this.states.ToList().ForEach(state => { state.Info = this.Name; });
-            OnEntrance();
-            errorCode = ErrorCodes.NoError;
+            Status = Definition.JobStatus.Entrance;
+            Mission_Report mReport = new Mission_Report();
             currentState = CurrentState ?? FirstState;
-            errorMsg = string.Empty;
 
             try
             {
-                if (CurrentState == null) return ErrorCodes.NoStateActionAssign;
-
-                while (true)
+                do
                 {
-                    errorCode = currentState.Do_Job();
-                    if (errorCode.NotPass(ref errorMsg, currentState.ErrorMsg)) break;
-
-
-                    //自动
-                    if (currentState == finalState)
+                    if (CurrentState == null)
                     {
-                        currentState = firstState;
-                        continue;
+                        mReport.ErrorCode = ErrorCodes.NoStateActionAssign;
+                        mReport.Message = ErrorCodes.GetErrorDescription(ErrorCodes.NoStateActionAssign);
+                        break;
+                    }
+                    Status = Definition.JobStatus.Active;
+                    while (true)
+                    {
+                        mReport = currentState.Do_Job();
+                        if (mReport.NotPass()) break;
+
+
+                        //自动
+                        if (currentState == finalState)
+                        {
+                            currentState = firstState;
+                            continue;
+                        }
+
+                        currentState = currentState.NextState;
+
                     }
 
-                    currentState = currentState.NextState;
-
-                }
+                } while (false);
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.ActionFailed;
+                mReport.ErrorCode = ErrorCodes.ActionFailed;
+                mReport.Message = $"{ErrorCodes.GetErrorDescription(ErrorCodes.ActionFailed)}\r\n{ex.Message}";
+            }
+            finally
+            {
+                if (mReport.NotPass())
+                    Status = Definition.JobStatus.Fail;
+                else
+                    status = Definition.JobStatus.Done;
             }
 
-            return ErrorCode;
+            return mReport;
         }
 
-        public int RunSingleCycle()
+        public Mission_Report RunSingleCycle()
         {
             this.states.ToList().ForEach(state => { state.Info = this.Name; });
-            OnEntrance();
-            errorCode = ErrorCodes.NoError;
+            this.Status = Definition.JobStatus.Entrance;
             currentState = CurrentState ?? FirstState;
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
 
             try
             {
-                if (CurrentState == null) return ErrorCodes.NoStateActionAssign;
-
-                while (true)
+                do
                 {
-                    errorCode = CurrentState.Do_Job();
-                    if (errorCode.NotPass(ref errorMsg, $"{currentState.Info}\r\n{currentState.ErrorMsg}"))
+                    if (CurrentState == null)
                     {
-                        SolveWare.Core.MMgr.Stop();
+                        context.ErrorCode = ErrorCodes.NoStateActionAssign;
+                        context.Message = ErrorCodes.GetErrorDescription(ErrorCodes.NoStateActionAssign);
                         break;
                     }
 
-
-
-                    //单循环停在此
-                    if (currentState == finalState)
+                    while (true)
                     {
-                        currentState = firstState;
-                        break;
+                        context = CurrentState.Do_Job();
+                        if (context.NotPass())
+                        {
+                            SolveWare.Core.MMgr.Stop();
+                            break;
+                        }
+
+
+
+                        //单循环停在此
+                        if (currentState == finalState)
+                        {
+                            currentState = firstState;
+                            break;
+                        }
+
+
+                        currentState = currentState.NextState;
+
                     }
 
-            
-                    currentState = currentState.NextState;
-
-                }
+                } while (false);
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.ActionFailed;
+                context.Set(ErrorCodes.FSMRunningFailed, ex.Message);
             }
 
-            return ErrorCode;
+            return context;
         }
 
         public void SetCurrentState(IState state)

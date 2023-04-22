@@ -171,6 +171,7 @@ namespace MF900_FunctionTest
                         Report_Info info = obj as Report_Info;
                         info.ErrorCode = id;
                         info.ErrorMsg = $"错误讯息 {id}";
+                        Console.WriteLine($"真实发生 {info.ErrorCode} {info.ErrorMsg}");
 
                     }, new Report_Info());
                 }
@@ -182,6 +183,7 @@ namespace MF900_FunctionTest
                 }
             });
             Task.WaitAll(task);
+            Console.WriteLine("等待之后");  
             Console.ReadKey();
             #endregion
 

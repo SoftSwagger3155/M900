@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SolveWare_Service_Utility.Offset.Base.Interface
 {
     public interface IOffset: ICommonJobFundamental
     {
-        int Do_Safe_Prevention();
+        Mission_Report Do_Safe_Prevention();
 
     }
 }

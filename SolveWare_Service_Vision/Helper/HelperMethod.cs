@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace SolveWare_Service_Vision.Helper
             //pair.Setup(data as IElement);
             return pair;
         }
-        public static int Do_PairModuleJob(this IDataModulePair pair, IElement data)
+        public static Mission_Report Do_PairModuleJob(this IDataModulePair pair, IElement data)
         {
             pair.Setup(data);
             return pair.Do_Job();

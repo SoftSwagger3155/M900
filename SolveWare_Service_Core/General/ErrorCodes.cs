@@ -33,6 +33,8 @@ namespace SolveWare_Service_Core.General
         public const int FSMRunningFailed = -22;
         public const int SafetyViolation = -23;
         public const int OffsetMoveError = -24;
+        public const int SetMotorSpeedParameterError = -25;
+        public const int NotYetHomed = -26;
         public const int MachineStopCall = -10000;
 
 
@@ -66,6 +68,8 @@ namespace SolveWare_Service_Core.General
             m.Add(FSMRunningFailed, "FSM Running Failed | FSM 运行失败");
             m.Add(SafetyViolation, "Safe Violations | 违反安全措施");
             m.Add(OffsetMoveError, "Offset Move Error | 移动间距失败");
+            m.Add(SetMotorSpeedParameterError, "Set Motor Speed Parameter Error | 设定马达速度参数失败");
+            m.Add(NotYetHomed, "Not Yet Homed | 尚未复位");
         }
 
         public static string GetErrorDescription(int errorCode, string extraInfo = "")

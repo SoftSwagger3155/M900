@@ -225,25 +225,25 @@ namespace MF900_SolveWare.Views.Child
         }
         private void btn_Save_Test_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     if (OffsetData == null)
                     {
-                        msg += "请选择一个 Offset物件";
+                        context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
                         break;
                     }
 
                     string module = cmb_Selector_Test_Based_Module.SelectedItem as string;
                     if (string.IsNullOrEmpty(module)) {
-                        msg += "请选择一个模具";
+                        context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "请选择一个模具");
                         break;
                     }
 
-                    int errorCode = OffsetJob.Save_Start_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
+                    context = OffsetJob.Save_Start_Pos();
+                    if (context.NotPass(true)) break;
 
                     DataBinding_StartPos_Info();
 
@@ -252,37 +252,35 @@ namespace MF900_SolveWare.Views.Child
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
             }
-            SolveWare.Core.ShowMsg(msg);
         }
         private void btn_Go_Test_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+                Mission_Report context = new Mission_Report();
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
-                    errorCode = OffsetJob.Go_Start_Pos();
-                    if (errorCode.NotPass(ref msg, OffsetJob.ErrorMsg)) break;
-                                     
+                        if (OffsetData == null)
+                        {
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            break;
+                        }
+                        context = OffsetJob.Go_Start_Pos();
+                        if (context.NotPass(true)) break;
 
+                    } while (false);
 
-                } while (false);
-
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                }
+                catch (Exception ex)
+                {
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
+                }
+                return context;
+            });
         }
         private void btn_Save_First_Pos_Click(object sender, EventArgs e)
         {
@@ -368,47 +366,50 @@ namespace MF900_SolveWare.Views.Child
         }
         private void btn_Go_Target_Pos_Click(object sender, EventArgs e)
         {
-            string msg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-            try
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
-                do
+               Mission_Report context = new Mission_Report();
+
+                try
                 {
-                    if (OffsetData == null)
+                    do
                     {
-                        msg += "请选择一个 Offset物件";
-                        break;
-                    }
-                    if (string.IsNullOrEmpty(OffsetData.Inspect_MotorX) ||
-                        string.IsNullOrEmpty(OffsetData.Inspect_MotorY) ||
-                        string.IsNullOrEmpty(OffsetData.Inspect_MotorZ) ||
-                        string.IsNullOrEmpty(OffsetData.Inspect_MotorT))
-                    {
-                        msg += "无 Offset Data 视觉 X Y Z T马达 资讯";
-                        break;
-                    }
+                        if (OffsetData == null)
+                        {
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantObject, "请选择一个 Offset物件");
+                            break;
+                        }
+                        if (string.IsNullOrEmpty(OffsetData.Inspect_MotorX) ||
+                            string.IsNullOrEmpty(OffsetData.Inspect_MotorY) ||
+                            string.IsNullOrEmpty(OffsetData.Inspect_MotorZ) ||
+                            string.IsNullOrEmpty(OffsetData.Inspect_MotorT))
+                        {
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "无 Offset Data 视觉 X Y Z T马达 资讯");
+                            break;
+                        }
 
-                    errorCode = OffsetJob.Do_Safe_Prevention();
-                    if (errorCode.NotPass(ref msg)) break;
+                        context = OffsetJob.Do_Safe_Prevention();
+                        if (context.NotPass(true)) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
-                        new Info_Motion { Motor_Name = OffsetData.Inspect_MotorX, Pos = OffsetData.Inspect_PosX },
-                        new Info_Motion { Motor_Name = OffsetData.Inspect_MotorY, Pos = OffsetData.Inspect_PosY },
-                        new Info_Motion { Motor_Name = OffsetData.Inspect_MotorT, Pos = OffsetData.Inspect_PosT }
-                        );
-                    if (errorCode.NotPass(ref msg)) break;
+                        context = MotionHelper.Move_Multiple_Motors(
+                            new Info_Motion { Motor_Name = OffsetData.Inspect_MotorX, Pos = OffsetData.Inspect_PosX },
+                            new Info_Motion { Motor_Name = OffsetData.Inspect_MotorY, Pos = OffsetData.Inspect_PosY },
+                            new Info_Motion { Motor_Name = OffsetData.Inspect_MotorT, Pos = OffsetData.Inspect_PosT }
+                            );
+                        if (context.NotPass(true)) break;
 
-                    errorCode = MotionHelper.Move_Motor(
-                        new Info_Motion { Motor_Name = OffsetData.Inspect_MotorZ, Pos = OffsetData.Inspect_PosZ });
-                    if (errorCode.NotPass(ref msg)) break;
+                        context = MotionHelper.Move_Motor(
+                            new Info_Motion { Motor_Name = OffsetData.Inspect_MotorZ, Pos = OffsetData.Inspect_PosZ });
+                        if (context.NotPass(true)) break;
 
-                } while (false);
-            }
-            catch (Exception ex)
-            {
-                msg += ex.Message;
-            }
-            SolveWare.Core.ShowMsg(msg);
+                    } while (false);
+                }
+                catch (Exception ex)
+                {
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
+                }
+                return context;
+            });
         }
         private void btn_Execute_Both_Module_Click(object sender, EventArgs e)
         {

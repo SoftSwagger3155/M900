@@ -32,10 +32,9 @@ namespace MF900_SolveWare.FSM.Auto.Stations
             st_StartAuto = new BasicState("开始自动运行", StartAuto, OnErrorHanding, isSimulation);
         }
 
-        private int StartAuto(StateBase sender)
+        private Mission_Report StartAuto(StateBase sender)
         {
-            errorCode = ErrorCodes.NoError;
-           
+            Mission_Report context = new Mission_Report();
             try
             {
 
@@ -45,12 +44,12 @@ namespace MF900_SolveWare.FSM.Auto.Stations
 
             }
             
-            return errorCode;
+            return context;
         }
 
-        private int OnErrorHanding(StateBase sender)
+        private Mission_Report OnErrorHanding(StateBase sender)
         {
-            return 0;
+            return sender.FinalReport;
         }
 
         public override void SetStateChain()

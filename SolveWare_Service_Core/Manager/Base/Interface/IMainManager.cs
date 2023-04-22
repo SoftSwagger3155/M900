@@ -1,6 +1,7 @@
 ﻿using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.FSM.Base.Interface;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Core.Info.Base.Interface;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         string LoadingStatus { get; set; }
         void Initialize();
         void Setup();
-        void DoButtonClickTask(Func<string> action);
-        void DoButtonClick(Func<string> action);
+        void DoButtonClickActionTask(Func<Mission_Report> action);
         IMachineUI MachineUI { get; set; }
         IInfoHandler Infohandler { get; set; }
         IList<IDataResourceProvider> Resource_Data_Center { get; set; }
@@ -39,8 +39,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         IList<ICommonJobFundamental> Get_Identical_ReosurcBase_Job(string resourceBaseName);
         void CloseAll();
         void AssignFSM();
-        void Stop();
-
+        void Stop(bool stopMotor = true);
         void Do_Homing();
         void Do_AutoCycle();
         void Do_SingleCycle();

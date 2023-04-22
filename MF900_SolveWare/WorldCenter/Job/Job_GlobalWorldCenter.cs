@@ -26,191 +26,190 @@ namespace MF900_SolveWare.WorldCenter.Job
             
         }
 
-        private int Do_Top_Module_Safe_Prevention()
+        private Mission_Report Do_Top_Module_Safe_Prevention()
         {
             //TODO - Job_GlobalWorldCenter-
             //降下平台-上下Z退回安全位置-上打标气缸收回
-            errorMsg = string.Empty;
-            errorCode = ErrorCodes.NoError;
+           Mission_Report context = new Mission_Report ();
+
             try
             {
                 do
                 {
-                    errorCode = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Top_Module, ref errorMsg);
+                    context = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Top_Module);
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        private int Do_Btm_Module_Safe_Prevention()
+        private Mission_Report Do_Btm_Module_Safe_Prevention()
         {
             //TODO - Job_GlobalWorldCenter- Do_Btm_Module_Safe_Prevention
             //TODO - Job_GlobalWorldCenter-
             //降下平台-上下Z退回安全位置-上打标气缸收回
-            errorMsg = string.Empty;
-            errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Btm_Module, ref errorMsg);
+                    context = Job_Safe.Do_Safe_Proection(this.Data.Data_Safe_Btm_Module);
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Go_Top_Module_Pos()
+        public Mission_Report Go_Top_Module_Pos()
         {
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report(); 
             try
             {
                 do
                 {
-                    errorCode = Do_Top_Module_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = Do_Top_Module_Safe_Prevention();
+                    if (context.NotPass()) break;
                
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = Data.Top_Module_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = Data.Top_Module_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_T, Pos = Data.Top_Module_PosT }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = Data.Top_Module_PosZ });
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = Data.Top_Module_PosZ });
+                    if (context.NotPass()) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+               context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
             
-            return errorCode;
+            return context;
         }
-        public int Go_Top_WorldCenter_Pos()
+        public Mission_Report Go_Top_WorldCenter_Pos()
         {
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Top_Module_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = Do_Top_Module_Safe_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = Data.Top_WorldCenter_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = Data.Top_WorldCenter_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_T, Pos = Data.Top_WorldCenter_PosZ }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = Data.Top_WorldCenter_PosT });
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Z, Pos = Data.Top_WorldCenter_PosT });
+                    if (context.NotPass()) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int Go_Btm_WorldCenter_Pos()
+        public Mission_Report Go_Btm_WorldCenter_Pos()
         {
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Btm_Module_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = Do_Btm_Module_Safe_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = Data.Btm_WorldCenter_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = Data.Btm_WorldCenter_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_T, Pos = Data.Btm_WorldCenter_PosT }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = Data.Btm_WorldCenter_PosZ });
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = Data.Btm_WorldCenter_PosZ });
+                    if (context.NotPass()) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        public int Go_Btm_Module_Pos()
+        public Mission_Report Go_Btm_Module_Pos()
         {
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                    errorCode = Do_Top_Module_Safe_Prevention();
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = Do_Top_Module_Safe_Prevention();
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = Data.Btm_Module_PosX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = Data.Btm_Module_PosY },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_T, Pos = Data.Btm_Module_PosZ }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos=Data.Btm_Module_PosZ });
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos=Data.Btm_Module_PosZ });
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        public int Do_Top_Module_Inspect()
+        public Mission_Report Do_Top_Module_Inspect()
         {
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     var job = SolveWare.Core.MMgr.Get_PairJob(ResourceKey.InspectKit_Top_Camera_Git_Hole);
-                    errorCode = job.Do_Job();
-                    if (errorCode.NotPass(ref errorMsg, (job as Inspect).ErrorMsg)) break;
+                    context = job.Do_Job();
+                    if (context.NotPass()) break;
 
                     if (!Data.Top_Module_Move_To_Center) break;
 
                     double posX = ResourceKey.Motor_Top_X.GetUnitPos() + (job as Inspect).OffsetX;
                     double posY = ResourceKey.Motor_Top_Y.GetUnitPos() + (job as Inspect).OffsetY;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = posX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_Y, Pos = posY }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
                     //记忆当前位置
                     Data.Top_WorldCenter_PosX = Math.Round(ResourceKey.Motor_Top_X.GetUnitPos(), 3);
@@ -224,31 +223,31 @@ namespace MF900_SolveWare.WorldCenter.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            return errorCode;
+            return context;
         }
-        public int Do_Btm_Module_Inspect()
+        public Mission_Report Do_Btm_Module_Inspect()
         {
-            errorMsg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
                     var job = SolveWare.Core.MMgr.Get_PairJob(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
-                    errorCode = job.Do_Job();
-                    if (errorCode.NotPass(ref errorMsg, (job as Inspect).ErrorMsg)) break;
+                    context = job.Do_Job();
+                    if (context.NotPass()) break;
 
                     if (!Data.Btm_Module_Move_To_Center) break;
 
                     double posX = ResourceKey.Motor_Btm_X.GetUnitPos() + (job as Inspect).OffsetX;
                     double posY = ResourceKey.Motor_Btm_Y.GetUnitPos() + (job as Inspect).OffsetY;
 
-                    errorCode = MotionHelper.Move_Multiple_Motors(
+                    context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = posX },
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = posY }
                         );
-                    if (errorCode.NotPass(ref errorMsg)) break;
+                    if (context.NotPass()) break;
 
                     //记忆当前位置
                     Data.Btm_WorldCenter_PosX = Math.Round(ResourceKey.Motor_Btm_X.GetUnitPos(), 3);
@@ -261,10 +260,10 @@ namespace MF900_SolveWare.WorldCenter.Job
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
         public void Save_Pos()
         {
@@ -280,68 +279,64 @@ namespace MF900_SolveWare.WorldCenter.Job
         }
 
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
+            Mission_Report context = new Mission_Report();
             try
             {
                 List<int> errors = new List<int>();
                 List<Task> tasks = new List<Task>();
-                Task topTask = new Task(() =>
+                Task topTask = Task.Factory.StartNew((object obj) =>
                 {
-                    int err = ErrorCodes.NoError;
-                    do
-                    {           
-                        err = Do_Top_Module_Safe_Prevention();
-                        if (err != ErrorCodes.NoError) break;
-
-                        err = Go_Top_Module_Pos();
-                        if (err != ErrorCodes.NoError) break;
-
-                        err = Do_Top_Module_Inspect();
-                        if (err != ErrorCodes.NoError) break;
-
-                    } while (false);
-
-                    errors.Add(err);
-                });
-                Task btmTask = new Task(() =>
-                {
-                    int err = ErrorCodes.NoError;
+                    Data_Mission_Report mReport = obj as Data_Mission_Report;
+                    Mission_Report topContext = new Mission_Report();
                     do
                     {
-                        err = Do_Btm_Module_Safe_Prevention();
-                        if (err != ErrorCodes.NoError) break;
+                        topContext = Do_Top_Module_Safe_Prevention();
+                        if (topContext.NotPass()) break;
 
-                        err = Go_Btm_Module_Pos();
-                        if (err != ErrorCodes.NoError) break;
+                        topContext = Go_Top_Module_Pos();
+                        if (topContext.NotPass()) break;
 
-                        err = Do_Btm_Module_Inspect();
-                        if (err != ErrorCodes.NoError) break;
+                        topContext = Do_Top_Module_Inspect();
+                        if (topContext.NotPass()) break;
+
+                    } while (false);
+                    mReport.Context = topContext;
+
+                }, new Data_Mission_Report());
+                
+                Task btmTask = Task.Factory.StartNew((object obj) =>
+                {
+                    Data_Mission_Report mReport = obj as Data_Mission_Report;
+                    Mission_Report btmContext = new Mission_Report();
+                    do
+                    {
+                        btmContext = Do_Btm_Module_Safe_Prevention();
+                        if (btmContext.NotPass()) break;
+
+                        btmContext = Go_Btm_Module_Pos();
+                        if (btmContext.NotPass()) break;
+
+                        btmContext = Do_Btm_Module_Inspect();
+                        if (btmContext.NotPass()) break;
 
                     } while (false);
 
-                    errors.Add(err);
-                });
+                    mReport.Context = btmContext;
+                }, new Data_Mission_Report());
 
-                tasks.Add(topTask);
-                tasks.Add(btmTask);
 
-                tasks.ForEach(x => x.Start());
-                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
-                {
-                    int foundError = errors.FirstOrDefault(x => x != ErrorCodes.NoError);
-                    errorCode = foundError >= 0 ? errors[foundError] : ErrorCodes.NoError;
-                });
-                if (errorCode != ErrorCodes.NoError) errorMsg += ErrorCodes.GetErrorDescription(errorCode);
-                
+                Task.WaitAll(new[] {topTask, btmTask}); 
+                context = tasks.Converto_Mission_Report();  
 
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
     }
 }

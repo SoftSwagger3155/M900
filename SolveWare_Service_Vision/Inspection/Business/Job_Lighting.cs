@@ -20,9 +20,11 @@ namespace SolveWare_Service_Vision.Inspection.Business
     public class Job_Lighting : JobFundamentalBase, IDataModulePair
     {
         Data_InspectionKit jobParam;
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
+            Mission_Report context = new Mission_Report();
             try
+
             {
                 //TODO: Stanley 1.细节实现 MF900的Lighting 是IO 恒开
                 jobParam.JobSheet_Lighting_Datas.ForEach(x =>
@@ -49,12 +51,11 @@ namespace SolveWare_Service_Vision.Inspection.Business
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.VisionFailed;
+                context.Set(ErrorCodes.VisionFailed);
             }
 
 
-            return ErrorCode;
+            return context;
         }
         public void Setup(IElement data)
         {

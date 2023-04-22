@@ -60,63 +60,47 @@ namespace MF900_SolveWare.FSM.Home.Stations
         }
 
         #region State Jobs
-        private int StartHome(StateBase sender)
+        private Mission_Report StartHome(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
 
-
-
-
                 } while (false);
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
-            }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        private int HomeZ(StateBase sender)
+        private Mission_Report HomeZ(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             
             try
             {
                 do
                 {
                     string mtr = this.selector == HomeStation_Selector.Up ? ResourceKey.Motor_Top_Z : ResourceKey.Motor_Btm_Z ;
-                    errorCode = mtr.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-
-                    if (errorCode != ErrorCodes.NoError)
-                        msg += ErrorCodes.GetErrorDescription(errorCode)+$"\r\n{mtr.GetAxisBase().ErrorReport}";
-
+                    context = mtr.GetAxisBase().HomeMove(); ;
+                    if (context.NotPass()) break;
+                    
                 } while (false);
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
-            }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
-        private int SetHomeZDone(StateBase sender)
+        private Mission_Report SetHomeZDone(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -138,18 +122,14 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            finally
-            {
-                sender.Set_Operation_Info (errorCode, msg); 
-            }
-            return errorCode;
+
+            return context;
         }
-        private int WaitZandTableDone(StateBase sender)
+        private Mission_Report WaitZandTableDone(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             Stopwatch sWatch = new Stopwatch();
             int timeOut = 300 * 1000; //300秒延迟
 
@@ -166,11 +146,10 @@ namespace MF900_SolveWare.FSM.Home.Stations
                             break;
                         if(sWatch.ElapsedMilliseconds > timeOut)
                         {
-                            errorCode = ErrorCodes.WaitTimeOutError;
-                            msg += ErrorCodes.GetErrorDescription(ErrorCodes.WaitTimeOutError);
+                            context.Set(ErrorCodes.WaitTimeOutError);
                             break;
                         }
-                        if (errorCode.NotPass(ref msg)) break;
+                        if (context.NotPass()) break;
                     }
 
 
@@ -178,49 +157,37 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
-            }
-            return errorCode;
+
+            return context;
         }
-        private int HomeT(StateBase sender)
+        private Mission_Report HomeT(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
-            sender.Info += this.Name;   
+            Mission_Report context = new Mission_Report();
             
             try
             {
                 do
                 {
                     string mtr = this.selector == HomeStation_Selector.Up ? ResourceKey.Motor_Top_T : ResourceKey.Motor_Btm_T;
-                    errorCode = mtr.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
+                    context = mtr.GetAxisBase().HomeMove();
 
-                    if (errorCode != ErrorCodes.NoError)
-                        msg += ErrorCodes.GetErrorDescription(errorCode) + $"\r\n{mtr.GetAxisBase().ErrorReport}";
-
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
-            }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
             
-            return errorCode;
+            return context;
         }
-        private int HomeXY(StateBase sender)
+        private Mission_Report HomeXY(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
-            sender.Info = this.Name;
+
+            Mission_Report context = new Mission_Report();
 
             try
             {
@@ -229,43 +196,37 @@ namespace MF900_SolveWare.FSM.Home.Stations
                     string mtrX = this.selector == HomeStation_Selector.Up ? ResourceKey.Motor_Top_X : ResourceKey.Motor_Btm_X;
                     string mtrY = this.selector == HomeStation_Selector.Up ? ResourceKey.Motor_Top_Y : ResourceKey.Motor_Btm_Y;
                     
-                    List<int> errors = new List<int>();
                     List<Task> tasks = new List<Task>();
-                    int errorCode1 = ErrorCodes.NoError;
-                    int errorCode2 = ErrorCodes.NoError;
 
-                    Task task1 = Task.Run(() =>
+                    Task task1 = Task.Factory.StartNew((object obj) =>
                     {
-                        errorCode1 = mtrX.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    });
-                    Task task2 = Task.Run(() =>
+                        Data_Mission_Report mReport = obj as Data_Mission_Report;
+                        mReport.Context = mtrX.GetAxisBase().HomeMove();
+
+                    }, new Data_Mission_Report());
+                    Task task2 = Task.Factory.StartNew((object obj) =>
                     {
-                        errorCode2 = mtrY.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    });
+                        Data_Mission_Report mReport = obj as Data_Mission_Report;
+                        mReport.Context = mtrY.GetAxisBase().HomeMove();
 
-                    task1.Wait();
-                    task2.Wait();
+                    }, new Data_Mission_Report());
+                    tasks.AddRange(new[] { task1, task2 });
+                    Task.WaitAll(tasks.ToArray());
 
-                    errorCode = errorCode1 == ErrorCodes.NoError && errorCode2 == ErrorCodes.NoError ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    msg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode)+$"\r\n{mtrX.GetAxisBase().ErrorReport}\r\n{mtrY.GetAxisBase().ErrorReport}" : string.Empty;                 
+                    context = tasks.Converto_Mission_Report();
                     
                 } while (false);
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
-            }
-            return errorCode;
+
+            return context;
         }
-        private int EndHome(StateBase sender)
+        private Mission_Report EndHome(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
-            
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -278,20 +239,16 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
-            }
-            return errorCode;
+            return context;
         }
         #endregion
-        private int OnErrorHanding(StateBase sender)
+        private Mission_Report OnErrorHanding(StateBase sender)
         {      
             //Auto 比较多机会要用到此方法
             //此台一有事有停机，所以用处也不大
-            return sender.ErrorCode;
+            return sender.FinalReport;
         }
 
         public override void SetStateChain()

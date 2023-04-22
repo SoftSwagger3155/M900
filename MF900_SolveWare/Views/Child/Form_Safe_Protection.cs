@@ -5,6 +5,7 @@ using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Extension;
+using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,29 +78,29 @@ namespace MF900_SolveWare.Views.Child
         }
 
         private void btn_Execute_Click(object sender, EventArgs e)
-        {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
-            if (Job_Safe.CheckPriorityOrder(Data.SafeDetailDatas, ref msg) == false) return;
-            Refresh(Data);
-            
-            Task.Run(() =>
+        {            
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
+                string msg = string.Empty;
                 try
                 {
                     do
                     {
-                       
-                        errorCode = Job_Safe.Do_Safe_Proection(this.Data, ref msg);
+                        if (Job_Safe.CheckPriorityOrder(Data.SafeDetailDatas, ref msg) == false) return context;
+                        Refresh(Data);
+
+                        context = Job_Safe.Do_Safe_Proection(this.Data);
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    msg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                bool showMsg = !string.IsNullOrEmpty(msg);
-                SolveWare.Core.MMgr.Infohandler.LogMessage(msg, showMsg, showMsg);
+
+                return context;
             });
         }
       

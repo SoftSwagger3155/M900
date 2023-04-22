@@ -92,7 +92,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             try
             {
-                axis.Jog(true);
+                string msg = string.Empty;
+                axis.Jog(true, ref msg);
             }
             catch (Exception ex)
             {
@@ -116,7 +117,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             try
             {
-                axis.Jog(false);
+                string msg = string.Empty;
+                axis.Jog(false, ref msg);
             }
             catch (Exception ex)
             {
@@ -138,123 +140,118 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Go_Absolute_Click(object sender, EventArgs e)
         {
-            int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-
-            Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
                 try
                 {
                     do
-                    {                     
+                    {
                         if (string.IsNullOrEmpty(txb_AbsolutePos.Text))
                         {
-                            errMsg += "绝对位置栏位不得为空";
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "绝对位置栏位不得为空");
                             break;
                         }
 
-                        errorCode = axis.MoveTo(double.Parse(txb_AbsolutePos.Text)) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport : string.Empty;
+                        context = axis.MoveTo(double.Parse(txb_AbsolutePos.Text));
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    errMsg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);  
                 }
-                SolveWare.Core.ShowMsg(errMsg);
+
+                return context;
             });
         }
 
         private void btn_Go_Relative_Positive_Click(object sender, EventArgs e)
         {
-            int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-
-            Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
                 try
                 {
                     do
                     {
                         if (string.IsNullOrEmpty(txb_RelativePos.Text))
                         {
-                            errMsg += "相对位置栏位不得为空";
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "相对位置栏位不得为空");
                             break;
                         }
 
-                        errorCode = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text)) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport: string.Empty;
+                        context = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text));
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    errMsg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                SolveWare.Core.ShowMsg(errMsg);
+
+                return context;
             });
         }
 
         private void btn_Go_Relative_Negative_Click(object sender, EventArgs e)
         {
-            int errorCode = ErrorCodes.NoError;
-            string errMsg = string.Empty;
-
-            Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
                 try
                 {
                     do
                     {
                         if (string.IsNullOrEmpty(txb_RelativePos.Text))
                         {
-                            errMsg += "相对位置栏位不得为空";
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "相对位置栏位不得为空");
                             break;
                         }
 
-                        errorCode = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text)) ? ErrorCodes.NoError : ErrorCodes.MotorMoveError;
-                        errMsg += errorCode != ErrorCodes.NoError ? ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport : string.Empty;
+                        context = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text));
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    errMsg += ex.Message;
+                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                SolveWare.Core.ShowMsg(errMsg);
+
+                return context;
             });
         }
         #endregion
 
         private void btn_Home_Click(object sender, EventArgs e)
         {
-            string errMsg = string.Empty;
-            int errorCode = ErrorCodes.NoError;
-
-
-            Task task = Task.Run(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
+                Mission_Report context = new Mission_Report();
                 try
                 {
                     do
                     {
                         if (Check_Machine_Status() == false)
                         {
-                            errMsg += "机器状态不允许此时按钮运行";
+                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "机器状态不允许此时按钮运行");
                             break;
                         }
 
-                        errorCode = axis.HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                        errMsg += errorCode == ErrorCodes.NoError ? string.Empty : ErrorCodes.GetErrorDescription(errorCode) + axis.ErrorReport;
+                        context = axis.HomeMove();
+                        context.NotPass(true);
 
                     } while (false);
                 }
                 catch (Exception ex)
                 {
-                    errMsg += ex.Message;
+                   context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                SolveWare.Core.ShowMsg(errMsg);
+
+                return context;
             });
         }
 

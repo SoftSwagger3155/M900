@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SolveWare_Service_Core.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace SolveWare_Service_Core.Base.Interface
 {
     public  interface IJobFundamental: IElement
     {
-        int Do_Job();
+        Mission_Report Do_Job();
     }
 }

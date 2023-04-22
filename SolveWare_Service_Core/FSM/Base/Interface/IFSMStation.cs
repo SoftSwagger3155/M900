@@ -1,6 +1,7 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Core.General;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,8 +13,8 @@ namespace SolveWare_Service_Core.FSM.Base.Interface
 {
     public interface IFSMStation: IElement, IJobFundamental
     { 
-        int RunAutoCycle();
-        int RunSingleCycle();
+        Mission_Report RunAutoCycle();
+        Mission_Report RunSingleCycle();
         void CreateObjectInstance();
         void SetStateChain();
         void SetCurrentState(IState state);

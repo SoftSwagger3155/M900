@@ -18,6 +18,6 @@ namespace MF900_SolveWare.Index.Data
         {
             SafeData = new Data_Safe();
         }
-        Data_Safe SafeData { get; set; }
+        public  Data_Safe SafeData { get; set; }
     }
 }

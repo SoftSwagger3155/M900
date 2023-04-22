@@ -19,10 +19,10 @@ namespace MF900_SolveWare.Safe
     public class Job_Safe
     {
         
-        public static int Do_Safe_Proection(Data_Safe data, ref string errorMsg)
+        public static Mission_Report Do_Safe_Proection(Data_Safe data)
         {
-            int errorCode = ErrorCodes.NoError;
-            errorMsg = string.Empty;    
+            Mission_Report mContext = new Mission_Report();
+            string errorMsg = string.Empty;
             try
             {
                 do
@@ -32,7 +32,8 @@ namespace MF900_SolveWare.Safe
                     var tempOrders = data.SafeDetailDatas.AsEnumerable().OrderBy(x => x.Priority);
                     if (CheckPriorityOrder(tempOrders.ToList(), ref errorMsg) == false)
                     {
-                        errorCode = ErrorCodes.SafetyViolation;
+                        mContext.ErrorCode = ErrorCodes.SafetyViolation;
+                        mContext.Message += errorMsg;
                         break;
                     }
 
@@ -44,11 +45,11 @@ namespace MF900_SolveWare.Safe
                     {
                         var detail = data.SafeDetailDatas.FindAll(x => x.Priority == index);
                         if(detail.Count == 0) break;
-                        if (errorCode.NotPass(ref errorMsg)) break;
+                        if (mContext.NotPass()) break;
 
                         if (detail.Count == 1)
                         {
-                            errorCode = ExecuteDetailData(detail[0]);
+                            mContext = ExecuteDetailData(detail[0]);
                         }
                         else
                         {
@@ -58,20 +59,19 @@ namespace MF900_SolveWare.Safe
 
                             foreach (var item in detail)
                             {
-                                Task task = Task.Run(() =>
+                                Task task = Task.Factory.StartNew((object obj) =>
                                 {
-                                    int err = ExecuteDetailData(item);
-                                    errors.Add(err);
-                                });
+                                    Data_Mission_Report report = obj as Data_Mission_Report;
+                                    report.Context = ExecuteDetailData(item);
+
+                                }, new Data_Mission_Report());
                                 tasks.Add(task);
                             }
 
                             Task.WaitAll(tasks.ToArray());
+                            mContext = Is_Task_Worked_Correctly(tasks.ToArray());
 
-                            int errorFound = errors.FindIndex(x => x != ErrorCodes.NoError);
-                            errorCode = errorFound > 0 ? errors[errorFound] : ErrorCodes.NoError;
-
-                            if (errorCode.NotPass(ref errorMsg)) break;
+                            if(mContext.NotPass()) break;
                         }
 
                         totalDetailCount -= detail.Count;
@@ -87,11 +87,31 @@ namespace MF900_SolveWare.Safe
             }
             catch (Exception ex)
             {
-                errorMsg += ex.Message;
+                mContext.ErrorCode = ErrorCodes.ActionFailed;
+                mContext.Message += ex.Message;
             }
 
-            return errorCode;
+            return mContext;
         }
+
+        public static Mission_Report Is_Task_Worked_Correctly(Task[] tasks)
+        {
+            Mission_Report context= new Mission_Report();
+            if (tasks.Length == 0) return context;
+            foreach (var task in tasks)
+            {
+                var report = task.AsyncState as Data_Mission_Report;
+                if (report.Context.ErrorCode != ErrorCodes.NoError)
+                {
+                    context = report.Context;
+                    break;
+                }
+            }
+
+           return context;
+
+        }
+
         public static bool CheckPriorityOrder(List<SafeDetailDataBase> details, ref string errorMsg)
         {
             bool isPass = false;
@@ -128,9 +148,9 @@ namespace MF900_SolveWare.Safe
             data.SafeDetailDatas.AddRange(temps);          
          }
 
-        public static int ExecuteDetailData(SafeDetailDataBase data)
+        public static Mission_Report ExecuteDetailData(SafeDetailDataBase data)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context= new Mission_Report();
             if(data is DetailData_Safe_Pos)
             {
                 string mtr = (data as DetailData_Safe_Pos).MotorName;
@@ -138,7 +158,7 @@ namespace MF900_SolveWare.Safe
 
                 if (mtr.GetUnitPos() > pos)
                 {
-                    errorCode = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = mtr, Pos = pos });
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = mtr, Pos = pos });
                 }
             }
             else
@@ -153,13 +173,21 @@ namespace MF900_SolveWare.Safe
                     case ConstantProperty.ON:
                         if(iOType == ConstantProperty.InPut) {
                             Thread.Sleep(delayTime);
-                            if (iO.IsOff()) errorCode = ErrorCodes.IOFunctionError;
+                            if (iO.IsOff())
+                            {
+                                context.ErrorCode = ErrorCodes.IOFunctionError;
+                                context.Message = $"IO: {iO.Name} {ErrorCodes.GetErrorDescription(ErrorCodes.IOFunctionError)}";
+                            }
                         }
                         else
                         {
                             iO.On();
                             Thread.Sleep(delayTime);
-                            if(iO.IsOff()) errorCode = ErrorCodes.IOFunctionError;
+                            if(iO.IsOff())
+                            {
+                                context.ErrorCode = ErrorCodes.IOFunctionError;
+                                context.Message = $"IO: {iO.Name} {ErrorCodes.GetErrorDescription(ErrorCodes.IOFunctionError)}";
+                            }
                         }
                         break;
                     case ConstantProperty.OFF:
@@ -167,13 +195,19 @@ namespace MF900_SolveWare.Safe
                         if (iOType == ConstantProperty.InPut)
                         {
                             Thread.Sleep(delayTime);
-                            if (iO.IsOn()) errorCode = ErrorCodes.IOFunctionError;
+                            {
+                                context.ErrorCode = ErrorCodes.IOFunctionError;
+                                context.Message = $"IO: {iO.Name} {ErrorCodes.GetErrorDescription(ErrorCodes.IOFunctionError)}";
+                            }
                         }
                         else
                         {
                             iO.Off();
                             Thread.Sleep(delayTime);
-                            if (iO.IsOn()) errorCode = ErrorCodes.IOFunctionError;
+                            {
+                                context.ErrorCode = ErrorCodes.IOFunctionError;
+                                context.Message = $"IO: {iO.Name} {ErrorCodes.GetErrorDescription(ErrorCodes.IOFunctionError)}";
+                            }
                         }
                         break;
 
@@ -181,7 +215,7 @@ namespace MF900_SolveWare.Safe
 
             }
 
-            return errorCode;
+            return context;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using System;
@@ -17,6 +18,6 @@ namespace SolveWare_Service_Vision.Inspection.Base.Attributes
         {
             this.camera = camera;
         }
-        public abstract int Do_Job();
+        public abstract Mission_Report Do_Job();
     }
 }

@@ -14,30 +14,31 @@ using SolveWare_Service_Utility.Extension;
 using SolveWare_Service_Tool.IO.Definition;
 using SolveWare_Service_Tool.IO.Base.Interface;
 using System.Threading;
+using SolveWare_Service_Core.Definition;
 
 namespace SolveWare_Service_Utility.Common.IO
 {
     public class Job_IO : DataJobPairFundamentalBase<Data_IO>
     {
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
-            OnEntrance();
+            Mission_Report context = new Mission_Report();
+            this.Status = JobStatus.Entrance;
             try
             {
-                errorCode = Execute(Data);
+                context = Execute(Data);
             }
             catch (Exception ex)
             {
-                this.errorMsg += ex.Message;
-                errorCode = ErrorCodes.MotionFunctionError;
+                context.Set(ErrorCodes.IOFunctionError, ex.Message);
             }
-            OnExit();
-            return ErrorCode;
+            this.Status = context.ErrorCode == ErrorCodes.NoError ? JobStatus.Done : JobStatus.Fail;
+            return context;
         }
 
-        private static int Execute(Data_IO data)
+        private static Mission_Report Execute(Data_IO data)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
             try
             {
                 int index = 1;
@@ -46,51 +47,49 @@ namespace SolveWare_Service_Utility.Common.IO
                 {
                     var detail = data.DetailDatas.ToList().FindAll(x => x.Priority == index);
                     if (detail.Count == 0) break;
-                    if (SolveWare.Core.MMgr.IsStop) return ErrorCodes.MachineStopCall;
+                    if (context.NotPass()) break;
 
                     if (totalCount == 1)
                     {
-                        errorCode = Execute_Single_DetailData(detail[0]);
+                        context = Execute_Single_DetailData(detail[0]);
                     }
                     else
                     {
                         bool isError = false;
-                        List<int> errorCodes = new List<int>();
                         List<Task> tasks = new List<Task>();
 
                         for (int i = 0; i < detail.Count; i++)
                         {
                             int num = i;
-                            Task task = new Task(() =>
+                            Task task = Task.Factory.StartNew((object obj) =>
                             {
+                                Data_Mission_Report report = obj as Data_Mission_Report;
                                 DetailData_IO dData = detail[num];
-                                errorCode = Execute_Single_DetailData(dData);
-                                errorCodes.Add(errorCode);
-                            });
+                                report.Context = Execute_Single_DetailData(dData);
+                            }, new Data_Mission_Report());
                             tasks.Add(task);
                         }
-                        tasks.ForEach(x => x.Start());
                         Task.WaitAll(tasks.ToArray());
-                        isError = errorCodes.FirstOrDefault(x => x != ErrorCodes.NoError) > 0;
-                        errorCode = isError ? ErrorCodes.MotionFunctionError : ErrorCodes.NoError;
+                        context =  tasks.Converto_Mission_Report();
+
                     }
 
-                    if (errorCode != ErrorCodes.NoError) break;
+                    if (context.NotPass()) break;
                     totalCount -= detail.Count;
                     if (totalCount == 0) break;
                 }
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.MotionFunctionError;
+                context.Set(ErrorCodes.IOFunctionError, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
-        private static int Execute_Single_DetailData(DetailData_IO detailData)
+        private static Mission_Report Execute_Single_DetailData(DetailData_IO detailData)
         {
-            int errorCode = ErrorCodes.NoError;
+            Mission_Report context = new Mission_Report();
 
             try
             {
@@ -114,10 +113,10 @@ namespace SolveWare_Service_Utility.Common.IO
                         switch (detailData.TriggerMode)
                         {
                             case ConstantProperty.ON:
-                                errorCode = iO.IsOff()? ErrorCodes.IOFunctionError : ErrorCodes.NoError;    
+                                if (iO.IsOff()) context.Set(ErrorCodes.IOFunctionError);
                                 break;
                             case ConstantProperty.OFF:
-                                errorCode = iO.IsOn() ? ErrorCodes.IOFunctionError : ErrorCodes.NoError;
+                                if (iO.IsOn()) context.Set(ErrorCodes.IOFunctionError);
                                 break;
                         }
                         break;
@@ -125,10 +124,10 @@ namespace SolveWare_Service_Utility.Common.IO
             }
             catch
             {
-                errorCode = ErrorCodes.MotionFunctionError;
+                context.Set(ErrorCodes.IOFunctionError);
             }
 
-            return errorCode;
+            return context;
         }
     }
 }

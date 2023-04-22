@@ -211,6 +211,35 @@ namespace SolveWare_Service_Utility.Extension
 
             return errorCode;
         }
-      
+        public static Mission_Report Converto_Mission_Report(this Data_Mission_Report[] datas)
+        {
+            Mission_Report context= new Mission_Report();
+            foreach (var data in datas) {
+                context.Message += data.Context.Message;
+            }
+
+            if(context.Message != string.Empty)
+            {
+                context.ErrorCode = ErrorCodes.ActionFailed;
+            }
+
+            return context;
+        }
+        public static Mission_Report Converto_Mission_Report(this List<Task> tasks)
+        {
+            Mission_Report context = new Mission_Report();
+            foreach (var task in tasks)
+            {
+                Data_Mission_Report data = task.AsyncState as Data_Mission_Report;
+                context.Message += data.Context;
+            }
+
+            if (context.Message != string.Empty)
+            {
+                context.ErrorCode = ErrorCodes.ActionFailed;
+            }
+
+            return context;
+        }
     }
 }

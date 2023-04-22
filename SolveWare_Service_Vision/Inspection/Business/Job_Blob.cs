@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.JobSheet;
 using System;
@@ -14,14 +15,14 @@ namespace SolveWare_Service_Vision.Inspection.Business
     {
         Data_InspectionKit jobParam = null;
 
-        public override int Do_Job()
+        public override Mission_Report Do_Job()
         {
             //TODO: Stanley 1.实现 Blob 的细节
 
 
 
 
-            return ErrorCode;
+            return new Mission_Report();
         }
 
         public void Setup(IElement data)

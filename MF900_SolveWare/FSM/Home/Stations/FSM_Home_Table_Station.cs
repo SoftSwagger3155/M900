@@ -50,10 +50,9 @@ namespace MF900_SolveWare.FSM.Home.Stations
         
 
         #region State 方法
-        private int StartHome(StateBase sender)
+        private Mission_Report StartHome(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -66,45 +65,34 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);  
-            }
-            return errorCode;
-        }
-        private int HomeTable(StateBase sender)
-        {
-            errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
 
+            return context;
+        }
+        private Mission_Report HomeTable(StateBase sender)
+        {
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
                 {
-                     errorCode = ResourceKey.Motor_Table.GetAxisBase().HomeMove() ? ErrorCodes.NoError : ErrorCodes.MotorHomingError;
-                    if (errorCode.NotPass(ref msg, ResourceKey.Motor_Table.GetAxisBase().ErrorReport)) break;
+                     context = ResourceKey.Motor_Table.GetAxisBase().HomeMove();
+                    if (context.NotPass()) break;
 
 
                 } while (false);
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
-            }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
             
-            return errorCode;
+            return context;
         }
-        private int SetHomeTableDone(StateBase sender)
+        private Mission_Report SetHomeTableDone(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
-            sender.Info = this.Name;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -117,19 +105,14 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
-            }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
             
-            return errorCode;
+            return context;
         }
-        private int EndHome(StateBase sender)
+        private Mission_Report EndHome(StateBase sender)
         {
-            int errorCode = ErrorCodes.NoError;
-            string msg = string.Empty;
+            Mission_Report context = new Mission_Report();
             try
             {
                 do
@@ -142,21 +125,17 @@ namespace MF900_SolveWare.FSM.Home.Stations
             }
             catch (Exception ex)
             {
-                msg += ex.Message;
-            }
-            finally
-            {
-                sender.Set_Operation_Info(errorCode, msg);
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
 
-            return errorCode;
+            return context;
         }
 
         #endregion
 
-        private int OnErrorHanding(StateBase sender)
+        private Mission_Report OnErrorHanding(StateBase sender)
         {
-            return sender.ErrorCode;
+            return sender.FinalReport;
         }
 
      
