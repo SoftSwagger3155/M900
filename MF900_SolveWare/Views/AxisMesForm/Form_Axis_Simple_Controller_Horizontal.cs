@@ -4,6 +4,7 @@ using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Tool.Motor.Data;
+using SolveWare_Service_Utility.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,24 +49,17 @@ namespace MF900_SolveWare.Views.AxisMesForm
             {
                 while (!source.IsCancellationRequested)
                 {
-                    if (this.lbl_CurrentPhysicalPos.InvokeRequired)
+                    this.Refresh_UI_Item(lbl_CurrentPhysicalPos, () =>
                     {
-                        this.BeginInvoke(new Action(() =>
-                        {
-                            lbl_CurrentPhysicalPos.Text = $"{this.axis.CurrentPhysicalPos.ToString("F3")}";
-                        }));
-                    }
-                    if (this.lbl_Lmt_Negative.InvokeRequired)
+                        lbl_CurrentPhysicalPos.Text = $"{this.axis.CurrentPhysicalPos.ToString("F3")}";
+                    });
+                    this.Refresh_UI_Item(lbl_Lmt_Negative, () =>
                     {
-                        this.BeginInvoke(new Action(() =>
-                        {
-                            Color bcolor = this.axis.IsOrg ? Color.Green : Color.Red;
-                            this.lbl_Lmt_Negative.BackColor = bcolor;
-                        }));
-                    }
+                        Color bcolor = this.axis.IsOrg ? Color.Green : Color.Red;
+                        this.lbl_Lmt_Negative.BackColor = bcolor;
+                    });
                 
                     Thread.Sleep(5);
-
                 }
                 stopFlag.Set();
 
@@ -234,13 +228,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                 try
                 {
                     do
-                    {
-                        if (Check_Machine_Status() == false)
-                        {
-                            context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantData, "机器状态不允许此时按钮运行");
-                            break;
-                        }
-
+                    {                   
                         context = axis.HomeMove();
                         context.NotPass(true);
 

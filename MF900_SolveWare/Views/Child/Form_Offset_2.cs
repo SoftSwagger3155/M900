@@ -16,6 +16,8 @@ using Sunny.UI;
 using MF900_SolveWare.Resource;
 using MF900_SolveWare.Views.AxisMesForm;
 using Sunny.UI.Win32;
+using SolveWare_Service_Utility.Extension;
+using System.Threading;
 
 namespace MF900_SolveWare.Views.Child
 {
@@ -34,7 +36,7 @@ namespace MF900_SolveWare.Views.Child
         {
             OffsetJob = obj as Job_Offset;
             OffsetData = OffsetJob.Data;
-
+            DataBinding_CheckBox();
             
         }
 
@@ -71,77 +73,81 @@ namespace MF900_SolveWare.Views.Child
         }
         public void DataBinding_StartPos_Info()
         {
-            if (this.OffsetData == null) return;
-            this.Invoke(new Action(() =>
+            this.Refresh_UI_Item(new[] { lbl_Top_Module_TestPosX_Info, lbl_Top_Module_TestPosY_Info, lbl_Top_Module_TestPosZ_Info, lbl_Top_Module_TestPosT_Info,
+                                                          lbl_Btm_Module_TestPosX_Info, lbl_Btm_Module_TestPosY_Info, lbl_Btm_Module_TestPosZ_Info, lbl_Btm_Module_TestPosT_Info}, () =>
             {
+                if (this.OffsetData == null) return;
                 lbl_Top_Module_TestPosX_Info.Text = $"{ResourceKey.Motor_Top_X} : {OffsetData.Start_Top_PosX} mm";
                 lbl_Top_Module_TestPosY_Info.Text = $"{ResourceKey.Motor_Top_Y} : {OffsetData.Start_Top_PosY} mm";
                 lbl_Top_Module_TestPosZ_Info.Text = $"{ResourceKey.Motor_Top_Z} : {OffsetData.Start_Top_PosZ} mm";
-                lbl_Top_Module_TestPosT_Info.Text = $"{ResourceKey.Motor_Top_T} : {OffsetData.Start_Top_PosT} mm";
+                lbl_Top_Module_TestPosT_Info.Text = $"{ResourceKey.Motor_Top_T} : {OffsetData.Start_Top_PosT} Deg";
 
                 lbl_Btm_Module_TestPosX_Info.Text = $"{ResourceKey.Motor_Btm_X} : {OffsetData.Start_Btm_PosX} mm";
                 lbl_Btm_Module_TestPosY_Info.Text = $"{ResourceKey.Motor_Btm_Y} : {OffsetData.Start_Btm_PosY} mm";
                 lbl_Btm_Module_TestPosZ_Info.Text = $"{ResourceKey.Motor_Btm_Z} : {OffsetData.Start_Btm_PosZ} mm";
-                lbl_Btm_Module_TestPosT_Info.Text = $"{ResourceKey.Motor_Btm_T} : {OffsetData.Start_Btm_PosT} mm";
-            }));
+                lbl_Btm_Module_TestPosT_Info.Text = $"{ResourceKey.Motor_Btm_T} : {OffsetData.Start_Btm_PosT} Deg";
+            });
         }
         public void DataBinding_FirstPos_Info()
         {
-            if (this.OffsetData == null) return;
-            if (string.IsNullOrEmpty(OffsetData.First_MotorX) || string.IsNullOrEmpty(OffsetData.First_MotorY)) return;
-
-            this.Invoke(new Action(() =>
+            this.Refresh_UI_Item(new[] { lbl_First_Save_PosX_Info, lbl_First_Save_PosY_Info }, () =>
             {
+                if (this.OffsetData == null) return;
+                if (string.IsNullOrEmpty(OffsetData.First_MotorX) || string.IsNullOrEmpty(OffsetData.First_MotorY)) return;
+
                 lbl_First_Save_PosX_Info.Text = $"{OffsetData.First_MotorX} : {OffsetData.FirstPosX} mm";
                 lbl_First_Save_PosY_Info.Text = $"{OffsetData.First_MotorY} : {OffsetData.FirstPosY} mm";
-            }));
+            });
         }
         public void DataBinding_Second_Pos()
         {
-            if (this.OffsetData == null) return;
-            if (string.IsNullOrEmpty(OffsetData.Anchor_MotorX) ||
-                string.IsNullOrEmpty(OffsetData.Anchor_MotorY) ||
-                string.IsNullOrEmpty(OffsetData.Anchor_MotorZ) ||
-                string.IsNullOrEmpty(OffsetData.Anchor_MotorT)) return;
-
-            this.Invoke(new Action(() =>
+            this.Refresh_UI_Item(new[] { lbl_Second_Save_PosX_Info, lbl_Second_Save_PosY_Info }, () =>
             {
+                if (this.OffsetData == null) return;
+                if (string.IsNullOrEmpty(OffsetData.Anchor_MotorX) ||
+                    string.IsNullOrEmpty(OffsetData.Anchor_MotorY) ||
+                    string.IsNullOrEmpty(OffsetData.Anchor_MotorZ) ||
+                    string.IsNullOrEmpty(OffsetData.Anchor_MotorT)) return;
+
                 lbl_Second_Save_PosX_Info.Text = $"{OffsetData.Anchor_MotorX} : {OffsetData.SecondPosX} mm";
                 lbl_Second_Save_PosY_Info.Text = $"{OffsetData.Anchor_MotorY} : {OffsetData.SecondPosY} mm";
-            }));
+            });
+           
         }
         public void DataBinding_Offset()
         {
-            if (this.OffsetData == null) return;
-            this.Invoke(new Action(() =>
+            this.Refresh_UI_Item(new[] { lbl_OffsetX_Info, lbl_OffsetY_Info }, () =>
             {
+                if (this.OffsetData == null) return;
                 lbl_OffsetX_Info.Text = $"OffsetX {OffsetData.OffsetX} mm";
                 lbl_OffsetY_Info.Text = $"OffsetY {OffsetData.OffsetY} mm";
-            }));
+            });       
         }
         public void DataBinding_InspectKit()
         {
-            if (this.OffsetData == null) return;
-            this.Invoke(new Action(() =>
+            this.Refresh_UI_Item(new[] { lbl_InspectKit }, () =>
             {
+                if (this.OffsetData == null) return;
                 lbl_InspectKit.Text = $"视觉 : {OffsetData.InspectKitName}";
-            }));
+            });
+
+          
         }
         public void DataBinding_Inspect_Pos()
         {
-            if (this.OffsetData == null) return;
-            if (string.IsNullOrEmpty(OffsetData.Anchor_MotorX) ||
-                string.IsNullOrEmpty(OffsetData.Anchor_MotorY) ||
-                string.IsNullOrEmpty(OffsetData.Anchor_MotorZ) ||
-                string.IsNullOrEmpty(OffsetData.Anchor_MotorT)) return;
-
-            this.Invoke(new Action(() =>
+            this.Refresh_UI_Item(new[] { lbl_Second_Target_MotorX_Info, lbl_Second_Target_MotorY_Info, lbl_Second_Target_MotorZ_Info, lbl_Second_Target_MotorT_Info }, () =>
             {
+                if (this.OffsetData == null) return;
+                if (string.IsNullOrEmpty(OffsetData.Anchor_MotorX) ||
+                    string.IsNullOrEmpty(OffsetData.Anchor_MotorY) ||
+                    string.IsNullOrEmpty(OffsetData.Anchor_MotorZ) ||
+                    string.IsNullOrEmpty(OffsetData.Anchor_MotorT)) return;
+
                 lbl_Second_Target_MotorX_Info.Text = $"{OffsetData.Anchor_MotorX} : {OffsetData.Inspect_PosX} mm";
                 lbl_Second_Target_MotorY_Info.Text = $"{OffsetData.Anchor_MotorY} : {OffsetData.Inspect_PosY} mm";
                 lbl_Second_Target_MotorZ_Info.Text = $"{OffsetData.Anchor_MotorZ} : {OffsetData.Inspect_PosZ} mm";
-                lbl_Second_Target_MotorT_Info.Text = $"{OffsetData.Anchor_MotorT} : {OffsetData.Inspect_PosT} mm";
-            }));
+                lbl_Second_Target_MotorT_Info.Text = $"{OffsetData.Anchor_MotorT} : {OffsetData.Inspect_PosT} Deg";
+            });
         }
         #endregion
 
@@ -153,13 +159,7 @@ namespace MF900_SolveWare.Views.Child
             var job = SolveWare.Core.MMgr.Get_PairJob(offset);
             if (job != null) { 
                 
-                this.Setup(job);
-                DataBinding_Offset();
-                DataBinding_CheckBox();
-                DataBinding_Inspect_Pos();
-                DataBinding_Second_Pos();
-                DataBinding_FirstPos_Info();
-                DataBinding_StartPos_Info();
+                this.Setup(job);   
             }
         }
 
@@ -207,9 +207,6 @@ namespace MF900_SolveWare.Views.Child
 
                     context = OffsetJob.Save_First_Pos();
                     if (context.NotPass()) break;
-
-                    DataBinding_FirstPos_Info();
-                    DataBinding_StartPos_Info();
 
                 } while (false);
 
@@ -343,8 +340,6 @@ namespace MF900_SolveWare.Views.Child
                     OffsetData.OffsetX = 0;
                     OffsetData.OffsetY = 0;
 
-                    DataBinding_Offset();
-
                 } while (false);
 
             }
@@ -370,8 +365,6 @@ namespace MF900_SolveWare.Views.Child
 
                     Mission_Report context = OffsetJob.Save_Second_Pos();
                     if (context.NotPass()) break;
-
-                    DataBinding_Second_Pos();
 
                 } while (false);
 
@@ -429,8 +422,6 @@ namespace MF900_SolveWare.Views.Child
 
                     string insp = cmb_Selector_InspectKit.SelectedItem as string;
                     OffsetData.InspectKitName = insp;
-
-                    DataBinding_InspectKit();
 
                 } while (false);
 
@@ -492,8 +483,6 @@ namespace MF900_SolveWare.Views.Child
 
                         context = OffsetJob.Save_Inspect_Pos();
                         if (context.NotPass(true)) break;
-
-                        DataBinding_Inspect_Pos();
 
                     } while (false);
 
@@ -557,8 +546,6 @@ namespace MF900_SolveWare.Views.Child
                     context = OffsetJob.Calculate_Offset();
                     if (context.NotPass(true)) break;
 
-                    DataBinding_Offset();
-
                 } while (false);
 
             }
@@ -571,7 +558,34 @@ namespace MF900_SolveWare.Views.Child
 
         private void Form_Offset_2_Load(object sender, EventArgs e)
         {
-           DataBinding_CheckBox();
+           StartListening();
+        }
+        private void Form_Offset_2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StopListening();
+        }
+
+        CancellationTokenSource cancelSource = null;
+
+        private void StartListening()
+        {
+            if(cancelSource == null) cancelSource = new CancellationTokenSource();
+            Task.Run(() =>
+            {
+                while (!cancelSource.IsCancellationRequested) 
+                {
+                    DataBinding_Offset();
+                    DataBinding_Inspect_Pos();
+                    DataBinding_Second_Pos();
+                    DataBinding_FirstPos_Info();
+                    DataBinding_StartPos_Info();
+                    Thread.Sleep(10);
+                }
+            });
+        }
+        private void StopListening() 
+        {
+            if(cancelSource != null) cancelSource.Cancel(); 
         }
 
         private void chk_Enable_Inspect_CheckedChanged(object sender, EventArgs e)
@@ -628,7 +642,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Offset_Go_Click(object sender, EventArgs e)
         {
-            Task task = Task.Factory.StartNew(() =>
+            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -653,8 +667,8 @@ namespace MF900_SolveWare.Views.Child
                     context.Set(ErrorCodes.ActionFailed, ex.Message);
                     context.NotPass(true);
                 }
+                return context;
             });
-           Task.WaitAll(task);  
         }
 
         private void btn_Offset_Return_Click(object sender, EventArgs e)
@@ -687,5 +701,7 @@ namespace MF900_SolveWare.Views.Child
             });
 
         }
+
+        
     }
 }

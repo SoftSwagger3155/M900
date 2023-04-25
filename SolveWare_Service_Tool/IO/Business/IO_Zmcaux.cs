@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SolveWare_Service_Tool.IO.Business
@@ -37,16 +38,15 @@ namespace SolveWare_Service_Tool.IO.Business
 
                 Handler = master.CardInfo.Dic_CardHandler[(this.configData as ConfigData_IO).CardNo];
             }
-
+            if(this.IOType == IO_Type.Output) { this.Off(); }
             return true;
         }
 
-        public override void Off()
-        {
-            int errorCode = ErrorCodes.NoError;
-            string exMSg = string.Empty;
-            int triggerMode = configData.Logic_Op == 0 ? 0 : 1;
+        CancellationTokenSource cancelSource = null;
+        AutoResetEvent cancelFlag = new AutoResetEvent(false);
 
+        public override void Off()
+        {             
             try
             {
                 if (this.Simulation)
@@ -54,23 +54,45 @@ namespace SolveWare_Service_Tool.IO.Business
                     this.Status = IO_Status.Off;
                     return;
                 }
+                // 0: 关 1: 开
+                if(configData.IsDualChannel)
+                {
+                    //int triggerMode_1st = configData.Data_DualChannel.TriggerMode_First.ToUpper() == ConstantProperty.ON ? 1 : 0;
+                    //int triggerMode_2nd = configData.Data_DualChannel.TriggerMode_Second.ToUpper() == ConstantProperty.ON ? 1 : 0;
 
-                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)triggerMode);
+                    Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Data_DualChannel.Bit_First, (uint)0);
+                    Thread.Sleep(50);
+                    Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Data_DualChannel.Bit_Second, (uint)1);
+                }
+                if (configData.IsBuzzer)
+                {
+                    if (cancelSource == null) return;
+                    if (configData.Data_Buzzer.Is_Interval_Buzzing)
+                    {
+                        cancelSource.Cancel();
+                    }
+                    else
+                    {
+                        int errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)0);
+                        if (errorCode != ErrorCodes.NoError) { SolveWare.Core.ShowMsg(ErrorCodes.GetErrorDescription(ErrorCodes.IOFunctionError)); }
+                    }
+                }
+                else
+                {
+                    int errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)0);
+                    if(errorCode != ErrorCodes.NoError) { SolveWare.Core.ShowMsg(ErrorCodes.GetErrorDescription(ErrorCodes.IOFunctionError)); }
+                }
             }
             catch (Exception ex)
             {
-                errorCode = ErrorCodes.IOFunctionError;
-                exMSg = ex.Message;
-            }
-
-            if (errorCode != ErrorCodes.NoError) SolveWare.Core.MMgr.Infohandler.LogMessage($"IOCard No: {configData.CardNo} IO: {configData.Name} OFF 功能 失效\r\n{exMSg}");
+                SolveWare.Core.MMgr.Infohandler.LogMessage($"IOCard No: {configData.CardNo} IO: {configData.Name} OFF 功能 失效\r\n{ex.Message}");
+            }    
         }
 
         public override void On()
         {
             int errorCode = ErrorCodes.NoError;
             string exMSg = string.Empty;
-            int triggerMode = configData.Logic_Op == 0 ? 1 : 0;
 
             try
             {
@@ -80,7 +102,43 @@ namespace SolveWare_Service_Tool.IO.Business
                     return;
                 }
 
-                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)triggerMode);
+                if(configData.IsBuzzer) 
+                {
+                    if (configData.Data_Buzzer.Is_Interval_Buzzing)
+                    {
+                        cancelSource = new CancellationTokenSource();
+                        Task.Run(() =>
+                        {
+                            while (true)
+                            {
+                                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)1);
+                                if (cancelSource.IsCancellationRequested) break;
+                                Thread.Sleep(configData.Data_Buzzer.Interval_ms);
+                                errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)0);
+                                if (cancelSource.IsCancellationRequested) break;
+                                Thread.Sleep(configData.Data_Buzzer.Interval_ms);
+                            }
+                            errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)0);
+                        });
+                    }
+                    else
+                    {
+                        errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)1);
+                    }
+                }
+                else if (configData.IsDualChannel)
+                {
+                    //int triggerMode_1st = configData.Data_DualChannel.TriggerMode_First.ToUpper() == ConstantProperty.ON ? 1 : 0;
+                    //int triggerMode_2nd = configData.Data_DualChannel.TriggerMode_Second.ToUpper() == ConstantProperty.ON ? 1 : 0;
+
+                    errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Data_DualChannel.Bit_Second, (uint)0);
+                    Thread.Sleep(50);
+                    errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Data_DualChannel.Bit_First, (uint)1);
+                }
+                else if(!configData.IsDualChannel && !configData.IsBuzzer) 
+                {
+                    errorCode = Dll_Zmcaux.ZAux_Direct_SetOp(Handler, configData.Bit, (uint)1);
+                }               
             }
             catch (Exception ex)
             {
@@ -106,15 +164,24 @@ namespace SolveWare_Service_Tool.IO.Business
                 uint ioStatus = 0;
 
                 if (this.IOType == IO_Type.Input)
+                {
                     errorCode = Dll_Zmcaux.ZAux_Direct_GetIn(Handler, configData.Bit, ref ioStatus);
+                }
                 else if (this.IOType ==  IO_Type.Output)
-                    errorCode = Dll_Zmcaux.ZAux_Direct_GetOp(Handler, configData.Bit, ref ioStatus);
+                {
+                    if (configData.IsDualChannel)
+                    {
+                        errorCode = Dll_Zmcaux.ZAux_Direct_GetOp(Handler, configData.Data_DualChannel.Bit_First, ref ioStatus);
+                    }
+                    else
+                    {
+                        errorCode = Dll_Zmcaux.ZAux_Direct_GetOp(Handler, configData.Bit, ref ioStatus);
+                    }
+                    
+                }
 
 
-                if (configData.Logic_Read == 0)
-                    Status = ioStatus == 0 ? IO_Status.Off : IO_Status.On;
-                else
-                    Status = ioStatus == 0 ? IO_Status.On : IO_Status.Off;
+                Status = ioStatus == 0 ? IO_Status.Off : IO_Status.On;
 
             }
             catch (Exception ex)

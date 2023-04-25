@@ -7,6 +7,9 @@
     <ImagePart_Y>1080</ImagePart_Y>
     <IsSimulation>false</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
+    <MMperPixel_X>0</MMperPixel_X>
+    <MMperPixel_Y>0</MMperPixel_Y>
+    <Average_MMperPixel>0</Average_MMperPixel>
   </ConfigData_Camera>
   <ConfigData_Camera>
     <Name>下相机</Name>
@@ -15,5 +18,8 @@
     <ImagePart_Y>1080</ImagePart_Y>
     <IsSimulation>true</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
+    <MMperPixel_X>0</MMperPixel_X>
+    <MMperPixel_Y>0</MMperPixel_Y>
+    <Average_MMperPixel>0</Average_MMperPixel>
   </ConfigData_Camera>
 </ArrayOfConfigData_Camera>

@@ -92,6 +92,24 @@
     <Compile Include="Views\Child\Form_Index.Designer.cs">
       <DependentUpon>Form_Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Child\Form_IO_Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_IO_Chart.Designer.cs">
+      <DependentUpon>Form_IO_Chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_IO_Input.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_IO_Input.Designer.cs">
+      <DependentUpon>Form_IO_Input.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_IO_Output.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_IO_Output.Designer.cs">
+      <DependentUpon>Form_IO_Output.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Child\Form_MMperPixel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,8 +176,7 @@
     <Compile Include="Index\Data\Data_Index.cs" />
     <Compile Include="Index\Job\Job_Index_Simulate.cs" />
     <Compile Include="MMperPixel\Data\Data_MMperPixel.cs" />
-    <Compile Include="MMperPixel\Job\Job_MMperPixel_BtmCamera.cs" />
-    <Compile Include="MMperPixel\Job\Job_MMperPixel_TopCamera.cs" />
+    <Compile Include="MMperPixel\Job\Job_MMperPixel.cs" />
     <Compile Include="Views\AxisMesForm\AxisDebugForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -476,6 +493,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_InspectKit_PatternMatch.resx">
       <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_IO_Chart.resx">
+      <DependentUpon>Form_IO_Chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_IO_Input.resx">
+      <DependentUpon>Form_IO_Input.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_IO_Output.resx">
+      <DependentUpon>Form_IO_Output.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_Learn_Global_Center.resx">
       <DependentUpon>Form_Learn_Global_Center.cs</DependentUpon>

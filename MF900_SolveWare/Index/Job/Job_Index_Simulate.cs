@@ -63,7 +63,72 @@ namespace MF900_SolveWare.Index.Job
 
             return mReport;
         }
+        public Mission_Report Cycle_Go(int number)
+        {
+            Mission_Report context = new Mission_Report();
+            string errMsg = string.Empty;
+            PosX_Top = 0;
+            PosY_Top = 0;
+            PosX_Btm = 0;
+            PosY_Btm = 0;
 
+
+            try
+            {
+                do
+                {
+                    //计算最新的Index位置
+                    if (Get_Position(number, ref errMsg) == false)
+                    {
+                        break;
+                    }
+
+                    //先去安全位置
+                    context = Do_Save_Prevention();
+                    if (context.NotPass()) break;
+
+                    //下平台去安全位置 让平台安全上升
+                    context = MotionHelper.Move_Multiple_Motors(
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos =0.1}, 
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = 0.1});
+                    if(context.NotPass()) break;
+
+
+                    //上升平台
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = this.Data.Pos_Table_Load });
+                    if (context.NotPass()) break;
+
+                    //夹抓关闭
+                    ResourceKey.Op_PCB_Clamp.GetIOBase().On();
+                    Thread.Sleep(500);
+
+                    //拉伸 X Y 向
+                    ResourceKey.Op_Y_Stretch_Cylinder.GetIOBase().On();
+                    Thread.Sleep(500);
+                    ResourceKey.Op_X_Stretch_Cylinder.GetIOBase().On();
+                    Thread.Sleep(500);
+
+                    //平台下降
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = 0.1 });
+                    if (context.NotPass()) break;
+
+                    //移动到 Index位置
+                    context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm);
+                    if (context.NotPass()) break;
+                                 
+
+                    //更新最新纪录位置
+                    this.Data.Data_Display.Current_No = number;
+
+                } while (false);
+            }
+            catch (Exception ex)
+            {
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
+            }
+
+            return context;
+        }
         public Mission_Report Go(int number)
         {
             Mission_Report context = new Mission_Report();
@@ -78,19 +143,24 @@ namespace MF900_SolveWare.Index.Job
             {
                 do
                 {
+                    //计算最新的Index位置
                     if (Get_Position(number, ref errMsg) == false)
                     {
                         break;
                     }
 
+                    //先去安全位置
                     context = Do_Save_Prevention();
                     if (context.NotPass()) break;
 
+ 
+                    //移动到 Index位置
                     context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm);
                     if (context.NotPass()) break;
-
+                    //更新最新纪录位置
                     this.Data.Data_Display.Current_No = number;
-     
+                    
+
                 } while (false);
             }
             catch (Exception ex)
@@ -118,7 +188,7 @@ namespace MF900_SolveWare.Index.Job
                 do
                 {
                    
-                    context = Go(number);
+                    context = Cycle_Go(number);
                     if (context.NotPass()) break;
                     Thread.Sleep(1000);
 
@@ -134,6 +204,16 @@ namespace MF900_SolveWare.Index.Job
                     context = Go_Multiple_PosZ(0, 0);
                     if (context.NotPass()) break;
                     Thread.Sleep(1000);
+
+                    //松开夹抓
+                    ResourceKey.Op_PCB_Clamp.GetIOBase().Off();
+                    Thread.Sleep(500);
+
+                    //缩回 X Y 向
+                    ResourceKey.Op_Y_Stretch_Cylinder.GetIOBase().Off();
+                    Thread.Sleep(500);
+                    ResourceKey.Op_X_Stretch_Cylinder.GetIOBase().Off();
+                    Thread.Sleep(500);
 
                 } while (false);
             }
@@ -421,18 +501,17 @@ namespace MF900_SolveWare.Index.Job
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = btmPosY }
                     };
 
-                    Info_Motion currentJob;
                     foreach (var item in jobs)
                     {
-                        currentJob = item;
-                        Task task = Task.Factory.StartNew((object obj) =>
+                       Task task = new Task((object obj) =>
                         {
                             Data_Mission_Report data = obj as Data_Mission_Report;
-                            data.Context = MotionHelper.Move_Motor(currentJob);
+                            data.Context = MotionHelper.Move_Motor(item);
 
                         }, new Data_Mission_Report());
                         tasks.Add(task);
                     }
+                    tasks.ForEach(x=> x.Start());
                     Task.WaitAll(tasks.ToArray());
                     context = tasks.Converto_Mission_Report();
 
@@ -461,17 +540,18 @@ namespace MF900_SolveWare.Index.Job
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Z, Pos = posZ2 }
                     };
 
-                    Info_Motion currentJob;
                     foreach (var job in jobs)
                     {
-                        currentJob = job;   
-                        Task task = Task.Factory.StartNew((object obj) =>
+                        Task task = new Task((object obj) =>
                         {
                             var data = obj as Data_Mission_Report;
-                            data.Context = MotionHelper.Move_Motor(currentJob);
+                            data.Context = MotionHelper.Move_Motor(job);
 
                         }, new Data_Mission_Report());
+                        tasks.Add(task);
                     }
+                    tasks.ForEach(x => x.Start());
+                    Task.WaitAll(tasks.ToArray());
                     context = tasks.Converto_Mission_Report();
 
                 } while (false);

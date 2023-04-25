@@ -69,10 +69,11 @@ namespace SolveWare_Service_Tool.Motor.Business
             }
             else
             {
-                float tempPos = 0;
-                Dll_Zmcaux.ZAux_Direct_GetDpos(Handler, mtrTable.AxisNo, ref tempPos);
-                //Dll_Zmcaux.ZAux_Direct_GetMpos(Handler, mtrTable.AxisNo, ref tempPos);
-                position = tempPos; //CurrentPulse * mtrTable.UnitPerRevolution / mtrTable.PulsePerRevolution;
+                float temp_D_Pos = 0;
+                float temp_M_Pos = 0;
+                Dll_Zmcaux.ZAux_Direct_GetDpos(Handler, mtrTable.AxisNo, ref temp_D_Pos);
+                Dll_Zmcaux.ZAux_Direct_GetMpos(Handler, mtrTable.AxisNo, ref temp_M_Pos);
+                position = temp_D_Pos / mtrTable.PulseFactor; //CurrentPulse * mtrTable.UnitPerRevolution / mtrTable.PulsePerRevolution;
             }
 
             if (MtrTable.MotorRealDirectionState == DirectionState.Negative && MtrTable.MotorDisplayDirectionState == DirectionState.Positive ||
@@ -218,8 +219,8 @@ namespace SolveWare_Service_Tool.Motor.Business
             Dll_Zmcaux.ZAux_Direct_SetCreep(Handler, this.mtrTable.AxisNo, 0.5f);
             Dll_Zmcaux.ZAux_Direct_Single_Datum(Handler, mtrTable.AxisNo, 4);
 
-            Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
-            Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
+            int ans= Dll_Zmcaux.ZAux_Direct_SetMpos(Handler, mtrTable.AxisNo, 0.0f);  //重置编码器位置
+            ans = Dll_Zmcaux.ZAux_Direct_SetDpos(Handler, mtrTable.AxisNo, 0.0f);
 
             while (true)
             {
@@ -929,6 +930,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             //double targetPos = pos / mtrTable.UnitPerRevolution * mtrTable.PulsePerRevolution;
             pos *= factor;
+            pos *= mtrTable.PulseFactor;
             //设置速度参数
             SetSpeedParameters(minVel, maxVel, (float)acc, (float)dec,false);
             //绝对位置
@@ -1056,6 +1058,7 @@ namespace SolveWare_Service_Tool.Motor.Business
 
             //double targetPos = pos / mtrTable.UnitPerRevolution * mtrTable.PulsePerRevolution;
             pos *= factor;
+            pos *= mtrTable.PulseFactor;
             //设置速度参数
             SetSpeedParameters(minVel, maxVel, (float)acc, (float)dec, false);
             //绝对位置

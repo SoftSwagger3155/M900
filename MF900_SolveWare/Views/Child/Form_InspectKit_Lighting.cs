@@ -40,10 +40,10 @@ namespace MF900_SolveWare.Views.Child
             gpb_Content.Controls.Add((Form)form_Source);
         }
 
-        Data_InspectionKit dataKit;
+        Data_Inspection dataKit;
         public void Setup<TObj>(TObj obj)
         {
-            dataKit = obj as Data_InspectionKit;
+            dataKit = obj as Data_Inspection;
         }
 
         private void Cmb_Selector_Kind_SelectionChangeCommitted(object sender, EventArgs e)

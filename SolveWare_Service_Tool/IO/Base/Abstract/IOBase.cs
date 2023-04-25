@@ -93,7 +93,7 @@ namespace SolveWare_Service_Tool.IO.Base.Abstract
                 while (!readStatusSource.IsCancellationRequested)
                 {
                     UpdateStatus();
-                    Thread.Sleep(20);
+                    Thread.Sleep(10);
                 }
 
                 cancelDoneFlag.Set();

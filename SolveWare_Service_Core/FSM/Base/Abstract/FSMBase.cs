@@ -1,4 +1,5 @@
 ﻿using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Core.FSM.Base.Interface;
 using SolveWare_Service_Core.General;
 using System;
@@ -52,21 +53,31 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             {
                 Stations.ToList().ForEach(stn =>
                 {
-                    Task task = Task.Factory.StartNew((object obj) =>
+                    Task task = new Task((object obj) =>
                     {
                         Data_Mission_Report fsm = obj as Data_Mission_Report;
-                        fsm.Context = stn.RunSingleCycle();
+                        fsm.Context = stn.RunAutoCycle();
                     }, new Data_Mission_Report());
                     tasks.Add(task);
                 });
 
-                Task.WaitAll(tasks.ToArray());
-
-
-                tasks.ForEach(task =>
+                tasks.ForEach(task => { task.Start(); });
+                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                 {
-                    var taskReport = task.AsyncState as Data_Mission_Report;
-                    mContext.Message += taskReport.Context.Message + "\r\n";
+                    mContext = tasks.Converto_Mission_Report();
+
+                    if (string.IsNullOrEmpty(mContext.Message) == false)
+                    {
+                        mContext.ErrorCode = ErrorCodes.FSMRunningFailed;
+                        SolveWare.Core.ShowMsg($"任务 执行 失败, 原因如下\r\n{mContext.Message}", true);
+                    }
+                    else
+                    {
+                        mContext.ErrorCode = ErrorCodes.NoError;
+                        SolveWare.Core.ShowMsg("任务完成");
+                    }
+
+                    this.SetStatus(context.ErrorCode);
                 });
 
 
@@ -75,25 +86,16 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             {
                 mContext.Message += ex.Message;
             }
-            finally
-            {
-                if (string.IsNullOrEmpty(mContext.Message) == false)
-                {
-                    mContext.ErrorCode = ErrorCodes.FSMRunningFailed;
-                    SolveWare.Core.ShowMsg($"任务 执行 失败, 原因如下\r\n{mContext.Message}", true);
-                }
-                else
-                {
-                    mContext.ErrorCode = ErrorCodes.NoError;
-                    SolveWare.Core.ShowMsg("任务完成");
-                }
-
-                this.Status = mContext.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
-            }
 
             return mContext;
         }
 
+        private void SetStatus(int errorCode)
+        {
+            this.Status = errorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
+            Machine_Status mStatus = errorCode == ErrorCodes.NoError ? Machine_Status.Idle : Machine_Status.Error;
+            SolveWare.Core.MMgr.SetStatus(mStatus);
+        }
         /// <summary>
         /// 一次自动循环
         /// </summary>
@@ -115,7 +117,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             {              
                 Stations.ToList().ForEach(stn =>
                 {
-                    Task task = Task.Factory.StartNew((object obj) =>
+                    Task task = new Task((object obj) =>
                     {
                         Data_Mission_Report fsm = obj as Data_Mission_Report;
                         fsm.Context = stn.RunSingleCycle();
@@ -123,35 +125,30 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                     tasks.Add(task);
                 });
 
-                Task.WaitAll(tasks.ToArray());
-
-
-                tasks.ForEach(task =>
+                tasks.ForEach(task => { task.Start(); });
+                Task.Factory.ContinueWhenAll(tasks.ToArray(), act =>
                 {
-                    var taskReport = task.AsyncState as Data_Mission_Report;
-                    mContext.Message += taskReport.Context.Message + "\r\n";
+                    mContext = tasks.Converto_Mission_Report();
+
+                    if (string.IsNullOrEmpty(mContext.Message) == false)
+                    {
+                        mContext.ErrorCode = ErrorCodes.FSMRunningFailed;
+                        SolveWare.Core.ShowMsg($"任务 执行 失败, 原因如下\r\n{mContext.Message}", true);
+                    }
+                    else
+                    {
+                        mContext.ErrorCode = ErrorCodes.NoError;
+                        SolveWare.Core.ShowMsg("任务完成");
+                    }
+
+                    this.SetStatus(context.ErrorCode);
                 });
-               
+
 
             }
             catch (Exception ex)
             {
                 mContext.Message += ex.Message;
-            }
-            finally
-            {
-                if (string.IsNullOrEmpty(mContext.Message) == false)
-                {
-                    mContext.ErrorCode = ErrorCodes.FSMRunningFailed;
-                    SolveWare.Core.ShowMsg($"任务 执行 失败, 原因如下\r\n{mContext.Message}", true);
-                }
-                else
-                {
-                    mContext.ErrorCode = ErrorCodes.NoError;
-                    SolveWare.Core.ShowMsg("任务完成");
-                }
-
-                this.Status = mContext.ErrorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
             }
 
             return mContext;

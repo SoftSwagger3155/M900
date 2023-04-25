@@ -21,7 +21,6 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         protected int minimum_ExposoureTime;
         protected int grabTime_ms;
         protected byte[] buffer_Image;
-        protected Data_MMperPixel data_MMperPixel;
         protected int imagePartX;
         protected int imagePartY;
         protected int worldCenterX;
@@ -86,7 +85,6 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
             get => pointer_Pixel_Info; private set => UpdateProper(ref pointer_Pixel_Info, value);
         }
         public bool IsSimulation { get => isSimulation; }
-        public Data_MMperPixel Data_MMperPixal { get => data_MMperPixel; }
         public string GrabTimeInfo { get; set; }
 
 

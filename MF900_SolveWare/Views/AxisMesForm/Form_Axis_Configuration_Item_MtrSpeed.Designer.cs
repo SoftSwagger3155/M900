@@ -36,6 +36,7 @@
             this.cmb_Selector_SpeedSetting = new System.Windows.Forms.ComboBox();
             this.pGrid_Speed = new System.Windows.Forms.PropertyGrid();
             this.gpb_Controller = new System.Windows.Forms.GroupBox();
+            this.ckb_Is_Jog_Monitoring = new System.Windows.Forms.CheckBox();
             this.btn_Disable_Servo = new System.Windows.Forms.Button();
             this.btn_Enable_Servo = new System.Windows.Forms.Button();
             this.btn_Stop = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@
             this.lbl_Servo = new System.Windows.Forms.Label();
             this.lbl_Org = new System.Windows.Forms.Label();
             this.lbl_ErrorReport = new System.Windows.Forms.Label();
-            this.ckb_Is_Jog_Monitoring = new System.Windows.Forms.CheckBox();
             this.gpb_Selector.SuspendLayout();
             this.gpb_Controller.SuspendLayout();
             this.SuspendLayout();
@@ -174,6 +174,17 @@
             this.gpb_Controller.TabIndex = 3;
             this.gpb_Controller.TabStop = false;
             this.gpb_Controller.Text = "控制器";
+            // 
+            // ckb_Is_Jog_Monitoring
+            // 
+            this.ckb_Is_Jog_Monitoring.AutoSize = true;
+            this.ckb_Is_Jog_Monitoring.Location = new System.Drawing.Point(169, 178);
+            this.ckb_Is_Jog_Monitoring.Name = "ckb_Is_Jog_Monitoring";
+            this.ckb_Is_Jog_Monitoring.Size = new System.Drawing.Size(89, 19);
+            this.ckb_Is_Jog_Monitoring.TabIndex = 20;
+            this.ckb_Is_Jog_Monitoring.Text = "安全监视";
+            this.ckb_Is_Jog_Monitoring.UseVisualStyleBackColor = true;
+            this.ckb_Is_Jog_Monitoring.CheckedChanged += new System.EventHandler(this.ckb_Is_Jog_Monitoring_CheckedChanged);
             // 
             // btn_Disable_Servo
             // 
@@ -458,7 +469,7 @@
             // 
             // lbl_Status
             // 
-            this.lbl_Status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lbl_Status.BackColor = System.Drawing.SystemColors.Control;
             this.lbl_Status.Location = new System.Drawing.Point(527, 568);
             this.lbl_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Status.Name = "lbl_Status";
@@ -484,7 +495,7 @@
             this.lbl_Org.Location = new System.Drawing.Point(758, 567);
             this.lbl_Org.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Org.Name = "lbl_Org";
-            this.lbl_Org.Size = new System.Drawing.Size(103, 26);
+            this.lbl_Org.Size = new System.Drawing.Size(210, 26);
             this.lbl_Org.TabIndex = 14;
             this.lbl_Org.Text = "成功";
             this.lbl_Org.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -499,17 +510,6 @@
             this.lbl_ErrorReport.TabIndex = 15;
             this.lbl_ErrorReport.Text = "失败报告";
             this.lbl_ErrorReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ckb_Is_Jog_Monitoring
-            // 
-            this.ckb_Is_Jog_Monitoring.AutoSize = true;
-            this.ckb_Is_Jog_Monitoring.Location = new System.Drawing.Point(169, 178);
-            this.ckb_Is_Jog_Monitoring.Name = "ckb_Is_Jog_Monitoring";
-            this.ckb_Is_Jog_Monitoring.Size = new System.Drawing.Size(89, 19);
-            this.ckb_Is_Jog_Monitoring.TabIndex = 20;
-            this.ckb_Is_Jog_Monitoring.Text = "安全监视";
-            this.ckb_Is_Jog_Monitoring.UseVisualStyleBackColor = true;
-            this.ckb_Is_Jog_Monitoring.CheckedChanged += new System.EventHandler(this.ckb_Is_Jog_Monitoring_CheckedChanged);
             // 
             // Form_Axis_Configuration_Item_MtrSpeed
             // 

@@ -255,6 +255,7 @@
             this.cmb_Selector_InspectKit.Name = "cmb_Selector_InspectKit";
             this.cmb_Selector_InspectKit.Size = new System.Drawing.Size(317, 28);
             this.cmb_Selector_InspectKit.TabIndex = 0;
+            this.cmb_Selector_InspectKit.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_InspectKit_SelectionChangeCommitted);
             // 
             // Form_InspectKit
             // 

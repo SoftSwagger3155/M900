@@ -54,8 +54,8 @@ namespace MF900_SolveWare.FSM.Home.Stations
                 st_Set_HomeZ_Done = new BasicState("Z轴复位结束", SetHomeZDone,  OnErrorHanding, this.isSimulation),
                 st_Wait_Z_Table_Done = new BasicState("等待Z轴 平台复位结束", WaitZandTableDone, OnErrorHanding, this.isSimulation),
                 st_HomeT = new BasicState("T轴复位", HomeT, OnErrorHanding, this.isSimulation),
-                st_HomeXY = new BasicState("T轴复位", HomeXY, OnErrorHanding, this.isSimulation),
-                st_EndHome = new BasicState("T轴复位", EndHome, OnErrorHanding, this.isSimulation)
+                st_HomeXY = new BasicState("XY轴复位", HomeXY, OnErrorHanding, this.isSimulation),
+                st_EndHome = new BasicState("复位结束", EndHome, OnErrorHanding, this.isSimulation)
                 );
         }
 
@@ -210,11 +210,13 @@ namespace MF900_SolveWare.FSM.Home.Stations
                         mReport.Context = mtrY.GetAxisBase().HomeMove();
 
                     }, new Data_Mission_Report());
-                    tasks.AddRange(new[] { task1, task2 });
-                    Task.WaitAll(tasks.ToArray());
+               
+                    task1.Wait();
+                    task2.Wait();
 
+                    tasks.AddRange(new[] { task1, task2 });
                     context = tasks.Converto_Mission_Report();
-                    
+
                 } while (false);
             }
             catch (Exception ex)

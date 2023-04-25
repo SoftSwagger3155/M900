@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,45 +36,13 @@ namespace MF900_SolveWare.Views.Child
         {
             job_GlobalWorld = obj as Job_GlobalWorldCenter;
             data_GlobalCenter = job_GlobalWorld.Data;
-            DataBinding_lbl_Pos(data_GlobalCenter);
-            DataBinding_Obj(data_GlobalCenter);
+
+            ckb_Top_Module_Move_To_Center_After_Top_Inspection.Checked = data_GlobalCenter.Top_Module_Move_To_Center;
+            ckb_Btm_Module_Move_To_Center_After_Top_Inspection.Checked = data_GlobalCenter.Btm_Module_Move_To_Center;
             Fillup_Combobox_Inspection();     
         }
 
-        private void DataBinding_lbl_Pos(Data_GlobalWorldCenter data)
-        {
-            lbl_Top_MotorX_Info.Text = $"{ResourceKey.Motor_Top_X} {data.Top_Module_PosX} mm";
-            lbl_Top_MotorY_Info.Text = $"{ResourceKey.Motor_Top_Y} {data.Top_Module_PosY} mm";
-            lbl_Top_MotorZ_Info.Text = $"{ResourceKey.Motor_Top_Z} {data.Top_Module_PosZ} mm";
-            lbl_Top_MotorT_Info.Text = $"{ResourceKey.Motor_Top_T} {data.Top_Module_PosT} Deg";
-
-            lbl_Btm_MotorX_Info.Text = $"{ResourceKey.Motor_Btm_X} {data.Btm_Module_PosX} mm";
-            lbl_Btm_MotorY_Info.Text = $"{ResourceKey.Motor_Btm_Y} {data.Btm_Module_PosY} mm";
-            lbl_Btm_MotorZ_Info.Text = $"{ResourceKey.Motor_Btm_Z} {data.Btm_Module_PosZ} mm";
-            lbl_Btm_MotorT_Info.Text = $"{ResourceKey.Motor_Btm_T} {data.Btm_Module_PosT} Deg";
-
-            lbl_Top_WorldCenter_PosX.Text = $"{ResourceKey.Motor_Top_X} {data.Top_WorldCenter_PosX} mm";
-            lbl_Top_WorldCenter_PosY.Text = $"{ResourceKey.Motor_Top_Y} {data.Top_WorldCenter_PosY} mm";
-            lbl_Top_WorldCenter_PosZ.Text = $"{ResourceKey.Motor_Top_Z} {data.Top_WorldCenter_PosZ} mm";
-            lbl_Top_WorldCenter_PosT.Text = $"{ResourceKey.Motor_Top_T} {data.Top_WorldCenter_PosT} Deg";
-
-            lbl_Btm_WorldCenter_PosX.Text = $"{ResourceKey.Motor_Btm_X} {data.Btm_WorldCenter_PosX} mm";
-            lbl_Btm_WorldCenter_PosY.Text = $"{ResourceKey.Motor_Btm_Y} {data.Btm_WorldCenter_PosY} mm";
-            lbl_Btm_WorldCenter_PosZ.Text = $"{ResourceKey.Motor_Btm_Z} {data.Btm_WorldCenter_PosZ} mm";
-            lbl_Btm_WorldCenter_PosT.Text = $"{ResourceKey.Motor_Btm_T} {data.Btm_WorldCenter_PosT} Deg";     
-        }
-        private void DataBinding_Obj(Data_GlobalWorldCenter data)
-        {
-            tssl_Save_Date.Text = $"储存时间: {data.SaveDate}";
-
-            ckb_Top_Module_Move_To_Center_After_Top_Inspection.DataBindings.Add("Checked", data, nameof(data.Top_Module_Move_To_Center));
-            ckb_Btm_Module_Move_To_Center_After_Top_Inspection.DataBindings.Add("Checked", data, nameof(data.Btm_Module_Move_To_Center));
-
-            lbl_Top_InspectKit.BackColor = Color.LightBlue;
-            lbl_Btm_InspectKit.BackColor = Color.LightBlue;
-            lbl_Top_InspectKit.DataBindings.Add("Text", data, nameof(data.Top_Module_InspectKit_Name));
-            lbl_Btm_InspectKit.DataBindings.Add("Text", data, nameof(data.Btm_Module_InspectKit_Name));
-        }
+     
 
         private void Fillup_Combobox_Inspection()
         {
@@ -247,9 +216,6 @@ namespace MF900_SolveWare.Views.Child
                     data_GlobalCenter.Top_Module_PosZ = Math.Round(ResourceKey.Motor_Top_Z.GetUnitPos(), 3);
                     data_GlobalCenter.Top_Module_PosT = Math.Round(ResourceKey.Motor_Top_T.GetUnitPos(), 3);
 
-                    DataBinding_lbl_Pos(data_GlobalCenter);
-
-
                 } while (false);
             }
             catch (Exception ex)
@@ -279,8 +245,6 @@ namespace MF900_SolveWare.Views.Child
                     data_GlobalCenter.Btm_Module_PosY = Math.Round(ResourceKey.Motor_Btm_Y.GetUnitPos(), 3);
                     data_GlobalCenter.Btm_Module_PosZ = Math.Round(ResourceKey.Motor_Btm_Z.GetUnitPos(), 3);
                     data_GlobalCenter.Btm_Module_PosT = Math.Round(ResourceKey.Motor_Btm_T.GetUnitPos(), 3);
-
-                    DataBinding_lbl_Pos(data_GlobalCenter);
 
                 } while (false);
             }
@@ -315,12 +279,6 @@ namespace MF900_SolveWare.Views.Child
                 {
                     context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                finally
-                {
-                    tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
-                    ReportStatus(stage);
-                }
 
                 return context; ;
             });
@@ -348,12 +306,6 @@ namespace MF900_SolveWare.Views.Child
                 catch (Exception ex)
                 {
                     context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
-                }
-                finally
-                {
-                    tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
-                    ReportStatus(stage);
                 }
 
                 return context;
@@ -404,12 +356,6 @@ namespace MF900_SolveWare.Views.Child
                 {
                     context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                finally
-                {
-                    tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
-                    ReportStatus(stage);
-                }
 
                 return context;
             });
@@ -437,12 +383,6 @@ namespace MF900_SolveWare.Views.Child
                 {
                     context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
                 }
-                finally
-                {
-                    tssl_TimeSpent.Text = $"耗时: {sw.Elapsed.TotalSeconds} 秒";
-                    Status_Stage stage = context.ErrorCode != ErrorCodes.NoError ? Status_Stage.失败 : Status_Stage.成功;
-                    ReportStatus(stage);
-                }
 
                 return context;
             });
@@ -456,8 +396,6 @@ namespace MF900_SolveWare.Views.Child
             data_GlobalCenter.Top_WorldCenter_PosY = Math.Round(ResourceKey.Motor_Top_Y.GetUnitPos(), 3);
             data_GlobalCenter.Top_WorldCenter_PosZ = Math.Round(ResourceKey.Motor_Top_Z.GetUnitPos(), 3);
             data_GlobalCenter.Top_WorldCenter_PosT = Math.Round(ResourceKey.Motor_Top_T.GetUnitPos(), 3);
-
-            DataBinding_lbl_Pos(data_GlobalCenter);
         }
 
         private void btn_Btm_Update_WorldCenter_Click(object sender, EventArgs e)
@@ -469,7 +407,6 @@ namespace MF900_SolveWare.Views.Child
             data_GlobalCenter.Btm_WorldCenter_PosZ = Math.Round(ResourceKey.Motor_Btm_Z.GetUnitPos(), 3);
             data_GlobalCenter.Btm_WorldCenter_PosT = Math.Round(ResourceKey.Motor_Btm_T.GetUnitPos(), 3);
 
-            DataBinding_lbl_Pos(data_GlobalCenter);
         }
         private void ReportStatus(Status_Stage stage)
         {
@@ -585,7 +522,6 @@ namespace MF900_SolveWare.Views.Child
             try
             {
                 job_GlobalWorld.Save_Pos();
-                DataBinding_lbl_Pos(data_GlobalCenter);
             }
             catch (Exception ex)
             {
@@ -596,7 +532,93 @@ namespace MF900_SolveWare.Views.Child
 
         private void Form_Learn_Global_Center_Load(object sender, EventArgs e)
         {
-            ReportStatus(Status_Stage.空闲);
+            StartListening();
+        }
+
+        private void Form_Learn_Global_Center_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StopListening();
+        }
+
+        CancellationTokenSource cancelSource = null;
+        private void StartListening()
+        {
+            if(cancelSource == null) cancelSource = new CancellationTokenSource();
+            Task.Run(() =>
+            {
+                while (!cancelSource.IsCancellationRequested)
+                {
+                    if (this.data_GlobalCenter == null) { continue; }
+
+                    DataBinding_lbl_Pos(data_GlobalCenter);
+                    DataBinding_Obj(data_GlobalCenter);
+                    Thread.Sleep(10);
+                }
+            }, cancelSource.Token);
+        }
+        private void StopListening()
+        {
+            if(cancelSource != null) cancelSource.Cancel();
+        }
+
+        private void DataBinding_lbl_Pos(Data_GlobalWorldCenter data)
+        {
+            this.Refresh_UI_Item(new[] { lbl_Top_MotorX_Info, lbl_Top_MotorY_Info, lbl_Top_MotorZ_Info, lbl_Top_MotorT_Info }, () =>
+            {
+                lbl_Top_MotorX_Info.Text = $"{ResourceKey.Motor_Top_X} {data.Top_Module_PosX} mm";
+                lbl_Top_MotorY_Info.Text = $"{ResourceKey.Motor_Top_Y} {data.Top_Module_PosY} mm";
+                lbl_Top_MotorZ_Info.Text = $"{ResourceKey.Motor_Top_Z} {data.Top_Module_PosZ} mm";
+                lbl_Top_MotorT_Info.Text = $"{ResourceKey.Motor_Top_T} {data.Top_Module_PosT} Deg";
+            });
+
+            this.Refresh_UI_Item(new[] { lbl_Btm_MotorX_Info, lbl_Btm_MotorY_Info, lbl_Btm_MotorZ_Info, lbl_Btm_MotorT_Info }, () =>
+            {
+                lbl_Btm_MotorX_Info.Text = $"{ResourceKey.Motor_Btm_X} {data.Btm_Module_PosX} mm";
+                lbl_Btm_MotorY_Info.Text = $"{ResourceKey.Motor_Btm_Y} {data.Btm_Module_PosY} mm";
+                lbl_Btm_MotorZ_Info.Text = $"{ResourceKey.Motor_Btm_Z} {data.Btm_Module_PosZ} mm";
+                lbl_Btm_MotorT_Info.Text = $"{ResourceKey.Motor_Btm_T} {data.Btm_Module_PosT} Deg";
+            });
+
+            this.Refresh_UI_Item(new[] { lbl_Top_WorldCenter_PosX, lbl_Top_WorldCenter_PosY, lbl_Top_WorldCenter_PosZ, lbl_Top_WorldCenter_PosT }, () =>
+            {
+                lbl_Top_WorldCenter_PosX.Text = $"{ResourceKey.Motor_Top_X} {data.Top_WorldCenter_PosX} mm";
+                lbl_Top_WorldCenter_PosY.Text = $"{ResourceKey.Motor_Top_Y} {data.Top_WorldCenter_PosY} mm";
+                lbl_Top_WorldCenter_PosZ.Text = $"{ResourceKey.Motor_Top_Z} {data.Top_WorldCenter_PosZ} mm";
+                lbl_Top_WorldCenter_PosT.Text = $"{ResourceKey.Motor_Top_T} {data.Top_WorldCenter_PosT} Deg";
+            });
+
+            this.Refresh_UI_Item(new[] { lbl_Btm_WorldCenter_PosX, lbl_Btm_WorldCenter_PosY, lbl_Btm_WorldCenter_PosZ, lbl_Btm_WorldCenter_PosT }, () =>
+            {
+                lbl_Btm_WorldCenter_PosX.Text = $"{ResourceKey.Motor_Btm_X} {data.Btm_WorldCenter_PosX} mm";
+                lbl_Btm_WorldCenter_PosY.Text = $"{ResourceKey.Motor_Btm_Y} {data.Btm_WorldCenter_PosY} mm";
+                lbl_Btm_WorldCenter_PosZ.Text = $"{ResourceKey.Motor_Btm_Z} {data.Btm_WorldCenter_PosZ} mm";
+                lbl_Btm_WorldCenter_PosT.Text = $"{ResourceKey.Motor_Btm_T} {data.Btm_WorldCenter_PosT} Deg";
+            });        
+        }
+        private void DataBinding_Obj(Data_GlobalWorldCenter data)
+        {
+            tssl_Save_Date.Text = $"储存时间: {data.SaveDate}";
+
+          
+            this.Refresh_UI_Item(new[] { ckb_Top_Module_Move_To_Center_After_Top_Inspection, ckb_Btm_Module_Move_To_Center_After_Top_Inspection }, () =>
+            {
+                lbl_Top_InspectKit.BackColor = Color.LightBlue;
+                lbl_Btm_InspectKit.BackColor = Color.LightBlue;
+                lbl_Top_InspectKit.Text = data.Top_Module_InspectKit_Name;
+                lbl_Btm_InspectKit.Text = data.Btm_Module_InspectKit_Name;
+            });
+        }
+
+        private void ckb_Btm_Module_Move_To_Center_After_Top_Inspection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (data_GlobalCenter == null) return;
+            data_GlobalCenter.Top_Module_Move_To_Center = (sender as CheckBox).Checked;
+        }
+
+        private void ckb_Top_Module_Move_To_Center_After_Top_Inspection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (data_GlobalCenter == null) return;
+            data_GlobalCenter.Btm_Module_Move_To_Center = (sender as CheckBox).Checked;
         }
     }
 }

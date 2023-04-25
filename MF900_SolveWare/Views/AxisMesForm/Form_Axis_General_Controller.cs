@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace MF900_SolveWare.Views.AxisMesForm
@@ -30,13 +31,18 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void MakeGroupBox()
         {
             var provider = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Motor).Get_All_Items().ToList();
-
+            List<IView> views = new List<IView>();  
             provider.ForEach(item =>
             {
                 IView view = new Form_Axis_Simple_Controller_Horizontal();
                 view.Setup(item);
                 StyleForm(ref view);
-                gpb_Content.Controls.Add(view as Form);
+                views.Add(view);
+            });
+            views.Reverse();
+            views.ForEach(item =>
+            {
+                gpb_Content.Controls.Add(item as Form);
             });
         }
 

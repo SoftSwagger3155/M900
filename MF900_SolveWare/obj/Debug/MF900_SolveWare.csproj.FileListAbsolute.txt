@@ -257,3 +257,6 @@ C:\Users\softs\Desktop\YAMAHA\M901\M900_Dlls\MF900_SolveWare.exe.config
 C:\Users\softs\Desktop\YAMAHA\M901\M900_Dlls\MF900_SolveWare.exe
 C:\Users\softs\Desktop\YAMAHA\M901\M900_Dlls\MF900_SolveWare.pdb
 C:\Users\softs\Desktop\YAMAHA\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.csproj.CopyComplete
+C:\Users\softs\Desktop\YAMAHA\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_IO_Chart.resources
+C:\Users\softs\Desktop\YAMAHA\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_IO_Input.resources
+C:\Users\softs\Desktop\YAMAHA\M901\MF900_SolveWare\obj\Debug\MF900_SolveWare.Views.Child.Form_IO_Output.resources

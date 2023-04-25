@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SolveWare_Service_Utility.Extension
 {
@@ -211,35 +212,24 @@ namespace SolveWare_Service_Utility.Extension
 
             return errorCode;
         }
-        public static Mission_Report Converto_Mission_Report(this Data_Mission_Report[] datas)
+      
+        public static void Refresh_UI_Item(this Form form, Control item, Action ac)
         {
-            Mission_Report context= new Mission_Report();
-            foreach (var data in datas) {
-                context.Message += data.Context.Message;
-            }
-
-            if(context.Message != string.Empty)
+            if (item.InvokeRequired)
             {
-                context.ErrorCode = ErrorCodes.ActionFailed;
+                form.BeginInvoke(ac);
             }
-
-            return context;
         }
-        public static Mission_Report Converto_Mission_Report(this List<Task> tasks)
+        public static void Refresh_UI_Item(this Form form, Control[] items, Action ac)
         {
-            Mission_Report context = new Mission_Report();
-            foreach (var task in tasks)
-            {
-                Data_Mission_Report data = task.AsyncState as Data_Mission_Report;
-                context.Message += data.Context;
-            }
+            int index = items.ToList().FindIndex(x=> x.InvokeRequired ==  false);
+            if (index >= 0) return;
 
-            if (context.Message != string.Empty)
-            {
-                context.ErrorCode = ErrorCodes.ActionFailed;
-            }
-
-            return context;
+            form.BeginInvoke(ac);
+        }
+        public static void Show(this IView view)
+        {
+            (view as Form).Show();  
         }
     }
 }

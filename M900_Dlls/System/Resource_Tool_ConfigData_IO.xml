@@ -3,600 +3,882 @@
   <ConfigData_IO>
     <Name>启动</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>0</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>归零</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>1</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>停止</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>2</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>复位</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>3</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>急停1</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>4</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>前</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>5</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>后</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>6</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>左</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>7</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>右</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>8</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模治具到位感应</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>9</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>下模治具到位感应</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>10</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>正前方安全光栅</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>11</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上方安全光栅</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>12</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>X向拉伸气缸1</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>13</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>X向拉伸气缸2</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>14</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>Y向拉伸气缸1</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>15</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>Y向拉伸气缸2</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>16</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模打标墨盒盖气缸伸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>17</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模打标气缸伸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>18</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模打标气缸缩</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>19</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>下模打标气缸伸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>20</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>下模打标气缸缩</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>21</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Input</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>塔灯-红</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>0</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>塔灯-黄</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>1</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>塔灯-绿</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>2</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>蜂鸣器</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>true</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>3</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>true</Is_Interval_Buzzing>
+      <Interval_ms>300</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>启动按钮</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>4</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>归零按钮</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>5</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>停止按钮</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>6</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>复位按钮</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>7</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>左X向导轨固定气缸紧</Name>
+    <Name>左X向导轨固定气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>8</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>8</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>9</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>左X向导轨固定气缸松</Name>
+    <Name>右X向导轨固定气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>9</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
     <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>右X向导轨固定气缸紧</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>10</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>10</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>11</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>右X向导轨固定气缸松</Name>
+    <Name>Y向导轨固定气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>11</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
     <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>Y向导轨固定气缸紧</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>12</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>12</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>13</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>Y向导轨固定气缸松</Name>
+    <Name>软板夹紧气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
-    <Bit>13</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Bit>0</Bit>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>14</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>15</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>软板夹紧气缸紧</Name>
+    <Name>X向拉伸气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>14</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
     <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>软板夹紧气缸松</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>15</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>X向拉伸气缸伸</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>16</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>16</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>17</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>X向拉伸气缸缩</Name>
+    <Name>Y向拉伸气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>17</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
     <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>Y向拉伸气缸伸</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
-    <Bit>18</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>Y向拉伸气缸缩</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>19</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Bit>0</Bit>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>18</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>19</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>打标墨盒盖开</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>20</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>打标墨盒盖关</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>21</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>上模打标气缸_伸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>22</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
     <Name>下模打标气缸_伸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>23</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>0</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>0</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>上模治具夹紧气缸紧</Name>
+    <Name>上模治具夹紧气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Simulation>false</Simulation>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>true</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>24</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>24</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>25</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>
   <ConfigData_IO>
-    <Name>上模治具夹紧气缸松</Name>
+    <Name>下模治具夹紧气缸</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>25</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
     <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>下模治具夹紧气缸紧</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <IsBuzzer>false</IsBuzzer>
+    <IsDualChannel>false</IsDualChannel>
     <CardNo>0</CardNo>
     <Bit>26</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
-    <IOType>Output</IOType>
-    <IOMasterDriver>ZMCAUX</IOMasterDriver>
-  </ConfigData_IO>
-  <ConfigData_IO>
-    <Name>下模治具夹紧气缸松</Name>
-    <SaveDate>2023/00/00 00:00:00</SaveDate>
-    <CardNo>0</CardNo>
-    <Bit>27</Bit>
-    <Logic_Op>0</Logic_Op>
-    <Logic_Read>0</Logic_Read>
-    <Simulation>false</Simulation>
-    <IsForSelect>false</IsForSelect>
+    <Data_Buzzer>
+      <Is_Interval_Buzzing>false</Is_Interval_Buzzing>
+      <Interval_ms>0</Interval_ms>
+    </Data_Buzzer>
+    <Data_DualChannel>
+      <Bit_First>26</Bit_First>
+      <TriggerMode_First>ON</TriggerMode_First>
+      <Bit_Second>27</Bit_Second>
+      <TriggerMode_Second>OFF</TriggerMode_Second>
+    </Data_DualChannel>
     <IOType>Output</IOType>
     <IOMasterDriver>ZMCAUX</IOMasterDriver>
   </ConfigData_IO>

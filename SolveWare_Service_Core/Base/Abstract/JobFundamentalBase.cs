@@ -15,12 +15,12 @@ namespace SolveWare_Service_Core.Base.Abstract
         protected DateTime st = DateTime.Now;
         protected JobStatus status = JobStatus.Unknown;
         protected Mission_Report context = new Mission_Report();
+
         public Mission_Report FinalReport
         {
             get => this.context;
             protected set => this.context = value;
         }
-
         public int Priority
         {
             get => priority;
@@ -31,7 +31,7 @@ namespace SolveWare_Service_Core.Base.Abstract
             get => status;
             set => UpdateProper(ref status, value);
         }
-
+        public string SpentTime { get; set; }
 
         protected string info;
         public string Info

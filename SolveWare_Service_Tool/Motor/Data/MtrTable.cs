@@ -66,7 +66,7 @@ namespace SolveWare_Service_Tool.Motor.Data
         [Category("Axis Table")]
         [DisplayName("PulseFactor")]
         [Description("PulseFactor")]
-        public double PulseFactor { get; set; }
+        public double PulseFactor { get; set; } = 1;
 
         [Category("Axis Table")]
         [DisplayName("IsConvertedToMMperSec 是否转换MM per Sec")]

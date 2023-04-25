@@ -20,21 +20,20 @@ namespace SolveWare_Service_Utility.Common
             {
                 do
                 {
-                    List<Task> tasks = new List<Task>();
-                    Info_Motion currentJob;
+                    List<Task> tasks = new List<Task>();;
                     foreach (var info in motions.ToList())
                     {
-                        currentJob = info;
-
-                        Task task = Task.Factory.StartNew((object obj) =>
+                        Task task =new Task((object obj) =>
                         {
                             Data_Mission_Report data = obj as Data_Mission_Report;
-                            data.Context = MotionHelper.Move_Motor(currentJob);
+                            data.Context = MotionHelper.Move_Motor(info);
 
                         }, new Data_Mission_Report());
                         tasks.Add(task);
                     }
-
+                   
+                    tasks.ForEach(x=> x.Start());
+                    Task.WaitAll(tasks.ToArray());
                     context = tasks.Converto_Mission_Report();
                     
                 } while (false);

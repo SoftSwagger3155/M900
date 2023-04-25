@@ -60,7 +60,6 @@
     <Compile Include="Camera\Business\Camera_Media_Basler.cs" />
     <Compile Include="Camera\Business\Factory_Camera.cs" />
     <Compile Include="Camera\Data\ConfigData_Camera.cs" />
-    <Compile Include="Camera\Data\Data_MMperPixel.cs" />
     <Compile Include="Camera\Definition\Enum_Master_Driver_Camera.cs" />
     <Compile Include="Dlls\Dll_Zmcaux.cs" />
     <Compile Include="IO\Base\Abstract\IOBase.cs" />

@@ -15,7 +15,7 @@ using System.Xml.Serialization;
 namespace SolveWare_Service_Vision.Data
 {
     [ResourceBaseAttribute(ConstantProperty.ResourceKey_Inspect)]
-    public class Data_InspectionKit: ElementBase
+    public class Data_Inspection: ElementBase
     {
         [XmlIgnore]
         public string ErrorMsg { get; set; }
@@ -30,12 +30,12 @@ namespace SolveWare_Service_Vision.Data
         public double Angle { get; set; }
         public string CameraName { get; set; }
 
-        public Data_InspectionKit(string cameraName)
+        public Data_Inspection(string cameraName)
         {
             this.CameraName = cameraName;
         }
 
-        public Data_InspectionKit()
+        public Data_Inspection()
         {
             JobSheet_Brightness_Data = new JobSheet_Brightness();
             JobSheet_Lighting_Datas = new List<JobSheet_Lighting>(); ;

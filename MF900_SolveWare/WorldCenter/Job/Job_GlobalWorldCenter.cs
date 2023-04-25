@@ -202,8 +202,8 @@ namespace MF900_SolveWare.WorldCenter.Job
 
                     if (!Data.Top_Module_Move_To_Center) break;
 
-                    double posX = ResourceKey.Motor_Top_X.GetUnitPos() + (job as Inspect).OffsetX;
-                    double posY = ResourceKey.Motor_Top_Y.GetUnitPos() + (job as Inspect).OffsetY;
+                    double posX = ResourceKey.Motor_Top_X.GetUnitPos() + (job as Job_Inspect).OffsetX;
+                    double posY = ResourceKey.Motor_Top_Y.GetUnitPos() + (job as Job_Inspect).OffsetY;
 
                     context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Top_X, Pos = posX },
@@ -240,8 +240,8 @@ namespace MF900_SolveWare.WorldCenter.Job
 
                     if (!Data.Btm_Module_Move_To_Center) break;
 
-                    double posX = ResourceKey.Motor_Btm_X.GetUnitPos() + (job as Inspect).OffsetX;
-                    double posY = ResourceKey.Motor_Btm_Y.GetUnitPos() + (job as Inspect).OffsetY;
+                    double posX = ResourceKey.Motor_Btm_X.GetUnitPos() + (job as Job_Inspect).OffsetX;
+                    double posY = ResourceKey.Motor_Btm_Y.GetUnitPos() + (job as Job_Inspect).OffsetY;
 
                     context = MotionHelper.Move_Multiple_Motors(
                         new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = posX },

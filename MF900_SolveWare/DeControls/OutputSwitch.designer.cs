@@ -53,7 +53,7 @@ namespace MF900_SolveWare
             // lbl_Name
             // 
             this.lbl_Name.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_Name.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_Name.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl_Name.Location = new System.Drawing.Point(3, 0);
             this.lbl_Name.Name = "lbl_Name";
             this.lbl_Name.Size = new System.Drawing.Size(90, 21);
@@ -64,7 +64,7 @@ namespace MF900_SolveWare
             // uiSwitch1
             // 
             this.uiSwitch1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiSwitch1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiSwitch1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.uiSwitch1.Location = new System.Drawing.Point(3, 24);
             this.uiSwitch1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiSwitch1.Name = "uiSwitch1";

@@ -347,7 +347,7 @@ namespace MF900_SolveWare.Offset.Job
 
                     if (Data.Enable_InspectKit == false) break;
 
-                    Inspect job = (Inspect)SolveWare.Core.MMgr.Get_PairJob(Data.InspectKitName);
+                    Job_Inspect job = (Job_Inspect)SolveWare.Core.MMgr.Get_PairJob(Data.InspectKitName);
                     context = job.Do_Job();
                     if (context.NotPass()) break;
 

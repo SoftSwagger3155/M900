@@ -19,5 +19,7 @@ namespace MF900_SolveWare.Index.Data
             SafeData = new Data_Safe();
         }
         public  Data_Safe SafeData { get; set; }
+        public double Pos_Table_Load { get; set; }
+        
     }
 }

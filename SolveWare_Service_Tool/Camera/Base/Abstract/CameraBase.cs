@@ -16,7 +16,7 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         public CameraBase(IElement configData)
         {
             this.configData = configData as ConfigData_Camera;
-            this.MMperPixelData = this.configData?.MMperPixelData;
+            //this.MMperPixelData = this.configData?.MMperPixelData;
         }
 
         public string Id_Camera { get; set; }
@@ -35,7 +35,6 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         public int Gain { get; set; }
         public int FrameRate { get; set; }
         public long GrabTime { get; set; }
-        public Data_MMperPixel MMperPixelData { get; set; }
 
         protected ConfigData_Camera configData;
         public ConfigData_Camera ConfigData

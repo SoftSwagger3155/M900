@@ -67,21 +67,30 @@ namespace MF900_SolveWare
 
         private void uiSwitch1_ValueChanged(object sender, bool value)
         {
-            if(isRefresh)
+            if (uiSwitch1.Active)
             {
-                isRefresh = false;
+                mtr.On();
             }
             else
             {
-                if(uiSwitch1.Active)
-                {
-                    mtr.On();
-                }
-                else
-                {
-                    mtr.Off();
-                }
+                mtr.Off();
             }
+
+            //if(isRefresh)
+            //{
+            //    isRefresh = false;
+            //}
+            //else
+            //{
+            //    if(uiSwitch1.Active)
+            //    {
+            //        mtr.On();
+            //    }
+            //    else
+            //    {
+            //        mtr.Off();
+            //    }
+            //}
         }
     }
 }

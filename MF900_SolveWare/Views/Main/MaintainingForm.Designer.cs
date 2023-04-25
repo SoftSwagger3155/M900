@@ -72,6 +72,7 @@ namespace MF900_SolveWare
             this.uiPanel2 = new Sunny.UI.UIPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiGroupBox8 = new Sunny.UI.UIGroupBox();
+            this.btn_Index = new Sunny.UI.UIButton();
             this.btn_Offset = new Sunny.UI.UIButton();
             this.btn_MMperPixel = new Sunny.UI.UIButton();
             this.btn_Gold_Center = new Sunny.UI.UIButton();
@@ -80,7 +81,6 @@ namespace MF900_SolveWare
             this.uiButton5 = new Sunny.UI.UIButton();
             this.btn_AxisDebugShow = new Sunny.UI.UIButton();
             this.btn_IoShow = new Sunny.UI.UIButton();
-            this.btn_Index = new Sunny.UI.UIButton();
             this.uiTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.uiTableLayoutPanel1.SuspendLayout();
@@ -823,6 +823,21 @@ namespace MF900_SolveWare
             this.uiGroupBox8.TitleTop = 10;
             this.uiGroupBox8.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
+            // btn_Index
+            // 
+            this.btn_Index.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Index.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_Index.Location = new System.Drawing.Point(213, 78);
+            this.btn_Index.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btn_Index.Name = "btn_Index";
+            this.btn_Index.Size = new System.Drawing.Size(87, 45);
+            this.btn_Index.Style = Sunny.UI.UIStyle.Custom;
+            this.btn_Index.TabIndex = 7;
+            this.btn_Index.Text = "索引";
+            this.btn_Index.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_Index.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btn_Index.Click += new System.EventHandler(this.btn_Index_Click);
+            // 
             // btn_Offset
             // 
             this.btn_Offset.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -941,21 +956,6 @@ namespace MF900_SolveWare
             this.btn_IoShow.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btn_IoShow.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btn_IoShow.Click += new System.EventHandler(this.btn_IoShow_Click);
-            // 
-            // btn_Index
-            // 
-            this.btn_Index.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Index.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Index.Location = new System.Drawing.Point(216, 78);
-            this.btn_Index.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_Index.Name = "btn_Index";
-            this.btn_Index.Size = new System.Drawing.Size(92, 45);
-            this.btn_Index.Style = Sunny.UI.UIStyle.Custom;
-            this.btn_Index.TabIndex = 7;
-            this.btn_Index.Text = "索引";
-            this.btn_Index.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_Index.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btn_Index.Click += new System.EventHandler(this.btn_Index_Click);
             // 
             // MaintainingForm
             // 

@@ -17,14 +17,14 @@ namespace MF900_SolveWare.Views.Child
         public Form_InspectKit_PatternMatch()
         {
             InitializeComponent();
-            Data_InspectionKit data = new Data_InspectionKit();
+            Data_Inspection data = new Data_Inspection();
             pGrid_PatternMatch.SelectedObject = data.JobSheet_PatternMatch_Data;
         }
 
-        Data_InspectionKit dataKit;
+        Data_Inspection dataKit;
         public void Setup<TObj>(TObj obj)
         {
-            dataKit = obj as Data_InspectionKit;    
+            dataKit = obj as Data_Inspection;    
 
             
         }

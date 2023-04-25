@@ -19,26 +19,18 @@ namespace MF900_SolveWare.Resource
         public const string Op_ZeroButton = "归零按钮";
         public const string Op_StopButton = "停止按钮";
         public const string Op_ResetButton = "复位按钮";
-        public const string Op_LeftX_RailTighten = "左X向导轨固定气缸紧";
-        public const string Op_LeftX_RailLoosen = "左X向导轨固定气缸松";
-        public const string Op_RightX_RailTighten = "右X向导轨固定气缸紧";
-        public const string Op_RightX_RailLoosen = "右X向导轨固定气缸松";
-        public const string Op_Y_RailTighten = "Y向导轨固定气缸紧";
-        public const string Op_Y_RailLoosen = "Y向导轨固定气缸松";
-        public const string Op_PCB_Clamp = "软板夹紧气缸紧";
-        public const string Op_PCB_Loosen = "软板夹紧气缸松";
-        public const string Op_X_StretchAirOn = "X向拉伸气缸伸";
-        public const string Op_X_StretchAirOff = "X向拉伸气缸缩";
-        public const string Op_Y_StretchAirOn = "Y向拉伸气缸伸";
-        public const string Op_Y_StretchAirOff = "Y向拉伸气缸缩";
+        public const string Op_LeftX_Rail_Fixture_Cylinder = "左X向导轨固定气缸";
+        public const string Op_RightX_Rail_Fixture_Cylinder = "右X向导轨固定气缸";
+        public const string Op_Y_Rail_Fixture_Cylinder = "Y向导轨固定气缸";
+        public const string Op_PCB_Clamp = "软板夹紧气缸";
+        public const string Op_X_Stretch_Cylinder = "X向拉伸气缸";
+        public const string Op_Y_Stretch_Cylinder = "Y向拉伸气缸";
         public const string Op_MarkeInkBoxOn = "打标墨盒盖开";
         public const string Op_MarkeInkBoxOff = "打标墨盒盖关";
         public const string Op_UpMarkeOn = "上模打标气缸_伸";
         public const string Op_DownMarkOn = "下模打标气缸_伸";
-        public const string Op_UpJipClampAirOn = "上模治具夹紧气缸紧";
-        public const string Op_UpJipClampAirOff = "上模治具夹紧气缸松";
-        public const string Op_DownJipClampAirOn = "下模治具夹紧气缸紧";
-        public const string Op_DownJipClampAirOff = "下模治具夹紧气缸松";
+        public const string Op_Up_Jip_Clamp_Cylinder = "上模治具夹紧气缸";
+        public const string Op_Down_Jip_Clamp_Cylinder = "下模治具夹紧气缸";
 
 
 

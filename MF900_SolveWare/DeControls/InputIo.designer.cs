@@ -62,6 +62,8 @@ namespace MF900_SolveWare
             // lbl_Name
             // 
             this.lbl_Name.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_Name.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_Name.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbl_Name.Location = new System.Drawing.Point(33, 0);
             this.lbl_Name.Name = "lbl_Name";
             this.lbl_Name.Size = new System.Drawing.Size(89, 30);

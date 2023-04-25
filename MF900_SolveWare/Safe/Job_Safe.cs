@@ -59,7 +59,7 @@ namespace MF900_SolveWare.Safe
 
                             foreach (var item in detail)
                             {
-                                Task task = Task.Factory.StartNew((object obj) =>
+                                Task task = new Task((object obj) =>
                                 {
                                     Data_Mission_Report report = obj as Data_Mission_Report;
                                     report.Context = ExecuteDetailData(item);
@@ -68,9 +68,10 @@ namespace MF900_SolveWare.Safe
                                 tasks.Add(task);
                             }
 
+                            tasks.ForEach(x=> x.Start());   
                             Task.WaitAll(tasks.ToArray());
-                            mContext = Is_Task_Worked_Correctly(tasks.ToArray());
 
+                            mContext = tasks.Converto_Mission_Report();
                             if(mContext.NotPass()) break;
                         }
 

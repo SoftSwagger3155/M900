@@ -83,7 +83,42 @@ namespace SolveWare_Service_Core.General
             mReport.Set(erroCode, msg);
             mReport.NotPass(true);
         }
+        public static Mission_Report Converto_Mission_Report(this Data_Mission_Report[] datas)
+        {
+            Mission_Report context = new Mission_Report();
+            foreach (var data in datas)
+            {
+                context.Message += data.Context.Message;
+            }
 
+            if (context.Message != string.Empty)
+            {
+                context.ErrorCode = ErrorCodes.ActionFailed;
+            }
+
+            return context;
+        }
+        public static Mission_Report Converto_Mission_Report(this List<Task> tasks)
+        {
+            Mission_Report context = new Mission_Report();
+            foreach (var task in tasks)
+            {
+                Data_Mission_Report data = task.AsyncState as Data_Mission_Report;
+                if (string.IsNullOrEmpty(data.Context.Message)) continue;
+                context.Message += data.Context.Message;
+            }
+
+            if (string.IsNullOrEmpty(context.Message) == false)
+            {
+                context.ErrorCode = ErrorCodes.ActionFailed;
+            }
+            else
+            {
+                context.ErrorCode = ErrorCodes.NoError;
+            }
+
+            return context;
+        }
 
 
         public static string ErrorMsg(this string function)

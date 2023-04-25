@@ -22,14 +22,14 @@ namespace MF900_SolveWare.Views.Child
             InitializeComponent();
         }
 
-        Data_InspectionKit dataKit;
+        Data_Inspection dataKit;
         CameraMediaBase camera;
 
 
         public void Setup<TObj>(TObj obj)
         {
             if(dataKit == null) { return; }
-            this.dataKit = obj as Data_InspectionKit;
+            this.dataKit = obj as Data_Inspection;
             camera = dataKit.CameraName.GetCamera();
 
             MakeTrackBar();            

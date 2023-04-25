@@ -36,6 +36,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using SolveWare_Service_Tool.MasterDriver.Business;
 using MF900_SolveWare.WorldCenter.Job;
+using MF900_SolveWare.MMperPixel.Data;
 
 namespace MF900_SolveWare.Business
 {
@@ -126,26 +127,18 @@ namespace MF900_SolveWare.Business
                                                ResourceKey.Op_ZeroButton,
                                                ResourceKey.Op_StopButton,
                                                ResourceKey.Op_ResetButton,
-                                               ResourceKey.Op_LeftX_RailTighten,
-                                               ResourceKey.Op_LeftX_RailLoosen,
-                                               ResourceKey.Op_RightX_RailTighten,
-                                               ResourceKey.Op_RightX_RailLoosen,
-                                               ResourceKey.Op_Y_RailTighten,
-                                               ResourceKey.Op_Y_RailLoosen,
+                                               ResourceKey.Op_LeftX_Rail_Fixture_Cylinder,
+                                               ResourceKey.Op_RightX_Rail_Fixture_Cylinder,
+                                               ResourceKey.Op_Y_Rail_Fixture_Cylinder,
                                                ResourceKey.Op_PCB_Clamp,
-                                               ResourceKey.Op_PCB_Loosen,
-                                               ResourceKey.Op_X_StretchAirOn,
-                                               ResourceKey.Op_X_StretchAirOff,
-                                               ResourceKey.Op_Y_StretchAirOn,
-                                               ResourceKey.Op_Y_StretchAirOff,
+                                               ResourceKey.Op_X_Stretch_Cylinder,
+                                               ResourceKey.Op_Y_Stretch_Cylinder,
                                                ResourceKey.Op_MarkeInkBoxOn,
                                                ResourceKey.Op_MarkeInkBoxOff,
                                                ResourceKey.Op_UpMarkeOn,
                                                ResourceKey.Op_DownMarkOn,
-                                               ResourceKey.Op_UpJipClampAirOn,
-                                               ResourceKey.Op_UpJipClampAirOff,
-                                               ResourceKey.Op_DownJipClampAirOn,
-                                               ResourceKey.Op_DownJipClampAirOff);
+                                               ResourceKey.Op_Up_Jip_Clamp_Cylinder,
+                                               ResourceKey.Op_Down_Jip_Clamp_Cylinder);
 
 
             //相机物件
@@ -161,18 +154,18 @@ namespace MF900_SolveWare.Business
         {
             //MMperPixel 
             ICommonJobFundamental job = null;
-            job  = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_TopCamera);
+            job  = new Job_MMperPixel(ResourceKey.MMperPixel_TopCamera, ResourceKey.Top_Camera, Data_MMperPixel.TopModule);
             Resource_DataPair_Center.Add(job);
 
-            job = new Job_MMperPixel_TopCamera(ResourceKey.MMperPixel_BtmCamera);
+            job = new Job_MMperPixel(ResourceKey.MMperPixel_BtmCamera, ResourceKey.Btm_Camera, Data_MMperPixel.BtmModule);
             Resource_DataPair_Center.Add(job);
 
 
             //Inspect            
-            job = new Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
+            job = new Job_Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
             Resource_DataPair_Center.Add(job);
 
-            job = new Inspect(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
+            job = new Job_Inspect(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
             Resource_DataPair_Center.Add(job);
 
 

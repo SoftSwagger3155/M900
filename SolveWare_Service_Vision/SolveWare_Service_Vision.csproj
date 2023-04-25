@@ -56,7 +56,7 @@
     <Compile Include="Controller\Base\Abstract\VisionControllerBase.cs" />
     <Compile Include="Controller\Base\Interface\IVisionController.cs" />
     <Compile Include="Controller\VisionController.cs" />
-    <Compile Include="Data\Data_InspectionKit.cs" />
+    <Compile Include="Data\Data_Inspection.cs" />
     <Compile Include="Data\Data_ROI.cs" />
     <Compile Include="Definitions\Enum_Threshold_Search_Direction.cs" />
     <Compile Include="Helper\HelperMethod.cs" />
@@ -66,7 +66,7 @@
     <Compile Include="Inspection\Base\Interface\IInspectionKit.cs" />
     <Compile Include="Inspection\Base\Interface\IJobSheetData.cs" />
     <Compile Include="Inspection\Base\Interface\IJobSheetModule.cs" />
-    <Compile Include="Inspection\Business\Inspect.cs" />
+    <Compile Include="Inspection\Business\Job_Inspect.cs" />
     <Compile Include="Inspection\Business\Job_Blob.cs" />
     <Compile Include="Inspection\Business\Job_Brightness.cs" />
     <Compile Include="Inspection\Business\Job_Lighting.cs" />

@@ -21,6 +21,8 @@ namespace SolveWare_Service_Tool.Camera.Data
         public bool IsSimulation { get; set; } = true;
         public string Resource { get; set; }
         public Master_Driver_Camera MasterDriver { get; set; } = Master_Driver_Camera.Basler;
-        public Data_MMperPixel MMperPixelData { get; set; }
+        public double MMperPixel_X { get; set; }
+        public double MMperPixel_Y { get; set; }
+        public double Average_MMperPixel { get; set; }
     }
 }

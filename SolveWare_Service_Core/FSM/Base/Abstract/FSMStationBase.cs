@@ -108,8 +108,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                 {
                     if (CurrentState == null)
                     {
-                        context.ErrorCode = ErrorCodes.NoStateActionAssign;
-                        context.Message = ErrorCodes.GetErrorDescription(ErrorCodes.NoStateActionAssign);
+                        context.Set(ErrorCodes.NoStateActionAssign);
                         break;
                     }
 

@@ -15,7 +15,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
 {
     public class Job_Brightness : JobFundamentalBase, IDataModulePair
     {
-        public Data_InspectionKit jobParam;
+        public Data_Inspection jobParam;
         public override Mission_Report Do_Job()
         {
             Mission_Report context = new Mission_Report();
@@ -44,7 +44,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
         }
         public void Setup(IElement data)
         {
-            this.jobParam = data as Data_InspectionKit;
+            this.jobParam = data as Data_Inspection;
         }
     }
 }

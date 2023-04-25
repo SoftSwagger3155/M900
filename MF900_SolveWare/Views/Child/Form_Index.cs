@@ -6,6 +6,7 @@ using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Motor.Data;
+using SolveWare_Service_Utility.Extension;
 using Sunny.UI.Win32;
 using System;
 using System.Collections.Generic;
@@ -55,12 +56,22 @@ namespace MF900_SolveWare.Views.Child
                         if (cancelSource.IsCancellationRequested) break;
                         if (indexData != null)
                         {
-                            this.Invoke(new Action(() =>
+                            this.Refresh_UI_Item(this.lbl_TotalNo, () =>
                             {
-                                if (lbl_TotalNo.InvokeRequired) this.lbl_TotalNo.Text = $"总产品数 : {indexData.Data_Setup.Total_Nos_Of_X * indexData.Data_Setup.Total_Nos_Of_Y}";
-                                if (lbl_CurrentNumber.InvokeRequired) this.lbl_CurrentNumber.Text = $"当前目标 : {indexData.Data_Display.Current_No}";
-                                if (lbl_CurrentRowColumn.InvokeRequired) this.lbl_CurrentRowColumn.Text = $"当前 Row {indexData.Data_Display.Current_Y} Column {indexData.Data_Display.Current_X}";
-                            }));
+                                this.lbl_TotalNo.Text = $"总产品数 : {indexData.Data_Setup.Total_Nos_Of_X * indexData.Data_Setup.Total_Nos_Of_Y}";
+                            });
+                            this.Refresh_UI_Item(this.lbl_CurrentNumber, () =>
+                            {
+                                this.lbl_CurrentNumber.Text = $"当前目标 : {indexData.Data_Display.Current_No}";
+                            });
+                            this.Refresh_UI_Item(this.lbl_CurrentRowColumn, () =>
+                            {
+                                this.lbl_CurrentRowColumn.Text = $"当前 Row {indexData.Data_Display.Current_Y} Column {indexData.Data_Display.Current_X}";
+                            });
+                            this.Refresh_UI_Item(this.lbl_Table_LoadPos, () =>
+                            {
+                                this.lbl_Table_LoadPos.Text = $"{ResourceKey.Motor_Table} {indexData.Pos_Table_Load} mm";
+                            });
                         }
 
                         if (cancelSource.IsCancellationRequested) break;
@@ -75,6 +86,8 @@ namespace MF900_SolveWare.Views.Child
             });
 
         }   
+
+      
         public void Stop_Listening()
         {
             if(cancelSource == null) return;
@@ -390,6 +403,12 @@ namespace MF900_SolveWare.Views.Child
                 msg += ex.Message;
             }
             SolveWare.Core.ShowMsg(msg);
+        }
+
+        private void btn_Table_LoadPos_Click(object sender, EventArgs e)
+        {
+            if(this.indexData == null) return;
+            this.indexData.Pos_Table_Load = ResourceKey.Motor_Table.GetUnitPos();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
 {
 
     [ResourceBaseAttribute(ConstantProperty.ResourceKey_Inspect)]
-    public class Inspect : DataJobPairFundamentalBase<Data_InspectionKit>,  IInspectionKit
+    public class Job_Inspect : DataJobPairFundamentalBase<Data_Inspection>,  IInspectionKit
     {
         private double offsetX = 0;
         private double offsetY = 0;
@@ -33,7 +33,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
             get=> offsetY;
         }
 
-        public Inspect(string name):base(name)
+        public Job_Inspect(string name):base(name)
         {
             
         }

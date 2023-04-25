@@ -1,4 +1,5 @@
 ﻿using MF900_SolveWare.Index.Job;
+using MF900_SolveWare.MMperPixel.Job;
 using MF900_SolveWare.Resource;
 using MF900_SolveWare.Views.AxisMesForm;
 using MF900_SolveWare.Views.Child;
@@ -38,6 +39,8 @@ namespace MF900_SolveWare
 
         private void btn_IoShow_Click(object sender, EventArgs e)
         {
+            //IView iOchart = new Form_IO_Chart();    
+            //(iOchart as Form_IO_Chart).Show();
             ioDebug = new IODebugForm();
             ioDebug.Show();
         }
@@ -80,6 +83,8 @@ namespace MF900_SolveWare
         private void btn_MMperPixel_Click(object sender, EventArgs e)
         {
             IView view = new Form_MMperPixel();
+            Job_MMperPixel job = (Job_MMperPixel)SolveWare.Core.MMgr.Get_PairJob(ResourceKey.MMperPixel_TopCamera);
+            view.Setup(job);
             (view as Form).Show();
         }
 

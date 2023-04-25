@@ -667,6 +667,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "Form_Offset_2";
             this.Text = "间距设定";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Offset_2_FormClosing);
             this.Load += new System.EventHandler(this.Form_Offset_2_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

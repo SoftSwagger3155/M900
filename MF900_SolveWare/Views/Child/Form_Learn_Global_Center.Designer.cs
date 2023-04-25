@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.gpb_Top_Module = new System.Windows.Forms.GroupBox();
-            this.btn_Top_Safe = new System.Windows.Forms.Button();
             this.btn_Go_Top_WorldCenter_Pos = new System.Windows.Forms.Button();
             this.btn_Top_Update_WorldCenter = new System.Windows.Forms.Button();
             this.btn_Top_Module_Update_Pos = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.lbl_Top_MotorZ_Info = new System.Windows.Forms.Label();
             this.lbl_Top_MotorY_Info = new System.Windows.Forms.Label();
             this.lbl_Top_MotorX_Info = new System.Windows.Forms.Label();
+            this.btn_Top_Safe = new System.Windows.Forms.Button();
             this.btn_Motor_General_Controller = new System.Windows.Forms.Button();
             this.gpb_Btm_Module = new System.Windows.Forms.GroupBox();
             this.btn_Btm_Safe = new System.Windows.Forms.Button();
@@ -105,16 +105,6 @@
             this.gpb_Top_Module.TabIndex = 0;
             this.gpb_Top_Module.TabStop = false;
             this.gpb_Top_Module.Text = "上模组";
-            // 
-            // btn_Top_Safe
-            // 
-            this.btn_Top_Safe.Location = new System.Drawing.Point(1177, 288);
-            this.btn_Top_Safe.Name = "btn_Top_Safe";
-            this.btn_Top_Safe.Size = new System.Drawing.Size(120, 33);
-            this.btn_Top_Safe.TabIndex = 14;
-            this.btn_Top_Safe.Text = "安全措施";
-            this.btn_Top_Safe.UseVisualStyleBackColor = true;
-            this.btn_Top_Safe.Click += new System.EventHandler(this.btn_Top_Safe_Click);
             // 
             // btn_Go_Top_WorldCenter_Pos
             // 
@@ -185,6 +175,7 @@
             this.ckb_Top_Module_Move_To_Center_After_Top_Inspection.TabIndex = 7;
             this.ckb_Top_Module_Move_To_Center_After_Top_Inspection.Text = "中心位移";
             this.ckb_Top_Module_Move_To_Center_After_Top_Inspection.UseVisualStyleBackColor = true;
+            this.ckb_Top_Module_Move_To_Center_After_Top_Inspection.CheckedChanged += new System.EventHandler(this.ckb_Top_Module_Move_To_Center_After_Top_Inspection_CheckedChanged);
             // 
             // cmb_Selector_Top_Module_InspectKit
             // 
@@ -249,6 +240,16 @@
             this.lbl_Top_MotorX_Info.Size = new System.Drawing.Size(172, 15);
             this.lbl_Top_MotorX_Info.TabIndex = 0;
             this.lbl_Top_MotorX_Info.Text = "上马达 X : 999.999 mm";
+            // 
+            // btn_Top_Safe
+            // 
+            this.btn_Top_Safe.Location = new System.Drawing.Point(1177, 288);
+            this.btn_Top_Safe.Name = "btn_Top_Safe";
+            this.btn_Top_Safe.Size = new System.Drawing.Size(120, 33);
+            this.btn_Top_Safe.TabIndex = 14;
+            this.btn_Top_Safe.Text = "安全措施";
+            this.btn_Top_Safe.UseVisualStyleBackColor = true;
+            this.btn_Top_Safe.Click += new System.EventHandler(this.btn_Top_Safe_Click);
             // 
             // btn_Motor_General_Controller
             // 
@@ -364,6 +365,7 @@
             this.ckb_Btm_Module_Move_To_Center_After_Top_Inspection.TabIndex = 7;
             this.ckb_Btm_Module_Move_To_Center_After_Top_Inspection.Text = "中心位移";
             this.ckb_Btm_Module_Move_To_Center_After_Top_Inspection.UseVisualStyleBackColor = true;
+            this.ckb_Btm_Module_Move_To_Center_After_Top_Inspection.CheckedChanged += new System.EventHandler(this.ckb_Btm_Module_Move_To_Center_After_Top_Inspection_CheckedChanged);
             // 
             // cmb_Selector_Btm_Module_InspectKit
             // 
@@ -597,6 +599,7 @@
             this.Controls.Add(this.gpb_Top_Module);
             this.Name = "Form_Learn_Global_Center";
             this.Text = "世界中心位";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Learn_Global_Center_FormClosing);
             this.Load += new System.EventHandler(this.Form_Learn_Global_Center_Load);
             this.gpb_Top_Module.ResumeLayout(false);
             this.gpb_Top_Module.PerformLayout();

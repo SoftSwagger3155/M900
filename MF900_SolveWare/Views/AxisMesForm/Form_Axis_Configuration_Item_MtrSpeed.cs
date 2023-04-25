@@ -36,9 +36,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
             axis = configData.MtrTable.Name.GetAxisBase();
 
             if (axis == null) return;
-
-    
-            this.lbl_Status.SetStatus(JobStatus.Unknown);
             
             Fillup_Combobox_SpeedSetting();
             //DataBinding();
@@ -92,7 +89,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                     {
                         this.BeginInvoke(new Action(() =>
                         {
-                            string orgMsg = this.axis.IsOrg ? "1" : "0";
+                            string orgMsg = this.axis.IsOrg ? "未触发" : "触发";
                             lbl_Org.TextAlign = ContentAlignment.MiddleCenter;
                             lbl_Org.Text = $"原点状态 {orgMsg}";
                         }));
@@ -111,6 +108,30 @@ namespace MF900_SolveWare.Views.AxisMesForm
                                 lbl_ErrorReport.TextAlign = ContentAlignment.MiddleCenter;
                                 lbl_ErrorReport.Text = $"失败报告 {axis.ErrorReport}";
                                 lbl_ErrorReport.BackColor = Color.Red;
+                            }
+                        }));
+                    }
+                    if (lbl_Status.InvokeRequired)
+                    {
+                        this.BeginInvoke(new Action(() =>
+                        {
+                            if (this.axis.IsMoving)
+                            {
+                                lbl_Status.Text = "运行中";
+                                lbl_Status.AutoSize = false;
+                                lbl_Status.Size = new Size(53, 26);
+                                lbl_Status.Padding = new Padding(0,4, 0, 0);
+                                lbl_Status.TextAlign = ContentAlignment.TopCenter;
+                                lbl_Status.ForeColor = Color.Orange;
+                            }
+                            else
+                            {
+                                lbl_Status.Text = "静止";
+                                lbl_Status.AutoSize = false;
+                                lbl_Status.Size = new Size(53, 26);
+                                lbl_Status.Padding = new Padding(0, 4, 0, 0);
+                                lbl_Status.TextAlign = ContentAlignment.TopCenter;
+                                lbl_Status.ForeColor = Color.Black;
                             }
                         }));
                     }
@@ -155,11 +176,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Home_Click(object sender, EventArgs e)
         {
+            SpeedSeting setting = GetMainSpeedSetting();
             SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
                 Mission_Report context = new Mission_Report();
-                SpeedSeting setting = GetMainSpeedSetting();
-                Stopwatch sw = Stopwatch.StartNew();
                 try
                 {
                     do
@@ -169,8 +189,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantObject, "请选择一个使用项");
                             break;
                         }
-                        sw.Restart();
-                        SetStatus();
+
                         context = axis.HomeMove(setting);
                         context.NotPass(true);
 
@@ -351,10 +370,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Relative_Negative_Click(object sender, EventArgs e)
         {
+            SpeedSeting speed = GetMainSpeedSetting();
             SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
                 Mission_Report context = new Mission_Report();
-                SpeedSeting speed = GetMainSpeedSetting();
                 try
                 {
                     do
@@ -370,7 +389,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
-                        SetStatus();
+     
                         context = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text), speed);
                         context.NotPass(true);
 
@@ -387,10 +406,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Relative_Positive_Click(object sender, EventArgs e)
         {
+            SpeedSeting speed = GetMainSpeedSetting();
             SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
                 Mission_Report context = new Mission_Report();
-                SpeedSeting speed = GetMainSpeedSetting();
                 try
                 {
                     do
@@ -405,8 +424,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantObject, "相对位置栏位不得为空");
                             break;
                         }
-
-                        SetStatus();
                         context = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text), speed);
                         context.NotPass(true);
 
@@ -423,10 +440,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Absolute_Click(object sender, EventArgs e)
         {
+            SpeedSeting speed = GetMainSpeedSetting();
             SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
                 Mission_Report context = new Mission_Report();
-                SpeedSeting speed = GetMainSpeedSetting();
                 try
                 {
                     do
@@ -441,8 +458,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             context.Window_Show_Not_Pass_Message(ErrorCodes.NoRelevantObject, "绝对位置栏位不得为空");
                             break;
                         }
-
-                        SetStatus();
                         context = axis.MoveTo(double.Parse(txb_AbsolutePos.Text), speed);
                         context.NotPass(true);
 
@@ -487,10 +502,10 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Relay_Click(object sender, EventArgs e)
         {
+            SpeedSeting speed = GetMainSpeedSetting();
             SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
             {
                 Mission_Report context = new Mission_Report();
-                SpeedSeting speed = GetMainSpeedSetting();
                 relayStop = false;
 
                 try

@@ -52,7 +52,8 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
             {
                 if (config.Is_Simulation_Motor && config.Is_Simulation_IO)
                 {
-                    this.Is_Simulation_FSM = true;   
+                    this.Is_Simulation_FSM = true;
+                    this.IsSimulation = true;
                     return true;
                 }
                 //同样的卡
@@ -72,6 +73,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                             {
                                 CardInfo.Dic_CardHandler.Add(0, Handle);
                                 is_Driver_Really_Existed = true;
+                                IsSimulation = false;
                             }
                             else
                             {
@@ -79,6 +81,7 @@ namespace SolveWare_Service_Tool.MasterDriver.Business
                                 this.config.Is_Simulation_IO = true;
                                 this.config.Is_Simulation_Motor = true;
                                 Is_Simulation_FSM = true;
+                                IsSimulation = true;
                             }
                            
                             #endregion

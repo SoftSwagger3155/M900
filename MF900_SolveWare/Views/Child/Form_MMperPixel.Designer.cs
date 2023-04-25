@@ -42,10 +42,10 @@
             this.cmb_Selector_InspectKit = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_Update_InspectKit = new System.Windows.Forms.Button();
-            this.lbl_Top_MotorT_Info = new System.Windows.Forms.Label();
-            this.lbl_Top_MotorZ_Info = new System.Windows.Forms.Label();
-            this.lbl_Top_MotorY_Info = new System.Windows.Forms.Label();
-            this.btn_Top_MotorX_Info = new System.Windows.Forms.Label();
+            this.lbl_MotorT_Info = new System.Windows.Forms.Label();
+            this.lbl_MotorZ_Info = new System.Windows.Forms.Label();
+            this.lbl_MotorY_Info = new System.Windows.Forms.Label();
+            this.lbl_MotorX_Info = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_TimeSpent = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,12 +53,12 @@
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_General_Motor = new System.Windows.Forms.Button();
             this.gpb_Result = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_MMperPixel_Average = new System.Windows.Forms.Label();
+            this.lbl_MMperPixel_Y = new System.Windows.Forms.Label();
+            this.lbl_MMperPixel_X = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.gpb_Data_Selector = new System.Windows.Forms.GroupBox();
-            this.cmb_Selector_MMperPixel = new System.Windows.Forms.ComboBox();
+            this.cmb_Selector_Camera = new System.Windows.Forms.ComboBox();
             this.gpb_Top_Module.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.gpb_Result.SuspendLayout();
@@ -80,10 +80,10 @@
             this.gpb_Top_Module.Controls.Add(this.cmb_Selector_InspectKit);
             this.gpb_Top_Module.Controls.Add(this.label1);
             this.gpb_Top_Module.Controls.Add(this.btn_Update_InspectKit);
-            this.gpb_Top_Module.Controls.Add(this.lbl_Top_MotorT_Info);
-            this.gpb_Top_Module.Controls.Add(this.lbl_Top_MotorZ_Info);
-            this.gpb_Top_Module.Controls.Add(this.lbl_Top_MotorY_Info);
-            this.gpb_Top_Module.Controls.Add(this.btn_Top_MotorX_Info);
+            this.gpb_Top_Module.Controls.Add(this.lbl_MotorT_Info);
+            this.gpb_Top_Module.Controls.Add(this.lbl_MotorZ_Info);
+            this.gpb_Top_Module.Controls.Add(this.lbl_MotorY_Info);
+            this.gpb_Top_Module.Controls.Add(this.lbl_MotorX_Info);
             this.gpb_Top_Module.Location = new System.Drawing.Point(12, 136);
             this.gpb_Top_Module.Name = "gpb_Top_Module";
             this.gpb_Top_Module.Size = new System.Drawing.Size(480, 400);
@@ -211,41 +211,41 @@
             this.btn_Update_InspectKit.Text = "更换视觉";
             this.btn_Update_InspectKit.UseVisualStyleBackColor = true;
             // 
-            // lbl_Top_MotorT_Info
+            // lbl_MotorT_Info
             // 
-            this.lbl_Top_MotorT_Info.AutoSize = true;
-            this.lbl_Top_MotorT_Info.Location = new System.Drawing.Point(6, 118);
-            this.lbl_Top_MotorT_Info.Name = "lbl_Top_MotorT_Info";
-            this.lbl_Top_MotorT_Info.Size = new System.Drawing.Size(180, 15);
-            this.lbl_Top_MotorT_Info.TabIndex = 3;
-            this.lbl_Top_MotorT_Info.Text = "上马达 T : 180.000 Deg";
+            this.lbl_MotorT_Info.AutoSize = true;
+            this.lbl_MotorT_Info.Location = new System.Drawing.Point(6, 118);
+            this.lbl_MotorT_Info.Name = "lbl_MotorT_Info";
+            this.lbl_MotorT_Info.Size = new System.Drawing.Size(180, 15);
+            this.lbl_MotorT_Info.TabIndex = 3;
+            this.lbl_MotorT_Info.Text = "上马达 T : 180.000 Deg";
             // 
-            // lbl_Top_MotorZ_Info
+            // lbl_MotorZ_Info
             // 
-            this.lbl_Top_MotorZ_Info.AutoSize = true;
-            this.lbl_Top_MotorZ_Info.Location = new System.Drawing.Point(6, 89);
-            this.lbl_Top_MotorZ_Info.Name = "lbl_Top_MotorZ_Info";
-            this.lbl_Top_MotorZ_Info.Size = new System.Drawing.Size(172, 15);
-            this.lbl_Top_MotorZ_Info.TabIndex = 2;
-            this.lbl_Top_MotorZ_Info.Text = "上马达 Z : 009.999 mm";
+            this.lbl_MotorZ_Info.AutoSize = true;
+            this.lbl_MotorZ_Info.Location = new System.Drawing.Point(6, 89);
+            this.lbl_MotorZ_Info.Name = "lbl_MotorZ_Info";
+            this.lbl_MotorZ_Info.Size = new System.Drawing.Size(172, 15);
+            this.lbl_MotorZ_Info.TabIndex = 2;
+            this.lbl_MotorZ_Info.Text = "上马达 Z : 009.999 mm";
             // 
-            // lbl_Top_MotorY_Info
+            // lbl_MotorY_Info
             // 
-            this.lbl_Top_MotorY_Info.AutoSize = true;
-            this.lbl_Top_MotorY_Info.Location = new System.Drawing.Point(6, 60);
-            this.lbl_Top_MotorY_Info.Name = "lbl_Top_MotorY_Info";
-            this.lbl_Top_MotorY_Info.Size = new System.Drawing.Size(172, 15);
-            this.lbl_Top_MotorY_Info.TabIndex = 1;
-            this.lbl_Top_MotorY_Info.Text = "上马达 Y : 999.999 mm";
+            this.lbl_MotorY_Info.AutoSize = true;
+            this.lbl_MotorY_Info.Location = new System.Drawing.Point(6, 60);
+            this.lbl_MotorY_Info.Name = "lbl_MotorY_Info";
+            this.lbl_MotorY_Info.Size = new System.Drawing.Size(172, 15);
+            this.lbl_MotorY_Info.TabIndex = 1;
+            this.lbl_MotorY_Info.Text = "上马达 Y : 999.999 mm";
             // 
-            // btn_Top_MotorX_Info
+            // lbl_MotorX_Info
             // 
-            this.btn_Top_MotorX_Info.AutoSize = true;
-            this.btn_Top_MotorX_Info.Location = new System.Drawing.Point(6, 31);
-            this.btn_Top_MotorX_Info.Name = "btn_Top_MotorX_Info";
-            this.btn_Top_MotorX_Info.Size = new System.Drawing.Size(172, 15);
-            this.btn_Top_MotorX_Info.TabIndex = 0;
-            this.btn_Top_MotorX_Info.Text = "上马达 X : 999.999 mm";
+            this.lbl_MotorX_Info.AutoSize = true;
+            this.lbl_MotorX_Info.Location = new System.Drawing.Point(6, 31);
+            this.lbl_MotorX_Info.Name = "lbl_MotorX_Info";
+            this.lbl_MotorX_Info.Size = new System.Drawing.Size(172, 15);
+            this.lbl_MotorX_Info.TabIndex = 0;
+            this.lbl_MotorX_Info.Text = "上马达 X : 999.999 mm";
             // 
             // statusStrip1
             // 
@@ -302,9 +302,9 @@
             // 
             // gpb_Result
             // 
-            this.gpb_Result.Controls.Add(this.label5);
-            this.gpb_Result.Controls.Add(this.label4);
-            this.gpb_Result.Controls.Add(this.label3);
+            this.gpb_Result.Controls.Add(this.lbl_MMperPixel_Average);
+            this.gpb_Result.Controls.Add(this.lbl_MMperPixel_Y);
+            this.gpb_Result.Controls.Add(this.lbl_MMperPixel_X);
             this.gpb_Result.Location = new System.Drawing.Point(507, 136);
             this.gpb_Result.Name = "gpb_Result";
             this.gpb_Result.Size = new System.Drawing.Size(278, 159);
@@ -312,32 +312,32 @@
             this.gpb_Result.TabStop = false;
             this.gpb_Result.Text = "MMperPixel 结果";
             // 
-            // label5
+            // lbl_MMperPixel_Average
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 118);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 15);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Average : 000.000 um";
+            this.lbl_MMperPixel_Average.AutoSize = true;
+            this.lbl_MMperPixel_Average.Location = new System.Drawing.Point(20, 118);
+            this.lbl_MMperPixel_Average.Name = "lbl_MMperPixel_Average";
+            this.lbl_MMperPixel_Average.Size = new System.Drawing.Size(167, 15);
+            this.lbl_MMperPixel_Average.TabIndex = 2;
+            this.lbl_MMperPixel_Average.Text = "Average : 000.000 um";
             // 
-            // label4
+            // lbl_MMperPixel_Y
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Y : 000.000 um";
+            this.lbl_MMperPixel_Y.AutoSize = true;
+            this.lbl_MMperPixel_Y.Location = new System.Drawing.Point(20, 58);
+            this.lbl_MMperPixel_Y.Name = "lbl_MMperPixel_Y";
+            this.lbl_MMperPixel_Y.Size = new System.Drawing.Size(119, 15);
+            this.lbl_MMperPixel_Y.TabIndex = 1;
+            this.lbl_MMperPixel_Y.Text = "Y : 000.000 um";
             // 
-            // label3
+            // lbl_MMperPixel_X
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "X : 000.000 um";
+            this.lbl_MMperPixel_X.AutoSize = true;
+            this.lbl_MMperPixel_X.Location = new System.Drawing.Point(20, 34);
+            this.lbl_MMperPixel_X.Name = "lbl_MMperPixel_X";
+            this.lbl_MMperPixel_X.Size = new System.Drawing.Size(119, 15);
+            this.lbl_MMperPixel_X.TabIndex = 0;
+            this.lbl_MMperPixel_X.Text = "X : 000.000 um";
             // 
             // button1
             // 
@@ -350,7 +350,7 @@
             // 
             // gpb_Data_Selector
             // 
-            this.gpb_Data_Selector.Controls.Add(this.cmb_Selector_MMperPixel);
+            this.gpb_Data_Selector.Controls.Add(this.cmb_Selector_Camera);
             this.gpb_Data_Selector.Location = new System.Drawing.Point(12, 12);
             this.gpb_Data_Selector.Name = "gpb_Data_Selector";
             this.gpb_Data_Selector.Size = new System.Drawing.Size(360, 97);
@@ -358,14 +358,15 @@
             this.gpb_Data_Selector.TabStop = false;
             this.gpb_Data_Selector.Text = "选择器";
             // 
-            // cmb_Selector_MMperPixel
+            // cmb_Selector_Camera
             // 
-            this.cmb_Selector_MMperPixel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmb_Selector_MMperPixel.FormattingEnabled = true;
-            this.cmb_Selector_MMperPixel.Location = new System.Drawing.Point(9, 40);
-            this.cmb_Selector_MMperPixel.Name = "cmb_Selector_MMperPixel";
-            this.cmb_Selector_MMperPixel.Size = new System.Drawing.Size(333, 28);
-            this.cmb_Selector_MMperPixel.TabIndex = 0;
+            this.cmb_Selector_Camera.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_Camera.FormattingEnabled = true;
+            this.cmb_Selector_Camera.Location = new System.Drawing.Point(9, 40);
+            this.cmb_Selector_Camera.Name = "cmb_Selector_Camera";
+            this.cmb_Selector_Camera.Size = new System.Drawing.Size(333, 28);
+            this.cmb_Selector_Camera.TabIndex = 0;
+            this.cmb_Selector_Camera.SelectionChangeCommitted += new System.EventHandler(this.cmb_Selector_Camera_SelectionChangeCommitted);
             // 
             // Form_MMperPixel
             // 
@@ -381,6 +382,8 @@
             this.Controls.Add(this.gpb_Top_Module);
             this.Name = "Form_MMperPixel";
             this.Text = "相机定位";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_MMperPixel_FormClosing);
+            this.Load += new System.EventHandler(this.Form_MMperPixel_Load);
             this.gpb_Top_Module.ResumeLayout(false);
             this.gpb_Top_Module.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -403,10 +406,10 @@
         private System.Windows.Forms.ComboBox cmb_Selector_InspectKit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_Update_InspectKit;
-        private System.Windows.Forms.Label lbl_Top_MotorT_Info;
-        private System.Windows.Forms.Label lbl_Top_MotorZ_Info;
-        private System.Windows.Forms.Label lbl_Top_MotorY_Info;
-        private System.Windows.Forms.Label btn_Top_MotorX_Info;
+        private System.Windows.Forms.Label lbl_MotorT_Info;
+        private System.Windows.Forms.Label lbl_MotorZ_Info;
+        private System.Windows.Forms.Label lbl_MotorY_Info;
+        private System.Windows.Forms.Label lbl_MotorX_Info;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tssl_TimeSpent;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
@@ -420,11 +423,11 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button btn_General_Motor;
         private System.Windows.Forms.GroupBox gpb_Result;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_MMperPixel_Average;
+        private System.Windows.Forms.Label lbl_MMperPixel_Y;
+        private System.Windows.Forms.Label lbl_MMperPixel_X;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox gpb_Data_Selector;
-        private System.Windows.Forms.ComboBox cmb_Selector_MMperPixel;
+        private System.Windows.Forms.ComboBox cmb_Selector_Camera;
     }
 }

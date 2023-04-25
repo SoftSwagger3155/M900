@@ -18,18 +18,18 @@ namespace SolveWare_Service_Tool.IO.Data
 
         public ConfigData_IO()
         {
+            Data_Buzzer = new Data_Buzzer_Setting();
+            Data_DualChannel = new Data_DualChannel_Setting();  
         }
 
+        public bool Simulation { get; set; }
+        public bool IsBuzzer { get; set; }
+        public bool IsDualChannel { get; set; }
         public int CardNo { get; set; }
         public int Bit { get; set; }
-        public int Logic_Op { get; set; }
-        public int Logic_Read { get; set; }
-        public bool Simulation { get; set; }
-        public bool IsForSelect { get; set; }
-        public string DynamicStatus
-        {
-            get;
-        }
+
+        public Data_Buzzer_Setting Data_Buzzer { get; set; }
+        public Data_DualChannel_Setting Data_DualChannel { get; set; }
         public IO_Type IOType
         {
             get => ioType;
@@ -40,5 +40,18 @@ namespace SolveWare_Service_Tool.IO.Data
             get => ioMasterDriver;
             set => UpdateProper(ref ioMasterDriver, value);
         }
+    }
+
+    public class Data_Buzzer_Setting
+    {
+        public bool Is_Interval_Buzzing { get; set; }
+        public int Interval_ms { get; set; }
+    }
+    public class Data_DualChannel_Setting
+    {
+        public int Bit_First { get; set; }
+        public string TriggerMode_First { get; set; } = ConstantProperty.ON;
+        public int Bit_Second { get; set; }
+        public string TriggerMode_Second { get; set; } = ConstantProperty.OFF;
     }
 }

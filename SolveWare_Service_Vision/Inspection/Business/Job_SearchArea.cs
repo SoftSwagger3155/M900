@@ -13,7 +13,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
 {
     public class Job_SearchArea : JobFundamentalBase, IDataModulePair
     {
-        Data_InspectionKit jobParam;
+        Data_Inspection jobParam;
 
         public override Mission_Report Do_Job()
         {
@@ -24,7 +24,7 @@ namespace SolveWare_Service_Vision.Inspection.Business
 
         public void Setup(IElement data)
         {
-            this.jobParam = data as Data_InspectionKit;
+            this.jobParam = data as Data_Inspection;
         }
     }
 }

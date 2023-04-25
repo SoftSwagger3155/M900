@@ -89,16 +89,16 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
 
         public void DoButtonClickActionTask(Func<Mission_Report> action)
         {
+            if (this.Is_Machine_In_Action)
+            {
+                var result = MessageBox.Show("机器状态运行中\r\n继续请按 是\r\n结束请按 否", "提问", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) return;
+            }
+
             Task task = Task.Factory.StartNew((object obj) =>
             {
                 try
-                {
-                   if(this.Is_Machine_In_Action)
-                    {
-                        var result = MessageBox.Show("机器状态运行中\r\n继续请按 是\r\n结束请按 否", "提问", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.No) return;
-                    }
-
+                {                 
                     this.Status = Machine_Status.Busy;
                     Data_Mission_Report mReport = obj as Data_Mission_Report;
                     mReport.Context = action();
@@ -124,7 +124,6 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 }
                 
             }, new Data_Mission_Report());
-            Task.WaitAll(task);
         }
 
         public IResourceProvider Get_Single_Data_Resource(Type classType)
