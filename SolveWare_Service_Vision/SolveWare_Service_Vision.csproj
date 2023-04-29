@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Controller\Base\Abstract\VisionControllerBase.cs" />
     <Compile Include="Controller\Base\Interface\IVisionController.cs" />
+    <Compile Include="Controller\Base\Interface\IVisionMediaController.cs" />
     <Compile Include="Controller\VisionController.cs" />
     <Compile Include="Data\Data_Inspection.cs" />
     <Compile Include="Data\Data_ROI.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ROIs\Business\ROI_Circle.cs" />
     <Compile Include="ROIs\Business\ROI_Line.cs" />
     <Compile Include="ROIs\Defintions\Enum_Mouse_Event_Mode.cs" />
+    <Compile Include="Templates\Template_Scaled_PatternMatch.cs" />
     <Compile Include="UserHWControls.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -65,7 +65,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected double currentPhysicalPos = -999.999;
         protected double analogInputValue;
         protected string interlockWaringMsg;
-        protected  int axis_Read_Status = 0;
+        protected int axis_Read_Status = 0;
         //Safe Keeper
         protected bool isDangerousToMove;
         protected bool isInZone;
@@ -73,7 +73,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         protected bool isIgnoreDanger;
         protected string timeSpent = "0.000";
         protected string errorReport = string.Empty;
-        protected bool is_Jog_Monitoring = true;
+        protected bool is_Safe_Checking = true;
 
         protected bool is_Jog_Mission = false;
         public bool Is_Jog_Mission
@@ -81,21 +81,21 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             get => is_Jog_Mission;
             set => UpdateProper(ref is_Jog_Mission, value);
         }
-        public bool Is_Jog_Monitoring
+        public bool Is_Safe_Checking
         {
-            get => is_Jog_Monitoring;
-            set=> UpdateProper(ref is_Jog_Monitoring, value);
+            get => is_Safe_Checking;
+            set => UpdateProper(ref is_Safe_Checking, value);
         }
         public string ErrorReport
         {
             get
             {
                 if (errorReport != string.Empty)
-                    errorReport= $"{mtrTable.Name} {errorReport}";
-                
-                return errorReport; 
+                    errorReport = $"{mtrTable.Name} {errorReport}";
+
+                return errorReport;
             }
-            protected set=> UpdateProper(ref  errorReport, value);
+            protected set => UpdateProper(ref errorReport, value);
         }
         public bool IsIgnoreDanger
         {
@@ -105,7 +105,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public string TimeSpent
         {
             get => timeSpent;
-            protected set=> UpdateProper(ref timeSpent, value);
+            protected set => UpdateProper(ref timeSpent, value);
         }
         public bool IsDangerousToMove
         {
@@ -239,7 +239,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public bool IsMoving
         {
             get => isMoving;
-            protected set=> UpdateProper(ref isMoving, value);
+            protected set => UpdateProper(ref isMoving, value);
         }
 
 
@@ -269,25 +269,25 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
                 {
                     this.IsPosLimit = Get_PEL_Signal();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                   
+
                     this.IsNegLimit = Get_NEL_Signal();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                    
+
                     this.IsAlarm = Get_Alarm_Signal();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                    
+
                     this.IsServoOn = Get_ServoStatus();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                    
+
                     this.IsOrg = Get_Origin_Signal();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                    
+
                     this.CurrentPhysicalPos = Get_CurUnitPos();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                    
+
                     this.CurrentPulse = Get_CurPulse();
                     Thread.Sleep(mtrTable.StatusReadTiming);
-                    
+
                     this.IsMoving = Get_MovingStatus();
                     Thread.Sleep(mtrTable.StatusReadTiming);
                 }
@@ -335,9 +335,9 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
             bool result = false;
             string sErr = string.Empty;
 
-            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe, ref msg) == false) 
+            if (SafeKeeper.Is_Safe_To_Move(this.mtrSafe, ref msg) == false)
             {
-                return true; 
+                return true;
             }
             if (mtrTable.pIsInhibitToMove == null) return false;
             if (mtrTable.pIsInhibitToMove(ref sErr))
@@ -372,12 +372,13 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract double Get_AnalogInputValue();
         public abstract bool Get_ServoStatus();
         public abstract bool Get_MovingStatus();
-        public abstract Mission_Report MoveRelative(double distance, bool BypassDangerCheck = false);
-        public abstract Mission_Report MoveTo(double pos, bool BypassDangerCheck = false);
+        public abstract float Get_RunVel();
+        public abstract Mission_Report MoveRelative(double distance, double velPct = 1, bool BypassDangerCheck = false);
+        public abstract Mission_Report MoveTo(double pos, double velPct = 1, bool BypassDangerCheck = false);
         public abstract Mission_Report HomeMoveTo(double pos, bool BypassDangerCheck = false);
         public abstract bool ManualMoveTo(double pos);
-        public abstract void Jog(bool isPositive, ref string msg);
-        public abstract void Jog(bool isPositive, SpeedSeting speed, ref string msg);
+        public abstract Mission_Report Jog(bool isPositive, ref string msg, double velPct = 1);
+        public abstract Mission_Report Jog(bool isPositive, SpeedSeting speed, ref string msg);
         public abstract Mission_Report MoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
         public abstract Mission_Report HomeMove(SpeedSeting speed);
         public abstract Mission_Report HomeMoveTo(double pos, SpeedSeting speed, bool BypassDangerCheck = false);
@@ -389,7 +390,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
         public abstract Motor_Wait_Kind WaitStop();
         public abstract Motor_Wait_Kind WaitHomeDone();
 
-        public abstract void SetZero(uint homeMode = 35);     
+        public abstract void SetZero(uint homeMode = 35);
         public abstract int Get_IO_sts();
         public abstract void Set_Servo(bool on);
 
@@ -399,7 +400,7 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
 
             double speedRatio = 100 / mtrSpeed.SpeedRatio;
-      
+
 
             double unitPerSec = mtrTable.PulsePerRevolution / mtrTable.UnitPerRevolution;
             double acc_Unit = mtrSpeed.Acceleration * unitPerSec * speedRatio;
@@ -523,6 +524,6 @@ namespace SolveWare_Service_Tool.Motor.Base.Abstract
 
         }
 
-      
+
     }
 }

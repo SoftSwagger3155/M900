@@ -89,7 +89,7 @@ namespace MF900_SolveWare.Views.Child
         private void btn_Execute_Both_Module_Click(object sender, EventArgs e)
         {
            
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             { 
                 Mission_Report context = new Mission_Report();
             Stopwatch sw = Stopwatch.StartNew();
@@ -125,7 +125,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Execute_Top_Moudle_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -162,7 +162,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Execute_Btm_Moudle_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -259,7 +259,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Top_Module_Go_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -286,7 +286,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Btm_Module_Go_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -336,7 +336,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Top_Module_Execute_InspectKit_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -363,7 +363,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Btm_Module_Execute_InspectKit_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -436,7 +436,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Top_WorldCenter_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();
@@ -470,7 +470,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Btm_WorldCenter_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 Stopwatch sw = Stopwatch.StartNew();

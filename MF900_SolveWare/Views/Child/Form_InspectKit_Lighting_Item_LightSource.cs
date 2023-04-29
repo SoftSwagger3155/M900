@@ -20,7 +20,7 @@ namespace MF900_SolveWare.Views.Child
 
         public void Setup<TObj>(TObj obj)
         {
-           
+            
         }
     }
 }

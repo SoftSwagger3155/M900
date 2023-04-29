@@ -162,10 +162,10 @@ namespace MF900_SolveWare.Business
 
 
             //Inspect            
-            job = new Job_Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole);
+            job = new Job_Inspect(ResourceKey.InspectKit_Top_Camera_Git_Hole, ResourceKey.Top_Camera);
             Resource_DataPair_Center.Add(job);
 
-            job = new Job_Inspect(ResourceKey.InspectKit_Btm_Camera_Git_Hole);
+            job = new Job_Inspect(ResourceKey.InspectKit_Btm_Camera_Git_Hole, ResourceKey.Btm_Camera);
             Resource_DataPair_Center.Add(job);
 
 
@@ -203,6 +203,11 @@ namespace MF900_SolveWare.Business
         public override bool HasIdenticalWindow()
         {
             return false;
+        }
+        public override bool Is_Machine_In_Action()
+        {
+            int index = Get_Single_Tool_Resource(Tool_Resource_Kind.Motor).Get_All_Items().ToList().FindIndex(x => (x as AxisBase).IsMoving == true);
+            return base.Is_Machine_In_Action() && index < 0;
         }
 
         public override void AssignFSM()

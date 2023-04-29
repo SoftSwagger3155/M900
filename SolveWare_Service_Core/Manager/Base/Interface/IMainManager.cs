@@ -25,7 +25,7 @@ namespace SolveWare_Service_Core.Manager.Base.Interface
         string LoadingStatus { get; set; }
         void Initialize();
         void Setup();
-        void DoButtonClickActionTask(Func<Mission_Report> action);
+        void Do_Task_Requested_From_Client(Func<Mission_Report> action);
         IMachineUI MachineUI { get; set; }
         IInfoHandler Infohandler { get; set; }
         IList<IDataResourceProvider> Resource_Data_Center { get; set; }

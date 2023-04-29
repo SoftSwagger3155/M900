@@ -1,6 +1,9 @@
-﻿using SolveWare_Service_Core;
+﻿using HalconDotNet;
+using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Core.General;
+using SolveWare_Service_Tool.Camera.Base.Abstract;
+using SolveWare_Service_Utility.Extension;
 using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.Business;
 using SolveWare_Service_Vision.Inspection.JobSheet;
@@ -40,10 +43,15 @@ namespace MF900_SolveWare.Views.Child
 
         Job_Inspect job_Inspect;
         Data_Inspection data_Inspect;
+        CameraMediaBase camera;
         public void Setup<TObj>(TObj obj)
         {
             this.job_Inspect = obj as Job_Inspect;
             this.data_Inspect = job_Inspect.Data;
+            this.camera = data_Inspect.CameraName.GetCamera();
+            this.ctrl_Camera.Setup(camera);
+            this.pGrid_Parameters.SelectedObject = data_Inspect.JobSheet_PatternMatch_Data;
+
         }
         private void Fillup_Combobox_Inspect()
         {
@@ -54,17 +62,13 @@ namespace MF900_SolveWare.Views.Child
         private void MakeTreeView()
         {
             tView_Content.Nodes.Clear();
-            if (data_Inspect == null)
-            {
-                tView_Content.Nodes.Add(NodeName_BrightNess);
-                tView_Content.Nodes.Add(NodeName_Lighting);
-                tView_Content.Nodes.Add(NodeName_PatternMatch);
-                tView_Content.Nodes.Add(NodeName_Blob);
-            }
-            else
-            {
-                Convert_Data_To_TreeView();
-            }         
+            tView_Content.Nodes.Add(NodeName_BrightNess);
+            tView_Content.Nodes.Add(NodeName_Lighting);
+            //tView_Content.Nodes.Add(NodeName_PatternMatch);
+            //tView_Content.Nodes.Add(NodeName_Blob);
+            if (data_Inspect != null) Convert_Data_To_TreeView();
+
+
             tView_Content.ExpandAll();
 
             tView_Content.MouseDoubleClick -= TView_Content_MouseDoubleClick;
@@ -84,7 +88,7 @@ namespace MF900_SolveWare.Views.Child
                 {
                     foreach (var lighting in data_Inspect.JobSheet_Lighting_Datas)
                     {
-                        if (lighting.Is_IO_Controlled)
+                        if (!lighting.Is_IO_Controlled)
                         {
                             tView_Content.Nodes[SheetNo_Lighting].Nodes.Add($"光源 {lighting.Lighting_Name} 光度 {lighting.Intensity}");
                         }
@@ -95,55 +99,68 @@ namespace MF900_SolveWare.Views.Child
                     }
                 }
             }
-           if(data_Inspect.JobSheet_PatternMatch_Data != null)
-            {
-                tView_Content.Nodes[SheetNo_PatternMatch].Nodes.Add($"开始角度 {data_Inspect.JobSheet_PatternMatch_Data.AngleStart} ," +
-                                                                                                              $"角度范围 {data_Inspect.JobSheet_PatternMatch_Data.AngleExtent} ," +
-                                                                                                              $"最小匹配值 {data_Inspect.JobSheet_PatternMatch_Data.MinScore} ," +
-                                                                                                              $"最小规模 {data_Inspect.JobSheet_PatternMatch_Data.MinScale} ," +
-                                                                                                              $"最大规模 {data_Inspect.JobSheet_PatternMatch_Data.MaxScale} ," +
-                                                                                                              $"匹配最大个数 {data_Inspect.JobSheet_PatternMatch_Data.NumMatches} ," +
-                                                                                                              $"金字塔层数 {data_Inspect.JobSheet_PatternMatch_Data.NumLevels}  ," +
-                                                                                                              $"亚像素精度 {data_Inspect.JobSheet_PatternMatch_Data.SubPixel}  ," +
-                                                                                                              $"重迭最大个数{data_Inspect.JobSheet_PatternMatch_Data.MaxOverLap} ," +
-                                                                                                              $"贪婪度 {data_Inspect.JobSheet_PatternMatch_Data.Greediness}" );
-            }
-           if(data_Inspect.JobSheet_Blob_Data != null)
-            {
-                tView_Content.Nodes[SheetNo_Blob].Nodes.Add($"阈值{data_Inspect.JobSheet_Blob_Data.Threshold} 尺度 {data_Inspect.JobSheet_Blob_Data.HorizontalMeasureLength}");
-            }                    
+           //if(data_Inspect.JobSheet_PatternMatch_Data != null)
+           // {
+           //     tView_Content.Nodes[SheetNo_PatternMatch].Nodes.Add($"开始角度 {data_Inspect.JobSheet_PatternMatch_Data.AngleStart} ," +
+           //                                                                                                   $"角度范围 {data_Inspect.JobSheet_PatternMatch_Data.AngleExtent} ," +
+           //                                                                                                   $"最小匹配值 {data_Inspect.JobSheet_PatternMatch_Data.MinScore} ," +
+           //                                                                                                   $"最小规模 {data_Inspect.JobSheet_PatternMatch_Data.MinScale} ," +
+           //                                                                                                   $"最大规模 {data_Inspect.JobSheet_PatternMatch_Data.MaxScale} ,\r\n" +
+           //                                                                                                   $"匹配最大个数 {data_Inspect.JobSheet_PatternMatch_Data.NumMatches} ," +
+           //                                                                                                   $"金字塔层数 {data_Inspect.JobSheet_PatternMatch_Data.NumLevels}  ," +
+           //                                                                                                   $"亚像素精度 {data_Inspect.JobSheet_PatternMatch_Data.SubPixel}  ," +
+           //                                                                                                   $"重迭最大个数{data_Inspect.JobSheet_PatternMatch_Data.MaxOverLap} ," +
+           //                                                                                                   $"贪婪度 {data_Inspect.JobSheet_PatternMatch_Data.Greediness}" );
+           // }
+           //if(data_Inspect.JobSheet_Blob_Data != null)
+           // {
+           //     tView_Content.Nodes[SheetNo_Blob].Nodes.Add($"阈值{data_Inspect.JobSheet_Blob_Data.Threshold} 尺度 {data_Inspect.JobSheet_Blob_Data.HorizontalMeasureLength}");
+           // }                    
         }
 
         private void TView_Content_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if(data_Inspect == null)
+            {
+                SolveWare.Core.ShowMsg("请选择一个视觉物件");
+                return;
+            }
+
+            if ((sender as TreeView).SelectedNode == null) return;
+
             string nodeName = (sender as TreeView).SelectedNode.Text;
             
             switch(nodeName)
             {
                 case NodeName_BrightNess:
-                    IView view_BrightNess = new Form_InspectKit_Brightness();
-                    view_BrightNess.Setup(data_Inspect);
-                    (view_BrightNess as Form).ShowDialog();
+                    ShowDialog_JobSheet(new Form_InspectKit_Brightness());
                     break;
                 case NodeName_Lighting:
-                    IView view_Lighting = new Form_InspectKit_Lighting();
-                    view_Lighting.Setup(data_Inspect);
-                    (view_Lighting as Form).ShowDialog();
+                    ShowDialog_JobSheet(new Form_InspectKit_Lighting());
                     break;
                 case NodeName_PatternMatch:
-                    IView view_PatternMatch = new Form_InspectKit_PatternMatch();
-                    view_PatternMatch.Setup(data_Inspect);
-                    (view_PatternMatch as Form).ShowDialog();
+                    ShowDialog_JobSheet(new Form_InspectKit_PatternMatch());
                     break;
                 case NodeName_Blob:
+                    ShowDialog_JobSheet(new Form_InspectKit_PatternMatch());
                     break;
                 
                 default:
-                    DialogResult result = MessageBox.Show($"是否删除\r\n{nodeName}", "提问", MessageBoxButtons.YesNoCancel);
+                    TreeNode treeNode = (sender as TreeView).SelectedNode;
+                    if (tView_Content.Nodes[SheetNo_Brightness].Nodes.Contains(treeNode)) ShowDialog_JobSheet(new Form_InspectKit_Brightness());
+                    else if (tView_Content.Nodes[SheetNo_Lighting].Nodes.Contains(treeNode)) ShowDialog_JobSheet(new Form_InspectKit_Lighting());
+                    else if (tView_Content.Nodes[SheetNo_PatternMatch].Nodes.Contains(treeNode)) ShowDialog_JobSheet(new Form_InspectKit_PatternMatch());
+                    else if (tView_Content.Nodes[SheetNo_Blob].Nodes.Contains(treeNode)) ShowDialog_JobSheet(new Form_InspectKit_PatternMatch());
                     break;
 
             }
+            MakeTreeView();
             this.tView_Content.ExpandAll();
+        }
+        private void ShowDialog_JobSheet(IView form)
+        {      
+            form.Setup(data_Inspect);
+            (form as Form).Show();
         }
 
         private void cmb_Selector_InspectKit_SelectionChangeCommitted(object sender, EventArgs e)
@@ -155,7 +172,73 @@ namespace MF900_SolveWare.Views.Child
                 
                 if (job == null) return;
                 this.Setup(job);
+                MakeTreeView();
 
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+        }
+
+        private void btn_Save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(this.job_Inspect == null)
+                {
+                    SolveWare.Core.ShowMsg("请选择一个视觉物件");
+                    return;
+                }
+
+                this.job_Inspect.Save(true);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                try
+                {
+                    if (this.ctrl_Camera.Controller == null) return;
+                    this.ctrl_Camera.Controller.Learn_Pattern();
+
+                    if (this.ctrl_Camera.Controller == null) return;
+                    HImage obj = this.ctrl_Camera.Controller.Load_Model();
+                    this.ctrl_Camera.Controller.Adapt_Window_And_Attach(obj, this.hWindow_Pattern_Template);
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.ShowMsg(ex.Message);
+                }
+            });
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ctrl_Camera.Controller == null) return;
+                HObject obj = this.ctrl_Camera.Controller.Load_Model();
+                this.hWindow_Pattern_Template.HalconWindow.DispObj(obj);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+        }
+
+        private void btn_Inspect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ctrl_Camera.Controller == null) return;
+                this.ctrl_Camera.Controller.Find_Pattern();
             }
             catch (Exception ex)
             {

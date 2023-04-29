@@ -37,24 +37,23 @@ namespace SolveWare_Service_Tool.Camera.Business
         {
             this.media = obj_Media as Basler.Pylon.Camera;
             BeginEvent();
-            if (Open()) Assign_Media_Related_Parameter();
         }
-        private void Assign_Media_Related_Parameter()
+        public void Assign_Media_Related_Parameter()
         {
             //判断
-            if(this.media == null)
+            if(this.media == null && !isSimulation)
             {
                 SolveWare.Core.MMgr.Infohandler.LogMessage("无相机物件", true, true);
                 return;
             }
 
             //实行工作
-            minimum_ExposoureTime = (int)media.Parameters[PLGigECamera.AutoExposureTimeAbsLowerLimit].GetMinimum();
-            maximum_ExposoureTime = (int)media.Parameters[PLGigECamera.AutoExposureTimeAbsUpperLimit].GetMaximum();
-            minimum_Gain = (int)media.Parameters[PLGigECamera.AutoGainRawLowerLimit].GetMinimum();
-            maximum_Gain = (int)media.Parameters[PLGigECamera.AutoGainRawUpperLimit].GetMaximum();
-            imagePartX = (int)media.Parameters[PLGigECamera.SensorWidth].GetValue();
-            imagePartY = (int)media.Parameters[PLGigECamera.SensorHeight].GetValue();
+            minimum_ExposoureTime = isSimulation ? 0: (int)media.Parameters[PLGigECamera.AutoExposureTimeAbsLowerLimit].GetMinimum();
+            maximum_ExposoureTime = isSimulation ? 100000 : (int)media.Parameters[PLGigECamera.AutoExposureTimeAbsUpperLimit].GetMaximum();
+            minimum_Gain = isSimulation? 0: (int)media.Parameters[PLGigECamera.AutoGainRawLowerLimit].GetMinimum();
+            maximum_Gain = isSimulation ? 100000 : (int)media.Parameters[PLGigECamera.AutoGainRawUpperLimit].GetMaximum();
+            imagePartX =isSimulation ? 1920:  (int)media.Parameters[PLGigECamera.SensorWidth].GetValue();
+            imagePartY = isSimulation ? 1080: (int)media.Parameters[PLGigECamera.SensorHeight].GetValue();
             worldCenterX = imagePartX / 2;
             worldCenterY = imagePartY / 2;
         }
@@ -122,22 +121,32 @@ namespace SolveWare_Service_Tool.Camera.Business
                         HOperatorSet.GenImage1(out ho_Image, "byte", (HTuple)grabResult.Width, (HTuple)grabResult.Height, (HTuple)latestFrameAddress);
 
                         HobjectToHimage(ho_Image, ref this.image);
-                        OnPropertyChanged(nameof(Image));
+                        if(image != null) 
+                        {
+                            OnPropertyChanged(nameof(Image));
+                            this.grabTime_ms = (int)media.Parameters[PLGigECamera.ResultingFrameRateAbs].GetValue();
+                            OnPropertyChanged(nameof(GrabTime_ms));
+                        }
+
+                        
+                        //if (hWindow != null)
+                        //    hWindow.DispImage(image);
 
                         //if (this.WindowHost != null) HOperatorSet.DispImage(image, WindowHost);
                         //TimeSpan ts = DateTime.Now - st;
-                        double result = sWatch.ElapsedMilliseconds;
-                        timeTick = (int)(1000 / result * 1000) / 1000;
-                        this.GrabTimeInfo = timeTick.ToString("F2");
-                        sWatch.Restart();
+                        
+                        //double result = sWatch.ElapsedMilliseconds;
+                        //timeTick = (int)(1000 / result * 1000) / 1000;
+                        //this.GrabTimeInfo = timeTick.ToString("F2");
+                        //sWatch.Restart();
 
-                        index++;
-                        if (index >= 15)
-                        {
-                            this.grabTime_ms = (int)timeTick;
-                            OnPropertyChanged(nameof(this.GrabTime_ms));
-                            index = 0;
-                        }
+                        //index++;
+                        //if (index >= 15)
+                        //{
+                        //    this.grabTime_ms = (int)timeTick;
+                        //    OnPropertyChanged(nameof(this.GrabTime_ms));
+                        //    index = 0;
+                        //}
 
                     }
                 }
@@ -148,7 +157,7 @@ namespace SolveWare_Service_Tool.Camera.Business
             }
             finally
             {
-                e.DisposeGrabResultIfClone();
+                //e.DisposeGrabResultIfClone();
             }
         }
         private void HobjectToHimage(HObject hobj, ref HImage img)
@@ -393,7 +402,10 @@ namespace SolveWare_Service_Tool.Camera.Business
                     sw.Start();
                     while(true)
                     {
-                        if (media.StreamGrabber.IsGrabbing == false) break;
+                        if (media.StreamGrabber.IsGrabbing == false)
+                        {
+                            break;
+                        }
                         Thread.Sleep(20);
 
                         if(sw.ElapsedMilliseconds > 5000)
@@ -402,6 +414,10 @@ namespace SolveWare_Service_Tool.Camera.Business
                             break;
                         }
                     }
+
+                    media.Parameters[PLGigECamera.AcquisitionMode].SetValue(PLGigECamera.AcquisitionMode.SingleFrame);
+                    media.StreamGrabber.Start(1, GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
+
 
                 } while (false);
             }

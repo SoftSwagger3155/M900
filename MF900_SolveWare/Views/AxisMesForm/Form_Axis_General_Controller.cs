@@ -22,6 +22,15 @@ namespace MF900_SolveWare.Views.AxisMesForm
             MakeGroupBox();
         }
 
+        protected override CreateParams CreateParams 
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
 
         public void Setup<TObj>(TObj obj)
         {
@@ -50,7 +59,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             (form as Form).TopLevel = false;
             (form as Form).Visible = true;
-            (form as Form).Width = 600;
+            (form as Form).Width = 1125;
             (form as Form).Height = 50;
             (form as Form).Dock = DockStyle.Top;
             (form as Form).FormBorderStyle = FormBorderStyle.None;

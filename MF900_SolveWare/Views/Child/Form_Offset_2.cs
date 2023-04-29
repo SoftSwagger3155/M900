@@ -219,7 +219,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Start_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -296,7 +296,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Do_Job_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -378,7 +378,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Second_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -435,7 +435,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Do_Inspect_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -467,7 +467,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Save_Inspect_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -498,7 +498,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Go_Inspect_Pos_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -642,7 +642,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Offset_Go_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -673,7 +673,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Offset_Return_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try

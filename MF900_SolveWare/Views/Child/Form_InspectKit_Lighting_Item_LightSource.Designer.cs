@@ -28,73 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.rdo_On = new System.Windows.Forms.RadioButton();
-            this.rdo_Off = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Location = new System.Drawing.Point(21, 11);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(60, 20);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "选择";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(89, 11);
+            this.label1.Location = new System.Drawing.Point(89, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(217, 20);
-            this.label1.TabIndex = 1;
+            this.label1.Size = new System.Drawing.Size(126, 20);
+            this.label1.TabIndex = 3;
             this.label1.Text = "物件: IO";
             // 
-            // rdo_On
+            // checkBox1
             // 
-            this.rdo_On.AutoSize = true;
-            this.rdo_On.Location = new System.Drawing.Point(259, 8);
-            this.rdo_On.Name = "rdo_On";
-            this.rdo_On.Size = new System.Drawing.Size(67, 19);
-            this.rdo_On.TabIndex = 2;
-            this.rdo_On.TabStop = true;
-            this.rdo_On.Text = "开/ON";
-            this.rdo_On.UseVisualStyleBackColor = true;
+            this.checkBox1.Location = new System.Drawing.Point(21, 10);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(60, 20);
+            this.checkBox1.TabIndex = 2;
+            this.checkBox1.Text = "选择";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // rdo_Off
+            // trackBar1
             // 
-            this.rdo_Off.AutoSize = true;
-            this.rdo_Off.Location = new System.Drawing.Point(389, 7);
-            this.rdo_Off.Name = "rdo_Off";
-            this.rdo_Off.Size = new System.Drawing.Size(75, 19);
-            this.rdo_Off.TabIndex = 3;
-            this.rdo_Off.TabStop = true;
-            this.rdo_Off.Text = "关/OFF";
-            this.rdo_Off.UseVisualStyleBackColor = true;
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.Location = new System.Drawing.Point(318, 9);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(303, 20);
+            this.trackBar1.TabIndex = 4;
             // 
-            // Form_InspectKit_Lighting_Item_LightSource
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(232, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "数值: 255";
+            // 
+            // Form_InspectKit_Lighting_Item_IO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 38);
-            this.Controls.Add(this.rdo_Off);
-            this.Controls.Add(this.rdo_On);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form_InspectKit_Lighting_Item_LightSource";
-            this.Text = "Form_InspectKit_Lighting_Item_LightSource";
+            this.Name = "Form_InspectKit_Lighting_Item_IO";
+            this.Text = "Form_InspectKit_Lighting_Item_IO";
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton rdo_On;
-        private System.Windows.Forms.RadioButton rdo_Off;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -24,6 +24,15 @@ namespace MF900_SolveWare.Views.AxisMesForm
         {
             InitializeComponent();
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
 
         AxisBase axis;
         public void Setup<TObj>(TObj obj)
@@ -34,21 +43,25 @@ namespace MF900_SolveWare.Views.AxisMesForm
             this.ckb_Servo_Switch.Checked = axis.IsServoOn;
             this.txb_AbsolutePos.Text = "0";
             this.txb_RelativePos.Text = "0";
-
+            this.cmb_VelPctSelect.SelectedIndex = 2;
           
             this.ckb_Servo_Switch.CheckedChanged -= Ckb_Servo_Switch_CheckedChanged;
             this.ckb_Servo_Switch.CheckedChanged += Ckb_Servo_Switch_CheckedChanged;
         }
 
         CancellationTokenSource source = null;
-        AutoResetEvent stopFlag = new AutoResetEvent(false);
+        //AutoResetEvent stopFlag = new AutoResetEvent(false);
         private void DataBinding()
         {
-            source = new CancellationTokenSource();
+            if (source == null) source = new CancellationTokenSource();
             Task task = new Task(() =>
             {
                 while (!source.IsCancellationRequested)
                 {
+                    Thread.Sleep(5);
+                    if (!this.IsHandleCreated)
+                        continue;
+
                     this.Refresh_UI_Item(lbl_CurrentPhysicalPos, () =>
                     {
                         lbl_CurrentPhysicalPos.Text = $"{this.axis.CurrentPhysicalPos.ToString("F3")}";
@@ -58,10 +71,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         Color bcolor = this.axis.IsOrg ? Color.Green : Color.Red;
                         this.lbl_Lmt_Negative.BackColor = bcolor;
                     });
-                
-                    Thread.Sleep(5);
                 }
-                stopFlag.Set();
+                //stopFlag.Set();
 
             }, source.Token, TaskCreationOptions.LongRunning);
             task.Start();
@@ -84,10 +95,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
         #region Event
         private void btn_Jog_Positive_MouseDown(object sender, MouseEventArgs e)
         {
+            double vel = 0;
+            vel = Convert.ToDouble(cmb_VelPctSelect.SelectedItem) > 0.3 ? 0.3 : Convert.ToDouble(cmb_VelPctSelect.SelectedItem);
             try
             {
                 string msg = string.Empty;
-                axis.Jog(true, ref msg);
+                Mission_Report context = axis.Jog(true, ref msg, vel);
+                if (context.NotPass(true)) return; 
             }
             catch (Exception ex)
             {
@@ -109,10 +123,13 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Jog_Negative_MouseDown(object sender, MouseEventArgs e)
         {
+            double vel = 0;
+            vel = Convert.ToDouble(cmb_VelPctSelect.SelectedItem) > 0.3 ? 0.3 : Convert.ToDouble(cmb_VelPctSelect.SelectedItem);
             try
             {
                 string msg = string.Empty;
-                axis.Jog(false, ref msg);
+                Mission_Report context = axis.Jog(false, ref msg, vel);
+                if (context.NotPass(true)) return;
             }
             catch (Exception ex)
             {
@@ -134,7 +151,9 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Go_Absolute_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            double velocity = Convert.ToDouble(cmb_VelPctSelect.SelectedItem);
+
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -147,7 +166,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
-                        context = axis.MoveTo(double.Parse(txb_AbsolutePos.Text));
+                        context = axis.MoveTo(double.Parse(txb_AbsolutePos.Text), velocity);
                         context.NotPass(true);
 
                     } while (false);
@@ -163,7 +182,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Go_Relative_Positive_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            double velPct = Convert.ToDouble(cmb_VelPctSelect.SelectedItem);
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -176,7 +196,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
-                        context = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text));
+                        context = axis.MoveRelative(1 * double.Parse(txb_RelativePos.Text), velPct);
                         context.NotPass(true);
 
                     } while (false);
@@ -192,7 +212,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Go_Relative_Negative_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            double velPct = Convert.ToDouble(cmb_VelPctSelect.SelectedItem);
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -205,7 +226,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
                             break;
                         }
 
-                        context = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text));
+                        context = axis.MoveRelative(-1 * double.Parse(txb_RelativePos.Text), velPct);
                         context.NotPass(true);
 
                     } while (false);
@@ -222,7 +243,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void btn_Home_Click(object sender, EventArgs e)
         {
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -245,11 +266,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
 
         private void Form_Axis_Simple_Controller_Horizontal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (source == null) return;
-            source.Cancel();
-
-            stopFlag.WaitOne(100);
-            source = null;
+            if (source != null) source.Cancel();
+            if (cts != null) cts.Cancel();
+            
+            //stopFlag.WaitOne(100);
+            //source = null;
         }
 
         private bool Check_Machine_Status()
@@ -294,26 +315,57 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void Form_Axis_Simple_Controller_Horizontal_Load(object sender, EventArgs e)
         {
             DataBinding();
-            if(axis != null)
+            //Mointor_RealTimeVelocity();
+            if (axis != null)
             {
-                this.ckb_Is_Jog_Monitoring.Checked = axis.Is_Jog_Monitoring;
+                this.ckb_Is_Jog_Monitoring.Checked = axis.Is_Safe_Checking;
             }
+
+            
+        }
+
+        private void Mointor_RealTimeVelocity()
+        {
+            if (cts == null) cts = new CancellationTokenSource();
+            Task.Factory.StartNew(() =>
+            {
+                ReadTimeRunVel();
+            }, cts.Token);
         }
 
         private void ckb_Is_Jog_Monitoring_CheckedChanged(object sender, EventArgs e)
         {
             if (this.axis != null)
-                axis.Is_Jog_Monitoring = (sender as CheckBox).Checked;
+                axis.Is_Safe_Checking = (sender as CheckBox).Checked;
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        public void ReadTimeRunVel()
         {
+            while (!cts.IsCancellationRequested)
+            {
+                Thread.Sleep(5);
+                if (!this.IsHandleCreated)
+                    continue;
+                try
+                {
+                    this.Refresh_UI_Item(lbl_RunVel, () =>
+                    {
+                        lbl_RunVel.Text = axis.Get_RunVel().ToString();
+                    });
+                }
+                catch (Exception ex)
+                {
 
+                }
+                Thread.Sleep(5);
+            }
         }
-
-        private void txb_AbsolutePos_TextChanged(object sender, EventArgs e)
+        CancellationTokenSource cts;
+        private void Form_Axis_Simple_Controller_Horizontal_Shown(object sender, EventArgs e)
         {
-
+            
         }
+
+ 
     }
 }

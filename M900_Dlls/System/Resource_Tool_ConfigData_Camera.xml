@@ -3,9 +3,10 @@
   <ConfigData_Camera>
     <Name>上相机</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Id_Camera>S_Camera</Id_Camera>
     <ImagePart_X>1280</ImagePart_X>
     <ImagePart_Y>1080</ImagePart_Y>
-    <IsSimulation>false</IsSimulation>
+    <IsSimulation>true</IsSimulation>
     <MasterDriver>Basler</MasterDriver>
     <MMperPixel_X>0</MMperPixel_X>
     <MMperPixel_Y>0</MMperPixel_Y>
@@ -14,6 +15,7 @@
   <ConfigData_Camera>
     <Name>下相机</Name>
     <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Id_Camera>使用者定义</Id_Camera>
     <ImagePart_X>1280</ImagePart_X>
     <ImagePart_Y>1080</ImagePart_Y>
     <IsSimulation>true</IsSimulation>

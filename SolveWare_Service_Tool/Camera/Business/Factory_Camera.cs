@@ -30,42 +30,47 @@ namespace SolveWare_Service_Tool.Camera.Business
             var master = (SolveWare.Core.MMgr as MainManagerBase).MasterDriver as MasterDriverManager;
             bool simulation = false;
 
-            //驱动模拟 马达模拟
-            if (master.Config.Is_Simulation_Motor || config.IsSimulation)
-            {
-                simulation = true;
-            }
-            //驱动正常 马达摸拟
-            else if (!master.Config.Is_Simulation_Motor && config.IsSimulation)
-            {
-                simulation = true;
-            }
 
             switch (config.MasterDriver)
             {
                 case Master_Driver_Camera.Basler:
-                    if (simulation) return new Camera_Media_Basler(config.Camera_Name, simulation);
                     List<Basler.Pylon.ICameraInfo> allCameraInfos = Basler.Pylon.CameraFinder.Enumerate();
                     Basler.Pylon.ICameraInfo iCamInfo = null;
+                    Basler.Pylon.Camera camera;
+
                     if (allCameraInfos.Count > 0)
+                    {   
+                        //由UerDifine Name 来找 相机配队
+                        int index =allCameraInfos.FindIndex(x => x[CameraInfoKey.UserDefinedName] == config.Id_Camera);
+                        if(index < 0)
+                        {
+                            simulation = true;  
+                        }
+                        else
+                        {
+                            iCamInfo = allCameraInfos[index];
+                            simulation = false; 
+                        } 
+                    }
+                    else
                     {
-                        index_Basler++;
-                        iCamInfo = allCameraInfos[index_Basler];
+                        simulation = true;
                     }
 
-                    Basler.Pylon.Camera camera;
-                    cameraBase = new Camera_Media_Basler(config.Camera_Name, simulation);
-                   
 
-                    if(iCamInfo != null)
+                    cameraBase = new Camera_Media_Basler(config.Name, simulation);
+                    if (iCamInfo != null)
                     {
                         camera = new Basler.Pylon.Camera(iCamInfo);
                         (cameraBase as Camera_Media_Basler).AssignCameraMedia(camera);
-                                 
+                        (cameraBase as Camera_Media_Basler).Open();
+                        (cameraBase as Camera_Media_Basler).Assign_Media_Related_Parameter();
                     }
                     else
                     {
                         (cameraBase as Camera_Media_Basler).AssignCameraMedia(null);
+                        (cameraBase as Camera_Media_Basler).Assign_Media_Related_Parameter();
+                        //SolveWare.Core.ShowMsg($"相机 : {config.Name}, 开启模拟模式");
                     }
                     break;
 

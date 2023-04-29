@@ -1,5 +1,6 @@
 ﻿using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Utility.Heler.Converters;
 using SolveWare_Service_Vision.Inspection.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
@@ -11,12 +12,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SolveWare_Service_Vision.Inspection.JobSheet
 {
     [PairAttribute(typeof(Job_Lighting))]
     public class JobSheet_Lighting : JobSheetDataBase
     {
+        [XmlIgnore]
+        public bool IsSelected { get; set; }
+
+
         [Category("Lighting 参数")]
         [DisplayName("相机名称-Camera Name")]
         [TypeConverter(typeof(StringConverter_DropDown_Camera_Name))]
@@ -34,7 +40,7 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         [Category("Lighting 参数")]
         [DisplayName("IO 光源 触发模式- TriggerMode")]
         [TypeConverter(typeof(StringConverter_DropDown_IOTriggerMode))]
-        public string TriggerMode { get; set; }
+        public string TriggerMode { get; set; } = ConstantProperty.OFF;
 
 
         [Category("Lighting 参数")]

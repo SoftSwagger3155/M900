@@ -1,7 +1,9 @@
 ﻿using MF900_SolveWare.Business;
 using MF900_SolveWare.Resource;
 using SolveWare_Service_Core;
+using SolveWare_Service_Core.Definition;
 using SolveWare_Service_Tool.MasterDriver.Business;
+using SolveWare_Service_Tool.Motor.Base.Abstract;
 using SolveWare_Service_Utility.Extension;
 using SolveWare_Service_Vision;
 using SolveWare_Service_Vision.Controller.Base.Abstract;
@@ -31,29 +33,12 @@ namespace MF900_SolveWare
             SolveWare.Core.MMgr.Initialize();
             SolveWare.Core.MMgr.AssignFSM();
 
+            //Stop Motor
+            var motors = SolveWare.Core.MMgr.Get_Single_Tool_Resource(Tool_Resource_Kind.Motor).Get_All_Items().ToList();
+            motors.ForEach(x => (x as AxisBase).Stop());
 
-            //SolveWare_Service_Vision.UserHWControl control = new SolveWare_Service_Vision.UserHWControl();        
-            //control.Setup(ResourceKey.Top_Camera.GetCamera());
-            //Form form = new Form();
-            //form.FormClosing += (s, e) =>
-            //{
-            //    ResourceKey.Top_Camera.GetCamera().CloseCamera();
-            //};
-            //form.Controls.Add(control);
-            //Application.Run(form);
-            //Application.Run(new MainForm());
-
-            //SolveWare_Service_Vision.UserHWControl control = new SolveWare_Service_Vision.UserHWControl();        
-            //control.Setup(ResourceKey.Top_Camera.GetCamera());
-            //Form form = new Form();
-            //form.FormClosing += (s, e) =>
-            //{
-            //    ResourceKey.Top_Camera.GetCamera().Close();
-            //};
-            //form.Controls.Add(control);
-            //Application.Run(form);
+           
             Application.Run(new MainForm());
-
         }
     }
 }

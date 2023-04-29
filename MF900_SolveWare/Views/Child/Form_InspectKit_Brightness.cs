@@ -28,7 +28,6 @@ namespace MF900_SolveWare.Views.Child
 
         public void Setup<TObj>(TObj obj)
         {
-            if(dataKit == null) { return; }
             this.dataKit = obj as Data_Inspection;
             camera = dataKit.CameraName.GetCamera();
 
@@ -37,34 +36,22 @@ namespace MF900_SolveWare.Views.Child
 
         private void MakeTrackBar()
         {
-            lbl_Exposure_Value.Text = $"数值: {dataKit.JobSheet_Brightness_Data.ExposureTime}";
-            lbl_Gain_Value.Text = $"数值: {dataKit.JobSheet_Brightness_Data.Gain}";
+           
+            lbl_Gain_Minimum.Text = $"最小值 {camera.Minimum_Gain}";
+            lbl_Gain_Maximum.Text = $"最大值 {camera.Maximum_Gain}";
+            lbl_Exposure_Minimum.Text = $"最小值 {camera.Minimum_ExposureTime}";
+            lbl_Exposure_Maximum.Text = $"最大值 {camera.Maximum_ExposureTime}";
+            lbl_Current_Gain.Text = $"增益 : {dataKit.JobSheet_Brightness_Data.Gain}";
+            lbl_Current_Exposure.Text = $"曝光 : {dataKit.JobSheet_Brightness_Data.ExposureTime}";
 
             tBar_Gain.Minimum = camera.Minimum_Gain;
             tBar_Gain.Maximum = camera.Maximum_Gain;
             tBar_Exposure.Minimum = camera.Minimum_ExposureTime;
-            tBar_Exposure.Maximum = camera.Minimum_ExposureTime;
-                        
-            tBar_Gain.TabIndexChanged -= TBar_Gain_TabIndexChanged;
-            tBar_Gain.TabIndexChanged += TBar_Gain_TabIndexChanged;
-            tBar_Exposure.TabIndexChanged -= TBar_Exposure_TabIndexChanged;
-            tBar_Exposure.TabIndexChanged += TBar_Exposure_TabIndexChanged;
-        }
+            tBar_Exposure.Maximum = camera.Maximum_ExposureTime;
 
-        private void TBar_Gain_TabIndexChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(() =>
-            {
-                this.lbl_Gain_Value.Text = $"数值: {(sender as TrackBar).Value.ToString()}";
-            }));
-        }
+            tBar_Gain.Value = dataKit.JobSheet_Brightness_Data.Gain;
+            tBar_Exposure.Value = dataKit.JobSheet_Brightness_Data.ExposureTime;
 
-        private void TBar_Exposure_TabIndexChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(() =>
-            {
-                this.lbl_Exposure_Value.Text = $"数值: {(sender as TrackBar).Value.ToString()}";
-            }));
         }
 
         private void btn_Confirm_Click(object sender, EventArgs e)
@@ -82,6 +69,118 @@ namespace MF900_SolveWare.Views.Child
             catch (Exception ex)
             {
                 SolveWare.Core.MMgr.Infohandler.LogMessage(ex.Message, true);
+            }
+        }
+
+        private void tBar_Exposure_ValueChanged(object sender, EventArgs e)
+        {
+            this.lbl_Exposure_Value.Text = $"{(sender as TrackBar).Value.ToString()}";
+        }
+
+        private void tBar_Gain_ValueChanged(object sender, EventArgs e)
+        {
+            this.lbl_Gain_Value.Text = $"{(sender as TrackBar).Value.ToString()}";
+        }
+
+        
+
+        private void btn_Set_Gain_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(txb_Gain_Value.Text))
+                {
+                    SolveWare.Core.ShowMsg("增益设定数值栏位不得为空");
+                    return;
+                }
+
+                int gain = int.Parse(txb_Gain_Value.Text);
+                if(gain< camera.Minimum_Gain || gain> camera.Maximum_Gain)
+                {
+                    SolveWare.Core.ShowMsg($"增益数值 只接受 {camera.Minimum_Gain} 至 {camera.Maximum_Gain} 之间");
+                    return;
+                }
+
+                
+                this.tBar_Gain.Value = gain;
+
+
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+        }
+
+        private void btn_Set_Exposure_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txb_Exposure_Value.Text))
+                {
+                    SolveWare.Core.ShowMsg("曝光设定数值栏位不得为空");
+                    return;
+                }
+
+                int exposure = int.Parse(txb_Exposure_Value.Text);
+
+                if (exposure < camera.Minimum_ExposureTime || exposure > camera.Maximum_ExposureTime)
+                {
+                    SolveWare.Core.ShowMsg($"曝光数值 只接受 {camera.Minimum_ExposureTime} 至 {camera.Maximum_ExposureTime} 之间");
+                    return;
+                }
+
+                this.tBar_Exposure.Value = exposure;
+
+
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+        }
+
+        private void btn_Update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int gain = int.Parse(this.lbl_Gain_Value.Text);
+                int exposure = int.Parse(this.lbl_Exposure_Value.Text);
+
+                lbl_Current_Gain.Text = $"增益 : {gain}";
+                lbl_Current_Exposure.Text = $"曝光 : {exposure}";
+                
+                dataKit.JobSheet_Brightness_Data.Gain = gain;
+                dataKit.JobSheet_Brightness_Data.ExposureTime = exposure;  
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+        }
+
+        private void btn_Execute_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(camera == null)
+                {
+                    SolveWare.Core.ShowMsg("无相机物件");
+                    return;
+                }
+
+                if (camera.IsSimulation)
+                {
+                    SolveWare.Core.ShowMsg("相机目前是模拟状态");
+                    return;
+                }
+
+                camera.SetExposureTime(dataKit.JobSheet_Brightness_Data.ExposureTime);
+                camera.SetGain(dataKit.JobSheet_Brightness_Data.Gain);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
             }
         }
     }

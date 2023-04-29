@@ -55,14 +55,20 @@ namespace SolveWare_Service_Core.Base.Abstract
             }
         }
 
+
+        [Browsable(false)]
         public string Name { get; set; }
+
+        [Browsable(false)]
         public string Content { get; set; }
 
         protected long id =0;
         [XmlIgnore]
+        [Browsable(false)]
         public long Id { get => id; private set => id =value; }
 
         protected string saveDate = "2023/00/00 00:00:00";
+        [Browsable(false)]
         public string SaveDate
         {
             get=>saveDate;

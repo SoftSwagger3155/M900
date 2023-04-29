@@ -84,8 +84,16 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         {
             get => pointer_Pixel_Info; private set => UpdateProper(ref pointer_Pixel_Info, value);
         }
+        public int ImagePartX
+        {
+            get => imagePartX; private set=> UpdateProper(ref imagePartX, value);
+        }
+        public int ImagePartY
+        {
+            get => imagePartY; private set => UpdateProper(ref imagePartY, value);
+        }
         public bool IsSimulation { get => isSimulation; }
-        public string GrabTimeInfo { get; set; }
+        public string GrabTimeInfo { get; set; } = "0 fps";
 
 
         public abstract bool IsGrabing();

@@ -77,7 +77,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                         SolveWare.Core.ShowMsg("任务完成");
                     }
 
-                    this.SetStatus(context.ErrorCode);
+                    SolveWare.Core.Set_Machine_Status(mContext);
                 });
 
 
@@ -90,12 +90,6 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
             return mContext;
         }
 
-        private void SetStatus(int errorCode)
-        {
-            this.Status = errorCode == ErrorCodes.NoError ? Definition.JobStatus.Done : Definition.JobStatus.Fail;
-            Machine_Status mStatus = errorCode == ErrorCodes.NoError ? Machine_Status.Idle : Machine_Status.Error;
-            SolveWare.Core.MMgr.SetStatus(mStatus);
-        }
         /// <summary>
         /// 一次自动循环
         /// </summary>
@@ -141,7 +135,7 @@ namespace SolveWare_Service_Core.FSM.Base.Abstract
                         SolveWare.Core.ShowMsg("任务完成");
                     }
 
-                    this.SetStatus(context.ErrorCode);
+                    SolveWare.Core.Set_Machine_Status(mContext);
                 });
 
 

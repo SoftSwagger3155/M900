@@ -54,3 +54,11 @@ C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Utility\obj\Debug\SolveWare
 C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.csproj.CopyComplete
 C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.dll
 C:\Users\softs\Desktop\YAMAHA\M901\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.pdb
+C:\Users\softs\Desktop\YAMAHA\M902\M900_Dlls\Info\Log\Log4net.config
+C:\Users\softs\Desktop\YAMAHA\M902\M900_Dlls\SolveWare_Service_Utility.dll
+C:\Users\softs\Desktop\YAMAHA\M902\M900_Dlls\SolveWare_Service_Utility.pdb
+C:\Users\softs\Desktop\YAMAHA\M902\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.csproj.AssemblyReference.cache
+C:\Users\softs\Desktop\YAMAHA\M902\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.csproj.CoreCompileInputs.cache
+C:\Users\softs\Desktop\YAMAHA\M902\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.csproj.CopyComplete
+C:\Users\softs\Desktop\YAMAHA\M902\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.dll
+C:\Users\softs\Desktop\YAMAHA\M902\SolveWare_Service_Utility\obj\Debug\SolveWare_Service_Utility.pdb

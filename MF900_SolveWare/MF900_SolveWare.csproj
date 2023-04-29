@@ -77,9 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Global.cs" />
-    <Compile Include="Business\RecipeHandler.cs" />
-    <Compile Include="Business\SafeProtector.cs" />
+    <Compile Include="Business\YAMAHA.cs" />
     <Compile Include="FSM\Auto\FSM_Auto_MachineEvent.cs" />
     <Compile Include="FSM\Auto\Stations\FSM_Auto_Station.cs" />
     <Compile Include="FSM\Home\Stations\FSM_Home_Table_Station.cs" />
@@ -243,17 +241,17 @@
     <Compile Include="Views\Child\Form_InspectKit_Lighting.Designer.cs">
       <DependentUpon>Form_InspectKit_Lighting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_IO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_IO.Designer.cs">
-      <DependentUpon>Form_InspectKit_Lighting_Item_IO.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.Designer.cs">
       <DependentUpon>Form_InspectKit_Lighting_Item_LightSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_IO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Child\Form_InspectKit_Lighting_Item_IO.Designer.cs">
+      <DependentUpon>Form_InspectKit_Lighting_Item_IO.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Child\Form_InspectKit_PatternMatch.cs">
       <SubType>Form</SubType>
@@ -485,11 +483,11 @@
     <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting.resx">
       <DependentUpon>Form_InspectKit_Lighting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting_Item_IO.resx">
-      <DependentUpon>Form_InspectKit_Lighting_Item_IO.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting_Item_LightSource.resx">
       <DependentUpon>Form_InspectKit_Lighting_Item_LightSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Child\Form_InspectKit_Lighting_Item_IO.resx">
+      <DependentUpon>Form_InspectKit_Lighting_Item_IO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Child\Form_InspectKit_PatternMatch.resx">
       <DependentUpon>Form_InspectKit_PatternMatch.cs</DependentUpon>

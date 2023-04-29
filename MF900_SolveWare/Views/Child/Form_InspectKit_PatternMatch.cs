@@ -1,4 +1,7 @@
-﻿using SolveWare_Service_Core.Base.Interface;
+﻿using HalconDotNet;
+using SolveWare_Service_Core.Base.Interface;
+using SolveWare_Service_Tool.Camera.Base.Abstract;
+using SolveWare_Service_Utility.Extension;
 using SolveWare_Service_Vision.Data;
 using System;
 using System.Collections.Generic;
@@ -16,17 +19,18 @@ namespace MF900_SolveWare.Views.Child
     {
         public Form_InspectKit_PatternMatch()
         {
-            InitializeComponent();
-            Data_Inspection data = new Data_Inspection();
-            pGrid_PatternMatch.SelectedObject = data.JobSheet_PatternMatch_Data;
+            InitializeComponent(); 
         }
 
         Data_Inspection dataKit;
+        CameraMediaBase camera;
         public void Setup<TObj>(TObj obj)
         {
-            dataKit = obj as Data_Inspection;    
-
-            
+            dataKit = obj as Data_Inspection;
+            pGrid_PatternMatch.SelectedObject = dataKit.JobSheet_PatternMatch_Data;
+            //pGrid_Blob.SelectedObject = dataKit.JobSheet_Blob_Data;
+            //camera = dataKit.CameraName.GetCamera();
+            //ctrl_Camera.Setup(camera);  
         }
 
 

@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmb_Selector_Kind = new System.Windows.Forms.ComboBox();
-            this.cmb_Selector_Item = new System.Windows.Forms.ComboBox();
             this.btn_Add = new System.Windows.Forms.Button();
+            this.cmb_Selector_Item = new System.Windows.Forms.ComboBox();
+            this.cmb_Selector_Kind = new System.Windows.Forms.ComboBox();
             this.gpb_Content = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssl_TimeSpent = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssl_Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_Delete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,14 +54,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "光源物件选择";
             // 
-            // cmb_Selector_Kind
+            // btn_Add
             // 
-            this.cmb_Selector_Kind.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmb_Selector_Kind.FormattingEnabled = true;
-            this.cmb_Selector_Kind.Location = new System.Drawing.Point(6, 43);
-            this.cmb_Selector_Kind.Name = "cmb_Selector_Kind";
-            this.cmb_Selector_Kind.Size = new System.Drawing.Size(121, 28);
-            this.cmb_Selector_Kind.TabIndex = 0;
+            this.btn_Add.Location = new System.Drawing.Point(502, 38);
+            this.btn_Add.Name = "btn_Add";
+            this.btn_Add.Size = new System.Drawing.Size(75, 36);
+            this.btn_Add.TabIndex = 2;
+            this.btn_Add.Text = "加入";
+            this.btn_Add.UseVisualStyleBackColor = true;
+            this.btn_Add.Click += new System.EventHandler(this.btn_Add_Click);
             // 
             // cmb_Selector_Item
             // 
@@ -71,20 +73,20 @@
             this.cmb_Selector_Item.Size = new System.Drawing.Size(354, 28);
             this.cmb_Selector_Item.TabIndex = 1;
             // 
-            // btn_Add
+            // cmb_Selector_Kind
             // 
-            this.btn_Add.Location = new System.Drawing.Point(502, 38);
-            this.btn_Add.Name = "btn_Add";
-            this.btn_Add.Size = new System.Drawing.Size(75, 36);
-            this.btn_Add.TabIndex = 2;
-            this.btn_Add.Text = "加入";
-            this.btn_Add.UseVisualStyleBackColor = true;
+            this.cmb_Selector_Kind.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmb_Selector_Kind.FormattingEnabled = true;
+            this.cmb_Selector_Kind.Location = new System.Drawing.Point(6, 43);
+            this.cmb_Selector_Kind.Name = "cmb_Selector_Kind";
+            this.cmb_Selector_Kind.Size = new System.Drawing.Size(121, 28);
+            this.cmb_Selector_Kind.TabIndex = 0;
             // 
             // gpb_Content
             // 
             this.gpb_Content.Location = new System.Drawing.Point(12, 120);
             this.gpb_Content.Name = "gpb_Content";
-            this.gpb_Content.Size = new System.Drawing.Size(932, 450);
+            this.gpb_Content.Size = new System.Drawing.Size(964, 450);
             this.gpb_Content.TabIndex = 1;
             this.gpb_Content.TabStop = false;
             this.gpb_Content.Text = "工作内容";
@@ -97,7 +99,7 @@
             this.tssl_Status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 606);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(957, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1023, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -117,18 +119,29 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(854, 78);
+            this.button1.Location = new System.Drawing.Point(881, 75);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 36);
+            this.button1.Size = new System.Drawing.Size(95, 39);
             this.button1.TabIndex = 3;
             this.button1.Text = "执行";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btn_Delete
+            // 
+            this.btn_Delete.Location = new System.Drawing.Point(780, 75);
+            this.btn_Delete.Name = "btn_Delete";
+            this.btn_Delete.Size = new System.Drawing.Size(95, 39);
+            this.btn_Delete.TabIndex = 4;
+            this.btn_Delete.Text = "删除";
+            this.btn_Delete.UseVisualStyleBackColor = true;
+            this.btn_Delete.Click += new System.EventHandler(this.btn_Delete_Click);
             // 
             // Form_InspectKit_Lighting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 632);
+            this.ClientSize = new System.Drawing.Size(1023, 632);
+            this.Controls.Add(this.btn_Delete);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.gpb_Content);
@@ -155,5 +168,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tssl_TimeSpent;
         private System.Windows.Forms.ToolStripStatusLabel tssl_Status;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_Delete;
     }
 }

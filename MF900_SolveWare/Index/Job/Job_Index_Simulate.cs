@@ -35,19 +35,20 @@ namespace MF900_SolveWare.Index.Job
         public int Current_Row { get; protected set; }
         public int Current_Col { get; protected set; }
         public int Current_No { get; protected set; }
+        public double velPct = 0.1;
 
         public Job_Index_Simulate()
         {
-            
+
         }
-        public Job_Index_Simulate(string name): base(name) { }
-        
+        public Job_Index_Simulate(string name) : base(name) { }
+
         /// <summary>
         /// 安全措施
         /// </summary>
         /// <returns></returns>
         public Mission_Report Do_Save_Prevention()
-        {         
+        {
             Mission_Report mReport = new Mission_Report();
 
             try
@@ -58,7 +59,7 @@ namespace MF900_SolveWare.Index.Job
             }
             catch (Exception ex)
             {
-               
+
             }
 
             return mReport;
@@ -88,14 +89,14 @@ namespace MF900_SolveWare.Index.Job
                     if (context.NotPass()) break;
 
                     //下平台去安全位置 让平台安全上升
-                    context = MotionHelper.Move_Multiple_Motors(
-                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos =0.1}, 
-                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = 0.1});
-                    if(context.NotPass()) break;
+                    context = MotionHelper.Move_Multiple_Motors(velPct,
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_X, Pos = 0.1 },
+                        new Info_Motion { Motor_Name = ResourceKey.Motor_Btm_Y, Pos = 0.1 });
+                    if (context.NotPass()) break;
 
 
                     //上升平台
-                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = this.Data.Pos_Table_Load });
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = this.Data.Pos_Table_Load }, velPct);
                     if (context.NotPass()) break;
 
                     //夹抓关闭
@@ -109,13 +110,13 @@ namespace MF900_SolveWare.Index.Job
                     Thread.Sleep(500);
 
                     //平台下降
-                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = 0.1 });
+                    context = MotionHelper.Move_Motor(new Info_Motion { Motor_Name = ResourceKey.Motor_Table, Pos = 0.1 }, velPct);
                     if (context.NotPass()) break;
 
                     //移动到 Index位置
-                    context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm);
+                    context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm, velPct);
                     if (context.NotPass()) break;
-                                 
+
 
                     //更新最新纪录位置
                     this.Data.Data_Display.Current_No = number;
@@ -153,13 +154,13 @@ namespace MF900_SolveWare.Index.Job
                     context = Do_Save_Prevention();
                     if (context.NotPass()) break;
 
- 
+
                     //移动到 Index位置
-                    context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm);
+                    context = Go_Multiple_PosXY(PosX_Top, PosY_Top, PosX_Btm, PosY_Btm, velPct);
                     if (context.NotPass()) break;
                     //更新最新纪录位置
                     this.Data.Data_Display.Current_No = number;
-                    
+
 
                 } while (false);
             }
@@ -167,7 +168,7 @@ namespace MF900_SolveWare.Index.Job
             {
                 context.Set(ErrorCodes.ActionFailed, ex.Message);
             }
-       
+
             return context;
         }
         /// <summary>
@@ -187,7 +188,7 @@ namespace MF900_SolveWare.Index.Job
             {
                 do
                 {
-                   
+
                     context = Cycle_Go(number);
                     if (context.NotPass()) break;
                     Thread.Sleep(1000);
@@ -208,12 +209,14 @@ namespace MF900_SolveWare.Index.Job
                     //松开夹抓
                     ResourceKey.Op_PCB_Clamp.GetIOBase().Off();
                     Thread.Sleep(500);
+                    if (context.NotPass()) break;
 
                     //缩回 X Y 向
                     ResourceKey.Op_Y_Stretch_Cylinder.GetIOBase().Off();
                     Thread.Sleep(500);
                     ResourceKey.Op_X_Stretch_Cylinder.GetIOBase().Off();
                     Thread.Sleep(500);
+                    if (context.NotPass()) break;
 
                 } while (false);
             }
@@ -281,7 +284,7 @@ namespace MF900_SolveWare.Index.Job
                 msg += ex.Message;
             }
 
-            SolveWare.Core.ShowMsg(msg);    
+            SolveWare.Core.ShowMsg(msg);
         }
 
         public override Mission_Report Do_Job()
@@ -315,9 +318,9 @@ namespace MF900_SolveWare.Index.Job
                     btmPosX += btmOffset.Data.OffsetX;
                     btmPosY += btmOffset.Data.OffsetY;
 
-                    if(Is_Safe_To_Go(topPosX, topPosY, btmPosX, btmPosY))
+                    if (Is_Safe_To_Go(topPosX, topPosY, btmPosX, btmPosY))
                     {
-                       context = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY);
+                        context = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY, velPct);
                         if (context.NotPass()) break;
                     }
                     else
@@ -336,7 +339,7 @@ namespace MF900_SolveWare.Index.Job
         }
         public Mission_Report Return_Offset()
         {
-          Mission_Report context = new Mission_Report();
+            Mission_Report context = new Mission_Report();
             double topPosX = 0;
             double topPosY = 0;
             double btmPosX = 0;
@@ -361,7 +364,7 @@ namespace MF900_SolveWare.Index.Job
 
                     if (Is_Safe_To_Go(topPosX, topPosY, btmPosX, btmPosY))
                     {
-                        context = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY);
+                        context = Go_Multiple_PosXY(topPosX, topPosY, btmPosX, btmPosY, velPct);
                         if (context.NotPass()) break;
                     }
                     else
@@ -419,7 +422,7 @@ namespace MF900_SolveWare.Index.Job
                 else
                 {
                     msg += "不安全位置";
-                    break;  
+                    break;
                 }
 
             } while (false);
@@ -435,7 +438,7 @@ namespace MF900_SolveWare.Index.Job
             double startBaseY = Data.Data_FirstPos.Top_PosY;
             double pitchX = Data.Data_Setup.Pitch_X;
             double pitchY = Data.Data_Setup.Pitch_Y;
-            
+
             switch (Data.Data_Setup.Move_Priority)
             {
                 case IndexPriority.RowFirst:
@@ -452,13 +455,13 @@ namespace MF900_SolveWare.Index.Job
                     Data.Data_Display.Current_X = col + 1;
                     Data.Data_Display.Current_Y = row + 1;
                     break;
-                
+
                 case IndexPriority.ColumnFirst:
                     int totalCol = this.Data.Data_Setup.Total_Nos_Of_X;
                     row = target / totalCol;
                     col = target % totalCol;
-                    
-                    bool is_Odd_Row = (row+1) % 2 == 1;
+
+                    bool is_Odd_Row = (row + 1) % 2 == 1;
                     startBaseX = is_Odd_Row ? startBaseX : (startBaseX + (pitchX * (totalCol - 1)));
 
                     posX = is_Odd_Row ? startBaseX + pitchX * col : startBaseX - pitchX * col;
@@ -469,7 +472,7 @@ namespace MF900_SolveWare.Index.Job
                     Data.Data_Display.Current_No = target + 1;
                     break;
             }
-            
+
         }
         public bool Is_Safe_To_Go(double topPosX, double topPosY, double btmPosX, double btmPosY)
         {
@@ -483,9 +486,9 @@ namespace MF900_SolveWare.Index.Job
                                              btmPosX < btmX.MinDistance_SoftLimit || btmPosX > btmX.MaxDistance_SoftLimit ||
                                              btmPosY < btmY.MinDistance_SoftLimit || btmPosY > btmY.MaxDistance_SoftLimit;
 
-            return isDangerous ==false;
+            return isDangerous == false;
         }
-        private Mission_Report Go_Multiple_PosXY(double topPosX, double topPosY, double btmPosX, double btmPosY)
+        private Mission_Report Go_Multiple_PosXY(double topPosX, double topPosY, double btmPosX, double btmPosY, double velPct)
         {
             Mission_Report context = new Mission_Report();
             try
@@ -503,15 +506,15 @@ namespace MF900_SolveWare.Index.Job
 
                     foreach (var item in jobs)
                     {
-                       Task task = new Task((object obj) =>
+                        Task task = new Task((object obj) =>
                         {
                             Data_Mission_Report data = obj as Data_Mission_Report;
-                            data.Context = MotionHelper.Move_Motor(item);
+                            data.Context = MotionHelper.Move_Motor(item, velPct);
 
                         }, new Data_Mission_Report());
                         tasks.Add(task);
                     }
-                    tasks.ForEach(x=> x.Start());
+                    tasks.ForEach(x => x.Start());
                     Task.WaitAll(tasks.ToArray());
                     context = tasks.Converto_Mission_Report();
 
@@ -545,7 +548,7 @@ namespace MF900_SolveWare.Index.Job
                         Task task = new Task((object obj) =>
                         {
                             var data = obj as Data_Mission_Report;
-                            data.Context = MotionHelper.Move_Motor(job);
+                            data.Context = MotionHelper.Move_Motor(job, velPct);
 
                         }, new Data_Mission_Report());
                         tasks.Add(task);
@@ -559,7 +562,7 @@ namespace MF900_SolveWare.Index.Job
             catch (Exception ex)
             {
                 context.ErrorCode = ErrorCodes.ActionFailed;
-                context.Message = ex.Message;   
+                context.Message = ex.Message;
             }
 
             return context;

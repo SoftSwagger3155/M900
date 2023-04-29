@@ -33,9 +33,9 @@ namespace SolveWare_Service_Vision.Inspection.Business
             get=> offsetY;
         }
 
-        public Job_Inspect(string name):base(name)
+        public Job_Inspect(string name, string cameraName):base(name)
         {
-            
+            this.Data.CameraName = cameraName;
         }
    
         public Mission_Report Do_Blob()
@@ -47,8 +47,8 @@ namespace SolveWare_Service_Vision.Inspection.Business
                 return context; 
             }
 
-            IDataModulePair pair =  Data.JobSheet_Blob_Data.GetModule();
-            context = pair.Do_PairModuleJob(this.Data);
+            //IDataModulePair pair =  Data.JobSheet_Blob_Data.GetModule();
+            //context = pair.Do_PairModuleJob(this.Data);
 
             return context;
         }

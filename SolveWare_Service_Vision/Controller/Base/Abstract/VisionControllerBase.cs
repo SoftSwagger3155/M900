@@ -2,20 +2,25 @@
 using HalconDotNet;
 using SolveWare_Service_Core;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using SolveWare_Service_Vision.ROIs.Base.Abstract;
 using SolveWare_Service_Vision.ROIs.Business;
 using SolveWare_Service_Vision.ROIs.Defintions;
+using SolveWare_Service_Vision.Templates;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SolveWare_Service_Vision.Controller.Base.Abstract
 {
@@ -73,21 +78,24 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
 
 
 
-        protected HTuple image_Row_1;
-        protected HTuple image_Row_2;
-        protected HTuple image_Column_1;
-        protected HTuple image_Column_2;
+      
 
         public void Setup(HWindowControl HWindow, ICameraMedia camera)
         {
             this.hWinCtrol = HWindow;
             this.camrea = camera as CameraMediaBase;
+            Set_Hwindow_Part();
             HObjList = new List<HObjectEntry> ();
             ROIList = new List<ROIBase> ();
             mGC = new GraphicsContext ();
 
             if (hWinCtrol != null) Invoke_HWindow_Related_Event();
             if (camrea != null) Invoke_Media_Related_Event();
+        }
+
+        private void Set_Hwindow_Part()
+        {
+            this.hWinCtrol.ImagePart = new System.Drawing.Rectangle(0, 0, this.camrea.ImagePartX, this.camrea.ImagePartY);
         }
 
         private void Invoke_HWindow_Related_Event()
@@ -167,7 +175,8 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                     ROIList.Add(roiMode);
                     roiMode = null;
                     activeROIidx = ROIList.Count - 1;
-                    Repaint();
+
+                    Repaint_AddROI();
 
                     this.event_Mode = Mouse_Event_Mode.Add_ROI;
                 }
@@ -195,7 +204,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                         event_Mode = Mouse_Event_Mode.Active_Image;
                     }
 
-                    Repaint();
+                    Highlight_Active_ROI();
                 }
                 else if (e.Button == MouseButtons.Right && hImage != null)
                 {
@@ -271,6 +280,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                 this.hWinCtrol.HalconWindow.SetPart(r1, c1, r2, c2);
                 this.hWinCtrol.HalconWindow.ClearWindow();
                 this.hWinCtrol.HalconWindow.DispImage(hImage);
+                if (IsShowCrossLine) GenerateCrossLine();
             }
         }
         private void UpdateCameraInfo(HMouseEventArgs e)
@@ -326,7 +336,8 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             rect.Y = (int)Math.Round((double)image_Row_1);
             hWinCtrol.ImagePart = rect;
 
-            Repaint();
+            ROIList.Clear();
+            Repaint_Movement();
         }
       
         private void Media_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -334,9 +345,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             if (e.PropertyName == nameof(this.camrea.Image))
             { 
                 this.hImage = this.camrea.Image;
-                Adapt_Window();
-                if (IsShowCrossLine) GenerateCrossLine();
-                this.hWinCtrol.HalconWindow.DispImage(hImage);
+                Repaint();
             }
         }
 
@@ -382,12 +391,24 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
 
         public void ClearROIs()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if(ROIList.Count == 0) { return; }
+                if (ROIList[activeROIidx] is ROI_CrossLine) return;
+
+                ROIList.RemoveAt(activeROIidx);
+                Repaint();  
+
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
         }
 
         public int Do_Inspection(IInspectionKit kit)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public void Fit_Image()
@@ -396,6 +417,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             try
             {
                 if (this.hImage == null) return;
+                Adapt_Window(); 
                 AddEntityObject(this.hImage);
                 Repaint();
             }
@@ -441,6 +463,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                 DialogResult result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    this.hWinCtrol.HalconWindow.ClearWindow();
                     this.hImage = new HImage(dialog.FileName);
                     Adapt_Window();
                     hWinCtrol.HalconWindow.DispImage(hImage);
@@ -465,9 +488,13 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
 
         public void WriteText(string msg)
         {
-            throw new NotImplementedException();
+            
         }
 
+        protected HTuple image_Row_1;
+        protected HTuple image_Row_2;
+        protected HTuple image_Column_1;
+        protected HTuple image_Column_2;
         private void Adapt_Window()
         {
             //确认是否有图像
@@ -501,19 +528,120 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             //AddEntityObject(hImage);
         }
 
+        HTuple hRow1;
+        HTuple hRow2;
+        HTuple hCol1;
+        HTuple hCol2;
+        HTuple img_Width = new HTuple();
+        HTuple img_Height = new HTuple();
+        public void Adapt_Window_And_Attach(HImage img, HWindowControl ctrl)
+        {
+            //确认是否有图像
+            if (img == null) return;
+            ctrl.HalconWindow.ClearWindow();
+
+            //获取图像大小
+            HOperatorSet.GetImageSize(img, out img_Width, out img_Height);
+
+            //计算比例
+            double ratioWidth = 1.0 * img_Width / ctrl.Width;
+            double ratioHeight = 1.0 * img_Height / ctrl.Height;
+
+            //设置窗体
+          
+
+            if (ratioWidth >= ratioHeight)
+            {
+                hRow1 = -1.0 * ((ctrl.Height * ratioWidth) - img_Height) / 2;
+                hCol1 = 0;
+                hRow2 = hRow1 + ctrl.Height * ratioWidth;
+                hCol2 = hCol1 + ctrl.Width * ratioWidth;
+            }
+            else
+            {
+                hRow1 = 0;
+                hCol1 = -1.0 * ((ctrl.Width * ratioHeight) - img_Width) / 2;
+                hRow2 = hRow1 + ctrl.Height * ratioHeight ;
+                hCol2 = hCol1 + ctrl.Width * ratioHeight;
+            }
+            ctrl.HalconWindow.SetPart(hRow1, hCol1, hRow2, hCol2);
+
+            ctrl.HalconWindow.DispImage(img);
+            HSystem.SetSystem("flush_graphic", "true");
+
+        }
+
+        public void Repaint_Movement()
+        {
+            try
+            {
+                HSystem.SetSystem("flush_graphic", "false");
+                this.hWinCtrol.HalconWindow.ClearWindow();
+                mGC.stateOfSettings.Clear();
+
+                if (hImage != null)
+                {
+                   
+                    hWinCtrol.HalconWindow.DispImage(hImage);
+                }
+
+                if (IsShowCrossLine)
+                    GenerateCrossLine();
+
+
+                HSystem.SetSystem("flush_graphic", "true");
+
+                this.hWinCtrol.HalconWindow.SetColor("black");
+                this.hWinCtrol.HalconWindow.DispLine(-100.0, -100.0, -101.0, -101.0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void Repaint_AddROI()
+        {
+            try
+            {
+                HSystem.SetSystem("flush_graphic", "false");
+
+             
+                if (IsShowCrossLine)
+                    GenerateCrossLine();
+
+                paintData(this.hWinCtrol.HalconWindow);
+
+                HSystem.SetSystem("flush_graphic", "true");
+
+                this.hWinCtrol.HalconWindow.SetColor("black");
+                this.hWinCtrol.HalconWindow.DispLine(-100.0, -100.0, -101.0, -101.0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public void Repaint()
         {
             try
             {
                 HSystem.SetSystem("flush_graphic", "false");
-                //this.hWinCtrol.HalconWindow.ClearWindow();
-                mGC.stateOfSettings.Clear();
+                this.hWinCtrol.HalconWindow.ClearWindow();
+                //mGC.stateOfSettings.Clear();
 
-                foreach (var entry in HObjList)
+                if(hImage != null)
                 {
-                    mGC.applyContext(this.hWinCtrol.HalconWindow, entry.gContext);
-                    this.hWinCtrol.HalconWindow.DispObj(entry.HObj);
+                    Adapt_Window();
+                    hWinCtrol.HalconWindow.DispImage(hImage);
                 }
+
+                //foreach (var entry in HObjList)
+                //{
+                //    mGC.applyContext(this.hWinCtrol.HalconWindow, entry.gContext);
+                //    this.hWinCtrol.HalconWindow.DispObj(entry.HObj);
+                //}
 
                 if (IsShowCrossLine)
                     GenerateCrossLine();
@@ -528,6 +656,24 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void Highlight_Active_ROI()
+        {
+            if (ROIList.Count > 0)
+            {        
+                if (event_Mode == Mouse_Event_Mode.Add_ROI || event_Mode == Mouse_Event_Mode.Active_ROI)
+                {
+                    this.hWinCtrol.HalconWindow.SetColor(inactiveCol);
+                    this.hWinCtrol.HalconWindow.SetDraw("margin");
+
+                    this.hWinCtrol.HalconWindow.SetColor(activeCol);
+                    ((ROIBase)ROIList[activeROIidx]).draw(this.hWinCtrol.HalconWindow);
+
+                    this.hWinCtrol.HalconWindow.SetColor(activeHdlCol);
+                    ((ROIBase)ROIList[activeROIidx]).displayActive(this.hWinCtrol.HalconWindow);
+                }
             }
         }
 
@@ -560,6 +706,84 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             }
         }
 
+        public void Learn_Pattern()
+        {
+            HObject ho_ImageReduced = new HObject();
+            HObject ho_Circle = new HObject();
+            HTuple hv_ModelID = new HTuple();
+            HImage saveImage = new HImage();
+            HTuple tempArea = new HTuple();
+            HTuple tempRow = new HTuple();
+            HTuple tempcol = new HTuple();
+
+            ROI_Circle circle = (ROIList[activeROIidx] as ROI_Circle);
+            HRegion cirRegion  = new HRegion();
+            cirRegion.GenCircle((HTuple)circle.MidR, (HTuple)circle.MidC, (HTuple)circle.Radius1);
+            HOperatorSet.GenCircle(out ho_Circle, circle.MidR, circle.MidC, circle.Radius1);
+         
+            
+            HOperatorSet.AreaCenter(ho_Circle, out tempArea, out tempRow, out tempcol);
+            HOperatorSet.AreaCenter(this.hImage, out tempArea, out tempRow, out tempcol);
+            HOperatorSet.ReduceDomain(this.hImage, ho_Circle, out ho_ImageReduced);
+            HOperatorSet.AreaCenter(hImage, out tempArea, out tempRow, out tempcol);
+
+            HOperatorSet.AreaCenter(ho_ImageReduced, out tempArea, out tempRow, out tempcol);
+            HOperatorSet.CreateScaledShapeModel(ho_ImageReduced, "auto", -0.39, 0.79, "auto",
+                0.5, 1.1, "auto", "auto", "use_polarity", "auto", "auto", out hv_ModelID);
+
+            HobjectToHimage(ho_ImageReduced, ref saveImage);
+            string fileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.shm");
+            string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.jpg");
+            HOperatorSet.WriteShapeModel(hv_ModelID, fileName);
+            HOperatorSet.WriteImage(ho_ImageReduced, "jpg", 0, bitmap_FileName);
+        }
+        public Mission_Report Find_Pattern()
+        {
+            Mission_Report context = new Mission_Report();
+            try
+            {
+                HTuple hv_ModelID = new HTuple();
+                string fileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.shm");
+                HOperatorSet.ReadShapeModel(fileName, out hv_ModelID);
+
+                new Template_Scaled_PatternMatch().Execute(this.hWinCtrol.HalconWindow, hv_ModelID, this.hImage);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+
+            return context;
+        }
+
+        public HImage Load_Model()
+        {
+            HObject ho_Img = new HObject(); 
+            HImage hImg = new HImage(); 
+            string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.jpg");
+            HOperatorSet.ReadImage(out ho_Img, bitmap_FileName);
+
+            HobjectToHimage(ho_Img, ref hImg);
+
+            return hImg;
+        }
+     
+        //函数原型 
+        public void HobjectToHimage(HObject hobject, ref HImage image)
+        {
+            HTuple pointer, type, width, height;
+            HOperatorSet.GetImagePointer1(hobject, out pointer, out type, out width, out height);
+            image.GenImage1(type, width, height, pointer);
+        }
+
+
+        //转换彩色图像的方法 
+        public void HobjectToRGBHimage(HObject hobject, ref HImage image)
+        {
+            HTuple pointerRed, pointerGreen, pointerBlue, type, width, height;
+            HOperatorSet.GetImagePointer3(hobject, out pointerRed, out pointerGreen, out pointerBlue, out type, out width, out height);
+            image.GenImage3(type, width, height, pointerRed, pointerGreen, pointerBlue);
+        }
         //protected HWindowControl HWindow;
         //protected CameraBase cameraBase;
         //protected List<HObjectEntry> HObjList;

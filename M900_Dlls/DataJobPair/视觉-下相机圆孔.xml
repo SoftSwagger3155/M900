@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Data_InspectionKit xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Data_Inspection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SaveDate>2023/00/00 00:00:00</SaveDate>
   <JobSheet_Brightness_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
     <Gain>0</Gain>
     <ExposureTime>0</ExposureTime>
   </JobSheet_Brightness_Data>
   <JobSheet_Lighting_Datas />
   <JobSheet_SearchArea_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
     <Camera_Name>0</Camera_Name>
     <Row_Y1>0</Row_Y1>
     <Column_X1>0</Column_X1>
@@ -13,6 +16,7 @@
     <Column_X2>0</Column_X2>
   </JobSheet_SearchArea_Data>
   <JobSheet_PatternMatch_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
     <AngleStart>0</AngleStart>
     <AngleExtent>0</AngleExtent>
     <MinScore>0</MinScore>
@@ -25,6 +29,7 @@
     <Greediness>0</Greediness>
   </JobSheet_PatternMatch_Data>
   <JobSheet_Blob_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
     <Threshold>0</Threshold>
     <VerticalMeasureLength>0</VerticalMeasureLength>
     <HorizontalMeasureLength>0</HorizontalMeasureLength>
@@ -33,4 +38,4 @@
   <CenterX>0</CenterX>
   <CenterY>0</CenterY>
   <Angle>0</Angle>
-</Data_InspectionKit>
+</Data_Inspection>

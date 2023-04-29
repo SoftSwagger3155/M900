@@ -1,6 +1,7 @@
 ﻿using HalconDotNet;
 using SolveWare_Service_Core.Attributes;
 using SolveWare_Service_Core.Base.Abstract;
+using SolveWare_Service_Utility.Heler.Converters;
 using SolveWare_Service_Vision.Inspection.Base.Abstract;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using SolveWare_Service_Vision.Inspection.Business;
@@ -22,6 +23,7 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
             
         }
 
+        [Browsable(false)]
         public string ModelID { get; set; }
      
         [Category("Pattern Match 参数")]
@@ -50,7 +52,8 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
 
         [Category("Pattern Match 参数")]
         [DisplayName("金字塔层数-Num Levels")]
-        public double NumLevels { get; set; }
+        [TypeConverter(typeof(StringConverter_DropDown_NumLevels))]
+        public string NumLevels { get; set; }
 
         [Category("Pattern Match 参数")]
         [DisplayName("亚像素精度-SubPixel")]
@@ -64,9 +67,28 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         [DisplayName("贪婪度-Greediness")]
         public double Greediness { get; set; }
 
+        [Category("Blob 参数")]
+        [DisplayName("Threshold 阈值")]
+        public int Threshold { get; set; }
+
+        [Category("Blob 参数")]
+        [DisplayName("Vertical Measure Length 垂直切线")]
+        public int VerticalMeasureLength { get; set; }
+
+        [Category("Blob 参数")]
+        [DisplayName("Horizontal Measure Length 平行切线")]
+        public int HorizontalMeasureLength { get; set; }
+
+        [Category("Blob 参数")]
+        [DisplayName("Measure Sigma 高斯滤波函数")]
+        public int MeasureSigma { get; set; }
+
         [XmlIgnore]
+        [Browsable(false)]
         public HTuple Hv_WindowHandle { get; set; }
 
+        [XmlIgnore]
+        [Browsable(false)]
         public HObject Ho_HImage { get; set; } 
     }
 }

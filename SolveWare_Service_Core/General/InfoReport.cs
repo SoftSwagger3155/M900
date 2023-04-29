@@ -26,8 +26,8 @@ namespace SolveWare_Service_Core.General
     {
         public Data_Mission_Report()
         {
-            Context = new Mission_Report();
+            
         }
-        public Mission_Report Context { get; set; }
+        public Mission_Report Context = new Mission_Report();
     }
 }

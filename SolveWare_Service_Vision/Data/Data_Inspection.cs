@@ -24,7 +24,7 @@ namespace SolveWare_Service_Vision.Data
         public List<JobSheet_Lighting> JobSheet_Lighting_Datas { get; set; }
         public JobSheet_SearchArea JobSheet_SearchArea_Data { get; set; }
         public JobSheet_PatternMatch JobSheet_PatternMatch_Data { get; set; }
-        public JobSheet_Blob JobSheet_Blob_Data { get; set; }
+        //public JobSheet_Blob JobSheet_Blob_Data { get; set; }
         public double CenterX { get; set; }
         public double CenterY { get; set; }
         public double Angle { get; set; }
@@ -41,7 +41,7 @@ namespace SolveWare_Service_Vision.Data
             JobSheet_Lighting_Datas = new List<JobSheet_Lighting>(); ;
             JobSheet_SearchArea_Data = new JobSheet_SearchArea() { InspectKitData_Name = Name };
             JobSheet_PatternMatch_Data = new JobSheet_PatternMatch() { InspectKitData_Name = Name };
-            JobSheet_Blob_Data = new JobSheet_Blob() { InspectKitData_Name = Name };
+            //JobSheet_Blob_Data = new JobSheet_Blob() { InspectKitData_Name = Name };
         } 
     }
 }

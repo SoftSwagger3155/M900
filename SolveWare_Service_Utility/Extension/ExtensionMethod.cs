@@ -24,6 +24,7 @@ namespace SolveWare_Service_Utility.Extension
     {
         public static void OneNotchUp<TObj>(TObj obj, ref IList<TObj> objs, ref int selectedIndex)
         {
+
             int index = objs.ToList().FindIndex(x => x.Equals(obj));
 
             if (index <= 0)

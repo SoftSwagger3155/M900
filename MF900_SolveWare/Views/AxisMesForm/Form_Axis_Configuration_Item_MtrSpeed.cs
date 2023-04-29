@@ -45,7 +45,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
         }
 
         CancellationTokenSource source = null;
-        AutoResetEvent stopFlag = new AutoResetEvent(false);
         private void DataBinding()
         {
            source = new CancellationTokenSource();
@@ -53,6 +52,11 @@ namespace MF900_SolveWare.Views.AxisMesForm
             {
                 while(!source.IsCancellationRequested)
                 {
+                    if(!this.IsHandleCreated)
+                    {
+                        Thread.Sleep(10);
+                        continue;
+                    }
                     if (this.lbl_TestPos.InvokeRequired)
                     {
                         this.BeginInvoke(new Action(() =>
@@ -138,7 +142,6 @@ namespace MF900_SolveWare.Views.AxisMesForm
                     Thread.Sleep(5);
 
                 }
-                stopFlag.Set();
 
             }, source.Token, TaskCreationOptions.LongRunning);
             task.Start();
@@ -177,7 +180,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void btn_Home_Click(object sender, EventArgs e)
         {
             SpeedSeting setting = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -264,7 +267,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         break;
                     }
 
-                    axis.Jog(false, speed, ref errMsg);
+                    Mission_Report context = axis.Jog(false, speed, ref errMsg);
+                    if (context.NotPass(true)) break;
 
                 } while (false);
             }
@@ -303,7 +307,8 @@ namespace MF900_SolveWare.Views.AxisMesForm
                         break;
                     }
 
-                    axis.Jog(true, speed, ref errMsg);
+                    Mission_Report context = axis.Jog(true, speed, ref errMsg);
+                    if (context.NotPass(true)) break;
 
                 } while (false);
             }
@@ -371,7 +376,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void btn_Relative_Negative_Click(object sender, EventArgs e)
         {
             SpeedSeting speed = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -407,7 +412,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void btn_Relative_Positive_Click(object sender, EventArgs e)
         {
             SpeedSeting speed = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -441,7 +446,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void btn_Absolute_Click(object sender, EventArgs e)
         {
             SpeedSeting speed = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 try
@@ -488,7 +493,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
             lbl_ErrorReport.Visible = false;
 
             if (axis != null)
-                this.ckb_Is_Jog_Monitoring.Checked = axis.Is_Jog_Monitoring;
+                this.ckb_Is_Jog_Monitoring.Checked = axis.Is_Safe_Checking;
         }
 
         private void Form_Axis_Configuration_Item_MtrSpeed_FormClosing(object sender, FormClosingEventArgs e)
@@ -496,14 +501,12 @@ namespace MF900_SolveWare.Views.AxisMesForm
             if (source == null) return;
             source.Cancel();
 
-            stopFlag.WaitOne(100);
-            source = null;
         }
 
         private void btn_Relay_Click(object sender, EventArgs e)
         {
             SpeedSeting speed = GetMainSpeedSetting();
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 relayStop = false;
@@ -578,7 +581,7 @@ namespace MF900_SolveWare.Views.AxisMesForm
         private void ckb_Is_Jog_Monitoring_CheckedChanged(object sender, EventArgs e)
         {
             if(axis != null)
-                axis.Is_Jog_Monitoring = (sender as CheckBox).Checked;
+                axis.Is_Safe_Checking = (sender as CheckBox).Checked;
         }
     }
 }

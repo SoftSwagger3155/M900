@@ -79,7 +79,7 @@ namespace MF900_SolveWare.Views.Child
 
         private void btn_Execute_Click(object sender, EventArgs e)
         {            
-            SolveWare.Core.MMgr.DoButtonClickActionTask(() =>
+            SolveWare.Core.MMgr.Do_Task_Requested_From_Client(() =>
             {
                 Mission_Report context = new Mission_Report();
                 string msg = string.Empty;

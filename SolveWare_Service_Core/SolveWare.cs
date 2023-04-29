@@ -1,4 +1,6 @@
-﻿using SolveWare_Service_Core.Manager.Base.Interface;
+﻿using SolveWare_Service_Core.Definition;
+using SolveWare_Service_Core.General;
+using SolveWare_Service_Core.Manager.Base.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,21 @@ namespace SolveWare_Service_Core
                 }
 
                 return core;
+            }
+        }
+        public void Set_Machine_Status(Mission_Report context)
+        {
+            if (context.ErrorCode == ErrorCodes.MachineStopCall)
+            {
+                this.mmgr.SetStatus(Machine_Status.Stop);
+            }
+            else if (context.ErrorCode == ErrorCodes.NoError)
+            {
+                this.mmgr.SetStatus(Machine_Status.Idle);
+            }
+            else if (context.ErrorCode != ErrorCodes.NoError && context.ErrorCode != ErrorCodes.MachineStopCall)
+            {
+                this.mmgr.SetStatus(Machine_Status.Error);
             }
         }
 

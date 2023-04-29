@@ -87,20 +87,20 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 masterDriver.Close();
         }
 
-        public void DoButtonClickActionTask(Func<Mission_Report> action)
+        public void Do_Task_Requested_From_Client(Func<Mission_Report> action)
         {
-            if (this.Is_Machine_In_Action)
+            if (Is_Machine_In_Action())
             {
                 var result = MessageBox.Show("机器状态运行中\r\n继续请按 是\r\n结束请按 否", "提问", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No) return;
             }
 
-            Task task = Task.Factory.StartNew((object obj) =>
+            Task task = new Task((object obj) =>
             {
+                Data_Mission_Report mReport = obj as Data_Mission_Report;
                 try
                 {                 
                     this.Status = Machine_Status.Busy;
-                    Data_Mission_Report mReport = obj as Data_Mission_Report;
                     mReport.Context = action();
 
                     Machine_Status mStatus = Machine_Status.Idle;
@@ -118,13 +118,24 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
                 }
                 catch (Exception ex)
                 {
-                    this.SetStatus(Machine_Status.Error);
                     Mission_Report context = new Mission_Report();
-                    context.Window_Show_Not_Pass_Message(ErrorCodes.ActionFailed, ex.Message);
+                    context.Set(ErrorCodes.ActionFailed, ex.Message);
+                    mReport.Context = context;
                 }
                 
             }, new Data_Mission_Report());
+            task.Start();
+
+            Task.Factory.ContinueWhenAll(new[] { task }, act =>
+            {
+                 Data_Mission_Report finalReport = task.AsyncState as Data_Mission_Report;
+                 finalReport.Context.NotPass(true);
+                 SolveWare.Core.Set_Machine_Status(finalReport.Context);
+            });
+
         }
+
+       
 
         public IResourceProvider Get_Single_Data_Resource(Type classType)
         {
@@ -320,12 +331,20 @@ namespace SolveWare_Service_Core.Manager.Base.Abstract
         }
 
         public abstract void Stop(bool stopMotor= true);
-        public bool Is_Machine_In_Action
+        public virtual bool Is_Machine_In_Action()
         {
-              get=>   Status == Machine_Status.Busy ||
-                           Status == Machine_Status.Initialising ||
-                           Status == Machine_Status.SingleCycle ||
-                           Status == Machine_Status.Auto;
+            bool isActing = false;
+
+            bool is_Status_OK = status == Machine_Status.UnInitialised ||
+                                             status == Machine_Status.Idle ||
+                                             status == Machine_Status.Error ||
+                                             status == Machine_Status.Stop ||
+                                             status == Machine_Status.Reset;
+
+           
+
+
+            return isActing;
         }
     }
 }

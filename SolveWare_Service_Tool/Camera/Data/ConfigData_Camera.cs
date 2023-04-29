@@ -14,7 +14,7 @@ namespace SolveWare_Service_Tool.Camera.Data
     [ResourceBaseAttribute(ConstantProperty.ResourceKey_Camera)]
     public class ConfigData_Camera: ElementBase
     {
-        public string Id_Camera { get; set; }
+        public string Id_Camera { get; set; } = "使用者定义";
         public string Camera_Name { get; set; }
         public int ImagePart_X { get; set; } = 1280;
         public int ImagePart_Y { get; set; } = 1080;

@@ -51,9 +51,8 @@ namespace MF900_SolveWare.Views.Child
             {
                 try
                 {
-                    while (true)
+                    while (!cancelSource.IsCancellationRequested)
                     {
-                        if (cancelSource.IsCancellationRequested) break;
                         if (indexData != null)
                         {
                             this.Refresh_UI_Item(this.lbl_TotalNo, () =>
@@ -73,16 +72,14 @@ namespace MF900_SolveWare.Views.Child
                                 this.lbl_Table_LoadPos.Text = $"{ResourceKey.Motor_Table} {indexData.Pos_Table_Load} mm";
                             });
                         }
-
-                        if (cancelSource.IsCancellationRequested) break;
+                        
                         Thread.Sleep(50);
                     }
                 }
-                finally
+                catch
                 {
-                      
+
                 }
-                stopFlag.Set();
             });
 
         }   
@@ -92,8 +89,6 @@ namespace MF900_SolveWare.Views.Child
         {
             if(cancelSource == null) return;
             cancelSource.Cancel();
-            stopFlag.WaitOne(100);
-            cancelSource = null;
         }
         public void DataBinding_FirstPos()
         {
@@ -409,6 +404,23 @@ namespace MF900_SolveWare.Views.Child
         {
             if(this.indexData == null) return;
             this.indexData.Pos_Table_Load = ResourceKey.Motor_Table.GetUnitPos();
+        }
+
+        private void tBar_RunVelPct_Scroll(object sender, EventArgs e)
+        {
+            
+           
+        }
+
+        private void tBar_RunVelPct_MouseUp(object sender, MouseEventArgs e)
+        {
+            job_Index.velPct = (double)tBar_RunVelPct.Value / 100;
+            lbl_RunVelPct.Text = $"{tBar_RunVelPct.Value}%";
+            //this.Invoke(new Action(() =>
+            //{
+            //    job_Index.velPct = tBar_RunVelPct.Value / 100;
+            //    lbl_RunVelPct.Text = $"{tBar_RunVelPct.Value}%";
+            //}));
         }
     }
 }

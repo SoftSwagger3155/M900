@@ -35,6 +35,8 @@ namespace SolveWare_Service_Core.General
         public const int OffsetMoveError = -24;
         public const int SetMotorSpeedParameterError = -25;
         public const int NotYetHomed = -26;
+        public const int MotorIsMoving = -27;
+        public const int MotorLimitIssureError = -28;
         public const int MachineStopCall = -10000;
 
 
@@ -70,6 +72,8 @@ namespace SolveWare_Service_Core.General
             m.Add(OffsetMoveError, "Offset Move Error | 移动间距失败");
             m.Add(SetMotorSpeedParameterError, "Set Motor Speed Parameter Error | 设定马达速度参数失败");
             m.Add(NotYetHomed, "Not Yet Homed | 尚未复位");
+            m.Add(MotorIsMoving, "Motor Is Moving | 马达正在运行中");
+            m.Add(MotorLimitIssureError, "Motor Limit Issure Error | 马达限位相关错误");
         }
 
         public static string GetErrorDescription(int errorCode, string extraInfo = "")
