@@ -1,18 +1,14 @@
-﻿using SolveWare_Service_Core.Definition;
-using SolveWare_Service_Core.Manager.Base.Interface;
-using SolveWare_Service_Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.ComponentModel.TypeConverter;
-using SolveWare_Service_Core.General;
 
 namespace SolveWare_Service_Utility.Heler.Converters
 {
-    public class StringConverter_DropDown_NumLevels : StringConverter
+    public class DoubleConverter_DropDown_Greediness : DoubleConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
@@ -21,20 +17,11 @@ namespace SolveWare_Service_Utility.Heler.Converters
 
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            string[] tags = new string[]
+            double[] tags = new double[]
            {
-                "auto",
-                "0",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10"
+               0.8,
+               0.9,
+               1.0
            };
             return new StandardValuesCollection(tags);
         }

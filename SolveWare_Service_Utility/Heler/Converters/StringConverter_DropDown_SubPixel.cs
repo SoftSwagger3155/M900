@@ -8,7 +8,7 @@ using static System.ComponentModel.TypeConverter;
 
 namespace SolveWare_Service_Utility.Heler.Converters
 {
-    public class StringConverter_DropDown_ScaleMin : StringConverter
+    public class StringConverter_DropDown_SubPixel : StringConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
@@ -19,12 +19,18 @@ namespace SolveWare_Service_Utility.Heler.Converters
         {
             string[] tags = new string[]
            {
-                "0.5",
-                "0.6",
-                "0.7",
-                "0.8",
-                "0.9",
-                "1.0"
+                "none",
+                "interpolation",
+                "least_squares",
+                "least_squares_high",
+                "least_squares_very_high",
+                "max_deformation 1",
+                "max_deformation 2",
+                "max_deformation 3",
+                "max_deformation 4",
+                "max_deformation 5",
+                "max_deformation 6"
+
            };
             return new StandardValuesCollection(tags);
         }

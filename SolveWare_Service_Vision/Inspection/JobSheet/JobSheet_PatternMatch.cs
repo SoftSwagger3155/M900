@@ -26,25 +26,48 @@ namespace SolveWare_Service_Vision.Inspection.JobSheet
         [Browsable(false)]
         public string ModelID { get; set; }
      
-        [Category("Pattern Match 参数")]
-        [DisplayName("开始角度-Angle Start")]
+        [Category("模板 学习 参数")]
+        [DisplayName("1. 开始角度-Angle Start")]
         public double AngleStart { get; set; }
 
-        [Category("Pattern Match 参数")]
-        [DisplayName("角度范围-Angle Extent")]
+        [Category("模板 学习 参数")]
+        [DisplayName("2. 角度范围-Angle Extent")]
         public double AngleExtent { get; set; }
 
-        [Category("Pattern Match 参数")]
-        [DisplayName("最小匹配值-Min Scorce")]
-        public double MinScore { get; set; }
-
-        [Category("Pattern Match 参数")]
-        [DisplayName("最小规模-MinScale")]
+        [Category("模板 学习 参数")]
+        [DisplayName("3. 最小规模-MinScale")]
+        [TypeConverter(typeof(DoubleConverter_DropDown_ScaleMin))]
         public double MinScale { get; set; }
 
-        [Category("Pattern Match 参数")]
-        [DisplayName("最大规模-MaxScale")]
+        [Category("模板 学习 参数")]
+        [DisplayName("4. 最大规模-MaxScale")]
+        [TypeConverter(typeof(DoubleConverter_DropDown_ScaleMax))]
         public double MaxScale { get; set; }
+
+        [Category("Pattern Match 参数")]
+        [DisplayName("5. 设置模板优化-Optimization")]
+        [TypeConverter(typeof(StringConverter_DropDown_Optimization))]
+        public string Optimization { get; set; }
+
+        [Category("Pattern Match 参数")]
+        [DisplayName("6. 匹配方法设置-Metric")]
+        [TypeConverter(typeof(StringConverter_DropDown_Metric))]
+        public string Metric { get; set; }
+
+        [Category("Pattern Match 参数")]
+        [DisplayName("7. 对比度-Contrast")]
+        [TypeConverter(typeof(intConverter_DropDown_Contrast)]
+        public int Contrast { get; set; } = 10;
+
+        [Category("Pattern Match 参数")]
+        [DisplayName("8. 最小对比度-MinContrast")]
+        [TypeConverter(typeof(IntConverter_DropDown_MinContrast))]
+        public int MinContrast { get; set; } = 30;
+
+
+        [Category("寻找 模板 参数")]
+        [DisplayName("最小匹配值-Min Scorce")]
+        public double MinScore { get; set; }
 
         [Category("Pattern Match 参数")]
         [DisplayName("匹配最大个数-Num Matches")]

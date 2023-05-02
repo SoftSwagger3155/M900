@@ -37,6 +37,7 @@ namespace SolveWare_Service_Core.General
         public const int NotYetHomed = -26;
         public const int MotorIsMoving = -27;
         public const int MotorLimitIssureError = -28;
+        public const int LearnPatternMatchError = -29;
         public const int MachineStopCall = -10000;
 
 
@@ -74,6 +75,7 @@ namespace SolveWare_Service_Core.General
             m.Add(NotYetHomed, "Not Yet Homed | 尚未复位");
             m.Add(MotorIsMoving, "Motor Is Moving | 马达正在运行中");
             m.Add(MotorLimitIssureError, "Motor Limit Issure Error | 马达限位相关错误");
+            m.Add(LearnPatternMatchError, "Learn Pattern Match Error | 学习模板失败");
         }
 
         public static string GetErrorDescription(int errorCode, string extraInfo = "")

@@ -5,6 +5,7 @@ using SolveWare_Service_Core.Base.Abstract;
 using SolveWare_Service_Core.General;
 using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Tool.Camera.Base.Interface;
+using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
 using SolveWare_Service_Vision.ROIs.Base.Abstract;
 using SolveWare_Service_Vision.ROIs.Business;
@@ -24,6 +25,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SolveWare_Service_Vision.Controller.Base.Abstract
 {
+    public struct Pattern_Match_Result
+    {
+        public bool IsPass { get; set; }
+        public string Message { get; set; }
+    }
     public abstract class VisionControllerBase : ToolElementBase, IVisionController
     {
         protected HWindowControl hWinCtrol;
@@ -31,9 +37,9 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
         protected HImage hImage;
         protected List<HObjectEntry> HObjList;
         protected List<ROIBase> ROIList;
-        protected GraphicsContext mGC;
         protected ROIBase roiMode;
         protected ROIBase cross = null;
+        protected ROIBase patternROI;
         protected Mouse_Event_Mode event_Mode = Mouse_Event_Mode.None;
         protected HTuple hImageSize_Width = new HTuple();
         protected HTuple hImageSize_Height = new HTuple();
@@ -41,7 +47,6 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
         protected HTuple pixel_Column = new HTuple();
         protected HTuple hWinDow_Button = new HTuple();
         protected HTuple hPointGray = new HTuple();
-
         
 
         public CameraMediaBase Media
@@ -75,7 +80,11 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             get => pointGray;
             set => UpdateProper(ref pointGray, value);
         }
-
+        public Pattern_Match_Result PatternMatchResult
+        {
+            get;
+            private set;
+        }
 
 
       
@@ -87,7 +96,6 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             Set_Hwindow_Part();
             HObjList = new List<HObjectEntry> ();
             ROIList = new List<ROIBase> ();
-            mGC = new GraphicsContext ();
 
             if (hWinCtrol != null) Invoke_HWindow_Related_Event();
             if (camrea != null) Invoke_Media_Related_Event();
@@ -122,7 +130,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
         private void AddEntityObject(HObject obj)
         {
 
-            HObjectEntry entry;
+           
 
             switch (obj)
             {
@@ -140,9 +148,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                     }
             }
 
-            entry = new HObjectEntry(obj, mGC.copyContextList());
-
-            HObjList.Add(entry);
+            
             Repaint();
         }
 
@@ -172,7 +178,9 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                 if (roiMode != null)
                 {
                     roiMode.createROI(pixel_Column, pixel_Row);
+                    if(ROIList.Count > 0) { ROIList.Clear(); }  
                     ROIList.Add(roiMode);
+                    this.patternROI = roiMode;
                     roiMode = null;
                     activeROIidx = ROIList.Count - 1;
 
@@ -418,7 +426,6 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             {
                 if (this.hImage == null) return;
                 Adapt_Window(); 
-                AddEntityObject(this.hImage);
                 Repaint();
             }
             catch(Exception ex)
@@ -577,7 +584,6 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             {
                 HSystem.SetSystem("flush_graphic", "false");
                 this.hWinCtrol.HalconWindow.ClearWindow();
-                mGC.stateOfSettings.Clear();
 
                 if (hImage != null)
                 {
@@ -706,6 +712,78 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             }
         }
 
+        public Mission_Report Learn_Circle_Pattern(Data_Inspection data)
+        {
+            Mission_Report context = new Mission_Report();
+            try
+            {
+
+                HObject ho_ImageReduced = new HObject();
+                HObject ho_Circle = new HObject();
+                HTuple hv_ModelID = new HTuple();
+                HImage saveImage = new HImage();
+                HTuple tempArea = new HTuple();
+                HTuple tempRow = new HTuple();
+                HTuple tempcol = new HTuple();
+
+                ROI_Circle circle = (ROIList[activeROIidx] as ROI_Circle);
+                HRegion cirRegion = new HRegion();
+                cirRegion.GenCircle((HTuple)circle.MidR, (HTuple)circle.MidC, (HTuple)circle.Radius1);
+                HOperatorSet.GenCircle(out ho_Circle, circle.MidR, circle.MidC, circle.Radius1);
+
+
+                HOperatorSet.AreaCenter(ho_Circle, out tempArea, out tempRow, out tempcol);
+                HOperatorSet.AreaCenter(this.hImage, out tempArea, out tempRow, out tempcol);
+                HOperatorSet.ReduceDomain(this.hImage, ho_Circle, out ho_ImageReduced);
+                HOperatorSet.AreaCenter(hImage, out tempArea, out tempRow, out tempcol);
+
+
+                //Pattern Match
+                HOperatorSet.AreaCenter(ho_ImageReduced, out tempArea, out tempRow, out tempcol);
+                HOperatorSet.CreateScaledShapeModel(ho_ImageReduced,
+                     data.JobSheet_PatternMatch_Data.NumLevels,
+                     (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
+                     (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(),
+                     "auto",
+                     data.JobSheet_PatternMatch_Data.MinScale,
+                     data.JobSheet_PatternMatch_Data.MaxScale,
+                     "auto",
+                     data.JobSheet_PatternMatch_Data.Optimization,
+                     data.JobSheet_PatternMatch_Data.Metric,
+                     data.JobSheet_PatternMatch_Data.Contrast,
+                     data.JobSheet_PatternMatch_Data.MinContrast, out hv_ModelID);
+
+
+                HobjectToHimage(ho_ImageReduced, ref saveImage);
+                string fileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.shm");
+                string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.jpg");
+                HOperatorSet.WriteShapeModel(hv_ModelID, fileName);
+                HOperatorSet.WriteImage(ho_ImageReduced, "jpg", 0, bitmap_FileName);
+            }
+            catch (Exception)
+            {
+                context.Set(ErrorCodes.LearnPatternMatchError);
+            }
+
+            return context;
+        }
+
+        public Mission_Report Learn_Pattern(Data_Inspection data)
+        {
+            Mission_Report context = default(Mission_Report);   
+            if(this.patternROI is ROI_Circle)
+            {
+                context = Learn_Circle_Pattern(data);  
+            }
+            else
+            {
+
+            }
+
+            return context;
+        }
+
+
         public void Learn_Pattern()
         {
             HObject ho_ImageReduced = new HObject();
@@ -754,6 +832,232 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             }
 
             return context;
+        }
+        public Mission_Report Find_Pattern(Data_Inspection data)
+        {
+            Mission_Report context = new Mission_Report();
+            try
+            {
+                HTuple hv_Row1 = new HTuple();
+                HTuple hv_Column1 = new HTuple();
+                HTuple hv_Angle = new HTuple();
+                HTuple hv_Scale = new HTuple();
+                HTuple hv_Score = new HTuple();
+                HTuple hv_ModelID = new HTuple();
+
+                string fileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.shm");
+                HOperatorSet.ReadShapeModel(fileName, out hv_ModelID);
+
+                HOperatorSet.FindScaledShapeModel(this.hImage, hv_ModelID, 
+                    (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
+                    (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(),
+                    data.JobSheet_PatternMatch_Data.MinScale,
+                    data.JobSheet_PatternMatch_Data.MaxScale,
+                    data.JobSheet_PatternMatch_Data.MinScore,
+                    data.JobSheet_PatternMatch_Data.NumMatches,
+                    data.JobSheet_PatternMatch_Data.MaxOverLap,
+                    data.JobSheet_PatternMatch_Data.SubPixel,
+                    data.JobSheet_PatternMatch_Data.NumLevels,
+                    data.JobSheet_PatternMatch_Data.Greediness,
+                    out hv_Row1, 
+                    out hv_Column1,
+                    out hv_Angle, 
+                    out hv_Scale, 
+                    out hv_Score);
+
+                if (hv_Score[0].D > data.JobSheet_PatternMatch_Data.MinScore)
+                {
+                    Display_shape_matching_results(hv_ModelID, "green", hv_Row1, hv_Column1, hv_Angle, 1, 1, 0);
+                    HOperatorSet.DispCross(this.hWinCtrol.HalconWindow, hv_Row1, hv_Column1, 200, 0);
+
+                    this.PatternMatchResult = new Pattern_Match_Result
+                    {
+                        IsPass = true,
+                        Message = $"结果: 成功 Row {hv_Row1} Col {hv_Column1}"
+                    };
+                }
+                else
+                {
+                    this.PatternMatchResult = new Pattern_Match_Result
+                    {
+                        IsPass = false,
+                        Message = $"结果: 失败"
+                    };
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+
+            return context;
+        }
+
+        private void Display_shape_matching_results(HTuple hv_ModelID, HTuple hv_Color,
+           HTuple hv_Row, HTuple hv_Column, HTuple hv_Angle, HTuple hv_ScaleR, HTuple hv_ScaleC,
+           HTuple hv_Model)
+        {
+
+
+
+            // Local iconic variables 
+
+            HObject ho_ModelContours = null, ho_ContoursAffinTrans = null;
+
+            // Local control variables 
+
+            HTuple hv_NumMatches = new HTuple(), hv_Index = new HTuple();
+            HTuple hv_Match = new HTuple(), hv_HomMat2DIdentity = new HTuple();
+            HTuple hv_HomMat2DScale = new HTuple(), hv_HomMat2DRotate = new HTuple();
+            HTuple hv_HomMat2DTranslate = new HTuple();
+            HTuple hv_Model_COPY_INP_TMP = new HTuple(hv_Model);
+            HTuple hv_ScaleC_COPY_INP_TMP = new HTuple(hv_ScaleC);
+            HTuple hv_ScaleR_COPY_INP_TMP = new HTuple(hv_ScaleR);
+
+            // Initialize local and output iconic variables 
+            HOperatorSet.GenEmptyObj(out ho_ModelContours);
+            HOperatorSet.GenEmptyObj(out ho_ContoursAffinTrans);
+            try
+            {
+                //This procedure displays the results of Shape-Based Matching.
+                //
+                hv_NumMatches.Dispose();
+                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                {
+                    hv_NumMatches = new HTuple(hv_Row.TupleLength()
+                        );
+                }
+                if ((int)(new HTuple(hv_NumMatches.TupleGreater(0))) != 0)
+                {
+                    if ((int)(new HTuple((new HTuple(hv_ScaleR_COPY_INP_TMP.TupleLength())).TupleEqual(
+                        1))) != 0)
+                    {
+                        {
+                            HTuple ExpTmpOutVar_0;
+                            HOperatorSet.TupleGenConst(hv_NumMatches, hv_ScaleR_COPY_INP_TMP, out ExpTmpOutVar_0);
+                            hv_ScaleR_COPY_INP_TMP.Dispose();
+                            hv_ScaleR_COPY_INP_TMP = ExpTmpOutVar_0;
+                        }
+                    }
+                    if ((int)(new HTuple((new HTuple(hv_ScaleC_COPY_INP_TMP.TupleLength())).TupleEqual(
+                        1))) != 0)
+                    {
+                        {
+                            HTuple ExpTmpOutVar_0;
+                            HOperatorSet.TupleGenConst(hv_NumMatches, hv_ScaleC_COPY_INP_TMP, out ExpTmpOutVar_0);
+                            hv_ScaleC_COPY_INP_TMP.Dispose();
+                            hv_ScaleC_COPY_INP_TMP = ExpTmpOutVar_0;
+                        }
+                    }
+                    if ((int)(new HTuple((new HTuple(hv_Model_COPY_INP_TMP.TupleLength())).TupleEqual(
+                        0))) != 0)
+                    {
+                        hv_Model_COPY_INP_TMP.Dispose();
+                        HOperatorSet.TupleGenConst(hv_NumMatches, 0, out hv_Model_COPY_INP_TMP);
+                    }
+                    else if ((int)(new HTuple((new HTuple(hv_Model_COPY_INP_TMP.TupleLength()
+                        )).TupleEqual(1))) != 0)
+                    {
+                        {
+                            HTuple ExpTmpOutVar_0;
+                            HOperatorSet.TupleGenConst(hv_NumMatches, hv_Model_COPY_INP_TMP, out ExpTmpOutVar_0);
+                            hv_Model_COPY_INP_TMP.Dispose();
+                            hv_Model_COPY_INP_TMP = ExpTmpOutVar_0;
+                        }
+                    }
+                    for (hv_Index = 0; (int)hv_Index <= (int)((new HTuple(hv_ModelID.TupleLength()
+                        )) - 1); hv_Index = (int)hv_Index + 1)
+                    {
+                        using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                        {
+                            ho_ModelContours.Dispose();
+                            HOperatorSet.GetShapeModelContours(out ho_ModelContours, hv_ModelID.TupleSelect(
+                                hv_Index), 1);
+                        }
+                        if (HDevWindowStack.IsOpen())
+                        {
+                            using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                            {
+                                HOperatorSet.SetColor(HDevWindowStack.GetActive(), hv_Color.TupleSelect(
+                                    hv_Index % (new HTuple(hv_Color.TupleLength()))));
+                            }
+                        }
+                        HTuple end_val18 = hv_NumMatches - 1;
+                        HTuple step_val18 = 1;
+                        for (hv_Match = 0; hv_Match.Continue(end_val18, step_val18); hv_Match = hv_Match.TupleAdd(step_val18))
+                        {
+                            if ((int)(new HTuple(hv_Index.TupleEqual(hv_Model_COPY_INP_TMP.TupleSelect(
+                                hv_Match)))) != 0)
+                            {
+                                hv_HomMat2DIdentity.Dispose();
+                                HOperatorSet.HomMat2dIdentity(out hv_HomMat2DIdentity);
+                                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                                {
+                                    hv_HomMat2DScale.Dispose();
+                                    HOperatorSet.HomMat2dScale(hv_HomMat2DIdentity, hv_ScaleR_COPY_INP_TMP.TupleSelect(
+                                        hv_Match), hv_ScaleC_COPY_INP_TMP.TupleSelect(hv_Match), 0, 0,
+                                        out hv_HomMat2DScale);
+                                }
+                                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                                {
+                                    hv_HomMat2DRotate.Dispose();
+                                    HOperatorSet.HomMat2dRotate(hv_HomMat2DScale, hv_Angle.TupleSelect(
+                                        hv_Match), 0, 0, out hv_HomMat2DRotate);
+                                }
+                                using (HDevDisposeHelper dh = new HDevDisposeHelper())
+                                {
+                                    hv_HomMat2DTranslate.Dispose();
+                                    HOperatorSet.HomMat2dTranslate(hv_HomMat2DRotate, hv_Row.TupleSelect(
+                                        hv_Match), hv_Column.TupleSelect(hv_Match), out hv_HomMat2DTranslate);
+                                }
+                                ho_ContoursAffinTrans.Dispose();
+                                HOperatorSet.AffineTransContourXld(ho_ModelContours, out ho_ContoursAffinTrans,
+                                    hv_HomMat2DTranslate);
+                                if (HDevWindowStack.IsOpen())
+                                {
+                                    HOperatorSet.DispObj(ho_ContoursAffinTrans, HDevWindowStack.GetActive()
+                                        );
+                                }
+                            }
+                        }
+                    }
+                }
+                ho_ModelContours.Dispose();
+                ho_ContoursAffinTrans.Dispose();
+
+                hv_Model_COPY_INP_TMP.Dispose();
+                hv_ScaleC_COPY_INP_TMP.Dispose();
+                hv_ScaleR_COPY_INP_TMP.Dispose();
+                hv_NumMatches.Dispose();
+                hv_Index.Dispose();
+                hv_Match.Dispose();
+                hv_HomMat2DIdentity.Dispose();
+                hv_HomMat2DScale.Dispose();
+                hv_HomMat2DRotate.Dispose();
+                hv_HomMat2DTranslate.Dispose();
+
+                return;
+            }
+            catch (HalconException HDevExpDefaultException)
+            {
+                ho_ModelContours.Dispose();
+                ho_ContoursAffinTrans.Dispose();
+
+                hv_Model_COPY_INP_TMP.Dispose();
+                hv_ScaleC_COPY_INP_TMP.Dispose();
+                hv_ScaleR_COPY_INP_TMP.Dispose();
+                hv_NumMatches.Dispose();
+                hv_Index.Dispose();
+                hv_Match.Dispose();
+                hv_HomMat2DIdentity.Dispose();
+                hv_HomMat2DScale.Dispose();
+                hv_HomMat2DRotate.Dispose();
+                hv_HomMat2DTranslate.Dispose();
+
+                throw HDevExpDefaultException;
+            }
         }
 
         public HImage Load_Model()

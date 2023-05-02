@@ -64,8 +64,6 @@ namespace MF900_SolveWare.Views.Child
             tView_Content.Nodes.Clear();
             tView_Content.Nodes.Add(NodeName_BrightNess);
             tView_Content.Nodes.Add(NodeName_Lighting);
-            //tView_Content.Nodes.Add(NodeName_PatternMatch);
-            //tView_Content.Nodes.Add(NodeName_Blob);
             if (data_Inspect != null) Convert_Data_To_TreeView();
 
 
@@ -98,24 +96,7 @@ namespace MF900_SolveWare.Views.Child
                         }
                     }
                 }
-            }
-           //if(data_Inspect.JobSheet_PatternMatch_Data != null)
-           // {
-           //     tView_Content.Nodes[SheetNo_PatternMatch].Nodes.Add($"开始角度 {data_Inspect.JobSheet_PatternMatch_Data.AngleStart} ," +
-           //                                                                                                   $"角度范围 {data_Inspect.JobSheet_PatternMatch_Data.AngleExtent} ," +
-           //                                                                                                   $"最小匹配值 {data_Inspect.JobSheet_PatternMatch_Data.MinScore} ," +
-           //                                                                                                   $"最小规模 {data_Inspect.JobSheet_PatternMatch_Data.MinScale} ," +
-           //                                                                                                   $"最大规模 {data_Inspect.JobSheet_PatternMatch_Data.MaxScale} ,\r\n" +
-           //                                                                                                   $"匹配最大个数 {data_Inspect.JobSheet_PatternMatch_Data.NumMatches} ," +
-           //                                                                                                   $"金字塔层数 {data_Inspect.JobSheet_PatternMatch_Data.NumLevels}  ," +
-           //                                                                                                   $"亚像素精度 {data_Inspect.JobSheet_PatternMatch_Data.SubPixel}  ," +
-           //                                                                                                   $"重迭最大个数{data_Inspect.JobSheet_PatternMatch_Data.MaxOverLap} ," +
-           //                                                                                                   $"贪婪度 {data_Inspect.JobSheet_PatternMatch_Data.Greediness}" );
-           // }
-           //if(data_Inspect.JobSheet_Blob_Data != null)
-           // {
-           //     tView_Content.Nodes[SheetNo_Blob].Nodes.Add($"阈值{data_Inspect.JobSheet_Blob_Data.Threshold} 尺度 {data_Inspect.JobSheet_Blob_Data.HorizontalMeasureLength}");
-           // }                    
+            }                 
         }
 
         private void TView_Content_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -206,7 +187,7 @@ namespace MF900_SolveWare.Views.Child
                 try
                 {
                     if (this.ctrl_Camera.Controller == null) return;
-                    this.ctrl_Camera.Controller.Learn_Pattern();
+                    Mission_Report context  = this.ctrl_Camera.Controller.Learn_Pattern(this.job_Inspect.Data);
 
                     if (this.ctrl_Camera.Controller == null) return;
                     HImage obj = this.ctrl_Camera.Controller.Load_Model();

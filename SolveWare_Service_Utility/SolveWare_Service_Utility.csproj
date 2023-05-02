@@ -50,6 +50,11 @@
     <Compile Include="Common\Motion\Data_Motion.cs" />
     <Compile Include="Common\Motion\Job_Motion.cs" />
     <Compile Include="Extension\ExtensionMethod.cs" />
+    <Compile Include="Heler\Converters\DoubleConverter_DropDown_Greediness.cs" />
+    <Compile Include="Heler\Converters\DoubleConverter_DropDown_MinScore.cs" />
+    <Compile Include="Heler\Converters\intConverter_DropDown_Contrast.cs" />
+    <Compile Include="Heler\Converters\IntConverter_DropDown_MaxOverlap.cs" />
+    <Compile Include="Heler\Converters\IntConverter_DropDown_MinContrast.cs" />
     <Compile Include="Heler\Converters\StringConverter_DropDown_AngleStep.cs" />
     <Compile Include="Heler\Converters\StringConverter_DropDown_Camera_Name.cs" />
     <Compile Include="Heler\Converters\StringConverter_DropDown_Contrast.cs" />
@@ -60,9 +65,9 @@
     <Compile Include="Heler\Converters\StringConverter_DropDown_Motor_Name.cs" />
     <Compile Include="Heler\Converters\StringConverter_DropDown_NumLevels.cs" />
     <Compile Include="Heler\Converters\StringConverter_DropDown_Optimization.cs" />
-    <Compile Include="Heler\Converters\StringConverter_DropDown_ScaleMax.cs" />
-    <Compile Include="Heler\Converters\StringConverter_DropDown_ScaleMin.cs" />
-    <Compile Include="Heler\Converters\StringConverter_DropDown_ScaleStep.cs" />
+    <Compile Include="Heler\Converters\DoubleConverter_DropDown_ScaleMax.cs" />
+    <Compile Include="Heler\Converters\DoubleConverter_DropDown_ScaleMin.cs" />
+    <Compile Include="Heler\Converters\StringConverter_DropDown_SubPixel.cs" />
     <Compile Include="Index\Base\Abstract\Data_IndexBase.cs" />
     <Compile Include="Index\Base\Interface\IIndex.cs" />
     <Compile Include="Offset\Base\Abstract\Data_OffsetBase.cs" />

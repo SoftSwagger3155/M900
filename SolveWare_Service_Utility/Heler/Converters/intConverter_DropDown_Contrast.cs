@@ -8,7 +8,7 @@ using static System.ComponentModel.TypeConverter;
 
 namespace SolveWare_Service_Utility.Heler.Converters
 {
-    public class StringConverter_DropDown_ScaleMax : StringConverter
+    public class intConverter_DropDown_Contrast : Int32Converter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
@@ -17,14 +17,9 @@ namespace SolveWare_Service_Utility.Heler.Converters
 
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            string[] tags = new string[]
+            int[] tags = new int[]
            {
-                "1.0",
-                "1.1",
-                "1.2",
-                "1.3",
-                "1.4",
-                "1.5"
+               1,2,3,5,7,10,20,30,40
            };
             return new StandardValuesCollection(tags);
         }
