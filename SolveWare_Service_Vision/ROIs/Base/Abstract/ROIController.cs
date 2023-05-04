@@ -286,7 +286,7 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
         /// Paints all objects from the ROIList into the HALCON window
         /// </summary>
         /// <param name="window">HALCON window</param>
-        public void paintData(HalconDotNet.HWindow window)
+        public void paintData(HalconDotNet.HWindow window, bool isMetrologyDisplayed)
         {
             window.SetDraw("margin");
             window.SetLineWidth(4);
@@ -299,14 +299,14 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
                 for (int i = 0; i < ROIList.Count; i++)
                 {
                     window.SetLineStyle(((ROIBase)ROIList[i]).flagLineStyle);
-                    ((ROIBase)ROIList[i]).draw(window);
+                    ((ROIBase)ROIList[i]).draw(window, isMetrologyDisplayed);
                 }
 
                 if (activeROIidx != -1)
                 {
                     window.SetColor(activeCol);
                     window.SetLineStyle(((ROIBase)ROIList[activeROIidx]).flagLineStyle);
-                    ((ROIBase)ROIList[activeROIidx]).draw(window);
+                    ((ROIBase)ROIList[activeROIidx]).draw(window, isMetrologyDisplayed);
 
                     window.SetColor(activeHdlCol);
                     ((ROIBase)ROIList[activeROIidx]).displayActive(window);

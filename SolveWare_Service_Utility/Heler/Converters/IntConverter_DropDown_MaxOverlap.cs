@@ -8,7 +8,7 @@ using static System.ComponentModel.TypeConverter;
 
 namespace SolveWare_Service_Utility.Heler.Converters
 {
-    public class IntConverter_DropDown_MaxOverlap : Int32Converter
+    public class IntConverter_DropDown_MaxOverlap : DoubleConverter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
@@ -17,9 +17,11 @@ namespace SolveWare_Service_Utility.Heler.Converters
 
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            int[] tags = new int[]
+            double[] tags = new double[]
            {
-               0,1,2
+               0,
+               0.5,
+               1.0
            };
             return new StandardValuesCollection(tags);
         }

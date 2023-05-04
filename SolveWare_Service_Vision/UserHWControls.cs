@@ -3,6 +3,7 @@ using SolveWare_Service_Core.Base.Interface;
 using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Vision.Controller.Base.Abstract;
 using SolveWare_Service_Vision.Controller.Base.Interface;
+using SolveWare_Service_Vision.Inspection.Base.Interface;
 using SolveWare_Service_Vision.ROIs.Business;
 using System;
 using System.Collections.Generic;
@@ -31,13 +32,42 @@ namespace SolveWare_Service_Vision
         {
             this.Camera = camera as CameraMediaBase;
             this.Controller = new VisionController();
-            this.Controller.Setup(this.hWindowControl1, this.Camera);
 
             this.hWindowControl1.HMouseMove -= HWindowControl1_HMouseMove;
             this.hWindowControl1.HMouseMove += HWindowControl1_HMouseMove;
 
             this.Camera.PropertyChanged -= Camera_PropertyChanged;
             this.Camera.PropertyChanged += Camera_PropertyChanged;
+
+            string connectionStatus = Camera.IsSimulation ? "模拟中" : "连线正常";
+            Color color = Camera.IsSimulation ? Color.IndianRed : Color.LightGreen;
+            this.tssl_Connection_Status.Text = connectionStatus;
+            this.tssl_Connection_Status.BackColor = color;
+        }
+
+        public void Setup<TObj>(TObj camera, IInspectionKit job)
+        {
+            this.Camera = camera as CameraMediaBase;
+            this.Controller = new VisionController();
+            this.Controller.Setup(this.hWindowControl1, this.Camera, job);
+
+            this.hWindowControl1.HMouseMove -= HWindowControl1_HMouseMove;
+            this.hWindowControl1.HMouseMove += HWindowControl1_HMouseMove;
+
+            this.Camera.PropertyChanged -= Camera_PropertyChanged;
+            this.Camera.PropertyChanged += Camera_PropertyChanged;
+
+            try
+            {
+                string connectionStatus = Camera.IsSimulation ? "模拟中" : "连线正常";
+                Color color = Camera.IsSimulation ? Color.IndianRed : Color.LightGreen;
+                this.tssl_Connection_Status.Text = connectionStatus;
+                this.tssl_Connection_Status.BackColor = color;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void HWindowControl1_HMouseMove(object sender, HalconDotNet.HMouseEventArgs e)
@@ -166,8 +196,13 @@ namespace SolveWare_Service_Vision
         {
             try
             {
-                if (this.Controller == null) return; 
-                this.Controller.AddROI(new ROI_Line());
+                if (this.Controller == null) return;
+                if (this.Controller.job_Inspect.Is_Show_Metrology)
+                    this.Controller.job_Inspect.Is_Show_Metrology = false;
+                else
+                    this.Controller.job_Inspect.Is_Show_Metrology = true;
+
+                this.Controller.Repaint();
             }
             catch (Exception ex)
             {
@@ -199,6 +234,11 @@ namespace SolveWare_Service_Vision
             {
                 SolveWare.Core.ShowMsg(ex.Message);
             }
+        }
+
+        private void UserHWControl_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

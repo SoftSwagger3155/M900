@@ -70,6 +70,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                     {
                         (cameraBase as Camera_Media_Basler).AssignCameraMedia(null);
                         (cameraBase as Camera_Media_Basler).Assign_Media_Related_Parameter();
+                       
                         //SolveWare.Core.ShowMsg($"相机 : {config.Name}, 开启模拟模式");
                     }
                     break;

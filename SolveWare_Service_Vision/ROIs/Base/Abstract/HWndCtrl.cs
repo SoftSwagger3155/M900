@@ -791,7 +791,7 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
             addInfoDelegate();
 
             if (roiManager != null && (dispROI == MODE_INCLUDE_ROI))
-                roiManager.paintData(window);
+                roiManager.paintData(window, true);
 
             HSystem.SetSystem("flush_graphic", "true");
 

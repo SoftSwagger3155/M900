@@ -82,7 +82,7 @@ namespace SolveWare_Service_Vision.ROIs.Business
 
 
         /// <summary>Paints the ROI into the supplied window.</summary>
-        public override void draw(HalconDotNet.HWindow window)
+        public override void draw(HalconDotNet.HWindow window, bool isMetrologyDisplayed)
         {
             //.SetLineStyle(new HTuple(10, 30));
             window.SetLineWidth(1);

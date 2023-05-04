@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SolveWare_Service_Vision.Inspection.Business
 {
@@ -32,6 +33,8 @@ namespace SolveWare_Service_Vision.Inspection.Business
         {
             get=> offsetY;
         }
+
+        public bool Is_Show_Metrology { get; set; } = true;
 
         public Job_Inspect(string name, string cameraName):base(name)
         {

@@ -78,11 +78,15 @@ namespace SolveWare_Service_Vision.ROIs.Business
 
         /// <summary>Paints the ROI into the supplied window</summary>
         /// <param name="window">HALCON window</param>
-        public override void draw(HalconDotNet.HWindow window)
+        public override void draw(HalconDotNet.HWindow window, bool isMetrologyDisplayed)
         {
-            Draw_Job(window, this.Is_Metrology_Displayed);
+            Draw_Job(window, isMetrologyDisplayed);
         }
         HTuple hv_MetrologyHandle;
+        public HTuple HV_MetrologyHandle
+        {
+            get=> hv_MetrologyHandle;
+        }
 
         public void Draw_Job(HalconDotNet.HWindow window, bool isMetrologyDisplayed)
         {
@@ -95,10 +99,9 @@ namespace SolveWare_Service_Vision.ROIs.Business
                 HOperatorSet.SetLineWidth(window, 2);
                 HOperatorSet.SetColor(window, "cyan");
                 window.DispCircle(MidR, MidC, Radius1);
-                //window.DispCircle(midR, midC, radius2);
                 window.DispRectangle2(Row1, Col1, 0, 5, 5);
-                // window.DispRectangle2(row2, col2, 0, 5, 5);
                 window.DispCross(MidR, MidC, 20, 0);
+
                 //测试卡尺
                 hv_MetrologyHandle = new HTuple();
                 HTuple hv_Row = new HTuple();
@@ -113,50 +116,29 @@ namespace SolveWare_Service_Vision.ROIs.Business
                 HTuple hv_Index = new HTuple();
                 HObject ho_Contour = new HObject();
 
-
-                // add_metrology_object_line_measure(MetrologyHandle, Row1, Column1, Row2, Column2, 20, 5, 1, 30, [], [], Index)
-                //get_metrology_object_model_contour(Contour, MetrologyHandle, 0, 1.5)
-                //get_metrology_object_measures(Contours, MetrologyHandle, 'all', 'all', Row, Column)
-                //dev_set_color('cyan')
-                //dev_display(Contour)
-                //dev_display(Contours)
-
-                //string displayStr = isMetrologyDisplayed ? "cyan": "transparent";
                 HOperatorSet.SetLineWidth(window, 1);
                 HOperatorSet.SetColor(window, "cyan");
                 HOperatorSet.CreateMetrologyModel(out hv_MetrologyHandle);
-                HOperatorSet.AddMetrologyObjectCircleMeasure(hv_MetrologyHandle, MidR, MidC, Radius1, 18, 2, 1, 50, new HTuple(), new HTuple(), out hv_Index);
-                HOperatorSet.GetMetrologyObjectModelContour(out ho_Contour, hv_MetrologyHandle, 0, 1.5);
+                HOperatorSet.AddMetrologyObjectCircleMeasure(hv_MetrologyHandle, MidR, MidC, Radius1, this.VerticalMeasureLength, this.HorizontalMeasureLength, this.MeasureSigma, this.MeasureThreshold, new HTuple(), new HTuple(), out hv_Index);
+                //HOperatorSet.GetMetrologyObjectModelContour(out ho_Contour, hv_MetrologyHandle, 0, 1.5);
                 HOperatorSet.GetMetrologyObjectMeasures(out ho_Contours, hv_MetrologyHandle, "all", "all", out hv_Row2, out hv_Column2);
-                //window.DispObj(ho_Contour);11
+                // postive 正到负 白到黑
+                // negtive 负到正 黑到白
+                //HOperatorSet.SetMetrologyObjectParam(hv_MetrologyHandle, hv_Index, "measure_transition",this.Measure_Transition_Direction);
                 window.DispObj(ho_Contours);
-                //HOperatorSet.FitCircleContourXld(ho_Contour, "algebraic", -1, 0, 0, 3, 2, out hv_Row2, out hv_Column2, out hv_Radius2, out hv_StartPhi, out hv_EndPhi, out hv_PointOrder);
-                //         if (isMetrologyDisplayed)
-                //{
-                //	hv_MetrologyHandle.Dispose();
-                //}
-                //         else 
-                //	window.DispObj(ho_Contour);
             }
             else
             {
                 if (hv_MetrologyHandle != null)
                 {
                     HOperatorSet.ClearMetrologyModel(hv_MetrologyHandle);
-                    //hv_MetrologyHandle.Dispose();
                 }
 
                 HOperatorSet.SetLineWidth(window, 2);
                 HOperatorSet.SetColor(window, "cyan");
                 window.DispCircle(MidR, MidC, Radius1);
-                //window.DispCircle(midR, midC, radius2);
                 window.DispRectangle2(Row1, Col1, 0, 5, 5);
-                // window.DispRectangle2(row2, col2, 0, 5, 5);
                 window.DispCross(MidR, MidC, 20, 0);
-
-
-
-
             }
 
         }

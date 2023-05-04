@@ -8,7 +8,7 @@ using static System.ComponentModel.TypeConverter;
 
 namespace SolveWare_Service_Utility.Heler.Converters
 {
-    public class intConverter_DropDown_Contrast : Int32Converter
+    public class IntConverter_DropDown_Contrast : Int32Converter
     {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {

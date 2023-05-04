@@ -40,8 +40,8 @@
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Inspect = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssl_Result = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssl_SaveDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -49,13 +49,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmb_Selector_InspectKit = new System.Windows.Forms.ComboBox();
             this.gpb_Operation = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_Clear_Pattern = new System.Windows.Forms.Button();
+            this.btn_Learn_Pattern = new System.Windows.Forms.Button();
             this.tView_Content = new System.Windows.Forms.TreeView();
             this.pGrid_Parameters = new System.Windows.Forms.PropertyGrid();
             this.gpb_PatternMatch = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.hWindow_Pattern_Template = new HalconDotNet.HWindowControl();
-            this.button3 = new System.Windows.Forms.Button();
             this.ctrl_Camera = new SolveWare_Service_Vision.UserHWControl();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -89,28 +89,28 @@
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel5});
+            this.tssl_Result,
+            this.tssl_SaveDate});
             this.statusStrip1.Location = new System.Drawing.Point(0, 714);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1894, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel3
+            // tssl_Result
             // 
-            this.toolStripStatusLabel3.AutoSize = false;
-            this.toolStripStatusLabel3.BackColor = System.Drawing.Color.Lime;
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(130, 20);
-            this.toolStripStatusLabel3.Text = "测试结果: Good";
+            this.tssl_Result.AutoSize = false;
+            this.tssl_Result.BackColor = System.Drawing.Color.Lime;
+            this.tssl_Result.Name = "tssl_Result";
+            this.tssl_Result.Size = new System.Drawing.Size(530, 20);
+            this.tssl_Result.Text = "测试结果: Good";
             // 
-            // toolStripStatusLabel5
+            // tssl_SaveDate
             // 
-            this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(10, 4, 0, 2);
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(231, 20);
-            this.toolStripStatusLabel5.Text = "储存日期 : 2023/00/00 00:00:00";
+            this.tssl_SaveDate.Margin = new System.Windows.Forms.Padding(10, 4, 0, 2);
+            this.tssl_SaveDate.Name = "tssl_SaveDate";
+            this.tssl_SaveDate.Size = new System.Drawing.Size(231, 20);
+            this.tssl_SaveDate.Text = "储存日期 : 2023/00/00 00:00:00";
             // 
             // toolStrip1
             // 
@@ -179,8 +179,8 @@
             // 
             // gpb_Operation
             // 
-            this.gpb_Operation.Controls.Add(this.button4);
-            this.gpb_Operation.Controls.Add(this.button3);
+            this.gpb_Operation.Controls.Add(this.btn_Clear_Pattern);
+            this.gpb_Operation.Controls.Add(this.btn_Learn_Pattern);
             this.gpb_Operation.Controls.Add(this.btn_Save);
             this.gpb_Operation.Controls.Add(this.btn_Inspect);
             this.gpb_Operation.Location = new System.Drawing.Point(1288, 503);
@@ -190,15 +190,25 @@
             this.gpb_Operation.TabStop = false;
             this.gpb_Operation.Text = "操作";
             // 
-            // button4
+            // btn_Clear_Pattern
             // 
-            this.button4.Location = new System.Drawing.Point(85, 75);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(106, 45);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "删除模板";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_Clear_Pattern.Location = new System.Drawing.Point(85, 75);
+            this.btn_Clear_Pattern.Name = "btn_Clear_Pattern";
+            this.btn_Clear_Pattern.Size = new System.Drawing.Size(106, 45);
+            this.btn_Clear_Pattern.TabIndex = 10;
+            this.btn_Clear_Pattern.Text = "删除模板";
+            this.btn_Clear_Pattern.UseVisualStyleBackColor = true;
+            this.btn_Clear_Pattern.Click += new System.EventHandler(this.btn_Clear_Pattern_Click);
+            // 
+            // btn_Learn_Pattern
+            // 
+            this.btn_Learn_Pattern.Location = new System.Drawing.Point(85, 24);
+            this.btn_Learn_Pattern.Name = "btn_Learn_Pattern";
+            this.btn_Learn_Pattern.Size = new System.Drawing.Size(106, 45);
+            this.btn_Learn_Pattern.TabIndex = 9;
+            this.btn_Learn_Pattern.Text = "模板学习";
+            this.btn_Learn_Pattern.UseVisualStyleBackColor = true;
+            this.btn_Learn_Pattern.Click += new System.EventHandler(this.btn_Learn_Pattern_Click);
             // 
             // tView_Content
             // 
@@ -261,16 +271,6 @@
             this.hWindow_Pattern_Template.TabIndex = 0;
             this.hWindow_Pattern_Template.WindowSize = new System.Drawing.Size(471, 240);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(85, 24);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(106, 45);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "模板学习";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // ctrl_Camera
             // 
             this.ctrl_Camera.BackColor = System.Drawing.Color.White;
@@ -295,6 +295,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Name = "Form_InspectKit";
             this.Text = "视觉";
+            this.Load += new System.EventHandler(this.Form_InspectKit_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -311,23 +312,23 @@
         #endregion
         private System.Windows.Forms.Button btn_Inspect;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel tssl_Result;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.Button btn_Save;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel tssl_SaveDate;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cmb_Selector_InspectKit;
         private System.Windows.Forms.GroupBox gpb_Operation;
         private System.Windows.Forms.TreeView tView_Content;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_Clear_Pattern;
         private SolveWare_Service_Vision.UserHWControl ctrl_Camera;
         private System.Windows.Forms.PropertyGrid pGrid_Parameters;
         private System.Windows.Forms.GroupBox gpb_PatternMatch;
         private System.Windows.Forms.GroupBox groupBox1;
         private HalconDotNet.HWindowControl hWindow_Pattern_Template;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_Learn_Pattern;
     }
 }

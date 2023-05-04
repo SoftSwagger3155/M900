@@ -1,68 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 被2013 sp1 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
 <Data_Inspection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<SaveDate>2023/00/00 00:00:00</SaveDate>
-	<JobSheet_Brightness_Data>
-		<SaveDate>2023/00/00 00:00:00</SaveDate>
-		<Gain>300</Gain>
-		<ExposureTime>1000</ExposureTime>
-	</JobSheet_Brightness_Data>
-	<JobSheet_Lighting_Datas>
-		<JobSheet_Lighting>
-			<SaveDate>2023/00/00 00:00:00</SaveDate>
-			<Camera_Name>0</Camera_Name>
-			<Is_IO_Controlled>true</Is_IO_Controlled>
-			<IO_Name>塔灯-黄</IO_Name>
-			<TriggerMode>OFF</TriggerMode>
-			<Intensity>0</Intensity>
-		</JobSheet_Lighting>
-		<JobSheet_Lighting>
-			<SaveDate>2023/00/00 00:00:00</SaveDate>
-			<Camera_Name>0</Camera_Name>
-			<Is_IO_Controlled>true</Is_IO_Controlled>
-			<IO_Name>塔灯-黄</IO_Name>
-			<TriggerMode>ON</TriggerMode>
-			<Intensity>0</Intensity>
-		</JobSheet_Lighting>
-		<JobSheet_Lighting>
-			<SaveDate>2023/00/00 00:00:00</SaveDate>
-			<Camera_Name>0</Camera_Name>
-			<Is_IO_Controlled>true</Is_IO_Controlled>
-			<IO_Name>塔灯-黄</IO_Name>
-			<TriggerMode>OFF</TriggerMode>
-			<Intensity>0</Intensity>
-		</JobSheet_Lighting>
-	</JobSheet_Lighting_Datas>
-	<JobSheet_SearchArea_Data>
-		<SaveDate>2023/00/00 00:00:00</SaveDate>
-		<Camera_Name>0</Camera_Name>
-		<Row_Y1>0</Row_Y1>
-		<Column_X1>0</Column_X1>
-		<Row_Y2>0</Row_Y2>
-		<Column_X2>0</Column_X2>
-	</JobSheet_SearchArea_Data>
-	<JobSheet_PatternMatch_Data>
-		<SaveDate>2023/00/00 00:00:00</SaveDate>
-		<AngleStart>1</AngleStart>
-		<AngleExtent>1</AngleExtent>
-		<MinScore>1</MinScore>
-		<MinScale>1</MinScale>
-		<MaxScale>1</MaxScale>
-		<NumMatches>1</NumMatches>
-		<NumLevels>1</NumLevels>
-		<SubPixel>1</SubPixel>
-		<MaxOverLap>1</MaxOverLap>
-		<Greediness>1</Greediness>
-	</JobSheet_PatternMatch_Data>
-	<JobSheet_Blob_Data>
-		<SaveDate>2023/00/00 00:00:00</SaveDate>
-		<Threshold>0</Threshold>
-		<VerticalMeasureLength>0</VerticalMeasureLength>
-		<HorizontalMeasureLength>0</HorizontalMeasureLength>
-		<MeasureSigma>0</MeasureSigma>
-	</JobSheet_Blob_Data>
-	<CenterX>0</CenterX>
-	<CenterY>0</CenterY>
-	<Angle>0</Angle>
-	<CameraName>上相机</CameraName>
+  <Name>视觉-上相机圆孔</Name>
+  <SaveDate>2023/00/00 00:00:00</SaveDate>
+  <JobSheet_Brightness_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Gain>0</Gain>
+    <ExposureTime>0</ExposureTime>
+  </JobSheet_Brightness_Data>
+  <JobSheet_Lighting_Datas />
+  <JobSheet_SearchArea_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <Camera_Name>0</Camera_Name>
+    <Row_Y1>0</Row_Y1>
+    <Column_X1>0</Column_X1>
+    <Row_Y2>0</Row_Y2>
+    <Column_X2>0</Column_X2>
+  </JobSheet_SearchArea_Data>
+  <JobSheet_PatternMatch_Data>
+    <SaveDate>2023/00/00 00:00:00</SaveDate>
+    <AngleStart>-10</AngleStart>
+    <AngleExtent>10</AngleExtent>
+    <MinScale>0.9</MinScale>
+    <MaxScale>1.1</MaxScale>
+    <Optimization>auto</Optimization>
+    <Metric>use_polarity</Metric>
+    <Contrast>10</Contrast>
+    <MinContrast>40</MinContrast>
+    <MinScore>0.5</MinScore>
+    <NumMatches>1</NumMatches>
+    <NumLevels>1</NumLevels>
+    <SubPixel>least_squares</SubPixel>
+    <MaxOverLap>1</MaxOverLap>
+    <Greediness>0.9</Greediness>
+    <Threshold>3</Threshold>
+    <TransitionDirection>黑到白</TransitionDirection>
+    <VerticalMeasureLength>18</VerticalMeasureLength>
+    <HorizontalMeasureLength>2</HorizontalMeasureLength>
+    <MeasureSigma>1</MeasureSigma>
+    <Radius_PatternMatch>128.57682528356344</Radius_PatternMatch>
+  </JobSheet_PatternMatch_Data>
+  <CenterX>0</CenterX>
+  <CenterY>0</CenterY>
+  <Angle>0</Angle>
+  <CameraName>上相机</CameraName>
 </Data_Inspection>

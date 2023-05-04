@@ -46,8 +46,9 @@ namespace SolveWare_Service_Vision
             this.tsb_ClearHwindow = new System.Windows.Forms.ToolStripButton();
             this.tsb_Play = new System.Windows.Forms.ToolStripButton();
             this.tsb_Stop = new System.Windows.Forms.ToolStripButton();
-            this.hWindowControl1 = new HalconDotNet.HWindowControl();
             this.tsb_GrabOne = new System.Windows.Forms.ToolStripButton();
+            this.hWindowControl1 = new HalconDotNet.HWindowControl();
+            this.tssl_Connection_Status = new System.Windows.Forms.ToolStripLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -119,7 +120,8 @@ namespace SolveWare_Service_Vision
             this.tsb_ClearHwindow,
             this.tsb_Play,
             this.tsb_Stop,
-            this.tsb_GrabOne});
+            this.tsb_GrabOne,
+            this.tssl_Connection_Status});
             this.toolStrip1.Location = new System.Drawing.Point(1, 355);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(362, 23);
@@ -188,12 +190,13 @@ namespace SolveWare_Service_Vision
             // 
             // tsb_DrawLines
             // 
-            this.tsb_DrawLines.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_DrawLines.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsb_DrawLines.Image = ((System.Drawing.Image)(resources.GetObject("tsb_DrawLines.Image")));
             this.tsb_DrawLines.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_DrawLines.Name = "tsb_DrawLines";
-            this.tsb_DrawLines.Size = new System.Drawing.Size(29, 20);
-            this.tsb_DrawLines.Text = "直线";
+            this.tsb_DrawLines.Size = new System.Drawing.Size(43, 20);
+            this.tsb_DrawLines.Text = "卡尺";
+            this.tsb_DrawLines.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.tsb_DrawLines.Click += new System.EventHandler(this.tsb_DrawLines_Click);
             // 
             // tsb_ClearHwindow
@@ -224,6 +227,16 @@ namespace SolveWare_Service_Vision
             this.tsb_Stop.Size = new System.Drawing.Size(29, 20);
             this.tsb_Stop.Click += new System.EventHandler(this.tsb_Stop_Click);
             // 
+            // tsb_GrabOne
+            // 
+            this.tsb_GrabOne.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsb_GrabOne.Image = ((System.Drawing.Image)(resources.GetObject("tsb_GrabOne.Image")));
+            this.tsb_GrabOne.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_GrabOne.Name = "tsb_GrabOne";
+            this.tsb_GrabOne.Size = new System.Drawing.Size(29, 20);
+            this.tsb_GrabOne.Text = "toolStripButton1";
+            this.tsb_GrabOne.Click += new System.EventHandler(this.tsb_GrabOne_Click);
+            // 
             // hWindowControl1
             // 
             this.hWindowControl1.BackColor = System.Drawing.Color.Black;
@@ -236,15 +249,10 @@ namespace SolveWare_Service_Vision
             this.hWindowControl1.TabIndex = 2;
             this.hWindowControl1.WindowSize = new System.Drawing.Size(356, 349);
             // 
-            // tsb_GrabOne
+            // tssl_Connection_Status
             // 
-            this.tsb_GrabOne.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsb_GrabOne.Image = ((System.Drawing.Image)(resources.GetObject("tsb_GrabOne.Image")));
-            this.tsb_GrabOne.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_GrabOne.Name = "tsb_GrabOne";
-            this.tsb_GrabOne.Size = new System.Drawing.Size(29, 20);
-            this.tsb_GrabOne.Text = "toolStripButton1";
-            this.tsb_GrabOne.Click += new System.EventHandler(this.tsb_GrabOne_Click);
+            this.tssl_Connection_Status.Name = "tssl_Connection_Status";
+            this.tssl_Connection_Status.Size = new System.Drawing.Size(0, 20);
             // 
             // UserHWControl
             // 
@@ -253,6 +261,7 @@ namespace SolveWare_Service_Vision
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UserHWControl";
             this.Size = new System.Drawing.Size(364, 401);
+            this.Load += new System.EventHandler(this.UserHWControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -283,5 +292,6 @@ namespace SolveWare_Service_Vision
         private System.Windows.Forms.ToolStripButton tsb_Play;
         private System.Windows.Forms.ToolStripButton tsb_Stop;
         private System.Windows.Forms.ToolStripButton tsb_GrabOne;
+        private System.Windows.Forms.ToolStripLabel tssl_Connection_Status;
     }
 }

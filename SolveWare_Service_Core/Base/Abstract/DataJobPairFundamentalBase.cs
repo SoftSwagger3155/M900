@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SolveWare_Service_Core.Base.Abstract
 {
-    public class DataJobPairFundamentalBase<TData> : JobFundamentalBase, ICommonJobFundamental
+    public class DataJobPairFundamentalBase<TData> : JobFundamentalBase, ICommonJobFundamental where TData : IElement
     {
         public TData Data { get; private set; }
         protected string filePath = string.Empty;
@@ -29,6 +29,7 @@ namespace SolveWare_Service_Core.Base.Abstract
                 this.Data =(TData)Activator.CreateInstance(typeof(TData));    
                 Save(); 
             }
+            (this.Data as IElement).Name = name;  
 
         }
         public void Save(bool isWindowShow = false)

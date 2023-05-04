@@ -92,6 +92,10 @@ namespace SolveWare_Service_Tool.Camera.Base.Abstract
         {
             get => imagePartY; private set => UpdateProper(ref imagePartY, value);
         }
+        public bool IsOneShot
+        {
+            get; set;
+        }
         public bool IsSimulation { get => isSimulation; }
         public string GrabTimeInfo { get; set; } = "0 fps";
 

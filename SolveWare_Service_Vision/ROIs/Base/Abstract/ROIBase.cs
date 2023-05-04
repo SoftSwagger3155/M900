@@ -14,6 +14,12 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
 
         public string RoiName { get; set; }
         public bool IsAuxiliaryROI { get; set; }
+
+        public int VerticalMeasureLength { get; set; }
+        public int HorizontalMeasureLength { get; set; }    
+        public double MeasureSigma { get; set; }
+        public int MeasureThreshold { get; set; }
+        public string Measure_Transition_Direction { get; set; } = "negativa";
         // class members of inheriting ROI classes
         protected int NumHandles;
         protected int activeHandleIdx;
@@ -69,7 +75,7 @@ namespace SolveWare_Service_Vision.ROIs.Base.Abstract
         public virtual void createROI(HTuple RoiParameters) { }
         /// <summary>Paints the ROI into the supplied window.</summary>
         /// <param name="window">HALCON window</param>
-        public virtual void draw(HalconDotNet.HWindow window) { }
+        public virtual void draw(HalconDotNet.HWindow window, bool isMetrologyDisplayed) { }
 
         /// <summary> 
         /// Returns the distance of the ROI handle being

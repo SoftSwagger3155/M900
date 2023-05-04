@@ -414,11 +414,7 @@ namespace SolveWare_Service_Tool.Camera.Business
                             break;
                         }
                     }
-
-                    media.Parameters[PLGigECamera.AcquisitionMode].SetValue(PLGigECamera.AcquisitionMode.SingleFrame);
-                    media.StreamGrabber.Start(1, GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
-
-
+                    
                 } while (false);
             }
             catch (Exception ex)
@@ -458,6 +454,8 @@ namespace SolveWare_Service_Tool.Camera.Business
 
             return Get_Result(nameof(this.SetAutoExposure), errMsg);
         }
+        
+       
         public override void GrabOneShot()
         {
             string errMsg = string.Empty;

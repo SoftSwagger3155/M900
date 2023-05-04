@@ -7,6 +7,7 @@ using SolveWare_Service_Tool.Camera.Base.Abstract;
 using SolveWare_Service_Tool.Camera.Base.Interface;
 using SolveWare_Service_Vision.Data;
 using SolveWare_Service_Vision.Inspection.Base.Interface;
+using SolveWare_Service_Vision.Inspection.Business;
 using SolveWare_Service_Vision.ROIs.Base.Abstract;
 using SolveWare_Service_Vision.ROIs.Business;
 using SolveWare_Service_Vision.ROIs.Defintions;
@@ -18,6 +19,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.AxHost;
@@ -85,14 +87,28 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             get;
             private set;
         }
+       
+        public Job_Inspect job_Inspect { get; private set; }
+        private bool is_Show_Metrology
+        {
+            get
+            {
+                bool isShow = false;
+                if(job_Inspect != null)
+                {
+                    isShow = this.job_Inspect.Is_Show_Metrology;
+                } 
 
-
+                return isShow;
+            }
+        }
       
 
-        public void Setup(HWindowControl HWindow, ICameraMedia camera)
+        public void Setup(HWindowControl HWindow, ICameraMedia camera, IInspectionKit job)
         {
             this.hWinCtrol = HWindow;
             this.camrea = camera as CameraMediaBase;
+            this.job_Inspect = job as Job_Inspect; 
             Set_Hwindow_Part();
             HObjList = new List<HObjectEntry> ();
             ROIList = new List<ROIBase> ();
@@ -183,7 +199,6 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                     this.patternROI = roiMode;
                     roiMode = null;
                     activeROIidx = ROIList.Count - 1;
-
                     Repaint_AddROI();
 
                     this.event_Mode = Mouse_Event_Mode.Add_ROI;
@@ -299,7 +314,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                 {
                     this.pixel_Row = e.Y;
                     this.pixel_Column = e.X;
-                    this.Location = $"R: {(int)e.X} C: {(int)e.Y}";
+                    this.Location = $"Row: {(int)e.X} Col: {(int)e.Y}";
                     this.PointGray = $"0";
                     OnPropertyChanged(nameof(Location));
                     OnPropertyChanged(nameof(pointGray));
@@ -322,7 +337,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                     int posX = (int)(colValue * factorX);
                     int posY = (int)(rowValue * factorY);
 
-                    this.Location = $"R: {posX} C: {posY}";
+                    this.Location = $"Row: {posY} Col: {posX}";
                     this.PointGray = $"{hPointGray}";
                 }
             }
@@ -348,12 +363,18 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             Repaint_Movement();
         }
       
+        AutoResetEvent grabOne = new AutoResetEvent(false); 
         private void Media_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(this.camrea.Image))
             { 
                 this.hImage = this.camrea.Image;
-                Repaint();
+                if(!camrea.IsOneShot) Repaint();
+                else
+                {
+                   grabOne.Set();
+                }
+
             }
         }
 
@@ -371,6 +392,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                     }
 
                     this.roiMode = roiMode;
+                    this.job_Inspect.Is_Show_Metrology = false;
                 } while (false);
             }
             catch (Exception ex)
@@ -448,13 +470,17 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             double midY = (int)(r1 + r2) / 2;
 
             cross.createROI(midY, midX);
-            cross.draw(this.hWinCtrol.HalconWindow);
+            cross.draw(this.hWinCtrol.HalconWindow, false);
             isShowCrossLine = true;
         }
 
         public void GrabOneShot()
         {
+            this.camrea.IsOneShot = true;
             this.camrea.GrabOneShot();
+
+            grabOne.WaitOne(1000);
+            this.camrea.IsOneShot = false;
         }
 
         public void Open_File_To_Get_Image()
@@ -665,6 +691,36 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             }
         }
 
+        private void Repaint_FindPattern()
+        {
+            try
+            {
+                HSystem.SetSystem("flush_graphic", "false");
+                this.hWinCtrol.HalconWindow.ClearWindow();
+                //mGC.stateOfSettings.Clear();
+
+                if (hImage != null)
+                {
+                    Adapt_Window();
+                    hWinCtrol.HalconWindow.DispImage(hImage);
+                }
+
+      
+
+                if (IsShowCrossLine)
+                    GenerateCrossLine();
+
+                HSystem.SetSystem("flush_graphic", "true");
+
+                this.hWinCtrol.HalconWindow.SetColor("black");
+                this.hWinCtrol.HalconWindow.DispLine(-100.0, -100.0, -101.0, -101.0);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private void Highlight_Active_ROI()
         {
             if (ROIList.Count > 0)
@@ -675,7 +731,7 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
                     this.hWinCtrol.HalconWindow.SetDraw("margin");
 
                     this.hWinCtrol.HalconWindow.SetColor(activeCol);
-                    ((ROIBase)ROIList[activeROIidx]).draw(this.hWinCtrol.HalconWindow);
+                    ((ROIBase)ROIList[activeROIidx]).draw(this.hWinCtrol.HalconWindow, this.is_Show_Metrology);
 
                     this.hWinCtrol.HalconWindow.SetColor(activeHdlCol);
                     ((ROIBase)ROIList[activeROIidx]).displayActive(this.hWinCtrol.HalconWindow);
@@ -698,13 +754,22 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
 
                 for (int i = 0; i < ROIList.Count; i++)
                 {
-                    ((ROIBase)ROIList[i]).draw(window);
+                    if (this.is_Show_Metrology)
+                    {
+                        ROIList[i].VerticalMeasureLength = job_Inspect.Data.JobSheet_PatternMatch_Data.VerticalMeasureLength;
+                        ROIList[i].HorizontalMeasureLength = job_Inspect.Data.JobSheet_PatternMatch_Data.HorizontalMeasureLength;
+                        ROIList[i].MeasureSigma = job_Inspect.Data.JobSheet_PatternMatch_Data.MeasureSigma;
+                        ROIList[i].MeasureThreshold = job_Inspect.Data.JobSheet_PatternMatch_Data.Threshold;
+
+                    }
+
+                    ((ROIBase)ROIList[i]).draw(window, this.is_Show_Metrology);
                 }
 
                 if (event_Mode == Mouse_Event_Mode.Add_ROI || event_Mode == Mouse_Event_Mode.Active_ROI)
                 {
                     window.SetColor(activeCol);
-                    ((ROIBase)ROIList[activeROIidx]).draw(window);
+                    ((ROIBase)ROIList[activeROIidx]).draw(window, this.is_Show_Metrology);
 
                     window.SetColor(activeHdlCol);
                     ((ROIBase)ROIList[activeROIidx]).displayActive(window);
@@ -740,25 +805,32 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
 
                 //Pattern Match
                 HOperatorSet.AreaCenter(ho_ImageReduced, out tempArea, out tempRow, out tempcol);
-                HOperatorSet.CreateScaledShapeModel(ho_ImageReduced,
-                     data.JobSheet_PatternMatch_Data.NumLevels,
-                     (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
-                     (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(),
-                     "auto",
-                     data.JobSheet_PatternMatch_Data.MinScale,
-                     data.JobSheet_PatternMatch_Data.MaxScale,
-                     "auto",
-                     data.JobSheet_PatternMatch_Data.Optimization,
-                     data.JobSheet_PatternMatch_Data.Metric,
-                     data.JobSheet_PatternMatch_Data.Contrast,
-                     data.JobSheet_PatternMatch_Data.MinContrast, out hv_ModelID);
-
+                //HOperatorSet.CreateScaledShapeModel(ho_ImageReduced,
+                //     data.JobSheet_PatternMatch_Data.NumLevels,
+                //     (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
+                //     (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(),
+                //     "auto",
+                //     data.JobSheet_PatternMatch_Data.MinScale,
+                //     data.JobSheet_PatternMatch_Data.MaxScale,
+                //     "auto",
+                //     data.JobSheet_PatternMatch_Data.Optimization,
+                //     data.JobSheet_PatternMatch_Data.Metric,
+                //     data.JobSheet_PatternMatch_Data.Contrast,
+                //     data.JobSheet_PatternMatch_Data.MinContrast, out hv_ModelID);
+                HTuple angleStart = (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad();
+                HTuple angleExtent = (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad();
+                double minScale = data.JobSheet_PatternMatch_Data.MinScale;
+                double maxScale = data.JobSheet_PatternMatch_Data.MaxScale;
+                HOperatorSet.CreateScaledShapeModel(ho_ImageReduced, "auto", angleStart, angleExtent, "auto",
+                minScale, maxScale, "auto", "auto", "use_polarity", "auto", "auto", out hv_ModelID);
 
                 HobjectToHimage(ho_ImageReduced, ref saveImage);
                 string fileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.shm");
                 string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.jpg");
                 HOperatorSet.WriteShapeModel(hv_ModelID, fileName);
                 HOperatorSet.WriteImage(ho_ImageReduced, "jpg", 0, bitmap_FileName);
+
+                this.job_Inspect.Data.JobSheet_PatternMatch_Data.Radius_PatternMatch = circle.Radius1;
             }
             catch (Exception)
             {
@@ -838,58 +910,163 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             Mission_Report context = new Mission_Report();
             try
             {
-                HTuple hv_Row1 = new HTuple();
-                HTuple hv_Column1 = new HTuple();
-                HTuple hv_Angle = new HTuple();
-                HTuple hv_Scale = new HTuple();
-                HTuple hv_Score = new HTuple();
-                HTuple hv_ModelID = new HTuple();
-
-                string fileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.shm");
-                HOperatorSet.ReadShapeModel(fileName, out hv_ModelID);
-
-                HOperatorSet.FindScaledShapeModel(this.hImage, hv_ModelID, 
-                    (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
-                    (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(),
-                    data.JobSheet_PatternMatch_Data.MinScale,
-                    data.JobSheet_PatternMatch_Data.MaxScale,
-                    data.JobSheet_PatternMatch_Data.MinScore,
-                    data.JobSheet_PatternMatch_Data.NumMatches,
-                    data.JobSheet_PatternMatch_Data.MaxOverLap,
-                    data.JobSheet_PatternMatch_Data.SubPixel,
-                    data.JobSheet_PatternMatch_Data.NumLevels,
-                    data.JobSheet_PatternMatch_Data.Greediness,
-                    out hv_Row1, 
-                    out hv_Column1,
-                    out hv_Angle, 
-                    out hv_Scale, 
-                    out hv_Score);
-
-                if (hv_Score[0].D > data.JobSheet_PatternMatch_Data.MinScore)
+                do
                 {
-                    Display_shape_matching_results(hv_ModelID, "green", hv_Row1, hv_Column1, hv_Angle, 1, 1, 0);
-                    HOperatorSet.DispCross(this.hWinCtrol.HalconWindow, hv_Row1, hv_Column1, 200, 0);
-
-                    this.PatternMatchResult = new Pattern_Match_Result
+                    if (!camrea.IsSimulation)
                     {
-                        IsPass = true,
-                        Message = $"结果: 成功 Row {hv_Row1} Col {hv_Column1}"
-                    };
-                }
-                else
-                {
-                    this.PatternMatchResult = new Pattern_Match_Result
+
+                        StopLive();
+                        GrabOneShot();
+                    }
+
+                    Repaint_FindPattern();
+
+                    if(this.hImage == null)
                     {
-                        IsPass = false,
-                        Message = $"结果: 失败"
-                    };
-                }
+                        context.Set(ErrorCodes.PatternMatchFailed, "无图像");
+                        break;
+                    }
+
+                    HTuple hv_Row1 = new HTuple();
+                    HTuple hv_Column1 = new HTuple();
+                    HTuple hv_Angle = new HTuple();
+                    HTuple hv_Scale = new HTuple();
+                    HTuple hv_Score = new HTuple();
+                    HTuple hv_ModelID = new HTuple();
+
+                    string fileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.shm");
+                    HOperatorSet.ReadShapeModel(fileName, out hv_ModelID);
+
+                    #region Pattern Match
+                    HTuple angleStart = (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad();
+                    HTuple angleExtent = (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad();
+                    double minScale = data.JobSheet_PatternMatch_Data.MinScale;
+                    double maxScale = data.JobSheet_PatternMatch_Data.MaxScale;
+                    double minScore = 0.5;
+                    int numMatches = data.JobSheet_PatternMatch_Data.NumMatches;
+                    double maxOverlap = data.JobSheet_PatternMatch_Data.MaxOverLap;
+                    string subPixel = data.JobSheet_PatternMatch_Data.SubPixel;
+                    int numLevels = data.JobSheet_PatternMatch_Data.NumLevels;
+                    double greediness = data.JobSheet_PatternMatch_Data.Greediness;
+
+                    HOperatorSet.FindScaledShapeModel(this.hImage, hv_ModelID,
+                       angleStart, angleExtent, minScale, maxScale, minScore, numMatches, maxOverlap, subPixel, numLevels, greediness,
+                       out hv_Row1, out hv_Column1,
+                       out hv_Angle, out hv_Scale, out hv_Score);
+                    #endregion
+
+                    if (hv_Score.Length == 0)
+                    {
+                        context.Set(ErrorCodes.PatternMatchFailed);
+                        if (context.NotPass()) break;
+                    }
+
+                    #region Blob
+                    HTuple metrologyHandle = new HTuple();
+                    HTuple index = new HTuple();
+                    HTuple objectRow = new HTuple();
+                    HTuple objectColumn = new HTuple();
+                    HObject contour = new HObject();
+                    HObject contours = new HObject();
+                    HTuple hv_Row2 = new HTuple();
+                    HTuple hv_Column2 = new HTuple();
+                    HTuple hv_Radius1 = new HTuple();
+                    HTuple hv_StartPhi = new HTuple();
+                    HTuple hv_EndPhi = new HTuple();
+                    HTuple hv_PointOrder = new HTuple();
+
+                    double radius = this.job_Inspect.Data.JobSheet_PatternMatch_Data.Radius_PatternMatch;
+                    int verticalLength = this.job_Inspect.Data.JobSheet_PatternMatch_Data.VerticalMeasureLength;
+                    int horizontalLength = this.job_Inspect.Data.JobSheet_PatternMatch_Data.HorizontalMeasureLength;
+                    double sigma = this.job_Inspect.Data.JobSheet_PatternMatch_Data.MeasureSigma;
+                    int threshold = this.job_Inspect.Data.JobSheet_PatternMatch_Data.Threshold;
+                    string transition = this.job_Inspect.Data.JobSheet_PatternMatch_Data.TransitionDirection == "黑到白" ? "negative" : "positive";
+
+                    HOperatorSet.CreateMetrologyModel(out metrologyHandle);
+                    HOperatorSet.AddMetrologyObjectCircleMeasure(metrologyHandle, hv_Row1, hv_Column1, radius, verticalLength, horizontalLength, sigma, threshold, new HTuple(), new HTuple(), out index);
+                    HOperatorSet.SetMetrologyObjectParam(metrologyHandle, "all", "measure_transition", transition);
+                    HOperatorSet.ApplyMetrologyModel(this.hImage, metrologyHandle);
+                    HOperatorSet.GetMetrologyObjectMeasures(out contours, metrologyHandle, "all", "all", out objectRow, out objectColumn);
+                    HOperatorSet.GetMetrologyObjectResultContour(out contour, metrologyHandle, "all", "all", 1.5);
+                    HOperatorSet.FitCircleContourXld(contour, "algebraic", -1, 0, 0, 3, 2, out hv_Row2, out hv_Column2, out hv_Radius1, out hv_StartPhi, out hv_EndPhi, out hv_PointOrder);
 
 
+                    this.hWinCtrol.HalconWindow.SetColor("green");
+                    this.hWinCtrol.HalconWindow.SetLineWidth(1);
+                    this.hWinCtrol.HalconWindow.DispObj(contour);
+                    #endregion
+
+                    if (context.NotPass()) break;
+
+                    //判断是否成功
+                    bool isPass = false;
+                    if (hv_Score.Length > 0)
+                    {
+                        if (hv_Score.D > data.JobSheet_PatternMatch_Data.MinScore)
+                        {
+                            Display_shape_matching_results(hv_ModelID, "green", hv_Row2, hv_Column2, hv_Angle, 1, 1, 0);
+
+                            this.hWinCtrol.HalconWindow.SetLineWidth(1);
+                            this.hWinCtrol.HalconWindow.SetColor("orange");
+                            HOperatorSet.DispCross(this.hWinCtrol.HalconWindow, hv_Row2, hv_Column2, 200, 0);
+                            isPass = true;
+                        }
+                    }
+                    if (isPass)
+                    {
+                        context.ErrorCode = ErrorCodes.NoError;
+                        context.Message = $"结果: 成功 得分 {Math.Round(hv_Score.D * 100, 3)} Row {(int)hv_Row2.D} Col {(int)hv_Column2.D}";
+                    }
+                    else
+                    {
+                        context.ErrorCode = ErrorCodes.PatternMatchFailed;
+                        context.Message = $"结果: 失败";
+                    }
+
+                    #region 暂留
+                    //HOperatorSet.FindScaledShapeModel(this.hImage, hv_ModelID, 
+                    //    (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
+                    //    (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(),
+                    //    data.JobSheet_PatternMatch_Data.MinScale,
+                    //    data.JobSheet_PatternMatch_Data.MaxScale,
+                    //    data.JobSheet_PatternMatch_Data.MinScore,
+                    //    data.JobSheet_PatternMatch_Data.NumMatches,
+                    //    data.JobSheet_PatternMatch_Data.MaxOverLap,
+                    //    data.JobSheet_PatternMatch_Data.SubPixel,
+                    //    data.JobSheet_PatternMatch_Data.NumLevels,
+                    //    data.JobSheet_PatternMatch_Data.Greediness,
+                    //    out hv_Row1, 
+                    //    out hv_Column1,
+                    //    out hv_Angle, 
+                    //    out hv_Scale, 
+                    //    out hv_Score);
+
+                    //HOperatorSet.FindScaledShapeModel(this.hImage, hv_ModelID,
+                    //    (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad(),
+                    //    (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad(), 
+                    //    data.JobSheet_PatternMatch_Data.MinScale,
+                    //    data.JobSheet_PatternMatch_Data.MaxScale, 
+                    //    data.JobSheet_PatternMatch_Data.MinScore, 1, 0.5, "least_squares", 0, 
+                    //    data.JobSheet_PatternMatch_Data.Greediness, out hv_Row1, out hv_Column1,
+                    //    out hv_Angle, out hv_Scale, out hv_Score);
+
+                    //HTuple angleStart = (new HTuple(data.JobSheet_PatternMatch_Data.AngleStart)).TupleRad();
+                    //HTuple angleExtent = (new HTuple(data.JobSheet_PatternMatch_Data.AngleExtent)).TupleRad();
+                    //double minScale = data.JobSheet_PatternMatch_Data.MinScale;
+                    //double maxScale = data.JobSheet_PatternMatch_Data.MaxScale;
+                    //double minScore = data.JobSheet_PatternMatch_Data.MinScore;
+
+
+                    //HOperatorSet.FindScaledShapeModel(this.hImage, hv_ModelID, 
+                    //   angleStart, angleExtent,minScale,maxScale, minScore, 1, 0.5, "least_squares", 0, 0.9, out hv_Row1, out hv_Column1,
+                    //   out hv_Angle, out hv_Scale, out hv_Score);
+                    #endregion
+
+                } while (false);
             }
             catch (Exception ex)
             {
-                SolveWare.Core.ShowMsg(ex.Message);
+               context.Set(ErrorCodes.PatternMatchFailed, ex.Message);  
             }
 
             return context;
@@ -1060,16 +1237,40 @@ namespace SolveWare_Service_Vision.Controller.Base.Abstract
             }
         }
 
-        public HImage Load_Model()
+        public HImage Load_Model(Data_Inspection data)
         {
             HObject ho_Img = new HObject(); 
-            HImage hImg = new HImage(); 
-            string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, "圆形模板.jpg");
-            HOperatorSet.ReadImage(out ho_Img, bitmap_FileName);
+            HImage hImg = new HImage();
+            string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.jpg");
 
+            if (!File.Exists(bitmap_FileName)) return null;
+
+            HOperatorSet.ReadImage(out ho_Img, bitmap_FileName);
             HobjectToHimage(ho_Img, ref hImg);
 
             return hImg;
+        }
+
+        public Mission_Report Delete_Pattern(Data_Inspection data, HWindowControl hControl)
+        {
+            Mission_Report context = new Mission_Report();
+            try
+            {
+                string bitmap_FileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.jpg");
+                string fileName = Path.Combine(SystemPath.GetVisionPatternPath, $"{data.Name}-圆形模板.shm");
+
+                if( File.Exists( bitmap_FileName )) File.Delete(bitmap_FileName);
+                if(File.Exists(fileName)) File.Delete(fileName);
+
+                
+                hControl.HalconWindow.ClearWindow();
+            }
+            catch (Exception ex)
+            {
+                context.Set(ErrorCodes.ActionFailed, ex.Message);
+            }
+
+            return context;
         }
      
         //函数原型 

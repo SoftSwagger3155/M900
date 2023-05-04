@@ -78,7 +78,7 @@ namespace SolveWare_Service_Vision.ROIs.Business
 
         /// <summary>Paints the ROI into the supplied window</summary>
         /// <param name="window">HALCON window</param>
-        public override void draw(HalconDotNet.HWindow window)
+        public override void draw(HalconDotNet.HWindow window, bool isMetrologyDisplayed )
         {
             //window.DispText("Search Area", "window", row1 - 10,; col1 - 10, "white", new HTuple(), new HTuple());
             //window.SetColor("yellow");

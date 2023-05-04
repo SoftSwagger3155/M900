@@ -13,7 +13,7 @@ namespace SolveWare_Service_Vision.Controller.Base
 {
     public interface IVisionController: IElement
     {
-        void Setup(HWindowControl HWindow, ICameraMedia camera);
+        void Setup(HWindowControl HWindow, ICameraMedia camera, IInspectionKit job);
         void ClearROIs();
         void ClearCrossLine();
         void GenerateCrossLine();

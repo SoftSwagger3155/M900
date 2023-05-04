@@ -15,6 +15,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -49,9 +50,8 @@ namespace MF900_SolveWare.Views.Child
             this.job_Inspect = obj as Job_Inspect;
             this.data_Inspect = job_Inspect.Data;
             this.camera = data_Inspect.CameraName.GetCamera();
-            this.ctrl_Camera.Setup(camera);
+            this.ctrl_Camera.Setup(camera, this.job_Inspect);
             this.pGrid_Parameters.SelectedObject = data_Inspect.JobSheet_PatternMatch_Data;
-
         }
         private void Fillup_Combobox_Inspect()
         {
@@ -155,6 +155,10 @@ namespace MF900_SolveWare.Views.Child
                 this.Setup(job);
                 MakeTreeView();
 
+
+                HImage obj = this.ctrl_Camera.Controller.Load_Model(this.job_Inspect.Data);
+                if(obj == null) return;
+                this.ctrl_Camera.Controller.Adapt_Window_And_Attach(obj, this.hWindow_Pattern_Template);
             }
             catch (Exception ex)
             {
@@ -173,25 +177,84 @@ namespace MF900_SolveWare.Views.Child
                 }
 
                 this.job_Inspect.Save(true);
+                DateTime dt = DateTime.Now; 
+                this.tssl_SaveDate.Text = $"储存日期: {dt.ToLongDateString()} {dt.ToLongTimeString()}";
             }
             catch (Exception ex)
             {
                 SolveWare.Core.ShowMsg(ex.Message);
             }
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void btn_Learn_Pattern_Click(object sender, EventArgs e)
         {
             Task.Run(() =>
             {
                 try
                 {
-                    if (this.ctrl_Camera.Controller == null) return;
-                    Mission_Report context  = this.ctrl_Camera.Controller.Learn_Pattern(this.job_Inspect.Data);
+                    do
+                    {
+                        if (this.ctrl_Camera.Controller == null) return;
+                        Mission_Report context = this.ctrl_Camera.Controller.Learn_Pattern(this.job_Inspect.Data);
+                        if (context.NotPass(true)) break;
 
+                        if (this.ctrl_Camera.Controller == null) return;
+                        HImage obj = this.ctrl_Camera.Controller.Load_Model(this.job_Inspect.Data);
+                        if(obj == null)
+                        {
+                            context.Set(ErrorCodes.LearnPatternMatchError);
+                            if(context.NotPass(true)) break;
+                        }
+                        this.ctrl_Camera.Controller.Adapt_Window_And_Attach(obj, this.hWindow_Pattern_Template);
+
+                    } while (false);
+                }
+                catch (Exception ex)
+                {
+                    SolveWare.Core.ShowMsg(ex.Message);
+                }
+            });
+        }
+        private void btn_Clear_Pattern_Click(object sender, EventArgs e)
+        {
+            Mission_Report context = new Mission_Report();
+            try
+            {
+                do
+                {
                     if (this.ctrl_Camera.Controller == null) return;
-                    HImage obj = this.ctrl_Camera.Controller.Load_Model();
-                    this.ctrl_Camera.Controller.Adapt_Window_And_Attach(obj, this.hWindow_Pattern_Template);
+                    context = this.ctrl_Camera.Controller.Delete_Pattern(this.job_Inspect.Data, hWindow_Pattern_Template);
+                    if(context.NotPass(true)) break;    
+
+                } while (false);
+            }
+            catch (Exception ex)
+            {
+                SolveWare.Core.ShowMsg(ex.Message);
+            }
+
+        }
+
+
+        private void btn_Inspect_Click(object sender, EventArgs e)
+        {
+            Task.Run(() =>
+            {
+                try
+                {
+                    do
+                    {
+                        if (this.ctrl_Camera.Controller == null) return;
+                        Mission_Report context = this.ctrl_Camera.Controller.Find_Pattern(this.job_Inspect.Data);
+                        if (context.NotPass())
+                        {
+                            SetResult(Inspect_Result.Fail, context.Message);
+                        }
+                        else
+                        {
+                            SetResult(Inspect_Result.Success, context.Message);
+                        }
+                        
+                    } while (false);
                 }
                 catch (Exception ex)
                 {
@@ -200,13 +263,11 @@ namespace MF900_SolveWare.Views.Child
             });
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Form_InspectKit_Load(object sender, EventArgs e)
         {
             try
             {
-                if (this.ctrl_Camera.Controller == null) return;
-                HObject obj = this.ctrl_Camera.Controller.Load_Model();
-                this.hWindow_Pattern_Template.HalconWindow.DispObj(obj);
+                SetResult(Inspect_Result.Unknown, string.Empty);
             }
             catch (Exception ex)
             {
@@ -214,17 +275,38 @@ namespace MF900_SolveWare.Views.Child
             }
         }
 
-        private void btn_Inspect_Click(object sender, EventArgs e)
+        private void SetResult(Inspect_Result result, string msg)
         {
-            try
+            if (this.IsHandleCreated)
             {
-                if (this.ctrl_Camera.Controller == null) return;
-                this.ctrl_Camera.Controller.Find_Pattern();
-            }
-            catch (Exception ex)
-            {
-                SolveWare.Core.ShowMsg(ex.Message);
+                Thread.Sleep(1);
+                this.BeginInvoke(new Action(() =>
+                {
+                    tssl_Result.Text = msg;
+                    switch (result)
+                    {
+                        case Inspect_Result.Success:
+                            tssl_Result.BackColor = Color.LightGreen;
+                            break;
+                        case Inspect_Result.Fail:
+                            tssl_Result.BackColor = Color.IndianRed;
+                            break; ;
+                        case Inspect_Result.Unknown:
+                            tssl_Result.Text = "未知";
+                            tssl_Result.BackColor = Color.LightGray;
+                            break;
+                    }
+                }));
             }
         }
+
+        private enum Inspect_Result
+        {
+            Unknown,
+            Success,
+            Fail
+        }
+
+    
     }
 }
